@@ -1,0 +1,293 @@
+
+;; Function forkpty (forkpty, funcdef_no=5, decl_uid=3233, cgraph_uid=5, symbol_order=6)
+
+Partition 1: size 4 align 4
+	slave
+Partition 0: size 4 align 4
+	master
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+Purged edges from bb 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 5->6 to 10 failed.
+Removing jump 68.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 10 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 96 [ amaster ])
+        (reg:DI 5 di [ amaster ])) forkpty.c:28 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 97 [ name ])
+        (reg:DI 4 si [ name ])) forkpty.c:28 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 98 [ termp ])
+        (reg:DI 1 dx [ termp ])) forkpty.c:28 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 99 [ winp ])
+        (reg:DI 2 cx [ winp ])) forkpty.c:28 -1
+     (nil))
+(note 6 5 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 6 12 2 (parallel [
+            (set (reg:DI 100)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) forkpty.c:31 -1
+     (nil))
+(insn 12 11 13 2 (parallel [
+            (set (reg:DI 101)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) forkpty.c:31 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 37 r8)
+        (reg/v/f:DI 99 [ winp ])) forkpty.c:31 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:DI 2 cx)
+        (reg/v/f:DI 98 [ termp ])) forkpty.c:31 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 1 dx)
+        (reg/v/f:DI 97 [ name ])) forkpty.c:31 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 4 si)
+        (reg:DI 100)) forkpty.c:31 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 5 di)
+        (reg:DI 101)) forkpty.c:31 -1
+     (nil))
+(call_insn 18 17 19 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_openpty") [flags 0x43]  <function_decl 0x2b307d0ec0d8 openpty>) [0 openpty S1 A8])
+            (const_int 0 [0]))) forkpty.c:31 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_openpty") [flags 0x43]  <function_decl 0x2b307d0ec0d8 openpty>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 19 18 20 2 (set (reg:SI 87 [ D.3263 ])
+        (reg:SI 0 ax)) forkpty.c:31 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ D.3263 ])
+            (const_int -1 [0xffffffffffffffff]))) forkpty.c:31 -1
+     (nil))
+(jump_insn 21 20 22 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 65)
+            (pc))) forkpty.c:31 -1
+     (int_list:REG_BR_PROB 382 (nil))
+ -> 65)
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn 23 22 24 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fork") [flags 0x41]  <function_decl 0x2b307cf7dbd0 fork>) [0 __builtin_fork S1 A8])
+            (const_int 0 [0]))) forkpty.c:34 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fork") [flags 0x41]  <function_decl 0x2b307cf7dbd0 fork>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 24 23 25 4 (set (reg:SI 102)
+        (reg:SI 0 ax)) forkpty.c:34 -1
+     (nil))
+(insn 25 24 26 4 (set (reg:SI 103)
+        (reg:SI 102)) forkpty.c:34 -1
+     (nil))
+(insn 26 25 27 4 (set (reg/v:SI 88 [ pid ])
+        (reg:SI 103)) forkpty.c:34 -1
+     (nil))
+(insn 27 26 28 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 88 [ pid ])
+            (const_int -1 [0xffffffffffffffff]))) forkpty.c:34 -1
+     (nil))
+(jump_insn 28 27 74 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) forkpty.c:34 -1
+     (int_list:REG_BR_PROB 3333 (nil))
+ -> 33)
+(note 74 28 29 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 29 74 30 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 88 [ pid ])
+            (const_int 0 [0]))) forkpty.c:34 -1
+     (nil))
+(jump_insn 30 29 75 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) forkpty.c:34 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 43)
+(note 75 30 31 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 31 75 32 6 (set (pc)
+        (label_ref 58)) forkpty.c:34 -1
+     (nil)
+ -> 58)
+(barrier 32 31 33)
+(code_label 33 32 34 7 4 "" [1 uses])
+(note 34 33 35 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 7 (set (reg:SI 104)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 master+0 S4 A64])) forkpty.c:37 -1
+     (nil))
+(insn 36 35 37 7 (set (reg:SI 5 di)
+        (reg:SI 104)) forkpty.c:37 -1
+     (nil))
+(call_insn 37 36 38 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>) [0 close S1 A8])
+            (const_int 0 [0]))) forkpty.c:37 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 38 37 39 7 (set (reg:SI 105)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 slave+0 S4 A32])) forkpty.c:38 -1
+     (nil))
+(insn 39 38 40 7 (set (reg:SI 5 di)
+        (reg:SI 105)) forkpty.c:38 -1
+     (nil))
+(call_insn 40 39 7 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>) [0 close S1 A8])
+            (const_int 0 [0]))) forkpty.c:38 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 7 40 41 7 (set (reg:SI 87 [ D.3263 ])
+        (const_int -1 [0xffffffffffffffff])) forkpty.c:39 -1
+     (nil))
+(jump_insn 41 7 42 7 (set (pc)
+        (label_ref 65)) forkpty.c:39 -1
+     (nil)
+ -> 65)
+(barrier 42 41 43)
+(code_label 43 42 44 8 5 "" [1 uses])
+(note 44 43 45 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 8 (set (reg:SI 106)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 master+0 S4 A64])) forkpty.c:42 -1
+     (nil))
+(insn 46 45 47 8 (set (reg:SI 5 di)
+        (reg:SI 106)) forkpty.c:42 -1
+     (nil))
+(call_insn 47 46 48 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>) [0 close S1 A8])
+            (const_int 0 [0]))) forkpty.c:42 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 48 47 49 8 (set (reg:SI 107)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 slave+0 S4 A32])) forkpty.c:43 -1
+     (nil))
+(insn 49 48 50 8 (set (reg:SI 5 di)
+        (reg:SI 107)) forkpty.c:43 -1
+     (nil))
+(call_insn 50 49 51 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_login_tty") [flags 0x43]  <function_decl 0x2b307d0d2870 login_tty>) [0 login_tty S1 A8])
+            (const_int 0 [0]))) forkpty.c:43 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_login_tty") [flags 0x43]  <function_decl 0x2b307d0d2870 login_tty>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 51 50 52 8 (set (reg:SI 87 [ D.3263 ])
+        (reg:SI 0 ax)) forkpty.c:43 -1
+     (nil))
+(insn 52 51 53 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ D.3263 ])
+            (const_int 0 [0]))) forkpty.c:43 -1
+     (nil))
+(jump_insn 53 52 54 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 65)
+            (pc))) forkpty.c:43 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 65)
+(note 54 53 55 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 56 9 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) forkpty.c:44 -1
+     (nil))
+(call_insn 56 55 57 9 (call (mem:QI (symbol_ref:DI ("_exit") [flags 0x41]  <function_decl 0x2b307cf8d0d8 _exit>) [0 __builtin__exit S1 A8])
+        (const_int 0 [0])) forkpty.c:44 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_exit") [flags 0x41]  <function_decl 0x2b307cf8d0d8 _exit>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 57 56 58)
+(code_label 58 57 59 10 3 "" [1 uses])
+(note 59 58 60 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 10 (set (reg:SI 108)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 master+0 S4 A64])) forkpty.c:49 -1
+     (nil))
+(insn 61 60 62 10 (set (mem:SI (reg/v/f:DI 96 [ amaster ]) [1 *amaster_22(D)+0 S4 A32])
+        (reg:SI 108)) forkpty.c:49 -1
+     (nil))
+(insn 62 61 63 10 (set (reg:SI 109)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 slave+0 S4 A32])) forkpty.c:50 -1
+     (nil))
+(insn 63 62 64 10 (set (reg:SI 5 di)
+        (reg:SI 109)) forkpty.c:50 -1
+     (nil))
+(call_insn 64 63 8 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>) [0 close S1 A8])
+            (const_int 0 [0]))) forkpty.c:50 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("close") [flags 0x41]  <function_decl 0x2b307d072000 close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 8 64 65 10 (set (reg:SI 87 [ D.3263 ])
+        (reg/v:SI 88 [ pid ])) forkpty.c:34 -1
+     (nil))
+(code_label 65 8 66 11 2 "" [3 uses])
+(note 66 65 67 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 71 11 (set (reg:SI 95 [ <retval> ])
+        (reg:SI 87 [ D.3263 ])) -1
+     (nil))
+(insn 71 67 72 11 (set (reg/i:SI 0 ax)
+        (reg:SI 95 [ <retval> ])) forkpty.c:54 -1
+     (nil))
+(insn 72 71 0 11 (use (reg/i:SI 0 ax)) forkpty.c:54 -1
+     (nil))

@@ -1,0 +1,130 @@
+\hypertarget{aarch64_2dl-machine_8h}{}\doxysection{sysdeps/aarch64/dl-\/machine.h File Reference}
+\label{aarch64_2dl-machine_8h}\index{sysdeps/aarch64/dl-\/machine.h@{sysdeps/aarch64/dl-\/machine.h}}
+{\ttfamily \#include $<$tls.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/tlsdesc.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/irel.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME}}~\char`\"{}aarch64\char`\"{}
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}{R\+T\+L\+D\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}.text								\textbackslash{}n\textbackslash{}.\+globl \mbox{\hyperlink{powerpc_2powerpc64_2entry_8h_a8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start}}							\textbackslash{}\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{n\textbackslash{}.\+type}} \mbox{\hyperlink{powerpc_2powerpc64_2entry_8h_a8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start}}, \%\mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}}						\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user						\textbackslash{}\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{n\textbackslash{}.\+type}} \+\_\+dl\+\_\+start\+\_\+user, \%\mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}}					\textbackslash{}n\textbackslash{}\+\_\+start\+:								\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}}	x0,	\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}					\textbackslash{}n\textbackslash{}	bl	\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2init-first_8c_a93caeabdaecd4cbfe9330b4fdc1b385b}{\+\_\+dl\+\_\+start}}					\textbackslash{}n\textbackslash{}	// returns \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{structentry}{entry}} point \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} x0			\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}}	x21, x0						\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:							\textbackslash{}n\textbackslash{}	// get the original \mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}} \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}}				\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{test-fenv-clear-main_8c_a3e4057f9ad8129ff44d5a5c668e56666}{ldr}}	x1, \mbox{[}\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}\mbox{]}					\textbackslash{}n\textbackslash{}	// get the argv address					\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{strftime__l_8c_ace3147ee7e57195ae182ea0d7f8faafa}{add}}	x2, \mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}, \#8					\textbackslash{}n\textbackslash{}	// get \+\_\+dl\+\_\+skip\+\_\+args \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} see \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} we were			\textbackslash{}n\textbackslash{}	// invoked as an executable				\textbackslash{}n\textbackslash{}	adrp	x4, \+\_\+dl\+\_\+skip\+\_\+args				\textbackslash{}n\textbackslash{}        \mbox{\hyperlink{test-fenv-clear-main_8c_a3e4057f9ad8129ff44d5a5c668e56666}{ldr}}	w4, \mbox{[}x4, \#\+:lo12\+:\+\_\+dl\+\_\+skip\+\_\+args\mbox{]}			\textbackslash{}n\textbackslash{}	// do we need \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} adjust argc/argv			\textbackslash{}n\textbackslash{}        cmp	w4, 0						\textbackslash{}n\textbackslash{}	beq	.L\+\_\+done\+\_\+stack\+\_\+adjust				\textbackslash{}n\textbackslash{}	// subtract \+\_\+dl\+\_\+skip\+\_\+args \mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} original \mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}} \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}}	\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a27e64c681ba0240724ff77732536e700}{sub}}	x1, x1, x4					\textbackslash{}n\textbackslash{}	// store adjusted argc \mbox{\hyperlink{tst-deep1mod3_8c_afb031782b4cd52ba30fdced9fedfa6a1}{back}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} stack			\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}	x1, \mbox{[}\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}\mbox{]}					\textbackslash{}n\textbackslash{}	// \mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4a499bdc617777cc585138653e9c610d58}{find}} the \mbox{\hyperlink{malloc_8c_afcdd80de1d2482a30e49ef0389f36c63}{first}} unskipped argument			\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}}	x3, x2						\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{strftime__l_8c_ace3147ee7e57195ae182ea0d7f8faafa}{add}}	x4, x2, x4, lsl \#3				\textbackslash{}n\textbackslash{}	// shuffle argv down					\textbackslash{}n\textbackslash{}1\+:	\mbox{\hyperlink{test-fenv-clear-main_8c_a3e4057f9ad8129ff44d5a5c668e56666}{ldr}}	x5, \mbox{[}x4\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}	x5, \mbox{[}x3\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	cmp	x5, \#0						\textbackslash{}n\textbackslash{}	bne	1b						\textbackslash{}n\textbackslash{}	// shuffle envp down					\textbackslash{}n\textbackslash{}1\+:	ldr	x5, \mbox{[}x4\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	str	x5, \mbox{[}x3\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	cmp	x5, \#0						\textbackslash{}n\textbackslash{}	bne	1b						\textbackslash{}n\textbackslash{}	// shuffle auxv down					\textbackslash{}n\textbackslash{}1\+:	ldp	x0, x5, \mbox{[}x4, \#16\mbox{]}!				\textbackslash{}n\textbackslash{}	stp	x0, x5, \mbox{[}x3\mbox{]}, \#16				\textbackslash{}n\textbackslash{}	cmp	x0, \#0						\textbackslash{}n\textbackslash{}	bne	1b						\textbackslash{}n\textbackslash{}	// Update \+\_\+dl\+\_\+argv					\textbackslash{}n\textbackslash{}	adrp	x3, \+\_\+dl\+\_\+argv					\textbackslash{}n\textbackslash{}	str	x2, \mbox{[}x3, \#\+:lo12\+:\+\_\+dl\+\_\+argv\mbox{]}			\textbackslash{}n\textbackslash{}.\+L\+\_\+done\+\_\+stack\+\_\+adjust\+:						\textbackslash{}n\textbackslash{}	// compute envp						\textbackslash{}n\textbackslash{}	add	x3, x2, x1, lsl \#3				\textbackslash{}n\textbackslash{}	add	x3, x3, \#8					\textbackslash{}n\textbackslash{}	adrp	x16, \+\_\+rtld\+\_\+local				\textbackslash{}n\textbackslash{}        add	x16, x16, \#\+:lo12\+:\+\_\+rtld\+\_\+local			\textbackslash{}n\textbackslash{}        ldr	x0, \mbox{[}x16\mbox{]}					\textbackslash{}n\textbackslash{}	bl	\+\_\+dl\+\_\+init					\textbackslash{}n\textbackslash{}	// load the finalizer function				\textbackslash{}n\textbackslash{}	adrp	x0, \+\_\+dl\+\_\+fini					\textbackslash{}n\textbackslash{}	add	x0, x0, \#\+:lo12\+:\+\_\+dl\+\_\+fini				\textbackslash{}n\textbackslash{}	// jump to the user\+\_\+s entry point			\textbackslash{}n\textbackslash{}	br      x21						\textbackslash{}n\textbackslash{}\char`\"{});
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}{elf\+\_\+machine\+\_\+type\+\_\+class}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}~\mbox{\hyperlink{elf_2elf_8h_a8539d5099b60c1087e840136c31a2ecf}{R\+\_\+\+A\+A\+R\+C\+H64\+\_\+\+J\+U\+M\+P\+\_\+\+S\+L\+OT}}
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL}}~1
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA}}~0
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER}}~aarch64\+\_\+gnu\+\_\+pltenter
+\item 
+\#define \mbox{\hyperlink{aarch64_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT}}~aarch64\+\_\+gnu\+\_\+pltexit
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{aarch64_2dl-machine_8h_aca4a30a421bb01ea2d14a88685eb0753}{ElfW}} (Rela) $\ast$\mbox{\hyperlink{sparc64_2dl-plt_8h_a91cb9f4480223e744b9eeb3fcc4368e7}{reloc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{aarch64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{aarch64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}}
+\item 
+static \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} \mbox{\hyperlink{aarch64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}\label{aarch64_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}}
+\index{ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTENTER}{ARCH\_LA\_PLTENTER}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER~aarch64\+\_\+gnu\+\_\+pltenter}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}\label{aarch64_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}}
+\index{ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTEXIT}{ARCH\_LA\_PLTEXIT}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT~aarch64\+\_\+gnu\+\_\+pltexit}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}\label{aarch64_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}}
+\index{ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_JMP\_SLOT}{ELF\_MACHINE\_JMP\_SLOT}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT~\mbox{\hyperlink{elf_2elf_8h_a8539d5099b60c1087e840136c31a2ecf}{R\+\_\+\+A\+A\+R\+C\+H64\+\_\+\+J\+U\+M\+P\+\_\+\+S\+L\+OT}}}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}\label{aarch64_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}}
+\index{ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NAME}{ELF\_MACHINE\_NAME}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME~\char`\"{}aarch64\char`\"{}}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}\label{aarch64_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}}
+\index{ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_REL}{ELF\_MACHINE\_NO\_REL}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL~1}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}\label{aarch64_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}}
+\index{ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_RELA}{ELF\_MACHINE\_NO\_RELA}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA~0}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}\label{aarch64_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!elf\_machine\_type\_class@{elf\_machine\_type\_class}}
+\index{elf\_machine\_type\_class@{elf\_machine\_type\_class}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{elf\_machine\_type\_class}{elf\_machine\_type\_class}}
+{\footnotesize\ttfamily \#define elf\+\_\+machine\+\_\+type\+\_\+class(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a8539d5099b60c1087e840136c31a2ecf}{R\_AARCH64\_JUMP\_SLOT}} ||                  \(\backslash\)}
+\DoxyCodeLine{     (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a540c6b27d9fccdeb43d97894af1ed0c7}{R\_AARCH64\_TLS\_DTPMOD}} ||                  \(\backslash\)}
+\DoxyCodeLine{     (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_ad272544398d99211fa4c05fb924871bf}{R\_AARCH64\_TLS\_DTPREL}} ||                  \(\backslash\)}
+\DoxyCodeLine{     (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a594f6b00d902b6dda2c6446ddb6de826}{R\_AARCH64\_TLS\_TPREL}} ||                    \(\backslash\)}
+\DoxyCodeLine{     (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a7c820751d38fe2b1e51e2c43004b8e7b}{R\_AARCH64\_TLSDESC}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_ae76990eaa2473ebb2af4f8601b5ccb0a}{ELF\_RTYPE\_CLASS\_PLT}})        \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a31dccb9a67e2f4272abac8eb1503f9ae}{R\_AARCH64\_COPY}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_a364a19b974b8cd186911f1a59041e7c1}{ELF\_RTYPE\_CLASS\_COPY}})      \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a6713bc12b08801c41c68aebbfba2c4b5}{R\_AARCH64\_GLOB\_DAT}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_aaba2db383082ce62d6cafa84dc1b2126}{ELF\_RTYPE\_CLASS\_EXTERN\_PROTECTED\_DATA}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}\label{aarch64_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!RTLD\_START@{RTLD\_START}}
+\index{RTLD\_START@{RTLD\_START}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{RTLD\_START}{RTLD\_START}}
+{\footnotesize\ttfamily \#define R\+T\+L\+D\+\_\+\+S\+T\+A\+RT~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}.text								\textbackslash{}n\textbackslash{}.\+globl \mbox{\hyperlink{powerpc_2powerpc64_2entry_8h_a8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start}}							\textbackslash{}\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{n\textbackslash{}.\+type}} \mbox{\hyperlink{powerpc_2powerpc64_2entry_8h_a8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start}}, \%\mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}}						\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user						\textbackslash{}\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{n\textbackslash{}.\+type}} \+\_\+dl\+\_\+start\+\_\+user, \%\mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}}					\textbackslash{}n\textbackslash{}\+\_\+start\+:								\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}}	x0,	\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}					\textbackslash{}n\textbackslash{}	bl	\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2init-first_8c_a93caeabdaecd4cbfe9330b4fdc1b385b}{\+\_\+dl\+\_\+start}}					\textbackslash{}n\textbackslash{}	// returns \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{structentry}{entry}} point \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} x0			\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}}	x21, x0						\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:							\textbackslash{}n\textbackslash{}	// get the original \mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}} \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}}				\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{test-fenv-clear-main_8c_a3e4057f9ad8129ff44d5a5c668e56666}{ldr}}	x1, \mbox{[}\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}\mbox{]}					\textbackslash{}n\textbackslash{}	// get the argv address					\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{strftime__l_8c_ace3147ee7e57195ae182ea0d7f8faafa}{add}}	x2, \mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}, \#8					\textbackslash{}n\textbackslash{}	// get \+\_\+dl\+\_\+skip\+\_\+args \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} see \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} we were			\textbackslash{}n\textbackslash{}	// invoked as an executable				\textbackslash{}n\textbackslash{}	adrp	x4, \+\_\+dl\+\_\+skip\+\_\+args				\textbackslash{}n\textbackslash{}        \mbox{\hyperlink{test-fenv-clear-main_8c_a3e4057f9ad8129ff44d5a5c668e56666}{ldr}}	w4, \mbox{[}x4, \#\+:lo12\+:\+\_\+dl\+\_\+skip\+\_\+args\mbox{]}			\textbackslash{}n\textbackslash{}	// do we need \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} adjust argc/argv			\textbackslash{}n\textbackslash{}        cmp	w4, 0						\textbackslash{}n\textbackslash{}	beq	.L\+\_\+done\+\_\+stack\+\_\+adjust				\textbackslash{}n\textbackslash{}	// subtract \+\_\+dl\+\_\+skip\+\_\+args \mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} original \mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}} \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}}	\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a27e64c681ba0240724ff77732536e700}{sub}}	x1, x1, x4					\textbackslash{}n\textbackslash{}	// store adjusted argc \mbox{\hyperlink{tst-deep1mod3_8c_afb031782b4cd52ba30fdced9fedfa6a1}{back}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} stack			\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}	x1, \mbox{[}\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}\mbox{]}					\textbackslash{}n\textbackslash{}	// \mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4a499bdc617777cc585138653e9c610d58}{find}} the \mbox{\hyperlink{malloc_8c_afcdd80de1d2482a30e49ef0389f36c63}{first}} unskipped argument			\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}}	x3, x2						\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{strftime__l_8c_ace3147ee7e57195ae182ea0d7f8faafa}{add}}	x4, x2, x4, lsl \#3				\textbackslash{}n\textbackslash{}	// shuffle argv down					\textbackslash{}n\textbackslash{}1\+:	\mbox{\hyperlink{test-fenv-clear-main_8c_a3e4057f9ad8129ff44d5a5c668e56666}{ldr}}	x5, \mbox{[}x4\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}	x5, \mbox{[}x3\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	cmp	x5, \#0						\textbackslash{}n\textbackslash{}	bne	1b						\textbackslash{}n\textbackslash{}	// shuffle envp down					\textbackslash{}n\textbackslash{}1\+:	ldr	x5, \mbox{[}x4\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	str	x5, \mbox{[}x3\mbox{]}, \#8					\textbackslash{}n\textbackslash{}	cmp	x5, \#0						\textbackslash{}n\textbackslash{}	bne	1b						\textbackslash{}n\textbackslash{}	// shuffle auxv down					\textbackslash{}n\textbackslash{}1\+:	ldp	x0, x5, \mbox{[}x4, \#16\mbox{]}!				\textbackslash{}n\textbackslash{}	stp	x0, x5, \mbox{[}x3\mbox{]}, \#16				\textbackslash{}n\textbackslash{}	cmp	x0, \#0						\textbackslash{}n\textbackslash{}	bne	1b						\textbackslash{}n\textbackslash{}	// Update \+\_\+dl\+\_\+argv					\textbackslash{}n\textbackslash{}	adrp	x3, \+\_\+dl\+\_\+argv					\textbackslash{}n\textbackslash{}	str	x2, \mbox{[}x3, \#\+:lo12\+:\+\_\+dl\+\_\+argv\mbox{]}			\textbackslash{}n\textbackslash{}.\+L\+\_\+done\+\_\+stack\+\_\+adjust\+:						\textbackslash{}n\textbackslash{}	// compute envp						\textbackslash{}n\textbackslash{}	add	x3, x2, x1, lsl \#3				\textbackslash{}n\textbackslash{}	add	x3, x3, \#8					\textbackslash{}n\textbackslash{}	adrp	x16, \+\_\+rtld\+\_\+local				\textbackslash{}n\textbackslash{}        add	x16, x16, \#\+:lo12\+:\+\_\+rtld\+\_\+local			\textbackslash{}n\textbackslash{}        ldr	x0, \mbox{[}x16\mbox{]}					\textbackslash{}n\textbackslash{}	bl	\+\_\+dl\+\_\+init					\textbackslash{}n\textbackslash{}	// load the finalizer function				\textbackslash{}n\textbackslash{}	adrp	x0, \+\_\+dl\+\_\+fini					\textbackslash{}n\textbackslash{}	add	x0, x0, \#\+:lo12\+:\+\_\+dl\+\_\+fini				\textbackslash{}n\textbackslash{}	// jump to the user\+\_\+s entry point			\textbackslash{}n\textbackslash{}	br      x21						\textbackslash{}n\textbackslash{}\char`\"{});}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_aca4a30a421bb01ea2d14a88685eb0753}\label{aarch64_2dl-machine_8h_aca4a30a421bb01ea2d14a88685eb0753}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ElfW@{ElfW}}
+\index{ElfW@{ElfW}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ElfW()}{ElfW()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} ElfW (\begin{DoxyParamCaption}\item[{Rela}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}\label{aarch64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!lazy@{lazy}}
+\index{lazy@{lazy}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{lazy}{lazy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} lazy}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}\label{aarch64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!profile@{profile}}
+\index{profile@{profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{profile}{profile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} profile}
+
+\mbox{\Hypertarget{aarch64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}\label{aarch64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!t@{t}}
+\index{t@{t}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} t}
+

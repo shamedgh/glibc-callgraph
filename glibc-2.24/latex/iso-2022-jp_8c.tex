@@ -1,0 +1,967 @@
+\hypertarget{iso-2022-jp_8c}{}\doxysection{iconvdata/iso-\/2022-\/jp.c File Reference}
+\label{iso-2022-jp_8c}\index{iconvdata/iso-\/2022-\/jp.c@{iconvdata/iso-\/2022-\/jp.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$gconv.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}jis0201.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}jis0208.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}jis0212.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gb2312.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ksc5601.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}iso8859-\/7jp.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iconv/loop.\+c$>$}\newline
+{\ttfamily \#include $<$iconv/skeleton.\+c$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgap}{gap}}
+\item 
+struct \mbox{\hyperlink{structiso2022jp__data}{iso2022jp\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a4af1b6159e447ba72652bb7fcdfa726e}{E\+SC}}~0x1b
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a2598b8793d2143d24fd9d73b492120a0}{D\+E\+F\+I\+N\+E\+\_\+\+I\+N\+IT}}~0
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a08951ba40230848682bacabe610ff21e}{D\+E\+F\+I\+N\+E\+\_\+\+F\+I\+NI}}~0
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_abdfe335121bdace809cd54924502d0cc}{F\+R\+O\+M\+\_\+\+L\+O\+OP}}~from\+\_\+iso2022jp\+\_\+loop
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aceb0064c54a8286bb9bc4a95c39621dd}{T\+O\+\_\+\+L\+O\+OP}}~to\+\_\+iso2022jp\+\_\+loop
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a8f7b45a00f532603e255f54f524be0b4}{O\+N\+E\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON}}~0
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a78450dd0cc1c79f0d5af9111a4d69781}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}~1
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_adf28c42900ef57a4b57ae226795b13d0}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}~4
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a3eb3ac6750c347ad0745dd7e080244ab}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}~4
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a82c5bc8e83142fc4aa49e5c709b1f2f2}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}~4
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a1a1560a9119ddbe3045f901d62b7ef77}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}~4
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a12e78b250835cecacc472d8e7068ee89}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}~4
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_ad77928dbdaa0ddad3bd2634591670f29}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}~1
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_afb7f2f2c3f3e6af61c778fbd12bc4263}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}~6
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a69ab0f8bae8ff327fd131b8f74c35a6c}{F\+R\+O\+M\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON}}~(\mbox{\hyperlink{unix_2sysv_2linux_2shm-directory_8c_a73da71b9c136e698a3ccaa1366e455a8}{dir}} == \mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a17db9e533dd10b88cf593c9db0a29a1c}{from\+\_\+iso2022jp}})
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a7f67912207c7e44a7443b2d1a624c090}{P\+R\+E\+P\+A\+R\+E\+\_\+\+L\+O\+OP}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_ac811aba444d9e783d5af949a322b7a98}{E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+A\+R\+GS}}~, \mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}}, setp
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_afae3ed588ac944692abfe99a4b8ecc6c}{E\+M\+I\+T\+\_\+\+S\+H\+I\+F\+T\+\_\+\+T\+O\+\_\+\+I\+N\+IT}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a50b117b5205f7af6647e19b16d0608b1}{S\+A\+V\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+T\+A\+TE}}(Save)
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a9357385566ada052148b5f9bb2477a95}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}~\mbox{\hyperlink{tscii_8c_a78450dd0cc1c79f0d5af9111a4d69781}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a051b60ccf2d72cfcb0410ddd64688f5f}{M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}~\mbox{\hyperlink{tscii_8c_adf28c42900ef57a4b57ae226795b13d0}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_ae99129fd6a9cb8fe714e8f4a39593b99}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}~\mbox{\hyperlink{tscii_8c_a3eb3ac6750c347ad0745dd7e080244ab}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a704b92593b29c8df88c709f2113054e8}{M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}~\mbox{\hyperlink{tscii_8c_a82c5bc8e83142fc4aa49e5c709b1f2f2}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aac1a63e55f398ea132ae542c21de847b}{L\+O\+O\+P\+F\+CT}}~\mbox{\hyperlink{utf8-utf32-z9_8c_abdfe335121bdace809cd54924502d0cc}{F\+R\+O\+M\+\_\+\+L\+O\+OP}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aa6bdf6a6d9916c343e1e17774d84a156}{B\+O\+DY}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a381d99271c9a963c7e3e1d7611e9fffa}{L\+O\+O\+P\+\_\+\+N\+E\+E\+D\+\_\+\+F\+L\+A\+GS}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}{E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+D\+E\+C\+LS}}~, enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}} \mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$setp
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a98a65895d25e51c669ba0379e35be9b9}{I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}{U\+P\+D\+A\+T\+E\+\_\+\+P\+A\+R\+A\+MS}}~$\ast$setp = set $\vert$ set2
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_acd61baafa86c7a8ac3430aeab45639cb}{C\+V\+L\+I\+ST}}(cv1,  cv2,  cv3,  cv4,  cv5)~((cv1) + ((cv2) $<$$<$ 3) + ((cv3) $<$$<$ 6) + ((cv4) $<$$<$ 9) + ((cv5) $<$$<$ 12))
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a09e67d3669a81bd4bfe7ec43af221384}{C\+V\+L\+I\+S\+T\+\_\+\+F\+I\+R\+ST}}(cvl)~((cvl) \& ((1 $<$$<$ 3) -\/ 1))
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a4642b2e5ec8808cac7e1829583834a45}{C\+V\+L\+I\+S\+T\+\_\+\+R\+E\+ST}}(cvl)~((cvl) $>$$>$ 3)
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a9357385566ada052148b5f9bb2477a95}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}~\mbox{\hyperlink{tscii_8c_a1a1560a9119ddbe3045f901d62b7ef77}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a051b60ccf2d72cfcb0410ddd64688f5f}{M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}~\mbox{\hyperlink{tscii_8c_a12e78b250835cecacc472d8e7068ee89}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_ae99129fd6a9cb8fe714e8f4a39593b99}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}~\mbox{\hyperlink{tscii_8c_ad77928dbdaa0ddad3bd2634591670f29}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a704b92593b29c8df88c709f2113054e8}{M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}~\mbox{\hyperlink{tscii_8c_afb7f2f2c3f3e6af61c778fbd12bc4263}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aac1a63e55f398ea132ae542c21de847b}{L\+O\+O\+P\+F\+CT}}~\mbox{\hyperlink{utf8-utf32-z9_8c_aceb0064c54a8286bb9bc4a95c39621dd}{T\+O\+\_\+\+L\+O\+OP}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aa6bdf6a6d9916c343e1e17774d84a156}{B\+O\+DY}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a381d99271c9a963c7e3e1d7611e9fffa}{L\+O\+O\+P\+\_\+\+N\+E\+E\+D\+\_\+\+F\+L\+A\+GS}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}{E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+D\+E\+C\+LS}}~, enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}} \mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$setp
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a98a65895d25e51c669ba0379e35be9b9}{I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_a6ffb5e19734b8d5c7302c3728565dd87}{R\+E\+I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}}
+\item 
+\#define \mbox{\hyperlink{iso-2022-jp_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}{U\+P\+D\+A\+T\+E\+\_\+\+P\+A\+R\+A\+MS}}~$\ast$setp = set $\vert$ set2 $\vert$ tag
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{iso-2022-jp_8c_acbeb0e270d705c0733d311df455baa29}{cvlist\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \{ \newline
+\mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a5248074a7e3f87dcb07b1d82c2ef86d2}{to\+\_\+iso2022jp}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a17db9e533dd10b88cf593c9db0a29a1c}{from\+\_\+iso2022jp}}, 
+\mbox{\hyperlink{iso646_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_a99f26e6ee9fcd62f75203b5402df8098afa1c720631dea4ac8f935dace1fdf253}{to\+\_\+iso646}}, 
+\mbox{\hyperlink{iso646_8c_a99f26e6ee9fcd62f75203b5402df8098a4cddf2daff06b6b5a4c504116815d0ea}{from\+\_\+iso646}}, 
+\mbox{\hyperlink{unicode_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\mbox{\hyperlink{unicode_8c_a99f26e6ee9fcd62f75203b5402df8098a947b8a30abad0767c539d4639f989d49}{to\+\_\+unicode}}, 
+\newline
+\mbox{\hyperlink{unicode_8c_a99f26e6ee9fcd62f75203b5402df8098ac1df9bda9ce170e820d8f85f6e4a8361}{from\+\_\+unicode}}, 
+\mbox{\hyperlink{utf-16_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\mbox{\hyperlink{utf-16_8c_a99f26e6ee9fcd62f75203b5402df8098a2fe35ec1c6fbf970f2c07e620c07b9a0}{to\+\_\+utf16}}, 
+\mbox{\hyperlink{utf-16_8c_a99f26e6ee9fcd62f75203b5402df8098a3d8572daac5eaf2800cb23ad0c0f1332}{from\+\_\+utf16}}, 
+\newline
+\mbox{\hyperlink{utf-32_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\mbox{\hyperlink{utf-32_8c_a99f26e6ee9fcd62f75203b5402df8098acb3c9e5a64d9f7632c5b5d4f9a6a0575}{to\+\_\+utf32}}, 
+\mbox{\hyperlink{utf-32_8c_a99f26e6ee9fcd62f75203b5402df8098a6be412ce67e11889f63da9a21a8a568c}{from\+\_\+utf32}}, 
+\mbox{\hyperlink{utf16-utf32-z9_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\newline
+\mbox{\hyperlink{utf16-utf32-z9_8c_a99f26e6ee9fcd62f75203b5402df8098a2fe35ec1c6fbf970f2c07e620c07b9a0}{to\+\_\+utf16}}, 
+\mbox{\hyperlink{utf16-utf32-z9_8c_a99f26e6ee9fcd62f75203b5402df8098a3d8572daac5eaf2800cb23ad0c0f1332}{from\+\_\+utf16}}, 
+\mbox{\hyperlink{utf8-utf16-z9_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\mbox{\hyperlink{utf8-utf16-z9_8c_a99f26e6ee9fcd62f75203b5402df8098a1d477906ef655a2a7feb54538e88398b}{to\+\_\+utf8}}, 
+\newline
+\mbox{\hyperlink{utf8-utf16-z9_8c_a99f26e6ee9fcd62f75203b5402df8098a793758e73f89a82ef5586f6935ff53c3}{from\+\_\+utf8}}, 
+\mbox{\hyperlink{utf8-utf32-z9_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}{illegal\+\_\+dir}}, 
+\mbox{\hyperlink{utf8-utf32-z9_8c_a99f26e6ee9fcd62f75203b5402df8098a1d477906ef655a2a7feb54538e88398b}{to\+\_\+utf8}}, 
+\mbox{\hyperlink{utf8-utf32-z9_8c_a99f26e6ee9fcd62f75203b5402df8098a793758e73f89a82ef5586f6935ff53c3}{from\+\_\+utf8}}
+ \}
+\item 
+enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}} \{ \newline
+\mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}{illegal\+\_\+var}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a476eec084db679749165654b24672f5e}{iso2022jp}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3c2f84fb57fc6b0d9c3d591a93b07989}{iso2022jp2}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}{illegal\+\_\+var}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a3f489f3d57683ecbc81859b175ca08fc}{GB}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a182104895915f72dde10e2ead4ee6d91}{CA}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33abca9f539b02c491e919c2e6344c5c84b}{C\+A2}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a95346391f68dd216f57f41ac75f0e15d}{DE}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33ad4f7c58c3d6a6180be36f19835b18c30}{DK}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a5a0892a1c7e395be57cf5b9f1cd9c76f}{ES}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a09844b7b1cbe38468cc0cf0a7f2e4898}{E\+S2}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a6306f3103ed2cc5f45a9013bbba7bcfc}{CN}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33ae9e2537cbd38bd116d7bdb8b634f991a}{IT}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33af35882285f7bde3e58305178a023f561}{JP}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a29111f1016a8f6d691e0218ccad6fa22}{J\+P\+\_\+\+O\+C\+R\+\_\+B}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a7324bd8f8f4955a33bcbfd8cc984ea4c}{YU}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33adbfa5cb38f74251cf16228b75a7208eb}{KR}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a6d0bd0a10cde7b09fad208b9ea7598ec}{HU}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a7f0f1083438320c98b259efda2244709}{CU}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33ab903e5b3c0d7dde47e17f3b8848abc2c}{FR}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a50315de4eb3cbab515b922852b01fb6f}{F\+R1}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a0d077f5b932ce05e5b9f30c6087a2f31}{NO}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33ac439ae8f43fbed3ffe4a5aa99c730559}{N\+O2}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a910ff9b067a2587d70e5bc62bcbd8f3b}{PT}}, 
+\newline
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a0899faf569efcbd0ea7a532e9ab0063b}{P\+T2}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33a61c600c17d14bd4db73433ddbb8491e8}{SE}}, 
+\mbox{\hyperlink{iso646_8c_af2d363d48d09158296ea61cc6bd16c33aadc1169b9400cb9f8fcb94802512268e}{S\+E2}}, 
+\mbox{\hyperlink{utf-16_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}{illegal\+\_\+var}}, 
+\newline
+\mbox{\hyperlink{utf-16_8c_af2d363d48d09158296ea61cc6bd16c33a4e9ce18ee4b711f2539ac3a8bd08dbfd}{U\+T\+F\+\_\+16}}, 
+\mbox{\hyperlink{utf-16_8c_af2d363d48d09158296ea61cc6bd16c33af9621f068ee9e88180b7103f9dce283c}{U\+T\+F\+\_\+16\+LE}}, 
+\mbox{\hyperlink{utf-16_8c_af2d363d48d09158296ea61cc6bd16c33a3fd9b971be27c35e78805094ced1e657}{U\+T\+F\+\_\+16\+BE}}, 
+\mbox{\hyperlink{utf-32_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}{illegal\+\_\+var}}, 
+\newline
+\mbox{\hyperlink{utf-32_8c_af2d363d48d09158296ea61cc6bd16c33a3bf0ccf06167f5b5b3546c42109b06e4}{U\+T\+F\+\_\+32}}, 
+\mbox{\hyperlink{utf-32_8c_af2d363d48d09158296ea61cc6bd16c33af6fa51ff069c97771228cf80826deab0}{U\+T\+F\+\_\+32\+LE}}, 
+\mbox{\hyperlink{utf-32_8c_af2d363d48d09158296ea61cc6bd16c33a7efc4a94d91bd19f6deddb34ce33700d}{U\+T\+F\+\_\+32\+BE}}
+ \}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a476ce8e24c7f93da76ad43652cedd0d2}{A\+S\+C\+I\+I\+\_\+set}} = 0, 
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a01939832314946a8f2404025f4223a3a}{J\+I\+S\+X0208\+\_\+1978\+\_\+set}} = 1 $<$$<$ 3, 
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a15abc31621ed20b5b8b4f7b3f3f6c942}{J\+I\+S\+X0208\+\_\+1983\+\_\+set}} = 2 $<$$<$ 3, 
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad8c5699b70e9e7047e0230066ad3393b}{J\+I\+S\+X0201\+\_\+\+Roman\+\_\+set}} = 3 $<$$<$ 3, 
+\newline
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ac403bfd2723158aad711d2fda98888f4}{J\+I\+S\+X0201\+\_\+\+Kana\+\_\+set}} = 4 $<$$<$ 3, 
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad4604c72a2e23aef610e2e569300c777}{G\+B2312\+\_\+set}} = 5 $<$$<$ 3, 
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0adeae66676b1ca70e17a94bf4dbf052af}{K\+S\+C5601\+\_\+set}} = 6 $<$$<$ 3, 
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ab78d460c0e05322c11821b32d5d492a9}{J\+I\+S\+X0212\+\_\+set}} = 7 $<$$<$ 3, 
+\newline
+\mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad6a3cd2e72dd409dc513ed970bc26435}{C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+L\+\_\+\+M\+A\+SK}} = 7 $<$$<$ 3
+ \}
+\item 
+enum \{ \mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5f7897eddfeacb6a590193a63e3a7f01}{U\+N\+S\+P\+E\+C\+I\+F\+I\+E\+D\+\_\+set}} = 0, 
+\mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6ab097de8cf52456140d1b62d47a5d581b}{I\+S\+O88591\+\_\+set}} = 1 $<$$<$ 6, 
+\mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6ae70f7a2f089efbd9480dabfdcdb78aae}{I\+S\+O88597\+\_\+set}} = 2 $<$$<$ 6, 
+\mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5d6d175a57c7b3f9430340bf6f96ae2f}{C\+U\+R\+R\+E\+N\+T\+\_\+\+A\+S\+S\+I\+G\+N\+\_\+\+M\+A\+SK}} = 3 $<$$<$ 6
+ \}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbafcd38be0e6faa891022a2921415e051f}{T\+A\+G\+\_\+none}} = 0, 
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba5ea36ad3ed0ec964eb3c4e679ed089a2}{T\+A\+G\+\_\+language}} = 4 $<$$<$ 8, 
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba4a4e918ff4365b279fae9c449dd6b0ab}{T\+A\+G\+\_\+language\+\_\+j}} = 5 $<$$<$ 8, 
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba86960645a798103ddd27ff70954d4930}{T\+A\+G\+\_\+language\+\_\+ja}} = 1 $<$$<$ 8, 
+\newline
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba1cf03754f30ad7f0e8caddbd20193172}{T\+A\+G\+\_\+language\+\_\+k}} = 6 $<$$<$ 8, 
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbaab845f49d5c1af0db72669938b90f926}{T\+A\+G\+\_\+language\+\_\+ko}} = 2 $<$$<$ 8, 
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbacf12145a3f3515b9ee0d29530b1a0302}{T\+A\+G\+\_\+language\+\_\+z}} = 7 $<$$<$ 8, 
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbaf33d5ddab5e2572645e40a1ca79257c7}{T\+A\+G\+\_\+language\+\_\+zh}} = 3 $<$$<$ 8, 
+\newline
+\mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba3c1ddc5f5e919dd602b83f3854199b72}{C\+U\+R\+R\+E\+N\+T\+\_\+\+T\+A\+G\+\_\+\+M\+A\+SK}} = 7 $<$$<$ 8
+ \}
+\item 
+enum \mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780}{conversion}} \{ \newline
+\mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780ab7e4e0120a041dbe6528b050c04269e0}{none}} = 0, 
+\mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780af032b399b43afed1b3ed859f44ed4268}{european}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780af0d6c7d023c105d584b2211b9da35514}{japanese}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a1082c3fb0d3e50380f7fd6358495327f}{chinese}}, 
+\newline
+\mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a28141c51ae63d78e2a50cec216a9234a}{korean}}, 
+\mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a7e338ad381a84ef6df07e7d425707025}{other}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{iso-2022-jp_8c_a07a60ef25cb53af95f1d34cf5413e408}{gconv\+\_\+init}} (struct \mbox{\hyperlink{struct____gconv__step}{\+\_\+\+\_\+gconv\+\_\+step}} $\ast$step)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{iso-2022-jp_8c_ad8b90e61bed6869af25ea6a524c83efb}{gconv\+\_\+end}} (struct \mbox{\hyperlink{struct____gconv__step}{\+\_\+\+\_\+gconv\+\_\+step}} $\ast$\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{iso-2022-jp_8c_aa6bdf6a6d9916c343e1e17774d84a156}\label{iso-2022-jp_8c_aa6bdf6a6d9916c343e1e17774d84a156}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!BODY@{BODY}}
+\index{BODY@{BODY}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{BODY}{BODY}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define B\+O\+DY}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_aa6bdf6a6d9916c343e1e17774d84a156}\label{iso-2022-jp_8c_aa6bdf6a6d9916c343e1e17774d84a156}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!BODY@{BODY}}
+\index{BODY@{BODY}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{BODY}{BODY}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define B\+O\+DY}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_acd61baafa86c7a8ac3430aeab45639cb}\label{iso-2022-jp_8c_acd61baafa86c7a8ac3430aeab45639cb}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CVLIST@{CVLIST}}
+\index{CVLIST@{CVLIST}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{CVLIST}{CVLIST}}
+{\footnotesize\ttfamily \#define C\+V\+L\+I\+ST(\begin{DoxyParamCaption}\item[{}]{cv1,  }\item[{}]{cv2,  }\item[{}]{cv3,  }\item[{}]{cv4,  }\item[{}]{cv5 }\end{DoxyParamCaption})~((cv1) + ((cv2) $<$$<$ 3) + ((cv3) $<$$<$ 6) + ((cv4) $<$$<$ 9) + ((cv5) $<$$<$ 12))}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a09e67d3669a81bd4bfe7ec43af221384}\label{iso-2022-jp_8c_a09e67d3669a81bd4bfe7ec43af221384}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CVLIST\_FIRST@{CVLIST\_FIRST}}
+\index{CVLIST\_FIRST@{CVLIST\_FIRST}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{CVLIST\_FIRST}{CVLIST\_FIRST}}
+{\footnotesize\ttfamily \#define C\+V\+L\+I\+S\+T\+\_\+\+F\+I\+R\+ST(\begin{DoxyParamCaption}\item[{}]{cvl }\end{DoxyParamCaption})~((cvl) \& ((1 $<$$<$ 3) -\/ 1))}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a4642b2e5ec8808cac7e1829583834a45}\label{iso-2022-jp_8c_a4642b2e5ec8808cac7e1829583834a45}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CVLIST\_REST@{CVLIST\_REST}}
+\index{CVLIST\_REST@{CVLIST\_REST}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{CVLIST\_REST}{CVLIST\_REST}}
+{\footnotesize\ttfamily \#define C\+V\+L\+I\+S\+T\+\_\+\+R\+E\+ST(\begin{DoxyParamCaption}\item[{}]{cvl }\end{DoxyParamCaption})~((cvl) $>$$>$ 3)}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a08951ba40230848682bacabe610ff21e}\label{iso-2022-jp_8c_a08951ba40230848682bacabe610ff21e}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!DEFINE\_FINI@{DEFINE\_FINI}}
+\index{DEFINE\_FINI@{DEFINE\_FINI}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_FINI}{DEFINE\_FINI}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+F\+I\+NI~0}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a2598b8793d2143d24fd9d73b492120a0}\label{iso-2022-jp_8c_a2598b8793d2143d24fd9d73b492120a0}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!DEFINE\_INIT@{DEFINE\_INIT}}
+\index{DEFINE\_INIT@{DEFINE\_INIT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_INIT}{DEFINE\_INIT}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+I\+N\+IT~0}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_afae3ed588ac944692abfe99a4b8ecc6c}\label{iso-2022-jp_8c_afae3ed588ac944692abfe99a4b8ecc6c}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!EMIT\_SHIFT\_TO\_INIT@{EMIT\_SHIFT\_TO\_INIT}}
+\index{EMIT\_SHIFT\_TO\_INIT@{EMIT\_SHIFT\_TO\_INIT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{EMIT\_SHIFT\_TO\_INIT}{EMIT\_SHIFT\_TO\_INIT}}
+{\footnotesize\ttfamily \#define E\+M\+I\+T\+\_\+\+S\+H\+I\+F\+T\+\_\+\+T\+O\+\_\+\+I\+N\+IT}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a4af1b6159e447ba72652bb7fcdfa726e}\label{iso-2022-jp_8c_a4af1b6159e447ba72652bb7fcdfa726e}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ESC@{ESC}}
+\index{ESC@{ESC}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{ESC}{ESC}}
+{\footnotesize\ttfamily \#define E\+SC~0x1b}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_ac811aba444d9e783d5af949a322b7a98}\label{iso-2022-jp_8c_ac811aba444d9e783d5af949a322b7a98}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!EXTRA\_LOOP\_ARGS@{EXTRA\_LOOP\_ARGS}}
+\index{EXTRA\_LOOP\_ARGS@{EXTRA\_LOOP\_ARGS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_LOOP\_ARGS}{EXTRA\_LOOP\_ARGS}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+A\+R\+GS~, \mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}}, setp}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}\label{iso-2022-jp_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!EXTRA\_LOOP\_DECLS@{EXTRA\_LOOP\_DECLS}}
+\index{EXTRA\_LOOP\_DECLS@{EXTRA\_LOOP\_DECLS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_LOOP\_DECLS}{EXTRA\_LOOP\_DECLS}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+D\+E\+C\+LS~, enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}} \mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$setp}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}\label{iso-2022-jp_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!EXTRA\_LOOP\_DECLS@{EXTRA\_LOOP\_DECLS}}
+\index{EXTRA\_LOOP\_DECLS@{EXTRA\_LOOP\_DECLS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_LOOP\_DECLS}{EXTRA\_LOOP\_DECLS}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+D\+E\+C\+LS~, enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}} \mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$setp}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a69ab0f8bae8ff327fd131b8f74c35a6c}\label{iso-2022-jp_8c_a69ab0f8bae8ff327fd131b8f74c35a6c}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FROM\_DIRECTION@{FROM\_DIRECTION}}
+\index{FROM\_DIRECTION@{FROM\_DIRECTION}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{FROM\_DIRECTION}{FROM\_DIRECTION}}
+{\footnotesize\ttfamily \#define F\+R\+O\+M\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON~(\mbox{\hyperlink{unix_2sysv_2linux_2shm-directory_8c_a73da71b9c136e698a3ccaa1366e455a8}{dir}} == \mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a17db9e533dd10b88cf593c9db0a29a1c}{from\+\_\+iso2022jp}})}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_abdfe335121bdace809cd54924502d0cc}\label{iso-2022-jp_8c_abdfe335121bdace809cd54924502d0cc}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FROM\_LOOP@{FROM\_LOOP}}
+\index{FROM\_LOOP@{FROM\_LOOP}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{FROM\_LOOP}{FROM\_LOOP}}
+{\footnotesize\ttfamily \#define F\+R\+O\+M\+\_\+\+L\+O\+OP~from\+\_\+iso2022jp\+\_\+loop}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_adf28c42900ef57a4b57ae226795b13d0}\label{iso-2022-jp_8c_adf28c42900ef57a4b57ae226795b13d0}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FROM\_LOOP\_MAX\_NEEDED\_FROM@{FROM\_LOOP\_MAX\_NEEDED\_FROM}}
+\index{FROM\_LOOP\_MAX\_NEEDED\_FROM@{FROM\_LOOP\_MAX\_NEEDED\_FROM}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{FROM\_LOOP\_MAX\_NEEDED\_FROM}{FROM\_LOOP\_MAX\_NEEDED\_FROM}}
+{\footnotesize\ttfamily \#define F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM~4}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a82c5bc8e83142fc4aa49e5c709b1f2f2}\label{iso-2022-jp_8c_a82c5bc8e83142fc4aa49e5c709b1f2f2}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FROM\_LOOP\_MAX\_NEEDED\_TO@{FROM\_LOOP\_MAX\_NEEDED\_TO}}
+\index{FROM\_LOOP\_MAX\_NEEDED\_TO@{FROM\_LOOP\_MAX\_NEEDED\_TO}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{FROM\_LOOP\_MAX\_NEEDED\_TO}{FROM\_LOOP\_MAX\_NEEDED\_TO}}
+{\footnotesize\ttfamily \#define F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO~4}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a78450dd0cc1c79f0d5af9111a4d69781}\label{iso-2022-jp_8c_a78450dd0cc1c79f0d5af9111a4d69781}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FROM\_LOOP\_MIN\_NEEDED\_FROM@{FROM\_LOOP\_MIN\_NEEDED\_FROM}}
+\index{FROM\_LOOP\_MIN\_NEEDED\_FROM@{FROM\_LOOP\_MIN\_NEEDED\_FROM}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{FROM\_LOOP\_MIN\_NEEDED\_FROM}{FROM\_LOOP\_MIN\_NEEDED\_FROM}}
+{\footnotesize\ttfamily \#define F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM~1}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a3eb3ac6750c347ad0745dd7e080244ab}\label{iso-2022-jp_8c_a3eb3ac6750c347ad0745dd7e080244ab}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FROM\_LOOP\_MIN\_NEEDED\_TO@{FROM\_LOOP\_MIN\_NEEDED\_TO}}
+\index{FROM\_LOOP\_MIN\_NEEDED\_TO@{FROM\_LOOP\_MIN\_NEEDED\_TO}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{FROM\_LOOP\_MIN\_NEEDED\_TO}{FROM\_LOOP\_MIN\_NEEDED\_TO}}
+{\footnotesize\ttfamily \#define F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO~4}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a98a65895d25e51c669ba0379e35be9b9}\label{iso-2022-jp_8c_a98a65895d25e51c669ba0379e35be9b9}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!INIT\_PARAMS@{INIT\_PARAMS}}
+\index{INIT\_PARAMS@{INIT\_PARAMS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{INIT\_PARAMS}{INIT\_PARAMS}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} set = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad6a3cd2e72dd409dc513ed970bc26435}{CURRENT\_SEL\_MASK}};       \(\backslash\)}
+\DoxyCodeLine{                int set2 = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5d6d175a57c7b3f9430340bf6f96ae2f}{CURRENT\_ASSIGN\_MASK}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iso-2022-jp_8c_a98a65895d25e51c669ba0379e35be9b9}\label{iso-2022-jp_8c_a98a65895d25e51c669ba0379e35be9b9}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!INIT\_PARAMS@{INIT\_PARAMS}}
+\index{INIT\_PARAMS@{INIT\_PARAMS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{INIT\_PARAMS}{INIT\_PARAMS}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} set = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad6a3cd2e72dd409dc513ed970bc26435}{CURRENT\_SEL\_MASK}};       \(\backslash\)}
+\DoxyCodeLine{                int set2 = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5d6d175a57c7b3f9430340bf6f96ae2f}{CURRENT\_ASSIGN\_MASK}};        \(\backslash\)}
+\DoxyCodeLine{                int tag = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba3c1ddc5f5e919dd602b83f3854199b72}{CURRENT\_TAG\_MASK}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iso-2022-jp_8c_a381d99271c9a963c7e3e1d7611e9fffa}\label{iso-2022-jp_8c_a381d99271c9a963c7e3e1d7611e9fffa}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!LOOP\_NEED\_FLAGS@{LOOP\_NEED\_FLAGS}}
+\index{LOOP\_NEED\_FLAGS@{LOOP\_NEED\_FLAGS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{LOOP\_NEED\_FLAGS}{LOOP\_NEED\_FLAGS}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define L\+O\+O\+P\+\_\+\+N\+E\+E\+D\+\_\+\+F\+L\+A\+GS}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a381d99271c9a963c7e3e1d7611e9fffa}\label{iso-2022-jp_8c_a381d99271c9a963c7e3e1d7611e9fffa}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!LOOP\_NEED\_FLAGS@{LOOP\_NEED\_FLAGS}}
+\index{LOOP\_NEED\_FLAGS@{LOOP\_NEED\_FLAGS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{LOOP\_NEED\_FLAGS}{LOOP\_NEED\_FLAGS}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define L\+O\+O\+P\+\_\+\+N\+E\+E\+D\+\_\+\+F\+L\+A\+GS}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_aac1a63e55f398ea132ae542c21de847b}\label{iso-2022-jp_8c_aac1a63e55f398ea132ae542c21de847b}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!LOOPFCT@{LOOPFCT}}
+\index{LOOPFCT@{LOOPFCT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{LOOPFCT}{LOOPFCT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define L\+O\+O\+P\+F\+CT~\mbox{\hyperlink{utf8-utf32-z9_8c_abdfe335121bdace809cd54924502d0cc}{F\+R\+O\+M\+\_\+\+L\+O\+OP}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_aac1a63e55f398ea132ae542c21de847b}\label{iso-2022-jp_8c_aac1a63e55f398ea132ae542c21de847b}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!LOOPFCT@{LOOPFCT}}
+\index{LOOPFCT@{LOOPFCT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{LOOPFCT}{LOOPFCT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define L\+O\+O\+P\+F\+CT~\mbox{\hyperlink{utf8-utf32-z9_8c_aceb0064c54a8286bb9bc4a95c39621dd}{T\+O\+\_\+\+L\+O\+OP}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a051b60ccf2d72cfcb0410ddd64688f5f}\label{iso-2022-jp_8c_a051b60ccf2d72cfcb0410ddd64688f5f}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MAX\_NEEDED\_INPUT@{MAX\_NEEDED\_INPUT}}
+\index{MAX\_NEEDED\_INPUT@{MAX\_NEEDED\_INPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEEDED\_INPUT}{MAX\_NEEDED\_INPUT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT~\mbox{\hyperlink{tscii_8c_adf28c42900ef57a4b57ae226795b13d0}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a051b60ccf2d72cfcb0410ddd64688f5f}\label{iso-2022-jp_8c_a051b60ccf2d72cfcb0410ddd64688f5f}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MAX\_NEEDED\_INPUT@{MAX\_NEEDED\_INPUT}}
+\index{MAX\_NEEDED\_INPUT@{MAX\_NEEDED\_INPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEEDED\_INPUT}{MAX\_NEEDED\_INPUT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT~\mbox{\hyperlink{tscii_8c_a12e78b250835cecacc472d8e7068ee89}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a704b92593b29c8df88c709f2113054e8}\label{iso-2022-jp_8c_a704b92593b29c8df88c709f2113054e8}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MAX\_NEEDED\_OUTPUT@{MAX\_NEEDED\_OUTPUT}}
+\index{MAX\_NEEDED\_OUTPUT@{MAX\_NEEDED\_OUTPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEEDED\_OUTPUT}{MAX\_NEEDED\_OUTPUT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT~\mbox{\hyperlink{tscii_8c_a82c5bc8e83142fc4aa49e5c709b1f2f2}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a704b92593b29c8df88c709f2113054e8}\label{iso-2022-jp_8c_a704b92593b29c8df88c709f2113054e8}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MAX\_NEEDED\_OUTPUT@{MAX\_NEEDED\_OUTPUT}}
+\index{MAX\_NEEDED\_OUTPUT@{MAX\_NEEDED\_OUTPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEEDED\_OUTPUT}{MAX\_NEEDED\_OUTPUT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT~\mbox{\hyperlink{tscii_8c_afb7f2f2c3f3e6af61c778fbd12bc4263}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a9357385566ada052148b5f9bb2477a95}\label{iso-2022-jp_8c_a9357385566ada052148b5f9bb2477a95}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MIN\_NEEDED\_INPUT@{MIN\_NEEDED\_INPUT}}
+\index{MIN\_NEEDED\_INPUT@{MIN\_NEEDED\_INPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_NEEDED\_INPUT}{MIN\_NEEDED\_INPUT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT~\mbox{\hyperlink{tscii_8c_a78450dd0cc1c79f0d5af9111a4d69781}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a9357385566ada052148b5f9bb2477a95}\label{iso-2022-jp_8c_a9357385566ada052148b5f9bb2477a95}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MIN\_NEEDED\_INPUT@{MIN\_NEEDED\_INPUT}}
+\index{MIN\_NEEDED\_INPUT@{MIN\_NEEDED\_INPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_NEEDED\_INPUT}{MIN\_NEEDED\_INPUT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT~\mbox{\hyperlink{tscii_8c_a1a1560a9119ddbe3045f901d62b7ef77}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_ae99129fd6a9cb8fe714e8f4a39593b99}\label{iso-2022-jp_8c_ae99129fd6a9cb8fe714e8f4a39593b99}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MIN\_NEEDED\_OUTPUT@{MIN\_NEEDED\_OUTPUT}}
+\index{MIN\_NEEDED\_OUTPUT@{MIN\_NEEDED\_OUTPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_NEEDED\_OUTPUT}{MIN\_NEEDED\_OUTPUT}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT~\mbox{\hyperlink{tscii_8c_a3eb3ac6750c347ad0745dd7e080244ab}{F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_ae99129fd6a9cb8fe714e8f4a39593b99}\label{iso-2022-jp_8c_ae99129fd6a9cb8fe714e8f4a39593b99}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!MIN\_NEEDED\_OUTPUT@{MIN\_NEEDED\_OUTPUT}}
+\index{MIN\_NEEDED\_OUTPUT@{MIN\_NEEDED\_OUTPUT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_NEEDED\_OUTPUT}{MIN\_NEEDED\_OUTPUT}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT~\mbox{\hyperlink{tscii_8c_ad77928dbdaa0ddad3bd2634591670f29}{T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO}}}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a8f7b45a00f532603e255f54f524be0b4}\label{iso-2022-jp_8c_a8f7b45a00f532603e255f54f524be0b4}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ONE\_DIRECTION@{ONE\_DIRECTION}}
+\index{ONE\_DIRECTION@{ONE\_DIRECTION}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{ONE\_DIRECTION}{ONE\_DIRECTION}}
+{\footnotesize\ttfamily \#define O\+N\+E\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON~0}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a7f67912207c7e44a7443b2d1a624c090}\label{iso-2022-jp_8c_a7f67912207c7e44a7443b2d1a624c090}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!PREPARE\_LOOP@{PREPARE\_LOOP}}
+\index{PREPARE\_LOOP@{PREPARE\_LOOP}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{PREPARE\_LOOP}{PREPARE\_LOOP}}
+{\footnotesize\ttfamily \#define P\+R\+E\+P\+A\+R\+E\+\_\+\+L\+O\+OP}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{enum} \mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \mbox{\hyperlink{unix_2sysv_2linux_2shm-directory_8c_a73da71b9c136e698a3ccaa1366e455a8}{dir}} = ((\textcolor{keyword}{struct }\mbox{\hyperlink{structiso2022jp__data}{iso2022jp\_data}} *) step-\/>\_\_data)-\/>dir;         \(\backslash\)}
+\DoxyCodeLine{  enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}} \mbox{\hyperlink{tst-auditmod9a_8c_af212784620c36725bedf3a9896c883f7}{var}} = ((\textcolor{keyword}{struct }\mbox{\hyperlink{structiso2022jp__data}{iso2022jp\_data}} *) step-\/>\_\_data)-\/>var;       \(\backslash\)}
+\DoxyCodeLine{  int save\_set;                                   \(\backslash\)}
+\DoxyCodeLine{  int *setp = \&\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}}-\/>\_\_statep-\/>\_\_count;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iso-2022-jp_8c_a6ffb5e19734b8d5c7302c3728565dd87}\label{iso-2022-jp_8c_a6ffb5e19734b8d5c7302c3728565dd87}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!REINIT\_PARAMS@{REINIT\_PARAMS}}
+\index{REINIT\_PARAMS@{REINIT\_PARAMS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{REINIT\_PARAMS}{REINIT\_PARAMS}}
+{\footnotesize\ttfamily \#define R\+E\+I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                        \(\backslash\)}
+\DoxyCodeLine{                  \{                       \(\backslash\)}
+\DoxyCodeLine{                    set = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad6a3cd2e72dd409dc513ed970bc26435}{CURRENT\_SEL\_MASK}};       \(\backslash\)}
+\DoxyCodeLine{                    set2 = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5d6d175a57c7b3f9430340bf6f96ae2f}{CURRENT\_ASSIGN\_MASK}};        \(\backslash\)}
+\DoxyCodeLine{                    tag = *setp \& \mbox{\hyperlink{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba3c1ddc5f5e919dd602b83f3854199b72}{CURRENT\_TAG\_MASK}};       \(\backslash\)}
+\DoxyCodeLine{                  \}                       \(\backslash\)}
+\DoxyCodeLine{                while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iso-2022-jp_8c_a50b117b5205f7af6647e19b16d0608b1}\label{iso-2022-jp_8c_a50b117b5205f7af6647e19b16d0608b1}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!SAVE\_RESET\_STATE@{SAVE\_RESET\_STATE}}
+\index{SAVE\_RESET\_STATE@{SAVE\_RESET\_STATE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{SAVE\_RESET\_STATE}{SAVE\_RESET\_STATE}}
+{\footnotesize\ttfamily \#define S\+A\+V\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+T\+A\+TE(\begin{DoxyParamCaption}\item[{}]{Save }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (Save)                                     \(\backslash\)}
+\DoxyCodeLine{    save\_set = *setp;                                 \(\backslash\)}
+\DoxyCodeLine{  else                                        \(\backslash\)}
+\DoxyCodeLine{    *setp = save\_set}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{iso-2022-jp_8c_aceb0064c54a8286bb9bc4a95c39621dd}\label{iso-2022-jp_8c_aceb0064c54a8286bb9bc4a95c39621dd}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TO\_LOOP@{TO\_LOOP}}
+\index{TO\_LOOP@{TO\_LOOP}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{TO\_LOOP}{TO\_LOOP}}
+{\footnotesize\ttfamily \#define T\+O\+\_\+\+L\+O\+OP~to\+\_\+iso2022jp\+\_\+loop}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a12e78b250835cecacc472d8e7068ee89}\label{iso-2022-jp_8c_a12e78b250835cecacc472d8e7068ee89}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TO\_LOOP\_MAX\_NEEDED\_FROM@{TO\_LOOP\_MAX\_NEEDED\_FROM}}
+\index{TO\_LOOP\_MAX\_NEEDED\_FROM@{TO\_LOOP\_MAX\_NEEDED\_FROM}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{TO\_LOOP\_MAX\_NEEDED\_FROM}{TO\_LOOP\_MAX\_NEEDED\_FROM}}
+{\footnotesize\ttfamily \#define T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM~4}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_afb7f2f2c3f3e6af61c778fbd12bc4263}\label{iso-2022-jp_8c_afb7f2f2c3f3e6af61c778fbd12bc4263}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TO\_LOOP\_MAX\_NEEDED\_TO@{TO\_LOOP\_MAX\_NEEDED\_TO}}
+\index{TO\_LOOP\_MAX\_NEEDED\_TO@{TO\_LOOP\_MAX\_NEEDED\_TO}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{TO\_LOOP\_MAX\_NEEDED\_TO}{TO\_LOOP\_MAX\_NEEDED\_TO}}
+{\footnotesize\ttfamily \#define T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO~6}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a1a1560a9119ddbe3045f901d62b7ef77}\label{iso-2022-jp_8c_a1a1560a9119ddbe3045f901d62b7ef77}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TO\_LOOP\_MIN\_NEEDED\_FROM@{TO\_LOOP\_MIN\_NEEDED\_FROM}}
+\index{TO\_LOOP\_MIN\_NEEDED\_FROM@{TO\_LOOP\_MIN\_NEEDED\_FROM}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{TO\_LOOP\_MIN\_NEEDED\_FROM}{TO\_LOOP\_MIN\_NEEDED\_FROM}}
+{\footnotesize\ttfamily \#define T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+F\+R\+OM~4}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_ad77928dbdaa0ddad3bd2634591670f29}\label{iso-2022-jp_8c_ad77928dbdaa0ddad3bd2634591670f29}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TO\_LOOP\_MIN\_NEEDED\_TO@{TO\_LOOP\_MIN\_NEEDED\_TO}}
+\index{TO\_LOOP\_MIN\_NEEDED\_TO@{TO\_LOOP\_MIN\_NEEDED\_TO}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{TO\_LOOP\_MIN\_NEEDED\_TO}{TO\_LOOP\_MIN\_NEEDED\_TO}}
+{\footnotesize\ttfamily \#define T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+TO~1}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}\label{iso-2022-jp_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UPDATE\_PARAMS@{UPDATE\_PARAMS}}
+\index{UPDATE\_PARAMS@{UPDATE\_PARAMS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{UPDATE\_PARAMS}{UPDATE\_PARAMS}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define U\+P\+D\+A\+T\+E\+\_\+\+P\+A\+R\+A\+MS~$\ast$setp = set $\vert$ set2}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}\label{iso-2022-jp_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UPDATE\_PARAMS@{UPDATE\_PARAMS}}
+\index{UPDATE\_PARAMS@{UPDATE\_PARAMS}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{UPDATE\_PARAMS}{UPDATE\_PARAMS}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define U\+P\+D\+A\+T\+E\+\_\+\+P\+A\+R\+A\+MS~$\ast$setp = set $\vert$ set2 $\vert$ tag}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{iso-2022-jp_8c_acbeb0e270d705c0733d311df455baa29}\label{iso-2022-jp_8c_acbeb0e270d705c0733d311df455baa29}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!cvlist\_t@{cvlist\_t}}
+\index{cvlist\_t@{cvlist\_t}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{cvlist\_t}{cvlist\_t}}
+{\footnotesize\ttfamily typedef unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{iso-2022-jp_8c_acbeb0e270d705c0733d311df455baa29}{cvlist\+\_\+t}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASCII\_set@{ASCII\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ASCII\_set@{ASCII\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a476ce8e24c7f93da76ad43652cedd0d2}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a476ce8e24c7f93da76ad43652cedd0d2}} 
+A\+S\+C\+I\+I\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JISX0208\_1978\_set@{JISX0208\_1978\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JISX0208\_1978\_set@{JISX0208\_1978\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a01939832314946a8f2404025f4223a3a}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a01939832314946a8f2404025f4223a3a}} 
+J\+I\+S\+X0208\+\_\+1978\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JISX0208\_1983\_set@{JISX0208\_1983\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JISX0208\_1983\_set@{JISX0208\_1983\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a15abc31621ed20b5b8b4f7b3f3f6c942}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0a15abc31621ed20b5b8b4f7b3f3f6c942}} 
+J\+I\+S\+X0208\+\_\+1983\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JISX0201\_Roman\_set@{JISX0201\_Roman\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JISX0201\_Roman\_set@{JISX0201\_Roman\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad8c5699b70e9e7047e0230066ad3393b}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad8c5699b70e9e7047e0230066ad3393b}} 
+J\+I\+S\+X0201\+\_\+\+Roman\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JISX0201\_Kana\_set@{JISX0201\_Kana\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JISX0201\_Kana\_set@{JISX0201\_Kana\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ac403bfd2723158aad711d2fda98888f4}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ac403bfd2723158aad711d2fda98888f4}} 
+J\+I\+S\+X0201\+\_\+\+Kana\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GB2312\_set@{GB2312\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!GB2312\_set@{GB2312\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad4604c72a2e23aef610e2e569300c777}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad4604c72a2e23aef610e2e569300c777}} 
+G\+B2312\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KSC5601\_set@{KSC5601\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!KSC5601\_set@{KSC5601\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0adeae66676b1ca70e17a94bf4dbf052af}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0adeae66676b1ca70e17a94bf4dbf052af}} 
+K\+S\+C5601\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JISX0212\_set@{JISX0212\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JISX0212\_set@{JISX0212\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ab78d460c0e05322c11821b32d5d492a9}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ab78d460c0e05322c11821b32d5d492a9}} 
+J\+I\+S\+X0212\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CURRENT\_SEL\_MASK@{CURRENT\_SEL\_MASK}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CURRENT\_SEL\_MASK@{CURRENT\_SEL\_MASK}}}\mbox{\Hypertarget{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad6a3cd2e72dd409dc513ed970bc26435}\label{iso-2022-jp_8c_a9e93d8eae633734dfeb29e24a1f3a7c0ad6a3cd2e72dd409dc513ed970bc26435}} 
+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+L\+\_\+\+M\+A\+SK&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6}\label{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNSPECIFIED\_set@{UNSPECIFIED\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UNSPECIFIED\_set@{UNSPECIFIED\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5f7897eddfeacb6a590193a63e3a7f01}\label{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5f7897eddfeacb6a590193a63e3a7f01}} 
+U\+N\+S\+P\+E\+C\+I\+F\+I\+E\+D\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ISO88591\_set@{ISO88591\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ISO88591\_set@{ISO88591\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6ab097de8cf52456140d1b62d47a5d581b}\label{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6ab097de8cf52456140d1b62d47a5d581b}} 
+I\+S\+O88591\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ISO88597\_set@{ISO88597\_set}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ISO88597\_set@{ISO88597\_set}}}\mbox{\Hypertarget{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6ae70f7a2f089efbd9480dabfdcdb78aae}\label{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6ae70f7a2f089efbd9480dabfdcdb78aae}} 
+I\+S\+O88597\+\_\+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CURRENT\_ASSIGN\_MASK@{CURRENT\_ASSIGN\_MASK}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CURRENT\_ASSIGN\_MASK@{CURRENT\_ASSIGN\_MASK}}}\mbox{\Hypertarget{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5d6d175a57c7b3f9430340bf6f96ae2f}\label{iso-2022-jp_8c_aeb8e1c282570d629a6b603a94a4650d6a5d6d175a57c7b3f9430340bf6f96ae2f}} 
+C\+U\+R\+R\+E\+N\+T\+\_\+\+A\+S\+S\+I\+G\+N\+\_\+\+M\+A\+SK&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbb}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbb}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_none@{TAG\_none}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_none@{TAG\_none}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbafcd38be0e6faa891022a2921415e051f}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbafcd38be0e6faa891022a2921415e051f}} 
+T\+A\+G\+\_\+none&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language@{TAG\_language}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language@{TAG\_language}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba5ea36ad3ed0ec964eb3c4e679ed089a2}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba5ea36ad3ed0ec964eb3c4e679ed089a2}} 
+T\+A\+G\+\_\+language&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language\_j@{TAG\_language\_j}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language\_j@{TAG\_language\_j}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba4a4e918ff4365b279fae9c449dd6b0ab}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba4a4e918ff4365b279fae9c449dd6b0ab}} 
+T\+A\+G\+\_\+language\+\_\+j&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language\_ja@{TAG\_language\_ja}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language\_ja@{TAG\_language\_ja}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba86960645a798103ddd27ff70954d4930}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba86960645a798103ddd27ff70954d4930}} 
+T\+A\+G\+\_\+language\+\_\+ja&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language\_k@{TAG\_language\_k}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language\_k@{TAG\_language\_k}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba1cf03754f30ad7f0e8caddbd20193172}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba1cf03754f30ad7f0e8caddbd20193172}} 
+T\+A\+G\+\_\+language\+\_\+k&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language\_ko@{TAG\_language\_ko}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language\_ko@{TAG\_language\_ko}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbaab845f49d5c1af0db72669938b90f926}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbaab845f49d5c1af0db72669938b90f926}} 
+T\+A\+G\+\_\+language\+\_\+ko&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language\_z@{TAG\_language\_z}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language\_z@{TAG\_language\_z}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbacf12145a3f3515b9ee0d29530b1a0302}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbacf12145a3f3515b9ee0d29530b1a0302}} 
+T\+A\+G\+\_\+language\+\_\+z&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TAG\_language\_zh@{TAG\_language\_zh}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!TAG\_language\_zh@{TAG\_language\_zh}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbaf33d5ddab5e2572645e40a1ca79257c7}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbbaf33d5ddab5e2572645e40a1ca79257c7}} 
+T\+A\+G\+\_\+language\+\_\+zh&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CURRENT\_TAG\_MASK@{CURRENT\_TAG\_MASK}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CURRENT\_TAG\_MASK@{CURRENT\_TAG\_MASK}}}\mbox{\Hypertarget{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba3c1ddc5f5e919dd602b83f3854199b72}\label{iso-2022-jp_8c_a109bfaad92bd6d348dab484aec11edbba3c1ddc5f5e919dd602b83f3854199b72}} 
+C\+U\+R\+R\+E\+N\+T\+\_\+\+T\+A\+G\+\_\+\+M\+A\+SK&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!conversion@{conversion}}
+\index{conversion@{conversion}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{conversion}{conversion}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780}{conversion}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{none@{none}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!none@{none}}}\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780ab7e4e0120a041dbe6528b050c04269e0}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780ab7e4e0120a041dbe6528b050c04269e0}} 
+none&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{european@{european}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!european@{european}}}\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780af032b399b43afed1b3ed859f44ed4268}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780af032b399b43afed1b3ed859f44ed4268}} 
+european&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{japanese@{japanese}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!japanese@{japanese}}}\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780af0d6c7d023c105d584b2211b9da35514}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780af0d6c7d023c105d584b2211b9da35514}} 
+japanese&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{chinese@{chinese}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!chinese@{chinese}}}\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a1082c3fb0d3e50380f7fd6358495327f}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a1082c3fb0d3e50380f7fd6358495327f}} 
+chinese&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{korean@{korean}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!korean@{korean}}}\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a28141c51ae63d78e2a50cec216a9234a}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a28141c51ae63d78e2a50cec216a9234a}} 
+korean&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{other@{other}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!other@{other}}}\mbox{\Hypertarget{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a7e338ad381a84ef6df07e7d425707025}\label{iso-2022-jp_8c_a982761237bd935bb396ed71ded236780a7e338ad381a84ef6df07e7d425707025}} 
+other&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!direction@{direction}}
+\index{direction@{direction}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098}{direction}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_iso2022jp@{to\_iso2022jp}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_iso2022jp@{to\_iso2022jp}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a5248074a7e3f87dcb07b1d82c2ef86d2}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a5248074a7e3f87dcb07b1d82c2ef86d2}} 
+to\+\_\+iso2022jp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_iso2022jp@{from\_iso2022jp}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_iso2022jp@{from\_iso2022jp}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a17db9e533dd10b88cf593c9db0a29a1c}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a17db9e533dd10b88cf593c9db0a29a1c}} 
+from\+\_\+iso2022jp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_iso646@{to\_iso646}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_iso646@{to\_iso646}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098afa1c720631dea4ac8f935dace1fdf253}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098afa1c720631dea4ac8f935dace1fdf253}} 
+to\+\_\+iso646&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_iso646@{from\_iso646}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_iso646@{from\_iso646}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a4cddf2daff06b6b5a4c504116815d0ea}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a4cddf2daff06b6b5a4c504116815d0ea}} 
+from\+\_\+iso646&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_unicode@{to\_unicode}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_unicode@{to\_unicode}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a947b8a30abad0767c539d4639f989d49}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a947b8a30abad0767c539d4639f989d49}} 
+to\+\_\+unicode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_unicode@{from\_unicode}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_unicode@{from\_unicode}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ac1df9bda9ce170e820d8f85f6e4a8361}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ac1df9bda9ce170e820d8f85f6e4a8361}} 
+from\+\_\+unicode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_utf16@{to\_utf16}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_utf16@{to\_utf16}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a2fe35ec1c6fbf970f2c07e620c07b9a0}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a2fe35ec1c6fbf970f2c07e620c07b9a0}} 
+to\+\_\+utf16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_utf16@{from\_utf16}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_utf16@{from\_utf16}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a3d8572daac5eaf2800cb23ad0c0f1332}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a3d8572daac5eaf2800cb23ad0c0f1332}} 
+from\+\_\+utf16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_utf32@{to\_utf32}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_utf32@{to\_utf32}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098acb3c9e5a64d9f7632c5b5d4f9a6a0575}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098acb3c9e5a64d9f7632c5b5d4f9a6a0575}} 
+to\+\_\+utf32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_utf32@{from\_utf32}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_utf32@{from\_utf32}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a6be412ce67e11889f63da9a21a8a568c}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a6be412ce67e11889f63da9a21a8a568c}} 
+from\+\_\+utf32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_utf16@{to\_utf16}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_utf16@{to\_utf16}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a2fe35ec1c6fbf970f2c07e620c07b9a0}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a2fe35ec1c6fbf970f2c07e620c07b9a0}} 
+to\+\_\+utf16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_utf16@{from\_utf16}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_utf16@{from\_utf16}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a3d8572daac5eaf2800cb23ad0c0f1332}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a3d8572daac5eaf2800cb23ad0c0f1332}} 
+from\+\_\+utf16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_utf8@{to\_utf8}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_utf8@{to\_utf8}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a1d477906ef655a2a7feb54538e88398b}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a1d477906ef655a2a7feb54538e88398b}} 
+to\+\_\+utf8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_utf8@{from\_utf8}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_utf8@{from\_utf8}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a793758e73f89a82ef5586f6935ff53c3}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a793758e73f89a82ef5586f6935ff53c3}} 
+from\+\_\+utf8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_dir@{illegal\_dir}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_dir@{illegal\_dir}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098ae8cbb48397f743d58153c7221c210311}} 
+illegal\+\_\+dir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{to\_utf8@{to\_utf8}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!to\_utf8@{to\_utf8}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a1d477906ef655a2a7feb54538e88398b}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a1d477906ef655a2a7feb54538e88398b}} 
+to\+\_\+utf8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{from\_utf8@{from\_utf8}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!from\_utf8@{from\_utf8}}}\mbox{\Hypertarget{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a793758e73f89a82ef5586f6935ff53c3}\label{iso-2022-jp_8c_a99f26e6ee9fcd62f75203b5402df8098a793758e73f89a82ef5586f6935ff53c3}} 
+from\+\_\+utf8&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!variant@{variant}}
+\index{variant@{variant}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{variant}{variant}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33}{variant}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_var@{illegal\_var}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_var@{illegal\_var}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}} 
+illegal\+\_\+var&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{iso2022jp@{iso2022jp}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!iso2022jp@{iso2022jp}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a476eec084db679749165654b24672f5e}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a476eec084db679749165654b24672f5e}} 
+iso2022jp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{iso2022jp2@{iso2022jp2}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!iso2022jp2@{iso2022jp2}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3c2f84fb57fc6b0d9c3d591a93b07989}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3c2f84fb57fc6b0d9c3d591a93b07989}} 
+iso2022jp2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_var@{illegal\_var}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_var@{illegal\_var}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}} 
+illegal\+\_\+var&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GB@{GB}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!GB@{GB}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3f489f3d57683ecbc81859b175ca08fc}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3f489f3d57683ecbc81859b175ca08fc}} 
+GB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CA@{CA}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CA@{CA}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a182104895915f72dde10e2ead4ee6d91}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a182104895915f72dde10e2ead4ee6d91}} 
+CA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CA2@{CA2}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CA2@{CA2}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33abca9f539b02c491e919c2e6344c5c84b}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33abca9f539b02c491e919c2e6344c5c84b}} 
+C\+A2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DE@{DE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!DE@{DE}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a95346391f68dd216f57f41ac75f0e15d}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a95346391f68dd216f57f41ac75f0e15d}} 
+DE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DK@{DK}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!DK@{DK}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ad4f7c58c3d6a6180be36f19835b18c30}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ad4f7c58c3d6a6180be36f19835b18c30}} 
+DK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ES@{ES}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ES@{ES}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a5a0892a1c7e395be57cf5b9f1cd9c76f}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a5a0892a1c7e395be57cf5b9f1cd9c76f}} 
+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ES2@{ES2}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!ES2@{ES2}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a09844b7b1cbe38468cc0cf0a7f2e4898}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a09844b7b1cbe38468cc0cf0a7f2e4898}} 
+E\+S2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CN@{CN}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CN@{CN}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a6306f3103ed2cc5f45a9013bbba7bcfc}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a6306f3103ed2cc5f45a9013bbba7bcfc}} 
+CN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IT@{IT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!IT@{IT}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ae9e2537cbd38bd116d7bdb8b634f991a}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ae9e2537cbd38bd116d7bdb8b634f991a}} 
+IT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JP@{JP}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JP@{JP}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33af35882285f7bde3e58305178a023f561}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33af35882285f7bde3e58305178a023f561}} 
+JP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JP\_OCR\_B@{JP\_OCR\_B}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!JP\_OCR\_B@{JP\_OCR\_B}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a29111f1016a8f6d691e0218ccad6fa22}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a29111f1016a8f6d691e0218ccad6fa22}} 
+J\+P\+\_\+\+O\+C\+R\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YU@{YU}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!YU@{YU}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a7324bd8f8f4955a33bcbfd8cc984ea4c}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a7324bd8f8f4955a33bcbfd8cc984ea4c}} 
+YU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KR@{KR}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!KR@{KR}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33adbfa5cb38f74251cf16228b75a7208eb}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33adbfa5cb38f74251cf16228b75a7208eb}} 
+KR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HU@{HU}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!HU@{HU}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a6d0bd0a10cde7b09fad208b9ea7598ec}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a6d0bd0a10cde7b09fad208b9ea7598ec}} 
+HU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CU@{CU}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!CU@{CU}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a7f0f1083438320c98b259efda2244709}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a7f0f1083438320c98b259efda2244709}} 
+CU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FR@{FR}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FR@{FR}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ab903e5b3c0d7dde47e17f3b8848abc2c}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ab903e5b3c0d7dde47e17f3b8848abc2c}} 
+FR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FR1@{FR1}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!FR1@{FR1}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a50315de4eb3cbab515b922852b01fb6f}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a50315de4eb3cbab515b922852b01fb6f}} 
+F\+R1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO@{NO}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!NO@{NO}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a0d077f5b932ce05e5b9f30c6087a2f31}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a0d077f5b932ce05e5b9f30c6087a2f31}} 
+NO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO2@{NO2}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!NO2@{NO2}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ac439ae8f43fbed3ffe4a5aa99c730559}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33ac439ae8f43fbed3ffe4a5aa99c730559}} 
+N\+O2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PT@{PT}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!PT@{PT}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a910ff9b067a2587d70e5bc62bcbd8f3b}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a910ff9b067a2587d70e5bc62bcbd8f3b}} 
+PT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PT2@{PT2}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!PT2@{PT2}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a0899faf569efcbd0ea7a532e9ab0063b}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a0899faf569efcbd0ea7a532e9ab0063b}} 
+P\+T2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SE@{SE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!SE@{SE}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a61c600c17d14bd4db73433ddbb8491e8}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a61c600c17d14bd4db73433ddbb8491e8}} 
+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SE2@{SE2}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!SE2@{SE2}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aadc1169b9400cb9f8fcb94802512268e}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aadc1169b9400cb9f8fcb94802512268e}} 
+S\+E2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_var@{illegal\_var}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_var@{illegal\_var}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}} 
+illegal\+\_\+var&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UTF\_16@{UTF\_16}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UTF\_16@{UTF\_16}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a4e9ce18ee4b711f2539ac3a8bd08dbfd}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a4e9ce18ee4b711f2539ac3a8bd08dbfd}} 
+U\+T\+F\+\_\+16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UTF\_16LE@{UTF\_16LE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UTF\_16LE@{UTF\_16LE}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33af9621f068ee9e88180b7103f9dce283c}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33af9621f068ee9e88180b7103f9dce283c}} 
+U\+T\+F\+\_\+16\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UTF\_16BE@{UTF\_16BE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UTF\_16BE@{UTF\_16BE}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3fd9b971be27c35e78805094ced1e657}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3fd9b971be27c35e78805094ced1e657}} 
+U\+T\+F\+\_\+16\+BE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\_var@{illegal\_var}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!illegal\_var@{illegal\_var}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33aee6175500aca86c3225a561666b25d54}} 
+illegal\+\_\+var&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UTF\_32@{UTF\_32}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UTF\_32@{UTF\_32}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3bf0ccf06167f5b5b3546c42109b06e4}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a3bf0ccf06167f5b5b3546c42109b06e4}} 
+U\+T\+F\+\_\+32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UTF\_32LE@{UTF\_32LE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UTF\_32LE@{UTF\_32LE}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33af6fa51ff069c97771228cf80826deab0}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33af6fa51ff069c97771228cf80826deab0}} 
+U\+T\+F\+\_\+32\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UTF\_32BE@{UTF\_32BE}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!UTF\_32BE@{UTF\_32BE}}}\mbox{\Hypertarget{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a7efc4a94d91bd19f6deddb34ce33700d}\label{iso-2022-jp_8c_af2d363d48d09158296ea61cc6bd16c33a7efc4a94d91bd19f6deddb34ce33700d}} 
+U\+T\+F\+\_\+32\+BE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{iso-2022-jp_8c_ad8b90e61bed6869af25ea6a524c83efb}\label{iso-2022-jp_8c_ad8b90e61bed6869af25ea6a524c83efb}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!gconv\_end@{gconv\_end}}
+\index{gconv\_end@{gconv\_end}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{gconv\_end()}{gconv\_end()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} gconv\+\_\+end (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct____gconv__step}{\+\_\+\+\_\+gconv\+\_\+step}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iso-2022-jp_8c_a07a60ef25cb53af95f1d34cf5413e408}\label{iso-2022-jp_8c_a07a60ef25cb53af95f1d34cf5413e408}} 
+\index{iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}!gconv\_init@{gconv\_init}}
+\index{gconv\_init@{gconv\_init}!iso-\/2022-\/jp.c@{iso-\/2022-\/jp.c}}
+\doxysubsubsection{\texorpdfstring{gconv\_init()}{gconv\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} gconv\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct____gconv__step}{\+\_\+\+\_\+gconv\+\_\+step}} $\ast$}]{step }\end{DoxyParamCaption})}
+

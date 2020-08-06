@@ -1,0 +1,410 @@
+
+;; Function walker (walker, funcdef_no=42, decl_uid=7809, cgraph_uid=42, symbol_order=45)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+Merging block 5 into block 4...
+Merged blocks 4 and 5.
+Merged 4 and 5 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 90 [ inodep ])
+        (reg:DI 5 di [ inodep ])) sem_close.c:34 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 91 [ which ])
+        (reg:SI 4 si [ which ])) sem_close.c:34 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 92 [ depth ])
+        (reg:SI 1 dx [ depth ])) sem_close.c:34 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg/v/f:DI 87 [ nodep ])
+        (mem/f:DI (reg/v/f:DI 90 [ inodep ]) [1 MEM[(struct inuse_sem * *)inodep_3(D)]+0 S8 A64])) sem_close.c:35 -1
+     (nil))
+(insn 9 8 10 2 (set (reg/f:DI 93)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ nodep ])
+                (const_int 24 [0x18])) [1 nodep_4->sem+0 S8 A64])) sem_close.c:37 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 93)
+            (mem/f/c:DI (symbol_ref:DI ("the_sem") [flags 0x2]  <var_decl 0x2b3e043acd80 the_sem>) [1 the_sem+0 S8 A64]))) sem_close.c:37 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 16)
+            (pc))) sem_close.c:37 612 {*jcc_1}
+     (int_list:REG_BR_PROB 7837 (nil))
+ -> 16)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 16 4 (set (mem/f/c:DI (symbol_ref:DI ("rec") [flags 0x2]  <var_decl 0x2b3e043ace10 rec>) [1 rec+0 S8 A64])
+        (reg/v/f:DI 87 [ nodep ])) sem_close.c:38 -1
+     (nil))
+(code_label 16 13 17 6 1 "" [1 uses])
+(note 17 16 0 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+
+;; Function sem_close (sem_close, funcdef_no=43, decl_uid=7134, cgraph_uid=43, symbol_order=46)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+Edge 3->6 redirected to 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 52.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 100 [ sem ])
+        (reg:DI 5 di [ sem ])) sem_close.c:44 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:SI 104)
+        (const_int 1 [0x1])) sem_close.c:48 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:SI 105)
+        (const_int 0 [0])) sem_close.c:48 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:SI 101 [ ignore1 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 104)
+                        (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                        (reg:SI 105)
+                    ]
+                     [
+                        (asm_input:SI ("0") sem_close.c:48)
+                        (asm_input:SI ("m") sem_close.c:48)
+                        (asm_input:SI ("3") sem_close.c:48)
+                    ]
+                     [] sem_close.c:48))
+            (set (reg:SI 102 [ ignore2 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 104)
+                        (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                        (reg:SI 105)
+                    ]
+                     [
+                        (asm_input:SI ("0") sem_close.c:48)
+                        (asm_input:SI ("m") sem_close.c:48)
+                        (asm_input:SI ("3") sem_close.c:48)
+                    ]
+                     [] sem_close.c:48))
+            (set (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 104)
+                        (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                        (reg:SI 105)
+                    ]
+                     [
+                        (asm_input:SI ("0") sem_close.c:48)
+                        (asm_input:SI ("m") sem_close.c:48)
+                        (asm_input:SI ("3") sem_close.c:48)
+                    ]
+                     [] sem_close.c:48))
+            (set (reg:SI 103 [ ignore3 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 104)
+                        (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                        (reg:SI 105)
+                    ]
+                     [
+                        (asm_input:SI ("0") sem_close.c:48)
+                        (asm_input:SI ("m") sem_close.c:48)
+                        (asm_input:SI ("3") sem_close.c:48)
+                    ]
+                     [] sem_close.c:48))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) sem_close.c:48 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v:SI 88 [ ignore1 ])
+        (reg:SI 101 [ ignore1 ])) sem_close.c:48 -1
+     (nil))
+(insn 12 11 13 2 (set (reg/v:SI 89 [ ignore2 ])
+        (reg:SI 102 [ ignore2 ])) sem_close.c:48 -1
+     (nil))
+(insn 13 12 14 2 (set (reg/v:SI 90 [ ignore3 ])
+        (reg:SI 103 [ ignore3 ])) sem_close.c:48 -1
+     (nil))
+(insn 14 13 15 2 (set (mem/f/c:DI (symbol_ref:DI ("rec") [flags 0x2]  <var_decl 0x2b3e043ace10 rec>) [1 rec+0 S8 A64])
+        (const_int 0 [0])) sem_close.c:51 -1
+     (nil))
+(insn 15 14 16 2 (set (mem/f/c:DI (symbol_ref:DI ("the_sem") [flags 0x2]  <var_decl 0x2b3e043acd80 the_sem>) [1 the_sem+0 S8 A64])
+        (reg/v/f:DI 100 [ sem ])) sem_close.c:52 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 4 si)
+        (symbol_ref:DI ("walker") [flags 0x3]  <function_decl 0x2b3e043d7510 walker>)) sem_close.c:53 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("__sem_mappings") [flags 0x40]  <var_decl 0x2b3e043acc60 __sem_mappings>) [1 __sem_mappings+0 S8 A64])) sem_close.c:53 -1
+     (nil))
+(call_insn 18 17 19 2 (call (mem:QI (symbol_ref:DI ("__twalk") [flags 0x41]  <function_decl 0x2b3e04352e58 __twalk>) [0 __twalk S1 A8])
+        (const_int 0 [0])) sem_close.c:53 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__twalk") [flags 0x41]  <function_decl 0x2b3e04352e58 __twalk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 19 18 20 2 (set (reg/f:DI 92 [ D.7853 ])
+        (mem/f/c:DI (symbol_ref:DI ("rec") [flags 0x2]  <var_decl 0x2b3e043ace10 rec>) [1 rec+0 S8 A64])) sem_close.c:54 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 92 [ D.7853 ])
+            (const_int 0 [0]))) sem_close.c:54 -1
+     (nil))
+(jump_insn 21 20 22 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) sem_close.c:54 -1
+     (int_list:REG_BR_PROB 73 (nil))
+ -> 43)
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 4 (set (reg:SI 106)
+        (mem:SI (plus:DI (reg/f:DI 92 [ D.7853 ])
+                (const_int 16 [0x10])) [4 _13->refcnt+0 S4 A64])) sem_close.c:58 -1
+     (nil))
+(insn 24 23 25 4 (parallel [
+            (set (reg:SI 94 [ D.7854 ])
+                (plus:SI (reg:SI 106)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_close.c:58 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 92 [ D.7853 ])
+                    (const_int 16 [0x10])) [4 _13->refcnt+0 S4 A64])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 25 24 26 4 (set (mem:SI (plus:DI (reg/f:DI 92 [ D.7853 ])
+                (const_int 16 [0x10])) [4 _13->refcnt+0 S4 A64])
+        (reg:SI 94 [ D.7854 ])) sem_close.c:58 -1
+     (nil))
+(insn 26 25 27 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 94 [ D.7854 ])
+            (const_int 0 [0]))) sem_close.c:58 -1
+     (nil))
+(jump_insn 27 26 28 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 61)
+            (pc))) sem_close.c:58 612 {*jcc_1}
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 61)
+(note 28 27 29 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 5 (set (reg:DI 1 dx)
+        (symbol_ref:DI ("__sem_search") [flags 0x41]  <function_decl 0x2b3e043d2ca8 __sem_search>)) sem_close.c:61 -1
+     (nil))
+(insn 30 29 31 5 (set (reg:DI 4 si)
+        (symbol_ref:DI ("__sem_mappings") [flags 0x40]  <var_decl 0x2b3e043acc60 __sem_mappings>)) sem_close.c:61 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:DI 5 di)
+        (reg/f:DI 92 [ D.7853 ])) sem_close.c:61 -1
+     (nil))
+(call_insn 32 31 33 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__tdelete") [flags 0x41]  <function_decl 0x2b3e04352d80 __tdelete>) [0 __tdelete S1 A8])
+            (const_int 0 [0]))) sem_close.c:61 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__tdelete") [flags 0x41]  <function_decl 0x2b3e04352d80 __tdelete>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 33 32 34 5 (set (reg/f:DI 107)
+        (mem/f/c:DI (symbol_ref:DI ("rec") [flags 0x2]  <var_decl 0x2b3e043ace10 rec>) [1 rec+0 S8 A64])) sem_close.c:63 -1
+     (nil))
+(insn 34 33 35 5 (set (reg:DI 108)
+        (mem/f:DI (plus:DI (reg/f:DI 107)
+                (const_int 24 [0x18])) [1 _19->sem+0 S8 A64])) sem_close.c:63 -1
+     (nil))
+(insn 35 34 36 5 (set (reg:DI 4 si)
+        (const_int 32 [0x20])) sem_close.c:63 -1
+     (nil))
+(insn 36 35 37 5 (set (reg:DI 5 di)
+        (reg:DI 108)) sem_close.c:63 -1
+     (nil))
+(call_insn 37 36 38 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("munmap") [flags 0x41]  <function_decl 0x2b3e04359360 munmap>) [0 munmap S1 A8])
+            (const_int 0 [0]))) sem_close.c:63 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("munmap") [flags 0x41]  <function_decl 0x2b3e04359360 munmap>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 38 37 39 5 (set (reg/v:SI 87 [ result ])
+        (reg:SI 0 ax)) sem_close.c:63 -1
+     (nil))
+(insn 39 38 40 5 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("rec") [flags 0x2]  <var_decl 0x2b3e043ace10 rec>) [1 rec+0 S8 A64])) sem_close.c:65 -1
+     (nil))
+(call_insn 40 39 41 5 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3e03f8fe58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) sem_close.c:65 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3e03f8fe58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 41 40 42 5 (set (pc)
+        (label_ref 47)) sem_close.c:65 -1
+     (nil)
+ -> 47)
+(barrier 42 41 43)
+(code_label 43 42 44 6 6 "" [1 uses])
+(note 44 43 45 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 6 (set (reg:DI 109)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b3e043193f0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) sem_close.c:72 -1
+     (nil))
+(insn 46 45 4 6 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 109)) [4 errno+0 S4 A32])
+        (const_int 22 [0x16])) sem_close.c:72 -1
+     (nil))
+(insn 4 46 58 6 (set (reg/v:SI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) sem_close.c:71 -1
+     (nil))
+(jump_insn 58 4 59 6 (set (pc)
+        (label_ref 47)) -1
+     (nil)
+ -> 47)
+(barrier 59 58 61)
+(code_label 61 59 60 7 8 "" [1 uses])
+(note 60 61 5 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 5 60 47 7 (set (reg/v:SI 87 [ result ])
+        (const_int 0 [0])) sem_close.c:45 -1
+     (nil))
+(code_label 47 5 48 8 7 "" [2 uses])
+(note 48 47 49 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 8 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                (asm_operands/v:SI ("lock;decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") sem_close.c:76)
+                    ]
+                     [] sem_close.c:76))
+            (set (reg:SI 110 [ ignore ])
+                (asm_operands/v:SI ("lock;decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("__sem_mappings_lock") [flags 0x40]  <var_decl 0x2b3e043accf0 __sem_mappings_lock>) [4 __sem_mappings_lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") sem_close.c:76)
+                    ]
+                     [] sem_close.c:76))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) sem_close.c:76 -1
+     (nil))
+(insn 50 49 51 8 (set (reg/v:SI 98 [ ignore ])
+        (reg:SI 110 [ ignore ])) sem_close.c:76 -1
+     (nil))
+(insn 51 50 55 8 (set (reg:SI 99 [ <retval> ])
+        (reg/v:SI 87 [ result ])) sem_close.c:78 -1
+     (nil))
+(insn 55 51 56 8 (set (reg/i:SI 0 ax)
+        (reg:SI 99 [ <retval> ])) sem_close.c:79 -1
+     (nil))
+(insn 56 55 0 8 (use (reg/i:SI 0 ax)) sem_close.c:79 -1
+     (nil))

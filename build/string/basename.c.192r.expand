@@ -1,0 +1,93 @@
+
+;; Function __basename (*__GI___basename, funcdef_no=9, decl_uid=2436, cgraph_uid=9, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 18.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 90 [ filename ])
+        (reg:DI 5 di [ filename ])) basename.c:23 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:SI 4 si)
+        (const_int 47 [0x2f])) basename.c:24 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 90 [ filename ])) basename.c:24 -1
+     (nil))
+(call_insn/i 9 8 10 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_strrchr") [flags 0x43]  <function_decl 0x2b5835289438 strrchr>) [0 __builtin_strrchr S1 A8])
+            (const_int 0 [0]))) basename.c:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_strrchr") [flags 0x43]  <function_decl 0x2b5835289438 strrchr>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 10 9 11 2 (set (reg/v/f:DI 88 [ p ])
+        (reg:DI 0 ax)) basename.c:24 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ p ])
+            (const_int 0 [0]))) basename.c:25 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 27)
+            (pc))) basename.c:25 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1014 (nil))
+ -> 27)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 24 4 (parallel [
+            (set (reg/f:DI 87 [ D.2536 ])
+                (plus:DI (reg/v/f:DI 88 [ p ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) basename.c:25 -1
+     (nil))
+(jump_insn 24 14 25 4 (set (pc)
+        (label_ref 15)) -1
+     (nil)
+ -> 15)
+(barrier 25 24 27)
+(code_label 27 25 26 5 3 "" [1 uses])
+(note 26 27 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 26 15 5 (set (reg/f:DI 87 [ D.2536 ])
+        (reg/v/f:DI 90 [ filename ])) -1
+     (nil))
+(code_label 15 4 16 6 2 "" [1 uses])
+(note 16 15 17 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 21 6 (set (reg:DI 89 [ <retval> ])
+        (reg/f:DI 87 [ D.2536 ])) basename.c:25 -1
+     (nil))
+(insn 21 17 22 6 (set (reg/i:DI 0 ax)
+        (reg:DI 89 [ <retval> ])) basename.c:26 -1
+     (nil))
+(insn 22 21 0 6 (use (reg/i:DI 0 ax)) basename.c:26 -1
+     (nil))

@@ -1,0 +1,229 @@
+
+;; Function __fpclassifyl (*__GI___fpclassifyl, funcdef_no=77, decl_uid=2907, cgraph_uid=77, symbol_order=77)
+
+Partition 0: size 16 align 16
+	ew_u
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+Edge 2->6 redirected to 9
+Edge 3->6 redirected to 10
+Edge 4->6 redirected to 11
+Purged non-fallthru edges from bb 13
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 4->6 redirected to 7
+Forwarding edge 5->6 to 7 failed.
+Deleted label in block 6.
+Removing jump 43.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 7 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:XF 103 [ x ])
+        (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [4 x+0 S16 A128])) ../sysdeps/i386/fpu/s_fpclassifyl.c:27 -1
+     (expr_list:REG_EQUIV (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [4 x+0 S16 A128])
+        (nil)))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (mem/c:XF (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [0 ew_u.value+0 S16 A128])
+        (reg/v:XF 103 [ x ])) ../sysdeps/i386/fpu/s_fpclassifyl.c:31 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:HI 89 [ D.5375 ])
+        (mem/j/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [0 ew_u.parts.sign_exponent+0 S2 A64])) ../sysdeps/i386/fpu/s_fpclassifyl.c:31 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v:SI 90 [ hx ])
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 ew_u.parts.msw+0 S4 A32])) ../sysdeps/i386/fpu/s_fpclassifyl.c:31 -1
+     (nil))
+(insn 12 11 13 2 (set (reg/v:SI 91 [ lx ])
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [0 ew_u.parts.lsw+0 S4 A128])) ../sysdeps/i386/fpu/s_fpclassifyl.c:31 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg:HI 88 [ D.5375 ])
+                (and:HI (reg:HI 89 [ D.5375 ])
+                    (const_int 32767 [0x7fff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 14 13 15 2 (set (reg/v:SI 92 [ ex ])
+        (sign_extend:SI (reg:HI 88 [ D.5375 ]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:32 -1
+     (nil))
+(insn 15 14 16 2 (parallel [
+            (set (reg:SI 104 [ D.5376 ])
+                (ior:SI (reg/v:SI 90 [ hx ])
+                    (reg/v:SI 91 [ lx ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/i386/fpu/s_fpclassifyl.c:33 -1
+     (nil))
+(insn 16 15 17 2 (parallel [
+            (set (reg:SI 105 [ D.5376 ])
+                (ior:SI (reg:SI 104 [ D.5376 ])
+                    (reg/v:SI 92 [ ex ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/i386/fpu/s_fpclassifyl.c:33 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 105 [ D.5376 ])
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:33 -1
+     (nil))
+(jump_insn 18 17 19 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 52)
+            (pc))) ../sysdeps/i386/fpu/s_fpclassifyl.c:33 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 52)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ ex ])
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:QI 107 [ D.5377 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(insn 22 21 23 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 107 [ D.5377 ])
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(jump_insn 23 22 61 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 63)
+            (pc))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1650 (nil))
+ -> 63)
+(note 61 23 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 61 25 5 (set (reg:SI 109)
+        (not:SI (reg/v:SI 90 [ hx ]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(insn 25 24 26 5 (parallel [
+            (set (reg:SI 110)
+                (lshiftrt:SI (reg:SI 109)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:QI 111)
+        (subreg:QI (reg:SI 110) 0)) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(insn 27 26 28 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 111)
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 -1
+     (nil))
+(jump_insn 28 27 62 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 56)
+            (pc))) ../sysdeps/i386/fpu/s_fpclassifyl.c:35 612 {*jcc_1}
+     (int_list:REG_BR_PROB 8024 (nil))
+ -> 56)
+(note 62 28 63 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(code_label 63 62 30 7 7 "" [1 uses])
+(note 30 63 31 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 31 30 32 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 88 [ D.5375 ])
+            (const_int 32767 [0x7fff]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:37 -1
+     (nil))
+(jump_insn 32 31 33 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 60)
+            (pc))) ../sysdeps/i386/fpu/s_fpclassifyl.c:37 612 {*jcc_1}
+     (int_list:REG_BR_PROB 8392 (nil))
+ -> 60)
+(note 33 32 34 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 8 (parallel [
+            (set (reg:SI 112 [ D.5376 ])
+                (and:SI (reg/v:SI 90 [ hx ])
+                    (const_int 2147483647 [0x7fffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/i386/fpu/s_fpclassifyl.c:38 -1
+     (nil))
+(insn 35 34 36 8 (parallel [
+            (set (reg:SI 113 [ D.5376 ])
+                (ior:SI (reg:SI 112 [ D.5376 ])
+                    (reg/v:SI 91 [ lx ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/i386/fpu/s_fpclassifyl.c:38 -1
+     (nil))
+(insn 36 35 37 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 113 [ D.5376 ])
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:38 -1
+     (nil))
+(insn 37 36 38 8 (set (reg:QI 115)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/i386/fpu/s_fpclassifyl.c:38 -1
+     (nil))
+(insn 38 37 39 8 (set (reg:SI 114 [ D.5377 ])
+        (zero_extend:SI (reg:QI 115))) ../sysdeps/i386/fpu/s_fpclassifyl.c:38 -1
+     (nil))
+(insn 39 38 49 8 (set (reg/v:SI 87 [ retval ])
+        (reg:SI 114 [ D.5377 ])) ../sysdeps/i386/fpu/s_fpclassifyl.c:38 -1
+     (nil))
+(jump_insn 49 39 50 8 (set (pc)
+        (label_ref 40)) -1
+     (nil)
+ -> 40)
+(barrier 50 49 52)
+(code_label 52 50 51 9 4 "" [1 uses])
+(note 51 52 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 51 53 9 (set (reg/v:SI 87 [ retval ])
+        (const_int 2 [0x2])) ../sysdeps/i386/fpu/s_fpclassifyl.c:34 -1
+     (nil))
+(jump_insn 53 4 54 9 (set (pc)
+        (label_ref 40)) -1
+     (nil)
+ -> 40)
+(barrier 54 53 56)
+(code_label 56 54 55 10 5 "" [1 uses])
+(note 55 56 5 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 5 55 57 10 (set (reg/v:SI 87 [ retval ])
+        (const_int 3 [0x3])) ../sysdeps/i386/fpu/s_fpclassifyl.c:36 -1
+     (nil))
+(jump_insn 57 5 58 10 (set (pc)
+        (label_ref 40)) -1
+     (nil)
+ -> 40)
+(barrier 58 57 60)
+(code_label 60 58 59 11 6 "" [1 uses])
+(note 59 60 6 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 6 59 40 11 (set (reg/v:SI 87 [ retval ])
+        (const_int 4 [0x4])) ../sysdeps/i386/fpu/s_fpclassifyl.c:29 -1
+     (nil))
+(code_label 40 6 41 12 2 "" [3 uses])
+(note 41 40 42 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 46 12 (set (reg:SI 102 [ <retval> ])
+        (reg/v:SI 87 [ retval ])) ../sysdeps/i386/fpu/s_fpclassifyl.c:40 -1
+     (nil))
+(insn 46 42 47 12 (set (reg/i:SI 0 ax)
+        (reg:SI 102 [ <retval> ])) ../sysdeps/i386/fpu/s_fpclassifyl.c:41 -1
+     (nil))
+(insn 47 46 0 12 (use (reg/i:SI 0 ax)) ../sysdeps/i386/fpu/s_fpclassifyl.c:41 -1
+     (nil))

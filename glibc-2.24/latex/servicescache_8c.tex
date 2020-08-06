@@ -1,0 +1,74 @@
+\hypertarget{servicescache_8c}{}\doxysection{nscd/servicescache.c File Reference}
+\label{servicescache_8c}\index{nscd/servicescache.c@{nscd/servicescache.c}}
+{\ttfamily \#include $<$alloca.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nscd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dbg\+\_\+log.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{servicescache_8c_aa97123a14feba050eb10afedfe941241}{addservbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{servicescache_8c_a4e434778ee0b88c1b928e88101481f20}{readdservbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{servicescache_8c_aa000996a40ba1ed20664df105e57fda3}{addservbyport}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{servicescache_8c_a574d095171eee2abbbf3a638ca43a152}{readdservbyport}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} \mbox{\hyperlink{servicescache_8c_a889b61b842698055d17a47ef4fb90266}{serv\+\_\+iov\+\_\+disabled}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{servicescache_8c_aa97123a14feba050eb10afedfe941241}\label{servicescache_8c_aa97123a14feba050eb10afedfe941241}} 
+\index{servicescache.c@{servicescache.c}!addservbyname@{addservbyname}}
+\index{addservbyname@{addservbyname}!servicescache.c@{servicescache.c}}
+\doxysubsubsection{\texorpdfstring{addservbyname()}{addservbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addservbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{servicescache_8c_aa000996a40ba1ed20664df105e57fda3}\label{servicescache_8c_aa000996a40ba1ed20664df105e57fda3}} 
+\index{servicescache.c@{servicescache.c}!addservbyport@{addservbyport}}
+\index{addservbyport@{addservbyport}!servicescache.c@{servicescache.c}}
+\doxysubsubsection{\texorpdfstring{addservbyport()}{addservbyport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addservbyport (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{servicescache_8c_a4e434778ee0b88c1b928e88101481f20}\label{servicescache_8c_a4e434778ee0b88c1b928e88101481f20}} 
+\index{servicescache.c@{servicescache.c}!readdservbyname@{readdservbyname}}
+\index{readdservbyname@{readdservbyname}!servicescache.c@{servicescache.c}}
+\doxysubsubsection{\texorpdfstring{readdservbyname()}{readdservbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdservbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{servicescache_8c_a574d095171eee2abbbf3a638ca43a152}\label{servicescache_8c_a574d095171eee2abbbf3a638ca43a152}} 
+\index{servicescache.c@{servicescache.c}!readdservbyport@{readdservbyport}}
+\index{readdservbyport@{readdservbyport}!servicescache.c@{servicescache.c}}
+\doxysubsubsection{\texorpdfstring{readdservbyport()}{readdservbyport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdservbyport (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{servicescache_8c_a889b61b842698055d17a47ef4fb90266}\label{servicescache_8c_a889b61b842698055d17a47ef4fb90266}} 
+\index{servicescache.c@{servicescache.c}!serv\_iov\_disabled@{serv\_iov\_disabled}}
+\index{serv\_iov\_disabled@{serv\_iov\_disabled}!servicescache.c@{servicescache.c}}
+\doxysubsubsection{\texorpdfstring{serv\_iov\_disabled}{serv\_iov\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} serv\+\_\+iov\+\_\+disabled}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  .iov\_base = (\textcolor{keywordtype}{void} *) \&disabled,}
+\DoxyCodeLine{  .iov\_len = \textcolor{keyword}{sizeof} (disabled)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

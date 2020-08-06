@@ -1,0 +1,117 @@
+
+;; Function __sigjmp_save (__sigjmp_save, funcdef_no=3, decl_uid=1872, cgraph_uid=3, symbol_order=6)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 25.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 92 [ env ])
+        (reg:DI 5 di [ env ])) sigjmp.c:28 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 93 [ savemask ])
+        (reg:SI 4 si [ savemask ])) sigjmp.c:28 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ savemask ])
+            (const_int 0 [0]))) sigjmp.c:29 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) sigjmp.c:29 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 34)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (parallel [
+            (set (reg:DI 94 [ D.2543 ])
+                (plus:DI (reg/v/f:DI 92 [ env ])
+                    (const_int 72 [0x48])))
+            (clobber (reg:CC 17 flags))
+        ]) sigjmp.c:31 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 1 dx)
+        (reg:DI 94 [ D.2543 ])) sigjmp.c:30 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:DI 4 si)
+        (const_int 0 [0])) sigjmp.c:30 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:SI 5 di)
+        (const_int 0 [0])) sigjmp.c:30 -1
+     (nil))
+(call_insn 15 14 16 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2aba9458aca8 __sigprocmask>) [0 __sigprocmask S1 A8])
+            (const_int 0 [0]))) sigjmp.c:30 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2aba9458aca8 __sigprocmask>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 16 15 17 4 (set (reg:SI 89 [ D.2542 ])
+        (reg:SI 0 ax)) sigjmp.c:30 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 89 [ D.2542 ])
+            (const_int 0 [0]))) sigjmp.c:29 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:QI 96)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sigjmp.c:29 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:SI 95 [ D.2544 ])
+        (zero_extend:SI (reg:QI 96))) sigjmp.c:29 -1
+     (nil))
+(insn 20 19 31 4 (set (reg:SI 87 [ D.2542 ])
+        (reg:SI 95 [ D.2544 ])) sigjmp.c:29 -1
+     (nil))
+(jump_insn 31 20 32 4 (set (pc)
+        (label_ref 21)) -1
+     (nil)
+ -> 21)
+(barrier 32 31 34)
+(code_label 34 32 33 5 3 "" [1 uses])
+(note 33 34 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 5 33 21 5 (set (reg:SI 87 [ D.2542 ])
+        (const_int 0 [0])) sigjmp.c:29 -1
+     (nil))
+(code_label 21 5 22 6 2 "" [1 uses])
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ env ])
+                (const_int 64 [0x40])) [4 env_5(D)->__mask_was_saved+0 S4 A64])
+        (reg:SI 87 [ D.2542 ])) sigjmp.c:29 -1
+     (nil))
+(insn 24 23 28 6 (set (reg:SI 91 [ <retval> ])
+        (const_int 0 [0])) sigjmp.c:33 -1
+     (nil))
+(insn 28 24 29 6 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) sigjmp.c:34 -1
+     (nil))
+(insn 29 28 0 6 (use (reg/i:SI 0 ax)) sigjmp.c:34 -1
+     (nil))

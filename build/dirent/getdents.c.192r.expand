@@ -1,0 +1,243 @@
+
+;; Function __getdents (__getdents, funcdef_no=33, decl_uid=7472, cgraph_uid=33, symbol_order=34)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 52.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:SI 107 [ fd ])
+        (reg:SI 5 di [ fd ])) ../sysdeps/unix/sysv/linux/getdents.c:81 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 108 [ buf ])
+        (reg:DI 4 si [ buf ])) ../sysdeps/unix/sysv/linux/getdents.c:81 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 109 [ nbytes ])
+        (reg:DI 1 dx [ nbytes ])) ../sysdeps/unix/sysv/linux/getdents.c:81 -1
+     (nil))
+(note 5 4 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 5 10 2 (set (reg/v:DI 1 dx [ _a3 ])
+        (reg/v:DI 109 [ nbytes ])) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:DI 4 si [ _a2 ])
+        (reg/v/f:DI 108 [ buf ])) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 107 [ fd ]))) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:SI 111)
+        (const_int 78 [0x4e])) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg:DI 110 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 111)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/getdents.c:96)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getdents.c:96)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getdents.c:96)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getdents.c:96)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/getdents.c:96))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 14 13 15 2 (set (reg/v:DI 90 [ resultvar ])
+        (reg:DI 110 [ resultvar ])) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 90 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 22)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (parallel [
+            (set (reg:SI 112)
+                (neg:SI (subreg:SI (reg/v:DI 90 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 19 18 6 4 (set (mem/c:SI (symbol_ref:DI ("rtld_errno") [flags 0x42]  <var_decl 0x2b44ba0c5d80 rtld_errno>) [2 rtld_errno+0 S4 A32])
+        (reg:SI 112)) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 6 19 20 4 (set (reg/v:DI 95 [ retval ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(jump_insn 20 6 21 4 (set (pc)
+        (label_ref 49)) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil)
+ -> 49)
+(barrier 21 20 22)
+(code_label 22 21 23 5 2 "" [1 uses])
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (set (reg/v:DI 95 [ retval ])
+        (reg/v:DI 90 [ resultvar ])) ../sysdeps/unix/sysv/linux/getdents.c:96 -1
+     (nil))
+(insn 25 24 26 5 (parallel [
+            (set (reg/f:DI 91 [ D.8660 ])
+                (plus:DI (reg/v/f:DI 108 [ buf ])
+                    (reg/v:DI 90 [ resultvar ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:108 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 108 [ buf ])
+            (reg/f:DI 91 [ D.8660 ]))) ../sysdeps/unix/sysv/linux/getdents.c:108 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 49)
+            (pc))) ../sysdeps/unix/sysv/linux/getdents.c:108 -1
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 49)
+(note 28 27 46 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(code_label 46 28 29 7 4 "" [1 uses])
+(note 29 46 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 7 (set (reg:DI 97 [ D.8664 ])
+        (zero_extend:DI (mem:HI (plus:DI (reg/v/f:DI 108 [ buf ])
+                    (const_int 16 [0x10])) [0 MEM[(union  *)buf_21].k.d_reclen+0 S2 A64]))) ../sysdeps/unix/sysv/linux/getdents.c:110 -1
+     (nil))
+(insn 31 30 32 7 (set (reg/v:QI 100 [ d_type ])
+        (mem:QI (plus:DI (plus:DI (reg/v/f:DI 108 [ buf ])
+                    (reg:DI 97 [ D.8664 ]))
+                (const_int -1 [0xffffffffffffffff])) [0 *_31+0 S1 A8])) ../sysdeps/unix/sysv/linux/getdents.c:110 -1
+     (nil))
+(insn 32 31 33 7 (parallel [
+            (set (reg/f:DI 101 [ D.8665 ])
+                (plus:DI (reg/v/f:DI 108 [ buf ])
+                    (const_int 18 [0x12])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:112 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:DI 5 di)
+        (reg/f:DI 101 [ D.8665 ])) ../sysdeps/unix/sysv/linux/getdents.c:112 -1
+     (nil))
+(call_insn/i 34 33 35 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x43]  <function_decl 0x2b44b9ff0948 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/getdents.c:112 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x43]  <function_decl 0x2b44b9ff0948 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 35 34 36 7 (set (reg:DI 114)
+        (reg:DI 0 ax)) ../sysdeps/unix/sysv/linux/getdents.c:112 -1
+     (nil))
+(insn 36 35 37 7 (set (reg:DI 115)
+        (reg:DI 114)) ../sysdeps/unix/sysv/linux/getdents.c:112 -1
+     (nil))
+(insn 37 36 38 7 (set (reg:DI 102 [ D.8666 ])
+        (reg:DI 115)) ../sysdeps/unix/sysv/linux/getdents.c:112 -1
+     (nil))
+(insn 38 37 39 7 (parallel [
+            (set (reg:DI 116 [ D.8666 ])
+                (plus:DI (reg:DI 102 [ D.8666 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:111 -1
+     (nil))
+(insn 39 38 40 7 (parallel [
+            (set (reg:DI 117)
+                (plus:DI (reg/v/f:DI 108 [ buf ])
+                    (const_int 19 [0x13])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:111 -1
+     (nil))
+(insn 40 39 41 7 (set (reg:DI 1 dx)
+        (reg:DI 116 [ D.8666 ])) ../sysdeps/unix/sysv/linux/getdents.c:111 -1
+     (nil))
+(insn 41 40 42 7 (set (reg:DI 4 si)
+        (reg/f:DI 101 [ D.8665 ])) ../sysdeps/unix/sysv/linux/getdents.c:111 -1
+     (nil))
+(insn 42 41 43 7 (set (reg:DI 5 di)
+        (reg:DI 117)) ../sysdeps/unix/sysv/linux/getdents.c:111 -1
+     (nil))
+(call_insn 43 42 44 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memmove") [flags 0x43]  <function_decl 0x2b44b9fed0d8 memmove>) [0 __builtin_memmove S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/getdents.c:111 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memmove") [flags 0x43]  <function_decl 0x2b44b9fed0d8 memmove>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 44 43 45 7 (set (mem:QI (plus:DI (reg/v/f:DI 108 [ buf ])
+                (const_int 18 [0x12])) [0 MEM[(union  *)buf_21].u.d_type+0 S1 A16])
+        (reg/v:QI 100 [ d_type ])) ../sysdeps/unix/sysv/linux/getdents.c:113 -1
+     (nil))
+(insn 45 44 47 7 (parallel [
+            (set (reg/v/f:DI 108 [ buf ])
+                (plus:DI (reg/v/f:DI 108 [ buf ])
+                    (reg:DI 97 [ D.8664 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getdents.c:115 -1
+     (nil))
+(insn 47 45 48 7 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 91 [ D.8660 ])
+            (reg/v/f:DI 108 [ buf ]))) ../sysdeps/unix/sysv/linux/getdents.c:108 -1
+     (nil))
+(jump_insn 48 47 49 7 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) ../sysdeps/unix/sysv/linux/getdents.c:108 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 46)
+(code_label 49 48 50 8 3 "" [2 uses])
+(note 50 49 51 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 55 8 (set (reg:DI 106 [ <retval> ])
+        (reg/v:DI 95 [ retval ])) -1
+     (nil))
+(insn 55 51 56 8 (set (reg/i:DI 0 ax)
+        (reg:DI 106 [ <retval> ])) ../sysdeps/unix/sysv/linux/getdents.c:272 -1
+     (nil))
+(insn 56 55 0 8 (use (reg/i:DI 0 ax)) ../sysdeps/unix/sysv/linux/getdents.c:272 -1
+     (nil))

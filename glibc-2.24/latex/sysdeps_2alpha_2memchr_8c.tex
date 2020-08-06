@@ -1,0 +1,99 @@
+\hypertarget{sysdeps_2alpha_2memchr_8c}{}\doxysection{sysdeps/alpha/memchr.c File Reference}
+\label{sysdeps_2alpha_2memchr_8c}\index{sysdeps/alpha/memchr.c@{sysdeps/alpha/memchr.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_abc731794bf58cdf8374f2be21cdfd62d}{unlikely}}(\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}})~\mbox{\hyperlink{string_2strstr_8c_a2a2cf4a629132aed16f845d4d1bffd95}{\+\_\+\+\_\+builtin\+\_\+expect}} ((\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}), 0)
+\item 
+\#define \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_adf5e9aa33a1210cbbcb89dc05634c46e}{prefetch}}(\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}})~\+\_\+\+\_\+builtin\+\_\+prefetch ((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$)(\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}), 0)
+\item 
+\#define \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a7b2c214ce697de36d66a55e08ca5f5cd}{cmpbeq0}}(\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}})~\+\_\+\+\_\+builtin\+\_\+alpha\+\_\+cmpbge(0, (\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}))
+\item 
+\#define \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a0747e1254e7bdb830daab003f1035f32}{find}}(\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}},  \mbox{\hyperlink{mpa_8h_a798e4073d613ca5ba9618e1b3253df14}{Y}})~\mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a7b2c214ce697de36d66a55e08ca5f5cd}{cmpbeq0}} ((\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}) $^\wedge$ (\mbox{\hyperlink{mpa_8h_a798e4073d613ca5ba9618e1b3253df14}{Y}}))
+\item 
+\#define \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_ab2823d219763c6533878eff9ec809274}{C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+L\+O\+OP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a8829cde3436decd2d2c3d99ed7d649f1}{word}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_ae9811647e37f6a1f4a7c2b504a747c5b}{\+\_\+\+\_\+memchr}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} xc, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_ab2823d219763c6533878eff9ec809274}\label{sysdeps_2alpha_2memchr_8c_ab2823d219763c6533878eff9ec809274}} 
+\index{memchr.c@{memchr.c}!CACHELINE\_LOOP@{CACHELINE\_LOOP}}
+\index{CACHELINE\_LOOP@{CACHELINE\_LOOP}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{CACHELINE\_LOOP}{CACHELINE\_LOOP}}
+{\footnotesize\ttfamily \#define C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+L\+O\+OP}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                    \(\backslash\)}
+\DoxyCodeLine{      word \mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}, next = s\_align[0];       \(\backslash\)}
+\DoxyCodeLine{      for (\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}} = 0; \mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}} < 7; ++\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}})        \(\backslash\)}
+\DoxyCodeLine{        \{                   \(\backslash\)}
+\DoxyCodeLine{          current = next;           \(\backslash\)}
+\DoxyCodeLine{          next = s\_align[1];        \(\backslash\)}
+\DoxyCodeLine{          found = \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a0747e1254e7bdb830daab003f1035f32}{find}} (\mbox{\hyperlink{lc-ctype_8c_a5da039047631088cede59f8042b31f8d}{current}}, c); \(\backslash\)}
+\DoxyCodeLine{          if (\mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_abc731794bf58cdf8374f2be21cdfd62d}{unlikely}} (found))     \(\backslash\)}
+\DoxyCodeLine{        goto found\_it;          \(\backslash\)}
+\DoxyCodeLine{          s\_align++;            \(\backslash\)}
+\DoxyCodeLine{        \}                   \(\backslash\)}
+\DoxyCodeLine{      current = next;           \(\backslash\)}
+\DoxyCodeLine{      found = \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a0747e1254e7bdb830daab003f1035f32}{find}} (\mbox{\hyperlink{lc-ctype_8c_a5da039047631088cede59f8042b31f8d}{current}}, c);     \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_abc731794bf58cdf8374f2be21cdfd62d}{unlikely}} (found))         \(\backslash\)}
+\DoxyCodeLine{        goto found\_it;          \(\backslash\)}
+\DoxyCodeLine{      s\_align++;                \(\backslash\)}
+\DoxyCodeLine{      n -\/= 64;              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_a7b2c214ce697de36d66a55e08ca5f5cd}\label{sysdeps_2alpha_2memchr_8c_a7b2c214ce697de36d66a55e08ca5f5cd}} 
+\index{memchr.c@{memchr.c}!cmpbeq0@{cmpbeq0}}
+\index{cmpbeq0@{cmpbeq0}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{cmpbeq0}{cmpbeq0}}
+{\footnotesize\ttfamily \#define cmpbeq0(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}} }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+alpha\+\_\+cmpbge(0, (\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}))}
+
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_a0747e1254e7bdb830daab003f1035f32}\label{sysdeps_2alpha_2memchr_8c_a0747e1254e7bdb830daab003f1035f32}} 
+\index{memchr.c@{memchr.c}!find@{find}}
+\index{find@{find}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{find}{find}}
+{\footnotesize\ttfamily \#define find(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}},  }\item[{}]{\mbox{\hyperlink{mpa_8h_a798e4073d613ca5ba9618e1b3253df14}{Y}} }\end{DoxyParamCaption})~\mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a7b2c214ce697de36d66a55e08ca5f5cd}{cmpbeq0}} ((\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}) $^\wedge$ (\mbox{\hyperlink{mpa_8h_a798e4073d613ca5ba9618e1b3253df14}{Y}}))}
+
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_adf5e9aa33a1210cbbcb89dc05634c46e}\label{sysdeps_2alpha_2memchr_8c_adf5e9aa33a1210cbbcb89dc05634c46e}} 
+\index{memchr.c@{memchr.c}!prefetch@{prefetch}}
+\index{prefetch@{prefetch}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{prefetch}{prefetch}}
+{\footnotesize\ttfamily \#define prefetch(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}} }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+prefetch ((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$)(\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}), 0)}
+
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_abc731794bf58cdf8374f2be21cdfd62d}\label{sysdeps_2alpha_2memchr_8c_abc731794bf58cdf8374f2be21cdfd62d}} 
+\index{memchr.c@{memchr.c}!unlikely@{unlikely}}
+\index{unlikely@{unlikely}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{unlikely}{unlikely}}
+{\footnotesize\ttfamily \#define unlikely(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}} }\end{DoxyParamCaption})~\mbox{\hyperlink{string_2strstr_8c_a2a2cf4a629132aed16f845d4d1bffd95}{\+\_\+\+\_\+builtin\+\_\+expect}} ((\mbox{\hyperlink{mpa_8h_a207fd5507206d307cd63f95374fcd00d}{X}}), 0)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_a8829cde3436decd2d2c3d99ed7d649f1}\label{sysdeps_2alpha_2memchr_8c_a8829cde3436decd2d2c3d99ed7d649f1}} 
+\index{memchr.c@{memchr.c}!word@{word}}
+\index{word@{word}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{word}{word}}
+{\footnotesize\ttfamily typedef unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{sysdeps_2alpha_2memchr_8c_a8829cde3436decd2d2c3d99ed7d649f1}{word}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2alpha_2memchr_8c_ae9811647e37f6a1f4a7c2b504a747c5b}\label{sysdeps_2alpha_2memchr_8c_ae9811647e37f6a1f4a7c2b504a747c5b}} 
+\index{memchr.c@{memchr.c}!\_\_memchr@{\_\_memchr}}
+\index{\_\_memchr@{\_\_memchr}!memchr.c@{memchr.c}}
+\doxysubsubsection{\texorpdfstring{\_\_memchr()}{\_\_memchr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ \+\_\+\+\_\+memchr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{xc,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{n }\end{DoxyParamCaption})}
+

@@ -1,0 +1,324 @@
+
+;; Function __lgamma (__lgamma, funcdef_no=77, decl_uid=2063, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 2->9 redirected to 12
+Edge 3->9 redirected to 13
+Edge 4->9 redirected to 14
+Edge 5->8 redirected to 15
+Edge 6->8 redirected to 16
+Purged non-fallthru edges from bb 18
+Purged non-fallthru edges from bb 21
+Purged non-fallthru edges from bb 23
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+Forwarding edge 2->4 to 19 failed.
+Forwarding edge 2->4 to 19 failed.
+deleting block 5
+Edge 9->11 redirected to 12
+Forwarding edge 9->10 to 16 failed.
+Forwarding edge 9->10 to 16 failed.
+deleting block 11
+Edge 12->14 redirected to 15
+Forwarding edge 12->13 to 17 failed.
+Forwarding edge 12->13 to 17 failed.
+deleting block 14
+Removing jump 65.
+Merging block 23 into block 22...
+Merged blocks 22 and 23.
+Merged 22 and 23 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 2->4 to 19 failed.
+Forwarding edge 9->10 to 16 failed.
+Forwarding edge 12->13 to 17 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 10 NOTE_INSN_DELETED)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v:DF 95 [ x ])
+        (reg:DF 21 xmm0 [ x ])) ./w_lgamma_main.c:27 -1
+     (nil))
+(note 3 2 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 3 13 2 (set (reg:DI 96)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__signgam") [flags 0x40]  <var_decl 0x2ab8b80bc750 __signgam>)
+                    ] UNSPEC_GOTPCREL)) [3  S8 A8])) ./w_lgamma_main.c:28 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg:DI 96)) ./w_lgamma_main.c:28 -1
+     (expr_list:REG_EQUAL (symbol_ref:DI ("__signgam") [flags 0x40]  <var_decl 0x2ab8b80bc750 __signgam>)
+        (nil)))
+(insn 14 13 15 2 (set (reg:DF 21 xmm0)
+        (reg/v:DF 95 [ x ])) ./w_lgamma_main.c:28 -1
+     (nil))
+(call_insn 15 14 16 2 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_lgamma_r") [flags 0x41]  <function_decl 0x2ab8b8303288 __ieee754_lgamma_r>) [0 __ieee754_lgamma_r S1 A8])
+            (const_int 0 [0]))) ./w_lgamma_main.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_lgamma_r") [flags 0x41]  <function_decl 0x2ab8b8303288 __ieee754_lgamma_r>)
+        (nil))
+    (expr_list:DF (use (reg:DF 21 xmm0))
+        (expr_list:DI (use (reg:DI 5 di))
+            (nil))))
+(insn 16 15 17 2 (set (reg/v:DF 89 [ y ])
+        (reg:DF 21 xmm0)) ./w_lgamma_main.c:28 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:V2DF 98)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [4  S16 A128])) ./w_lgamma_main.c:29 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 18 17 19 2 (parallel [
+            (set (reg:DF 97 [ D.5381 ])
+                (abs:DF (reg/v:DF 89 [ y ])))
+            (use (reg:V2DF 98))
+            (clobber (reg:CC 17 flags))
+        ]) ./w_lgamma_main.c:29 -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 89 [ y ]))
+        (nil)))
+(insn 19 18 20 2 (set (reg:DF 99)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [4  S8 A64])) ./w_lgamma_main.c:29 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.79769313486231570814527423731704356798070567525845e+308 [0x0.fffffffffffff8p+1024])
+        (nil)))
+(insn 20 19 21 2 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 99)
+            (reg:DF 97 [ D.5381 ]))) ./w_lgamma_main.c:29 -1
+     (nil))
+(jump_insn 21 20 89 2 (set (pc)
+        (if_then_else (unlt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 96)
+            (pc))) ./w_lgamma_main.c:29 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 96)
+(note 89 21 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 22 89 23 4 (set (pc)
+        (label_ref:DI 72)) ./w_lgamma_main.c:29 654 {jump}
+     (nil)
+ -> 72)
+(barrier 23 22 96)
+(code_label 96 23 25 6 12 "" [1 uses])
+(note 25 96 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 6 (set (reg:V2DF 101)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [4  S16 A128])) ./w_lgamma_main.c:30 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 27 26 28 6 (parallel [
+            (set (reg:DF 100 [ D.5381 ])
+                (abs:DF (reg/v:DF 95 [ x ])))
+            (use (reg:V2DF 101))
+            (clobber (reg:CC 17 flags))
+        ]) ./w_lgamma_main.c:30 -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 95 [ x ]))
+        (nil)))
+(insn 28 27 29 6 (set (reg:DF 102)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [4  S8 A64])) ./w_lgamma_main.c:30 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.79769313486231570814527423731704356798070567525845e+308 [0x0.fffffffffffff8p+1024])
+        (nil)))
+(insn 29 28 30 6 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 102)
+            (reg:DF 100 [ D.5381 ]))) ./w_lgamma_main.c:30 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (if_then_else (unlt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) ./w_lgamma_main.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 76)
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 7 (set (reg/f:DI 103)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_LIB_VERSION") [flags 0x40]  <var_decl 0x2ab8b80bc1b0 _LIB_VERSION>)
+                    ] UNSPEC_GOTPCREL)) [3  S8 A8])) ./w_lgamma_main.c:30 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (reg/f:DI 103) [1 _LIB_VERSION+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))) ./w_lgamma_main.c:30 -1
+     (nil))
+(jump_insn 34 33 35 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) ./w_lgamma_main.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1991 (nil))
+ -> 80)
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 8 (set (reg:DF 21 xmm0)
+        (reg/v:DF 95 [ x ])) ./w_lgamma_main.c:32 -1
+     (nil))
+(call_insn/u 37 36 38 8 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__floor") [flags 0x41]  <function_decl 0x2ab8b80d6bd0 __floor>) [0 __floor S1 A8])
+            (const_int 0 [0]))) ./w_lgamma_main.c:32 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__floor") [flags 0x41]  <function_decl 0x2ab8b80d6bd0 __floor>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DF (use (reg:DF 21 xmm0))
+        (nil)))
+(insn 38 37 39 8 (set (reg:DF 93 [ D.5381 ])
+        (reg:DF 21 xmm0)) ./w_lgamma_main.c:32 -1
+     (nil))
+(insn 39 38 40 8 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:DF 95 [ x ])
+            (reg:DF 93 [ D.5381 ]))) ./w_lgamma_main.c:31 -1
+     (nil))
+(jump_insn 40 39 91 8 (set (pc)
+        (if_then_else (unordered (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) ./w_lgamma_main.c:31 612 {*jcc_1}
+     (int_list:REG_BR_PROB 100 (nil))
+ -> 84)
+(note 91 40 41 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 41 91 42 9 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:DF 95 [ x ])
+            (reg:DF 93 [ D.5381 ]))) ./w_lgamma_main.c:31 -1
+     (nil))
+(jump_insn 42 41 92 9 (set (pc)
+        (if_then_else (uneq (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 97)
+            (pc))) ./w_lgamma_main.c:31 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 97)
+(note 92 42 43 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 43 92 44 10 (set (pc)
+        (label_ref:DI 84)) ./w_lgamma_main.c:31 654 {jump}
+     (nil)
+ -> 84)
+(barrier 44 43 97)
+(code_label 97 44 46 12 13 "" [1 uses])
+(note 46 97 47 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 12 (set (reg:DF 104)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [4  S8 A64])) ./w_lgamma_main.c:32 -1
+     (expr_list:REG_EQUAL (const_double:DF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 48 47 49 12 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 104)
+            (reg/v:DF 95 [ x ]))) ./w_lgamma_main.c:32 -1
+     (nil))
+(jump_insn 49 48 94 12 (set (pc)
+        (if_then_else (ge (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 98)
+            (pc))) ./w_lgamma_main.c:32 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2700 (nil))
+ -> 98)
+(note 94 49 50 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 50 94 51 13 (set (pc)
+        (label_ref:DI 88)) ./w_lgamma_main.c:32 654 {jump}
+     (nil)
+ -> 88)
+(barrier 51 50 98)
+(code_label 98 51 53 15 14 "" [1 uses])
+(note 53 98 4 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 4 53 81 15 (set (reg:SI 88 [ D.5382 ])
+        (const_int 15 [0xf])) ./w_lgamma_main.c:31 -1
+     (nil))
+(jump_insn 81 4 82 15 (set (pc)
+        (label_ref 54)) -1
+     (nil)
+ -> 54)
+(barrier 82 81 84)
+(code_label 84 82 83 16 10 "" [2 uses])
+(note 83 84 6 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 6 83 85 16 (set (reg:SI 88 [ D.5382 ])
+        (const_int 14 [0xe])) ./w_lgamma_main.c:31 -1
+     (nil))
+(jump_insn 85 6 86 16 (set (pc)
+        (label_ref 54)) -1
+     (nil)
+ -> 54)
+(barrier 86 85 88)
+(code_label 88 86 87 17 11 "" [1 uses])
+(note 87 88 5 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 5 87 54 17 (set (reg:SI 88 [ D.5382 ])
+        (const_int 14 [0xe])) ./w_lgamma_main.c:31 -1
+     (nil))
+(code_label 54 5 55 18 4 "" [2 uses])
+(note 55 54 56 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 18 (set (reg:SI 5 di)
+        (reg:SI 88 [ D.5382 ])) ./w_lgamma_main.c:31 -1
+     (nil))
+(insn 57 56 58 18 (set (reg:DF 22 xmm1)
+        (reg/v:DF 95 [ x ])) ./w_lgamma_main.c:31 -1
+     (nil))
+(insn 58 57 59 18 (set (reg:DF 21 xmm0)
+        (reg/v:DF 95 [ x ])) ./w_lgamma_main.c:31 -1
+     (nil))
+(call_insn/j 59 58 60 18 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__kernel_standard") [flags 0x41]  <function_decl 0x2ab8b8306288 __kernel_standard>) [0 __kernel_standard S1 A8])
+            (const_int 0 [0]))) ./w_lgamma_main.c:31 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__kernel_standard") [flags 0x41]  <function_decl 0x2ab8b8306288 __kernel_standard>)
+        (nil))
+    (expr_list:DF (use (reg:DF 21 xmm0))
+        (expr_list:DF (use (reg:DF 22 xmm1))
+            (expr_list:SI (use (reg:SI 5 di))
+                (nil)))))
+(barrier 60 59 72)
+(code_label 72 60 71 19 7 "" [1 uses])
+(note 71 72 8 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 8 71 73 19 (set (reg:DF 87 [ D.5381 ])
+        (reg/v:DF 89 [ y ])) ./w_lgamma_main.c:36 -1
+     (nil))
+(jump_insn 73 8 74 19 (set (pc)
+        (label_ref 62)) -1
+     (nil)
+ -> 62)
+(barrier 74 73 76)
+(code_label 76 74 75 20 8 "" [1 uses])
+(note 75 76 7 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 7 75 77 20 (set (reg:DF 87 [ D.5381 ])
+        (reg/v:DF 89 [ y ])) ./w_lgamma_main.c:36 -1
+     (nil))
+(jump_insn 77 7 78 20 (set (pc)
+        (label_ref 62)) -1
+     (nil)
+ -> 62)
+(barrier 78 77 80)
+(code_label 80 78 79 21 9 "" [1 uses])
+(note 79 80 9 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 9 79 62 21 (set (reg:DF 87 [ D.5381 ])
+        (reg/v:DF 89 [ y ])) ./w_lgamma_main.c:36 -1
+     (nil))
+(code_label 62 9 63 22 2 "" [2 uses])
+(note 63 62 64 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 68 22 (set (reg:DF 94 [ <retval> ])
+        (reg:DF 87 [ D.5381 ])) -1
+     (nil))
+(insn 68 64 69 22 (set (reg/i:DF 21 xmm0)
+        (reg:DF 94 [ <retval> ])) ./w_lgamma_main.c:37 -1
+     (nil))
+(insn 69 68 0 22 (use (reg/i:DF 21 xmm0)) ./w_lgamma_main.c:37 -1
+     (nil))

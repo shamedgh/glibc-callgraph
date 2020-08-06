@@ -1,0 +1,292 @@
+\hypertarget{tst-chk1_8c}{}\doxysection{debug/tst-\/chk1.c File Reference}
+\label{tst-chk1_8c}\index{debug/tst-\/chk1.c@{debug/tst-\/chk1.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$obstack.\+h$>$}\newline
+{\ttfamily \#include $<$setjmp.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$sys/poll.\+h$>$}\newline
+{\ttfamily \#include $<$sys/select.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/un.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_afe107f8385341e11aef32eaac290b39a}{obstack\+\_\+chunk\+\_\+alloc}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ab7e36af3707843f77cc5b4e831c2fa6d}{malloc}}
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_a10ffd65176663f1396a3607ebb41470c}{obstack\+\_\+chunk\+\_\+free}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_af4d02e8205d45640fac9d635b9a9be81}{P\+R\+E\+P\+A\+RE}}(argc,  argv)~\mbox{\hyperlink{test-canon2_8c_a020f4ee618704f4f13b9f8ccaa2c84d8}{do\+\_\+prepare}} ()
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}()~do \{ \mbox{\hyperlink{nldbl-printf_8c_a80f647666a47ce40053615af0dcfcd5a}{printf}} (\char`\"{}Failure on line \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{d\textbackslash{}n}}\char`\"{}, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}{ret}} = 1; \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_a781352e3509a828179d68934ac6406e7}{C\+H\+K\+\_\+\+F\+A\+I\+L\+\_\+\+S\+T\+A\+RT}}
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_ad2b7d662c8fb057ac5fbc2ce897d660e}{C\+H\+K\+\_\+\+F\+A\+I\+L\+\_\+\+E\+ND}}
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_ad0417c379663c1b53eba6dfa6b7a064a}{C\+H\+K\+\_\+\+F\+A\+I\+L2\+\_\+\+S\+T\+A\+RT}}
+\item 
+\#define \mbox{\hyperlink{tst-chk1_8c_aa2d00a8e95d9105b1e3bb46a6215a10e}{C\+H\+K\+\_\+\+F\+A\+I\+L2\+\_\+\+E\+ND}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{tst-chk1_8c_af6f9212185090a99035724333ec0689b}{temp\+\_\+filename}}
+\item 
+volatile \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-chk1_8c_ab7b584de12114035ce15d82615f026b9}{chk\+\_\+fail\+\_\+ok}}
+\item 
+volatile \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-chk1_8c_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}}
+\item 
+\mbox{\hyperlink{setjmp_2setjmp_8h_ad0456a7aa332127ebd188912b126c8fa}{jmp\+\_\+buf}} \mbox{\hyperlink{tst-chk1_8c_a42d17b836988d1843f1da5f968a890e3}{chk\+\_\+fail\+\_\+buf}}
+\item 
+char \mbox{\hyperlink{tst-chk1_8c_a4ebbb28ba8e4b487cd7e4e7d6fafe417}{buf}} \mbox{[}10\mbox{]}
+\item 
+wchar\+\_\+t \mbox{\hyperlink{tst-chk1_8c_a8fde336873d1f12ba7a9d41a5cfcddc1}{wbuf}} \mbox{[}10\mbox{]}
+\item 
+volatile \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{tst-chk1_8c_a696092705b5c1ea78048b56ae88fed06}{l0}}
+\item 
+volatile char $\ast$ \mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}}
+\item 
+volatile wchar\+\_\+t $\ast$ \mbox{\hyperlink{tst-chk1_8c_a1c071f703b78b481e89a210a4c75db2b}{wp}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{tst-chk1_8c_adc3780d9dfa319020c048242d487a5e0}{str1}} = \char`\"{}J\+I\+H\+G\+F\+E\+D\+C\+BA\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{tst-chk1_8c_ade7fa3ce2a412fd8bd791f9f39879750}{str2}} = \char`\"{}F\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{tst-chk1_8c_a9d122070f0ac6201e95aa4f547ec2514}{str3}} = \char`\"{}\%s\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\%\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{tst-chk1_8c_a0c3acf72dceef91e4dee522183a8cde1}{str4}} = \char`\"{}Hello, \char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{tst-chk1_8c_a05c47080b954da5ec6d2fb2252a16b03}{str5}} = \char`\"{}World!\textbackslash{}n\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t $\ast$ \mbox{\hyperlink{tst-chk1_8c_ac9f6fe96d82e7e6cac86c797481b0089}{wstr1}} = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}J\+I\+H\+G\+F\+E\+D\+C\+BA\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t $\ast$ \mbox{\hyperlink{tst-chk1_8c_a13f7fe02be4aabcce7e6c3a8aa403c4f}{wstr2}} = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}F\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t $\ast$ \mbox{\hyperlink{tst-chk1_8c_a3f55627154175be2995b4aefb6bf7f3d}{wstr3}} = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}\%s\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\%\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t $\ast$ \mbox{\hyperlink{tst-chk1_8c_a68485a548bd000980bdb7b32e71279da}{wstr4}} = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}Hello, \char`\"{}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t $\ast$ \mbox{\hyperlink{tst-chk1_8c_a27b495a1c2b057c76fa530e80b827dc9}{wstr5}} = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}World!\textbackslash{}n\char`\"{}
+\item 
+char \mbox{\hyperlink{tst-chk1_8c_a0b5852ce0ccc8bfcc9ac06f324797bcf}{buf2}} \mbox{[}10\mbox{]} = \char`\"{}\%s\char`\"{}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-chk1_8c_ad023fa22fc14680886cc9bb170cbc099}{num1}} = 67
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-chk1_8c_a97181ec5972299e8107cbd04666cd22c}{num2}} = 987654
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tst-chk1_8c_aa2d00a8e95d9105b1e3bb46a6215a10e}\label{tst-chk1_8c_aa2d00a8e95d9105b1e3bb46a6215a10e}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!CHK\_FAIL2\_END@{CHK\_FAIL2\_END}}
+\index{CHK\_FAIL2\_END@{CHK\_FAIL2\_END}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{CHK\_FAIL2\_END}{CHK\_FAIL2\_END}}
+{\footnotesize\ttfamily \#define C\+H\+K\+\_\+\+F\+A\+I\+L2\+\_\+\+E\+ND}
+
+\mbox{\Hypertarget{tst-chk1_8c_ad0417c379663c1b53eba6dfa6b7a064a}\label{tst-chk1_8c_ad0417c379663c1b53eba6dfa6b7a064a}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!CHK\_FAIL2\_START@{CHK\_FAIL2\_START}}
+\index{CHK\_FAIL2\_START@{CHK\_FAIL2\_START}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{CHK\_FAIL2\_START}{CHK\_FAIL2\_START}}
+{\footnotesize\ttfamily \#define C\+H\+K\+\_\+\+F\+A\+I\+L2\+\_\+\+S\+T\+A\+RT}
+
+\mbox{\Hypertarget{tst-chk1_8c_ad2b7d662c8fb057ac5fbc2ce897d660e}\label{tst-chk1_8c_ad2b7d662c8fb057ac5fbc2ce897d660e}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!CHK\_FAIL\_END@{CHK\_FAIL\_END}}
+\index{CHK\_FAIL\_END@{CHK\_FAIL\_END}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{CHK\_FAIL\_END}{CHK\_FAIL\_END}}
+{\footnotesize\ttfamily \#define C\+H\+K\+\_\+\+F\+A\+I\+L\+\_\+\+E\+ND}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{tst-chk1_8c_ab7b584de12114035ce15d82615f026b9}{chk\_fail\_ok}} = 0;             \(\backslash\)}
+\DoxyCodeLine{      FAIL ();                  \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tst-chk1_8c_a781352e3509a828179d68934ac6406e7}\label{tst-chk1_8c_a781352e3509a828179d68934ac6406e7}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!CHK\_FAIL\_START@{CHK\_FAIL\_START}}
+\index{CHK\_FAIL\_START@{CHK\_FAIL\_START}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{CHK\_FAIL\_START}{CHK\_FAIL\_START}}
+{\footnotesize\ttfamily \#define C\+H\+K\+\_\+\+F\+A\+I\+L\+\_\+\+S\+T\+A\+RT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{tst-chk1_8c_ab7b584de12114035ce15d82615f026b9}{chk\_fail\_ok}} = 1;             \(\backslash\)}
+\DoxyCodeLine{  if (! \mbox{\hyperlink{setjmp_2setjmp_8h_a9082c17eccdfd2bdc391bcc0b58aa590}{setjmp}} (\mbox{\hyperlink{tst-chk1_8c_a42d17b836988d1843f1da5f968a890e3}{chk\_fail\_buf}}))            \(\backslash\)}
+\DoxyCodeLine{    \{}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tst-chk1_8c_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}\label{tst-chk1_8c_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!FAIL@{FAIL}}
+\index{FAIL@{FAIL}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{FAIL}{FAIL}}
+{\footnotesize\ttfamily \#define F\+A\+IL(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{nldbl-printf_8c_a80f647666a47ce40053615af0dcfcd5a}{printf}} (\char`\"{}Failure on line \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{d\textbackslash{}n}}\char`\"{}, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}{ret}} = 1; \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{tst-chk1_8c_afe107f8385341e11aef32eaac290b39a}\label{tst-chk1_8c_afe107f8385341e11aef32eaac290b39a}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!obstack\_chunk\_alloc@{obstack\_chunk\_alloc}}
+\index{obstack\_chunk\_alloc@{obstack\_chunk\_alloc}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_alloc}{obstack\_chunk\_alloc}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+alloc~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ab7e36af3707843f77cc5b4e831c2fa6d}{malloc}}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a10ffd65176663f1396a3607ebb41470c}\label{tst-chk1_8c_a10ffd65176663f1396a3607ebb41470c}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!obstack\_chunk\_free@{obstack\_chunk\_free}}
+\index{obstack\_chunk\_free@{obstack\_chunk\_free}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_free}{obstack\_chunk\_free}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+free~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}}
+
+\mbox{\Hypertarget{tst-chk1_8c_af4d02e8205d45640fac9d635b9a9be81}\label{tst-chk1_8c_af4d02e8205d45640fac9d635b9a9be81}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!PREPARE@{PREPARE}}
+\index{PREPARE@{PREPARE}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{PREPARE}{PREPARE}}
+{\footnotesize\ttfamily \#define P\+R\+E\+P\+A\+RE(\begin{DoxyParamCaption}\item[{}]{argc,  }\item[{}]{argv }\end{DoxyParamCaption})~\mbox{\hyperlink{test-canon2_8c_a020f4ee618704f4f13b9f8ccaa2c84d8}{do\+\_\+prepare}} ()}
+
+\mbox{\Hypertarget{tst-chk1_8c_a6002ab22c656c4024eb89b538930bc32}\label{tst-chk1_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{tst-chk1_8c_a4ebbb28ba8e4b487cd7e4e7d6fafe417}\label{tst-chk1_8c_a4ebbb28ba8e4b487cd7e4e7d6fafe417}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!buf@{buf}}
+\index{buf@{buf}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily char buf\mbox{[}10\mbox{]}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a0b5852ce0ccc8bfcc9ac06f324797bcf}\label{tst-chk1_8c_a0b5852ce0ccc8bfcc9ac06f324797bcf}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!buf2@{buf2}}
+\index{buf2@{buf2}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{buf2}{buf2}}
+{\footnotesize\ttfamily char buf2\mbox{[}10\mbox{]} = \char`\"{}\%s\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a42d17b836988d1843f1da5f968a890e3}\label{tst-chk1_8c_a42d17b836988d1843f1da5f968a890e3}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!chk\_fail\_buf@{chk\_fail\_buf}}
+\index{chk\_fail\_buf@{chk\_fail\_buf}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{chk\_fail\_buf}{chk\_fail\_buf}}
+{\footnotesize\ttfamily \mbox{\hyperlink{setjmp_2setjmp_8h_ad0456a7aa332127ebd188912b126c8fa}{jmp\+\_\+buf}} chk\+\_\+fail\+\_\+buf}
+
+\mbox{\Hypertarget{tst-chk1_8c_ab7b584de12114035ce15d82615f026b9}\label{tst-chk1_8c_ab7b584de12114035ce15d82615f026b9}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!chk\_fail\_ok@{chk\_fail\_ok}}
+\index{chk\_fail\_ok@{chk\_fail\_ok}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{chk\_fail\_ok}{chk\_fail\_ok}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} chk\+\_\+fail\+\_\+ok}
+
+\mbox{\Hypertarget{tst-chk1_8c_a696092705b5c1ea78048b56ae88fed06}\label{tst-chk1_8c_a696092705b5c1ea78048b56ae88fed06}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!l0@{l0}}
+\index{l0@{l0}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{l0}{l0}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} l0}
+
+\mbox{\Hypertarget{tst-chk1_8c_ad023fa22fc14680886cc9bb170cbc099}\label{tst-chk1_8c_ad023fa22fc14680886cc9bb170cbc099}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!num1@{num1}}
+\index{num1@{num1}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{num1}{num1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} num1 = 67}
+
+\mbox{\Hypertarget{tst-chk1_8c_a97181ec5972299e8107cbd04666cd22c}\label{tst-chk1_8c_a97181ec5972299e8107cbd04666cd22c}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!num2@{num2}}
+\index{num2@{num2}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{num2}{num2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} num2 = 987654}
+
+\mbox{\Hypertarget{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}\label{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!p@{p}}
+\index{p@{p}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily volatile char$\ast$ p}
+
+\mbox{\Hypertarget{tst-chk1_8c_aceabdac0a64ca29f4c9fb831d0c3a49b}\label{tst-chk1_8c_aceabdac0a64ca29f4c9fb831d0c3a49b}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!ret@{ret}}
+\index{ret@{ret}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{ret}{ret}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} ret}
+
+\mbox{\Hypertarget{tst-chk1_8c_adc3780d9dfa319020c048242d487a5e0}\label{tst-chk1_8c_adc3780d9dfa319020c048242d487a5e0}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!str1@{str1}}
+\index{str1@{str1}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{str1}{str1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ str1 = \char`\"{}J\+I\+H\+G\+F\+E\+D\+C\+BA\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_ade7fa3ce2a412fd8bd791f9f39879750}\label{tst-chk1_8c_ade7fa3ce2a412fd8bd791f9f39879750}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!str2@{str2}}
+\index{str2@{str2}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{str2}{str2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ str2 = \char`\"{}F\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a9d122070f0ac6201e95aa4f547ec2514}\label{tst-chk1_8c_a9d122070f0ac6201e95aa4f547ec2514}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!str3@{str3}}
+\index{str3@{str3}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{str3}{str3}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ str3 = \char`\"{}\%s\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\%\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a0c3acf72dceef91e4dee522183a8cde1}\label{tst-chk1_8c_a0c3acf72dceef91e4dee522183a8cde1}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!str4@{str4}}
+\index{str4@{str4}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{str4}{str4}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ str4 = \char`\"{}Hello, \char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a05c47080b954da5ec6d2fb2252a16b03}\label{tst-chk1_8c_a05c47080b954da5ec6d2fb2252a16b03}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!str5@{str5}}
+\index{str5@{str5}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{str5}{str5}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ str5 = \char`\"{}World!\textbackslash{}n\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_af6f9212185090a99035724333ec0689b}\label{tst-chk1_8c_af6f9212185090a99035724333ec0689b}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!temp\_filename@{temp\_filename}}
+\index{temp\_filename@{temp\_filename}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{temp\_filename}{temp\_filename}}
+{\footnotesize\ttfamily char$\ast$ temp\+\_\+filename}
+
+\mbox{\Hypertarget{tst-chk1_8c_a8fde336873d1f12ba7a9d41a5cfcddc1}\label{tst-chk1_8c_a8fde336873d1f12ba7a9d41a5cfcddc1}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wbuf@{wbuf}}
+\index{wbuf@{wbuf}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wbuf}{wbuf}}
+{\footnotesize\ttfamily wchar\+\_\+t wbuf\mbox{[}10\mbox{]}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a1c071f703b78b481e89a210a4c75db2b}\label{tst-chk1_8c_a1c071f703b78b481e89a210a4c75db2b}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wp@{wp}}
+\index{wp@{wp}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wp}{wp}}
+{\footnotesize\ttfamily volatile wchar\+\_\+t$\ast$ wp}
+
+\mbox{\Hypertarget{tst-chk1_8c_ac9f6fe96d82e7e6cac86c797481b0089}\label{tst-chk1_8c_ac9f6fe96d82e7e6cac86c797481b0089}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wstr1@{wstr1}}
+\index{wstr1@{wstr1}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wstr1}{wstr1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t$\ast$ wstr1 = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}J\+I\+H\+G\+F\+E\+D\+C\+BA\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a13f7fe02be4aabcce7e6c3a8aa403c4f}\label{tst-chk1_8c_a13f7fe02be4aabcce7e6c3a8aa403c4f}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wstr2@{wstr2}}
+\index{wstr2@{wstr2}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wstr2}{wstr2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t$\ast$ wstr2 = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}F\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a3f55627154175be2995b4aefb6bf7f3d}\label{tst-chk1_8c_a3f55627154175be2995b4aefb6bf7f3d}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wstr3@{wstr3}}
+\index{wstr3@{wstr3}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wstr3}{wstr3}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t$\ast$ wstr3 = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}\%s\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\%\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a68485a548bd000980bdb7b32e71279da}\label{tst-chk1_8c_a68485a548bd000980bdb7b32e71279da}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wstr4@{wstr4}}
+\index{wstr4@{wstr4}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wstr4}{wstr4}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t$\ast$ wstr4 = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}Hello, \char`\"{}}
+
+\mbox{\Hypertarget{tst-chk1_8c_a27b495a1c2b057c76fa530e80b827dc9}\label{tst-chk1_8c_a27b495a1c2b057c76fa530e80b827dc9}} 
+\index{tst-\/chk1.c@{tst-\/chk1.c}!wstr5@{wstr5}}
+\index{wstr5@{wstr5}!tst-\/chk1.c@{tst-\/chk1.c}}
+\doxysubsubsection{\texorpdfstring{wstr5}{wstr5}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} wchar\+\_\+t$\ast$ wstr5 = \mbox{\hyperlink{wcsxfrm__l_8c_aca5f724818def66a9d1f268586f3e22f}{L}}\char`\"{}World!\textbackslash{}n\char`\"{}}
+

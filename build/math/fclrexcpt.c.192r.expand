@@ -1,0 +1,124 @@
+
+;; Function feclearexcept (*__GI_feclearexcept, funcdef_no=3, decl_uid=1879, cgraph_uid=3, symbol_order=3)
+
+Partition 0: size 32 align 16
+	temp
+Partition 1: size 4 align 4
+	mxcsr
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 16.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 99 [ excepts ])
+        (reg:SI 5 di [ excepts ])) ../sysdeps/x86_64/fpu/fclrexcpt.c:23 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (reg/v:SI 87 [ excepts ])
+                (and:SI (reg/v:SI 99 [ excepts ])
+                    (const_int 61 [0x3d])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:28 -1
+     (nil))
+(insn 7 6 8 2 (parallel [
+            (set (mem/c:BLK (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -32 [0xffffffffffffffe0])) [1 temp+0 S32 A128])
+                (asm_operands:BLK ("fnstenv %0") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fclrexcpt.c:32))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:32 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:HI 100 [ D.1978 ])
+                (xor:HI (subreg:HI (reg/v:SI 87 [ excepts ]) 0)
+                    (const_int 61 [0x3d])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:35 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -28 [0xffffffffffffffe4])) [2 temp.__status_word+0 S2 A32])
+                (and:HI (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -28 [0xffffffffffffffe4])) [2 temp.__status_word+0 S2 A32])
+                    (reg:HI 100 [ D.1978 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:35 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (asm_operands/v ("fldenv %0") ("") 0 [
+                    (mem/c:BLK (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -32 [0xffffffffffffffe0])) [1 temp+0 S32 A128])
+                ]
+                 [
+                    (asm_input:BLK ("m") ../sysdeps/x86_64/fpu/fclrexcpt.c:38)
+                ]
+                 [] ../sysdeps/x86_64/fpu/fclrexcpt.c:38)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:38 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -36 [0xffffffffffffffdc])) [3 mxcsr+0 S4 A32])
+                (asm_operands:SI ("stmxcsr %0") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fclrexcpt.c:41))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:41 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:SI 101 [ D.1979 ])
+        (not:SI (reg/v:SI 87 [ excepts ]))) ../sysdeps/x86_64/fpu/fclrexcpt.c:44 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -36 [0xffffffffffffffdc])) [3 mxcsr+0 S4 A32])
+                (and:SI (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -36 [0xffffffffffffffdc])) [3 mxcsr+0 S4 A32])
+                    (reg:SI 101 [ D.1979 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:44 -1
+     (nil))
+(insn 14 13 15 2 (parallel [
+            (asm_operands/v ("ldmxcsr %0") ("") 0 [
+                    (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -36 [0xffffffffffffffdc])) [3 mxcsr+0 S4 A32])
+                ]
+                 [
+                    (asm_input:SI ("m") ../sysdeps/x86_64/fpu/fclrexcpt.c:47)
+                ]
+                 [] ../sysdeps/x86_64/fpu/fclrexcpt.c:47)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fclrexcpt.c:47 -1
+     (nil))
+(insn 15 14 19 2 (set (reg:SI 98 [ <retval> ])
+        (const_int 0 [0])) ../sysdeps/x86_64/fpu/fclrexcpt.c:50 -1
+     (nil))
+(insn 19 15 20 2 (set (reg/i:SI 0 ax)
+        (reg:SI 98 [ <retval> ])) ../sysdeps/x86_64/fpu/fclrexcpt.c:51 -1
+     (nil))
+(insn 20 19 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/x86_64/fpu/fclrexcpt.c:51 -1
+     (nil))

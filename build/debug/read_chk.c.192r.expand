@@ -1,0 +1,162 @@
+
+;; Function __read_chk (__read_chk, funcdef_no=33, decl_uid=8026, cgraph_uid=33, symbol_order=38)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 37.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 96 [ fd ])
+        (reg:SI 5 di [ fd ])) read_chk.c:28 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 97 [ buf ])
+        (reg:DI 4 si [ buf ])) read_chk.c:28 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 98 [ nbytes ])
+        (reg:DI 1 dx [ nbytes ])) read_chk.c:28 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:DI 99 [ buflen ])
+        (reg:DI 2 cx [ buflen ])) read_chk.c:28 -1
+     (nil))
+(note 6 5 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 6 11 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 98 [ nbytes ])
+            (reg/v:DI 99 [ buflen ]))) read_chk.c:29 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) read_chk.c:29 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 15)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn 13 12 14 4 (call (mem:QI (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b76c9e63a20 __chk_fail>) [0 __chk_fail S1 A8])
+        (const_int 0 [0])) read_chk.c:30 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b76c9e63a20 __chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 14 13 15)
+(code_label 15 14 16 5 2 "" [1 uses])
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg/v:DI 1 dx [ _a3 ])
+        (reg/v:DI 98 [ nbytes ])) read_chk.c:33 -1
+     (nil))
+(insn 18 17 19 5 (set (reg/v:DI 4 si [ _a2 ])
+        (reg/v/f:DI 97 [ buf ])) read_chk.c:33 -1
+     (nil))
+(insn 19 18 20 5 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 96 [ fd ]))) read_chk.c:33 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:SI 101)
+        (const_int 0 [0])) read_chk.c:33 -1
+     (nil))
+(insn 21 20 22 5 (parallel [
+            (set (reg:DI 100 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 101)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") read_chk.c:33)
+                        (asm_input:DI ("r") read_chk.c:33)
+                        (asm_input:DI ("r") read_chk.c:33)
+                        (asm_input:DI ("r") read_chk.c:33)
+                    ]
+                     [] read_chk.c:33))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) read_chk.c:33 -1
+     (nil))
+(insn 22 21 23 5 (set (reg/v:DI 90 [ resultvar ])
+        (reg:DI 100 [ resultvar ])) read_chk.c:33 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 90 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) read_chk.c:33 -1
+     (nil))
+(jump_insn 24 23 25 5 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 29)
+            (pc))) read_chk.c:33 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 29)
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 6 (set (reg:DI 91 [ D.8055 ])
+        (reg/v:DI 90 [ resultvar ])) -1
+     (nil))
+(jump_insn 27 26 28 6 (set (pc)
+        (label_ref 34)) -1
+     (nil)
+ -> 34)
+(barrier 28 27 29)
+(code_label 29 28 30 7 3 "" [1 uses])
+(note 30 29 31 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 31 30 32 7 (set (reg:DI 102)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b76ca17af30 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [3  S8 A8])) read_chk.c:33 -1
+     (nil))
+(insn 32 31 33 7 (parallel [
+            (set (reg:SI 103)
+                (neg:SI (subreg:SI (reg/v:DI 90 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) read_chk.c:33 -1
+     (nil))
+(insn 33 32 7 7 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 102)) [2 __libc_errno+0 S4 A32])
+        (reg:SI 103)) read_chk.c:33 -1
+     (nil))
+(insn 7 33 34 7 (set (reg:DI 91 [ D.8055 ])
+        (const_int -1 [0xffffffffffffffff])) read_chk.c:33 -1
+     (nil))
+(code_label 34 7 35 8 4 "" [1 uses])
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 40 8 (set (reg:DI 95 [ <retval> ])
+        (reg:DI 91 [ D.8055 ])) read_chk.c:33 -1
+     (nil))
+(insn 40 36 41 8 (set (reg/i:DI 0 ax)
+        (reg:DI 95 [ <retval> ])) read_chk.c:37 -1
+     (nil))
+(insn 41 40 0 8 (use (reg/i:DI 0 ax)) read_chk.c:37 -1
+     (nil))

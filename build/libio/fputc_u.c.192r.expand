@@ -1,0 +1,105 @@
+
+;; Function fputc_unlocked (fputc_unlocked, funcdef_no=49, decl_uid=748, cgraph_uid=43, symbol_order=48)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 25.
+Merging block 7 into block 5...
+Merged blocks 5 and 7.
+Merged 5 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 94 [ c ])
+        (reg:SI 5 di [ c ])) fputc_u.c:34 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 95 [ fp ])
+        (reg:DI 4 si [ fp ])) fputc_u.c:34 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg/f:DI 88 [ D.10198 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 95 [ fp ])
+                (const_int 40 [0x28])) [3 fp_4(D)->_IO_write_ptr+0 S8 A64])) fputc_u.c:36 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 88 [ D.10198 ])
+            (mem/f:DI (plus:DI (reg/v/f:DI 95 [ fp ])
+                    (const_int 48 [0x30])) [3 fp_4(D)->_IO_write_end+0 S8 A64]))) fputc_u.c:36 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) fputc_u.c:36 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 17)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:SI 96 [ D.10197 ])
+        (zero_extend:SI (subreg:QI (reg/v:SI 94 [ c ]) 0))) fputc_u.c:36 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:SI 4 si)
+        (reg:SI 96 [ D.10197 ])) fputc_u.c:36 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ fp ])) fputc_u.c:36 -1
+     (nil))
+(call_insn/j 14 13 15 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___overflow") [flags 0x43]  <function_decl 0x2afc84d826c0 __overflow>) [0 __overflow S1 A8])
+            (const_int 0 [0]))) fputc_u.c:36 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___overflow") [flags 0x43]  <function_decl 0x2afc84d826c0 __overflow>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(barrier 15 14 17)
+(code_label 17 15 18 5 2 "" [1 uses])
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (parallel [
+            (set (reg:DI 97)
+                (plus:DI (reg/f:DI 88 [ D.10198 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) fputc_u.c:36 -1
+     (nil))
+(insn 20 19 21 5 (set (mem/f:DI (plus:DI (reg/v/f:DI 95 [ fp ])
+                (const_int 40 [0x28])) [3 fp_4(D)->_IO_write_ptr+0 S8 A64])
+        (reg:DI 97)) fputc_u.c:36 -1
+     (nil))
+(insn 21 20 22 5 (set (mem:QI (reg/f:DI 88 [ D.10198 ]) [0 *_5+0 S1 A8])
+        (subreg:QI (reg/v:SI 94 [ c ]) 0)) fputc_u.c:36 -1
+     (nil))
+(insn 22 21 24 5 (set (reg:SI 87 [ D.10197 ])
+        (zero_extend:SI (subreg:QI (reg/v:SI 94 [ c ]) 0))) -1
+     (nil))
+(insn 24 22 28 5 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 87 [ D.10197 ])) fputc_u.c:36 -1
+     (nil))
+(insn 28 24 29 5 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) fputc_u.c:37 -1
+     (nil))
+(insn 29 28 0 5 (use (reg/i:SI 0 ax)) fputc_u.c:37 -1
+     (nil))

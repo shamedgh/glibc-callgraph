@@ -1,0 +1,146 @@
+\hypertarget{compat-pwd_8c}{}\doxysection{nis/nss\+\_\+compat/compat-\/pwd.c File Reference}
+\label{compat-pwd_8c}\index{nis/nss\_compat/compat-\/pwd.c@{nis/nss\_compat/compat-\/pwd.c}}
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$nss.\+h$>$}\newline
+{\ttfamily \#include $<$nsswitch.\+h$>$}\newline
+{\ttfamily \#include $<$pwd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio\+\_\+ext.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/types.\+h$>$}\newline
+{\ttfamily \#include $<$rpcsvc/ypclnt.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}netgroup.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$nss/nss\+\_\+files/files-\/parse.\+c$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structblacklist__t}{blacklist\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structent__t}{ent\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{compat-pwd_8c_a7949857ebaf8c02ff99ac967f84784fc}{E\+N\+T\+N\+A\+ME}}~pwent
+\item 
+\#define \mbox{\hyperlink{compat-pwd_8c_a4ec0ac52733a6c45141d7325c9db83b4}{S\+T\+R\+U\+C\+T\+U\+RE}}~\mbox{\hyperlink{structpasswd}{passwd}}
+\item 
+\#define \mbox{\hyperlink{compat-pwd_8c_a9429e8632007882daf0d50ae55740024}{E\+X\+T\+E\+R\+N\+\_\+\+P\+A\+R\+S\+ER}}
+\item 
+\#define \mbox{\hyperlink{compat-pwd_8c_a2142a6c0c0d9bdc2d6b3efc65bf36d81}{B\+L\+A\+C\+K\+L\+I\+S\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+S\+I\+ZE}}~512
+\item 
+\#define \mbox{\hyperlink{compat-pwd_8c_ae4c7a918a2d22112d3736d0bf8d92edc}{B\+L\+A\+C\+K\+L\+I\+S\+T\+\_\+\+I\+N\+C\+R\+E\+M\+E\+NT}}~256
+\item 
+\#define \mbox{\hyperlink{compat-pwd_8c_abfbf5f166a9a9112c1348c184aeb4aac}{\+\_\+\+\_\+compat\+\_\+have\+\_\+cloexec}}~-\/1
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structent__t}{ent\+\_\+t}} \mbox{\hyperlink{compat-pwd_8c_a1ed4d1fe683d502a211a8aed5a43a0c9}{ent\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{compat-pwd_8c_a22e1ccd66c522451f089672c4dd1ff26}{\+\_\+\+\_\+libc\+\_\+lock\+\_\+define\+\_\+initialized}} (static, \mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}})
+\item 
+enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \mbox{\hyperlink{compat-pwd_8c_a56ead329444e71632a1a2c10358186ae}{\+\_\+nss\+\_\+compat\+\_\+setpwent}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} stayopen)
+\item 
+enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \mbox{\hyperlink{compat-pwd_8c_afcaef7e1d53d4fb31d7a2dddeb5f8ad9}{\+\_\+nss\+\_\+compat\+\_\+endpwent}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \mbox{\hyperlink{compat-pwd_8c_a4d8a66a74bfa4b5c0cee901c5b79fa82}{\+\_\+nss\+\_\+compat\+\_\+getpwent\+\_\+r}} (struct \mbox{\hyperlink{structpasswd}{passwd}} $\ast$pwd, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop)
+\item 
+enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \mbox{\hyperlink{compat-pwd_8c_a36c07dba9372e546247efe4868a4b5aa}{\+\_\+nss\+\_\+compat\+\_\+getpwnam\+\_\+r}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, struct \mbox{\hyperlink{structpasswd}{passwd}} $\ast$pwd, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop)
+\item 
+enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \mbox{\hyperlink{compat-pwd_8c_a5c7fd2cf4fcf01a60d3411544772aff3}{\+\_\+nss\+\_\+compat\+\_\+getpwuid\+\_\+r}} (\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}}, struct \mbox{\hyperlink{structpasswd}{passwd}} $\ast$pwd, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{compat-pwd_8c_abfbf5f166a9a9112c1348c184aeb4aac}\label{compat-pwd_8c_abfbf5f166a9a9112c1348c184aeb4aac}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_\_compat\_have\_cloexec@{\_\_compat\_have\_cloexec}}
+\index{\_\_compat\_have\_cloexec@{\_\_compat\_have\_cloexec}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_\_compat\_have\_cloexec}{\_\_compat\_have\_cloexec}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+compat\+\_\+have\+\_\+cloexec~-\/1}
+
+\mbox{\Hypertarget{compat-pwd_8c_ae4c7a918a2d22112d3736d0bf8d92edc}\label{compat-pwd_8c_ae4c7a918a2d22112d3736d0bf8d92edc}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!BLACKLIST\_INCREMENT@{BLACKLIST\_INCREMENT}}
+\index{BLACKLIST\_INCREMENT@{BLACKLIST\_INCREMENT}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{BLACKLIST\_INCREMENT}{BLACKLIST\_INCREMENT}}
+{\footnotesize\ttfamily \#define B\+L\+A\+C\+K\+L\+I\+S\+T\+\_\+\+I\+N\+C\+R\+E\+M\+E\+NT~256}
+
+\mbox{\Hypertarget{compat-pwd_8c_a2142a6c0c0d9bdc2d6b3efc65bf36d81}\label{compat-pwd_8c_a2142a6c0c0d9bdc2d6b3efc65bf36d81}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!BLACKLIST\_INITIAL\_SIZE@{BLACKLIST\_INITIAL\_SIZE}}
+\index{BLACKLIST\_INITIAL\_SIZE@{BLACKLIST\_INITIAL\_SIZE}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{BLACKLIST\_INITIAL\_SIZE}{BLACKLIST\_INITIAL\_SIZE}}
+{\footnotesize\ttfamily \#define B\+L\+A\+C\+K\+L\+I\+S\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+S\+I\+ZE~512}
+
+\mbox{\Hypertarget{compat-pwd_8c_a7949857ebaf8c02ff99ac967f84784fc}\label{compat-pwd_8c_a7949857ebaf8c02ff99ac967f84784fc}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!ENTNAME@{ENTNAME}}
+\index{ENTNAME@{ENTNAME}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{ENTNAME}{ENTNAME}}
+{\footnotesize\ttfamily \#define E\+N\+T\+N\+A\+ME~pwent}
+
+\mbox{\Hypertarget{compat-pwd_8c_a9429e8632007882daf0d50ae55740024}\label{compat-pwd_8c_a9429e8632007882daf0d50ae55740024}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!EXTERN\_PARSER@{EXTERN\_PARSER}}
+\index{EXTERN\_PARSER@{EXTERN\_PARSER}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{EXTERN\_PARSER}{EXTERN\_PARSER}}
+{\footnotesize\ttfamily \#define E\+X\+T\+E\+R\+N\+\_\+\+P\+A\+R\+S\+ER}
+
+\mbox{\Hypertarget{compat-pwd_8c_a4ec0ac52733a6c45141d7325c9db83b4}\label{compat-pwd_8c_a4ec0ac52733a6c45141d7325c9db83b4}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!STRUCTURE@{STRUCTURE}}
+\index{STRUCTURE@{STRUCTURE}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{STRUCTURE}{STRUCTURE}}
+{\footnotesize\ttfamily \#define S\+T\+R\+U\+C\+T\+U\+RE~\mbox{\hyperlink{structpasswd}{passwd}}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{compat-pwd_8c_a1ed4d1fe683d502a211a8aed5a43a0c9}\label{compat-pwd_8c_a1ed4d1fe683d502a211a8aed5a43a0c9}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!ent\_t@{ent\_t}}
+\index{ent\_t@{ent\_t}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{ent\_t}{ent\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structent__t}{ent\+\_\+t}} \mbox{\hyperlink{structent__t}{ent\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{compat-pwd_8c_a22e1ccd66c522451f089672c4dd1ff26}\label{compat-pwd_8c_a22e1ccd66c522451f089672c4dd1ff26}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_\_libc\_lock\_define\_initialized@{\_\_libc\_lock\_define\_initialized}}
+\index{\_\_libc\_lock\_define\_initialized@{\_\_libc\_lock\_define\_initialized}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_\_libc\_lock\_define\_initialized()}{\_\_libc\_lock\_define\_initialized()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+libc\+\_\+lock\+\_\+define\+\_\+initialized (\begin{DoxyParamCaption}\item[{static}]{,  }\item[{\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compat-pwd_8c_afcaef7e1d53d4fb31d7a2dddeb5f8ad9}\label{compat-pwd_8c_afcaef7e1d53d4fb31d7a2dddeb5f8ad9}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_nss\_compat\_endpwent@{\_nss\_compat\_endpwent}}
+\index{\_nss\_compat\_endpwent@{\_nss\_compat\_endpwent}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_nss\_compat\_endpwent()}{\_nss\_compat\_endpwent()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \+\_\+nss\+\_\+compat\+\_\+endpwent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compat-pwd_8c_a4d8a66a74bfa4b5c0cee901c5b79fa82}\label{compat-pwd_8c_a4d8a66a74bfa4b5c0cee901c5b79fa82}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_nss\_compat\_getpwent\_r@{\_nss\_compat\_getpwent\_r}}
+\index{\_nss\_compat\_getpwent\_r@{\_nss\_compat\_getpwent\_r}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_nss\_compat\_getpwent\_r()}{\_nss\_compat\_getpwent\_r()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \+\_\+nss\+\_\+compat\+\_\+getpwent\+\_\+r (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpasswd}{passwd}} $\ast$}]{pwd,  }\item[{char $\ast$}]{buffer,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{buflen,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{errnop }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compat-pwd_8c_a36c07dba9372e546247efe4868a4b5aa}\label{compat-pwd_8c_a36c07dba9372e546247efe4868a4b5aa}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_nss\_compat\_getpwnam\_r@{\_nss\_compat\_getpwnam\_r}}
+\index{\_nss\_compat\_getpwnam\_r@{\_nss\_compat\_getpwnam\_r}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_nss\_compat\_getpwnam\_r()}{\_nss\_compat\_getpwnam\_r()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \+\_\+nss\+\_\+compat\+\_\+getpwnam\+\_\+r (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structpasswd}{passwd}} $\ast$}]{pwd,  }\item[{char $\ast$}]{buffer,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{buflen,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{errnop }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compat-pwd_8c_a5c7fd2cf4fcf01a60d3411544772aff3}\label{compat-pwd_8c_a5c7fd2cf4fcf01a60d3411544772aff3}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_nss\_compat\_getpwuid\_r@{\_nss\_compat\_getpwuid\_r}}
+\index{\_nss\_compat\_getpwuid\_r@{\_nss\_compat\_getpwuid\_r}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_nss\_compat\_getpwuid\_r()}{\_nss\_compat\_getpwuid\_r()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \+\_\+nss\+\_\+compat\+\_\+getpwuid\+\_\+r (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid,  }\item[{struct \mbox{\hyperlink{structpasswd}{passwd}} $\ast$}]{pwd,  }\item[{char $\ast$}]{buffer,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{buflen,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{errnop }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{compat-pwd_8c_a56ead329444e71632a1a2c10358186ae}\label{compat-pwd_8c_a56ead329444e71632a1a2c10358186ae}} 
+\index{compat-\/pwd.c@{compat-\/pwd.c}!\_nss\_compat\_setpwent@{\_nss\_compat\_setpwent}}
+\index{\_nss\_compat\_setpwent@{\_nss\_compat\_setpwent}!compat-\/pwd.c@{compat-\/pwd.c}}
+\doxysubsubsection{\texorpdfstring{\_nss\_compat\_setpwent()}{\_nss\_compat\_setpwent()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}} \+\_\+nss\+\_\+compat\+\_\+setpwent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{stayopen }\end{DoxyParamCaption})}
+

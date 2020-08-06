@@ -1,0 +1,276 @@
+
+;; Function __roundf (__roundf, funcdef_no=77, decl_uid=2495, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+Edge 6->11 redirected to 14
+Edge 8->11 redirected to 15
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 57.
+Merging block 15 into block 14...
+Merged blocks 14 and 15.
+Merged 14 and 15 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:SF 104 [ x ])
+        (reg:SF 21 xmm0 [ x ])) ../sysdeps/ieee754/flt-32/s_roundf.c:27 -1
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (parallel [
+            (set (reg:SI 105 [ i0 ])
+                (asm_operands:SI ("movd %1, %0") ("=rm") 0 [
+                        (reg/v:SF 104 [ x ])
+                    ]
+                     [
+                        (asm_input:SF ("x") ../sysdeps/ieee754/flt-32/s_roundf.c:30)
+                    ]
+                     [] ../sysdeps/ieee754/flt-32/s_roundf.c:30))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:30 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:SI 89 [ i0 ])
+        (reg:SI 105 [ i0 ])) ../sysdeps/ieee754/flt-32/s_roundf.c:30 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:SI 106 [ D.5378 ])
+                (ashiftrt:SI (reg/v:SI 89 [ i0 ])
+                    (const_int 23 [0x17])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:31 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:SI 107 [ D.5378 ])
+        (zero_extend:SI (subreg:QI (reg:SI 106 [ D.5378 ]) 0))) ../sysdeps/ieee754/flt-32/s_roundf.c:31 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg/v:SI 92 [ j0 ])
+                (plus:SI (reg:SI 107 [ D.5378 ])
+                    (const_int -127 [0xffffffffffffff81])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:31 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 92 [ j0 ])
+            (const_int 22 [0x16]))) ../sysdeps/ieee754/flt-32/s_roundf.c:32 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) ../sysdeps/ieee754/flt-32/s_roundf.c:32 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 42)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 92 [ j0 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/flt-32/s_roundf.c:34 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) ../sysdeps/ieee754/flt-32/s_roundf.c:34 -1
+     (int_list:REG_BR_PROB 7300 (nil))
+ -> 27)
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (parallel [
+            (set (reg/v:SI 87 [ i_ ])
+                (and:SI (reg/v:SI 89 [ i0 ])
+                    (const_int -2147483648 [0xffffffff80000000])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:36 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ j0 ])
+            (const_int -1 [0xffffffffffffffff]))) ../sysdeps/ieee754/flt-32/s_roundf.c:37 -1
+     (nil))
+(jump_insn 22 21 23 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 50)
+            (pc))) ../sysdeps/ieee754/flt-32/s_roundf.c:37 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 50)
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 6 (parallel [
+            (set (reg/v:SI 87 [ i_ ])
+                (ior:SI (reg/v:SI 87 [ i_ ])
+                    (const_int 1065353216 [0x3f800000])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:38 -1
+     (nil))
+(jump_insn 25 24 26 6 (set (pc)
+        (label_ref 50)) ../sysdeps/ieee754/flt-32/s_roundf.c:38 -1
+     (nil)
+ -> 50)
+(barrier 26 25 27)
+(code_label 27 26 28 7 3 "" [1 uses])
+(note 28 27 29 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 7 (set (reg:SI 108)
+        (const_int 8388607 [0x7fffff])) ../sysdeps/ieee754/flt-32/s_roundf.c:42 -1
+     (nil))
+(insn 30 29 31 7 (parallel [
+            (set (reg/v:SI 94 [ i ])
+                (ashiftrt:SI (reg:SI 108)
+                    (subreg:QI (reg/v:SI 92 [ j0 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:42 -1
+     (nil))
+(insn 31 30 32 7 (parallel [
+            (set (reg:SI 109 [ D.5379 ])
+                (and:SI (reg/v:SI 89 [ i0 ])
+                    (reg/v:SI 94 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:43 -1
+     (nil))
+(insn 32 31 33 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 109 [ D.5379 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/flt-32/s_roundf.c:43 -1
+     (nil))
+(jump_insn 33 32 34 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 66)
+            (pc))) ../sysdeps/ieee754/flt-32/s_roundf.c:43 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 66)
+(note 34 33 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 8 (set (reg:SI 111)
+        (const_int 4194304 [0x400000])) ../sysdeps/ieee754/flt-32/s_roundf.c:48 -1
+     (nil))
+(insn 36 35 37 8 (parallel [
+            (set (reg:SI 110 [ D.5378 ])
+                (ashiftrt:SI (reg:SI 111)
+                    (subreg:QI (reg/v:SI 92 [ j0 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:48 -1
+     (nil))
+(insn 37 36 38 8 (parallel [
+            (set (reg:SI 112 [ i0 ])
+                (plus:SI (reg:SI 110 [ D.5378 ])
+                    (reg/v:SI 89 [ i0 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:48 -1
+     (nil))
+(insn 38 37 39 8 (set (reg:SI 113 [ D.5379 ])
+        (not:SI (reg/v:SI 94 [ i ]))) ../sysdeps/ieee754/flt-32/s_roundf.c:48 -1
+     (nil))
+(insn 39 38 40 8 (parallel [
+            (set (reg/v:SI 87 [ i_ ])
+                (and:SI (reg:SI 112 [ i0 ])
+                    (reg:SI 113 [ D.5379 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:48 -1
+     (nil))
+(jump_insn 40 39 41 8 (set (pc)
+        (label_ref 50)) ../sysdeps/ieee754/flt-32/s_roundf.c:48 -1
+     (nil)
+ -> 50)
+(barrier 41 40 42)
+(code_label 42 41 43 9 2 "" [1 uses])
+(note 43 42 44 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ j0 ])
+            (const_int 128 [0x80]))) ../sysdeps/ieee754/flt-32/s_roundf.c:53 -1
+     (nil))
+(jump_insn 45 44 46 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 70)
+            (pc))) ../sysdeps/ieee754/flt-32/s_roundf.c:53 612 {*jcc_1}
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 70)
+(note 46 45 47 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 10 (set (reg:SF 88 [ D.5377 ])
+        (plus:SF (reg/v:SF 104 [ x ])
+            (reg/v:SF 104 [ x ]))) ../sysdeps/ieee754/flt-32/s_roundf.c:55 -1
+     (nil))
+(jump_insn 48 47 49 10 (set (pc)
+        (label_ref 54)) ../sysdeps/ieee754/flt-32/s_roundf.c:55 -1
+     (nil)
+ -> 54)
+(barrier 49 48 50)
+(code_label 50 49 51 11 4 "" [3 uses])
+(note 51 50 52 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 11 (parallel [
+            (set (reg:SF 114 [ x ])
+                (asm_operands:SF ("movd %1, %0") ("=x") 0 [
+                        (reg/v:SI 87 [ i_ ])
+                    ]
+                     [
+                        (asm_input:SI ("rm") ../sysdeps/ieee754/flt-32/s_roundf.c:60)
+                    ]
+                     [] ../sysdeps/ieee754/flt-32/s_roundf.c:60))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/s_roundf.c:60 -1
+     (nil))
+(insn 53 52 5 11 (set (reg/v:SF 102 [ x ])
+        (reg:SF 114 [ x ])) ../sysdeps/ieee754/flt-32/s_roundf.c:60 -1
+     (nil))
+(insn 5 53 63 11 (set (reg:SF 88 [ D.5377 ])
+        (reg/v:SF 102 [ x ])) ../sysdeps/ieee754/flt-32/s_roundf.c:61 -1
+     (nil))
+(jump_insn 63 5 64 11 (set (pc)
+        (label_ref 54)) ../sysdeps/ieee754/flt-32/s_roundf.c:61 -1
+     (nil)
+ -> 54)
+(barrier 64 63 66)
+(code_label 66 64 65 12 6 "" [1 uses])
+(note 65 66 6 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 6 65 67 12 (set (reg:SF 88 [ D.5377 ])
+        (reg/v:SF 104 [ x ])) ../sysdeps/ieee754/flt-32/s_roundf.c:45 -1
+     (nil))
+(jump_insn 67 6 68 12 (set (pc)
+        (label_ref 54)) -1
+     (nil)
+ -> 54)
+(barrier 68 67 70)
+(code_label 70 68 69 13 7 "" [1 uses])
+(note 69 70 4 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 4 69 54 13 (set (reg:SF 88 [ D.5377 ])
+        (reg/v:SF 104 [ x ])) ../sysdeps/ieee754/flt-32/s_roundf.c:45 -1
+     (nil))
+(code_label 54 4 55 14 5 "" [3 uses])
+(note 55 54 56 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 60 14 (set (reg:SF 103 [ <retval> ])
+        (reg:SF 88 [ D.5377 ])) -1
+     (nil))
+(insn 60 56 61 14 (set (reg/i:SF 21 xmm0)
+        (reg:SF 103 [ <retval> ])) ../sysdeps/ieee754/flt-32/s_roundf.c:62 -1
+     (nil))
+(insn 61 60 0 14 (use (reg/i:SF 21 xmm0)) ../sysdeps/ieee754/flt-32/s_roundf.c:62 -1
+     (nil))

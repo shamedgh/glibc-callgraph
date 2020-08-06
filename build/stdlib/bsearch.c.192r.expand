@@ -1,0 +1,209 @@
+
+;; Function bsearch (*__GI_bsearch, funcdef_no=23, decl_uid=2739, cgraph_uid=9, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 5->8 redirected to 13
+Edge 6->9 redirected to 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 10->11 to 4 failed.
+Removing jump 49.
+Merging block 14 into block 13...
+Merged blocks 13 and 14.
+Merged 13 and 14 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 10->11 to 4 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 12 NOTE_INSN_DELETED)
+(note 12 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 12 3 2 (set (reg/v/f:DI 95 [ __key ])
+        (reg:DI 5 di [ __key ])) ../bits/stdlib-bsearch.h:22 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 96 [ __base ])
+        (reg:DI 4 si [ __base ])) ../bits/stdlib-bsearch.h:22 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 97 [ __nmemb ])
+        (reg:DI 1 dx [ __nmemb ])) ../bits/stdlib-bsearch.h:22 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:DI 98 [ __size ])
+        (reg:DI 2 cx [ __size ])) ../bits/stdlib-bsearch.h:22 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v/f:DI 99 [ __compar ])
+        (reg:DI 37 r8 [ __compar ])) ../bits/stdlib-bsearch.h:22 -1
+     (nil))
+(note 7 6 14 2 NOTE_INSN_FUNCTION_BEG)
+(insn 14 7 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 97 [ __nmemb ])
+            (const_int 0 [0]))) ../bits/stdlib-bsearch.h:29 -1
+     (nil))
+(jump_insn 15 14 42 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) ../bits/stdlib-bsearch.h:29 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 19)
+(code_label 42 15 16 4 6 "" [1 uses])
+(note 16 42 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 16 17 4 (set (reg/f:DI 87 [ D.3498 ])
+        (const_int 0 [0])) ../bits/stdlib-bsearch.h:42 -1
+     (nil))
+(jump_insn 17 11 18 4 (set (pc)
+        (label_ref 46)) ../bits/stdlib-bsearch.h:29 -1
+     (nil)
+ -> 46)
+(barrier 18 17 19)
+(code_label 19 18 20 5 2 "" [1 uses])
+(note 20 19 8 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 8 20 39 5 (set (reg/v:DI 93 [ __l ])
+        (const_int 0 [0])) ../bits/stdlib-bsearch.h:29 -1
+     (nil))
+(code_label 39 8 21 6 5 "" [1 uses])
+(note 21 39 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 88 [ D.3499 ])
+                (plus:DI (reg/v:DI 93 [ __l ])
+                    (reg/v:DI 97 [ __nmemb ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../bits/stdlib-bsearch.h:31 -1
+     (nil))
+(insn 23 22 24 6 (parallel [
+            (set (reg/v:DI 89 [ __nmemb ])
+                (lshiftrt:DI (reg:DI 88 [ D.3499 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../bits/stdlib-bsearch.h:31 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 100 [ D.3499 ])
+                (mult:DI (reg/v:DI 89 [ __nmemb ])
+                    (reg/v:DI 98 [ __size ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../bits/stdlib-bsearch.h:32 -1
+     (nil))
+(insn 25 24 26 6 (parallel [
+            (set (reg/v/f:DI 91 [ __p ])
+                (plus:DI (reg/v/f:DI 96 [ __base ])
+                    (reg:DI 100 [ D.3499 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../bits/stdlib-bsearch.h:32 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 91 [ __p ])) ../bits/stdlib-bsearch.h:33 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ __key ])) ../bits/stdlib-bsearch.h:33 -1
+     (nil))
+(call_insn 28 27 29 6 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/v/f:DI 99 [ __compar ]) [0 *(int (*<T618>) (const void *, const void *)) __compar_15(D) S1 A8])
+            (const_int 0 [0]))) ../bits/stdlib-bsearch.h:33 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 29 28 30 6 (set (reg/v:SI 92 [ __comparison ])
+        (reg:SI 0 ax)) ../bits/stdlib-bsearch.h:33 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 92 [ __comparison ])
+            (const_int 0 [0]))) ../bits/stdlib-bsearch.h:34 -1
+     (nil))
+(jump_insn 31 30 32 6 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 58)
+            (pc))) ../bits/stdlib-bsearch.h:34 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2700 (nil))
+ -> 58)
+(note 32 31 33 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ __comparison ])
+            (const_int 0 [0]))) ../bits/stdlib-bsearch.h:36 -1
+     (nil))
+(jump_insn 34 33 35 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 60)
+            (pc))) ../bits/stdlib-bsearch.h:36 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 60)
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 55 8 (parallel [
+            (set (reg/v:DI 93 [ __l ])
+                (plus:DI (reg/v:DI 89 [ __nmemb ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../bits/stdlib-bsearch.h:37 -1
+     (nil))
+(jump_insn 55 36 56 8 (set (pc)
+        (label_ref 37)) -1
+     (nil)
+ -> 37)
+(barrier 56 55 58)
+(code_label 58 56 57 9 7 "" [1 uses])
+(note 57 58 9 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 9 57 37 9 (set (reg/v:DI 97 [ __nmemb ])
+        (reg/v:DI 89 [ __nmemb ])) ../bits/stdlib-bsearch.h:35 -1
+     (nil))
+(code_label 37 9 38 10 4 "" [1 uses])
+(note 38 37 40 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 40 38 41 10 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 97 [ __nmemb ])
+            (reg/v:DI 93 [ __l ]))) ../bits/stdlib-bsearch.h:29 -1
+     (nil))
+(jump_insn 41 40 45 10 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) ../bits/stdlib-bsearch.h:29 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 39)
+(note 45 41 43 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 43 45 44 11 (set (pc)
+        (label_ref 42)) -1
+     (nil)
+ -> 42)
+(barrier 44 43 60)
+(code_label 60 44 59 12 8 "" [1 uses])
+(note 59 60 10 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 10 59 46 12 (set (reg/f:DI 87 [ D.3498 ])
+        (reg/v/f:DI 91 [ __p ])) ../bits/stdlib-bsearch.h:32 -1
+     (nil))
+(code_label 46 10 47 13 3 "" [1 uses])
+(note 47 46 48 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 52 13 (set (reg:DI 94 [ <retval> ])
+        (reg/f:DI 87 [ D.3498 ])) -1
+     (nil))
+(insn 52 48 53 13 (set (reg/i:DI 0 ax)
+        (reg:DI 94 [ <retval> ])) ../bits/stdlib-bsearch.h:43 -1
+     (nil))
+(insn 53 52 0 13 (use (reg/i:DI 0 ax)) ../bits/stdlib-bsearch.h:43 -1
+     (nil))

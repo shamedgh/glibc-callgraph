@@ -1,0 +1,74 @@
+
+;; Function pthread_setconcurrency (pthread_setconcurrency, funcdef_no=42, decl_uid=5322, cgraph_uid=42, symbol_order=44)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 15.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v:SI 89 [ level ])
+        (reg:SI 5 di [ level ])) pthread_setconcurrency.c:29 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 89 [ level ])
+            (const_int 0 [0]))) pthread_setconcurrency.c:30 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 24)
+            (pc))) pthread_setconcurrency.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 4289 (nil))
+ -> 24)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 5 4 (set (mem/c:SI (symbol_ref:DI ("__concurrency_level") [flags 0x2]  <var_decl 0x2b98bd568240 __concurrency_level>) [1 __concurrency_level+0 S4 A32])
+        (reg/v:SI 89 [ level ])) pthread_setconcurrency.c:33 -1
+     (nil))
+(insn 5 11 21 4 (set (reg:SI 87 [ D.7558 ])
+        (const_int 0 [0])) pthread_setconcurrency.c:38 -1
+     (nil))
+(jump_insn 21 5 22 4 (set (pc)
+        (label_ref 12)) pthread_setconcurrency.c:38 -1
+     (nil)
+ -> 12)
+(barrier 22 21 24)
+(code_label 24 22 23 5 3 "" [1 uses])
+(note 23 24 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 23 12 5 (set (reg:SI 87 [ D.7558 ])
+        (const_int 22 [0x16])) pthread_setconcurrency.c:31 -1
+     (nil))
+(code_label 12 4 13 6 2 "" [1 uses])
+(note 13 12 14 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 18 6 (set (reg:SI 88 [ <retval> ])
+        (reg:SI 87 [ D.7558 ])) -1
+     (nil))
+(insn 18 14 19 6 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) pthread_setconcurrency.c:39 -1
+     (nil))
+(insn 19 18 0 6 (use (reg/i:SI 0 ax)) pthread_setconcurrency.c:39 -1
+     (nil))

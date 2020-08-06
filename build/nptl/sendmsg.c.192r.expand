@@ -1,0 +1,274 @@
+
+;; Function __libc_sendmsg (__libc_sendmsg, funcdef_no=43, decl_uid=2463, cgraph_uid=43, symbol_order=44)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 25 from 7 to 12.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 64.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 10 NOTE_INSN_DELETED)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v:SI 107 [ fd ])
+        (reg:SI 5 di [ fd ])) ../sysdeps/unix/sysv/linux/sendmsg.c:26 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 108 [ msg ])
+        (reg:DI 4 si [ msg ])) ../sysdeps/unix/sysv/linux/sendmsg.c:26 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 109 [ flags ])
+        (reg:SI 1 dx [ flags ])) ../sysdeps/unix/sysv/linux/sendmsg.c:26 -1
+     (nil))
+(note 5 4 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 5 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("__pthread_multiple_threads") [flags 0x40]  <var_decl 0x2ae6cf30a900 __pthread_multiple_threads>) [1 __pthread_multiple_threads+0 S4 A32])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 36)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg/v:DI 1 dx [ _a3 ])
+        (sign_extend:DI (reg/v:SI 109 [ flags ]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v:DI 4 si [ _a2 ])
+        (reg/v/f:DI 108 [ msg ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 17 16 18 4 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 107 [ fd ]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:SI 111)
+        (const_int 46 [0x2e])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:DI 110 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 111)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/sendmsg.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 20 19 21 4 (set (reg/v:DI 92 [ resultvar ])
+        (reg:DI 110 [ resultvar ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 92 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(jump_insn 22 21 23 4 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 27)
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 6 5 (set (reg:DI 102 [ D.7647 ])
+        (reg/v:DI 92 [ resultvar ])) -1
+     (nil))
+(insn 6 24 25 5 (set (reg/v:DI 87 [ sc_ret ])
+        (reg:DI 102 [ D.7647 ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(jump_insn 25 6 26 5 (set (pc)
+        (label_ref:DI 61)) 654 {jump}
+     (nil)
+ -> 61)
+(barrier 26 25 27)
+(code_label 27 26 28 6 3 "" [1 uses])
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:DI 112)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2ae6cf2bba20 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [3  S8 A8])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 30 29 31 6 (parallel [
+            (set (reg:SI 113)
+                (neg:SI (subreg:SI (reg/v:DI 92 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 31 30 7 6 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 112)) [1 errno+0 S4 A32])
+        (reg:SI 113)) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 7 31 34 6 (set (reg/v:DI 87 [ sc_ret ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(jump_insn 34 7 35 6 (set (pc)
+        (label_ref 61)) -1
+     (nil)
+ -> 61)
+(barrier 35 34 36)
+(code_label 36 35 37 8 2 "" [1 uses])
+(note 37 36 38 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 38 37 39 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__pthread_enable_asynccancel") [flags 0x41]  <function_decl 0x2ae6cf326ca8 __pthread_enable_asynccancel>) [0 __pthread_enable_asynccancel S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_enable_asynccancel") [flags 0x41]  <function_decl 0x2ae6cf326ca8 __pthread_enable_asynccancel>)
+        (nil))
+    (nil))
+(insn 39 38 40 8 (set (reg/v:SI 97 [ sc_cancel_oldtype ])
+        (reg:SI 0 ax)) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 40 39 41 8 (set (reg/v:DI 1 dx [ _a3 ])
+        (sign_extend:DI (reg/v:SI 109 [ flags ]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 41 40 42 8 (set (reg/v:DI 4 si [ _a2 ])
+        (reg/v/f:DI 108 [ msg ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 42 41 43 8 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 107 [ fd ]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 43 42 44 8 (set (reg:SI 115)
+        (const_int 46 [0x2e])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 44 43 45 8 (parallel [
+            (set (reg:DI 114 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 115)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/sendmsg.c:28)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/sendmsg.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 45 44 46 8 (set (reg/v:DI 101 [ resultvar ])
+        (reg:DI 114 [ resultvar ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 46 45 47 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 101 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(jump_insn 47 46 48 8 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 52)
+(note 48 47 49 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 8 9 (set (reg:DI 93 [ D.7647 ])
+        (reg/v:DI 101 [ resultvar ])) -1
+     (nil))
+(insn 8 49 50 9 (set (reg/v:DI 87 [ sc_ret ])
+        (reg:DI 93 [ D.7647 ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(jump_insn 50 8 51 9 (set (pc)
+        (label_ref 57)) -1
+     (nil)
+ -> 57)
+(barrier 51 50 52)
+(code_label 52 51 53 10 6 "" [1 uses])
+(note 53 52 54 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 10 (set (reg:DI 116)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2ae6cf2bba20 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [3  S8 A8])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 55 54 56 10 (parallel [
+            (set (reg:SI 117)
+                (neg:SI (subreg:SI (reg/v:DI 101 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 56 55 9 10 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 116)) [1 errno+0 S4 A32])
+        (reg:SI 117)) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 9 56 57 10 (set (reg/v:DI 87 [ sc_ret ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(code_label 57 9 58 11 7 "" [1 uses])
+(note 58 57 59 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 11 (set (reg:SI 5 di)
+        (reg/v:SI 97 [ sc_cancel_oldtype ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(call_insn 60 59 61 11 (call (mem:QI (symbol_ref:DI ("__pthread_disable_asynccancel") [flags 0x41]  <function_decl 0x2ae6cf326d80 __pthread_disable_asynccancel>) [0 __pthread_disable_asynccancel S1 A8])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_disable_asynccancel") [flags 0x41]  <function_decl 0x2ae6cf326d80 __pthread_disable_asynccancel>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(code_label 61 60 62 12 5 "" [2 uses])
+(note 62 61 63 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 67 12 (set (reg:DI 106 [ <retval> ])
+        (reg/v:DI 87 [ sc_ret ])) ../sysdeps/unix/sysv/linux/sendmsg.c:28 -1
+     (nil))
+(insn 67 63 68 12 (set (reg/i:DI 0 ax)
+        (reg:DI 106 [ <retval> ])) ../sysdeps/unix/sysv/linux/sendmsg.c:32 -1
+     (nil))
+(insn 68 67 0 12 (use (reg/i:DI 0 ax)) ../sysdeps/unix/sysv/linux/sendmsg.c:32 -1
+     (nil))

@@ -1,0 +1,126 @@
+
+;; Function __on_exit (__on_exit, funcdef_no=32, decl_uid=3253, cgraph_uid=32, symbol_order=35)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 24.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 90 [ func ])
+        (reg:DI 5 di [ func ])) on_exit.c:26 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 91 [ arg ])
+        (reg:DI 4 si [ arg ])) on_exit.c:26 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__exit_funcs") [flags 0x42]  <var_decl 0x2abc43e93900 __exit_funcs>)) on_exit.c:27 -1
+     (nil))
+(call_insn 10 9 11 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__new_exitfn") [flags 0x41]  <function_decl 0x2abc43f50870 __new_exitfn>) [0 __new_exitfn S1 A8])
+            (const_int 0 [0]))) on_exit.c:27 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__new_exitfn") [flags 0x41]  <function_decl 0x2abc43f50870 __new_exitfn>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg/v/f:DI 88 [ new ])
+        (reg:DI 0 ax)) on_exit.c:27 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ new ])
+            (const_int 0 [0]))) on_exit.c:29 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) on_exit.c:29 612 {*jcc_1}
+     (int_list:REG_BR_PROB 73 (nil))
+ -> 33)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (parallel [
+            (set (reg:DI 92 [ func ])
+                (asm_operands:DI ("xor %%fs:%c2, %0
+rol $2*8+1, %0") ("=r") 0 [
+                        (reg/v/f:DI 90 [ func ])
+                        (const_int 48 [0x30])
+                    ]
+                     [
+                        (asm_input:DI ("0") on_exit.c:33)
+                        (asm_input:DI ("i") on_exit.c:33)
+                    ]
+                     [] on_exit.c:33))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) on_exit.c:33 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v/f:DI 90 [ func ])
+        (reg:DI 92 [ func ])) on_exit.c:33 -1
+     (nil))
+(insn 17 16 18 4 (set (mem/f:DI (plus:DI (reg/v/f:DI 88 [ new ])
+                (const_int 8 [0x8])) [0 new_5->func.on.fn+0 S8 A64])
+        (reg/v/f:DI 90 [ func ])) on_exit.c:35 -1
+     (nil))
+(insn 18 17 19 4 (set (mem/f:DI (plus:DI (reg/v/f:DI 88 [ new ])
+                (const_int 16 [0x10])) [0 new_5->func.on.arg+0 S8 A64])
+        (reg/v/f:DI 91 [ arg ])) on_exit.c:36 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (asm_operands/v ("") ("") 0 []
+                 []
+                 [] on_exit.c:37)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) on_exit.c:37 -1
+     (nil))
+(insn 20 19 6 4 (set (mem:DI (reg/v/f:DI 88 [ new ]) [2 new_5->flavor+0 S8 A64])
+        (const_int 2 [0x2])) on_exit.c:38 -1
+     (nil))
+(insn 6 20 30 4 (set (reg:SI 87 [ D.7147 ])
+        (const_int 0 [0])) on_exit.c:39 -1
+     (nil))
+(jump_insn 30 6 31 4 (set (pc)
+        (label_ref 21)) on_exit.c:39 -1
+     (nil)
+ -> 21)
+(barrier 31 30 33)
+(code_label 33 31 32 5 3 "" [1 uses])
+(note 32 33 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 5 32 21 5 (set (reg:SI 87 [ D.7147 ])
+        (const_int -1 [0xffffffffffffffff])) on_exit.c:30 -1
+     (nil))
+(code_label 21 5 22 6 2 "" [1 uses])
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 27 6 (set (reg:SI 89 [ <retval> ])
+        (reg:SI 87 [ D.7147 ])) -1
+     (nil))
+(insn 27 23 28 6 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) on_exit.c:40 -1
+     (nil))
+(insn 28 27 0 6 (use (reg/i:SI 0 ax)) on_exit.c:40 -1
+     (nil))

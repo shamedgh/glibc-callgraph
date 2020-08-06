@@ -1,0 +1,1280 @@
+
+;; Function noop_handler (noop_handler, funcdef_no=35, decl_uid=8699, cgraph_uid=37, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 87 [ sig ])
+        (reg:SI 5 di [ sig ])) lckpwdf.c:200 -1
+     (nil))
+(note 3 2 0 2 NOTE_INSN_FUNCTION_BEG)
+
+;; Function __lckpwdf (__lckpwdf, funcdef_no=33, decl_uid=7650, cgraph_uid=33, symbol_order=39)
+
+Partition 3: size 152 align 16
+	new_act
+Partition 1: size 152 align 16
+	saved_act
+Partition 2: size 128 align 16
+	new_set
+Partition 0: size 128 align 16
+	saved_set
+Partition 4: size 32 align 16
+	fl
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+Edge 2->19 redirected to 22
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 183.
+Merging block 22 into block 21...
+Merged blocks 21 and 22.
+Merged 21 and 22 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 25 0 30 NOTE_INSN_DELETED)
+(note 30 25 26 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 26 30 32 2 NOTE_INSN_FUNCTION_BEG)
+(insn 32 26 33 2 (set (reg:SI 112 [ D.8827 ])
+        (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])) lckpwdf.c:92 -1
+     (nil))
+(insn 33 32 34 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 112 [ D.8827 ])
+            (const_int -1 [0xffffffffffffffff]))) lckpwdf.c:92 -1
+     (nil))
+(jump_insn 34 33 35 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 192)
+            (pc))) lckpwdf.c:92 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2078 (nil))
+ -> 192)
+(note 35 34 36 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 4 (set (reg:SI 134)
+        (const_int 1 [0x1])) lckpwdf.c:97 -1
+     (nil))
+(insn 37 36 38 4 (set (reg:SI 135)
+        (const_int 0 [0])) lckpwdf.c:97 -1
+     (nil))
+(insn 38 37 39 4 (parallel [
+            (set (reg:SI 131 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 134)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 135)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:97)
+                        (asm_input:SI ("m") lckpwdf.c:97)
+                        (asm_input:SI ("3") lckpwdf.c:97)
+                    ]
+                     [] lckpwdf.c:97))
+            (set (reg:SI 132 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 134)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 135)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:97)
+                        (asm_input:SI ("m") lckpwdf.c:97)
+                        (asm_input:SI ("3") lckpwdf.c:97)
+                    ]
+                     [] lckpwdf.c:97))
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 134)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 135)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:97)
+                        (asm_input:SI ("m") lckpwdf.c:97)
+                        (asm_input:SI ("3") lckpwdf.c:97)
+                    ]
+                     [] lckpwdf.c:97))
+            (set (reg:SI 133 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 134)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 135)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:97)
+                        (asm_input:SI ("m") lckpwdf.c:97)
+                        (asm_input:SI ("3") lckpwdf.c:97)
+                    ]
+                     [] lckpwdf.c:97))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) lckpwdf.c:97 -1
+     (nil))
+(insn 39 38 40 4 (set (reg/v:SI 113 [ ignore1 ])
+        (reg:SI 131 [ ignore1 ])) lckpwdf.c:97 -1
+     (nil))
+(insn 40 39 41 4 (set (reg/v:SI 114 [ ignore2 ])
+        (reg:SI 132 [ ignore2 ])) lckpwdf.c:97 -1
+     (nil))
+(insn 41 40 42 4 (set (reg/v:SI 115 [ ignore3 ])
+        (reg:SI 133 [ ignore3 ])) lckpwdf.c:97 -1
+     (nil))
+(insn 42 41 43 4 (set (reg:SI 1 dx)
+        (const_int 384 [0x180])) lckpwdf.c:103 -1
+     (nil))
+(insn 43 42 44 4 (set (reg:SI 4 si)
+        (const_int 524353 [0x80041])) lckpwdf.c:103 -1
+     (nil))
+(insn 44 43 45 4 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b0c5aab3cf0 *.LC1>)) lckpwdf.c:103 -1
+     (nil))
+(insn 45 44 46 4 (set (reg:QI 0 ax)
+        (const_int 0 [0])) lckpwdf.c:103 -1
+     (nil))
+(call_insn 46 45 47 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___open") [flags 0x43]  <function_decl 0x2b0c5a67bd80 __open>) [0 __open S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:103 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___open") [flags 0x43]  <function_decl 0x2b0c5a67bd80 __open>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:SI (use (reg:SI 1 dx))
+                    (nil))))))
+(insn 47 46 48 4 (set (reg:SI 116 [ D.8827 ])
+        (reg:SI 0 ax)) lckpwdf.c:103 -1
+     (nil))
+(insn 48 47 49 4 (set (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])
+        (reg:SI 116 [ D.8827 ])) lckpwdf.c:103 -1
+     (nil))
+(insn 49 48 50 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 116 [ D.8827 ])
+            (const_int -1 [0xffffffffffffffff]))) lckpwdf.c:104 -1
+     (nil))
+(jump_insn 50 49 51 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) lckpwdf.c:104 -1
+     (int_list:REG_BR_PROB 9618 (nil))
+ -> 56)
+(note 51 50 52 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 5 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:106)
+                    ]
+                     [] lckpwdf.c:106))
+            (set (reg:SI 136 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:106)
+                    ]
+                     [] lckpwdf.c:106))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) lckpwdf.c:106 -1
+     (nil))
+(insn 53 52 28 5 (set (reg/v:SI 117 [ ignore ])
+        (reg:SI 136 [ ignore ])) lckpwdf.c:106 -1
+     (nil))
+(insn 28 53 54 5 (set (reg:SI 112 [ D.8827 ])
+        (reg:SI 116 [ D.8827 ])) lckpwdf.c:106 -1
+     (nil))
+(jump_insn 54 28 55 5 (set (pc)
+        (label_ref 180)) lckpwdf.c:106 -1
+     (nil)
+ -> 180)
+(barrier 55 54 56)
+(code_label 56 55 57 6 4 "" [1 uses])
+(note 57 56 58 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 6 (parallel [
+            (set (reg:DI 137)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:140 -1
+     (nil))
+(insn 59 58 60 6 (set (reg/f:DI 138)
+        (reg:DI 137)) lckpwdf.c:140 -1
+     (nil))
+(insn 60 59 61 6 (set (reg:DI 139)
+        (const_int 0 [0])) lckpwdf.c:140 -1
+     (nil))
+(insn 61 60 62 6 (set (reg:DI 140)
+        (const_int 19 [0x13])) lckpwdf.c:140 -1
+     (nil))
+(insn 62 61 63 6 (parallel [
+            (set (reg:DI 140)
+                (const_int 0 [0]))
+            (set (reg/f:DI 138)
+                (plus:DI (ashift:DI (reg:DI 140)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 138)))
+            (set (mem/c:BLK (reg/f:DI 138) [0 MEM[(void *)&new_act]+0 S152 A128])
+                (const_int 0 [0]))
+            (use (reg:DI 139))
+            (use (reg:DI 140))
+        ]) lckpwdf.c:140 -1
+     (nil))
+(insn 63 62 64 6 (set (reg/f:DI 141)
+        (symbol_ref:DI ("noop_handler") [flags 0x3]  <function_decl 0x2b0c5aa6b0d8 noop_handler>)) lckpwdf.c:141 -1
+     (nil))
+(insn 64 63 65 6 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -160 [0xffffffffffffff60])) [0 new_act.__sigaction_handler.sa_handler+0 S8 A128])
+        (reg/f:DI 141)) lckpwdf.c:141 -1
+     (nil))
+(insn 65 64 66 6 (parallel [
+            (set (reg:DI 142)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 66 65 67 6 (parallel [
+            (set (reg:DI 111 [ ivtmp.17 ])
+                (plus:DI (reg:DI 142)
+                    (const_int 128 [0x80])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 67 66 72 6 (parallel [
+            (set (reg:DI 128 [ D.8828 ])
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 72 67 68 7 5 "" [1 uses])
+(note 68 72 69 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 70 7 (set (reg:DI 143)
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:142 -1
+     (nil))
+(insn 70 69 71 7 (set (mem:DI (reg:DI 111 [ ivtmp.17 ]) [1 MEM[base: _67, offset: 0B]+0 S8 A64])
+        (reg:DI 143)) lckpwdf.c:142 -1
+     (nil))
+(insn 71 70 73 7 (parallel [
+            (set (reg:DI 111 [ ivtmp.17 ])
+                (plus:DI (reg:DI 111 [ ivtmp.17 ])
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 73 71 74 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 111 [ ivtmp.17 ])
+            (reg:DI 128 [ D.8828 ]))) lckpwdf.c:142 -1
+     (nil))
+(jump_insn 74 73 75 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) lckpwdf.c:142 -1
+     (int_list:REG_BR_PROB 9412 (nil))
+ -> 72)
+(note 75 74 76 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 8 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [3 new_act.sa_flags+0 S4 A64])
+        (const_int 0 [0])) lckpwdf.c:143 -1
+     (nil))
+(insn 77 76 78 8 (parallel [
+            (set (reg:DI 144)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -320 [0xfffffffffffffec0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:146 -1
+     (nil))
+(insn 78 77 79 8 (parallel [
+            (set (reg:DI 145)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:146 -1
+     (nil))
+(insn 79 78 80 8 (set (reg:DI 1 dx)
+        (reg:DI 144)) lckpwdf.c:146 -1
+     (nil))
+(insn 80 79 81 8 (set (reg:DI 4 si)
+        (reg:DI 145)) lckpwdf.c:146 -1
+     (nil))
+(insn 81 80 82 8 (set (reg:SI 5 di)
+        (const_int 14 [0xe])) lckpwdf.c:146 -1
+     (nil))
+(call_insn 82 81 83 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2b0c5a731e58 __sigaction>) [0 __sigaction S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:146 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2b0c5a731e58 __sigaction>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 83 82 84 8 (set (reg:SI 118 [ D.8827 ])
+        (reg:SI 0 ax)) lckpwdf.c:146 -1
+     (nil))
+(insn 84 83 85 8 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 118 [ D.8827 ])
+            (const_int 0 [0]))) lckpwdf.c:146 -1
+     (nil))
+(jump_insn 85 84 86 8 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 100)
+            (pc))) lckpwdf.c:146 -1
+     (int_list:REG_BR_PROB 9636 (nil))
+ -> 100)
+(note 86 85 87 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 9 (set (reg:SI 119 [ D.8827 ])
+        (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])) lckpwdf.c:148 -1
+     (nil))
+(insn 88 87 89 9 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 119 [ D.8827 ])
+            (const_int 0 [0]))) lckpwdf.c:148 -1
+     (nil))
+(jump_insn 89 88 90 9 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 94)
+            (pc))) lckpwdf.c:148 -1
+     (int_list:REG_BR_PROB 3666 (nil))
+ -> 94)
+(note 90 89 91 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 91 90 92 10 (set (reg:SI 5 di)
+        (reg:SI 119 [ D.8827 ])) lckpwdf.c:148 -1
+     (nil))
+(call_insn 92 91 93 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>) [0 __close S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:148 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 93 92 94 10 (set (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:148 -1
+     (nil))
+(code_label 94 93 95 11 7 "" [1 uses])
+(note 95 94 96 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 96 95 97 11 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:148)
+                    ]
+                     [] lckpwdf.c:148))
+            (set (reg:SI 146 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:148)
+                    ]
+                     [] lckpwdf.c:148))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) lckpwdf.c:148 -1
+     (nil))
+(insn 97 96 98 11 (set (reg/v:SI 120 [ ignore ])
+        (reg:SI 146 [ ignore ])) lckpwdf.c:148 -1
+     (nil))
+(jump_insn 98 97 99 11 (set (pc)
+        (label_ref 180)) lckpwdf.c:148 -1
+     (nil)
+ -> 180)
+(barrier 99 98 100)
+(code_label 100 99 101 12 6 "" [1 uses])
+(note 101 100 102 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 12 (parallel [
+            (set (reg:DI 147)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -448 [0xfffffffffffffe40])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:151 -1
+     (nil))
+(insn 103 102 104 12 (set (reg/f:DI 148)
+        (reg:DI 147)) lckpwdf.c:151 -1
+     (nil))
+(insn 104 103 105 12 (set (reg:DI 149)
+        (const_int 0 [0])) lckpwdf.c:151 -1
+     (nil))
+(insn 105 104 106 12 (set (reg:DI 150)
+        (const_int 16 [0x10])) lckpwdf.c:151 -1
+     (nil))
+(insn 106 105 107 12 (parallel [
+            (set (reg:DI 150)
+                (const_int 0 [0]))
+            (set (reg/f:DI 148)
+                (plus:DI (ashift:DI (reg:DI 150)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 148)))
+            (set (mem/c:BLK (reg/f:DI 148) [0 MEM[(void *)&new_set]+0 S128 A128])
+                (const_int 0 [0]))
+            (use (reg:DI 149))
+            (use (reg:DI 150))
+        ]) lckpwdf.c:151 -1
+     (nil))
+(insn 107 106 108 12 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -448 [0xfffffffffffffe40])) [1 new_set.__val+0 S8 A128])
+        (const_int 8192 [0x2000])) ../sysdeps/unix/sysv/linux/bits/sigset.h:117 -1
+     (nil))
+(insn 108 107 109 12 (parallel [
+            (set (reg:DI 151)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -576 [0xfffffffffffffdc0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:153 -1
+     (nil))
+(insn 109 108 110 12 (parallel [
+            (set (reg:DI 152)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -448 [0xfffffffffffffe40])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:153 -1
+     (nil))
+(insn 110 109 111 12 (set (reg:DI 1 dx)
+        (reg:DI 151)) lckpwdf.c:153 -1
+     (nil))
+(insn 111 110 112 12 (set (reg:DI 4 si)
+        (reg:DI 152)) lckpwdf.c:153 -1
+     (nil))
+(insn 112 111 113 12 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) lckpwdf.c:153 -1
+     (nil))
+(call_insn 113 112 114 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2b0c5a7315e8 __sigprocmask>) [0 __sigprocmask S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:153 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2b0c5a7315e8 __sigprocmask>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 114 113 115 12 (set (reg:SI 121 [ D.8827 ])
+        (reg:SI 0 ax)) lckpwdf.c:153 -1
+     (nil))
+(insn 115 114 116 12 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 121 [ D.8827 ])
+            (const_int 0 [0]))) lckpwdf.c:153 -1
+     (nil))
+(jump_insn 116 115 117 12 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 136)
+            (pc))) lckpwdf.c:153 -1
+     (int_list:REG_BR_PROB 9848 (nil))
+ -> 136)
+(note 117 116 118 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 118 117 119 13 (parallel [
+            (set (reg:DI 153)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -320 [0xfffffffffffffec0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:154 -1
+     (nil))
+(insn 119 118 120 13 (set (reg:DI 1 dx)
+        (const_int 0 [0])) lckpwdf.c:154 -1
+     (nil))
+(insn 120 119 121 13 (set (reg:DI 4 si)
+        (reg:DI 153)) lckpwdf.c:154 -1
+     (nil))
+(insn 121 120 122 13 (set (reg:SI 5 di)
+        (const_int 14 [0xe])) lckpwdf.c:154 -1
+     (nil))
+(call_insn 122 121 123 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2b0c5a731e58 __sigaction>) [0 __sigaction S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:154 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2b0c5a731e58 __sigaction>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 123 122 124 13 (set (reg:SI 122 [ D.8827 ])
+        (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])) lckpwdf.c:154 -1
+     (nil))
+(insn 124 123 125 13 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 122 [ D.8827 ])
+            (const_int 0 [0]))) lckpwdf.c:154 -1
+     (nil))
+(jump_insn 125 124 126 13 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 130)
+            (pc))) lckpwdf.c:154 -1
+     (int_list:REG_BR_PROB 3666 (nil))
+ -> 130)
+(note 126 125 127 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 127 126 128 14 (set (reg:SI 5 di)
+        (reg:SI 122 [ D.8827 ])) lckpwdf.c:154 -1
+     (nil))
+(call_insn 128 127 129 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>) [0 __close S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:154 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 129 128 130 14 (set (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:154 -1
+     (nil))
+(code_label 130 129 131 15 9 "" [1 uses])
+(note 131 130 132 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 132 131 133 15 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:154)
+                    ]
+                     [] lckpwdf.c:154))
+            (set (reg:SI 154 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:154)
+                    ]
+                     [] lckpwdf.c:154))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) lckpwdf.c:154 -1
+     (nil))
+(insn 133 132 134 15 (set (reg/v:SI 123 [ ignore ])
+        (reg:SI 154 [ ignore ])) lckpwdf.c:154 -1
+     (nil))
+(jump_insn 134 133 135 15 (set (pc)
+        (label_ref 180)) lckpwdf.c:154 -1
+     (nil)
+ -> 180)
+(barrier 135 134 136)
+(code_label 136 135 137 16 8 "" [1 uses])
+(note 137 136 138 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 138 137 139 16 (set (reg:SI 5 di)
+        (const_int 15 [0xf])) lckpwdf.c:158 -1
+     (nil))
+(call_insn 139 138 140 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_alarm") [flags 0x43]  <function_decl 0x2b0c5aa0a798 alarm>) [0 alarm S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:158 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_alarm") [flags 0x43]  <function_decl 0x2b0c5aa0a798 alarm>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 140 139 141 16 (parallel [
+            (set (reg:DI 155)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -608 [0xfffffffffffffda0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:161 -1
+     (nil))
+(insn 141 140 142 16 (set (mem/c:DI (reg:DI 155) [0 MEM[(void *)&fl]+0 S8 A128])
+        (const_int 0 [0])) lckpwdf.c:161 -1
+     (nil))
+(insn 142 141 143 16 (set (mem/c:DI (plus:DI (reg:DI 155)
+                (const_int 8 [0x8])) [0 MEM[(void *)&fl]+8 S8 A64])
+        (const_int 0 [0])) lckpwdf.c:161 -1
+     (nil))
+(insn 143 142 144 16 (set (mem/c:DI (plus:DI (reg:DI 155)
+                (const_int 16 [0x10])) [0 MEM[(void *)&fl]+16 S8 A128])
+        (const_int 0 [0])) lckpwdf.c:161 -1
+     (nil))
+(insn 144 143 145 16 (set (mem/c:DI (plus:DI (reg:DI 155)
+                (const_int 24 [0x18])) [0 MEM[(void *)&fl]+24 S8 A64])
+        (const_int 0 [0])) lckpwdf.c:161 -1
+     (nil))
+(insn 145 144 146 16 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -608 [0xfffffffffffffda0])) [8 fl.l_type+0 S2 A128])
+        (const_int 1 [0x1])) lckpwdf.c:162 -1
+     (nil))
+(insn 146 145 147 16 (parallel [
+            (set (reg:DI 156)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -608 [0xfffffffffffffda0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:164 -1
+     (nil))
+(insn 147 146 148 16 (set (reg:SI 157)
+        (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])) lckpwdf.c:164 -1
+     (nil))
+(insn 148 147 149 16 (set (reg:DI 1 dx)
+        (reg:DI 156)) lckpwdf.c:164 -1
+     (nil))
+(insn 149 148 150 16 (set (reg:SI 4 si)
+        (const_int 7 [0x7])) lckpwdf.c:164 -1
+     (nil))
+(insn 150 149 151 16 (set (reg:SI 5 di)
+        (reg:SI 157)) lckpwdf.c:164 -1
+     (nil))
+(insn 151 150 152 16 (set (reg:QI 0 ax)
+        (const_int 0 [0])) lckpwdf.c:164 -1
+     (nil))
+(call_insn 152 151 153 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___fcntl") [flags 0x43]  <function_decl 0x2b0c5a67b5e8 __fcntl>) [0 __fcntl S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:164 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___fcntl") [flags 0x43]  <function_decl 0x2b0c5a67b5e8 __fcntl>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 153 152 154 16 (set (reg/v:SI 125 [ result ])
+        (reg:SI 0 ax)) lckpwdf.c:164 -1
+     (nil))
+(insn 154 153 155 16 (set (reg:SI 5 di)
+        (const_int 0 [0])) lckpwdf.c:166 -1
+     (nil))
+(call_insn 155 154 156 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_alarm") [flags 0x43]  <function_decl 0x2b0c5aa0a798 alarm>) [0 alarm S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:166 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_alarm") [flags 0x43]  <function_decl 0x2b0c5aa0a798 alarm>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 156 155 157 16 (parallel [
+            (set (reg:DI 158)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -576 [0xfffffffffffffdc0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:166 -1
+     (nil))
+(insn 157 156 158 16 (set (reg:DI 1 dx)
+        (const_int 0 [0])) lckpwdf.c:166 -1
+     (nil))
+(insn 158 157 159 16 (set (reg:DI 4 si)
+        (reg:DI 158)) lckpwdf.c:166 -1
+     (nil))
+(insn 159 158 160 16 (set (reg:SI 5 di)
+        (const_int 2 [0x2])) lckpwdf.c:166 -1
+     (nil))
+(call_insn 160 159 161 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2b0c5a7315e8 __sigprocmask>) [0 __sigprocmask S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:166 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2b0c5a7315e8 __sigprocmask>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 161 160 162 16 (parallel [
+            (set (reg:DI 159)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -320 [0xfffffffffffffec0])))
+            (clobber (reg:CC 17 flags))
+        ]) lckpwdf.c:166 -1
+     (nil))
+(insn 162 161 163 16 (set (reg:DI 1 dx)
+        (const_int 0 [0])) lckpwdf.c:166 -1
+     (nil))
+(insn 163 162 164 16 (set (reg:DI 4 si)
+        (reg:DI 159)) lckpwdf.c:166 -1
+     (nil))
+(insn 164 163 165 16 (set (reg:SI 5 di)
+        (const_int 14 [0xe])) lckpwdf.c:166 -1
+     (nil))
+(call_insn 165 164 166 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2b0c5a731e58 __sigaction>) [0 __sigaction S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:166 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2b0c5a731e58 __sigaction>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 166 165 167 16 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 125 [ result ])
+            (const_int 0 [0]))) lckpwdf.c:166 -1
+     (nil))
+(jump_insn 167 166 168 16 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 176)
+            (pc))) lckpwdf.c:166 -1
+     (int_list:REG_BR_PROB 7300 (nil))
+ -> 176)
+(note 168 167 169 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 169 168 170 17 (set (reg:SI 126 [ D.8827 ])
+        (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])) lckpwdf.c:166 -1
+     (nil))
+(insn 170 169 171 17 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 126 [ D.8827 ])
+            (const_int 0 [0]))) lckpwdf.c:166 -1
+     (nil))
+(jump_insn 171 170 172 17 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 176)
+            (pc))) lckpwdf.c:166 -1
+     (int_list:REG_BR_PROB 4752 (nil))
+ -> 176)
+(note 172 171 173 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 173 172 174 18 (set (reg:SI 5 di)
+        (reg:SI 126 [ D.8827 ])) lckpwdf.c:166 -1
+     (nil))
+(call_insn 174 173 175 18 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>) [0 __close S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:166 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 175 174 176 18 (set (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:166 -1
+     (nil))
+(code_label 176 175 177 19 10 "" [2 uses])
+(note 177 176 178 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 178 177 179 19 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:166)
+                    ]
+                     [] lckpwdf.c:166))
+            (set (reg:SI 160 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:166)
+                    ]
+                     [] lckpwdf.c:166))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) lckpwdf.c:166 -1
+     (nil))
+(insn 179 178 29 19 (set (reg/v:SI 127 [ ignore ])
+        (reg:SI 160 [ ignore ])) lckpwdf.c:166 -1
+     (nil))
+(insn 29 179 189 19 (set (reg:SI 112 [ D.8827 ])
+        (reg/v:SI 125 [ result ])) lckpwdf.c:164 -1
+     (nil))
+(jump_insn 189 29 190 19 (set (pc)
+        (label_ref 180)) lckpwdf.c:166 -1
+     (nil)
+ -> 180)
+(barrier 190 189 192)
+(code_label 192 190 191 20 11 "" [1 uses])
+(note 191 192 27 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 27 191 180 20 (set (reg:SI 112 [ D.8827 ])
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:94 -1
+     (nil))
+(code_label 180 27 181 21 3 "" [4 uses])
+(note 181 180 182 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 182 181 186 21 (set (reg:SI 130 [ <retval> ])
+        (reg:SI 112 [ D.8827 ])) -1
+     (nil))
+(insn 186 182 187 21 (set (reg/i:SI 0 ax)
+        (reg:SI 130 [ <retval> ])) lckpwdf.c:167 -1
+     (nil))
+(insn 187 186 0 21 (use (reg/i:SI 0 ax)) lckpwdf.c:167 -1
+     (nil))
+
+;; Function __ulckpwdf (__ulckpwdf, funcdef_no=34, decl_uid=7652, cgraph_uid=35, symbol_order=41)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 25.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 2 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))) lckpwdf.c:176 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) lckpwdf.c:176 612 {*jcc_1}
+     (int_list:REG_BR_PROB 382 (nil))
+ -> 34)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (set (reg:SI 98)
+        (const_int 1 [0x1])) lckpwdf.c:182 -1
+     (nil))
+(insn 10 9 11 4 (set (reg:SI 99)
+        (const_int 0 [0])) lckpwdf.c:182 -1
+     (nil))
+(insn 11 10 12 4 (parallel [
+            (set (reg:SI 95 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:182)
+                        (asm_input:SI ("m") lckpwdf.c:182)
+                        (asm_input:SI ("3") lckpwdf.c:182)
+                    ]
+                     [] lckpwdf.c:182))
+            (set (reg:SI 96 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:182)
+                        (asm_input:SI ("m") lckpwdf.c:182)
+                        (asm_input:SI ("3") lckpwdf.c:182)
+                    ]
+                     [] lckpwdf.c:182))
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:182)
+                        (asm_input:SI ("m") lckpwdf.c:182)
+                        (asm_input:SI ("3") lckpwdf.c:182)
+                    ]
+                     [] lckpwdf.c:182))
+            (set (reg:SI 97 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") lckpwdf.c:182)
+                        (asm_input:SI ("m") lckpwdf.c:182)
+                        (asm_input:SI ("3") lckpwdf.c:182)
+                    ]
+                     [] lckpwdf.c:182))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) lckpwdf.c:182 -1
+     (nil))
+(insn 12 11 13 4 (set (reg/v:SI 89 [ ignore1 ])
+        (reg:SI 95 [ ignore1 ])) lckpwdf.c:182 -1
+     (nil))
+(insn 13 12 14 4 (set (reg/v:SI 90 [ ignore2 ])
+        (reg:SI 96 [ ignore2 ])) lckpwdf.c:182 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/v:SI 91 [ ignore3 ])
+        (reg:SI 97 [ ignore3 ])) lckpwdf.c:182 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:SI 100)
+        (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])) lckpwdf.c:184 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:SI 5 di)
+        (reg:SI 100)) lckpwdf.c:184 -1
+     (nil))
+(call_insn 17 16 18 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>) [0 __close S1 A8])
+            (const_int 0 [0]))) lckpwdf.c:184 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2b0c5aa67948 __close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 18 17 19 4 (set (reg/v:SI 87 [ result ])
+        (reg:SI 0 ax)) lckpwdf.c:184 -1
+     (nil))
+(insn 19 18 20 4 (set (mem/c:SI (symbol_ref:DI ("lock_fd") [flags 0x2]  <var_decl 0x2b0c5aa04630 lock_fd>) [3 lock_fd+0 S4 A32])
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:187 -1
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:190)
+                    ]
+                     [] lckpwdf.c:190))
+            (set (reg:SI 101 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2b0c5aa046c0 lock>) [3 lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") lckpwdf.c:190)
+                    ]
+                     [] lckpwdf.c:190))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) lckpwdf.c:190 -1
+     (nil))
+(insn 21 20 31 4 (set (reg/v:SI 93 [ ignore ])
+        (reg:SI 101 [ ignore ])) lckpwdf.c:190 -1
+     (nil))
+(jump_insn 31 21 32 4 (set (pc)
+        (label_ref 22)) -1
+     (nil)
+ -> 22)
+(barrier 32 31 34)
+(code_label 34 32 33 5 21 "" [1 uses])
+(note 33 34 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 33 22 5 (set (reg/v:SI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) lckpwdf.c:178 -1
+     (nil))
+(code_label 22 3 23 6 20 "" [1 uses])
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 28 6 (set (reg:SI 94 [ <retval> ])
+        (reg/v:SI 87 [ result ])) lckpwdf.c:193 -1
+     (nil))
+(insn 28 24 29 6 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) lckpwdf.c:194 -1
+     (nil))
+(insn 29 28 0 6 (use (reg/i:SI 0 ax)) lckpwdf.c:194 -1
+     (nil))

@@ -1,0 +1,129 @@
+\hypertarget{sysdeps_2mach_2hurd_2profil_8c}{}\doxysection{sysdeps/mach/hurd/profil.c File Reference}
+\label{sysdeps_2mach_2hurd_2profil_8c}\index{sysdeps/mach/hurd/profil.c@{sysdeps/mach/hurd/profil.c}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$hurd.\+h$>$}\newline
+{\ttfamily \#include $<$mach/mach4.\+h$>$}\newline
+{\ttfamily \#include $<$mach/pc\+\_\+sample.\+h$>$}\newline
+{\ttfamily \#include $<$cthreads.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$mach/mig\+\_\+support.\+h$>$}\newline
+{\ttfamily \#include $<$../mach/\+R\+P\+C\+\_\+task\+\_\+get\+\_\+sampled\+\_\+pcs.\+c$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a0558c455c9f74ae72296aea5f74c52d3}{M\+A\+X\+\_\+\+P\+C\+\_\+\+S\+A\+M\+P\+L\+ES}}~512	/$\ast$ X\+XX ought \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} be exported \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} kernel \mbox{\hyperlink{structhdr}{hdr}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a10f0e0c7a7a9b2ad7d6cae1ff7b482b6}{\+\_\+\+\_\+mig\+\_\+put\+\_\+reply\+\_\+port}}(\mbox{\hyperlink{structfoo}{foo}})
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_aeb4951ac9e5758742b68db0de3655255}{\+\_\+\+\_\+mig\+\_\+get\+\_\+reply\+\_\+port}}()~profil\+\_\+reply\+\_\+port
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_ad80fdc7a60a8d2257a74ae7cc8078da3}{mig\+\_\+external}}~static
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a3dca1689bc25cd2f63ba938cc9b53821}{weak\+\_\+alias}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a6c1167ee601fca459cef877aa6a630e4}{\+\_\+\+\_\+vm\+\_\+deallocate\+\_\+rpc}}~profil\+\_\+vm\+\_\+deallocate
+\item 
+\#define \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_ac585258eda33eeb2b7c49425155c103c}{\+\_\+\+\_\+task\+\_\+get\+\_\+sampled\+\_\+pcs}}~profil\+\_\+task\+\_\+get\+\_\+sampled\+\_\+pcs
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a42fb242b60052d9ce0a94323997f0b18}{\+\_\+\+\_\+profile\+\_\+frequency}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a2f7a9abb5ddb88c588a4a0e0606b5b45}{libc\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2prof-freq_8c_a42fb242b60052d9ce0a94323997f0b18}{\+\_\+\+\_\+profile\+\_\+frequency}})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a2e1d35f6103aba656e0bd98f6c722bb6}{weak\+\_\+alias}} (\mbox{\hyperlink{include_2unistd_8h_a309fbc14f4cfe12c60096fbfae69f87d}{\+\_\+\+\_\+profil}}, profil)
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a210c5eb929279c00bf13df533548e0b2}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+prepare\+\_\+hook, fork\+\_\+profil\+\_\+prepare)
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a5b3ece72765811e51107843c7cd72378}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+parent\+\_\+hook, fork\+\_\+profil\+\_\+parent)
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2profil_8c_a7f43ac94c9f9638e416f0c0c8ca69f21}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook, fork\+\_\+profil\+\_\+child)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_aeb4951ac9e5758742b68db0de3655255}\label{sysdeps_2mach_2hurd_2profil_8c_aeb4951ac9e5758742b68db0de3655255}} 
+\index{profil.c@{profil.c}!\_\_mig\_get\_reply\_port@{\_\_mig\_get\_reply\_port}}
+\index{\_\_mig\_get\_reply\_port@{\_\_mig\_get\_reply\_port}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{\_\_mig\_get\_reply\_port}{\_\_mig\_get\_reply\_port}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+mig\+\_\+get\+\_\+reply\+\_\+port(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} }\end{DoxyParamCaption})~profil\+\_\+reply\+\_\+port}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a10f0e0c7a7a9b2ad7d6cae1ff7b482b6}\label{sysdeps_2mach_2hurd_2profil_8c_a10f0e0c7a7a9b2ad7d6cae1ff7b482b6}} 
+\index{profil.c@{profil.c}!\_\_mig\_put\_reply\_port@{\_\_mig\_put\_reply\_port}}
+\index{\_\_mig\_put\_reply\_port@{\_\_mig\_put\_reply\_port}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{\_\_mig\_put\_reply\_port}{\_\_mig\_put\_reply\_port}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+mig\+\_\+put\+\_\+reply\+\_\+port(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfoo}{foo}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_ac585258eda33eeb2b7c49425155c103c}\label{sysdeps_2mach_2hurd_2profil_8c_ac585258eda33eeb2b7c49425155c103c}} 
+\index{profil.c@{profil.c}!\_\_task\_get\_sampled\_pcs@{\_\_task\_get\_sampled\_pcs}}
+\index{\_\_task\_get\_sampled\_pcs@{\_\_task\_get\_sampled\_pcs}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{\_\_task\_get\_sampled\_pcs}{\_\_task\_get\_sampled\_pcs}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+task\+\_\+get\+\_\+sampled\+\_\+pcs~profil\+\_\+task\+\_\+get\+\_\+sampled\+\_\+pcs}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a6c1167ee601fca459cef877aa6a630e4}\label{sysdeps_2mach_2hurd_2profil_8c_a6c1167ee601fca459cef877aa6a630e4}} 
+\index{profil.c@{profil.c}!\_\_vm\_deallocate\_rpc@{\_\_vm\_deallocate\_rpc}}
+\index{\_\_vm\_deallocate\_rpc@{\_\_vm\_deallocate\_rpc}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{\_\_vm\_deallocate\_rpc}{\_\_vm\_deallocate\_rpc}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+vm\+\_\+deallocate\+\_\+rpc~profil\+\_\+vm\+\_\+deallocate}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a0558c455c9f74ae72296aea5f74c52d3}\label{sysdeps_2mach_2hurd_2profil_8c_a0558c455c9f74ae72296aea5f74c52d3}} 
+\index{profil.c@{profil.c}!MAX\_PC\_SAMPLES@{MAX\_PC\_SAMPLES}}
+\index{MAX\_PC\_SAMPLES@{MAX\_PC\_SAMPLES}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_PC\_SAMPLES}{MAX\_PC\_SAMPLES}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+P\+C\+\_\+\+S\+A\+M\+P\+L\+ES~512	/$\ast$ X\+XX ought \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} be exported \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} kernel \mbox{\hyperlink{structhdr}{hdr}} $\ast$/}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_ad80fdc7a60a8d2257a74ae7cc8078da3}\label{sysdeps_2mach_2hurd_2profil_8c_ad80fdc7a60a8d2257a74ae7cc8078da3}} 
+\index{profil.c@{profil.c}!mig\_external@{mig\_external}}
+\index{mig\_external@{mig\_external}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{mig\_external}{mig\_external}}
+{\footnotesize\ttfamily \#define mig\+\_\+external~static}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a3dca1689bc25cd2f63ba938cc9b53821}\label{sysdeps_2mach_2hurd_2profil_8c_a3dca1689bc25cd2f63ba938cc9b53821}} 
+\index{profil.c@{profil.c}!weak\_alias@{weak\_alias}}
+\index{weak\_alias@{weak\_alias}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{weak\_alias}{weak\_alias}}
+{\footnotesize\ttfamily \#define weak\+\_\+alias(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a42fb242b60052d9ce0a94323997f0b18}\label{sysdeps_2mach_2hurd_2profil_8c_a42fb242b60052d9ce0a94323997f0b18}} 
+\index{profil.c@{profil.c}!\_\_profile\_frequency@{\_\_profile\_frequency}}
+\index{\_\_profile\_frequency@{\_\_profile\_frequency}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{\_\_profile\_frequency()}{\_\_profile\_frequency()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+profile\+\_\+frequency (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a2f7a9abb5ddb88c588a4a0e0606b5b45}\label{sysdeps_2mach_2hurd_2profil_8c_a2f7a9abb5ddb88c588a4a0e0606b5b45}} 
+\index{profil.c@{profil.c}!libc\_hidden\_def@{libc\_hidden\_def}}
+\index{libc\_hidden\_def@{libc\_hidden\_def}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_def()}{libc\_hidden\_def()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2prof-freq_8c_a42fb242b60052d9ce0a94323997f0b18}{\+\_\+\+\_\+profile\+\_\+frequency}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a7f43ac94c9f9638e416f0c0c8ca69f21}\label{sysdeps_2mach_2hurd_2profil_8c_a7f43ac94c9f9638e416f0c0c8ca69f21}} 
+\index{profil.c@{profil.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook}]{,  }\item[{fork\+\_\+profil\+\_\+child}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a5b3ece72765811e51107843c7cd72378}\label{sysdeps_2mach_2hurd_2profil_8c_a5b3ece72765811e51107843c7cd72378}} 
+\index{profil.c@{profil.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+parent\+\_\+hook}]{,  }\item[{fork\+\_\+profil\+\_\+parent}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a210c5eb929279c00bf13df533548e0b2}\label{sysdeps_2mach_2hurd_2profil_8c_a210c5eb929279c00bf13df533548e0b2}} 
+\index{profil.c@{profil.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+prepare\+\_\+hook}]{,  }\item[{fork\+\_\+profil\+\_\+prepare}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2profil_8c_a2e1d35f6103aba656e0bd98f6c722bb6}\label{sysdeps_2mach_2hurd_2profil_8c_a2e1d35f6103aba656e0bd98f6c722bb6}} 
+\index{profil.c@{profil.c}!weak\_alias@{weak\_alias}}
+\index{weak\_alias@{weak\_alias}!profil.c@{profil.c}}
+\doxysubsubsection{\texorpdfstring{weak\_alias()}{weak\_alias()}}
+{\footnotesize\ttfamily weak\+\_\+alias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2unistd_8h_a309fbc14f4cfe12c60096fbfae69f87d}{\+\_\+\+\_\+profil}}}]{,  }\item[{profil}]{ }\end{DoxyParamCaption})}
+

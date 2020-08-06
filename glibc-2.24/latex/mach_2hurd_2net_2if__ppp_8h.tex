@@ -1,0 +1,488 @@
+\hypertarget{mach_2hurd_2net_2if__ppp_8h}{}\doxysection{sysdeps/mach/hurd/net/if\+\_\+ppp.h File Reference}
+\label{mach_2hurd_2net_2if__ppp_8h}\index{sysdeps/mach/hurd/net/if\_ppp.h@{sysdeps/mach/hurd/net/if\_ppp.h}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/cdefs.\+h$>$}\newline
+{\ttfamily \#include $<$net/if.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$net/ppp\+\_\+defs.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structnpioctl}{npioctl}}
+\item 
+struct \mbox{\hyperlink{structppp__option__data}{ppp\+\_\+option\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structifpppstatsreq}{ifpppstatsreq}}
+\item 
+struct \mbox{\hyperlink{structifpppcstatsreq}{ifpppcstatsreq}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_acc51e91347721a8255ae891ddc43636b}{P\+P\+P\+\_\+\+M\+TU}}~1500	/$\ast$ Default M\+TU (\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} of Info field) $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a9d023b7c9d973eb279f806c5bddd177e}{P\+P\+P\+\_\+\+M\+A\+X\+M\+RU}}~65000	/$\ast$ Largest M\+RU we allow $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a4c0499c6b43c70fdf892412184de0fb9}{P\+P\+P\+\_\+\+V\+E\+R\+S\+I\+ON}}~\char`\"{}2.\+2.\+0\char`\"{}
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a0f1647c8eb26a7b2c2cd6628a5234d2d}{P\+P\+P\+\_\+\+M\+A\+G\+IC}}~0x5002	/$\ast$ Magic value for the ppp structure $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a86582e4159eff0a54350e54595278672}{P\+R\+O\+T\+O\+\_\+\+I\+PX}}~0x002b	/$\ast$ protocol numbers $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_aa88b7b37e9f629a8b255ed77038130f2}{P\+R\+O\+T\+O\+\_\+\+D\+N\+A\+\_\+\+RT}}~0x0027  /$\ast$ D\+N\+A Routing $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ab9cfb17247a5d16e92edd703017230dc}{S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+P\+R\+OT}}~0x00000001	/$\ast$ protocol compression (output) $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a62dbf046c5e536a7622439f7081af6e6}{S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+AC}}~0x00000002	/$\ast$ header compression (output) $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a6a0a81f3da846d76feeb5ec4c08c3cd2}{S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+T\+CP}}~0x00000004	/$\ast$ T\+C\+P (\+V\+J) compression (output) $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a3112c3988f4c520445fccd2bb3ea8d0e}{S\+C\+\_\+\+N\+O\+\_\+\+T\+C\+P\+\_\+\+C\+C\+ID}}~0x00000008	/$\ast$ disable V\+J connection-\/id comp. $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ae5f3277d8f0dde2859f57c5de7f0ce5e}{S\+C\+\_\+\+R\+E\+J\+\_\+\+C\+O\+M\+P\+\_\+\+AC}}~0x00000010	/$\ast$ reject adrs/ctrl comp. on input $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a4c81d386382e2bbd387affbec7b53ebf}{S\+C\+\_\+\+R\+E\+J\+\_\+\+C\+O\+M\+P\+\_\+\+T\+CP}}~0x00000020	/$\ast$ reject T\+C\+P (\+V\+J) comp. on input $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a58da3d3325d10d8e19734642cd1061c0}{S\+C\+\_\+\+C\+C\+P\+\_\+\+O\+P\+EN}}~0x00000040	/$\ast$ Look at C\+C\+P packets $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_aa2030ad13722fb964fe16a21093588d5}{S\+C\+\_\+\+C\+C\+P\+\_\+\+UP}}~0x00000080	/$\ast$ May send/recv compressed packets $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a0566a454ef658ee1cef5e03d1171f1c2}{S\+C\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+IP}}~0x00000100	/$\ast$ I\+P packets may be exchanged $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ab95ce66d692ac2e0d1aef75a258786a1}{S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+R\+UN}}~0x00001000	/$\ast$ compressor has been inited $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a81787037da474bf1417e0000cbda09cf}{S\+C\+\_\+\+D\+E\+C\+O\+M\+P\+\_\+\+R\+UN}}~0x00002000	/$\ast$ decompressor has been inited $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a36341f3544866aca28dbc021de85744c}{S\+C\+\_\+\+D\+E\+B\+UG}}~0x00010000	/$\ast$ enable debug messages $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_abac43056f66f8087e76aec16e17324ab}{S\+C\+\_\+\+L\+O\+G\+\_\+\+I\+N\+P\+KT}}~0x00020000	/$\ast$ log contents of good pkts recvd $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a7579ec226f5ac09a2a5a0b8afa8ff1f2}{S\+C\+\_\+\+L\+O\+G\+\_\+\+O\+U\+T\+P\+KT}}~0x00040000	/$\ast$ log contents of pkts sent $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a00f64564a2f47de578f6457ad7b03078}{S\+C\+\_\+\+L\+O\+G\+\_\+\+R\+A\+W\+IN}}~0x00080000	/$\ast$ log all chars received $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a375c9d392cad871d07bcf7e8f1da57a0}{S\+C\+\_\+\+L\+O\+G\+\_\+\+F\+L\+U\+SH}}~0x00100000	/$\ast$ log all chars flushed $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a07ad4d8122995e60d77eb208da08dbee}{S\+C\+\_\+\+M\+A\+SK}}~0x0f\+E0ffff	/$\ast$ bits that user can change $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a40c48261190a14512c83810207372664}{S\+C\+\_\+\+E\+S\+C\+A\+P\+ED}}~0x80000000	/$\ast$ saw a P\+P\+P\+\_\+\+E\+S\+C\+A\+P\+E $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a356c4f175dc16707a3a691d3631410bb}{S\+C\+\_\+\+F\+L\+U\+SH}}~0x40000000	/$\ast$ flush input until next P\+P\+P\+\_\+\+F\+L\+A\+G $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ad46f8af76cc4f0bfadd08dab550750df}{S\+C\+\_\+\+V\+J\+\_\+\+R\+E\+S\+ET}}~0x20000000	/$\ast$ Need to reset the V\+J decompressor $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a815deefca7330d367c7b7cd804990171}{S\+C\+\_\+\+X\+M\+I\+T\+\_\+\+B\+U\+SY}}~0x10000000	/$\ast$ ppp\+\_\+write\+\_\+wakeup is active $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_aacb56db368686ab456e31cd192c70458}{S\+C\+\_\+\+R\+C\+V\+\_\+\+O\+D\+DP}}~0x08000000	/$\ast$ have rcvd char with odd parity $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ae9252e84f2f7634f827e73d0c022bb7e}{S\+C\+\_\+\+R\+C\+V\+\_\+\+E\+V\+NP}}~0x04000000	/$\ast$ have rcvd char with even parity $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a17f27df9d54afa8e92d6cda98d7bd31d}{S\+C\+\_\+\+R\+C\+V\+\_\+\+B7\+\_\+1}}~0x02000000	/$\ast$ have rcvd char with bit 7 = 1 $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a2cb160da70dcb5e0ca69a67af5ef3318}{S\+C\+\_\+\+R\+C\+V\+\_\+\+B7\+\_\+0}}~0x01000000	/$\ast$ have rcvd char with bit 7 = 0 $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a30ed07450f21c56d199c1ec17dc7de62}{S\+C\+\_\+\+D\+C\+\_\+\+F\+E\+R\+R\+OR}}~0x00800000	/$\ast$ fatal decomp error detected $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a6458c6c3365194034ec1b51e1316095c}{S\+C\+\_\+\+D\+C\+\_\+\+E\+R\+R\+OR}}~0x00400000	/$\ast$ non-\/fatal decomp error detected $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a6eafa01c427ee6fb12a80ea63a37f524}{ifr\+\_\+\+\_\+name}}~b.\+ifr\+\_\+ifrn.\+ifrn\+\_\+name
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a16b773d0fcc4e72776d536b20693ab03}{stats\+\_\+ptr}}~b.\+ifr\+\_\+ifru.\+ifru\+\_\+data
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a76c0c2a728a0dadf8dcfb4fabcbd8864}{P\+P\+P\+I\+O\+C\+G\+F\+L\+A\+GS}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 90, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get configuration \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ab98d529c257b0ceb418a4930b840afac}{P\+P\+P\+I\+O\+C\+S\+F\+L\+A\+GS}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 89, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set configuration \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_acdf570188c035545b661be9c896cd012}{P\+P\+P\+I\+O\+C\+G\+A\+S\+Y\+N\+C\+M\+AP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 88, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get async \mbox{\hyperlink{structmap}{map}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_adf77408ed970cbf5191404a869b16b03}{P\+P\+P\+I\+O\+C\+S\+A\+S\+Y\+N\+C\+M\+AP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 87, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set async \mbox{\hyperlink{structmap}{map}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a794b0319d1f10a11a67066c20858d53d}{P\+P\+P\+I\+O\+C\+G\+U\+N\+IT}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 86, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get ppp unit \mbox{\hyperlink{unionnumber}{number}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a6d1242b48e5a7d4a47e56e9ef11df58d}{P\+P\+P\+I\+O\+C\+G\+R\+A\+S\+Y\+N\+C\+M\+AP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 85, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get receive async \mbox{\hyperlink{structmap}{map}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a70e99a95a0d82b7fa4944c268fdc9f5e}{P\+P\+P\+I\+O\+C\+S\+R\+A\+S\+Y\+N\+C\+M\+AP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 84, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set receive async \mbox{\hyperlink{structmap}{map}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a0d3bddb2a8b950cfd75c8818d78d1c56}{P\+P\+P\+I\+O\+C\+G\+M\+RU}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 83, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get \mbox{\hyperlink{tst-strftime_8c_a2f9ce5f01c066eb6ef649c9a2b0dbf0e}{max}} receive unit $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a0e735d8c438f6bb5d6645e567b197a27}{P\+P\+P\+I\+O\+C\+S\+M\+RU}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 82, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set \mbox{\hyperlink{tst-strftime_8c_a2f9ce5f01c066eb6ef649c9a2b0dbf0e}{max}} receive unit $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a4637ca2160f15bafa33126cb5e69fb18}{P\+P\+P\+I\+O\+C\+S\+M\+A\+X\+C\+ID}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 81, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set VJ \mbox{\hyperlink{tst-strftime_8c_a2f9ce5f01c066eb6ef649c9a2b0dbf0e}{max}} \mbox{\hyperlink{div__libc_8h_aa78c155592190d9946d632bdf4d82220}{slot}} \mbox{\hyperlink{ruserpass_8c_a77ceac8d6af195fe72f95f6afd87c45e}{ID}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ad752a01170dadddc4e0a90cd37921cb8}{P\+P\+P\+I\+O\+C\+G\+X\+A\+S\+Y\+N\+C\+M\+AP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 80, ext\+\_\+accm) /$\ast$ get extended A\+C\+CM $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a2594706e7c0ff4a482260cbcd8f9488c}{P\+P\+P\+I\+O\+C\+S\+X\+A\+S\+Y\+N\+C\+M\+AP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 79, ext\+\_\+accm) /$\ast$ set extended A\+C\+CM $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ae7502046f439a86ed02d37f6a73fc28a}{P\+P\+P\+I\+O\+C\+X\+F\+E\+R\+U\+N\+IT}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a07792d882badfbf686051cd670b6bef0}{\+\_\+\+IO}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 78)		/$\ast$ transfer P\+PP unit $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a18360cbd9411bf5d61ff7d44e0739034}{P\+P\+P\+I\+O\+C\+S\+C\+O\+M\+P\+R\+E\+SS}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 77, struct \mbox{\hyperlink{structppp__option__data}{ppp\+\_\+option\+\_\+data}})
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a9e9392872f7b4c08778794c0d0f01da7}{P\+P\+P\+I\+O\+C\+G\+N\+P\+M\+O\+DE}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a399aae2dd08561c675fb160394067f39}{\+\_\+\+I\+O\+WR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 76, struct \mbox{\hyperlink{structnpioctl}{npioctl}}) /$\ast$ get \mbox{\hyperlink{posix_2tst-sysconf_8c_abe384ab3ede4a3ae3fd47e446da11be6}{NP}} \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a721717f963900b9cdb389f4e58f870bf}{P\+P\+P\+I\+O\+C\+S\+N\+P\+M\+O\+DE}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 75, struct \mbox{\hyperlink{structnpioctl}{npioctl}})  /$\ast$ set \mbox{\hyperlink{posix_2tst-sysconf_8c_abe384ab3ede4a3ae3fd47e446da11be6}{NP}} \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a01bd7f0d2d1a4f6249ca3e2827ca9ff2}{P\+P\+P\+I\+O\+C\+G\+D\+E\+B\+UG}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 65, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ Read \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}} \mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_aacc3ddfc75995faf4c838faf98ffbe67}{P\+P\+P\+I\+O\+C\+S\+D\+E\+B\+UG}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 64, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ Set \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}} \mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_aeca2b52f73391dccf9f49be74d9e3ab2}{P\+P\+P\+I\+O\+C\+G\+I\+D\+LE}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 63, struct ppp\+\_\+idle) /$\ast$ get idle \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a591a33967674922f1b50f0bdb875ccda}{S\+I\+O\+C\+G\+P\+P\+P\+S\+T\+A\+TS}}~(\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2bits_2ioctls_8h_a4837e9a27230a0e5d202bc875fdc82e1}{S\+I\+O\+C\+D\+E\+V\+P\+R\+I\+V\+A\+TE}} + 0)
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ad5d20505aa8f7adba8c31675af4c33be}{S\+I\+O\+C\+G\+P\+P\+P\+V\+ER}}~(\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2bits_2ioctls_8h_a4837e9a27230a0e5d202bc875fdc82e1}{S\+I\+O\+C\+D\+E\+V\+P\+R\+I\+V\+A\+TE}} + 1)  /$\ast$ N\+E\+V\+ER change this!! $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_a71df72b5b8983caf775176bef723d714}{S\+I\+O\+C\+G\+P\+P\+P\+C\+S\+T\+A\+TS}}~(\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2bits_2ioctls_8h_a4837e9a27230a0e5d202bc875fdc82e1}{S\+I\+O\+C\+D\+E\+V\+P\+R\+I\+V\+A\+TE}} + 2)
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2if__ppp_8h_ac1a74eb8a69241b4c7b5b4705560e659}{ifr\+\_\+mtu}}~ifr\+\_\+ifru.\+ifru\+\_\+metric
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a6eafa01c427ee6fb12a80ea63a37f524}\label{mach_2hurd_2net_2if__ppp_8h_a6eafa01c427ee6fb12a80ea63a37f524}} 
+\index{if\_ppp.h@{if\_ppp.h}!ifr\_\_name@{ifr\_\_name}}
+\index{ifr\_\_name@{ifr\_\_name}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{ifr\_\_name}{ifr\_\_name}}
+{\footnotesize\ttfamily \#define ifr\+\_\+\+\_\+name~b.\+ifr\+\_\+ifrn.\+ifrn\+\_\+name}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ac1a74eb8a69241b4c7b5b4705560e659}\label{mach_2hurd_2net_2if__ppp_8h_ac1a74eb8a69241b4c7b5b4705560e659}} 
+\index{if\_ppp.h@{if\_ppp.h}!ifr\_mtu@{ifr\_mtu}}
+\index{ifr\_mtu@{ifr\_mtu}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{ifr\_mtu}{ifr\_mtu}}
+{\footnotesize\ttfamily \#define ifr\+\_\+mtu~ifr\+\_\+ifru.\+ifru\+\_\+metric}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a0f1647c8eb26a7b2c2cd6628a5234d2d}\label{mach_2hurd_2net_2if__ppp_8h_a0f1647c8eb26a7b2c2cd6628a5234d2d}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPP\_MAGIC@{PPP\_MAGIC}}
+\index{PPP\_MAGIC@{PPP\_MAGIC}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPP\_MAGIC}{PPP\_MAGIC}}
+{\footnotesize\ttfamily \#define P\+P\+P\+\_\+\+M\+A\+G\+IC~0x5002	/$\ast$ Magic value for the ppp structure $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a9d023b7c9d973eb279f806c5bddd177e}\label{mach_2hurd_2net_2if__ppp_8h_a9d023b7c9d973eb279f806c5bddd177e}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPP\_MAXMRU@{PPP\_MAXMRU}}
+\index{PPP\_MAXMRU@{PPP\_MAXMRU}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPP\_MAXMRU}{PPP\_MAXMRU}}
+{\footnotesize\ttfamily \#define P\+P\+P\+\_\+\+M\+A\+X\+M\+RU~65000	/$\ast$ Largest M\+RU we allow $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_acc51e91347721a8255ae891ddc43636b}\label{mach_2hurd_2net_2if__ppp_8h_acc51e91347721a8255ae891ddc43636b}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPP\_MTU@{PPP\_MTU}}
+\index{PPP\_MTU@{PPP\_MTU}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPP\_MTU}{PPP\_MTU}}
+{\footnotesize\ttfamily \#define P\+P\+P\+\_\+\+M\+TU~1500	/$\ast$ Default M\+TU (\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} of Info field) $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a4c0499c6b43c70fdf892412184de0fb9}\label{mach_2hurd_2net_2if__ppp_8h_a4c0499c6b43c70fdf892412184de0fb9}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPP\_VERSION@{PPP\_VERSION}}
+\index{PPP\_VERSION@{PPP\_VERSION}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPP\_VERSION}{PPP\_VERSION}}
+{\footnotesize\ttfamily \#define P\+P\+P\+\_\+\+V\+E\+R\+S\+I\+ON~\char`\"{}2.\+2.\+0\char`\"{}}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_acdf570188c035545b661be9c896cd012}\label{mach_2hurd_2net_2if__ppp_8h_acdf570188c035545b661be9c896cd012}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGASYNCMAP@{PPPIOCGASYNCMAP}}
+\index{PPPIOCGASYNCMAP@{PPPIOCGASYNCMAP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGASYNCMAP}{PPPIOCGASYNCMAP}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+A\+S\+Y\+N\+C\+M\+AP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 88, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get async \mbox{\hyperlink{structmap}{map}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a01bd7f0d2d1a4f6249ca3e2827ca9ff2}\label{mach_2hurd_2net_2if__ppp_8h_a01bd7f0d2d1a4f6249ca3e2827ca9ff2}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGDEBUG@{PPPIOCGDEBUG}}
+\index{PPPIOCGDEBUG@{PPPIOCGDEBUG}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGDEBUG}{PPPIOCGDEBUG}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+D\+E\+B\+UG~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 65, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ Read \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}} \mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a76c0c2a728a0dadf8dcfb4fabcbd8864}\label{mach_2hurd_2net_2if__ppp_8h_a76c0c2a728a0dadf8dcfb4fabcbd8864}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGFLAGS@{PPPIOCGFLAGS}}
+\index{PPPIOCGFLAGS@{PPPIOCGFLAGS}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGFLAGS}{PPPIOCGFLAGS}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+F\+L\+A\+GS~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 90, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get configuration \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_aeca2b52f73391dccf9f49be74d9e3ab2}\label{mach_2hurd_2net_2if__ppp_8h_aeca2b52f73391dccf9f49be74d9e3ab2}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGIDLE@{PPPIOCGIDLE}}
+\index{PPPIOCGIDLE@{PPPIOCGIDLE}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGIDLE}{PPPIOCGIDLE}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+I\+D\+LE~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 63, struct ppp\+\_\+idle) /$\ast$ get idle \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a0d3bddb2a8b950cfd75c8818d78d1c56}\label{mach_2hurd_2net_2if__ppp_8h_a0d3bddb2a8b950cfd75c8818d78d1c56}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGMRU@{PPPIOCGMRU}}
+\index{PPPIOCGMRU@{PPPIOCGMRU}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGMRU}{PPPIOCGMRU}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+M\+RU~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 83, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get \mbox{\hyperlink{tst-strftime_8c_a2f9ce5f01c066eb6ef649c9a2b0dbf0e}{max}} receive unit $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a9e9392872f7b4c08778794c0d0f01da7}\label{mach_2hurd_2net_2if__ppp_8h_a9e9392872f7b4c08778794c0d0f01da7}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGNPMODE@{PPPIOCGNPMODE}}
+\index{PPPIOCGNPMODE@{PPPIOCGNPMODE}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGNPMODE}{PPPIOCGNPMODE}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+N\+P\+M\+O\+DE~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a399aae2dd08561c675fb160394067f39}{\+\_\+\+I\+O\+WR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 76, struct \mbox{\hyperlink{structnpioctl}{npioctl}}) /$\ast$ get \mbox{\hyperlink{posix_2tst-sysconf_8c_abe384ab3ede4a3ae3fd47e446da11be6}{NP}} \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a6d1242b48e5a7d4a47e56e9ef11df58d}\label{mach_2hurd_2net_2if__ppp_8h_a6d1242b48e5a7d4a47e56e9ef11df58d}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGRASYNCMAP@{PPPIOCGRASYNCMAP}}
+\index{PPPIOCGRASYNCMAP@{PPPIOCGRASYNCMAP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGRASYNCMAP}{PPPIOCGRASYNCMAP}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+R\+A\+S\+Y\+N\+C\+M\+AP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 85, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get receive async \mbox{\hyperlink{structmap}{map}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a794b0319d1f10a11a67066c20858d53d}\label{mach_2hurd_2net_2if__ppp_8h_a794b0319d1f10a11a67066c20858d53d}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGUNIT@{PPPIOCGUNIT}}
+\index{PPPIOCGUNIT@{PPPIOCGUNIT}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGUNIT}{PPPIOCGUNIT}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+U\+N\+IT~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 86, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ get ppp unit \mbox{\hyperlink{unionnumber}{number}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ad752a01170dadddc4e0a90cd37921cb8}\label{mach_2hurd_2net_2if__ppp_8h_ad752a01170dadddc4e0a90cd37921cb8}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCGXASYNCMAP@{PPPIOCGXASYNCMAP}}
+\index{PPPIOCGXASYNCMAP@{PPPIOCGXASYNCMAP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCGXASYNCMAP}{PPPIOCGXASYNCMAP}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+G\+X\+A\+S\+Y\+N\+C\+M\+AP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 80, ext\+\_\+accm) /$\ast$ get extended A\+C\+CM $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_adf77408ed970cbf5191404a869b16b03}\label{mach_2hurd_2net_2if__ppp_8h_adf77408ed970cbf5191404a869b16b03}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSASYNCMAP@{PPPIOCSASYNCMAP}}
+\index{PPPIOCSASYNCMAP@{PPPIOCSASYNCMAP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSASYNCMAP}{PPPIOCSASYNCMAP}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+A\+S\+Y\+N\+C\+M\+AP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 87, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set async \mbox{\hyperlink{structmap}{map}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a18360cbd9411bf5d61ff7d44e0739034}\label{mach_2hurd_2net_2if__ppp_8h_a18360cbd9411bf5d61ff7d44e0739034}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSCOMPRESS@{PPPIOCSCOMPRESS}}
+\index{PPPIOCSCOMPRESS@{PPPIOCSCOMPRESS}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSCOMPRESS}{PPPIOCSCOMPRESS}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+C\+O\+M\+P\+R\+E\+SS~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 77, struct \mbox{\hyperlink{structppp__option__data}{ppp\+\_\+option\+\_\+data}})}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_aacc3ddfc75995faf4c838faf98ffbe67}\label{mach_2hurd_2net_2if__ppp_8h_aacc3ddfc75995faf4c838faf98ffbe67}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSDEBUG@{PPPIOCSDEBUG}}
+\index{PPPIOCSDEBUG@{PPPIOCSDEBUG}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSDEBUG}{PPPIOCSDEBUG}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+D\+E\+B\+UG~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 64, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ Set \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}} \mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ab98d529c257b0ceb418a4930b840afac}\label{mach_2hurd_2net_2if__ppp_8h_ab98d529c257b0ceb418a4930b840afac}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSFLAGS@{PPPIOCSFLAGS}}
+\index{PPPIOCSFLAGS@{PPPIOCSFLAGS}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSFLAGS}{PPPIOCSFLAGS}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+F\+L\+A\+GS~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 89, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set configuration \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a4637ca2160f15bafa33126cb5e69fb18}\label{mach_2hurd_2net_2if__ppp_8h_a4637ca2160f15bafa33126cb5e69fb18}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSMAXCID@{PPPIOCSMAXCID}}
+\index{PPPIOCSMAXCID@{PPPIOCSMAXCID}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSMAXCID}{PPPIOCSMAXCID}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+M\+A\+X\+C\+ID~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 81, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set VJ \mbox{\hyperlink{tst-strftime_8c_a2f9ce5f01c066eb6ef649c9a2b0dbf0e}{max}} \mbox{\hyperlink{div__libc_8h_aa78c155592190d9946d632bdf4d82220}{slot}} \mbox{\hyperlink{ruserpass_8c_a77ceac8d6af195fe72f95f6afd87c45e}{ID}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a0e735d8c438f6bb5d6645e567b197a27}\label{mach_2hurd_2net_2if__ppp_8h_a0e735d8c438f6bb5d6645e567b197a27}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSMRU@{PPPIOCSMRU}}
+\index{PPPIOCSMRU@{PPPIOCSMRU}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSMRU}{PPPIOCSMRU}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+M\+RU~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 82, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set \mbox{\hyperlink{tst-strftime_8c_a2f9ce5f01c066eb6ef649c9a2b0dbf0e}{max}} receive unit $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a721717f963900b9cdb389f4e58f870bf}\label{mach_2hurd_2net_2if__ppp_8h_a721717f963900b9cdb389f4e58f870bf}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSNPMODE@{PPPIOCSNPMODE}}
+\index{PPPIOCSNPMODE@{PPPIOCSNPMODE}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSNPMODE}{PPPIOCSNPMODE}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+N\+P\+M\+O\+DE~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 75, struct \mbox{\hyperlink{structnpioctl}{npioctl}})  /$\ast$ set \mbox{\hyperlink{posix_2tst-sysconf_8c_abe384ab3ede4a3ae3fd47e446da11be6}{NP}} \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a70e99a95a0d82b7fa4944c268fdc9f5e}\label{mach_2hurd_2net_2if__ppp_8h_a70e99a95a0d82b7fa4944c268fdc9f5e}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSRASYNCMAP@{PPPIOCSRASYNCMAP}}
+\index{PPPIOCSRASYNCMAP@{PPPIOCSRASYNCMAP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSRASYNCMAP}{PPPIOCSRASYNCMAP}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+R\+A\+S\+Y\+N\+C\+M\+AP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 84, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}})	/$\ast$ set receive async \mbox{\hyperlink{structmap}{map}} $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a2594706e7c0ff4a482260cbcd8f9488c}\label{mach_2hurd_2net_2if__ppp_8h_a2594706e7c0ff4a482260cbcd8f9488c}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCSXASYNCMAP@{PPPIOCSXASYNCMAP}}
+\index{PPPIOCSXASYNCMAP@{PPPIOCSXASYNCMAP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCSXASYNCMAP}{PPPIOCSXASYNCMAP}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+S\+X\+A\+S\+Y\+N\+C\+M\+AP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 79, ext\+\_\+accm) /$\ast$ set extended A\+C\+CM $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ae7502046f439a86ed02d37f6a73fc28a}\label{mach_2hurd_2net_2if__ppp_8h_ae7502046f439a86ed02d37f6a73fc28a}} 
+\index{if\_ppp.h@{if\_ppp.h}!PPPIOCXFERUNIT@{PPPIOCXFERUNIT}}
+\index{PPPIOCXFERUNIT@{PPPIOCXFERUNIT}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PPPIOCXFERUNIT}{PPPIOCXFERUNIT}}
+{\footnotesize\ttfamily \#define P\+P\+P\+I\+O\+C\+X\+F\+E\+R\+U\+N\+IT~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a07792d882badfbf686051cd670b6bef0}{\+\_\+\+IO}}(\textquotesingle{}\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}\textquotesingle{}, 78)		/$\ast$ transfer P\+PP unit $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_aa88b7b37e9f629a8b255ed77038130f2}\label{mach_2hurd_2net_2if__ppp_8h_aa88b7b37e9f629a8b255ed77038130f2}} 
+\index{if\_ppp.h@{if\_ppp.h}!PROTO\_DNA\_RT@{PROTO\_DNA\_RT}}
+\index{PROTO\_DNA\_RT@{PROTO\_DNA\_RT}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PROTO\_DNA\_RT}{PROTO\_DNA\_RT}}
+{\footnotesize\ttfamily \#define P\+R\+O\+T\+O\+\_\+\+D\+N\+A\+\_\+\+RT~0x0027  /$\ast$ D\+N\+A Routing $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a86582e4159eff0a54350e54595278672}\label{mach_2hurd_2net_2if__ppp_8h_a86582e4159eff0a54350e54595278672}} 
+\index{if\_ppp.h@{if\_ppp.h}!PROTO\_IPX@{PROTO\_IPX}}
+\index{PROTO\_IPX@{PROTO\_IPX}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{PROTO\_IPX}{PROTO\_IPX}}
+{\footnotesize\ttfamily \#define P\+R\+O\+T\+O\+\_\+\+I\+PX~0x002b	/$\ast$ protocol numbers $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a58da3d3325d10d8e19734642cd1061c0}\label{mach_2hurd_2net_2if__ppp_8h_a58da3d3325d10d8e19734642cd1061c0}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_CCP\_OPEN@{SC\_CCP\_OPEN}}
+\index{SC\_CCP\_OPEN@{SC\_CCP\_OPEN}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_CCP\_OPEN}{SC\_CCP\_OPEN}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+C\+C\+P\+\_\+\+O\+P\+EN~0x00000040	/$\ast$ Look at C\+C\+P packets $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_aa2030ad13722fb964fe16a21093588d5}\label{mach_2hurd_2net_2if__ppp_8h_aa2030ad13722fb964fe16a21093588d5}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_CCP\_UP@{SC\_CCP\_UP}}
+\index{SC\_CCP\_UP@{SC\_CCP\_UP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_CCP\_UP}{SC\_CCP\_UP}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+C\+C\+P\+\_\+\+UP~0x00000080	/$\ast$ May send/recv compressed packets $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a62dbf046c5e536a7622439f7081af6e6}\label{mach_2hurd_2net_2if__ppp_8h_a62dbf046c5e536a7622439f7081af6e6}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_COMP\_AC@{SC\_COMP\_AC}}
+\index{SC\_COMP\_AC@{SC\_COMP\_AC}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_COMP\_AC}{SC\_COMP\_AC}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+AC~0x00000002	/$\ast$ header compression (output) $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ab9cfb17247a5d16e92edd703017230dc}\label{mach_2hurd_2net_2if__ppp_8h_ab9cfb17247a5d16e92edd703017230dc}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_COMP\_PROT@{SC\_COMP\_PROT}}
+\index{SC\_COMP\_PROT@{SC\_COMP\_PROT}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_COMP\_PROT}{SC\_COMP\_PROT}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+P\+R\+OT~0x00000001	/$\ast$ protocol compression (output) $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ab95ce66d692ac2e0d1aef75a258786a1}\label{mach_2hurd_2net_2if__ppp_8h_ab95ce66d692ac2e0d1aef75a258786a1}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_COMP\_RUN@{SC\_COMP\_RUN}}
+\index{SC\_COMP\_RUN@{SC\_COMP\_RUN}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_COMP\_RUN}{SC\_COMP\_RUN}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+R\+UN~0x00001000	/$\ast$ compressor has been inited $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a6a0a81f3da846d76feeb5ec4c08c3cd2}\label{mach_2hurd_2net_2if__ppp_8h_a6a0a81f3da846d76feeb5ec4c08c3cd2}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_COMP\_TCP@{SC\_COMP\_TCP}}
+\index{SC\_COMP\_TCP@{SC\_COMP\_TCP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_COMP\_TCP}{SC\_COMP\_TCP}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+C\+O\+M\+P\+\_\+\+T\+CP~0x00000004	/$\ast$ T\+C\+P (\+V\+J) compression (output) $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a6458c6c3365194034ec1b51e1316095c}\label{mach_2hurd_2net_2if__ppp_8h_a6458c6c3365194034ec1b51e1316095c}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_DC\_ERROR@{SC\_DC\_ERROR}}
+\index{SC\_DC\_ERROR@{SC\_DC\_ERROR}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_DC\_ERROR}{SC\_DC\_ERROR}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+D\+C\+\_\+\+E\+R\+R\+OR~0x00400000	/$\ast$ non-\/fatal decomp error detected $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a30ed07450f21c56d199c1ec17dc7de62}\label{mach_2hurd_2net_2if__ppp_8h_a30ed07450f21c56d199c1ec17dc7de62}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_DC\_FERROR@{SC\_DC\_FERROR}}
+\index{SC\_DC\_FERROR@{SC\_DC\_FERROR}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_DC\_FERROR}{SC\_DC\_FERROR}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+D\+C\+\_\+\+F\+E\+R\+R\+OR~0x00800000	/$\ast$ fatal decomp error detected $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a36341f3544866aca28dbc021de85744c}\label{mach_2hurd_2net_2if__ppp_8h_a36341f3544866aca28dbc021de85744c}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_DEBUG@{SC\_DEBUG}}
+\index{SC\_DEBUG@{SC\_DEBUG}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_DEBUG}{SC\_DEBUG}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+D\+E\+B\+UG~0x00010000	/$\ast$ enable debug messages $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a81787037da474bf1417e0000cbda09cf}\label{mach_2hurd_2net_2if__ppp_8h_a81787037da474bf1417e0000cbda09cf}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_DECOMP\_RUN@{SC\_DECOMP\_RUN}}
+\index{SC\_DECOMP\_RUN@{SC\_DECOMP\_RUN}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_DECOMP\_RUN}{SC\_DECOMP\_RUN}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+D\+E\+C\+O\+M\+P\+\_\+\+R\+UN~0x00002000	/$\ast$ decompressor has been inited $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a0566a454ef658ee1cef5e03d1171f1c2}\label{mach_2hurd_2net_2if__ppp_8h_a0566a454ef658ee1cef5e03d1171f1c2}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_ENABLE\_IP@{SC\_ENABLE\_IP}}
+\index{SC\_ENABLE\_IP@{SC\_ENABLE\_IP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_ENABLE\_IP}{SC\_ENABLE\_IP}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+IP~0x00000100	/$\ast$ I\+P packets may be exchanged $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a40c48261190a14512c83810207372664}\label{mach_2hurd_2net_2if__ppp_8h_a40c48261190a14512c83810207372664}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_ESCAPED@{SC\_ESCAPED}}
+\index{SC\_ESCAPED@{SC\_ESCAPED}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_ESCAPED}{SC\_ESCAPED}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+E\+S\+C\+A\+P\+ED~0x80000000	/$\ast$ saw a P\+P\+P\+\_\+\+E\+S\+C\+A\+P\+E $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a356c4f175dc16707a3a691d3631410bb}\label{mach_2hurd_2net_2if__ppp_8h_a356c4f175dc16707a3a691d3631410bb}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_FLUSH@{SC\_FLUSH}}
+\index{SC\_FLUSH@{SC\_FLUSH}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_FLUSH}{SC\_FLUSH}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+F\+L\+U\+SH~0x40000000	/$\ast$ flush input until next P\+P\+P\+\_\+\+F\+L\+A\+G $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a375c9d392cad871d07bcf7e8f1da57a0}\label{mach_2hurd_2net_2if__ppp_8h_a375c9d392cad871d07bcf7e8f1da57a0}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_LOG\_FLUSH@{SC\_LOG\_FLUSH}}
+\index{SC\_LOG\_FLUSH@{SC\_LOG\_FLUSH}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_LOG\_FLUSH}{SC\_LOG\_FLUSH}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+L\+O\+G\+\_\+\+F\+L\+U\+SH~0x00100000	/$\ast$ log all chars flushed $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_abac43056f66f8087e76aec16e17324ab}\label{mach_2hurd_2net_2if__ppp_8h_abac43056f66f8087e76aec16e17324ab}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_LOG\_INPKT@{SC\_LOG\_INPKT}}
+\index{SC\_LOG\_INPKT@{SC\_LOG\_INPKT}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_LOG\_INPKT}{SC\_LOG\_INPKT}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+L\+O\+G\+\_\+\+I\+N\+P\+KT~0x00020000	/$\ast$ log contents of good pkts recvd $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a7579ec226f5ac09a2a5a0b8afa8ff1f2}\label{mach_2hurd_2net_2if__ppp_8h_a7579ec226f5ac09a2a5a0b8afa8ff1f2}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_LOG\_OUTPKT@{SC\_LOG\_OUTPKT}}
+\index{SC\_LOG\_OUTPKT@{SC\_LOG\_OUTPKT}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_LOG\_OUTPKT}{SC\_LOG\_OUTPKT}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+L\+O\+G\+\_\+\+O\+U\+T\+P\+KT~0x00040000	/$\ast$ log contents of pkts sent $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a00f64564a2f47de578f6457ad7b03078}\label{mach_2hurd_2net_2if__ppp_8h_a00f64564a2f47de578f6457ad7b03078}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_LOG\_RAWIN@{SC\_LOG\_RAWIN}}
+\index{SC\_LOG\_RAWIN@{SC\_LOG\_RAWIN}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_LOG\_RAWIN}{SC\_LOG\_RAWIN}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+L\+O\+G\+\_\+\+R\+A\+W\+IN~0x00080000	/$\ast$ log all chars received $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a07ad4d8122995e60d77eb208da08dbee}\label{mach_2hurd_2net_2if__ppp_8h_a07ad4d8122995e60d77eb208da08dbee}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_MASK@{SC\_MASK}}
+\index{SC\_MASK@{SC\_MASK}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_MASK}{SC\_MASK}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+M\+A\+SK~0x0f\+E0ffff	/$\ast$ bits that user can change $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a3112c3988f4c520445fccd2bb3ea8d0e}\label{mach_2hurd_2net_2if__ppp_8h_a3112c3988f4c520445fccd2bb3ea8d0e}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_NO\_TCP\_CCID@{SC\_NO\_TCP\_CCID}}
+\index{SC\_NO\_TCP\_CCID@{SC\_NO\_TCP\_CCID}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_NO\_TCP\_CCID}{SC\_NO\_TCP\_CCID}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+N\+O\+\_\+\+T\+C\+P\+\_\+\+C\+C\+ID~0x00000008	/$\ast$ disable V\+J connection-\/id comp. $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a2cb160da70dcb5e0ca69a67af5ef3318}\label{mach_2hurd_2net_2if__ppp_8h_a2cb160da70dcb5e0ca69a67af5ef3318}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_RCV\_B7\_0@{SC\_RCV\_B7\_0}}
+\index{SC\_RCV\_B7\_0@{SC\_RCV\_B7\_0}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_RCV\_B7\_0}{SC\_RCV\_B7\_0}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+R\+C\+V\+\_\+\+B7\+\_\+0~0x01000000	/$\ast$ have rcvd char with bit 7 = 0 $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a17f27df9d54afa8e92d6cda98d7bd31d}\label{mach_2hurd_2net_2if__ppp_8h_a17f27df9d54afa8e92d6cda98d7bd31d}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_RCV\_B7\_1@{SC\_RCV\_B7\_1}}
+\index{SC\_RCV\_B7\_1@{SC\_RCV\_B7\_1}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_RCV\_B7\_1}{SC\_RCV\_B7\_1}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+R\+C\+V\+\_\+\+B7\+\_\+1~0x02000000	/$\ast$ have rcvd char with bit 7 = 1 $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ae9252e84f2f7634f827e73d0c022bb7e}\label{mach_2hurd_2net_2if__ppp_8h_ae9252e84f2f7634f827e73d0c022bb7e}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_RCV\_EVNP@{SC\_RCV\_EVNP}}
+\index{SC\_RCV\_EVNP@{SC\_RCV\_EVNP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_RCV\_EVNP}{SC\_RCV\_EVNP}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+R\+C\+V\+\_\+\+E\+V\+NP~0x04000000	/$\ast$ have rcvd char with even parity $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_aacb56db368686ab456e31cd192c70458}\label{mach_2hurd_2net_2if__ppp_8h_aacb56db368686ab456e31cd192c70458}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_RCV\_ODDP@{SC\_RCV\_ODDP}}
+\index{SC\_RCV\_ODDP@{SC\_RCV\_ODDP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_RCV\_ODDP}{SC\_RCV\_ODDP}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+R\+C\+V\+\_\+\+O\+D\+DP~0x08000000	/$\ast$ have rcvd char with odd parity $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ae5f3277d8f0dde2859f57c5de7f0ce5e}\label{mach_2hurd_2net_2if__ppp_8h_ae5f3277d8f0dde2859f57c5de7f0ce5e}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_REJ\_COMP\_AC@{SC\_REJ\_COMP\_AC}}
+\index{SC\_REJ\_COMP\_AC@{SC\_REJ\_COMP\_AC}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_REJ\_COMP\_AC}{SC\_REJ\_COMP\_AC}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+R\+E\+J\+\_\+\+C\+O\+M\+P\+\_\+\+AC~0x00000010	/$\ast$ reject adrs/ctrl comp. on input $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a4c81d386382e2bbd387affbec7b53ebf}\label{mach_2hurd_2net_2if__ppp_8h_a4c81d386382e2bbd387affbec7b53ebf}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_REJ\_COMP\_TCP@{SC\_REJ\_COMP\_TCP}}
+\index{SC\_REJ\_COMP\_TCP@{SC\_REJ\_COMP\_TCP}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_REJ\_COMP\_TCP}{SC\_REJ\_COMP\_TCP}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+R\+E\+J\+\_\+\+C\+O\+M\+P\+\_\+\+T\+CP~0x00000020	/$\ast$ reject T\+C\+P (\+V\+J) comp. on input $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ad46f8af76cc4f0bfadd08dab550750df}\label{mach_2hurd_2net_2if__ppp_8h_ad46f8af76cc4f0bfadd08dab550750df}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_VJ\_RESET@{SC\_VJ\_RESET}}
+\index{SC\_VJ\_RESET@{SC\_VJ\_RESET}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_VJ\_RESET}{SC\_VJ\_RESET}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+V\+J\+\_\+\+R\+E\+S\+ET~0x20000000	/$\ast$ Need to reset the V\+J decompressor $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a815deefca7330d367c7b7cd804990171}\label{mach_2hurd_2net_2if__ppp_8h_a815deefca7330d367c7b7cd804990171}} 
+\index{if\_ppp.h@{if\_ppp.h}!SC\_XMIT\_BUSY@{SC\_XMIT\_BUSY}}
+\index{SC\_XMIT\_BUSY@{SC\_XMIT\_BUSY}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SC\_XMIT\_BUSY}{SC\_XMIT\_BUSY}}
+{\footnotesize\ttfamily \#define S\+C\+\_\+\+X\+M\+I\+T\+\_\+\+B\+U\+SY~0x10000000	/$\ast$ ppp\+\_\+write\+\_\+wakeup is active $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a71df72b5b8983caf775176bef723d714}\label{mach_2hurd_2net_2if__ppp_8h_a71df72b5b8983caf775176bef723d714}} 
+\index{if\_ppp.h@{if\_ppp.h}!SIOCGPPPCSTATS@{SIOCGPPPCSTATS}}
+\index{SIOCGPPPCSTATS@{SIOCGPPPCSTATS}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SIOCGPPPCSTATS}{SIOCGPPPCSTATS}}
+{\footnotesize\ttfamily \#define S\+I\+O\+C\+G\+P\+P\+P\+C\+S\+T\+A\+TS~(\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2bits_2ioctls_8h_a4837e9a27230a0e5d202bc875fdc82e1}{S\+I\+O\+C\+D\+E\+V\+P\+R\+I\+V\+A\+TE}} + 2)}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a591a33967674922f1b50f0bdb875ccda}\label{mach_2hurd_2net_2if__ppp_8h_a591a33967674922f1b50f0bdb875ccda}} 
+\index{if\_ppp.h@{if\_ppp.h}!SIOCGPPPSTATS@{SIOCGPPPSTATS}}
+\index{SIOCGPPPSTATS@{SIOCGPPPSTATS}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SIOCGPPPSTATS}{SIOCGPPPSTATS}}
+{\footnotesize\ttfamily \#define S\+I\+O\+C\+G\+P\+P\+P\+S\+T\+A\+TS~(\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2bits_2ioctls_8h_a4837e9a27230a0e5d202bc875fdc82e1}{S\+I\+O\+C\+D\+E\+V\+P\+R\+I\+V\+A\+TE}} + 0)}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_ad5d20505aa8f7adba8c31675af4c33be}\label{mach_2hurd_2net_2if__ppp_8h_ad5d20505aa8f7adba8c31675af4c33be}} 
+\index{if\_ppp.h@{if\_ppp.h}!SIOCGPPPVER@{SIOCGPPPVER}}
+\index{SIOCGPPPVER@{SIOCGPPPVER}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{SIOCGPPPVER}{SIOCGPPPVER}}
+{\footnotesize\ttfamily \#define S\+I\+O\+C\+G\+P\+P\+P\+V\+ER~(\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2bits_2ioctls_8h_a4837e9a27230a0e5d202bc875fdc82e1}{S\+I\+O\+C\+D\+E\+V\+P\+R\+I\+V\+A\+TE}} + 1)  /$\ast$ N\+E\+V\+ER change this!! $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2if__ppp_8h_a16b773d0fcc4e72776d536b20693ab03}\label{mach_2hurd_2net_2if__ppp_8h_a16b773d0fcc4e72776d536b20693ab03}} 
+\index{if\_ppp.h@{if\_ppp.h}!stats\_ptr@{stats\_ptr}}
+\index{stats\_ptr@{stats\_ptr}!if\_ppp.h@{if\_ppp.h}}
+\doxysubsubsection{\texorpdfstring{stats\_ptr}{stats\_ptr}}
+{\footnotesize\ttfamily \#define stats\+\_\+ptr~b.\+ifr\+\_\+ifru.\+ifru\+\_\+data}
+

@@ -1,0 +1,83 @@
+\hypertarget{nptl_2tst-stackguard1_8c}{}\doxysection{nptl/tst-\/stackguard1.c File Reference}
+\label{nptl_2tst-stackguard1_8c}\index{nptl/tst-\/stackguard1.c@{nptl/tst-\/stackguard1.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$stackguard-\/macros.\+h$>$}\newline
+{\ttfamily \#include $<$tls.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nptl_2tst-stackguard1_8c_a0240ac851181b84ac374872dc5434ee4}{N}}~16
+\item 
+\#define \mbox{\hyperlink{nptl_2tst-stackguard1_8c_a9868598d4b6be41940625dad7853e2f3}{O\+P\+T\+\_\+\+C\+O\+M\+M\+A\+ND}}~10000
+\item 
+\#define \mbox{\hyperlink{nptl_2tst-stackguard1_8c_ac2ff9af728f7ea508441c590badba433}{O\+P\+T\+\_\+\+C\+H\+I\+LD}}~10001
+\item 
+\#define \mbox{\hyperlink{nptl_2tst-stackguard1_8c_ac797c43df254ba6cb390615b0e2f28c2}{C\+M\+D\+L\+I\+N\+E\+\_\+\+O\+P\+T\+I\+O\+NS}}
+\item 
+\#define \mbox{\hyperlink{nptl_2tst-stackguard1_8c_a5f5b195743abcc0b8a4af395336b7485}{C\+M\+D\+L\+I\+N\+E\+\_\+\+P\+R\+O\+C\+E\+SS}}
+\item 
+\#define \mbox{\hyperlink{nptl_2tst-stackguard1_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nptl_2tst-stackguard1_8c_ac797c43df254ba6cb390615b0e2f28c2}\label{nptl_2tst-stackguard1_8c_ac797c43df254ba6cb390615b0e2f28c2}} 
+\index{tst-\/stackguard1.c@{tst-\/stackguard1.c}!CMDLINE\_OPTIONS@{CMDLINE\_OPTIONS}}
+\index{CMDLINE\_OPTIONS@{CMDLINE\_OPTIONS}!tst-\/stackguard1.c@{tst-\/stackguard1.c}}
+\doxysubsubsection{\texorpdfstring{CMDLINE\_OPTIONS}{CMDLINE\_OPTIONS}}
+{\footnotesize\ttfamily \#define C\+M\+D\+L\+I\+N\+E\+\_\+\+O\+P\+T\+I\+O\+NS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \textcolor{stringliteral}{"command"}, \mbox{\hyperlink{posix_2getopt_8h_a6ece8d8dfa8378778f7290fdaba5b8bc}{required\_argument}}, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}, \mbox{\hyperlink{nptl_2tst-stackguard1_8c_a9868598d4b6be41940625dad7853e2f3}{OPT\_COMMAND}} \},  \(\backslash\)}
+\DoxyCodeLine{  \{ \textcolor{stringliteral}{"child"}, \mbox{\hyperlink{posix_2getopt_8h_a3bc1d5f667b5b4ca4b4abb685dc874ce}{no\_argument}}, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}, \mbox{\hyperlink{nptl_2tst-stackguard1_8c_ac2ff9af728f7ea508441c590badba433}{OPT\_CHILD}} \},}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2tst-stackguard1_8c_a5f5b195743abcc0b8a4af395336b7485}\label{nptl_2tst-stackguard1_8c_a5f5b195743abcc0b8a4af395336b7485}} 
+\index{tst-\/stackguard1.c@{tst-\/stackguard1.c}!CMDLINE\_PROCESS@{CMDLINE\_PROCESS}}
+\index{CMDLINE\_PROCESS@{CMDLINE\_PROCESS}!tst-\/stackguard1.c@{tst-\/stackguard1.c}}
+\doxysubsubsection{\texorpdfstring{CMDLINE\_PROCESS}{CMDLINE\_PROCESS}}
+{\footnotesize\ttfamily \#define C\+M\+D\+L\+I\+N\+E\+\_\+\+P\+R\+O\+C\+E\+SS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{case} \mbox{\hyperlink{nptl_2tst-stackguard1_8c_a9868598d4b6be41940625dad7853e2f3}{OPT\_COMMAND}}:    \(\backslash\)}
+\DoxyCodeLine{    command = \mbox{\hyperlink{getopt_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}{optarg}}; \(\backslash\)}
+\DoxyCodeLine{    break;      \(\backslash\)}
+\DoxyCodeLine{  case \mbox{\hyperlink{nptl_2tst-stackguard1_8c_ac2ff9af728f7ea508441c590badba433}{OPT\_CHILD}}:  \(\backslash\)}
+\DoxyCodeLine{    child = \textcolor{keyword}{true};   \(\backslash\)}
+\DoxyCodeLine{    break;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2tst-stackguard1_8c_a0240ac851181b84ac374872dc5434ee4}\label{nptl_2tst-stackguard1_8c_a0240ac851181b84ac374872dc5434ee4}} 
+\index{tst-\/stackguard1.c@{tst-\/stackguard1.c}!N@{N}}
+\index{N@{N}!tst-\/stackguard1.c@{tst-\/stackguard1.c}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily \#define N~16}
+
+\mbox{\Hypertarget{nptl_2tst-stackguard1_8c_ac2ff9af728f7ea508441c590badba433}\label{nptl_2tst-stackguard1_8c_ac2ff9af728f7ea508441c590badba433}} 
+\index{tst-\/stackguard1.c@{tst-\/stackguard1.c}!OPT\_CHILD@{OPT\_CHILD}}
+\index{OPT\_CHILD@{OPT\_CHILD}!tst-\/stackguard1.c@{tst-\/stackguard1.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_CHILD}{OPT\_CHILD}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+C\+H\+I\+LD~10001}
+
+\mbox{\Hypertarget{nptl_2tst-stackguard1_8c_a9868598d4b6be41940625dad7853e2f3}\label{nptl_2tst-stackguard1_8c_a9868598d4b6be41940625dad7853e2f3}} 
+\index{tst-\/stackguard1.c@{tst-\/stackguard1.c}!OPT\_COMMAND@{OPT\_COMMAND}}
+\index{OPT\_COMMAND@{OPT\_COMMAND}!tst-\/stackguard1.c@{tst-\/stackguard1.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_COMMAND}{OPT\_COMMAND}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+C\+O\+M\+M\+A\+ND~10000}
+
+\mbox{\Hypertarget{nptl_2tst-stackguard1_8c_a6002ab22c656c4024eb89b538930bc32}\label{nptl_2tst-stackguard1_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{tst-\/stackguard1.c@{tst-\/stackguard1.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!tst-\/stackguard1.c@{tst-\/stackguard1.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+

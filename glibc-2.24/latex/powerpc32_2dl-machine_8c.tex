@@ -1,0 +1,327 @@
+\hypertarget{powerpc32_2dl-machine_8c}{}\doxysection{sysdeps/powerpc/powerpc32/dl-\/machine.c File Reference}
+\label{powerpc32_2dl-machine_8c}\index{sysdeps/powerpc/powerpc32/dl-\/machine.c@{sysdeps/powerpc/powerpc32/dl-\/machine.c}}
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$link.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+{\ttfamily \#include $<$elf/dynamic-\/link.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/machine.\+h$>$}\newline
+{\ttfamily \#include $<$\+\_\+itoa.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a3c4dff3a2f6beac562a99823255bee5e}{P\+L\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+W\+O\+R\+DS}}~18
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a04dd88ee6d3dbad7bc4db6ead53b3019}{P\+L\+T\+\_\+\+L\+O\+N\+G\+B\+R\+A\+N\+C\+H\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+W\+O\+R\+DS}}~0
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_aea9542716c1fbea14e1cd61ef0e65728}{P\+L\+T\+\_\+\+T\+R\+A\+M\+P\+O\+L\+I\+N\+E\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+W\+O\+R\+DS}}~6
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_acf636cf9c0136c67648ac1796ae42dbf}{P\+L\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+I\+ZE}}~(1$<$$<$13)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a7baefe3eee38d9be52ca24c4f8a77fa7}{P\+L\+T\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+A\+R\+T\+\_\+\+W\+O\+R\+DS}}(\mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\+\_\+number}})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_aea17563b653b838c558bc0b837abef01}{P\+L\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+T\+A\+R\+T\+\_\+\+W\+O\+R\+DS}}(num\+\_\+entries)~\mbox{\hyperlink{powerpc32_2dl-machine_8c_a7baefe3eee38d9be52ca24c4f8a77fa7}{P\+L\+T\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+A\+R\+T\+\_\+\+W\+O\+R\+DS}}(num\+\_\+entries)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a34937afcfa547811e168e2ed20489fd0}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+DI}}(rd,  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  simm)~(0x38000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((simm) \& 0xffff))
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_af3c9e4271405c347c1d50a96f7f5d6fa}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+IS}}(rd,  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  simm)~(0x3c000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((simm) \& 0xffff))
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_aba7cfaa40dcb8604ae82f8cfca9e2f14}{O\+P\+C\+O\+D\+E\+\_\+\+A\+DD}}(rd,  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  rb)~(0x7c000214 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ (rb) $<$$<$ 11)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a7e8564a7147795faa7d640b8eed11c18}{O\+P\+C\+O\+D\+E\+\_\+B}}(target)~(0x48000000 $\vert$ ((target) \& 0x03fffffc))
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_af12b207a666f9a70960ff3f2544dbc2f}{O\+P\+C\+O\+D\+E\+\_\+\+BA}}(target)~(0x48000002 $\vert$ ((target) \& 0x03fffffc))
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_addada71c9ccad07777f70619ec235283}{O\+P\+C\+O\+D\+E\+\_\+\+B\+C\+TR}}()~0x4e800420
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a0a33ce7240fa852f95405da816592f00}{O\+P\+C\+O\+D\+E\+\_\+\+L\+WZ}}(rd,  \mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}})~(0x80000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((d) \& 0xffff))
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a44aa1654cece9415a0ca27af408c0053}{O\+P\+C\+O\+D\+E\+\_\+\+L\+W\+ZU}}(rd,  \mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}})~(0x84000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((d) \& 0xffff))
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a6d83d71d935546f37bf52c2c0cd38b72}{O\+P\+C\+O\+D\+E\+\_\+\+M\+T\+C\+TR}}(rd)~(0x7\+C0903\+A6 $\vert$ (rd) $<$$<$ 21)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_abd932c56eab1eff8c576435fc34d98bb}{O\+P\+C\+O\+D\+E\+\_\+\+R\+L\+W\+I\+NM}}(\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  rs,  \mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}},  mb,  me)~(0x54000000 $\vert$ (rs) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ (sh) $<$$<$ 11 $\vert$ (mb) $<$$<$ 6 $\vert$ (me) $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_aa9d3477893ef2ac8f032d3c285fcb724}{O\+P\+C\+O\+D\+E\+\_\+\+LI}}(rd,  simm)~\mbox{\hyperlink{powerpc32_2dl-machine_8c_a34937afcfa547811e168e2ed20489fd0}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+DI}}(rd,0,simm)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a0afc0b311eddd302088e4f4ac7c6d5f7}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+I\+S\+\_\+\+HI}}(rd,  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  \mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_af3c9e4271405c347c1d50a96f7f5d6fa}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+IS}}(rd,\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},((\mbox{\hyperlink{structvalue}{value}}) + 0x8000) $>$$>$ 16)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a78479a173c4818bb6a98dca418228fdb}{O\+P\+C\+O\+D\+E\+\_\+\+L\+I\+S\+\_\+\+HI}}(rd,  \mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_a0afc0b311eddd302088e4f4ac7c6d5f7}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+I\+S\+\_\+\+HI}}(rd,0,\mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a4cd227684ef67576b2bdeee2238fb1a0}{O\+P\+C\+O\+D\+E\+\_\+\+S\+L\+WI}}(\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  rs,  \mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_abd932c56eab1eff8c576435fc34d98bb}{O\+P\+C\+O\+D\+E\+\_\+\+R\+L\+W\+I\+NM}}(\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},rs,\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}},0,31-\/\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_adf030063f5135a03338be8926d27e99c}{P\+P\+C\+\_\+\+D\+C\+B\+ST}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}})~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}dcbst 0,\%0\char`\"{} \+: \+: \char`\"{}\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}\char`\"{}(where) \+: \char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a69e3139bab4a32628327040dd351ef86}{P\+P\+C\+\_\+\+S\+Y\+NC}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}sync\char`\"{} \+: \+: \+: \char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_afd2d451bf584a128cf35f469954be4df}{P\+P\+C\+\_\+\+I\+S\+Y\+NC}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}sync; isync\char`\"{} \+: \+: \+: \char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a4003a8771e0d725eb69107b06abe5e78}{P\+P\+C\+\_\+\+I\+C\+BI}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}})~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}icbi 0,\%0\char`\"{} \+: \+: \char`\"{}\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}\char`\"{}(where) \+: \char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_a9e1d16d32806dfa3454ae1b6fd1c6950}{P\+P\+C\+\_\+\+D\+IE}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}tweq 0,0\char`\"{})
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_ad4d646cc884cbd3d1336620f97c71b4e}{M\+O\+D\+I\+F\+I\+E\+D\+\_\+\+C\+O\+D\+E\+\_\+\+N\+O\+Q\+U\+E\+UE}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}})~do \{ \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_adf030063f5135a03338be8926d27e99c}{P\+P\+C\+\_\+\+D\+C\+B\+ST}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_ae3976012d5ac07b7ed4c6aa2e87eb437}{P\+P\+C\+\_\+\+S\+Y\+NC}}; \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a4003a8771e0d725eb69107b06abe5e78}{P\+P\+C\+\_\+\+I\+C\+BI}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_af915cb6e39224024130d401064719a18}{M\+O\+D\+I\+F\+I\+E\+D\+\_\+\+C\+O\+DE}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}})~do \{ \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_adf030063f5135a03338be8926d27e99c}{P\+P\+C\+\_\+\+D\+C\+B\+ST}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_ae3976012d5ac07b7ed4c6aa2e87eb437}{P\+P\+C\+\_\+\+S\+Y\+NC}}; \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a4003a8771e0d725eb69107b06abe5e78}{P\+P\+C\+\_\+\+I\+C\+BI}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a21c656c4983dcbf0355a230cb030f605}{P\+P\+C\+\_\+\+I\+S\+Y\+NC}}; \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\item 
+\#define \mbox{\hyperlink{powerpc32_2dl-machine_8c_ae548c4966a54322b31b3c70cf9454c97}{D\+O\+\_\+\+T\+L\+S\+\_\+\+R\+E\+L\+OC}}(\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__scalbnl_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{powerpc32_2dl-machine_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}} (Addr)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{powerpc32_2dl-machine_8c_ae92a66ee36cfde030f135164a32331f9}{\+\_\+\+\_\+elf\+\_\+machine\+\_\+runtime\+\_\+setup}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}})
+\item 
+\mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} \mbox{\hyperlink{powerpc32_2dl-machine_8c_af7207ed294169f9e205ccf3d65461d55}{\+\_\+\+\_\+elf\+\_\+machine\+\_\+fixup\+\_\+plt}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} $\ast$\mbox{\hyperlink{sparc64_2dl-plt_8h_a9970c41b4df411f8cf54e30357fabe0d}{reloc\+\_\+addr}}, \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a9823149f6d7cd090006262b91fa42362}{finaladdr}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{powerpc32_2dl-machine_8c_a5203b5c9d5a9d37c2ea739d898d11096}{\+\_\+dl\+\_\+reloc\+\_\+overflow}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{sparc64_2dl-plt_8h_a9970c41b4df411f8cf54e30357fabe0d}{reloc\+\_\+addr}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Sym}{Elf32\+\_\+\+Sym}} $\ast$refsym)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{powerpc32_2dl-machine_8c_ac08bd1d9805f9ed0b079e22b13e91b85}{\+\_\+\+\_\+process\+\_\+machine\+\_\+rela}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Rela}{Elf32\+\_\+\+Rela}} $\ast$\mbox{\hyperlink{sparc64_2dl-plt_8h_a91cb9f4480223e744b9eeb3fcc4368e7}{reloc}}, struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a8ec095f41df120974d206ce8c7ddd956}{sym\+\_\+map}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Sym}{Elf32\+\_\+\+Sym}} $\ast$\mbox{\hyperlink{generic_2dl-machine_8h_ad3ac065aeff0960b11e6a154b1d79e99}{sym}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Sym}{Elf32\+\_\+\+Sym}} $\ast$refsym, \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{sparc64_2dl-plt_8h_a9970c41b4df411f8cf54e30357fabe0d}{reloc\+\_\+addr}}, \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a9823149f6d7cd090006262b91fa42362}{finaladdr}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} rinfo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+cache\+\_\+line\+\_\+size \mbox{\hyperlink{powerpc32_2dl-machine_8c_af478eb1314d6dcd8095b7b65e80c9726}{attribute\+\_\+hidden}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_ae548c4966a54322b31b3c70cf9454c97}\label{powerpc32_2dl-machine_8c_ae548c4966a54322b31b3c70cf9454c97}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!DO\_TLS\_RELOC@{DO\_TLS\_RELOC}}
+\index{DO\_TLS\_RELOC@{DO\_TLS\_RELOC}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{DO\_TLS\_RELOC}{DO\_TLS\_RELOC}}
+{\footnotesize\ttfamily \#define D\+O\+\_\+\+T\+L\+S\+\_\+\+R\+E\+L\+OC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__scalbnl_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{case} R\_PPC\_DTPREL\#\#\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__lrint_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}}:                              \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* During relocation all TLS symbols are defined and used.          \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     Therefore the offset is already correct.  */}                 \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a8ec095f41df120974d206ce8c7ddd956}{sym\_map}} != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{    do\_reloc\#\#\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__lrint_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}} (\textcolor{stringliteral}{"R\_PPC\_DTPREL"}\#\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__lrint_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}},                  \(\backslash\)}
+\DoxyCodeLine{              \mbox{\hyperlink{m68k_2dl-tls_8h_a2ebe85905807ddd65e20185ea79df393}{TLS\_DTPREL\_VALUE}} (\mbox{\hyperlink{generic_2dl-machine_8h_ad3ac065aeff0960b11e6a154b1d79e99}{sym}}, \mbox{\hyperlink{generic_2dl-machine_8h_abf33d918d649bfadb5c460e824ea6fef}{reloc}}));             \(\backslash\)}
+\DoxyCodeLine{      break;                                      \(\backslash\)}
+\DoxyCodeLine{    case R\_PPC\_TPREL\#\#\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__lrint_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}}:                           \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a8ec095f41df120974d206ce8c7ddd956}{sym\_map}} != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      CHECK\_STATIC\_TLS (\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a8ec095f41df120974d206ce8c7ddd956}{sym\_map}});                      \(\backslash\)}
+\DoxyCodeLine{      do\_reloc\#\#\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__lrint_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}} (\textcolor{stringliteral}{"R\_PPC\_TPREL"}\#\mbox{\hyperlink{m68k_2m680x0_2fpu_2s__lrint_8c_ac28bc321adae0f645ec674c7b3b98227}{suffix}},                 \(\backslash\)}
+\DoxyCodeLine{                \mbox{\hyperlink{m68k_2dl-tls_8h_a838a04b95deb40b215d5adc29707c109}{TLS\_TPREL\_VALUE}} (\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a8ec095f41df120974d206ce8c7ddd956}{sym\_map}}, \mbox{\hyperlink{generic_2dl-machine_8h_ad3ac065aeff0960b11e6a154b1d79e99}{sym}}, \mbox{\hyperlink{generic_2dl-machine_8h_abf33d918d649bfadb5c460e824ea6fef}{reloc}}));         \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      break;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_af915cb6e39224024130d401064719a18}\label{powerpc32_2dl-machine_8c_af915cb6e39224024130d401064719a18}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!MODIFIED\_CODE@{MODIFIED\_CODE}}
+\index{MODIFIED\_CODE@{MODIFIED\_CODE}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{MODIFIED\_CODE}{MODIFIED\_CODE}}
+{\footnotesize\ttfamily \#define M\+O\+D\+I\+F\+I\+E\+D\+\_\+\+C\+O\+DE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}} }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_adf030063f5135a03338be8926d27e99c}{P\+P\+C\+\_\+\+D\+C\+B\+ST}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_ae3976012d5ac07b7ed4c6aa2e87eb437}{P\+P\+C\+\_\+\+S\+Y\+NC}}; \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a4003a8771e0d725eb69107b06abe5e78}{P\+P\+C\+\_\+\+I\+C\+BI}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a21c656c4983dcbf0355a230cb030f605}{P\+P\+C\+\_\+\+I\+S\+Y\+NC}}; \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_ad4d646cc884cbd3d1336620f97c71b4e}\label{powerpc32_2dl-machine_8c_ad4d646cc884cbd3d1336620f97c71b4e}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!MODIFIED\_CODE\_NOQUEUE@{MODIFIED\_CODE\_NOQUEUE}}
+\index{MODIFIED\_CODE\_NOQUEUE@{MODIFIED\_CODE\_NOQUEUE}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{MODIFIED\_CODE\_NOQUEUE}{MODIFIED\_CODE\_NOQUEUE}}
+{\footnotesize\ttfamily \#define M\+O\+D\+I\+F\+I\+E\+D\+\_\+\+C\+O\+D\+E\+\_\+\+N\+O\+Q\+U\+E\+UE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}} }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_adf030063f5135a03338be8926d27e99c}{P\+P\+C\+\_\+\+D\+C\+B\+ST}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_ae3976012d5ac07b7ed4c6aa2e87eb437}{P\+P\+C\+\_\+\+S\+Y\+NC}}; \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a4003a8771e0d725eb69107b06abe5e78}{P\+P\+C\+\_\+\+I\+C\+BI}}(\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}}); \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_aba7cfaa40dcb8604ae82f8cfca9e2f14}\label{powerpc32_2dl-machine_8c_aba7cfaa40dcb8604ae82f8cfca9e2f14}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_ADD@{OPCODE\_ADD}}
+\index{OPCODE\_ADD@{OPCODE\_ADD}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_ADD}{OPCODE\_ADD}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+A\+DD(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  }\item[{}]{rb }\end{DoxyParamCaption})~(0x7c000214 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ (rb) $<$$<$ 11)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a34937afcfa547811e168e2ed20489fd0}\label{powerpc32_2dl-machine_8c_a34937afcfa547811e168e2ed20489fd0}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_ADDI@{OPCODE\_ADDI}}
+\index{OPCODE\_ADDI@{OPCODE\_ADDI}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_ADDI}{OPCODE\_ADDI}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+DI(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  }\item[{}]{simm }\end{DoxyParamCaption})~(0x38000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((simm) \& 0xffff))}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_af3c9e4271405c347c1d50a96f7f5d6fa}\label{powerpc32_2dl-machine_8c_af3c9e4271405c347c1d50a96f7f5d6fa}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_ADDIS@{OPCODE\_ADDIS}}
+\index{OPCODE\_ADDIS@{OPCODE\_ADDIS}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_ADDIS}{OPCODE\_ADDIS}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+IS(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  }\item[{}]{simm }\end{DoxyParamCaption})~(0x3c000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((simm) \& 0xffff))}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a0afc0b311eddd302088e4f4ac7c6d5f7}\label{powerpc32_2dl-machine_8c_a0afc0b311eddd302088e4f4ac7c6d5f7}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_ADDIS\_HI@{OPCODE\_ADDIS\_HI}}
+\index{OPCODE\_ADDIS\_HI@{OPCODE\_ADDIS\_HI}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_ADDIS\_HI}{OPCODE\_ADDIS\_HI}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+I\+S\+\_\+\+HI(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_af3c9e4271405c347c1d50a96f7f5d6fa}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+IS}}(rd,\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},((\mbox{\hyperlink{structvalue}{value}}) + 0x8000) $>$$>$ 16)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a7e8564a7147795faa7d640b8eed11c18}\label{powerpc32_2dl-machine_8c_a7e8564a7147795faa7d640b8eed11c18}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_B@{OPCODE\_B}}
+\index{OPCODE\_B@{OPCODE\_B}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_B}{OPCODE\_B}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+B(\begin{DoxyParamCaption}\item[{}]{target }\end{DoxyParamCaption})~(0x48000000 $\vert$ ((target) \& 0x03fffffc))}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_af12b207a666f9a70960ff3f2544dbc2f}\label{powerpc32_2dl-machine_8c_af12b207a666f9a70960ff3f2544dbc2f}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_BA@{OPCODE\_BA}}
+\index{OPCODE\_BA@{OPCODE\_BA}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_BA}{OPCODE\_BA}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+BA(\begin{DoxyParamCaption}\item[{}]{target }\end{DoxyParamCaption})~(0x48000002 $\vert$ ((target) \& 0x03fffffc))}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_addada71c9ccad07777f70619ec235283}\label{powerpc32_2dl-machine_8c_addada71c9ccad07777f70619ec235283}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_BCTR@{OPCODE\_BCTR}}
+\index{OPCODE\_BCTR@{OPCODE\_BCTR}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_BCTR}{OPCODE\_BCTR}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+B\+C\+TR(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~0x4e800420}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_aa9d3477893ef2ac8f032d3c285fcb724}\label{powerpc32_2dl-machine_8c_aa9d3477893ef2ac8f032d3c285fcb724}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_LI@{OPCODE\_LI}}
+\index{OPCODE\_LI@{OPCODE\_LI}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_LI}{OPCODE\_LI}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+LI(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{simm }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_a34937afcfa547811e168e2ed20489fd0}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+DI}}(rd,0,simm)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a78479a173c4818bb6a98dca418228fdb}\label{powerpc32_2dl-machine_8c_a78479a173c4818bb6a98dca418228fdb}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_LIS\_HI@{OPCODE\_LIS\_HI}}
+\index{OPCODE\_LIS\_HI@{OPCODE\_LIS\_HI}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_LIS\_HI}{OPCODE\_LIS\_HI}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+L\+I\+S\+\_\+\+HI(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_a0afc0b311eddd302088e4f4ac7c6d5f7}{O\+P\+C\+O\+D\+E\+\_\+\+A\+D\+D\+I\+S\+\_\+\+HI}}(rd,0,\mbox{\hyperlink{structvalue}{value}})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a0a33ce7240fa852f95405da816592f00}\label{powerpc32_2dl-machine_8c_a0a33ce7240fa852f95405da816592f00}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_LWZ@{OPCODE\_LWZ}}
+\index{OPCODE\_LWZ@{OPCODE\_LWZ}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_LWZ}{OPCODE\_LWZ}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+L\+WZ(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}} }\end{DoxyParamCaption})~(0x80000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((d) \& 0xffff))}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a44aa1654cece9415a0ca27af408c0053}\label{powerpc32_2dl-machine_8c_a44aa1654cece9415a0ca27af408c0053}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_LWZU@{OPCODE\_LWZU}}
+\index{OPCODE\_LWZU@{OPCODE\_LWZU}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_LWZU}{OPCODE\_LWZU}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+L\+W\+ZU(\begin{DoxyParamCaption}\item[{}]{rd,  }\item[{}]{\mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}} }\end{DoxyParamCaption})~(0x84000000 $\vert$ (rd) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ ((d) \& 0xffff))}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a6d83d71d935546f37bf52c2c0cd38b72}\label{powerpc32_2dl-machine_8c_a6d83d71d935546f37bf52c2c0cd38b72}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_MTCTR@{OPCODE\_MTCTR}}
+\index{OPCODE\_MTCTR@{OPCODE\_MTCTR}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_MTCTR}{OPCODE\_MTCTR}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+M\+T\+C\+TR(\begin{DoxyParamCaption}\item[{}]{rd }\end{DoxyParamCaption})~(0x7\+C0903\+A6 $\vert$ (rd) $<$$<$ 21)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_abd932c56eab1eff8c576435fc34d98bb}\label{powerpc32_2dl-machine_8c_abd932c56eab1eff8c576435fc34d98bb}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_RLWINM@{OPCODE\_RLWINM}}
+\index{OPCODE\_RLWINM@{OPCODE\_RLWINM}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_RLWINM}{OPCODE\_RLWINM}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+R\+L\+W\+I\+NM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  }\item[{}]{rs,  }\item[{}]{\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}},  }\item[{}]{mb,  }\item[{}]{me }\end{DoxyParamCaption})~(0x54000000 $\vert$ (rs) $<$$<$ 21 $\vert$ (ra) $<$$<$ 16 $\vert$ (sh) $<$$<$ 11 $\vert$ (mb) $<$$<$ 6 $\vert$ (me) $<$$<$ 1)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a4cd227684ef67576b2bdeee2238fb1a0}\label{powerpc32_2dl-machine_8c_a4cd227684ef67576b2bdeee2238fb1a0}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!OPCODE\_SLWI@{OPCODE\_SLWI}}
+\index{OPCODE\_SLWI@{OPCODE\_SLWI}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{OPCODE\_SLWI}{OPCODE\_SLWI}}
+{\footnotesize\ttfamily \#define O\+P\+C\+O\+D\+E\+\_\+\+S\+L\+WI(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},  }\item[{}]{rs,  }\item[{}]{\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}} }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_abd932c56eab1eff8c576435fc34d98bb}{O\+P\+C\+O\+D\+E\+\_\+\+R\+L\+W\+I\+NM}}(\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a6c3a7669c6bdfd66528633d977cdb6b8}{ra}},rs,\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}},0,31-\/\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_aea17563b653b838c558bc0b837abef01}\label{powerpc32_2dl-machine_8c_aea17563b653b838c558bc0b837abef01}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PLT\_DATA\_START\_WORDS@{PLT\_DATA\_START\_WORDS}}
+\index{PLT\_DATA\_START\_WORDS@{PLT\_DATA\_START\_WORDS}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PLT\_DATA\_START\_WORDS}{PLT\_DATA\_START\_WORDS}}
+{\footnotesize\ttfamily \#define P\+L\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+T\+A\+R\+T\+\_\+\+W\+O\+R\+DS(\begin{DoxyParamCaption}\item[{}]{num\+\_\+entries }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc32_2dl-machine_8c_a7baefe3eee38d9be52ca24c4f8a77fa7}{P\+L\+T\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+A\+R\+T\+\_\+\+W\+O\+R\+DS}}(num\+\_\+entries)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_acf636cf9c0136c67648ac1796ae42dbf}\label{powerpc32_2dl-machine_8c_acf636cf9c0136c67648ac1796ae42dbf}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PLT\_DOUBLE\_SIZE@{PLT\_DOUBLE\_SIZE}}
+\index{PLT\_DOUBLE\_SIZE@{PLT\_DOUBLE\_SIZE}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PLT\_DOUBLE\_SIZE}{PLT\_DOUBLE\_SIZE}}
+{\footnotesize\ttfamily \#define P\+L\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+I\+ZE~(1$<$$<$13)}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a7baefe3eee38d9be52ca24c4f8a77fa7}\label{powerpc32_2dl-machine_8c_a7baefe3eee38d9be52ca24c4f8a77fa7}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PLT\_ENTRY\_START\_WORDS@{PLT\_ENTRY\_START\_WORDS}}
+\index{PLT\_ENTRY\_START\_WORDS@{PLT\_ENTRY\_START\_WORDS}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PLT\_ENTRY\_START\_WORDS}{PLT\_ENTRY\_START\_WORDS}}
+{\footnotesize\ttfamily \#define P\+L\+T\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+A\+R\+T\+\_\+\+W\+O\+R\+DS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\+\_\+number}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{powerpc32_2dl-machine_8c_a3c4dff3a2f6beac562a99823255bee5e}{PLT\_INITIAL\_ENTRY\_WORDS}} + (\mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\_number}})*2              \(\backslash\)}
+\DoxyCodeLine{   + ((\mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\_number}}) > \mbox{\hyperlink{powerpc32_2dl-machine_8c_acf636cf9c0136c67648ac1796ae42dbf}{PLT\_DOUBLE\_SIZE}}                   \(\backslash\)}
+\DoxyCodeLine{      ? ((\mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\_number}}) -\/ \mbox{\hyperlink{powerpc32_2dl-machine_8c_acf636cf9c0136c67648ac1796ae42dbf}{PLT\_DOUBLE\_SIZE}})*2             \(\backslash\)}
+\DoxyCodeLine{      : 0))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a3c4dff3a2f6beac562a99823255bee5e}\label{powerpc32_2dl-machine_8c_a3c4dff3a2f6beac562a99823255bee5e}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PLT\_INITIAL\_ENTRY\_WORDS@{PLT\_INITIAL\_ENTRY\_WORDS}}
+\index{PLT\_INITIAL\_ENTRY\_WORDS@{PLT\_INITIAL\_ENTRY\_WORDS}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PLT\_INITIAL\_ENTRY\_WORDS}{PLT\_INITIAL\_ENTRY\_WORDS}}
+{\footnotesize\ttfamily \#define P\+L\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+W\+O\+R\+DS~18}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a04dd88ee6d3dbad7bc4db6ead53b3019}\label{powerpc32_2dl-machine_8c_a04dd88ee6d3dbad7bc4db6ead53b3019}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PLT\_LONGBRANCH\_ENTRY\_WORDS@{PLT\_LONGBRANCH\_ENTRY\_WORDS}}
+\index{PLT\_LONGBRANCH\_ENTRY\_WORDS@{PLT\_LONGBRANCH\_ENTRY\_WORDS}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PLT\_LONGBRANCH\_ENTRY\_WORDS}{PLT\_LONGBRANCH\_ENTRY\_WORDS}}
+{\footnotesize\ttfamily \#define P\+L\+T\+\_\+\+L\+O\+N\+G\+B\+R\+A\+N\+C\+H\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+W\+O\+R\+DS~0}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_aea9542716c1fbea14e1cd61ef0e65728}\label{powerpc32_2dl-machine_8c_aea9542716c1fbea14e1cd61ef0e65728}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PLT\_TRAMPOLINE\_ENTRY\_WORDS@{PLT\_TRAMPOLINE\_ENTRY\_WORDS}}
+\index{PLT\_TRAMPOLINE\_ENTRY\_WORDS@{PLT\_TRAMPOLINE\_ENTRY\_WORDS}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PLT\_TRAMPOLINE\_ENTRY\_WORDS}{PLT\_TRAMPOLINE\_ENTRY\_WORDS}}
+{\footnotesize\ttfamily \#define P\+L\+T\+\_\+\+T\+R\+A\+M\+P\+O\+L\+I\+N\+E\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+W\+O\+R\+DS~6}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_adf030063f5135a03338be8926d27e99c}\label{powerpc32_2dl-machine_8c_adf030063f5135a03338be8926d27e99c}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PPC\_DCBST@{PPC\_DCBST}}
+\index{PPC\_DCBST@{PPC\_DCBST}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PPC\_DCBST}{PPC\_DCBST}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+D\+C\+B\+ST(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}} }\end{DoxyParamCaption})~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}dcbst 0,\%0\char`\"{} \+: \+: \char`\"{}\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}\char`\"{}(where) \+: \char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a9e1d16d32806dfa3454ae1b6fd1c6950}\label{powerpc32_2dl-machine_8c_a9e1d16d32806dfa3454ae1b6fd1c6950}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PPC\_DIE@{PPC\_DIE}}
+\index{PPC\_DIE@{PPC\_DIE}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PPC\_DIE}{PPC\_DIE}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+D\+IE~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}tweq 0,0\char`\"{})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a4003a8771e0d725eb69107b06abe5e78}\label{powerpc32_2dl-machine_8c_a4003a8771e0d725eb69107b06abe5e78}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PPC\_ICBI@{PPC\_ICBI}}
+\index{PPC\_ICBI@{PPC\_ICBI}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PPC\_ICBI}{PPC\_ICBI}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+I\+C\+BI(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{rpc__util_8h_a420e0cc611b63628c5cc35e76d8e810a}{where}} }\end{DoxyParamCaption})~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}icbi 0,\%0\char`\"{} \+: \+: \char`\"{}\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}\char`\"{}(where) \+: \char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_afd2d451bf584a128cf35f469954be4df}\label{powerpc32_2dl-machine_8c_afd2d451bf584a128cf35f469954be4df}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PPC\_ISYNC@{PPC\_ISYNC}}
+\index{PPC\_ISYNC@{PPC\_ISYNC}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PPC\_ISYNC}{PPC\_ISYNC}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+I\+S\+Y\+NC~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}sync; isync\char`\"{} \+: \+: \+: \char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a69e3139bab4a32628327040dd351ef86}\label{powerpc32_2dl-machine_8c_a69e3139bab4a32628327040dd351ef86}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!PPC\_SYNC@{PPC\_SYNC}}
+\index{PPC\_SYNC@{PPC\_SYNC}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{PPC\_SYNC}{PPC\_SYNC}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+Y\+NC~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}sync\char`\"{} \+: \+: \+: \char`\"{}memory\char`\"{})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_af7207ed294169f9e205ccf3d65461d55}\label{powerpc32_2dl-machine_8c_af7207ed294169f9e205ccf3d65461d55}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!\_\_elf\_machine\_fixup\_plt@{\_\_elf\_machine\_fixup\_plt}}
+\index{\_\_elf\_machine\_fixup\_plt@{\_\_elf\_machine\_fixup\_plt}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{\_\_elf\_machine\_fixup\_plt()}{\_\_elf\_machine\_fixup\_plt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} \+\_\+\+\_\+elf\+\_\+machine\+\_\+fixup\+\_\+plt (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} $\ast$}]{reloc\+\_\+addr,  }\item[{\mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}}}]{finaladdr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_ae92a66ee36cfde030f135164a32331f9}\label{powerpc32_2dl-machine_8c_ae92a66ee36cfde030f135164a32331f9}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!\_\_elf\_machine\_runtime\_setup@{\_\_elf\_machine\_runtime\_setup}}
+\index{\_\_elf\_machine\_runtime\_setup@{\_\_elf\_machine\_runtime\_setup}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{\_\_elf\_machine\_runtime\_setup()}{\_\_elf\_machine\_runtime\_setup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+elf\+\_\+machine\+\_\+runtime\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{lazy,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{profile }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_ac08bd1d9805f9ed0b079e22b13e91b85}\label{powerpc32_2dl-machine_8c_ac08bd1d9805f9ed0b079e22b13e91b85}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!\_\_process\_machine\_rela@{\_\_process\_machine\_rela}}
+\index{\_\_process\_machine\_rela@{\_\_process\_machine\_rela}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{\_\_process\_machine\_rela()}{\_\_process\_machine\_rela()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+process\+\_\+machine\+\_\+rela (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Rela}{Elf32\+\_\+\+Rela}} $\ast$}]{reloc,  }\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{sym\+\_\+map,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Sym}{Elf32\+\_\+\+Sym}} $\ast$}]{sym,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Sym}{Elf32\+\_\+\+Sym}} $\ast$}]{refsym,  }\item[{\mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}]{reloc\+\_\+addr,  }\item[{\mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}]{finaladdr,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{rinfo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a5203b5c9d5a9d37c2ea739d898d11096}\label{powerpc32_2dl-machine_8c_a5203b5c9d5a9d37c2ea739d898d11096}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!\_dl\_reloc\_overflow@{\_dl\_reloc\_overflow}}
+\index{\_dl\_reloc\_overflow@{\_dl\_reloc\_overflow}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_reloc\_overflow()}{\_dl\_reloc\_overflow()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+reloc\+\_\+overflow (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{\mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\+\_\+\+Addr}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}]{reloc\+\_\+addr,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structElf32__Sym}{Elf32\+\_\+\+Sym}} $\ast$}]{refsym }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_a83d0247619b25b0b3ded284ce17b8d50}\label{powerpc32_2dl-machine_8c_a83d0247619b25b0b3ded284ce17b8d50}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!ElfW@{ElfW}}
+\index{ElfW@{ElfW}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{ElfW()}{ElfW()}}
+{\footnotesize\ttfamily ElfW (\begin{DoxyParamCaption}\item[{Addr}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{powerpc32_2dl-machine_8c_af478eb1314d6dcd8095b7b65e80c9726}\label{powerpc32_2dl-machine_8c_af478eb1314d6dcd8095b7b65e80c9726}} 
+\index{dl-\/machine.c@{dl-\/machine.c}!attribute\_hidden@{attribute\_hidden}}
+\index{attribute\_hidden@{attribute\_hidden}!dl-\/machine.c@{dl-\/machine.c}}
+\doxysubsubsection{\texorpdfstring{attribute\_hidden}{attribute\_hidden}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+cache\+\_\+line\+\_\+size attribute\+\_\+hidden}
+

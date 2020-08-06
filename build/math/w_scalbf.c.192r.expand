@@ -1,0 +1,836 @@
+
+;; Function sysv_scalbf (sysv_scalbf, funcdef_no=87, decl_uid=8864, cgraph_uid=87, symbol_order=88)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+Edge 6->8 redirected to 11
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 64.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:SF 95 [ x ])
+        (reg:SF 21 xmm0 [ x ])) w_scalbf.c:27 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SF 96 [ fn ])
+        (reg:SF 22 xmm1 [ fn ])) w_scalbf.c:27 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:SF 22 xmm1)
+        (reg/v:SF 96 [ fn ])) w_scalbf.c:28 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:SF 21 xmm0)
+        (reg/v:SF 95 [ x ])) w_scalbf.c:28 -1
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_scalbf") [flags 0x41]  <function_decl 0x2b7cb58be288 __ieee754_scalbf>) [0 __ieee754_scalbf S1 A8])
+            (const_int 0 [0]))) w_scalbf.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_scalbf") [flags 0x41]  <function_decl 0x2b7cb58be288 __ieee754_scalbf>)
+        (nil))
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (expr_list:SF (use (reg:SF 22 xmm1))
+            (nil))))
+(insn 12 11 13 2 (set (reg/v:SF 89 [ z ])
+        (reg:SF 21 xmm0)) w_scalbf.c:28 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:V4SF 98)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S16 A128])) w_scalbf.c:30 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 14 13 15 2 (parallel [
+            (set (reg:SF 97 [ D.8952 ])
+                (abs:SF (reg/v:SF 89 [ z ])))
+            (use (reg:V4SF 98))
+            (clobber (reg:CC 17 flags))
+        ]) w_scalbf.c:30 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 89 [ z ]))
+        (nil)))
+(insn 15 14 16 2 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 97 [ D.8952 ])
+            (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32]))) w_scalbf.c:30 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) w_scalbf.c:30 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 36)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (set (reg:V4SF 100)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S16 A128])) w_scalbf.c:32 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 19 18 20 4 (parallel [
+            (set (reg:SF 99 [ D.8952 ])
+                (abs:SF (reg/v:SF 95 [ x ])))
+            (use (reg:V4SF 100))
+            (clobber (reg:CC 17 flags))
+        ]) w_scalbf.c:32 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 95 [ x ]))
+        (nil)))
+(insn 20 19 21 4 (set (reg:SF 101)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32])) w_scalbf.c:32 -1
+     (expr_list:REG_EQUAL (const_double:SF 3.4028234663852885981170418348451692544e+38 [0x0.ffffffp+128])
+        (nil)))
+(insn 21 20 22 4 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 101)
+            (reg:SF 99 [ D.8952 ]))) w_scalbf.c:32 -1
+     (nil))
+(jump_insn 22 21 23 4 (set (pc)
+        (if_then_else (unlt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 30)
+            (pc))) w_scalbf.c:32 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 30)
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (set (reg:SI 5 di)
+        (const_int 132 [0x84])) w_scalbf.c:33 -1
+     (nil))
+(insn 25 24 26 5 (set (reg:SF 22 xmm1)
+        (reg/v:SF 96 [ fn ])) w_scalbf.c:33 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:SF 21 xmm0)
+        (reg/v:SF 95 [ x ])) w_scalbf.c:33 -1
+     (nil))
+(call_insn/j 27 26 28 5 (set (reg:SF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__kernel_standard_f") [flags 0x41]  <function_decl 0x2b7cb58b6288 __kernel_standard_f>) [0 __kernel_standard_f S1 A8])
+            (const_int 0 [0]))) w_scalbf.c:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__kernel_standard_f") [flags 0x41]  <function_decl 0x2b7cb58b6288 __kernel_standard_f>)
+        (nil))
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (expr_list:SF (use (reg:SF 22 xmm1))
+            (expr_list:SI (use (reg:SI 5 di))
+                (nil)))))
+(barrier 28 27 30)
+(code_label 30 28 31 6 3 "" [1 uses])
+(note 31 30 32 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 6 (set (reg:DI 102)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b7cb57576c0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [4  S8 A8])) w_scalbf.c:35 -1
+     (nil))
+(insn 33 32 6 6 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 102)) [1 errno+0 S4 A32])
+        (const_int 34 [0x22])) w_scalbf.c:35 -1
+     (nil))
+(insn 6 33 34 6 (set (reg:SF 88 [ D.8952 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:40 -1
+     (nil))
+(jump_insn 34 6 35 6 (set (pc)
+        (label_ref 61)) -1
+     (nil)
+ -> 61)
+(barrier 35 34 36)
+(code_label 36 35 37 7 2 "" [1 uses])
+(note 37 36 38 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 7 (set (reg:SF 108)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [3  S4 A32])) w_scalbf.c:37 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 39 38 40 7 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 89 [ z ])
+            (reg:SF 108))) w_scalbf.c:37 -1
+     (nil))
+(insn 40 39 43 7 (set (reg:QI 107)
+        (ordered:QI (reg:CCFPU 17 flags)
+            (const_int 0 [0]))) w_scalbf.c:37 -1
+     (nil))
+(insn 43 40 41 7 (set (reg:QI 110)
+        (const_int 0 [0])) w_scalbf.c:37 -1
+     (nil))
+(insn 41 43 42 7 (set (reg:SF 109)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [3  S4 A32])) w_scalbf.c:37 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 42 41 44 7 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 89 [ z ])
+            (reg:SF 109))) w_scalbf.c:37 -1
+     (nil))
+(insn 44 42 45 7 (set (reg:QI 103 [ D.8951 ])
+        (if_then_else:QI (uneq (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (reg:QI 107)
+            (reg:QI 110))) w_scalbf.c:37 -1
+     (nil))
+(insn 45 44 46 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 103 [ D.8951 ])
+            (const_int 0 [0]))) w_scalbf.c:37 -1
+     (nil))
+(jump_insn 46 45 72 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) w_scalbf.c:37 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3051 (nil))
+ -> 71)
+(note 72 46 47 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 47 72 48 8 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 95 [ x ])
+            (reg/v:SF 89 [ z ]))) w_scalbf.c:37 -1
+     (nil))
+(insn 48 47 50 8 (set (reg:QI 115)
+        (unordered:QI (reg:CCFPU 17 flags)
+            (const_int 0 [0]))) w_scalbf.c:37 -1
+     (nil))
+(insn 50 48 49 8 (set (reg:QI 116)
+        (const_int 1 [0x1])) w_scalbf.c:37 -1
+     (nil))
+(insn 49 50 51 8 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 95 [ x ])
+            (reg/v:SF 89 [ z ]))) w_scalbf.c:37 -1
+     (nil))
+(insn 51 49 52 8 (set (reg:QI 111 [ D.8951 ])
+        (if_then_else:QI (uneq (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (reg:QI 115)
+            (reg:QI 116))) w_scalbf.c:37 -1
+     (nil))
+(insn 52 51 53 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 111 [ D.8951 ])
+            (const_int 0 [0]))) w_scalbf.c:37 -1
+     (nil))
+(jump_insn 53 52 54 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) w_scalbf.c:37 612 {*jcc_1}
+     (int_list:REG_BR_PROB 4391 (nil))
+ -> 71)
+(note 54 53 55 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 56 9 (set (reg:SI 5 di)
+        (const_int 133 [0x85])) w_scalbf.c:38 -1
+     (nil))
+(insn 56 55 57 9 (set (reg:SF 22 xmm1)
+        (reg/v:SF 96 [ fn ])) w_scalbf.c:38 -1
+     (nil))
+(insn 57 56 58 9 (set (reg:SF 21 xmm0)
+        (reg/v:SF 95 [ x ])) w_scalbf.c:38 -1
+     (nil))
+(call_insn/j 58 57 59 9 (set (reg:SF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__kernel_standard_f") [flags 0x41]  <function_decl 0x2b7cb58b6288 __kernel_standard_f>) [0 __kernel_standard_f S1 A8])
+            (const_int 0 [0]))) w_scalbf.c:38 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__kernel_standard_f") [flags 0x41]  <function_decl 0x2b7cb58b6288 __kernel_standard_f>)
+        (nil))
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (expr_list:SF (use (reg:SF 22 xmm1))
+            (expr_list:SI (use (reg:SI 5 di))
+                (nil)))))
+(barrier 59 58 71)
+(code_label 71 59 70 10 5 "" [2 uses])
+(note 70 71 5 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 5 70 61 10 (set (reg:SF 88 [ D.8952 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:40 -1
+     (nil))
+(code_label 61 5 62 11 4 "" [1 uses])
+(note 62 61 63 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 67 11 (set (reg:SF 94 [ <retval> ])
+        (reg:SF 88 [ D.8952 ])) -1
+     (nil))
+(insn 67 63 68 11 (set (reg/i:SF 21 xmm0)
+        (reg:SF 94 [ <retval> ])) w_scalbf.c:41 -1
+     (nil))
+(insn 68 67 0 11 (use (reg/i:SF 21 xmm0)) w_scalbf.c:41 -1
+     (nil))
+
+;; Function __scalbf (__scalbf, funcdef_no=88, decl_uid=7651, cgraph_uid=88, symbol_order=89)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+Edge 5->16 redirected to 19
+Edge 7->16 redirected to 20
+Edge 10->16 redirected to 21
+Edge 11->16 redirected to 22
+Edge 13->16 redirected to 23
+Edge 14->16 redirected to 24
+Purged non-fallthru edges from bb 27
+Purged non-fallthru edges from bb 30
+Purged non-fallthru edges from bb 32
+Purged non-fallthru edges from bb 35
+Purged non-fallthru edges from bb 37
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 7->9 redirected to 10
+Forwarding edge 7->8 to 30 failed.
+Forwarding edge 7->8 to 30 failed.
+deleting block 9
+Edge 15->17 redirected to 18
+Forwarding edge 15->16 to 32 failed.
+Forwarding edge 15->16 to 32 failed.
+deleting block 17
+Edge 18->20 redirected to 21
+Forwarding edge 18->19 to 33 failed.
+Forwarding edge 18->19 to 33 failed.
+deleting block 20
+Edge 22->25 redirected to 26
+Edge 23->25 redirected to 26
+Forwarding edge 23->24 to 34 failed.
+Forwarding edge 23->24 to 34 failed.
+deleting block 25
+Edge 26->28 redirected to 29
+Forwarding edge 26->27 to 35 failed.
+Forwarding edge 26->27 to 35 failed.
+deleting block 28
+Removing jump 114.
+Merging block 37 into block 36...
+Merged blocks 36 and 37.
+Merged 36 and 37 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 7->8 to 30 failed.
+Forwarding edge 15->16 to 32 failed.
+Forwarding edge 18->19 to 33 failed.
+Forwarding edge 23->24 to 34 failed.
+Forwarding edge 26->27 to 35 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 14 NOTE_INSN_DELETED)
+(note 14 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 14 3 2 (set (reg/v:SF 98 [ x ])
+        (reg:SF 21 xmm0 [ x ])) w_scalbf.c:47 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SF 99 [ fn ])
+        (reg:SF 22 xmm1 [ fn ])) w_scalbf.c:47 -1
+     (nil))
+(note 4 3 16 2 NOTE_INSN_FUNCTION_BEG)
+(insn 16 4 17 2 (set (reg/f:DI 100)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_LIB_VERSION") [flags 0x40]  <var_decl 0x2b7cb5757ab0 _LIB_VERSION>)
+                    ] UNSPEC_GOTPCREL)) [4  S8 A8])) w_scalbf.c:48 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (reg/f:DI 100) [2 _LIB_VERSION+0 S4 A32])
+            (const_int 0 [0]))) w_scalbf.c:48 -1
+     (nil))
+(jump_insn 18 17 19 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) w_scalbf.c:48 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 25)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 4 (set (reg:SF 22 xmm1)
+        (reg/v:SF 99 [ fn ])) w_scalbf.c:49 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:SF 21 xmm0)
+        (reg/v:SF 98 [ x ])) w_scalbf.c:49 -1
+     (nil))
+(call_insn/j 22 21 23 4 (set (reg:SF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("sysv_scalbf") [flags 0x3]  <function_decl 0x2b7cb58db510 sysv_scalbf>) [0 sysv_scalbf S1 A8])
+            (const_int 0 [0]))) w_scalbf.c:49 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("sysv_scalbf") [flags 0x3]  <function_decl 0x2b7cb58db510 sysv_scalbf>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (expr_list:SF (use (reg:SF 22 xmm1))
+            (nil))))
+(barrier 23 22 25)
+(code_label 25 23 26 5 17 "" [1 uses])
+(note 26 25 27 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 5 (set (reg:SF 22 xmm1)
+        (reg/v:SF 99 [ fn ])) w_scalbf.c:52 -1
+     (nil))
+(insn 28 27 29 5 (set (reg:SF 21 xmm0)
+        (reg/v:SF 98 [ x ])) w_scalbf.c:52 -1
+     (nil))
+(call_insn 29 28 30 5 (set (reg:SF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_scalbf") [flags 0x41]  <function_decl 0x2b7cb58be288 __ieee754_scalbf>) [0 __ieee754_scalbf S1 A8])
+            (const_int 0 [0]))) w_scalbf.c:52 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_scalbf") [flags 0x41]  <function_decl 0x2b7cb58be288 __ieee754_scalbf>)
+        (nil))
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (expr_list:SF (use (reg:SF 22 xmm1))
+            (nil))))
+(insn 30 29 31 5 (set (reg/v:SF 89 [ z ])
+        (reg:SF 21 xmm0)) w_scalbf.c:52 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:V4SF 101)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S16 A128])) w_scalbf.c:54 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 32 31 33 5 (parallel [
+            (set (reg:SF 90 [ D.8956 ])
+                (abs:SF (reg/v:SF 89 [ z ])))
+            (use (reg:V4SF 101))
+            (clobber (reg:CC 17 flags))
+        ]) w_scalbf.c:54 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 89 [ z ]))
+        (nil)))
+(insn 33 32 34 5 (set (reg:SF 102)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32])) w_scalbf.c:54 -1
+     (expr_list:REG_EQUAL (const_double:SF 3.4028234663852885981170418348451692544e+38 [0x0.ffffffp+128])
+        (nil)))
+(insn 34 33 35 5 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 102)
+            (reg:SF 90 [ D.8956 ]))) w_scalbf.c:54 -1
+     (nil))
+(jump_insn 35 34 36 5 (set (pc)
+        (if_then_else (unlt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) w_scalbf.c:54 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 46)
+(note 36 35 37 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 6 (set (reg:SF 103)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [3  S4 A32])) w_scalbf.c:54 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 38 37 39 6 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 89 [ z ])
+            (reg:SF 103))) w_scalbf.c:54 -1
+     (nil))
+(jump_insn 39 38 144 6 (set (pc)
+        (if_then_else (unordered (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 123)
+            (pc))) w_scalbf.c:54 612 {*jcc_1}
+     (int_list:REG_BR_PROB 100 (nil))
+ -> 123)
+(note 144 39 40 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 40 144 41 7 (set (reg:SF 104)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [3  S4 A32])) w_scalbf.c:54 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 41 40 42 7 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 89 [ z ])
+            (reg:SF 104))) w_scalbf.c:54 -1
+     (nil))
+(jump_insn 42 41 145 7 (set (pc)
+        (if_then_else (uneq (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) w_scalbf.c:54 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 46)
+(note 145 42 43 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 43 145 44 8 (set (pc)
+        (label_ref:DI 123)) w_scalbf.c:54 654 {jump}
+     (nil)
+ -> 123)
+(barrier 44 43 46)
+(code_label 46 44 47 10 18 "" [2 uses])
+(note 47 46 48 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 10 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 89 [ z ])
+            (reg/v:SF 89 [ z ]))) w_scalbf.c:56 -1
+     (nil))
+(jump_insn 49 48 50 10 (set (pc)
+        (if_then_else (ordered (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 64)
+            (pc))) w_scalbf.c:56 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 64)
+(note 50 49 51 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 52 11 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 98 [ x ])
+            (reg/v:SF 98 [ x ]))) w_scalbf.c:58 -1
+     (nil))
+(insn 52 51 53 11 (set (reg:QI 106 [ D.8958 ])
+        (ordered:QI (reg:CCFPU 17 flags)
+            (const_int 0 [0]))) w_scalbf.c:58 -1
+     (nil))
+(insn 53 52 54 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 106 [ D.8958 ])
+            (const_int 0 [0]))) w_scalbf.c:58 -1
+     (nil))
+(jump_insn 54 53 147 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 127)
+            (pc))) w_scalbf.c:58 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2500 (nil))
+ -> 127)
+(note 147 54 55 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 55 147 56 12 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 99 [ fn ])
+            (reg/v:SF 99 [ fn ]))) w_scalbf.c:58 -1
+     (nil))
+(insn 56 55 57 12 (set (reg:QI 108 [ D.8958 ])
+        (ordered:QI (reg:CCFPU 17 flags)
+            (const_int 0 [0]))) w_scalbf.c:58 -1
+     (nil))
+(insn 57 56 58 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 108 [ D.8958 ])
+            (const_int 0 [0]))) w_scalbf.c:58 -1
+     (nil))
+(jump_insn 58 57 59 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 127)
+            (pc))) w_scalbf.c:58 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3333 (nil))
+ -> 127)
+(note 59 58 60 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 13 (set (reg:DI 109)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b7cb57576c0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [4  S8 A8])) w_scalbf.c:59 -1
+     (nil))
+(insn 61 60 5 13 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 109)) [1 errno+0 S4 A32])
+        (const_int 33 [0x21])) w_scalbf.c:59 -1
+     (nil))
+(insn 5 61 62 13 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 62 5 63 13 (set (pc)
+        (label_ref 111)) w_scalbf.c:59 -1
+     (nil)
+ -> 111)
+(barrier 63 62 64)
+(code_label 64 63 65 14 21 "" [1 uses])
+(note 65 64 66 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 66 65 67 14 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 90 [ D.8956 ])
+            (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32]))) w_scalbf.c:61 -1
+     (nil))
+(jump_insn 67 66 68 14 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 89)
+            (pc))) w_scalbf.c:61 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 89)
+(note 68 67 69 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 70 15 (set (reg:V4SF 111)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S16 A128])) w_scalbf.c:63 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 70 69 71 15 (parallel [
+            (set (reg:SF 110 [ D.8956 ])
+                (abs:SF (reg/v:SF 98 [ x ])))
+            (use (reg:V4SF 111))
+            (clobber (reg:CC 17 flags))
+        ]) w_scalbf.c:63 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 98 [ x ]))
+        (nil)))
+(insn 71 70 72 15 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 110 [ D.8956 ])
+            (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32]))) w_scalbf.c:63 -1
+     (nil))
+(jump_insn 72 71 148 15 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 157)
+            (pc))) w_scalbf.c:63 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6100 (nil))
+ -> 157)
+(note 148 72 73 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 73 148 74 16 (set (pc)
+        (label_ref:DI 131)) w_scalbf.c:63 654 {jump}
+     (nil)
+ -> 131)
+(barrier 74 73 157)
+(code_label 157 74 76 18 33 "" [1 uses])
+(note 76 157 77 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 77 76 78 18 (set (reg:V4SF 113)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S16 A128])) w_scalbf.c:63 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 78 77 79 18 (parallel [
+            (set (reg:SF 112 [ D.8956 ])
+                (abs:SF (reg/v:SF 99 [ fn ])))
+            (use (reg:V4SF 113))
+            (clobber (reg:CC 17 flags))
+        ]) w_scalbf.c:63 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 99 [ fn ]))
+        (nil)))
+(insn 79 78 80 18 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 112 [ D.8956 ])
+            (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32]))) w_scalbf.c:63 -1
+     (nil))
+(jump_insn 80 79 150 18 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 158)
+            (pc))) w_scalbf.c:63 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 158)
+(note 150 80 81 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 81 150 82 19 (set (pc)
+        (label_ref:DI 135)) w_scalbf.c:63 654 {jump}
+     (nil)
+ -> 135)
+(barrier 82 81 158)
+(code_label 158 82 84 21 34 "" [1 uses])
+(note 84 158 85 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 86 21 (set (reg:DI 114)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b7cb57576c0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [4  S8 A8])) w_scalbf.c:64 -1
+     (nil))
+(insn 86 85 7 21 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 114)) [1 errno+0 S4 A32])
+        (const_int 34 [0x22])) w_scalbf.c:64 -1
+     (nil))
+(insn 7 86 87 21 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 87 7 88 21 (set (pc)
+        (label_ref 111)) w_scalbf.c:64 -1
+     (nil)
+ -> 111)
+(barrier 88 87 89)
+(code_label 89 88 90 22 22 "" [1 uses])
+(note 90 89 91 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 91 90 92 22 (set (reg:SF 115)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [3  S4 A32])) w_scalbf.c:69 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 92 91 93 22 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 98 [ x ])
+            (reg:SF 115))) w_scalbf.c:69 -1
+     (nil))
+(jump_insn 93 92 152 22 (set (pc)
+        (if_then_else (unordered (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 159)
+            (pc))) w_scalbf.c:69 612 {*jcc_1}
+     (int_list:REG_BR_PROB 100 (nil))
+ -> 159)
+(note 152 93 94 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 94 152 95 23 (set (reg:SF 116)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [3  S4 A32])) w_scalbf.c:69 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 95 94 96 23 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 98 [ x ])
+            (reg:SF 116))) w_scalbf.c:69 -1
+     (nil))
+(jump_insn 96 95 153 23 (set (pc)
+        (if_then_else (ltgt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 159)
+            (pc))) w_scalbf.c:69 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6100 (nil))
+ -> 159)
+(note 153 96 97 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 97 153 98 24 (set (pc)
+        (label_ref:DI 139)) w_scalbf.c:69 654 {jump}
+     (nil)
+ -> 139)
+(barrier 98 97 159)
+(code_label 159 98 100 26 35 "" [2 uses])
+(note 100 159 101 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 101 100 102 26 (set (reg:V4SF 118)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S16 A128])) w_scalbf.c:69 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 102 101 103 26 (parallel [
+            (set (reg:SF 117 [ D.8956 ])
+                (abs:SF (reg/v:SF 99 [ fn ])))
+            (use (reg:V4SF 118))
+            (clobber (reg:CC 17 flags))
+        ]) w_scalbf.c:69 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 99 [ fn ]))
+        (nil)))
+(insn 103 102 104 26 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 117 [ D.8956 ])
+            (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32]))) w_scalbf.c:69 -1
+     (nil))
+(jump_insn 104 103 155 26 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 160)
+            (pc))) w_scalbf.c:69 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6100 (nil))
+ -> 160)
+(note 155 104 105 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 105 155 106 27 (set (pc)
+        (label_ref:DI 143)) w_scalbf.c:69 654 {jump}
+     (nil)
+ -> 143)
+(barrier 106 105 160)
+(code_label 160 106 108 29 36 "" [1 uses])
+(note 108 160 109 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 109 108 110 29 (set (reg:DI 119)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b7cb57576c0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [4  S8 A8])) w_scalbf.c:70 -1
+     (nil))
+(insn 110 109 10 29 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 119)) [1 errno+0 S4 A32])
+        (const_int 34 [0x22])) w_scalbf.c:70 -1
+     (nil))
+(insn 10 110 120 29 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 120 10 121 29 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+(barrier 121 120 123)
+(code_label 123 121 122 30 27 "" [2 uses])
+(note 122 123 6 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 6 122 124 30 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 124 6 125 30 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+(barrier 125 124 127)
+(code_label 127 125 126 31 28 "" [2 uses])
+(note 126 127 9 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 9 126 128 31 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 128 9 129 31 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+(barrier 129 128 131)
+(code_label 131 129 130 32 29 "" [1 uses])
+(note 130 131 8 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 8 130 132 32 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 132 8 133 32 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+(barrier 133 132 135)
+(code_label 135 133 134 33 30 "" [1 uses])
+(note 134 135 13 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 13 134 136 33 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 136 13 137 33 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+(barrier 137 136 139)
+(code_label 139 137 138 34 31 "" [1 uses])
+(note 138 139 12 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 12 138 140 34 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(jump_insn 140 12 141 34 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+(barrier 141 140 143)
+(code_label 143 141 142 35 32 "" [1 uses])
+(note 142 143 11 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 11 142 111 35 (set (reg:SF 87 [ D.8956 ])
+        (reg/v:SF 89 [ z ])) w_scalbf.c:73 -1
+     (nil))
+(code_label 111 11 112 36 19 "" [8 uses])
+(note 112 111 113 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 113 112 117 36 (set (reg:SF 97 [ <retval> ])
+        (reg:SF 87 [ D.8956 ])) -1
+     (nil))
+(insn 117 113 118 36 (set (reg/i:SF 21 xmm0)
+        (reg:SF 97 [ <retval> ])) w_scalbf.c:75 -1
+     (nil))
+(insn 118 117 0 36 (use (reg/i:SF 21 xmm0)) w_scalbf.c:75 -1
+     (nil))

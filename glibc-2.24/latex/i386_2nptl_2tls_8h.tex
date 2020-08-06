@@ -1,0 +1,591 @@
+\hypertarget{i386_2nptl_2tls_8h}{}\doxysection{sysdeps/i386/nptl/tls.h File Reference}
+\label{i386_2nptl_2tls_8h}\index{sysdeps/i386/nptl/tls.h@{sysdeps/i386/nptl/tls.h}}
+{\ttfamily \#include $<$dl-\/sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/dtv.\+h$>$}\newline
+{\ttfamily \#include $<$nptl/descr.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtcbhead__t}{tcbhead\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structuser__desc}{user\+\_\+desc}}
+\item 
+union \mbox{\hyperlink{unionuser__desc__init}{user\+\_\+desc\+\_\+init}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a36433807f0c0a9719709d792d0502c6e}{T\+L\+S\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+T\+H\+R\+E\+A\+D\+S\+\_\+\+I\+N\+\_\+\+T\+CB}}~1
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a88839b8a36578f9480c960dbc381448b}{S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+GN}}~16
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_afa8d3d719fb1598b8443052f1f25f57c}{T\+L\+S\+\_\+\+I\+N\+I\+T\+\_\+\+T\+C\+B\+\_\+\+S\+I\+ZE}}~sizeof (struct \mbox{\hyperlink{structpthread}{pthread}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a4a0f0082c999c2666c9825b2d521124c}{T\+L\+S\+\_\+\+I\+N\+I\+T\+\_\+\+T\+C\+B\+\_\+\+A\+L\+I\+GN}}~\+\_\+\+\_\+alignof\+\_\+\+\_\+ (struct \mbox{\hyperlink{structpthread}{pthread}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_ae135f916e34f69eacd883c2111d4390d}{T\+L\+S\+\_\+\+T\+C\+B\+\_\+\+S\+I\+ZE}}~sizeof (struct \mbox{\hyperlink{structpthread}{pthread}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a6a948c9223bc9fb3600a6fb983d63bb0}{T\+L\+S\+\_\+\+T\+C\+B\+\_\+\+A\+L\+I\+GN}}~\+\_\+\+\_\+alignof\+\_\+\+\_\+ (struct \mbox{\hyperlink{structpthread}{pthread}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a507c8895b182d6af270db1ccf8cfe9a5}{T\+L\+S\+\_\+\+T\+C\+B\+\_\+\+A\+T\+\_\+\+TP}}~1
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a6abc78eaa9975cda9d28dc6046870853}{T\+L\+S\+\_\+\+D\+T\+V\+\_\+\+A\+T\+\_\+\+TP}}~0
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a81ee40bb57e2d13d0826f2a9e338578b}{I\+N\+S\+T\+A\+L\+L\+\_\+\+D\+TV}}(descr,  dtvp)~((\mbox{\hyperlink{structtcbhead__t}{tcbhead\+\_\+t}} $\ast$) (descr))-\/$>$\mbox{\hyperlink{structdtv}{dtv}} = (dtvp) + 1
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a1c51850a2b932780fdbba8d051d4e358}{I\+N\+S\+T\+A\+L\+L\+\_\+\+N\+E\+W\+\_\+\+D\+TV}}(dtvp)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a21f2e88ad946528d4a42ced4e5ebd9ef}{G\+E\+T\+\_\+\+D\+TV}}(descr)~(((\mbox{\hyperlink{structtcbhead__t}{tcbhead\+\_\+t}} $\ast$) (descr))-\/$>$\mbox{\hyperlink{structdtv}{dtv}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a8e2437859429e25df64ef91dac9455df}{T\+L\+S\+\_\+\+G\+E\+T\+\_\+\+GS}}()~(\{ \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+seg; \+\_\+\+\_\+asm (\char`\"{}movw \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}, \%w0\char`\"{} \+: \char`\"{}=q\char`\"{} (\+\_\+\+\_\+seg)); \+\_\+\+\_\+seg \& 0xffff; \})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a3e4048cd96aba0d43f654306796315a7}{T\+L\+S\+\_\+\+S\+E\+T\+\_\+\+GS}}(\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})~\+\_\+\+\_\+asm (\char`\"{}movw \%w0, \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}\char`\"{} \+:: \char`\"{}q\char`\"{} (val))
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a88dcebc4d77c7aacdfd4cd0501f0ec09}{I\+N\+I\+T\+\_\+\+S\+Y\+S\+I\+N\+FO}}
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_ad2d1e7e207fd2e97e9965d65ef5ed273}{L\+O\+C\+K\+\_\+\+P\+R\+E\+F\+IX}}~\char`\"{}lock;\char`\"{}
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_ac33158e63e9cde5fc02bacf0831fffe1}{T\+L\+S\+\_\+\+I\+N\+I\+T\+\_\+\+TP}}(thrdescr)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a1e3def722c323cd48c9b428133228cd7}{T\+L\+S\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+I\+N\+I\+T\+\_\+\+TP}}(tp,  \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a783193714a164421125cc9a8b0300117}{T\+H\+R\+E\+A\+D\+\_\+\+D\+TV}}()
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_ac1d5ff7089614cc64754aba531e512be}{D\+B\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a7069db0231055e5e158beaa8abfce24e}{T\+H\+R\+E\+A\+D\+\_\+\+G\+E\+T\+M\+EM}}(descr,  member)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a3d3f21042d1653e96858cfa63263ff15}{T\+H\+R\+E\+A\+D\+\_\+\+G\+E\+T\+M\+E\+M\+\_\+\+NC}}(descr,  member,  \mbox{\hyperlink{sysdeps_2posix_2gai__strerror_8c_a3621634c7d41edf167a313cdfe0648b6}{idx}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}}(descr,  member,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a3704234cea174e505c4678b4ca3a1c4c}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+E\+M\+\_\+\+NC}}(descr,  member,  \mbox{\hyperlink{sysdeps_2posix_2gai__strerror_8c_a3621634c7d41edf167a313cdfe0648b6}{idx}},  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a80b5e0c542deadbe86fce59ae1f53041}{T\+H\+R\+E\+A\+D\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+C\+M\+P\+X\+C\+H\+G\+\_\+\+V\+AL}}(descr,  member,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_af792bc4b25ea16c8083534ef794b9623}{T\+H\+R\+E\+A\+D\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+A\+ND}}(descr,  member,  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_abc6204bed76909cb4a04fcd0eccb0efc}{T\+H\+R\+E\+A\+D\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+B\+I\+T\+\_\+\+S\+ET}}(descr,  member,  bit)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_af96da7da958fa71c9cc1eb088e9ca72a}{C\+A\+L\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+F\+CT}}(descr)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_aacbac72d9a6e1f57b784144f65211da1}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+U\+A\+RD}}(\mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}} (\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}, header.\+stack\+\_\+guard, \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a77fd8c5b23daa07385c4185b7370b2a1}{T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+U\+A\+RD}}(descr)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a5d0298cdd28ff69c9a51114b4fe4c589}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+G\+U\+A\+RD}}(\mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}} (\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}, header.\+pointer\+\_\+guard, \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_addc2c443c28016ba454d4ffb5e7bbf92}{T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+G\+U\+A\+RD}}(descr)
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a34c5c8911adf29e4beb82773f9d419da}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+U\+N\+U\+S\+ED}}~0
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a428bcfbedca8e8587cc6e1ebe5ae3360}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+U\+S\+ED}}~1
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_ab093410be7e8ea66ac8734bb401b2a31}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+W\+A\+IT}}~2
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a617fa97f8769c1e92737a512f8f38f3e}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+F\+L\+AG}}()
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_ae66ef80628fe28fafd7dd5f882778231}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+S\+E\+T\+\_\+\+F\+L\+AG}}()~\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}} (\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}, header.\+gscope\+\_\+flag, \mbox{\hyperlink{x86__64_2nptl_2tls_8h_a428bcfbedca8e8587cc6e1ebe5ae3360}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+U\+S\+ED}})
+\item 
+\#define \mbox{\hyperlink{i386_2nptl_2tls_8h_a962540ddd529c71e9af8d774285f8f66}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+W\+A\+IT}}()~\mbox{\hyperlink{generic_2ldsodefs_8h_a8c62b842c6a196f1cdd22f9ca613568f}{GL}}(dl\+\_\+wait\+\_\+lookup\+\_\+done) ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\+\_\+number}}
+\item 
+static \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}}
+\item 
+desc \mbox{\hyperlink{i386_2nptl_2tls_8h_ac1293c864b1f5fc7785544beea2abef7}{vals}} \mbox{[}1\mbox{]} = (unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}) \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_af96da7da958fa71c9cc1eb088e9ca72a}\label{i386_2nptl_2tls_8h_af96da7da958fa71c9cc1eb088e9ca72a}} 
+\index{tls.h@{tls.h}!CALL\_THREAD\_FCT@{CALL\_THREAD\_FCT}}
+\index{CALL\_THREAD\_FCT@{CALL\_THREAD\_FCT}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_THREAD\_FCT}{CALL\_THREAD\_FCT}}
+{\footnotesize\ttfamily \#define C\+A\+L\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+F\+CT(\begin{DoxyParamCaption}\item[{}]{descr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{void} *\_\_res;                               \(\backslash\)}
+\DoxyCodeLine{     int \_\_ignore1, \_\_ignore2;                            \(\backslash\)}
+\DoxyCodeLine{     asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"pushl \%\%eax\(\backslash\)n\(\backslash\)t"}                          \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"pushl \%\%eax\(\backslash\)n\(\backslash\)t"}                          \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"pushl \%\%eax\(\backslash\)n\(\backslash\)t"}                          \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"pushl \%\%gs:\%P4\(\backslash\)n\(\backslash\)t"}                       \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"call *\%\%gs:\%P3\(\backslash\)n\(\backslash\)t"}                       \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"addl \$16, \%\%esp"}                          \(\backslash\)}
+\DoxyCodeLine{           : \textcolor{stringliteral}{"=a"} (\_\_res), \textcolor{stringliteral}{"=c"} (\_\_ignore1), \textcolor{stringliteral}{"=d"} (\_\_ignore2)         \(\backslash\)}
+\DoxyCodeLine{           : \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, \mbox{\hyperlink{descr_8h_a65817fdcd8d96f6eaa79a89bfde6a456}{start\_routine}})),          \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, \mbox{\hyperlink{libio_2tst-swscanf_8c_a51e23ad18b55dbc1bcb4d15765cbf86c}{arg}})));             \(\backslash\)}
+\DoxyCodeLine{     \_\_res; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ac1d5ff7089614cc64754aba531e512be}\label{i386_2nptl_2tls_8h_ac1d5ff7089614cc64754aba531e512be}} 
+\index{tls.h@{tls.h}!DB\_THREAD\_SELF@{DB\_THREAD\_SELF}}
+\index{DB\_THREAD\_SELF@{DB\_THREAD\_SELF}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{DB\_THREAD\_SELF}{DB\_THREAD\_SELF}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{REGISTER\_THREAD\_AREA (32, \mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structuser__regs__struct}{user\_regs\_struct}}, xgs), 3) \(\backslash\)}
+\DoxyCodeLine{  REGISTER\_THREAD\_AREA (64, 26 * 8, 3) \textcolor{comment}{/* x86-\/64's user\_regs\_struct-\/>gs */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a21f2e88ad946528d4a42ced4e5ebd9ef}\label{i386_2nptl_2tls_8h_a21f2e88ad946528d4a42ced4e5ebd9ef}} 
+\index{tls.h@{tls.h}!GET\_DTV@{GET\_DTV}}
+\index{GET\_DTV@{GET\_DTV}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{GET\_DTV}{GET\_DTV}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+D\+TV(\begin{DoxyParamCaption}\item[{}]{descr }\end{DoxyParamCaption})~(((\mbox{\hyperlink{structtcbhead__t}{tcbhead\+\_\+t}} $\ast$) (descr))-\/$>$\mbox{\hyperlink{structdtv}{dtv}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a88dcebc4d77c7aacdfd4cd0501f0ec09}\label{i386_2nptl_2tls_8h_a88dcebc4d77c7aacdfd4cd0501f0ec09}} 
+\index{tls.h@{tls.h}!INIT\_SYSINFO@{INIT\_SYSINFO}}
+\index{INIT\_SYSINFO@{INIT\_SYSINFO}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{INIT\_SYSINFO}{INIT\_SYSINFO}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+S\+Y\+S\+I\+N\+FO}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a81ee40bb57e2d13d0826f2a9e338578b}\label{i386_2nptl_2tls_8h_a81ee40bb57e2d13d0826f2a9e338578b}} 
+\index{tls.h@{tls.h}!INSTALL\_DTV@{INSTALL\_DTV}}
+\index{INSTALL\_DTV@{INSTALL\_DTV}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{INSTALL\_DTV}{INSTALL\_DTV}}
+{\footnotesize\ttfamily \#define I\+N\+S\+T\+A\+L\+L\+\_\+\+D\+TV(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{dtvp }\end{DoxyParamCaption})~((\mbox{\hyperlink{structtcbhead__t}{tcbhead\+\_\+t}} $\ast$) (descr))-\/$>$\mbox{\hyperlink{structdtv}{dtv}} = (dtvp) + 1}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a1c51850a2b932780fdbba8d051d4e358}\label{i386_2nptl_2tls_8h_a1c51850a2b932780fdbba8d051d4e358}} 
+\index{tls.h@{tls.h}!INSTALL\_NEW\_DTV@{INSTALL\_NEW\_DTV}}
+\index{INSTALL\_NEW\_DTV@{INSTALL\_NEW\_DTV}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{INSTALL\_NEW\_DTV}{INSTALL\_NEW\_DTV}}
+{\footnotesize\ttfamily \#define I\+N\+S\+T\+A\+L\+L\+\_\+\+N\+E\+W\+\_\+\+D\+TV(\begin{DoxyParamCaption}\item[{}]{dtvp }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keyword}{struct }\mbox{\hyperlink{structpthread}{pthread}} *\_\_pd;                           \(\backslash\)}
+\DoxyCodeLine{     THREAD\_SETMEM (\_\_pd, \mbox{\hyperlink{structheader}{header}}.dtv, (dtvp)); \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ad2d1e7e207fd2e97e9965d65ef5ed273}\label{i386_2nptl_2tls_8h_ad2d1e7e207fd2e97e9965d65ef5ed273}} 
+\index{tls.h@{tls.h}!LOCK\_PREFIX@{LOCK\_PREFIX}}
+\index{LOCK\_PREFIX@{LOCK\_PREFIX}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{LOCK\_PREFIX}{LOCK\_PREFIX}}
+{\footnotesize\ttfamily \#define L\+O\+C\+K\+\_\+\+P\+R\+E\+F\+IX~\char`\"{}lock;\char`\"{}}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a88839b8a36578f9480c960dbc381448b}\label{i386_2nptl_2tls_8h_a88839b8a36578f9480c960dbc381448b}} 
+\index{tls.h@{tls.h}!STACK\_ALIGN@{STACK\_ALIGN}}
+\index{STACK\_ALIGN@{STACK\_ALIGN}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{STACK\_ALIGN}{STACK\_ALIGN}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+GN~16}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_af792bc4b25ea16c8083534ef794b9623}\label{i386_2nptl_2tls_8h_af792bc4b25ea16c8083534ef794b9623}} 
+\index{tls.h@{tls.h}!THREAD\_ATOMIC\_AND@{THREAD\_ATOMIC\_AND}}
+\index{THREAD\_ATOMIC\_AND@{THREAD\_ATOMIC\_AND}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_ATOMIC\_AND}{THREAD\_ATOMIC\_AND}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+A\+ND(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member,  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) (\{ \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} ((descr)-\/>member) == 4)                      \(\backslash\)}
+\DoxyCodeLine{          asm \textcolor{keyword}{volatile} (\mbox{\hyperlink{i386_2nptl_2tls_8h_ad2d1e7e207fd2e97e9965d65ef5ed273}{LOCK\_PREFIX}} \textcolor{stringliteral}{"andl \%1, \%\%gs:\%P0"}            \(\backslash\)}
+\DoxyCodeLine{                :: \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),        \(\backslash\)}
+\DoxyCodeLine{                   \textcolor{stringliteral}{"ir"} (val));                   \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          \textcolor{comment}{/* Not necessary for other sizes in the moment.  */}         \(\backslash\)}
+\DoxyCodeLine{          abort (); \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_abc6204bed76909cb4a04fcd0eccb0efc}\label{i386_2nptl_2tls_8h_abc6204bed76909cb4a04fcd0eccb0efc}} 
+\index{tls.h@{tls.h}!THREAD\_ATOMIC\_BIT\_SET@{THREAD\_ATOMIC\_BIT\_SET}}
+\index{THREAD\_ATOMIC\_BIT\_SET@{THREAD\_ATOMIC\_BIT\_SET}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_ATOMIC\_BIT\_SET}{THREAD\_ATOMIC\_BIT\_SET}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+B\+I\+T\+\_\+\+S\+ET(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member,  }\item[{}]{bit }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) (\{ \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} ((descr)-\/>member) == 4)                      \(\backslash\)}
+\DoxyCodeLine{          asm \textcolor{keyword}{volatile} (\mbox{\hyperlink{i386_2nptl_2tls_8h_ad2d1e7e207fd2e97e9965d65ef5ed273}{LOCK\_PREFIX}} \textcolor{stringliteral}{"orl \%1, \%\%gs:\%P0"}             \(\backslash\)}
+\DoxyCodeLine{                :: \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),        \(\backslash\)}
+\DoxyCodeLine{                   \textcolor{stringliteral}{"ir"} (1 << (bit)));                \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          \textcolor{comment}{/* Not necessary for other sizes in the moment.  */}         \(\backslash\)}
+\DoxyCodeLine{          abort (); \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a80b5e0c542deadbe86fce59ae1f53041}\label{i386_2nptl_2tls_8h_a80b5e0c542deadbe86fce59ae1f53041}} 
+\index{tls.h@{tls.h}!THREAD\_ATOMIC\_CMPXCHG\_VAL@{THREAD\_ATOMIC\_CMPXCHG\_VAL}}
+\index{THREAD\_ATOMIC\_CMPXCHG\_VAL@{THREAD\_ATOMIC\_CMPXCHG\_VAL}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_ATOMIC\_CMPXCHG\_VAL}{THREAD\_ATOMIC\_CMPXCHG\_VAL}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+C\+M\+P\+X\+C\+H\+G\+\_\+\+V\+AL(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (descr-\/>member) \_\_ret;                        \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}) \_\_old = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}});                      \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_af91678d5734fcb1803b1ba1501df5f9c}{if}} (sizeof (descr-\/>member) == 4)                       \(\backslash\)}
+\DoxyCodeLine{       \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a767f709d735e7a1844f71e89b30e4e1a}{asm}} volatile (\mbox{\hyperlink{i386_2nptl_2tls_8h_ad2d1e7e207fd2e97e9965d65ef5ed273}{LOCK\_PREFIX}} "cmpxchgl \%2, \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}:\%\mbox{\hyperlink{localedata_2tst-sscanf_8c_a0707a89c2f63bd260108e9dbb669358e}{P3}}"            \(\backslash\)}
+\DoxyCodeLine{             : "=\mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}" (\_\_ret)                          \(\backslash\)}
+\DoxyCodeLine{             : "0" (\_\_old), "\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}" (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}),                  \(\backslash\)}
+\DoxyCodeLine{               "\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}" (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structpthread}{pthread}}, member)));          \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{do-rel_8h_a0544c3fe466e421738dae463968b70ba}{else}}                                     \(\backslash\)}
+\DoxyCodeLine{       \textcolor{comment}{/* Not necessary for other sizes in the moment.  */}            \(\backslash\)}
+\DoxyCodeLine{       \mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{abort}} ();                                 \(\backslash\)}
+\DoxyCodeLine{     \_\_ret; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_addc2c443c28016ba454d4ffb5e7bbf92}\label{i386_2nptl_2tls_8h_addc2c443c28016ba454d4ffb5e7bbf92}} 
+\index{tls.h@{tls.h}!THREAD\_COPY\_POINTER\_GUARD@{THREAD\_COPY\_POINTER\_GUARD}}
+\index{THREAD\_COPY\_POINTER\_GUARD@{THREAD\_COPY\_POINTER\_GUARD}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_COPY\_POINTER\_GUARD}{THREAD\_COPY\_POINTER\_GUARD}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+G\+U\+A\+RD(\begin{DoxyParamCaption}\item[{}]{descr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((descr)-\/>\mbox{\hyperlink{structheader}{header}}.pointer\_guard                          \(\backslash\)}
+\DoxyCodeLine{   = \mbox{\hyperlink{i386_2nptl_2tls_8h_a7069db0231055e5e158beaa8abfce24e}{THREAD\_GETMEM}} (\mbox{\hyperlink{i386_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{THREAD\_SELF}}, \mbox{\hyperlink{structheader}{header}}.pointer\_guard))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a77fd8c5b23daa07385c4185b7370b2a1}\label{i386_2nptl_2tls_8h_a77fd8c5b23daa07385c4185b7370b2a1}} 
+\index{tls.h@{tls.h}!THREAD\_COPY\_STACK\_GUARD@{THREAD\_COPY\_STACK\_GUARD}}
+\index{THREAD\_COPY\_STACK\_GUARD@{THREAD\_COPY\_STACK\_GUARD}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_COPY\_STACK\_GUARD}{THREAD\_COPY\_STACK\_GUARD}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+U\+A\+RD(\begin{DoxyParamCaption}\item[{}]{descr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((descr)-\/>\mbox{\hyperlink{structheader}{header}}.stack\_guard                            \(\backslash\)}
+\DoxyCodeLine{   = \mbox{\hyperlink{i386_2nptl_2tls_8h_a7069db0231055e5e158beaa8abfce24e}{THREAD\_GETMEM}} (\mbox{\hyperlink{i386_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{THREAD\_SELF}}, \mbox{\hyperlink{structheader}{header}}.stack\_guard))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a783193714a164421125cc9a8b0300117}\label{i386_2nptl_2tls_8h_a783193714a164421125cc9a8b0300117}} 
+\index{tls.h@{tls.h}!THREAD\_DTV@{THREAD\_DTV}}
+\index{THREAD\_DTV@{THREAD\_DTV}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_DTV}{THREAD\_DTV}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+D\+TV(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keyword}{struct }\mbox{\hyperlink{structpthread}{pthread}} *\_\_pd;                           \(\backslash\)}
+\DoxyCodeLine{     THREAD\_GETMEM (\_\_pd, \mbox{\hyperlink{structheader}{header}}.dtv); \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a7069db0231055e5e158beaa8abfce24e}\label{i386_2nptl_2tls_8h_a7069db0231055e5e158beaa8abfce24e}} 
+\index{tls.h@{tls.h}!THREAD\_GETMEM@{THREAD\_GETMEM}}
+\index{THREAD\_GETMEM@{THREAD\_GETMEM}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GETMEM}{THREAD\_GETMEM}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+E\+T\+M\+EM(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (descr-\/>member) \_\_value;                          \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_af91678d5734fcb1803b1ba1501df5f9c}{if}} (sizeof (\_\_value) == 1)                             \(\backslash\)}
+\DoxyCodeLine{       \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a767f709d735e7a1844f71e89b30e4e1a}{asm}} volatile ("movb \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}:\%\mbox{\hyperlink{localedata_2tst-sscanf_8c_ae00a52dba55d31948c377fa85d385b87}{P2}},\%b0"                   \(\backslash\)}
+\DoxyCodeLine{             : "=q" (\_\_value)                         \(\backslash\)}
+\DoxyCodeLine{             : "0" (0), "\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}" (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structpthread}{pthread}}, member)));     \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{do-rel_8h_a0544c3fe466e421738dae463968b70ba}{else}} \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_af91678d5734fcb1803b1ba1501df5f9c}{if}} (sizeof (\_\_value) == 4)                        \(\backslash\)}
+\DoxyCodeLine{       \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a767f709d735e7a1844f71e89b30e4e1a}{asm}} volatile ("movl \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}:\%\mbox{\hyperlink{localedata_2tst-sscanf_8c_a6c2a9f7efd46f0160f3037869924d6ce}{P1}},\%0"                        \(\backslash\)}
+\DoxyCodeLine{             : "=\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}" (\_\_value)                        \(\backslash\)}
+\DoxyCodeLine{             : "\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}" (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structpthread}{pthread}}, member)));          \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{do-rel_8h_a0544c3fe466e421738dae463968b70ba}{else}}                                     \(\backslash\)}
+\DoxyCodeLine{       \{                                      \(\backslash\)}
+\DoxyCodeLine{     if (\textcolor{keyword}{sizeof} (\_\_value) != 8)                       \(\backslash\)}
+\DoxyCodeLine{       \textcolor{comment}{/* There should not be any value with a size other than 1,         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{          4 or 8.  */}                             \(\backslash\)}
+\DoxyCodeLine{       abort ();                                  \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%\%gs:\%P1,\%\%eax\(\backslash\)n\(\backslash\)t"}                  \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"movl \%\%gs:\%P2,\%\%edx"}                      \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=A"} (\_\_value)                       \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),          \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member) + 4));         \(\backslash\)}
+\DoxyCodeLine{       \}                                      \(\backslash\)}
+\DoxyCodeLine{     \_\_value; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a3d3f21042d1653e96858cfa63263ff15}\label{i386_2nptl_2tls_8h_a3d3f21042d1653e96858cfa63263ff15}} 
+\index{tls.h@{tls.h}!THREAD\_GETMEM\_NC@{THREAD\_GETMEM\_NC}}
+\index{THREAD\_GETMEM\_NC@{THREAD\_GETMEM\_NC}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GETMEM\_NC}{THREAD\_GETMEM\_NC}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+E\+T\+M\+E\+M\+\_\+\+NC(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member,  }\item[{}]{\mbox{\hyperlink{sysdeps_2posix_2gai__strerror_8c_a3621634c7d41edf167a313cdfe0648b6}{idx}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (descr-\/>member[0]) \_\_value;                   \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_af91678d5734fcb1803b1ba1501df5f9c}{if}} (sizeof (\_\_value) == 1)                             \(\backslash\)}
+\DoxyCodeLine{       \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a767f709d735e7a1844f71e89b30e4e1a}{asm}} volatile ("movb \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}:\%\mbox{\hyperlink{localedata_2tst-sscanf_8c_ae00a52dba55d31948c377fa85d385b87}{P2}}(\%3),\%b0"                   \(\backslash\)}
+\DoxyCodeLine{             : "=q" (\_\_value)                         \(\backslash\)}
+\DoxyCodeLine{             : "0" (0), "\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}" (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structpthread}{pthread}}, member[0])),   \(\backslash\)}
+\DoxyCodeLine{             "\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}" (\mbox{\hyperlink{cns11643_8h_a49654e4709f40aecccada266daa32fc6}{idx}}));                          \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{do-rel_8h_a0544c3fe466e421738dae463968b70ba}{else}} \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_af91678d5734fcb1803b1ba1501df5f9c}{if}} (sizeof (\_\_value) == 4)                        \(\backslash\)}
+\DoxyCodeLine{       \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a767f709d735e7a1844f71e89b30e4e1a}{asm}} volatile ("movl \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}:\%\mbox{\hyperlink{localedata_2tst-sscanf_8c_a6c2a9f7efd46f0160f3037869924d6ce}{P1}}(,\%2,4),\%0"                     \(\backslash\)}
+\DoxyCodeLine{             : "=\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}" (\_\_value)                        \(\backslash\)}
+\DoxyCodeLine{             : "\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}" (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structpthread}{pthread}}, member[0])),        \(\backslash\)}
+\DoxyCodeLine{               "\mbox{\hyperlink{do-rel_8h_a514f1b439f404f86f77090fa9edc96ce}{r}}" (\mbox{\hyperlink{cns11643_8h_a49654e4709f40aecccada266daa32fc6}{idx}}));                        \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{do-rel_8h_a0544c3fe466e421738dae463968b70ba}{else}}                                     \(\backslash\)}
+\DoxyCodeLine{       \{                                      \(\backslash\)}
+\DoxyCodeLine{     if (\textcolor{keyword}{sizeof} (\_\_value) != 8)                       \(\backslash\)}
+\DoxyCodeLine{       \textcolor{comment}{/* There should not be any value with a size other than 1,         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{          4 or 8.  */}                             \(\backslash\)}
+\DoxyCodeLine{       abort ();                                  \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     asm \textcolor{keyword}{volatile}  (\textcolor{stringliteral}{"movl \%\%gs:\%P1(,\%2,8),\%\%eax\(\backslash\)n\(\backslash\)t"}              \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"movl \%\%gs:4+\%P1(,\%2,8),\%\%edx"}                \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"=\&A"} (\_\_value)                     \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member[0])),          \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"r"} (\mbox{\hyperlink{cns11643_8h_a49654e4709f40aecccada266daa32fc6}{idx}}));                          \(\backslash\)}
+\DoxyCodeLine{       \}                                      \(\backslash\)}
+\DoxyCodeLine{     \_\_value; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a34c5c8911adf29e4beb82773f9d419da}\label{i386_2nptl_2tls_8h_a34c5c8911adf29e4beb82773f9d419da}} 
+\index{tls.h@{tls.h}!THREAD\_GSCOPE\_FLAG\_UNUSED@{THREAD\_GSCOPE\_FLAG\_UNUSED}}
+\index{THREAD\_GSCOPE\_FLAG\_UNUSED@{THREAD\_GSCOPE\_FLAG\_UNUSED}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GSCOPE\_FLAG\_UNUSED}{THREAD\_GSCOPE\_FLAG\_UNUSED}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+U\+N\+U\+S\+ED~0}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a428bcfbedca8e8587cc6e1ebe5ae3360}\label{i386_2nptl_2tls_8h_a428bcfbedca8e8587cc6e1ebe5ae3360}} 
+\index{tls.h@{tls.h}!THREAD\_GSCOPE\_FLAG\_USED@{THREAD\_GSCOPE\_FLAG\_USED}}
+\index{THREAD\_GSCOPE\_FLAG\_USED@{THREAD\_GSCOPE\_FLAG\_USED}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GSCOPE\_FLAG\_USED}{THREAD\_GSCOPE\_FLAG\_USED}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+U\+S\+ED~1}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ab093410be7e8ea66ac8734bb401b2a31}\label{i386_2nptl_2tls_8h_ab093410be7e8ea66ac8734bb401b2a31}} 
+\index{tls.h@{tls.h}!THREAD\_GSCOPE\_FLAG\_WAIT@{THREAD\_GSCOPE\_FLAG\_WAIT}}
+\index{THREAD\_GSCOPE\_FLAG\_WAIT@{THREAD\_GSCOPE\_FLAG\_WAIT}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GSCOPE\_FLAG\_WAIT}{THREAD\_GSCOPE\_FLAG\_WAIT}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+W\+A\+IT~2}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a617fa97f8769c1e92737a512f8f38f3e}\label{i386_2nptl_2tls_8h_a617fa97f8769c1e92737a512f8f38f3e}} 
+\index{tls.h@{tls.h}!THREAD\_GSCOPE\_RESET\_FLAG@{THREAD\_GSCOPE\_RESET\_FLAG}}
+\index{THREAD\_GSCOPE\_RESET\_FLAG@{THREAD\_GSCOPE\_RESET\_FLAG}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GSCOPE\_RESET\_FLAG}{THREAD\_GSCOPE\_RESET\_FLAG}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+F\+L\+AG(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{ \textcolor{keywordtype}{int} \_\_res;                                  \(\backslash\)}
+\DoxyCodeLine{      asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"xchgl \%0, \%\%gs:\%P1"}                      \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"=r"} (\_\_res)                        \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, \mbox{\hyperlink{structheader}{header}}.gscope\_flag)),    \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"0"} (\mbox{\hyperlink{i386_2nptl_2tls_8h_a34c5c8911adf29e4beb82773f9d419da}{THREAD\_GSCOPE\_FLAG\_UNUSED}}));                  \(\backslash\)}
+\DoxyCodeLine{      if (\_\_res == \mbox{\hyperlink{i386_2nptl_2tls_8h_ab093410be7e8ea66ac8734bb401b2a31}{THREAD\_GSCOPE\_FLAG\_WAIT}})                    \(\backslash\)}
+\DoxyCodeLine{    lll\_futex\_wake (\&\mbox{\hyperlink{i386_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{THREAD\_SELF}}-\/>header.gscope\_flag, 1, \mbox{\hyperlink{nacl_2lowlevellock-futex_8h_afab249e7f9dd828dc45d13b232097941}{LLL\_PRIVATE}});    \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ae66ef80628fe28fafd7dd5f882778231}\label{i386_2nptl_2tls_8h_ae66ef80628fe28fafd7dd5f882778231}} 
+\index{tls.h@{tls.h}!THREAD\_GSCOPE\_SET\_FLAG@{THREAD\_GSCOPE\_SET\_FLAG}}
+\index{THREAD\_GSCOPE\_SET\_FLAG@{THREAD\_GSCOPE\_SET\_FLAG}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GSCOPE\_SET\_FLAG}{THREAD\_GSCOPE\_SET\_FLAG}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+S\+E\+T\+\_\+\+F\+L\+AG(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}} (\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}, header.\+gscope\+\_\+flag, \mbox{\hyperlink{x86__64_2nptl_2tls_8h_a428bcfbedca8e8587cc6e1ebe5ae3360}{T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+F\+L\+A\+G\+\_\+\+U\+S\+ED}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a962540ddd529c71e9af8d774285f8f66}\label{i386_2nptl_2tls_8h_a962540ddd529c71e9af8d774285f8f66}} 
+\index{tls.h@{tls.h}!THREAD\_GSCOPE\_WAIT@{THREAD\_GSCOPE\_WAIT}}
+\index{THREAD\_GSCOPE\_WAIT@{THREAD\_GSCOPE\_WAIT}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_GSCOPE\_WAIT}{THREAD\_GSCOPE\_WAIT}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+G\+S\+C\+O\+P\+E\+\_\+\+W\+A\+IT(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{generic_2ldsodefs_8h_a8c62b842c6a196f1cdd22f9ca613568f}{GL}}(dl\+\_\+wait\+\_\+lookup\+\_\+done) ()}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}\label{i386_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}} 
+\index{tls.h@{tls.h}!THREAD\_SELF@{THREAD\_SELF}}
+\index{THREAD\_SELF@{THREAD\_SELF}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_SELF}{THREAD\_SELF}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keyword}{struct }\mbox{\hyperlink{structpthread}{pthread}} *\_\_self;                             \(\backslash\)}
+\DoxyCodeLine{     asm (\textcolor{stringliteral}{"movl \%\%gs:\%c1,\%0"} : \textcolor{stringliteral}{"=r"} (\_\_self)                      \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, \mbox{\hyperlink{structheader}{header}}.self)));           \(\backslash\)}
+\DoxyCodeLine{     \_\_self;\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a5d0298cdd28ff69c9a51114b4fe4c589}\label{i386_2nptl_2tls_8h_a5d0298cdd28ff69c9a51114b4fe4c589}} 
+\index{tls.h@{tls.h}!THREAD\_SET\_POINTER\_GUARD@{THREAD\_SET\_POINTER\_GUARD}}
+\index{THREAD\_SET\_POINTER\_GUARD@{THREAD\_SET\_POINTER\_GUARD}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_SET\_POINTER\_GUARD}{THREAD\_SET\_POINTER\_GUARD}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+G\+U\+A\+RD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}} (\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}, header.\+pointer\+\_\+guard, \mbox{\hyperlink{structvalue}{value}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_aacbac72d9a6e1f57b784144f65211da1}\label{i386_2nptl_2tls_8h_aacbac72d9a6e1f57b784144f65211da1}} 
+\index{tls.h@{tls.h}!THREAD\_SET\_STACK\_GUARD@{THREAD\_SET\_STACK\_GUARD}}
+\index{THREAD\_SET\_STACK\_GUARD@{THREAD\_SET\_STACK\_GUARD}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_SET\_STACK\_GUARD}{THREAD\_SET\_STACK\_GUARD}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+U\+A\+RD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM}} (\mbox{\hyperlink{x86__64_2nptl_2tls_8h_a4c289fcc16289163261cd76e18ae00b2}{T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+LF}}, header.\+stack\+\_\+guard, \mbox{\hyperlink{structvalue}{value}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}\label{i386_2nptl_2tls_8h_a2ce84030ea4d710e23450a8ff293e7fe}} 
+\index{tls.h@{tls.h}!THREAD\_SETMEM@{THREAD\_SETMEM}}
+\index{THREAD\_SETMEM@{THREAD\_SETMEM}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_SETMEM}{THREAD\_SETMEM}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+EM(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (descr-\/>member) == 1)                       \(\backslash\)}
+\DoxyCodeLine{       asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movb \%b0,\%\%gs:\%P1"} :                    \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"iq"} (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}}),                         \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)));       \(\backslash\)}
+\DoxyCodeLine{     else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (descr-\/>member) == 4)                    \(\backslash\)}
+\DoxyCodeLine{       \textcolor{keyword}{asm} \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%0,\%\%gs:\%P1"} :                     \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"ir"} (\mbox{\hyperlink{structvalue}{value}}),                         \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)));       \(\backslash\)}
+\DoxyCodeLine{     else                                     \(\backslash\)}
+\DoxyCodeLine{       \{                                      \(\backslash\)}
+\DoxyCodeLine{     if (\textcolor{keyword}{sizeof} (descr-\/>member) != 8)                     \(\backslash\)}
+\DoxyCodeLine{       \textcolor{comment}{/* There should not be any value with a size other than 1,         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{          4 or 8.  */}                             \(\backslash\)}
+\DoxyCodeLine{       abort ();                                  \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%\%eax,\%\%gs:\%P1\(\backslash\)n\(\backslash\)t"}                  \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"movl \%\%edx,\%\%gs:\%P2"} :                    \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"A"} ((\mbox{\hyperlink{stdint_8h_a246b33e9233313797d7dc7d7700d2148}{uint64\_t}}) \mbox{\hyperlink{libc-internal_8h_aa66c0b33a31765dd4cb6ce4df3dc8248}{cast\_to\_integer}} (\mbox{\hyperlink{structvalue}{value}})),        \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),          \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member) + 4));         \(\backslash\)}
+\DoxyCodeLine{       \}\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a3704234cea174e505c4678b4ca3a1c4c}\label{i386_2nptl_2tls_8h_a3704234cea174e505c4678b4ca3a1c4c}} 
+\index{tls.h@{tls.h}!THREAD\_SETMEM\_NC@{THREAD\_SETMEM\_NC}}
+\index{THREAD\_SETMEM\_NC@{THREAD\_SETMEM\_NC}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{THREAD\_SETMEM\_NC}{THREAD\_SETMEM\_NC}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+S\+E\+T\+M\+E\+M\+\_\+\+NC(\begin{DoxyParamCaption}\item[{}]{descr,  }\item[{}]{member,  }\item[{}]{\mbox{\hyperlink{sysdeps_2posix_2gai__strerror_8c_a3621634c7d41edf167a313cdfe0648b6}{idx}},  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (descr-\/>member[0]) == 1)                    \(\backslash\)}
+\DoxyCodeLine{       asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movb \%b0,\%\%gs:\%P1(\%2)"} :                    \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"iq"} (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}}),                         \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"r"} (\mbox{\hyperlink{cns11643_8h_a49654e4709f40aecccada266daa32fc6}{idx}}));                         \(\backslash\)}
+\DoxyCodeLine{     else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (descr-\/>member[0]) == 4)                     \(\backslash\)}
+\DoxyCodeLine{       \textcolor{keyword}{asm} \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%0,\%\%gs:\%P1(,\%2,4)"} :                  \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"ir"} (\mbox{\hyperlink{structvalue}{value}}),                         \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"r"} (\mbox{\hyperlink{cns11643_8h_a49654e4709f40aecccada266daa32fc6}{idx}}));                         \(\backslash\)}
+\DoxyCodeLine{     else                                     \(\backslash\)}
+\DoxyCodeLine{       \{                                      \(\backslash\)}
+\DoxyCodeLine{     if (\textcolor{keyword}{sizeof} (descr-\/>member[0]) != 8)                      \(\backslash\)}
+\DoxyCodeLine{       \textcolor{comment}{/* There should not be any value with a size other than 1,         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{          4 or 8.  */}                             \(\backslash\)}
+\DoxyCodeLine{       abort ();                                  \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%\%eax,\%\%gs:\%P1(,\%2,8)\(\backslash\)n\(\backslash\)t"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"movl \%\%edx,\%\%gs:4+\%P1(,\%2,8)"} :               \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"A"} ((\mbox{\hyperlink{stdint_8h_a246b33e9233313797d7dc7d7700d2148}{uint64\_t}}) \mbox{\hyperlink{libc-internal_8h_aa66c0b33a31765dd4cb6ce4df3dc8248}{cast\_to\_integer}} (\mbox{\hyperlink{structvalue}{value}})),        \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\textcolor{keyword}{struct} \mbox{\hyperlink{structpthread}{pthread}}, member)),          \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"r"} (\mbox{\hyperlink{cns11643_8h_a49654e4709f40aecccada266daa32fc6}{idx}}));                       \(\backslash\)}
+\DoxyCodeLine{       \}\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a1e3def722c323cd48c9b428133228cd7}\label{i386_2nptl_2tls_8h_a1e3def722c323cd48c9b428133228cd7}} 
+\index{tls.h@{tls.h}!TLS\_DEFINE\_INIT\_TP@{TLS\_DEFINE\_INIT\_TP}}
+\index{TLS\_DEFINE\_INIT\_TP@{TLS\_DEFINE\_INIT\_TP}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_DEFINE\_INIT\_TP}{TLS\_DEFINE\_INIT\_TP}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+I\+N\+I\+T\+\_\+\+TP(\begin{DoxyParamCaption}\item[{}]{tp,  }\item[{}]{\mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{union }\mbox{\hyperlink{unionuser__desc__init}{user\_desc\_init}} \_segdescr;                         \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Find the 'entry\_number' field that the kernel selected in TLS\_INIT\_TP.   \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     The first three bits of the segment register value select the GDT,       \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     ignore them.  We get the index from the value of the \%gs register in     \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     the current thread.  */}                              \(\backslash\)}
+\DoxyCodeLine{  tls\_fill\_user\_desc (\&\_segdescr, \mbox{\hyperlink{i386_2nptl_2tls_8h_a8e2437859429e25df64ef91dac9455df}{TLS\_GET\_GS}} () >> 3, \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}});            \(\backslash\)}
+\DoxyCodeLine{  const \textcolor{keyword}{struct }\mbox{\hyperlink{structuser__desc}{user\_desc}} *tp = \&\_segdescr.desc}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a6abc78eaa9975cda9d28dc6046870853}\label{i386_2nptl_2tls_8h_a6abc78eaa9975cda9d28dc6046870853}} 
+\index{tls.h@{tls.h}!TLS\_DTV\_AT\_TP@{TLS\_DTV\_AT\_TP}}
+\index{TLS\_DTV\_AT\_TP@{TLS\_DTV\_AT\_TP}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_DTV\_AT\_TP}{TLS\_DTV\_AT\_TP}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+D\+T\+V\+\_\+\+A\+T\+\_\+\+TP~0}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a8e2437859429e25df64ef91dac9455df}\label{i386_2nptl_2tls_8h_a8e2437859429e25df64ef91dac9455df}} 
+\index{tls.h@{tls.h}!TLS\_GET\_GS@{TLS\_GET\_GS}}
+\index{TLS\_GET\_GS@{TLS\_GET\_GS}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_GET\_GS}{TLS\_GET\_GS}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+G\+E\+T\+\_\+\+GS(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(\{ \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+seg; \+\_\+\+\_\+asm (\char`\"{}movw \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}, \%w0\char`\"{} \+: \char`\"{}=q\char`\"{} (\+\_\+\+\_\+seg)); \+\_\+\+\_\+seg \& 0xffff; \})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a4a0f0082c999c2666c9825b2d521124c}\label{i386_2nptl_2tls_8h_a4a0f0082c999c2666c9825b2d521124c}} 
+\index{tls.h@{tls.h}!TLS\_INIT\_TCB\_ALIGN@{TLS\_INIT\_TCB\_ALIGN}}
+\index{TLS\_INIT\_TCB\_ALIGN@{TLS\_INIT\_TCB\_ALIGN}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_INIT\_TCB\_ALIGN}{TLS\_INIT\_TCB\_ALIGN}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+I\+N\+I\+T\+\_\+\+T\+C\+B\+\_\+\+A\+L\+I\+GN~\+\_\+\+\_\+alignof\+\_\+\+\_\+ (struct \mbox{\hyperlink{structpthread}{pthread}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_afa8d3d719fb1598b8443052f1f25f57c}\label{i386_2nptl_2tls_8h_afa8d3d719fb1598b8443052f1f25f57c}} 
+\index{tls.h@{tls.h}!TLS\_INIT\_TCB\_SIZE@{TLS\_INIT\_TCB\_SIZE}}
+\index{TLS\_INIT\_TCB\_SIZE@{TLS\_INIT\_TCB\_SIZE}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_INIT\_TCB\_SIZE}{TLS\_INIT\_TCB\_SIZE}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+I\+N\+I\+T\+\_\+\+T\+C\+B\+\_\+\+S\+I\+ZE~sizeof (struct \mbox{\hyperlink{structpthread}{pthread}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ac33158e63e9cde5fc02bacf0831fffe1}\label{i386_2nptl_2tls_8h_ac33158e63e9cde5fc02bacf0831fffe1}} 
+\index{tls.h@{tls.h}!TLS\_INIT\_TP@{TLS\_INIT\_TP}}
+\index{TLS\_INIT\_TP@{TLS\_INIT\_TP}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_INIT\_TP}{TLS\_INIT\_TP}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+I\+N\+I\+T\+\_\+\+TP(\begin{DoxyParamCaption}\item[{}]{thrdescr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a36433807f0c0a9719709d792d0502c6e}\label{i386_2nptl_2tls_8h_a36433807f0c0a9719709d792d0502c6e}} 
+\index{tls.h@{tls.h}!TLS\_MULTIPLE\_THREADS\_IN\_TCB@{TLS\_MULTIPLE\_THREADS\_IN\_TCB}}
+\index{TLS\_MULTIPLE\_THREADS\_IN\_TCB@{TLS\_MULTIPLE\_THREADS\_IN\_TCB}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_MULTIPLE\_THREADS\_IN\_TCB}{TLS\_MULTIPLE\_THREADS\_IN\_TCB}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+T\+H\+R\+E\+A\+D\+S\+\_\+\+I\+N\+\_\+\+T\+CB~1}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a3e4048cd96aba0d43f654306796315a7}\label{i386_2nptl_2tls_8h_a3e4048cd96aba0d43f654306796315a7}} 
+\index{tls.h@{tls.h}!TLS\_SET\_GS@{TLS\_SET\_GS}}
+\index{TLS\_SET\_GS@{TLS\_SET\_GS}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_SET\_GS}{TLS\_SET\_GS}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+S\+E\+T\+\_\+\+GS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})~\+\_\+\+\_\+asm (\char`\"{}movw \%w0, \%\%\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_ad0848d7a5422162e84161928dc5bb8e7}{gs}}\char`\"{} \+:: \char`\"{}q\char`\"{} (val))}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a6a948c9223bc9fb3600a6fb983d63bb0}\label{i386_2nptl_2tls_8h_a6a948c9223bc9fb3600a6fb983d63bb0}} 
+\index{tls.h@{tls.h}!TLS\_TCB\_ALIGN@{TLS\_TCB\_ALIGN}}
+\index{TLS\_TCB\_ALIGN@{TLS\_TCB\_ALIGN}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_TCB\_ALIGN}{TLS\_TCB\_ALIGN}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+T\+C\+B\+\_\+\+A\+L\+I\+GN~\+\_\+\+\_\+alignof\+\_\+\+\_\+ (struct \mbox{\hyperlink{structpthread}{pthread}})}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a507c8895b182d6af270db1ccf8cfe9a5}\label{i386_2nptl_2tls_8h_a507c8895b182d6af270db1ccf8cfe9a5}} 
+\index{tls.h@{tls.h}!TLS\_TCB\_AT\_TP@{TLS\_TCB\_AT\_TP}}
+\index{TLS\_TCB\_AT\_TP@{TLS\_TCB\_AT\_TP}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_TCB\_AT\_TP}{TLS\_TCB\_AT\_TP}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+T\+C\+B\+\_\+\+A\+T\+\_\+\+TP~1}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ae135f916e34f69eacd883c2111d4390d}\label{i386_2nptl_2tls_8h_ae135f916e34f69eacd883c2111d4390d}} 
+\index{tls.h@{tls.h}!TLS\_TCB\_SIZE@{TLS\_TCB\_SIZE}}
+\index{TLS\_TCB\_SIZE@{TLS\_TCB\_SIZE}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{TLS\_TCB\_SIZE}{TLS\_TCB\_SIZE}}
+{\footnotesize\ttfamily \#define T\+L\+S\+\_\+\+T\+C\+B\+\_\+\+S\+I\+ZE~sizeof (struct \mbox{\hyperlink{structpthread}{pthread}})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}\label{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}} 
+\index{tls.h@{tls.h}!entry\_number@{entry\_number}}
+\index{entry\_number@{entry\_number}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{entry\_number}{entry\_number}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} entry\+\_\+number}
+
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}\label{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}} 
+\index{tls.h@{tls.h}!pd@{pd}}
+\index{pd@{pd}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{pd}{pd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ pd}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  desc-\/>vals[0] = \mbox{\hyperlink{i386_2nptl_2tls_8h_a1245ed76726a4a6f0374639a098d7698}{entry\_number}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2nptl_2tls_8h_ac1293c864b1f5fc7785544beea2abef7}\label{i386_2nptl_2tls_8h_ac1293c864b1f5fc7785544beea2abef7}} 
+\index{tls.h@{tls.h}!vals@{vals}}
+\index{vals@{vals}!tls.h@{tls.h}}
+\doxysubsubsection{\texorpdfstring{vals}{vals}}
+{\footnotesize\ttfamily desc vals = (unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}) \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}}}
+

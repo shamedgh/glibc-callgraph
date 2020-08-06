@@ -1,0 +1,160 @@
+\hypertarget{pthread_2timer__routines_8c}{}\doxysection{sysdeps/pthread/timer\+\_\+routines.c File Reference}
+\label{pthread_2timer__routines_8c}\index{sysdeps/pthread/timer\_routines.c@{sysdeps/pthread/timer\_routines.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/syscall.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}posix-\/timer.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$nptl/pthread\+P.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pthread_2timer__routines_8c_a84ce9fd2ca6284e34f5fca8dc81497dd}{T\+H\+R\+E\+A\+D\+\_\+\+M\+A\+X\+N\+O\+D\+ES}}~16
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{pthread_2timer__routines_8c_a9703b45fe206421c8ceb92797bcee96f}{\+\_\+\+\_\+timer\+\_\+init\+\_\+once}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$ \mbox{\hyperlink{pthread_2timer__routines_8c_a86a6e8e4d6b8778e664cbe9fd5626065}{\+\_\+\+\_\+timer\+\_\+thread\+\_\+alloc}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{unionpthread__attr__t}{pthread\+\_\+attr\+\_\+t}} $\ast$desired\+\_\+attr, clockid\+\_\+t clock\+\_\+id)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{pthread_2timer__routines_8c_a45af8fb62ba59ea0e9a390e0224e6429}{\+\_\+\+\_\+timer\+\_\+thread\+\_\+dealloc}} (struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$thread)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{pthread_2timer__routines_8c_a2cfc0345975005fd7db008a204dd1ac3}{\+\_\+\+\_\+timer\+\_\+thread\+\_\+queue\+\_\+timer}} (struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$thread, struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} $\ast$insert)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{pthread_2timer__routines_8c_af0d183e1b60c0da4ebe0a77ce36841a1}{\+\_\+\+\_\+timer\+\_\+thread\+\_\+start}} (struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$thread)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{pthread_2timer__routines_8c_af861f5d86364e99e3a7466e52d8989f3}{\+\_\+\+\_\+timer\+\_\+thread\+\_\+wakeup}} (struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$thread)
+\item 
+struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$ \mbox{\hyperlink{pthread_2timer__routines_8c_a916aeaaabf24d4e60910a5ac71f10b78}{\+\_\+\+\_\+timer\+\_\+thread\+\_\+find\+\_\+matching}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{unionpthread__attr__t}{pthread\+\_\+attr\+\_\+t}} $\ast$desired\+\_\+attr, clockid\+\_\+t desired\+\_\+clock\+\_\+id)
+\item 
+struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} $\ast$ \mbox{\hyperlink{pthread_2timer__routines_8c_ac6dbe81ad5bc02996c9f27a2eef6373e}{\+\_\+\+\_\+timer\+\_\+alloc}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{pthread_2timer__routines_8c_af01752ad81652207970a065d6ee7db9c}{\+\_\+\+\_\+timer\+\_\+dealloc}} (struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} $\ast$\mbox{\hyperlink{structtimer}{timer}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{pthread_2timer__routines_8c_ab902893c1ad218191a3969efe74ed340}{\+\_\+\+\_\+timer\+\_\+mutex\+\_\+cancel\+\_\+handler}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} \mbox{\hyperlink{pthread_2timer__routines_8c_a72e258dd58d8b1bccbf90cde7ee83d58}{\+\_\+\+\_\+timer\+\_\+array}} \mbox{[}\mbox{\hyperlink{posix-timer_8h_a9cb39fc9fca65abcf086c5b293db3772}{T\+I\+M\+E\+R\+\_\+\+M\+AX}}\mbox{]}
+\item 
+\mbox{\hyperlink{unionpthread__mutex__t}{pthread\+\_\+mutex\+\_\+t}} \mbox{\hyperlink{pthread_2timer__routines_8c_a0f55de719169013ffae3727c9e7c564d}{\+\_\+\+\_\+timer\+\_\+mutex}} = \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2pthread_8h_a84e55100366a6a8338a2af3b3f279686}{P\+T\+H\+R\+E\+A\+D\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}
+\item 
+\mbox{\hyperlink{sysdeps_2aarch64_2nptl_2bits_2pthreadtypes_8h_a9a12cba02476dab33325eba60a48092a}{pthread\+\_\+once\+\_\+t}} \mbox{\hyperlink{pthread_2timer__routines_8c_a9c06f4644d0031a837ada62a7a780bd5}{\+\_\+\+\_\+timer\+\_\+init\+\_\+once\+\_\+control}} = \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2pthread_8h_a59e22497b65fc305ddb5cea8b4990b51}{P\+T\+H\+R\+E\+A\+D\+\_\+\+O\+N\+C\+E\+\_\+\+I\+N\+IT}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{pthread_2timer__routines_8c_ae232ed359077f19a5581b55918291d1e}{\+\_\+\+\_\+timer\+\_\+init\+\_\+failed}}
+\item 
+struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} \mbox{\hyperlink{pthread_2timer__routines_8c_a85e019ba76476b1f834b2970b6e292af}{\+\_\+\+\_\+timer\+\_\+signal\+\_\+thread\+\_\+rclk}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a84ce9fd2ca6284e34f5fca8dc81497dd}\label{pthread_2timer__routines_8c_a84ce9fd2ca6284e34f5fca8dc81497dd}} 
+\index{timer\_routines.c@{timer\_routines.c}!THREAD\_MAXNODES@{THREAD\_MAXNODES}}
+\index{THREAD\_MAXNODES@{THREAD\_MAXNODES}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{THREAD\_MAXNODES}{THREAD\_MAXNODES}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+M\+A\+X\+N\+O\+D\+ES~16}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pthread_2timer__routines_8c_ac6dbe81ad5bc02996c9f27a2eef6373e}\label{pthread_2timer__routines_8c_ac6dbe81ad5bc02996c9f27a2eef6373e}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_alloc@{\_\_timer\_alloc}}
+\index{\_\_timer\_alloc@{\_\_timer\_alloc}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_alloc()}{\_\_timer\_alloc()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}}$\ast$ \+\_\+\+\_\+timer\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_af01752ad81652207970a065d6ee7db9c}\label{pthread_2timer__routines_8c_af01752ad81652207970a065d6ee7db9c}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_dealloc@{\_\_timer\_dealloc}}
+\index{\_\_timer\_dealloc@{\_\_timer\_dealloc}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_dealloc()}{\_\_timer\_dealloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+timer\+\_\+dealloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} $\ast$}]{timer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a9703b45fe206421c8ceb92797bcee96f}\label{pthread_2timer__routines_8c_a9703b45fe206421c8ceb92797bcee96f}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_init\_once@{\_\_timer\_init\_once}}
+\index{\_\_timer\_init\_once@{\_\_timer\_init\_once}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_init\_once()}{\_\_timer\_init\_once()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+timer\+\_\+init\+\_\+once (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_ab902893c1ad218191a3969efe74ed340}\label{pthread_2timer__routines_8c_ab902893c1ad218191a3969efe74ed340}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_mutex\_cancel\_handler@{\_\_timer\_mutex\_cancel\_handler}}
+\index{\_\_timer\_mutex\_cancel\_handler@{\_\_timer\_mutex\_cancel\_handler}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_mutex\_cancel\_handler()}{\_\_timer\_mutex\_cancel\_handler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+timer\+\_\+mutex\+\_\+cancel\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{arg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a86a6e8e4d6b8778e664cbe9fd5626065}\label{pthread_2timer__routines_8c_a86a6e8e4d6b8778e664cbe9fd5626065}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_thread\_alloc@{\_\_timer\_thread\_alloc}}
+\index{\_\_timer\_thread\_alloc@{\_\_timer\_thread\_alloc}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_thread\_alloc()}{\_\_timer\_thread\_alloc()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}}$\ast$ \+\_\+\+\_\+timer\+\_\+thread\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{unionpthread__attr__t}{pthread\+\_\+attr\+\_\+t}} $\ast$}]{desired\+\_\+attr,  }\item[{clockid\+\_\+t}]{clock\+\_\+id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a45af8fb62ba59ea0e9a390e0224e6429}\label{pthread_2timer__routines_8c_a45af8fb62ba59ea0e9a390e0224e6429}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_thread\_dealloc@{\_\_timer\_thread\_dealloc}}
+\index{\_\_timer\_thread\_dealloc@{\_\_timer\_thread\_dealloc}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_thread\_dealloc()}{\_\_timer\_thread\_dealloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+timer\+\_\+thread\+\_\+dealloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a916aeaaabf24d4e60910a5ac71f10b78}\label{pthread_2timer__routines_8c_a916aeaaabf24d4e60910a5ac71f10b78}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_thread\_find\_matching@{\_\_timer\_thread\_find\_matching}}
+\index{\_\_timer\_thread\_find\_matching@{\_\_timer\_thread\_find\_matching}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_thread\_find\_matching()}{\_\_timer\_thread\_find\_matching()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}}$\ast$ \+\_\+\+\_\+timer\+\_\+thread\+\_\+find\+\_\+matching (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{unionpthread__attr__t}{pthread\+\_\+attr\+\_\+t}} $\ast$}]{desired\+\_\+attr,  }\item[{clockid\+\_\+t}]{desired\+\_\+clock\+\_\+id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a2cfc0345975005fd7db008a204dd1ac3}\label{pthread_2timer__routines_8c_a2cfc0345975005fd7db008a204dd1ac3}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_thread\_queue\_timer@{\_\_timer\_thread\_queue\_timer}}
+\index{\_\_timer\_thread\_queue\_timer@{\_\_timer\_thread\_queue\_timer}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_thread\_queue\_timer()}{\_\_timer\_thread\_queue\_timer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+timer\+\_\+thread\+\_\+queue\+\_\+timer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$}]{thread,  }\item[{struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} $\ast$}]{insert }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_af0d183e1b60c0da4ebe0a77ce36841a1}\label{pthread_2timer__routines_8c_af0d183e1b60c0da4ebe0a77ce36841a1}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_thread\_start@{\_\_timer\_thread\_start}}
+\index{\_\_timer\_thread\_start@{\_\_timer\_thread\_start}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_thread\_start()}{\_\_timer\_thread\_start()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+timer\+\_\+thread\+\_\+start (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_af861f5d86364e99e3a7466e52d8989f3}\label{pthread_2timer__routines_8c_af861f5d86364e99e3a7466e52d8989f3}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_thread\_wakeup@{\_\_timer\_thread\_wakeup}}
+\index{\_\_timer\_thread\_wakeup@{\_\_timer\_thread\_wakeup}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_thread\_wakeup()}{\_\_timer\_thread\_wakeup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+timer\+\_\+thread\+\_\+wakeup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a72e258dd58d8b1bccbf90cde7ee83d58}\label{pthread_2timer__routines_8c_a72e258dd58d8b1bccbf90cde7ee83d58}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_array@{\_\_timer\_array}}
+\index{\_\_timer\_array@{\_\_timer\_array}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_array}{\_\_timer\_array}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtimer__node}{timer\+\_\+node}} \+\_\+\+\_\+timer\+\_\+array\mbox{[}\mbox{\hyperlink{posix-timer_8h_a9cb39fc9fca65abcf086c5b293db3772}{T\+I\+M\+E\+R\+\_\+\+M\+AX}}\mbox{]}}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_ae232ed359077f19a5581b55918291d1e}\label{pthread_2timer__routines_8c_ae232ed359077f19a5581b55918291d1e}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_init\_failed@{\_\_timer\_init\_failed}}
+\index{\_\_timer\_init\_failed@{\_\_timer\_init\_failed}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_init\_failed}{\_\_timer\_init\_failed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+timer\+\_\+init\+\_\+failed}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a9c06f4644d0031a837ada62a7a780bd5}\label{pthread_2timer__routines_8c_a9c06f4644d0031a837ada62a7a780bd5}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_init\_once\_control@{\_\_timer\_init\_once\_control}}
+\index{\_\_timer\_init\_once\_control@{\_\_timer\_init\_once\_control}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_init\_once\_control}{\_\_timer\_init\_once\_control}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sysdeps_2aarch64_2nptl_2bits_2pthreadtypes_8h_a9a12cba02476dab33325eba60a48092a}{pthread\+\_\+once\+\_\+t}} \+\_\+\+\_\+timer\+\_\+init\+\_\+once\+\_\+control = \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2pthread_8h_a59e22497b65fc305ddb5cea8b4990b51}{P\+T\+H\+R\+E\+A\+D\+\_\+\+O\+N\+C\+E\+\_\+\+I\+N\+IT}}}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a0f55de719169013ffae3727c9e7c564d}\label{pthread_2timer__routines_8c_a0f55de719169013ffae3727c9e7c564d}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_mutex@{\_\_timer\_mutex}}
+\index{\_\_timer\_mutex@{\_\_timer\_mutex}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_mutex}{\_\_timer\_mutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionpthread__mutex__t}{pthread\+\_\+mutex\+\_\+t}} \+\_\+\+\_\+timer\+\_\+mutex = \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2pthread_8h_a84e55100366a6a8338a2af3b3f279686}{P\+T\+H\+R\+E\+A\+D\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}}
+
+\mbox{\Hypertarget{pthread_2timer__routines_8c_a85e019ba76476b1f834b2970b6e292af}\label{pthread_2timer__routines_8c_a85e019ba76476b1f834b2970b6e292af}} 
+\index{timer\_routines.c@{timer\_routines.c}!\_\_timer\_signal\_thread\_rclk@{\_\_timer\_signal\_thread\_rclk}}
+\index{\_\_timer\_signal\_thread\_rclk@{\_\_timer\_signal\_thread\_rclk}!timer\_routines.c@{timer\_routines.c}}
+\doxysubsubsection{\texorpdfstring{\_\_timer\_signal\_thread\_rclk}{\_\_timer\_signal\_thread\_rclk}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structthread__node}{thread\+\_\+node}} \+\_\+\+\_\+timer\+\_\+signal\+\_\+thread\+\_\+rclk}
+

@@ -1,0 +1,190 @@
+
+;; Function wctomb (*__GI_wctomb, funcdef_no=45, decl_uid=2846, cgraph_uid=45, symbol_order=53)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 4->7 redirected to 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 4->7 redirected to 9
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 46.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 94 [ s ])
+        (reg:DI 5 di [ s ])) wctomb.c:37 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 95 [ wchar ])
+        (reg:SI 4 si [ wchar ])) wctomb.c:37 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ s ])
+            (const_int 0 [0]))) wctomb.c:41 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) wctomb.c:41 -1
+     (int_list:REG_BR_PROB 6983 (nil))
+ -> 35)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 97)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_tsd_LOCALE") [flags 0x60]  <var_decl 0x2aca3c531cf0 __libc_tsd_LOCALE>)
+                    ] UNSPEC_GOTNTPOFF)) [12  S8 A8])) wctomb.c:46 -1
+     (nil))
+(insn 12 11 13 4 (set (reg/f:DI 96)
+        (mem/f/c:DI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 97)) [1 __libc_tsd_LOCALE+0 S8 A64])) wctomb.c:46 -1
+     (nil))
+(insn 13 12 14 4 (set (reg/f:DI 90 [ D.9087 ])
+        (mem/f:DI (reg/f:DI 96) [1 _11->__locales+0 S8 A64])) wctomb.c:46 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/f:DI 91 [ D.9088 ])
+        (mem/f:DI (plus:DI (reg/f:DI 90 [ D.9087 ])
+                (const_int 40 [0x28])) [0 _12->private.D.5268.ctype+0 S8 A64])) ../wcsmbs/wcsmbsload.h:71 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 91 [ D.9088 ])
+            (const_int 0 [0]))) ../wcsmbs/wcsmbsload.h:71 -1
+     (nil))
+(jump_insn 16 15 17 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 27)
+            (pc))) ../wcsmbs/wcsmbsload.h:71 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 27)
+(note 17 16 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 5 (set (reg:DI 98)
+        (symbol_ref:DI ("_nl_C_LC_CTYPE") [flags 0x42]  <var_decl 0x2aca3c6aa120 _nl_C_LC_CTYPE>)) ../wcsmbs/wcsmbsload.h:73 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 90 [ D.9087 ])
+            (reg:DI 98))) ../wcsmbs/wcsmbsload.h:73 -1
+     (nil))
+(jump_insn 20 19 21 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 55)
+            (pc))) ../wcsmbs/wcsmbsload.h:73 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 55)
+(note 21 20 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 6 (set (reg:DI 5 di)
+        (reg/f:DI 90 [ D.9087 ])) ../wcsmbs/wcsmbsload.h:75 -1
+     (nil))
+(call_insn 23 22 24 6 (call (mem:QI (symbol_ref:DI ("__wcsmbs_load_conv") [flags 0x41]  <function_decl 0x2aca3c6445e8 __wcsmbs_load_conv>) [0 __wcsmbs_load_conv S1 A8])
+        (const_int 0 [0])) ../wcsmbs/wcsmbsload.h:75 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__wcsmbs_load_conv") [flags 0x41]  <function_decl 0x2aca3c6445e8 __wcsmbs_load_conv>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 24 23 52 6 (set (reg/f:DI 91 [ D.9088 ])
+        (mem/f:DI (plus:DI (reg/f:DI 90 [ D.9087 ])
+                (const_int 40 [0x28])) [0 _12->private.D.5268.ctype+0 S8 A64])) -1
+     (nil))
+(jump_insn 52 24 53 6 (set (pc)
+        (label_ref 27)) -1
+     (nil)
+ -> 27)
+(barrier 53 52 55)
+(code_label 55 53 54 8 6 "" [1 uses])
+(note 54 55 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 54 27 8 (set (reg/f:DI 91 [ D.9088 ])
+        (symbol_ref:DI ("__wcsmbs_gconv_fcts_c") [flags 0x42]  <var_decl 0x2aca3c647000 __wcsmbs_gconv_fcts_c>)) ../wcsmbs/wcsmbsload.h:74 -1
+     (nil))
+(code_label 27 5 28 9 4 "" [2 uses])
+(note 28 27 29 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 9 (set (reg/f:DI 99)
+        (symbol_ref:DI ("__wctomb_state") [flags 0x2]  <var_decl 0x2aca3c6aa1b0 __wctomb_state>)) wctomb.c:50 -1
+     (nil))
+(insn 30 29 31 9 (set (mem/c:DI (reg/f:DI 99) [0 MEM[(void *)&__wctomb_state]+0 S8 A32])
+        (const_int 0 [0])) wctomb.c:50 -1
+     (nil))
+(insn 31 30 32 9 (set (reg/f:DI 100)
+        (mem/f:DI (plus:DI (reg/f:DI 91 [ D.9088 ])
+                (const_int 16 [0x10])) [1 _21->tomb+0 S8 A64])) wctomb.c:52 -1
+     (nil))
+(insn 32 31 33 9 (set (reg:SI 87 [ D.9084 ])
+        (mem:SI (plus:DI (reg/f:DI 100)
+                (const_int 88 [0x58])) [6 _22->__stateful+0 S4 A64])) wctomb.c:52 -1
+     (nil))
+(jump_insn 33 32 34 9 (set (pc)
+        (label_ref 43)) wctomb.c:52 -1
+     (nil)
+ -> 43)
+(barrier 34 33 35)
+(code_label 35 34 36 10 2 "" [1 uses])
+(note 36 35 37 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 10 (set (reg:DI 1 dx)
+        (symbol_ref:DI ("__wctomb_state") [flags 0x2]  <var_decl 0x2aca3c6aa1b0 __wctomb_state>)) wctomb.c:55 -1
+     (nil))
+(insn 38 37 39 10 (set (reg:SI 4 si)
+        (reg/v:SI 95 [ wchar ])) wctomb.c:55 -1
+     (nil))
+(insn 39 38 40 10 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ s ])) wctomb.c:55 -1
+     (nil))
+(call_insn 40 39 41 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__wcrtomb") [flags 0x41]  <function_decl 0x2aca3c420000 __wcrtomb>) [0 __wcrtomb S1 A8])
+            (const_int 0 [0]))) wctomb.c:55 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__wcrtomb") [flags 0x41]  <function_decl 0x2aca3c420000 __wcrtomb>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 41 40 42 10 (set (reg:DI 88 [ D.9085 ])
+        (reg:DI 0 ax)) wctomb.c:55 -1
+     (nil))
+(insn 42 41 43 10 (set (reg:SI 87 [ D.9084 ])
+        (subreg:SI (reg:DI 88 [ D.9085 ]) 0)) wctomb.c:55 -1
+     (nil))
+(code_label 43 42 44 11 5 "" [1 uses])
+(note 44 43 45 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 49 11 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 87 [ D.9084 ])) -1
+     (nil))
+(insn 49 45 50 11 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) wctomb.c:56 -1
+     (nil))
+(insn 50 49 0 11 (use (reg/i:SI 0 ax)) wctomb.c:56 -1
+     (nil))

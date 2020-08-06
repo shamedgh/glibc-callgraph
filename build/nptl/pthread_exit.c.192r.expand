@@ -1,0 +1,100 @@
+
+;; Function __pthread_exit (__pthread_exit, funcdef_no=43, decl_uid=7445, cgraph_uid=43, symbol_order=44) (executed once)
+
+
+;; Generating RTL for gimple basic block 2
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 90 [ value ])
+        (reg:DI 5 di [ value ])) pthread_exit.c:25 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (asm_operands/v ("movq %q0,%%fs:%P1") ("") 0 [
+                    (reg/v/f:DI 90 [ value ])
+                    (const_int 1584 [0x630])
+                ]
+                 [
+                    (asm_input:DI ("ir") pthread_exit.c:26)
+                    (asm_input:DI ("i") pthread_exit.c:26)
+                ]
+                 [] pthread_exit.c:26)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_exit.c:26 -1
+     (nil))
+(insn 7 6 8 2 (parallel [
+            (set (reg:DI 91 [ self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") pthreadP.h:278)
+                    ]
+                     [] pthreadP.h:278))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthreadP.h:278 -1
+     (nil))
+(insn 8 7 9 2 (set (reg/v/f:DI 88 [ self ])
+        (reg:DI 91 [ self ])) pthreadP.h:278 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (asm_operands/v ("lock;orl %1, %%fs:%P0") ("") 0 [
+                    (const_int 776 [0x308])
+                    (const_int 16 [0x10])
+                ]
+                 [
+                    (asm_input:DI ("i") pthreadP.h:281)
+                    (asm_input:SI ("ir") pthreadP.h:281)
+                ]
+                 [] pthreadP.h:281)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthreadP.h:281 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:DI 92 [ __value ])
+                (asm_operands/v:DI ("movq %%fs:%P1,%q0") ("=r") 0 [
+                        (const_int 768 [0x300])
+                    ]
+                     [
+                        (asm_input:DI ("i") pthreadP.h:284)
+                    ]
+                     [] pthreadP.h:284))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthreadP.h:284 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v/f:DI 89 [ __value ])
+        (reg:DI 92 [ __value ])) pthreadP.h:284 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 89 [ __value ])) pthreadP.h:283 -1
+     (nil))
+(call_insn 13 12 14 2 (call (mem:QI (symbol_ref:DI ("__pthread_unwind") [flags 0x41]  <function_decl 0x2b5cc09a7798 __pthread_unwind>) [0 __pthread_unwind S1 A8])
+        (const_int 0 [0])) pthreadP.h:283 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_unwind") [flags 0x41]  <function_decl 0x2b5cc09a7798 __pthread_unwind>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 14 13 0)

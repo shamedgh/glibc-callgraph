@@ -1,0 +1,633 @@
+
+;; Function __kernel_cosl (__kernel_cosl, funcdef_no=77, decl_uid=5145, cgraph_uid=77, symbol_order=78)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 6->9 redirected to 12
+Purged non-fallthru edges from bb 14
+Purged non-fallthru edges from bb 16
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 5->7 redirected to 8
+Forwarding edge 5->6 to 13 failed.
+Forwarding edge 5->6 to 13 failed.
+deleting block 7
+Edge 8->10 redirected to 11
+Forwarding edge 8->9 to 12 failed.
+Forwarding edge 8->9 to 12 failed.
+deleting block 10
+Removing jump 148.
+Merging block 16 into block 15...
+Merged blocks 15 and 16.
+Merged 15 and 16 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 13 failed.
+Forwarding edge 8->9 to 12 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:XF 147 [ x ])
+        (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [1 x+0 S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:84 -1
+     (expr_list:REG_EQUIV (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [1 x+0 S16 A128])
+        (nil)))
+(insn 3 2 4 2 (set (reg/v:XF 148 [ y ])
+        (mem/c:XF (plus:DI (reg/f:DI 81 virtual-incoming-args)
+                (const_int 16 [0x10])) [1 y+0 S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:84 -1
+     (expr_list:REG_EQUIV (mem/c:XF (plus:DI (reg/f:DI 81 virtual-incoming-args)
+                (const_int 16 [0x10])) [1 y+0 S16 A128])
+        (nil)))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:HI 151)
+        (unspec:HI [
+                (reg/v:XF 147 [ x ])
+            ] UNSPEC_FXAM)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:88 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:SI 150)
+                (and:SI (subreg:SI (reg:HI 151) 0)
+                    (const_int 512 [0x200])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:88 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:SI 88 [ D.5437 ])
+        (reg:SI 150)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:88 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ D.5437 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:88 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:88 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 17)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg/v:XF 147 [ x ])
+        (neg:XF (reg/v:XF 147 [ x ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:90 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v:XF 148 [ y ])
+        (neg:XF (reg/v:XF 148 [ y ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:91 -1
+     (nil))
+(code_label 17 16 18 5 2 "" [1 uses])
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:SF 153)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:93 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.484375e-1 [0x0.98p-2])
+        (nil)))
+(insn 20 19 21 5 (set (reg:XF 152)
+        (float_extend:XF (reg:SF 153))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:93 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.484375e-1 [0x0.98p-2])
+        (nil)))
+(insn 21 20 22 5 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:XF 152)
+            (reg/v:XF 147 [ x ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:93 -1
+     (nil))
+(jump_insn 22 21 158 5 (set (pc)
+        (if_then_else (gt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 162)
+            (pc))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:93 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 162)
+(note 158 22 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 23 158 24 6 (set (pc)
+        (label_ref 70)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:93 -1
+     (nil)
+ -> 70)
+(barrier 24 23 162)
+(code_label 162 24 26 8 9 "" [1 uses])
+(note 26 162 27 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 8 (set (reg:SF 155)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:97 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.16415321826934814453125e-10 [0x0.8p-32])
+        (nil)))
+(insn 28 27 29 8 (set (reg:XF 154)
+        (float_extend:XF (reg:SF 155))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:97 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.16415321826934814453125e-10 [0x0.8p-32])
+        (nil)))
+(insn 29 28 30 8 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:XF 154)
+            (reg/v:XF 147 [ x ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:97 -1
+     (nil))
+(jump_insn 30 29 160 8 (set (pc)
+        (if_then_else (gt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 163)
+            (pc))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:97 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6100 (nil))
+ -> 163)
+(note 160 30 31 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 31 160 32 9 (set (pc)
+        (label_ref 38)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:97 -1
+     (nil)
+ -> 38)
+(barrier 32 31 163)
+(code_label 163 32 34 11 10 "" [1 uses])
+(note 34 163 35 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 11 (parallel [
+            (set (reg:SI 156 [ D.5437 ])
+                (fix:SI (reg/v:XF 147 [ x ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:98 -1
+     (nil))
+(insn 36 35 37 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 156 [ D.5437 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:98 -1
+     (nil))
+(jump_insn 37 36 38 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 157)
+            (pc))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:98 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 157)
+(code_label 38 37 39 12 5 "" [1 uses])
+(note 39 38 40 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 12 (set (reg/v:XF 90 [ z ])
+        (mult:XF (reg/v:XF 147 [ x ])
+            (reg/v:XF 147 [ x ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:99 -1
+     (nil))
+(insn 41 40 42 12 (set (reg:XF 158)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 4.778100928043895875834555275706464906943848058726776e-14 [0x0.d72fc0cbe5e6e57cp-44])
+        (nil)))
+(insn 42 41 43 12 (set (reg:XF 157 [ D.5436 ])
+        (mult:XF (reg/v:XF 90 [ z ])
+            (reg:XF 158))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 43 42 44 12 (set (reg:XF 160)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC4") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.147074510493438173971565039259823670363609872521402e-11 [0x0.c9cba4b49154b00fp-36])
+        (nil)))
+(insn 44 43 45 12 (set (reg:XF 159 [ D.5436 ])
+        (minus:XF (reg:XF 157 [ D.5436 ])
+            (reg:XF 160))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 45 44 46 12 (set (reg:XF 161 [ D.5436 ])
+        (mult:XF (reg:XF 159 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 46 45 47 12 (set (reg:XF 163)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC5") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 2.0876756987776224866353327772673809018639471540845776e-9 [0x0.8f76c77fc40e8f49p-28])
+        (nil)))
+(insn 47 46 48 12 (set (reg:XF 162 [ D.5436 ])
+        (plus:XF (reg:XF 161 [ D.5436 ])
+            (reg:XF 163))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 48 47 49 12 (set (reg:XF 164 [ D.5436 ])
+        (mult:XF (reg:XF 162 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 49 48 50 12 (set (reg:XF 166)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC6") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 2.7557319223985881164617528457146399022484328789062147e-7 [0x0.93f27dbbc4fad541p-21])
+        (nil)))
+(insn 50 49 51 12 (set (reg:XF 165 [ D.5436 ])
+        (minus:XF (reg:XF 164 [ D.5436 ])
+            (reg:XF 166))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 51 50 52 12 (set (reg:XF 167 [ D.5436 ])
+        (mult:XF (reg:XF 165 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 52 51 53 12 (set (reg:XF 169)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC7") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 2.4801587301587301587296335361190139506826213278145588e-5 [0x0.d00d00d00d00d00dp-15])
+        (nil)))
+(insn 53 52 54 12 (set (reg:XF 168 [ D.5436 ])
+        (plus:XF (reg:XF 167 [ D.5436 ])
+            (reg:XF 169))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 54 53 55 12 (set (reg:XF 170 [ D.5436 ])
+        (mult:XF (reg:XF 168 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 55 54 56 12 (set (reg:XF 172)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC8") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.3888888888888888888488901108241024839884403263567947e-3 [0x0.b60b60b60b60b60bp-9])
+        (nil)))
+(insn 56 55 57 12 (set (reg:XF 171 [ D.5436 ])
+        (minus:XF (reg:XF 170 [ D.5436 ])
+            (reg:XF 172))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 57 56 58 12 (set (reg:XF 173 [ D.5436 ])
+        (mult:XF (reg:XF 171 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 58 57 59 12 (set (reg:XF 175)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC9") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 4.1666666666666666667796043929672400452091096667572856e-2 [0x0.aaaaaaaaaaaaaaabp-4])
+        (nil)))
+(insn 59 58 60 12 (set (reg:XF 174 [ D.5436 ])
+        (plus:XF (reg:XF 173 [ D.5436 ])
+            (reg:XF 175))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 60 59 61 12 (set (reg:XF 176 [ D.5436 ])
+        (mult:XF (reg:XF 174 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 61 60 62 12 (set (reg:SF 179)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC10") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:SF 5.0e-1 [0x0.8p+0])
+        (nil)))
+(insn 62 61 63 12 (set (reg:XF 178)
+        (float_extend:XF (reg:SF 179))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 5.0e-1 [0x0.8p+0])
+        (nil)))
+(insn 63 62 64 12 (set (reg:XF 177 [ D.5436 ])
+        (minus:XF (reg:XF 176 [ D.5436 ])
+            (reg:XF 178))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 64 63 65 12 (set (reg:XF 180 [ D.5436 ])
+        (mult:XF (reg:XF 177 [ D.5436 ])
+            (reg/v:XF 90 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(insn 65 64 66 12 (set (reg:SF 182)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 66 65 67 12 (set (reg:XF 181)
+        (float_extend:XF (reg:SF 182))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 67 66 68 12 (set (reg:XF 87 [ D.5436 ])
+        (plus:XF (reg:XF 180 [ D.5436 ])
+            (reg:XF 181))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil))
+(jump_insn 68 67 69 12 (set (pc)
+        (label_ref 145)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:100 -1
+     (nil)
+ -> 145)
+(barrier 69 68 70)
+(code_label 70 69 71 13 3 "" [1 uses])
+(note 71 70 72 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 73 13 (set (reg:SF 185)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC11") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.4453125e-1 [0x0.94p-2])
+        (nil)))
+(insn 73 72 74 13 (set (reg:XF 184)
+        (float_extend:XF (reg:SF 185))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.4453125e-1 [0x0.94p-2])
+        (nil)))
+(insn 74 73 75 13 (set (reg:XF 183 [ D.5436 ])
+        (minus:XF (reg/v:XF 147 [ x ])
+            (reg:XF 184))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (nil))
+(insn 75 74 76 13 (set (reg:SF 188)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC12") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.28e+2 [0x0.8p+8])
+        (nil)))
+(insn 76 75 77 13 (set (reg:XF 187)
+        (float_extend:XF (reg:SF 188))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.28e+2 [0x0.8p+8])
+        (nil)))
+(insn 77 76 78 13 (set (reg:XF 186 [ D.5436 ])
+        (mult:XF (reg:XF 183 [ D.5436 ])
+            (reg:XF 187))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (nil))
+(insn 78 77 79 13 (parallel [
+            (set (reg/v:SI 108 [ index ])
+                (fix:SI (reg:XF 186 [ D.5436 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:111 -1
+     (nil))
+(insn 79 78 80 13 (parallel [
+            (set (reg/v:SI 113 [ index ])
+                (ashift:SI (reg/v:SI 108 [ index ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:113 -1
+     (nil))
+(insn 80 79 81 13 (set (reg:DF 189 [ D.5438 ])
+        (float:DF (reg/v:SI 108 [ index ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (nil))
+(insn 81 80 82 13 (set (reg:DF 191)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC13") [flags 0x2]) [3  S8 A64])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (expr_list:REG_EQUAL (const_double:DF 7.8125e-3 [0x0.8p-6])
+        (nil)))
+(insn 82 81 83 13 (set (reg:DF 190 [ D.5438 ])
+        (mult:DF (reg:DF 189 [ D.5438 ])
+            (reg:DF 191))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (nil))
+(insn 83 82 84 13 (set (reg:XF 192 [ D.5436 ])
+        (float_extend:XF (reg:DF 190 [ D.5438 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (nil))
+(insn 84 83 85 13 (set (reg:SF 195)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.484375e-1 [0x0.98p-2])
+        (nil)))
+(insn 85 84 86 13 (set (reg:XF 194)
+        (float_extend:XF (reg:SF 195))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.484375e-1 [0x0.98p-2])
+        (nil)))
+(insn 86 85 87 13 (set (reg:XF 193 [ h ])
+        (plus:XF (reg:XF 192 [ D.5436 ])
+            (reg:XF 194))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (nil))
+(insn 87 86 88 13 (set (reg:XF 196 [ D.5436 ])
+        (minus:XF (reg:XF 193 [ h ])
+            (reg/v:XF 147 [ x ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (nil))
+(insn 88 87 89 13 (set (reg/v:XF 115 [ l ])
+        (minus:XF (reg/v:XF 148 [ y ])
+            (reg:XF 196 [ D.5436 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:114 -1
+     (nil))
+(insn 89 88 90 13 (set (reg/v:XF 116 [ z ])
+        (mult:XF (reg/v:XF 115 [ l ])
+            (reg/v:XF 115 [ l ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:115 -1
+     (nil))
+(insn 90 89 91 13 (set (reg/f:DI 197)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__sincosl_table") [flags 0x40]  <var_decl 0x2b7a70d71510 __sincosl_table>)
+                    ] UNSPEC_GOTPCREL)) [4  S8 A8])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:121 -1
+     (nil))
+(insn 91 90 92 13 (set (reg:DI 198)
+        (sign_extend:DI (reg/v:SI 113 [ index ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:121 -1
+     (nil))
+(insn 92 91 93 13 (parallel [
+            (set (reg:DI 199)
+                (ashift:DI (reg:DI 198)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:121 -1
+     (nil))
+(insn 93 92 94 13 (parallel [
+            (set (reg/f:DI 200)
+                (plus:DI (reg/f:DI 197)
+                    (reg:DI 199)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:121 -1
+     (nil))
+(insn 94 93 95 13 (set (reg:XF 142 [ D.5436 ])
+        (mem/u:XF (reg/f:DI 200) [1 __sincosl_table S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:121 -1
+     (nil))
+(insn 95 94 96 13 (set (reg/f:DI 201)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__sincosl_table") [flags 0x40]  <var_decl 0x2b7a70d71510 __sincosl_table>)
+                    ] UNSPEC_GOTPCREL)) [4  S8 A8])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:119 -1
+     (nil))
+(insn 96 95 97 13 (parallel [
+            (set (reg:SI 202 [ D.5437 ])
+                (plus:SI (reg/v:SI 113 [ index ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:119 -1
+     (nil))
+(insn 97 96 98 13 (set (reg:DI 203)
+        (sign_extend:DI (reg:SI 202 [ D.5437 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:119 -1
+     (nil))
+(insn 98 97 99 13 (parallel [
+            (set (reg:DI 204)
+                (ashift:DI (reg:DI 203)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:119 -1
+     (nil))
+(insn 99 98 100 13 (parallel [
+            (set (reg/f:DI 205)
+                (plus:DI (reg/f:DI 201)
+                    (reg:DI 204)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:119 -1
+     (nil))
+(insn 100 99 101 13 (set (reg:XF 207)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF -2.505210164679961934992840307839328284106490685179125e-8 [-0x0.d73227748623ee39p-25])
+        (nil)))
+(insn 101 100 102 13 (set (reg:XF 206 [ D.5436 ])
+        (mult:XF (reg/v:XF 116 [ z ])
+            (reg:XF 207))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 102 101 103 13 (set (reg:XF 209)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC15") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 2.7557319223984862416729926390946661847458631910967597e-6 [0x0.b8ef1d2ab6320635p-18])
+        (nil)))
+(insn 103 102 104 13 (set (reg:XF 208 [ D.5436 ])
+        (plus:XF (reg:XF 206 [ D.5436 ])
+            (reg:XF 209))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 104 103 105 13 (set (reg:XF 210 [ D.5436 ])
+        (mult:XF (reg:XF 208 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 105 104 106 13 (set (reg:XF 212)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC16") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.984126984126984126983706828895211160546097062251647e-4 [0x0.d00d00d00d00d00dp-12])
+        (nil)))
+(insn 106 105 107 13 (set (reg:XF 211 [ D.5436 ])
+        (minus:XF (reg:XF 210 [ D.5436 ])
+            (reg:XF 212))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 107 106 108 13 (set (reg:XF 213 [ D.5436 ])
+        (mult:XF (reg:XF 211 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 108 107 109 13 (set (reg:XF 215)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC17") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 8.3333333333333333337286153753853401582318838336504996e-3 [0x0.8888888888888889p-6])
+        (nil)))
+(insn 109 108 110 13 (set (reg:XF 214 [ D.5436 ])
+        (plus:XF (reg:XF 213 [ D.5436 ])
+            (reg:XF 215))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 110 109 111 13 (set (reg:XF 216 [ D.5436 ])
+        (mult:XF (reg:XF 214 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 111 110 112 13 (set (reg:XF 218)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC18") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.66666666666666666671184175718689601808364386670291424e-1 [0x0.aaaaaaaaaaaaaaabp-2])
+        (nil)))
+(insn 112 111 113 13 (set (reg:XF 217 [ D.5436 ])
+        (minus:XF (reg:XF 216 [ D.5436 ])
+            (reg:XF 218))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 113 112 114 13 (set (reg:XF 219 [ D.5436 ])
+        (mult:XF (reg:XF 217 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 114 113 115 13 (set (reg:SF 222)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 115 114 116 13 (set (reg:XF 221)
+        (float_extend:XF (reg:SF 222))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 116 115 117 13 (set (reg:XF 220 [ D.5436 ])
+        (plus:XF (reg:XF 219 [ D.5436 ])
+            (reg:XF 221))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 117 116 118 13 (set (reg:XF 223 [ sin_l ])
+        (mult:XF (reg:XF 220 [ D.5436 ])
+            (reg/v:XF 115 [ l ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 118 117 119 13 (set (reg/f:DI 224)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__sincosl_table") [flags 0x40]  <var_decl 0x2b7a70d71510 __sincosl_table>)
+                    ] UNSPEC_GOTPCREL)) [4  S8 A8])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:120 -1
+     (nil))
+(insn 119 118 120 13 (parallel [
+            (set (reg:SI 225 [ D.5437 ])
+                (plus:SI (reg/v:SI 113 [ index ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:120 -1
+     (nil))
+(insn 120 119 121 13 (set (reg:DI 226)
+        (sign_extend:DI (reg:SI 225 [ D.5437 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:120 -1
+     (nil))
+(insn 121 120 122 13 (parallel [
+            (set (reg:DI 227)
+                (ashift:DI (reg:DI 226)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:120 -1
+     (nil))
+(insn 122 121 123 13 (parallel [
+            (set (reg/f:DI 228)
+                (plus:DI (reg/f:DI 224)
+                    (reg:DI 227)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/ldbl-96/k_cosl.c:120 -1
+     (nil))
+(insn 123 122 124 13 (set (reg:XF 230)
+        (mem/u:XF (reg/f:DI 228) [1 __sincosl_table S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 124 123 125 13 (set (reg:XF 229 [ D.5436 ])
+        (mult:XF (reg:XF 223 [ sin_l ])
+            (reg:XF 230))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 125 124 126 13 (set (reg:XF 232)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC19") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF -2.7557311260136212660217217718901575301132522710645389e-7 [-0x0.93f27aee731be586p-21])
+        (nil)))
+(insn 126 125 127 13 (set (reg:XF 231 [ D.5436 ])
+        (mult:XF (reg/v:XF 116 [ z ])
+            (reg:XF 232))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 127 126 128 13 (set (reg:XF 234)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC20") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 2.4801587301586238297904096422401808152979896249235026e-5 [0x0.d00d00d00cf7016ep-15])
+        (nil)))
+(insn 128 127 129 13 (set (reg:XF 233 [ D.5436 ])
+        (plus:XF (reg:XF 231 [ D.5436 ])
+            (reg:XF 234))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 129 128 130 13 (set (reg:XF 235 [ D.5436 ])
+        (mult:XF (reg:XF 233 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 130 129 131 13 (set (reg:XF 237)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC8") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.3888888888888888888488901108241024839884403263567947e-3 [0x0.b60b60b60b60b60bp-9])
+        (nil)))
+(insn 131 130 132 13 (set (reg:XF 236 [ D.5436 ])
+        (minus:XF (reg:XF 235 [ D.5436 ])
+            (reg:XF 237))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 132 131 133 13 (set (reg:XF 238 [ D.5436 ])
+        (mult:XF (reg:XF 236 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 133 132 134 13 (set (reg:XF 240)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC9") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 4.1666666666666666667796043929672400452091096667572856e-2 [0x0.aaaaaaaaaaaaaaabp-4])
+        (nil)))
+(insn 134 133 135 13 (set (reg:XF 239 [ D.5436 ])
+        (plus:XF (reg:XF 238 [ D.5436 ])
+            (reg:XF 240))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 135 134 136 13 (set (reg:XF 241 [ D.5436 ])
+        (mult:XF (reg:XF 239 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 136 135 137 13 (set (reg:SF 244)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC10") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:SF 5.0e-1 [0x0.8p+0])
+        (nil)))
+(insn 137 136 138 13 (set (reg:XF 243)
+        (float_extend:XF (reg:SF 244))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (expr_list:REG_EQUAL (const_double:XF 5.0e-1 [0x0.8p+0])
+        (nil)))
+(insn 138 137 139 13 (set (reg:XF 242 [ D.5436 ])
+        (minus:XF (reg:XF 241 [ D.5436 ])
+            (reg:XF 243))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 139 138 140 13 (set (reg:XF 245 [ cos_l_m1 ])
+        (mult:XF (reg:XF 242 [ D.5436 ])
+            (reg/v:XF 116 [ z ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 140 139 141 13 (set (reg:XF 246 [ D.5436 ])
+        (mult:XF (reg:XF 245 [ cos_l_m1 ])
+            (reg:XF 142 [ D.5436 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 141 140 142 13 (set (reg:XF 247 [ D.5436 ])
+        (minus:XF (reg:XF 229 [ D.5436 ])
+            (reg:XF 246 [ D.5436 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 142 141 143 13 (set (reg:XF 249)
+        (mem/u:XF (reg/f:DI 205) [1 __sincosl_table S16 A128])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 143 142 144 13 (set (reg:XF 248 [ D.5436 ])
+        (minus:XF (reg:XF 249)
+            (reg:XF 247 [ D.5436 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(insn 144 143 154 13 (set (reg:XF 87 [ D.5436 ])
+        (plus:XF (reg:XF 248 [ D.5436 ])
+            (reg:XF 142 [ D.5436 ]))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil))
+(jump_insn 154 144 155 13 (set (pc)
+        (label_ref 145)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:118 -1
+     (nil)
+ -> 145)
+(barrier 155 154 157)
+(code_label 157 155 156 14 8 "" [1 uses])
+(note 156 157 5 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 5 156 6 14 (set (reg:SF 149)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [2  S4 A32])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:98 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 6 5 145 14 (set (reg:XF 87 [ D.5436 ])
+        (float_extend:XF (reg:SF 149))) ../sysdeps/ieee754/ldbl-96/k_cosl.c:98 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(code_label 145 6 146 15 7 "" [2 uses])
+(note 146 145 147 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 147 146 151 15 (set (reg:XF 146 [ <retval> ])
+        (reg:XF 87 [ D.5436 ])) -1
+     (nil))
+(insn 151 147 152 15 (set (reg/i:XF 8 st)
+        (reg:XF 146 [ <retval> ])) ../sysdeps/ieee754/ldbl-96/k_cosl.c:123 -1
+     (nil))
+(insn 152 151 0 15 (use (reg/i:XF 8 st)) ../sysdeps/ieee754/ldbl-96/k_cosl.c:123 -1
+     (nil))

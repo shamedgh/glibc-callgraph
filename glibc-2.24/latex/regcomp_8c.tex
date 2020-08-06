@@ -1,0 +1,255 @@
+\hypertarget{regcomp_8c}{}\doxysection{posix/regcomp.c File Reference}
+\label{regcomp_8c}\index{posix/regcomp.c@{posix/regcomp.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a53cac93056e7e4dcd77c87fd5b64ab85}{R\+E\+G\+\_\+\+N\+O\+E\+R\+R\+O\+R\+\_\+\+I\+DX}}~0
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a20c488a0672699e12eebb87f4536a2a1}{R\+E\+G\+\_\+\+N\+O\+M\+A\+T\+C\+H\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a53cac93056e7e4dcd77c87fd5b64ab85}{R\+E\+G\+\_\+\+N\+O\+E\+R\+R\+O\+R\+\_\+\+I\+DX}} + sizeof \char`\"{}Success\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a48ae85c8247f711c7612edf7783e857c}{R\+E\+G\+\_\+\+B\+A\+D\+P\+A\+T\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a20c488a0672699e12eebb87f4536a2a1}{R\+E\+G\+\_\+\+N\+O\+M\+A\+T\+C\+H\+\_\+\+I\+DX}} + sizeof \char`\"{}No match\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a6c414c00809d9b700e9d8071c4d8b051}{R\+E\+G\+\_\+\+E\+C\+O\+L\+L\+A\+T\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a48ae85c8247f711c7612edf7783e857c}{R\+E\+G\+\_\+\+B\+A\+D\+P\+A\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid regular \mbox{\hyperlink{structexpression}{expression}}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_acdb862b0439091c6aba1ddb34ec74c9f}{R\+E\+G\+\_\+\+E\+C\+T\+Y\+P\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a6c414c00809d9b700e9d8071c4d8b051}{R\+E\+G\+\_\+\+E\+C\+O\+L\+L\+A\+T\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid collation character\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a94bc4724ebb8f838d053f9f10fa3981a}{R\+E\+G\+\_\+\+E\+E\+S\+C\+A\+P\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_acdb862b0439091c6aba1ddb34ec74c9f}{R\+E\+G\+\_\+\+E\+C\+T\+Y\+P\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid character class \mbox{\hyperlink{structname}{name}}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_aacadf8be59807dfbb1e55d08c26744b9}{R\+E\+G\+\_\+\+E\+S\+U\+B\+R\+E\+G\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a94bc4724ebb8f838d053f9f10fa3981a}{R\+E\+G\+\_\+\+E\+E\+S\+C\+A\+P\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Trailing backslash\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a206525485bf45f18ebf8fd0fcab5f3cd}{R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+K\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_aacadf8be59807dfbb1e55d08c26744b9}{R\+E\+G\+\_\+\+E\+S\+U\+B\+R\+E\+G\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid \mbox{\hyperlink{tst-deep1mod3_8c_afb031782b4cd52ba30fdced9fedfa6a1}{back}} reference\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_ab27649935fb8e05dd687d0d1e738697a}{R\+E\+G\+\_\+\+E\+P\+A\+R\+E\+N\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a206525485bf45f18ebf8fd0fcab5f3cd}{R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+K\+\_\+\+I\+DX}} + sizeof \char`\"{}Unmatched \mbox{[} or \mbox{[}$^\wedge$\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_ae63f97c2af9852820b09ada8117982f3}{R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_ab27649935fb8e05dd687d0d1e738697a}{R\+E\+G\+\_\+\+E\+P\+A\+R\+E\+N\+\_\+\+I\+DX}} + sizeof \char`\"{}Unmatched ( or \textbackslash{}\textbackslash{}(\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a4d53631524c3e1f51d75b3d50f04d8ed}{R\+E\+G\+\_\+\+B\+A\+D\+B\+R\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_ae63f97c2af9852820b09ada8117982f3}{R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Unmatched \textbackslash{}\textbackslash{}\{\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a9335e944484ecf3dac6270666feaaf1f}{R\+E\+G\+\_\+\+E\+R\+A\+N\+G\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a4d53631524c3e1f51d75b3d50f04d8ed}{R\+E\+G\+\_\+\+B\+A\+D\+B\+R\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid content of \textbackslash{}\textbackslash{}\{\textbackslash{}\textbackslash{}\}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_af6d28ac4aa08afd5fe52f7fd43abc5bb}{R\+E\+G\+\_\+\+E\+S\+P\+A\+C\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a9335e944484ecf3dac6270666feaaf1f}{R\+E\+G\+\_\+\+E\+R\+A\+N\+G\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid \mbox{\hyperlink{structrange}{range}} end\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_acf4d9e47a0ca86890be7bee5fc73aceb}{R\+E\+G\+\_\+\+B\+A\+D\+R\+P\+T\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_af6d28ac4aa08afd5fe52f7fd43abc5bb}{R\+E\+G\+\_\+\+E\+S\+P\+A\+C\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Memory exhausted\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a5f5131e9e883c6f787f7c1041d3d3f1a}{R\+E\+G\+\_\+\+E\+E\+N\+D\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_acf4d9e47a0ca86890be7bee5fc73aceb}{R\+E\+G\+\_\+\+B\+A\+D\+R\+P\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid preceding regular \mbox{\hyperlink{structexpression}{expression}}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_aa86dc74b96a36fc455d490601cab5529}{R\+E\+G\+\_\+\+E\+S\+I\+Z\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_a5f5131e9e883c6f787f7c1041d3d3f1a}{R\+E\+G\+\_\+\+E\+E\+N\+D\+\_\+\+I\+DX}} + sizeof \char`\"{}Premature end of regular \mbox{\hyperlink{structexpression}{expression}}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a7a212c67e65cef62a14bc026104b3965}{R\+E\+G\+\_\+\+E\+R\+P\+A\+R\+E\+N\+\_\+\+I\+DX}}~(\mbox{\hyperlink{regcomp_8c_aa86dc74b96a36fc455d490601cab5529}{R\+E\+G\+\_\+\+E\+S\+I\+Z\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Regular \mbox{\hyperlink{structexpression}{expression}} too \mbox{\hyperlink{structbig}{big}}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a37688c5b1765785f1580fc410371d202}{B\+R\+A\+C\+K\+E\+T\+\_\+\+N\+A\+M\+E\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}}~32
+\item 
+\#define \mbox{\hyperlink{regcomp_8c_a2b4af338e66eed86c2f4cc4aa0890103}{B\+U\+I\+L\+D\+\_\+\+C\+H\+A\+R\+C\+L\+A\+S\+S\+\_\+\+L\+O\+OP}}(ctype\+\_\+func)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{regcomp_8c_a1083d71d47c2dbd1bee7f86700473d2b}{re\+\_\+compile\+\_\+pattern}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{testfnm_8c_acd28ae39c6440992e47d3da772c56602}{pattern}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{unwind-dw2-fde_8h_a8489cf2ea7d3a7f7c34c018044644565}{length}}, struct \mbox{\hyperlink{structre__pattern__buffer}{re\+\_\+pattern\+\_\+buffer}} $\ast$bufp)
+\item 
+\mbox{\hyperlink{posix_2regex_8h_a7e0565199a2fabaca3d67a5a44fc4229}{reg\+\_\+syntax\+\_\+t}} \mbox{\hyperlink{regcomp_8c_ad7a880e03677a7961ddf81cdc73e8fb4}{re\+\_\+set\+\_\+syntax}} (\mbox{\hyperlink{posix_2regex_8h_a7e0565199a2fabaca3d67a5a44fc4229}{reg\+\_\+syntax\+\_\+t}} \mbox{\hyperlink{bug-regex20_8c_a6e90b3e92741208d9c65999b43cde698}{syntax}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{regcomp_8c_a39979f3b79c423214dc96b34996424a8}{re\+\_\+compile\+\_\+fastmap}} (struct \mbox{\hyperlink{structre__pattern__buffer}{re\+\_\+pattern\+\_\+buffer}} $\ast$bufp)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{regcomp_8c_ab9ce42647bc1d700e60ac3e69fcdc8e1}{regcomp}} (\mbox{\hyperlink{posix_2regex_8h_a159f97bcead74ee31a0817571f7625a9}{regex\+\_\+t}} $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}} preg, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}} \mbox{\hyperlink{testfnm_8c_acd28ae39c6440992e47d3da772c56602}{pattern}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} cflags)
+\item 
+\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{regcomp_8c_aaed262e2283d72e55314935fcc7d045f}{regerror}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} errcode, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{posix_2regex_8h_a159f97bcead74ee31a0817571f7625a9}{regex\+\_\+t}} $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}} preg, char $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}} errbuf, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} errbuf\+\_\+size)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{regcomp_8c_ad94d0de532eaa4fd959b8adde4d64898}{regfree}} (\mbox{\hyperlink{posix_2regex_8h_a159f97bcead74ee31a0817571f7625a9}{regex\+\_\+t}} $\ast$preg)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char \+\_\+\+\_\+re\+\_\+error\+\_\+msgid \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{regcomp_8c_a36226af351e4b777bf56890e3270c8c2}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{posix_2regex_8h_a7e0565199a2fabaca3d67a5a44fc4229}{reg\+\_\+syntax\+\_\+t}} \mbox{\hyperlink{regcomp_8c_abdc5e67bbb6a48b740a95aef2bc3f5f2}{re\+\_\+syntax\+\_\+options}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{regcomp_8c_a37688c5b1765785f1580fc410371d202}\label{regcomp_8c_a37688c5b1765785f1580fc410371d202}} 
+\index{regcomp.c@{regcomp.c}!BRACKET\_NAME\_BUF\_SIZE@{BRACKET\_NAME\_BUF\_SIZE}}
+\index{BRACKET\_NAME\_BUF\_SIZE@{BRACKET\_NAME\_BUF\_SIZE}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{BRACKET\_NAME\_BUF\_SIZE}{BRACKET\_NAME\_BUF\_SIZE}}
+{\footnotesize\ttfamily \#define B\+R\+A\+C\+K\+E\+T\+\_\+\+N\+A\+M\+E\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE~32}
+
+\mbox{\Hypertarget{regcomp_8c_a2b4af338e66eed86c2f4cc4aa0890103}\label{regcomp_8c_a2b4af338e66eed86c2f4cc4aa0890103}} 
+\index{regcomp.c@{regcomp.c}!BUILD\_CHARCLASS\_LOOP@{BUILD\_CHARCLASS\_LOOP}}
+\index{BUILD\_CHARCLASS\_LOOP@{BUILD\_CHARCLASS\_LOOP}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{BUILD\_CHARCLASS\_LOOP}{BUILD\_CHARCLASS\_LOOP}}
+{\footnotesize\ttfamily \#define B\+U\+I\+L\+D\+\_\+\+C\+H\+A\+R\+C\+L\+A\+S\+S\+\_\+\+L\+O\+OP(\begin{DoxyParamCaption}\item[{}]{ctype\+\_\+func }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                        \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{regex__internal_8h_ad0a68b47d8bd53bcdb902f164525f365}{BE}} (trans != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}, 0))            \(\backslash\)}
+\DoxyCodeLine{      \{                     \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}} = 0; \mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}} < \mbox{\hyperlink{regex__internal_8h_a8f1d7fc048285a04b89630d49e8b1233}{SBC\_MAX}}; ++\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}})     \(\backslash\)}
+\DoxyCodeLine{      \textcolor{keywordflow}{if} (ctype\_func (\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}))          \(\backslash\)}
+\DoxyCodeLine{        bitset\_set (sbcset, trans[\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}]); \(\backslash\)}
+\DoxyCodeLine{      \}                     \(\backslash\)}
+\DoxyCodeLine{    else                    \(\backslash\)}
+\DoxyCodeLine{      \{                     \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}} = 0; \mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}} < \mbox{\hyperlink{regex__internal_8h_a8f1d7fc048285a04b89630d49e8b1233}{SBC\_MAX}}; ++\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}})     \(\backslash\)}
+\DoxyCodeLine{      \textcolor{keywordflow}{if} (ctype\_func (\mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}}))          \(\backslash\)}
+\DoxyCodeLine{        bitset\_set (sbcset, \mbox{\hyperlink{tst-tls14_8c_acb559820d9ca11295b4500f179ef6392}{i}});        \(\backslash\)}
+\DoxyCodeLine{      \}                     \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{regcomp_8c_a4d53631524c3e1f51d75b3d50f04d8ed}\label{regcomp_8c_a4d53631524c3e1f51d75b3d50f04d8ed}} 
+\index{regcomp.c@{regcomp.c}!REG\_BADBR\_IDX@{REG\_BADBR\_IDX}}
+\index{REG\_BADBR\_IDX@{REG\_BADBR\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_BADBR\_IDX}{REG\_BADBR\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+B\+A\+D\+B\+R\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_ae63f97c2af9852820b09ada8117982f3}{R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Unmatched \textbackslash{}\textbackslash{}\{\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a48ae85c8247f711c7612edf7783e857c}\label{regcomp_8c_a48ae85c8247f711c7612edf7783e857c}} 
+\index{regcomp.c@{regcomp.c}!REG\_BADPAT\_IDX@{REG\_BADPAT\_IDX}}
+\index{REG\_BADPAT\_IDX@{REG\_BADPAT\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_BADPAT\_IDX}{REG\_BADPAT\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+B\+A\+D\+P\+A\+T\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a20c488a0672699e12eebb87f4536a2a1}{R\+E\+G\+\_\+\+N\+O\+M\+A\+T\+C\+H\+\_\+\+I\+DX}} + sizeof \char`\"{}No match\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_acf4d9e47a0ca86890be7bee5fc73aceb}\label{regcomp_8c_acf4d9e47a0ca86890be7bee5fc73aceb}} 
+\index{regcomp.c@{regcomp.c}!REG\_BADRPT\_IDX@{REG\_BADRPT\_IDX}}
+\index{REG\_BADRPT\_IDX@{REG\_BADRPT\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_BADRPT\_IDX}{REG\_BADRPT\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+B\+A\+D\+R\+P\+T\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_af6d28ac4aa08afd5fe52f7fd43abc5bb}{R\+E\+G\+\_\+\+E\+S\+P\+A\+C\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Memory exhausted\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_ae63f97c2af9852820b09ada8117982f3}\label{regcomp_8c_ae63f97c2af9852820b09ada8117982f3}} 
+\index{regcomp.c@{regcomp.c}!REG\_EBRACE\_IDX@{REG\_EBRACE\_IDX}}
+\index{REG\_EBRACE\_IDX@{REG\_EBRACE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_EBRACE\_IDX}{REG\_EBRACE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_ab27649935fb8e05dd687d0d1e738697a}{R\+E\+G\+\_\+\+E\+P\+A\+R\+E\+N\+\_\+\+I\+DX}} + sizeof \char`\"{}Unmatched ( or \textbackslash{}\textbackslash{}(\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a206525485bf45f18ebf8fd0fcab5f3cd}\label{regcomp_8c_a206525485bf45f18ebf8fd0fcab5f3cd}} 
+\index{regcomp.c@{regcomp.c}!REG\_EBRACK\_IDX@{REG\_EBRACK\_IDX}}
+\index{REG\_EBRACK\_IDX@{REG\_EBRACK\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_EBRACK\_IDX}{REG\_EBRACK\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+K\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_aacadf8be59807dfbb1e55d08c26744b9}{R\+E\+G\+\_\+\+E\+S\+U\+B\+R\+E\+G\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid \mbox{\hyperlink{tst-deep1mod3_8c_afb031782b4cd52ba30fdced9fedfa6a1}{back}} reference\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a6c414c00809d9b700e9d8071c4d8b051}\label{regcomp_8c_a6c414c00809d9b700e9d8071c4d8b051}} 
+\index{regcomp.c@{regcomp.c}!REG\_ECOLLATE\_IDX@{REG\_ECOLLATE\_IDX}}
+\index{REG\_ECOLLATE\_IDX@{REG\_ECOLLATE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ECOLLATE\_IDX}{REG\_ECOLLATE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+C\+O\+L\+L\+A\+T\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a48ae85c8247f711c7612edf7783e857c}{R\+E\+G\+\_\+\+B\+A\+D\+P\+A\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid regular \mbox{\hyperlink{structexpression}{expression}}\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_acdb862b0439091c6aba1ddb34ec74c9f}\label{regcomp_8c_acdb862b0439091c6aba1ddb34ec74c9f}} 
+\index{regcomp.c@{regcomp.c}!REG\_ECTYPE\_IDX@{REG\_ECTYPE\_IDX}}
+\index{REG\_ECTYPE\_IDX@{REG\_ECTYPE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ECTYPE\_IDX}{REG\_ECTYPE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+C\+T\+Y\+P\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a6c414c00809d9b700e9d8071c4d8b051}{R\+E\+G\+\_\+\+E\+C\+O\+L\+L\+A\+T\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid collation character\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a5f5131e9e883c6f787f7c1041d3d3f1a}\label{regcomp_8c_a5f5131e9e883c6f787f7c1041d3d3f1a}} 
+\index{regcomp.c@{regcomp.c}!REG\_EEND\_IDX@{REG\_EEND\_IDX}}
+\index{REG\_EEND\_IDX@{REG\_EEND\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_EEND\_IDX}{REG\_EEND\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+E\+N\+D\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_acf4d9e47a0ca86890be7bee5fc73aceb}{R\+E\+G\+\_\+\+B\+A\+D\+R\+P\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid preceding regular \mbox{\hyperlink{structexpression}{expression}}\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a94bc4724ebb8f838d053f9f10fa3981a}\label{regcomp_8c_a94bc4724ebb8f838d053f9f10fa3981a}} 
+\index{regcomp.c@{regcomp.c}!REG\_EESCAPE\_IDX@{REG\_EESCAPE\_IDX}}
+\index{REG\_EESCAPE\_IDX@{REG\_EESCAPE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_EESCAPE\_IDX}{REG\_EESCAPE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+E\+S\+C\+A\+P\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_acdb862b0439091c6aba1ddb34ec74c9f}{R\+E\+G\+\_\+\+E\+C\+T\+Y\+P\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid character class \mbox{\hyperlink{structname}{name}}\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_ab27649935fb8e05dd687d0d1e738697a}\label{regcomp_8c_ab27649935fb8e05dd687d0d1e738697a}} 
+\index{regcomp.c@{regcomp.c}!REG\_EPAREN\_IDX@{REG\_EPAREN\_IDX}}
+\index{REG\_EPAREN\_IDX@{REG\_EPAREN\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_EPAREN\_IDX}{REG\_EPAREN\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+P\+A\+R\+E\+N\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a206525485bf45f18ebf8fd0fcab5f3cd}{R\+E\+G\+\_\+\+E\+B\+R\+A\+C\+K\+\_\+\+I\+DX}} + sizeof \char`\"{}Unmatched \mbox{[} or \mbox{[}$^\wedge$\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a9335e944484ecf3dac6270666feaaf1f}\label{regcomp_8c_a9335e944484ecf3dac6270666feaaf1f}} 
+\index{regcomp.c@{regcomp.c}!REG\_ERANGE\_IDX@{REG\_ERANGE\_IDX}}
+\index{REG\_ERANGE\_IDX@{REG\_ERANGE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ERANGE\_IDX}{REG\_ERANGE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+R\+A\+N\+G\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a4d53631524c3e1f51d75b3d50f04d8ed}{R\+E\+G\+\_\+\+B\+A\+D\+B\+R\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid content of \textbackslash{}\textbackslash{}\{\textbackslash{}\textbackslash{}\}\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a7a212c67e65cef62a14bc026104b3965}\label{regcomp_8c_a7a212c67e65cef62a14bc026104b3965}} 
+\index{regcomp.c@{regcomp.c}!REG\_ERPAREN\_IDX@{REG\_ERPAREN\_IDX}}
+\index{REG\_ERPAREN\_IDX@{REG\_ERPAREN\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ERPAREN\_IDX}{REG\_ERPAREN\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+R\+P\+A\+R\+E\+N\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_aa86dc74b96a36fc455d490601cab5529}{R\+E\+G\+\_\+\+E\+S\+I\+Z\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Regular \mbox{\hyperlink{structexpression}{expression}} too \mbox{\hyperlink{structbig}{big}}\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_aa86dc74b96a36fc455d490601cab5529}\label{regcomp_8c_aa86dc74b96a36fc455d490601cab5529}} 
+\index{regcomp.c@{regcomp.c}!REG\_ESIZE\_IDX@{REG\_ESIZE\_IDX}}
+\index{REG\_ESIZE\_IDX@{REG\_ESIZE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ESIZE\_IDX}{REG\_ESIZE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+S\+I\+Z\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a5f5131e9e883c6f787f7c1041d3d3f1a}{R\+E\+G\+\_\+\+E\+E\+N\+D\+\_\+\+I\+DX}} + sizeof \char`\"{}Premature end of regular \mbox{\hyperlink{structexpression}{expression}}\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_af6d28ac4aa08afd5fe52f7fd43abc5bb}\label{regcomp_8c_af6d28ac4aa08afd5fe52f7fd43abc5bb}} 
+\index{regcomp.c@{regcomp.c}!REG\_ESPACE\_IDX@{REG\_ESPACE\_IDX}}
+\index{REG\_ESPACE\_IDX@{REG\_ESPACE\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ESPACE\_IDX}{REG\_ESPACE\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+S\+P\+A\+C\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a9335e944484ecf3dac6270666feaaf1f}{R\+E\+G\+\_\+\+E\+R\+A\+N\+G\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Invalid \mbox{\hyperlink{structrange}{range}} end\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_aacadf8be59807dfbb1e55d08c26744b9}\label{regcomp_8c_aacadf8be59807dfbb1e55d08c26744b9}} 
+\index{regcomp.c@{regcomp.c}!REG\_ESUBREG\_IDX@{REG\_ESUBREG\_IDX}}
+\index{REG\_ESUBREG\_IDX@{REG\_ESUBREG\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ESUBREG\_IDX}{REG\_ESUBREG\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+E\+S\+U\+B\+R\+E\+G\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a94bc4724ebb8f838d053f9f10fa3981a}{R\+E\+G\+\_\+\+E\+E\+S\+C\+A\+P\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}Trailing backslash\char`\"{})}
+
+\mbox{\Hypertarget{regcomp_8c_a53cac93056e7e4dcd77c87fd5b64ab85}\label{regcomp_8c_a53cac93056e7e4dcd77c87fd5b64ab85}} 
+\index{regcomp.c@{regcomp.c}!REG\_NOERROR\_IDX@{REG\_NOERROR\_IDX}}
+\index{REG\_NOERROR\_IDX@{REG\_NOERROR\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_NOERROR\_IDX}{REG\_NOERROR\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+N\+O\+E\+R\+R\+O\+R\+\_\+\+I\+DX~0}
+
+\mbox{\Hypertarget{regcomp_8c_a20c488a0672699e12eebb87f4536a2a1}\label{regcomp_8c_a20c488a0672699e12eebb87f4536a2a1}} 
+\index{regcomp.c@{regcomp.c}!REG\_NOMATCH\_IDX@{REG\_NOMATCH\_IDX}}
+\index{REG\_NOMATCH\_IDX@{REG\_NOMATCH\_IDX}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{REG\_NOMATCH\_IDX}{REG\_NOMATCH\_IDX}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+N\+O\+M\+A\+T\+C\+H\+\_\+\+I\+DX~(\mbox{\hyperlink{regcomp_8c_a53cac93056e7e4dcd77c87fd5b64ab85}{R\+E\+G\+\_\+\+N\+O\+E\+R\+R\+O\+R\+\_\+\+I\+DX}} + sizeof \char`\"{}Success\char`\"{})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{regcomp_8c_a39979f3b79c423214dc96b34996424a8}\label{regcomp_8c_a39979f3b79c423214dc96b34996424a8}} 
+\index{regcomp.c@{regcomp.c}!re\_compile\_fastmap@{re\_compile\_fastmap}}
+\index{re\_compile\_fastmap@{re\_compile\_fastmap}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{re\_compile\_fastmap()}{re\_compile\_fastmap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} re\+\_\+compile\+\_\+fastmap (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structre__pattern__buffer}{re\+\_\+pattern\+\_\+buffer}} $\ast$}]{bufp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{regcomp_8c_a1083d71d47c2dbd1bee7f86700473d2b}\label{regcomp_8c_a1083d71d47c2dbd1bee7f86700473d2b}} 
+\index{regcomp.c@{regcomp.c}!re\_compile\_pattern@{re\_compile\_pattern}}
+\index{re\_compile\_pattern@{re\_compile\_pattern}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{re\_compile\_pattern()}{re\_compile\_pattern()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ re\+\_\+compile\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{pattern,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{length,  }\item[{struct \mbox{\hyperlink{structre__pattern__buffer}{re\+\_\+pattern\+\_\+buffer}} $\ast$}]{bufp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{regcomp_8c_ad7a880e03677a7961ddf81cdc73e8fb4}\label{regcomp_8c_ad7a880e03677a7961ddf81cdc73e8fb4}} 
+\index{regcomp.c@{regcomp.c}!re\_set\_syntax@{re\_set\_syntax}}
+\index{re\_set\_syntax@{re\_set\_syntax}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{re\_set\_syntax()}{re\_set\_syntax()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2regex_8h_a7e0565199a2fabaca3d67a5a44fc4229}{reg\+\_\+syntax\+\_\+t}} re\+\_\+set\+\_\+syntax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2regex_8h_a7e0565199a2fabaca3d67a5a44fc4229}{reg\+\_\+syntax\+\_\+t}}}]{syntax }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{regcomp_8c_ab9ce42647bc1d700e60ac3e69fcdc8e1}\label{regcomp_8c_ab9ce42647bc1d700e60ac3e69fcdc8e1}} 
+\index{regcomp.c@{regcomp.c}!regcomp@{regcomp}}
+\index{regcomp@{regcomp}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{regcomp()}{regcomp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} regcomp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2regex_8h_a159f97bcead74ee31a0817571f7625a9}{regex\+\_\+t}} $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}}}]{preg,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}}}]{pattern,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{cflags }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{regcomp_8c_aaed262e2283d72e55314935fcc7d045f}\label{regcomp_8c_aaed262e2283d72e55314935fcc7d045f}} 
+\index{regcomp.c@{regcomp.c}!regerror@{regerror}}
+\index{regerror@{regerror}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{regerror()}{regerror()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} regerror (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{errcode,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{posix_2regex_8h_a159f97bcead74ee31a0817571f7625a9}{regex\+\_\+t}} $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}}}]{preg,  }\item[{char $\ast$\mbox{\hyperlink{posix_2regex_8h_a4127c12268159bf73f8e69b23c34c610}{\+\_\+\+\_\+restrict}}}]{errbuf,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{errbuf\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{regcomp_8c_ad94d0de532eaa4fd959b8adde4d64898}\label{regcomp_8c_ad94d0de532eaa4fd959b8adde4d64898}} 
+\index{regcomp.c@{regcomp.c}!regfree@{regfree}}
+\index{regfree@{regfree}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{regfree()}{regfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} regfree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2regex_8h_a159f97bcead74ee31a0817571f7625a9}{regex\+\_\+t}} $\ast$}]{preg }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{regcomp_8c_a36226af351e4b777bf56890e3270c8c2}\label{regcomp_8c_a36226af351e4b777bf56890e3270c8c2}} 
+\index{regcomp.c@{regcomp.c}!attribute\_hidden@{attribute\_hidden}}
+\index{attribute\_hidden@{attribute\_hidden}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{attribute\_hidden}{attribute\_hidden}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \+\_\+\+\_\+re\+\_\+error\+\_\+msgid\+\_\+idx \mbox{[}$\,$\mbox{]} attribute\+\_\+hidden}
+
+\mbox{\Hypertarget{regcomp_8c_abdc5e67bbb6a48b740a95aef2bc3f5f2}\label{regcomp_8c_abdc5e67bbb6a48b740a95aef2bc3f5f2}} 
+\index{regcomp.c@{regcomp.c}!re\_syntax\_options@{re\_syntax\_options}}
+\index{re\_syntax\_options@{re\_syntax\_options}!regcomp.c@{regcomp.c}}
+\doxysubsubsection{\texorpdfstring{re\_syntax\_options}{re\_syntax\_options}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2regex_8h_a7e0565199a2fabaca3d67a5a44fc4229}{reg\+\_\+syntax\+\_\+t}} re\+\_\+syntax\+\_\+options}
+

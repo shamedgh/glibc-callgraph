@@ -1,0 +1,178 @@
+
+;; Function __pthread_cond_signal_2_0 (__pthread_cond_signal_2_0, funcdef_no=42, decl_uid=7493, cgraph_uid=42, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 42.
+Merging block 10 into block 9...
+Merged blocks 9 and 10.
+Merged 9 and 10 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 94 [ cond ])
+        (reg:DI 5 di [ cond ])) old_pthread_cond_signal.c:29 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg/f:DI 88 [ D.7594 ])
+        (mem/f:DI (reg/v/f:DI 94 [ cond ]) [2 cond_5(D)->cond+0 S8 A64])) old_pthread_cond_signal.c:30 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 88 [ D.7594 ])
+            (const_int 0 [0]))) old_pthread_cond_signal.c:30 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) old_pthread_cond_signal.c:30 -1
+     (int_list:REG_BR_PROB 8500 (nil))
+ -> 33)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) old_pthread_cond_signal.c:35 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 48 [0x30])) old_pthread_cond_signal.c:35 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x2b44f916e000 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) old_pthread_cond_signal.c:35 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x2b44f916e000 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 95)
+        (reg:DI 0 ax)) old_pthread_cond_signal.c:35 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 95)
+        (nil)))
+(insn 15 14 16 4 (set (reg/v/f:DI 89 [ newcond ])
+        (reg/f:DI 95)) old_pthread_cond_signal.c:35 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 89 [ newcond ])
+            (const_int 0 [0]))) old_pthread_cond_signal.c:36 -1
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) old_pthread_cond_signal.c:36 -1
+     (int_list:REG_BR_PROB 4673 (nil))
+ -> 39)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 97)
+        (const_int 0 [0])) old_pthread_cond_signal.c:47 -1
+     (nil))
+(insn 20 19 21 5 (parallel [
+            (set (reg:DI 96)
+                (unspec_volatile:DI [
+                        (mem/v:DI (reg/v/f:DI 94 [ cond ]) [-1  S8 A64])
+                        (reg:DI 97)
+                        (reg/v/f:DI 89 [ newcond ])
+                        (const_int 32773 [0x8005])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:DI (reg/v/f:DI 94 [ cond ]) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) old_pthread_cond_signal.c:47 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:QI 92 [ D.7597 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) old_pthread_cond_signal.c:47 -1
+     (nil))
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 92 [ D.7597 ])
+            (const_int 0 [0]))) old_pthread_cond_signal.c:47 -1
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) old_pthread_cond_signal.c:47 -1
+     (int_list:REG_BR_PROB 9999 (nil))
+ -> 28)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 6 (set (reg/f:DI 88 [ D.7594 ])
+        (mem/f:DI (reg/v/f:DI 94 [ cond ]) [2 cond_5(D)->cond+0 S8 A64])) -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (label_ref 33)) -1
+     (nil)
+ -> 33)
+(barrier 27 26 28)
+(code_label 28 27 29 7 4 "" [1 uses])
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 89 [ newcond ])) old_pthread_cond_signal.c:49 -1
+     (nil))
+(call_insn 31 30 32 7 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b44f9171e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) old_pthread_cond_signal.c:49 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b44f9171e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 32 31 33 7 (set (reg/f:DI 88 [ D.7594 ])
+        (mem/f:DI (reg/v/f:DI 94 [ cond ]) [2 cond_5(D)->cond+0 S8 A64])) -1
+     (nil))
+(code_label 33 32 34 8 2 "" [2 uses])
+(note 34 33 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 8 (set (reg:DI 5 di)
+        (reg/f:DI 88 [ D.7594 ])) old_pthread_cond_signal.c:52 -1
+     (nil))
+(call_insn/j 36 35 37 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__pthread_cond_signal") [flags 0x41]  <function_decl 0x2b44f959bd80 __pthread_cond_signal>) [0 __pthread_cond_signal S1 A8])
+            (const_int 0 [0]))) old_pthread_cond_signal.c:52 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_cond_signal") [flags 0x41]  <function_decl 0x2b44f959bd80 __pthread_cond_signal>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 37 36 39)
+(code_label 39 37 40 9 3 "" [1 uses])
+(note 40 39 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 40 41 9 (set (reg:SI 87 [ D.7593 ])
+        (const_int 12 [0xc])) old_pthread_cond_signal.c:37 -1
+     (nil))
+(insn 41 4 45 9 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 87 [ D.7593 ])) -1
+     (nil))
+(insn 45 41 46 9 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) old_pthread_cond_signal.c:53 -1
+     (nil))
+(insn 46 45 0 9 (use (reg/i:SI 0 ax)) old_pthread_cond_signal.c:53 -1
+     (nil))

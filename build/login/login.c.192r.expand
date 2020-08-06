@@ -1,0 +1,847 @@
+
+;; Function tty_name.constprop (tty_name.constprop.0, funcdef_no=35, decl_uid=8033, cgraph_uid=0, symbol_order=51)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+Edge 3->7 redirected to 19
+Edge 10->3 redirected to 20
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 17->18 to 16 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 17->18 to 16 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v:SI 95 [ fd ])
+        (reg:SI 5 di [ fd ])) login.c:33 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 96 [ tty ])
+        (reg:DI 4 si [ tty ])) login.c:33 -1
+     (nil))
+(note 4 3 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 4 5 2 (set (reg/v/f:DI 87 [ buf ])
+        (mem/f:DI (reg/v/f:DI 96 [ tty ]) [1 *tty_1(D)+0 S8 A64])) login.c:36 -1
+     (nil))
+(insn 5 11 89 2 (set (reg/v:DI 88 [ buf_len ])
+        (const_int 4128 [0x1020])) login.c:36 -1
+     (nil))
+(jump_insn 89 5 90 2 (set (pc)
+        (label_ref 52)) -1
+     (nil)
+ -> 52)
+(barrier 90 89 92)
+(code_label 92 90 91 4 11 "" [1 uses])
+(note 91 92 6 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 6 91 52 4 (set (reg/v/f:DI 87 [ buf ])
+        (reg/v/f:DI 91 [ buf ])) login.c:63 -1
+     (nil))
+(code_label 52 6 12 5 7 "" [1 uses])
+(note 12 52 13 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 88 [ buf_len ])
+            (const_int 0 [0]))) login.c:42 -1
+     (nil))
+(jump_insn 14 13 15 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 88)
+            (pc))) login.c:42 612 {*jcc_1}
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 88)
+(note 15 14 16 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 6 (set (reg:DI 1 dx)
+        (reg/v:DI 88 [ buf_len ])) login.c:44 -1
+     (nil))
+(insn 17 16 18 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 87 [ buf ])) login.c:44 -1
+     (nil))
+(insn 18 17 19 6 (set (reg:SI 5 di)
+        (reg/v:SI 95 [ fd ])) login.c:44 -1
+     (nil))
+(call_insn 19 18 20 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ttyname_r") [flags 0x41]  <function_decl 0x2b1981bfa0d8 ttyname_r>) [0 ttyname_r S1 A8])
+            (const_int 0 [0]))) login.c:44 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ttyname_r") [flags 0x41]  <function_decl 0x2b1981bfa0d8 ttyname_r>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 20 19 21 6 (set (reg/v:SI 93 [ rv ])
+        (reg:SI 0 ax)) login.c:44 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ rv ])
+            (const_int 0 [0]))) login.c:46 -1
+     (nil))
+(jump_insn 22 21 23 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 67)
+            (pc))) login.c:46 -1
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 67)
+(note 23 22 24 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 7 (set (reg:DI 1 dx)
+        (reg/v:DI 88 [ buf_len ])) login.c:46 -1
+     (nil))
+(insn 25 24 26 7 (set (reg:SI 4 si)
+        (const_int 0 [0])) login.c:46 -1
+     (nil))
+(insn 26 25 27 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ buf ])) login.c:46 -1
+     (nil))
+(call_insn/i 27 26 28 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memchr") [flags 0x41]  <function_decl 0x2b19817d6af8 memchr>) [0 __builtin_memchr S1 A8])
+            (const_int 0 [0]))) login.c:46 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memchr") [flags 0x41]  <function_decl 0x2b19817d6af8 memchr>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 28 27 29 7 (set (reg/f:DI 89 [ D.8047 ])
+        (reg:DI 0 ax)) login.c:46 -1
+     (nil))
+(insn 29 28 30 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ D.8047 ])
+            (const_int 0 [0]))) login.c:46 -1
+     (nil))
+(jump_insn 30 29 31 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) login.c:46 -1
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 76)
+(note 31 30 32 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 85 8 (parallel [
+            (set (reg/v:DI 88 [ buf_len ])
+                (plus:DI (reg/v:DI 88 [ buf_len ])
+                    (reg/v:DI 88 [ buf_len ])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:52 -1
+     (nil))
+(jump_insn 85 32 86 8 (set (pc)
+        (label_ref 33)) -1
+     (nil)
+ -> 33)
+(barrier 86 85 88)
+(code_label 88 86 87 9 10 "" [1 uses])
+(note 87 88 7 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 7 87 33 9 (set (reg/v:DI 88 [ buf_len ])
+        (const_int 128 [0x80])) login.c:56 -1
+     (nil))
+(code_label 33 7 34 10 2 "" [1 uses])
+(note 34 33 35 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ buf ])
+            (mem/f:DI (reg/v/f:DI 96 [ tty ]) [1 *tty_1(D)+0 S8 A64]))) login.c:58 -1
+     (nil))
+(jump_insn 36 35 37 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 44)
+            (pc))) login.c:58 -1
+     (int_list:REG_BR_PROB 1499 (nil))
+ -> 44)
+(note 37 36 38 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 11 (set (reg:DI 4 si)
+        (reg/v:DI 88 [ buf_len ])) login.c:60 -1
+     (nil))
+(insn 39 38 40 11 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ buf ])) login.c:60 -1
+     (nil))
+(call_insn 40 39 41 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("realloc") [flags 0x41]  <function_decl 0x2b1981805000 realloc>) [0 __builtin_realloc S1 A8])
+            (const_int 0 [0]))) login.c:60 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("realloc") [flags 0x41]  <function_decl 0x2b1981805000 realloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 41 40 42 11 (set (reg/v/f:DI 91 [ buf ])
+        (reg:DI 0 ax)) login.c:60 -1
+     (nil))
+(jump_insn 42 41 43 11 (set (pc)
+        (label_ref 50)) login.c:60 -1
+     (nil)
+ -> 50)
+(barrier 43 42 44)
+(code_label 44 43 45 12 5 "" [1 uses])
+(note 45 44 46 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 12 (set (reg:DI 5 di)
+        (reg/v:DI 88 [ buf_len ])) login.c:62 -1
+     (nil))
+(call_insn 47 46 48 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b1981801360 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) login.c:62 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b1981801360 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 48 47 49 12 (set (reg/f:DI 97)
+        (reg:DI 0 ax)) login.c:62 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 97)
+        (nil)))
+(insn 49 48 50 12 (set (reg/v/f:DI 91 [ buf ])
+        (reg/f:DI 97)) login.c:62 -1
+     (nil))
+(code_label 50 49 51 13 6 "" [1 uses])
+(note 51 50 53 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 53 51 54 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 91 [ buf ])
+            (const_int 0 [0]))) login.c:63 -1
+     (nil))
+(jump_insn 54 53 55 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 92)
+            (pc))) login.c:63 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9700 (nil))
+ -> 92)
+(note 55 54 56 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 14 (set (reg:DI 98)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b1981b886c0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [7  S8 A8])) login.c:66 -1
+     (nil))
+(insn 57 56 8 14 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 98)) [2 errno+0 S4 A32])
+        (const_int 12 [0xc])) login.c:66 -1
+     (nil))
+(insn 8 57 58 14 (set (reg/v:SI 93 [ rv ])
+        (const_int -1 [0xffffffffffffffff])) login.c:65 -1
+     (nil))
+(jump_insn 58 8 59 14 (set (pc)
+        (label_ref 67)) login.c:66 -1
+     (nil)
+ -> 67)
+(barrier 59 58 69)
+(code_label 69 59 60 15 8 "" [1 uses])
+(note 60 69 61 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 15 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ buf ])) login.c:75 -1
+     (nil))
+(call_insn 62 61 72 15 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b19817f7e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) login.c:75 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b19817f7e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(code_label 72 62 63 16 9 "" [2 uses])
+(note 63 72 64 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 16 (set (reg:SI 94 [ <retval> ])
+        (reg/v:SI 93 [ rv ])) login.c:77 -1
+     (nil))
+(jump_insn 65 64 66 16 (set (pc)
+        (label_ref 81)) login.c:77 -1
+     (nil)
+ -> 81)
+(barrier 66 65 67)
+(code_label 67 66 68 17 3 "" [2 uses])
+(note 68 67 70 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 70 68 71 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ buf ])
+            (mem/f:DI (reg/v/f:DI 96 [ tty ]) [1 *tty_1(D)+0 S8 A64]))) login.c:74 -1
+     (nil))
+(jump_insn 71 70 75 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) login.c:74 -1
+     (int_list:REG_BR_PROB 7835 (nil))
+ -> 69)
+(note 75 71 73 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 73 75 74 18 (set (pc)
+        (label_ref 72)) login.c:74 -1
+     (nil)
+ -> 72)
+(barrier 74 73 76)
+(code_label 76 74 77 19 4 "" [1 uses])
+(note 77 76 78 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 78 77 79 19 (set (mem/f:DI (reg/v/f:DI 96 [ tty ]) [1 *tty_1(D)+0 S8 A64])
+        (reg/v/f:DI 87 [ buf ])) login.c:73 -1
+     (nil))
+(jump_insn 79 78 80 19 (set (pc)
+        (label_ref 72)) login.c:73 -1
+     (nil)
+ -> 72)
+(barrier 80 79 81)
+(code_label 81 80 84 20 1 "" [1 uses])
+(note 84 81 82 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 82 84 83 20 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) login.c:78 -1
+     (nil))
+(insn 83 82 0 20 (use (reg/i:SI 0 ax)) login.c:78 -1
+     (nil))
+
+;; Function login (login, funcdef_no=34, decl_uid=7898, cgraph_uid=34, symbol_order=36)
+
+Partition 0: size 4128 align 16
+	_tty
+Partition 2: size 384 align 16
+	copy
+Partition 1: size 8 align 8
+	tty
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->15 redirected to 16
+Edge 4->15 redirected to 16
+Forwarding edge 5->6 to 13 failed.
+deleting block 15
+Forwarding edge 16->17 to 8 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 13 failed.
+Forwarding edge 16->17 to 8 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 96 [ ut ])
+        (reg:DI 5 di [ ut ])) login.c:82 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (reg:DI 97)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4128 [0xffffffffffffefe0])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:88 -1
+     (nil))
+(insn 7 6 8 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4520 [0xffffffffffffee58])) [1 tty+0 S8 A64])
+        (reg:DI 97)) login.c:88 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg/f:DI 98)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4512 [0xffffffffffffee60])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:91 -1
+     (nil))
+(insn 9 8 10 2 (set (reg/f:DI 99)
+        (reg/v/f:DI 96 [ ut ])) login.c:91 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 100)
+        (const_int 48 [0x30])) login.c:91 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:DI 100)
+                (const_int 0 [0]))
+            (set (reg/f:DI 98)
+                (plus:DI (ashift:DI (reg:DI 100)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 98)))
+            (set (reg/f:DI 99)
+                (plus:DI (ashift:DI (reg:DI 100)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 99)))
+            (set (mem/c:BLK (reg/f:DI 98) [3 copy+0 S384 A128])
+                (mem:BLK (reg/f:DI 99) [3 *ut_11(D)+0 S384 A32]))
+            (use (reg:DI 100))
+        ]) login.c:91 -1
+     (nil))
+(insn 12 11 13 2 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4512 [0xffffffffffffee60])) [4 copy.ut_type+0 S2 A128])
+        (const_int 7 [0x7])) login.c:95 -1
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("getpid") [flags 0x41]  <function_decl 0x2b1981bd2e58 getpid>) [0 getpid S1 A8])
+            (const_int 0 [0]))) login.c:98 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("getpid") [flags 0x41]  <function_decl 0x2b1981bd2e58 getpid>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 14 13 15 2 (set (reg:SI 88 [ D.8051 ])
+        (reg:SI 0 ax)) login.c:98 -1
+     (nil))
+(insn 15 14 16 2 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4508 [0xffffffffffffee64])) [2 copy.ut_pid+0 S4 A32])
+        (reg:SI 88 [ D.8051 ])) login.c:98 -1
+     (nil))
+(insn 16 15 17 2 (parallel [
+            (set (reg:DI 101)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4520 [0xffffffffffffee58])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:102 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 4 si)
+        (reg:DI 101)) login.c:102 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:SI 5 di)
+        (const_int 0 [0])) login.c:102 -1
+     (nil))
+(call_insn 19 18 20 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tty_name.constprop.0") [flags 0x3]  <function_decl 0x2b1981c2fd80 tty_name.constprop>) [0 tty_name.constprop S1 A8])
+            (const_int 0 [0]))) login.c:102 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tty_name.constprop.0") [flags 0x3]  <function_decl 0x2b1981c2fd80 tty_name.constprop>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 20 19 21 2 (set (reg/v:SI 89 [ found_tty ])
+        (reg:SI 0 ax)) login.c:102 -1
+     (nil))
+(insn 21 20 22 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 89 [ found_tty ])
+            (const_int 0 [0]))) login.c:103 -1
+     (nil))
+(jump_insn 22 21 23 2 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 98)
+            (pc))) login.c:103 612 {*jcc_1}
+     (int_list:REG_BR_PROB 8688 (nil))
+ -> 98)
+(note 23 22 24 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 4 (parallel [
+            (set (reg:DI 102)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4520 [0xffffffffffffee58])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:104 -1
+     (nil))
+(insn 25 24 26 4 (set (reg:DI 4 si)
+        (reg:DI 102)) login.c:104 -1
+     (nil))
+(insn 26 25 27 4 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) login.c:104 -1
+     (nil))
+(call_insn 27 26 28 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tty_name.constprop.0") [flags 0x3]  <function_decl 0x2b1981c2fd80 tty_name.constprop>) [0 tty_name.constprop S1 A8])
+            (const_int 0 [0]))) login.c:104 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tty_name.constprop.0") [flags 0x3]  <function_decl 0x2b1981c2fd80 tty_name.constprop>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 28 27 29 4 (set (reg/v:SI 90 [ found_tty ])
+        (reg:SI 0 ax)) login.c:104 -1
+     (nil))
+(insn 29 28 30 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 90 [ found_tty ])
+            (const_int 0 [0]))) login.c:105 -1
+     (nil))
+(jump_insn 30 29 31 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 98)
+            (pc))) login.c:105 612 {*jcc_1}
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 98)
+(note 31 30 32 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 5 (parallel [
+            (set (reg:DI 103)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4520 [0xffffffffffffee58])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:106 -1
+     (nil))
+(insn 33 32 34 5 (set (reg:DI 4 si)
+        (reg:DI 103)) login.c:106 -1
+     (nil))
+(insn 34 33 35 5 (set (reg:SI 5 di)
+        (const_int 2 [0x2])) login.c:106 -1
+     (nil))
+(call_insn 35 34 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tty_name.constprop.0") [flags 0x3]  <function_decl 0x2b1981c2fd80 tty_name.constprop>) [0 tty_name.constprop S1 A8])
+            (const_int 0 [0]))) login.c:106 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tty_name.constprop.0") [flags 0x3]  <function_decl 0x2b1981c2fd80 tty_name.constprop>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 36 35 37 5 (set (reg/v:SI 91 [ found_tty ])
+        (reg:SI 0 ax)) login.c:106 -1
+     (nil))
+(insn 37 36 38 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 91 [ found_tty ])
+            (const_int 0 [0]))) login.c:108 -1
+     (nil))
+(jump_insn 38 37 41 5 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 98)
+            (pc))) login.c:108 -1
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 98)
+(note 41 38 39 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 39 41 40 6 (set (pc)
+        (label_ref 80)) -1
+     (nil)
+ -> 80)
+(barrier 40 39 110)
+(code_label 110 40 42 7 24 "" [1 uses])
+(note 42 110 43 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 7 (parallel [
+            (set (reg/v/f:DI 87 [ ttyp ])
+                (plus:DI (reg/f:DI 92 [ D.8052 ])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:113 -1
+     (nil))
+(jump_insn 44 43 45 7 (set (pc)
+        (label_ref 50)) -1
+     (nil)
+ -> 50)
+(barrier 45 44 113)
+(code_label 113 45 46 8 25 "" [1 uses])
+(note 46 113 47 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 8 (set (reg:DI 5 di)
+        (reg/f:DI 92 [ D.8052 ])) login.c:115 -1
+     (nil))
+(call_insn 48 47 49 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("basename") [flags 0x41]  <function_decl 0x2b1981a371b0 basename>) [0 basename S1 A8])
+            (const_int 0 [0]))) login.c:115 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("basename") [flags 0x41]  <function_decl 0x2b1981a371b0 basename>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 49 48 50 8 (set (reg/v/f:DI 87 [ ttyp ])
+        (reg:DI 0 ax)) login.c:115 -1
+     (nil))
+(code_label 50 49 51 9 21 "" [1 uses])
+(note 51 50 52 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 9 (parallel [
+            (set (reg:DI 104)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4512 [0xffffffffffffee60])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:118 -1
+     (nil))
+(insn 53 52 54 9 (parallel [
+            (set (reg:DI 105)
+                (plus:DI (reg:DI 104)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:118 -1
+     (nil))
+(insn 54 53 55 9 (set (reg:DI 1 dx)
+        (const_int 32 [0x20])) login.c:118 -1
+     (nil))
+(insn 55 54 56 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 87 [ ttyp ])) login.c:118 -1
+     (nil))
+(insn 56 55 57 9 (set (reg:DI 5 di)
+        (reg:DI 105)) login.c:118 -1
+     (nil))
+(call_insn 57 56 58 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strncpy") [flags 0x41]  <function_decl 0x2b19817df000 __builtin_strncpy>) [0 __builtin_strncpy S1 A8])
+            (const_int 0 [0]))) login.c:118 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strncpy") [flags 0x41]  <function_decl 0x2b19817df000 __builtin_strncpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 58 57 59 9 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b1981c65ab0 *.LC1>)) login.c:121 -1
+     (nil))
+(call_insn 59 58 60 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("utmpname") [flags 0x41]  <function_decl 0x2b1981c1fa20 utmpname>) [0 utmpname S1 A8])
+            (const_int 0 [0]))) login.c:121 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("utmpname") [flags 0x41]  <function_decl 0x2b1981c1fa20 utmpname>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 60 59 61 9 (set (reg:SI 94 [ D.8051 ])
+        (reg:SI 0 ax)) login.c:121 -1
+     (nil))
+(insn 61 60 62 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 94 [ D.8051 ])
+            (const_int 0 [0]))) login.c:121 -1
+     (nil))
+(jump_insn 62 61 63 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) login.c:121 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 69)
+(note 63 62 64 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(call_insn 64 63 65 10 (call (mem:QI (symbol_ref:DI ("setutent") [flags 0x41]  <function_decl 0x2b1981c1fbd0 setutent>) [0 setutent S1 A8])
+        (const_int 0 [0])) login.c:124 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setutent") [flags 0x41]  <function_decl 0x2b1981c1fbd0 setutent>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 65 64 66 10 (parallel [
+            (set (reg:DI 106)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4512 [0xffffffffffffee60])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:127 -1
+     (nil))
+(insn 66 65 67 10 (set (reg:DI 5 di)
+        (reg:DI 106)) login.c:127 -1
+     (nil))
+(call_insn 67 66 68 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pututline") [flags 0x41]  <function_decl 0x2b1981c29000 pututline>) [0 pututline S1 A8])
+            (const_int 0 [0]))) login.c:127 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pututline") [flags 0x41]  <function_decl 0x2b1981c29000 pututline>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(call_insn 68 67 69 10 (call (mem:QI (symbol_ref:DI ("endutent") [flags 0x41]  <function_decl 0x2b1981c1fca8 endutent>) [0 endutent S1 A8])
+        (const_int 0 [0])) login.c:130 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("endutent") [flags 0x41]  <function_decl 0x2b1981c1fca8 endutent>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(code_label 69 68 70 11 22 "" [1 uses])
+(note 70 69 71 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 71 70 72 11 (set (reg/f:DI 95 [ D.8052 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4520 [0xffffffffffffee58])) [1 tty+0 S8 A64])) login.c:133 -1
+     (nil))
+(insn 72 71 73 11 (parallel [
+            (set (reg:DI 107)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4128 [0xffffffffffffefe0])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:133 -1
+     (nil))
+(insn 73 72 74 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 95 [ D.8052 ])
+            (reg:DI 107))) login.c:133 -1
+     (nil))
+(jump_insn 74 73 75 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 88)
+            (pc))) login.c:133 -1
+     (int_list:REG_BR_PROB 3017 (nil))
+ -> 88)
+(note 75 74 76 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 12 (set (reg:DI 5 di)
+        (reg/f:DI 95 [ D.8052 ])) login.c:134 -1
+     (nil))
+(call_insn 77 76 78 12 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b19817f7e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) login.c:134 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b19817f7e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 78 77 79 12 (set (pc)
+        (label_ref 88)) login.c:134 -1
+     (nil)
+ -> 88)
+(barrier 79 78 80)
+(code_label 80 79 81 13 20 "" [1 uses])
+(note 81 80 82 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 82 81 83 13 (parallel [
+            (set (reg:DI 108)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4512 [0xffffffffffffee60])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:139 -1
+     (nil))
+(insn 83 82 84 13 (parallel [
+            (set (reg:DI 109)
+                (plus:DI (reg:DI 108)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:139 -1
+     (nil))
+(insn 84 83 85 13 (set (mem/c:DI (reg:DI 109) [0 MEM[(void *)&copy + 8B]+0 S8 A64])
+        (const_int 4144959 [0x3f3f3f])) login.c:139 -1
+     (nil))
+(insn 85 84 86 13 (set (mem/c:DI (plus:DI (reg:DI 109)
+                (const_int 8 [0x8])) [0 MEM[(void *)&copy + 8B]+8 S8 A64])
+        (const_int 0 [0])) login.c:139 -1
+     (nil))
+(insn 86 85 87 13 (set (mem/c:DI (plus:DI (reg:DI 109)
+                (const_int 16 [0x10])) [0 MEM[(void *)&copy + 8B]+16 S8 A64])
+        (const_int 0 [0])) login.c:139 -1
+     (nil))
+(insn 87 86 88 13 (set (mem/c:DI (plus:DI (reg:DI 109)
+                (const_int 24 [0x18])) [0 MEM[(void *)&copy + 8B]+24 S8 A64])
+        (const_int 0 [0])) login.c:139 -1
+     (nil))
+(code_label 88 87 89 14 23 "" [2 uses])
+(note 89 88 90 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 90 89 91 14 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4512 [0xffffffffffffee60])))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:142 -1
+     (nil))
+(insn 91 90 92 14 (set (reg:DI 4 si)
+        (reg:DI 110)) login.c:142 -1
+     (nil))
+(insn 92 91 93 14 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b1981c43c60 *.LC2>)) login.c:142 -1
+     (nil))
+(call_insn 93 92 94 14 (call (mem:QI (symbol_ref:DI ("updwtmp") [flags 0x41]  <function_decl 0x2b1981c1f948 updwtmp>) [0 updwtmp S1 A8])
+        (const_int 0 [0])) login.c:142 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("updwtmp") [flags 0x41]  <function_decl 0x2b1981c1f948 updwtmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(jump_insn 94 93 95 14 (set (pc)
+        (label_ref 117)) login.c:143 -1
+     (nil)
+ -> 117)
+(barrier 95 94 98)
+(code_label 98 95 99 16 19 "" [3 uses])
+(note 99 98 100 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 100 99 101 16 (set (reg/f:DI 92 [ D.8052 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4520 [0xffffffffffffee58])) [1 tty+0 S8 A64])) login.c:112 -1
+     (nil))
+(insn 101 100 102 16 (set (reg/f:DI 111)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x2b1981c72000 *.LC3>)) login.c:112 -1
+     (nil))
+(insn 102 101 103 16 (set (reg:DI 112)
+        (reg/f:DI 92 [ D.8052 ])) login.c:112 -1
+     (nil))
+(insn 103 102 104 16 (set (reg:DI 113)
+        (reg/f:DI 111)) login.c:112 -1
+     (nil))
+(insn 104 103 105 16 (set (reg:DI 114)
+        (const_int 5 [0x5])) login.c:112 -1
+     (nil))
+(insn 105 104 106 16 (parallel [
+            (set (reg:CC 17 flags)
+                (compare:CC (mem:BLK (reg:DI 112) [0 MEM[(void *)_23]+0 S5 A8])
+                    (mem/u/c:BLK (reg:DI 113) [0 MEM[(void *)"/dev/"]+0 S5 A8])))
+            (use (reg:DI 114))
+            (use (const_int 1 [0x1]))
+            (clobber (reg:DI 112))
+            (clobber (reg:DI 113))
+            (clobber (reg:DI 114))
+        ]) login.c:112 -1
+     (nil))
+(insn 106 105 107 16 (set (reg:QI 115)
+        (gtu:QI (reg:CC 17 flags)
+            (const_int 0 [0]))) login.c:112 -1
+     (nil))
+(insn 107 106 108 16 (set (reg:QI 116)
+        (ltu:QI (reg:CC 17 flags)
+            (const_int 0 [0]))) login.c:112 -1
+     (nil))
+(insn 108 107 109 16 (parallel [
+            (set (subreg:QI (reg:SI 93 [ D.8051 ]) 0)
+                (minus:QI (reg:QI 115)
+                    (reg:QI 116)))
+            (clobber (reg:CC 17 flags))
+        ]) login.c:112 -1
+     (nil))
+(insn 109 108 111 16 (set (reg:SI 93 [ D.8051 ])
+        (sign_extend:SI (subreg:QI (reg:SI 93 [ D.8051 ]) 0))) login.c:112 -1
+     (nil))
+(insn 111 109 112 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ D.8051 ])
+            (const_int 0 [0]))) login.c:112 -1
+     (nil))
+(jump_insn 112 111 116 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 110)
+            (pc))) login.c:112 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 110)
+(note 116 112 114 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 114 116 115 17 (set (pc)
+        (label_ref 113)) -1
+     (nil)
+ -> 113)
+(barrier 115 114 117)
+(code_label 117 115 118 18 17 "" [1 uses])
+(note 118 117 0 18 [bb 18] NOTE_INSN_BASIC_BLOCK)

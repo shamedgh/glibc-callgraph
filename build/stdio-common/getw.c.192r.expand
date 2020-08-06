@@ -1,0 +1,106 @@
+
+;; Function getw (getw, funcdef_no=45, decl_uid=7720, cgraph_uid=45, symbol_order=45)
+
+Partition 0: size 4 align 4
+	w
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 21.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 90 [ stream ])
+        (reg:DI 5 di [ stream ])) getw.c:26 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (parallel [
+            (set (reg:DI 91)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) getw.c:30 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 2 cx)
+        (reg/v/f:DI 90 [ stream ])) getw.c:30 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 1 dx)
+        (const_int 1 [0x1])) getw.c:30 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 4 si)
+        (const_int 4 [0x4])) getw.c:30 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 91)) getw.c:30 -1
+     (nil))
+(call_insn 12 11 13 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_IO_fread") [flags 0x41]  <function_decl 0x2afd93b00af8 _IO_fread>) [0 _IO_fread S1 A8])
+            (const_int 0 [0]))) getw.c:30 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_IO_fread") [flags 0x41]  <function_decl 0x2afd93b00af8 _IO_fread>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 13 12 14 2 (set (reg:DI 88 [ D.8241 ])
+        (reg:DI 0 ax)) getw.c:30 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 88 [ D.8241 ])
+            (const_int 1 [0x1]))) getw.c:30 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 30)
+            (pc))) getw.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 968 (nil))
+ -> 30)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 27 4 (set (reg:SI 87 [ D.8240 ])
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 w+0 S4 A32])) getw.c:32 -1
+     (nil))
+(jump_insn 27 17 28 4 (set (pc)
+        (label_ref 18)) getw.c:32 -1
+     (nil)
+ -> 18)
+(barrier 28 27 30)
+(code_label 30 28 29 5 3 "" [1 uses])
+(note 29 30 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 29 18 5 (set (reg:SI 87 [ D.8240 ])
+        (const_int -1 [0xffffffffffffffff])) getw.c:31 -1
+     (nil))
+(code_label 18 4 19 6 2 "" [1 uses])
+(note 19 18 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 24 6 (set (reg:SI 89 [ <retval> ])
+        (reg:SI 87 [ D.8240 ])) -1
+     (nil))
+(insn 24 20 25 6 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) getw.c:33 -1
+     (nil))
+(insn 25 24 0 6 (use (reg/i:SI 0 ax)) getw.c:33 -1
+     (nil))

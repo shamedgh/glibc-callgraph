@@ -1,0 +1,156 @@
+\hypertarget{get-dynamic-info_8h}{}\doxysection{elf/get-\/dynamic-\/info.h File Reference}
+\label{get-dynamic-info_8h}\index{elf/get-\/dynamic-\/info.h@{elf/get-\/dynamic-\/info.h}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dl-conflict_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}{D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT}}~8
+\item 
+\#define \mbox{\hyperlink{dl-conflict_8c_a60289a686272e740ed3e2372b3043fe5}{A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO}}(tag)
+\item 
+\#define \mbox{\hyperlink{dl-reloc_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}{D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT}}~8
+\item 
+\#define \mbox{\hyperlink{dl-reloc_8c_a60289a686272e740ed3e2372b3043fe5}{A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO}}(tag)
+\item 
+\#define \mbox{\hyperlink{get-dynamic-info_8h_a0e7edb6f7e143e1e78fac5e9bb7da238}{D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT}}~8
+\item 
+\#define \mbox{\hyperlink{get-dynamic-info_8h_a60289a686272e740ed3e2372b3043fe5}{A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO}}(tag)
+\item 
+\#define \mbox{\hyperlink{rtld_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}{D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT}}~8
+\item 
+\#define \mbox{\hyperlink{rtld_8c_a60289a686272e740ed3e2372b3043fe5}{A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO}}(tag)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{get-dynamic-info_8h_aa677d24477fb5583905b563d4168c23f}{ElfW}} (Dyn) $\ast$temp)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dl-conflict_8c_a60289a686272e740ed3e2372b3043fe5}\label{dl-conflict_8c_a60289a686272e740ed3e2372b3043fe5}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}}
+\index{ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{ADJUST\_DYN\_INFO}{ADJUST\_DYN\_INFO}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \#define A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO(\begin{DoxyParamCaption}\item[{}]{tag }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{do                                    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{    if}} (\mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag] != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{      \{                                   \(\backslash\)}
+\DoxyCodeLine{        if (temp)                                 \(\backslash\)}
+\DoxyCodeLine{          \{                                   \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_tag = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_tag;                \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_un.d\_ptr = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_un.d\_ptr + \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};       \(\backslash\)}
+\DoxyCodeLine{        info[tag] = temp + \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}++;                      \(\backslash\)}
+\DoxyCodeLine{          \}                                   \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          info[tag]-\/>d\_un.d\_ptr += \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};                      \(\backslash\)}
+\DoxyCodeLine{      \}                                   \(\backslash\)}
+\DoxyCodeLine{      while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{dl-reloc_8c_a60289a686272e740ed3e2372b3043fe5}\label{dl-reloc_8c_a60289a686272e740ed3e2372b3043fe5}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}}
+\index{ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{ADJUST\_DYN\_INFO}{ADJUST\_DYN\_INFO}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \#define A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO(\begin{DoxyParamCaption}\item[{}]{tag }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{do                                    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{    if}} (\mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag] != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{      \{                                   \(\backslash\)}
+\DoxyCodeLine{        if (temp)                                 \(\backslash\)}
+\DoxyCodeLine{          \{                                   \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_tag = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_tag;                \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_un.d\_ptr = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_un.d\_ptr + \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};       \(\backslash\)}
+\DoxyCodeLine{        info[tag] = temp + \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}++;                      \(\backslash\)}
+\DoxyCodeLine{          \}                                   \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          info[tag]-\/>d\_un.d\_ptr += \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};                      \(\backslash\)}
+\DoxyCodeLine{      \}                                   \(\backslash\)}
+\DoxyCodeLine{      while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{rtld_8c_a60289a686272e740ed3e2372b3043fe5}\label{rtld_8c_a60289a686272e740ed3e2372b3043fe5}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}}
+\index{ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{ADJUST\_DYN\_INFO}{ADJUST\_DYN\_INFO}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \#define A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO(\begin{DoxyParamCaption}\item[{}]{tag }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{do                                    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{    if}} (\mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag] != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{      \{                                   \(\backslash\)}
+\DoxyCodeLine{        if (temp)                                 \(\backslash\)}
+\DoxyCodeLine{          \{                                   \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_tag = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_tag;                \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_un.d\_ptr = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_un.d\_ptr + \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};       \(\backslash\)}
+\DoxyCodeLine{        info[tag] = temp + \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}++;                      \(\backslash\)}
+\DoxyCodeLine{          \}                                   \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          info[tag]-\/>d\_un.d\_ptr += \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};                      \(\backslash\)}
+\DoxyCodeLine{      \}                                   \(\backslash\)}
+\DoxyCodeLine{      while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{get-dynamic-info_8h_a60289a686272e740ed3e2372b3043fe5}\label{get-dynamic-info_8h_a60289a686272e740ed3e2372b3043fe5}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}}
+\index{ADJUST\_DYN\_INFO@{ADJUST\_DYN\_INFO}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{ADJUST\_DYN\_INFO}{ADJUST\_DYN\_INFO}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \#define A\+D\+J\+U\+S\+T\+\_\+\+D\+Y\+N\+\_\+\+I\+N\+FO(\begin{DoxyParamCaption}\item[{}]{tag }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{do                                    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{    if}} (\mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag] != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{      \{                                   \(\backslash\)}
+\DoxyCodeLine{        if (temp)                                 \(\backslash\)}
+\DoxyCodeLine{          \{                                   \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_tag = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_tag;                \(\backslash\)}
+\DoxyCodeLine{        temp[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].d\_un.d\_ptr = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}[tag]-\/>d\_un.d\_ptr + \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};       \(\backslash\)}
+\DoxyCodeLine{        info[tag] = temp + \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}++;                      \(\backslash\)}
+\DoxyCodeLine{          \}                                   \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          info[tag]-\/>d\_un.d\_ptr += \mbox{\hyperlink{arm_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\_addr}};                      \(\backslash\)}
+\DoxyCodeLine{      \}                                   \(\backslash\)}
+\DoxyCodeLine{      while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{get-dynamic-info_8h_a0e7edb6f7e143e1e78fac5e9bb7da238}\label{get-dynamic-info_8h_a0e7edb6f7e143e1e78fac5e9bb7da238}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}}
+\index{DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{DL\_RO\_DYN\_TEMP\_CNT}{DL\_RO\_DYN\_TEMP\_CNT}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT~8}
+
+\mbox{\Hypertarget{dl-conflict_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}\label{dl-conflict_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}}
+\index{DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{DL\_RO\_DYN\_TEMP\_CNT}{DL\_RO\_DYN\_TEMP\_CNT}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT~8}
+
+\mbox{\Hypertarget{dl-reloc_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}\label{dl-reloc_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}}
+\index{DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{DL\_RO\_DYN\_TEMP\_CNT}{DL\_RO\_DYN\_TEMP\_CNT}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT~8}
+
+\mbox{\Hypertarget{rtld_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}\label{rtld_8c_a0e7edb6f7e143e1e78fac5e9bb7da238}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}}
+\index{DL\_RO\_DYN\_TEMP\_CNT@{DL\_RO\_DYN\_TEMP\_CNT}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{DL\_RO\_DYN\_TEMP\_CNT}{DL\_RO\_DYN\_TEMP\_CNT}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+R\+O\+\_\+\+D\+Y\+N\+\_\+\+T\+E\+M\+P\+\_\+\+C\+NT~8}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{get-dynamic-info_8h_aa677d24477fb5583905b563d4168c23f}\label{get-dynamic-info_8h_aa677d24477fb5583905b563d4168c23f}} 
+\index{get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}!ElfW@{ElfW}}
+\index{ElfW@{ElfW}!get-\/dynamic-\/info.h@{get-\/dynamic-\/info.h}}
+\doxysubsubsection{\texorpdfstring{ElfW()}{ElfW()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} ElfW (\begin{DoxyParamCaption}\item[{Dyn}]{ }\end{DoxyParamCaption})}
+

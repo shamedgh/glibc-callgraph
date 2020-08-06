@@ -1,0 +1,127 @@
+
+;; Function reboot (reboot, funcdef_no=32, decl_uid=6908, cgraph_uid=32, symbol_order=33)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 27.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 94 [ howto ])
+        (reg:SI 5 di [ howto ])) ../sysdeps/unix/sysv/linux/reboot.c:27 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg/v:DI 1 dx [ _a3 ])
+        (sign_extend:DI (reg/v:SI 94 [ howto ]))) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 8 7 9 2 (set (reg/v:DI 4 si [ _a2 ])
+        (const_int 672274793 [0x28121969])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 9 8 10 2 (set (reg/v:DI 5 di [ _a1 ])
+        (const_int -18751827 [0xfffffffffee1dead])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:SI 96)
+        (const_int 169 [0xa9])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:DI 95 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 96)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/reboot.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/reboot.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/reboot.c:28)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/reboot.c:28)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/reboot.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 12 11 13 2 (set (reg/v:DI 88 [ resultvar ])
+        (reg:DI 95 [ resultvar ])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 88 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 19)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:SI 89 [ D.6937 ])
+        (subreg:SI (reg/v:DI 88 [ resultvar ]) 0)) -1
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (label_ref 24)) -1
+     (nil)
+ -> 24)
+(barrier 18 17 19)
+(code_label 19 18 20 5 2 "" [1 uses])
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 5 (set (reg:DI 97)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b65de054630 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [3  S8 A8])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 22 21 23 5 (parallel [
+            (set (reg:SI 98)
+                (neg:SI (subreg:SI (reg/v:DI 88 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 23 22 4 5 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 97)) [2 __libc_errno+0 S4 A32])
+        (reg:SI 98)) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 4 23 24 5 (set (reg:SI 89 [ D.6937 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(code_label 24 4 25 6 3 "" [1 uses])
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 30 6 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 89 [ D.6937 ])) ../sysdeps/unix/sysv/linux/reboot.c:28 -1
+     (nil))
+(insn 30 26 31 6 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) ../sysdeps/unix/sysv/linux/reboot.c:29 -1
+     (nil))
+(insn 31 30 0 6 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/reboot.c:29 -1
+     (nil))

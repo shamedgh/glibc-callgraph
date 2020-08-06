@@ -1,0 +1,113 @@
+
+;; Function __ilogbl (__ilogbl, funcdef_no=87, decl_uid=2845, cgraph_uid=87, symbol_order=88)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 21.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:XF 91 [ x ])
+        (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [2 x+0 S16 A128])) w_ilogbl.c:27 -1
+     (expr_list:REG_EQUIV (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [2 x+0 S16 A128])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (mem:XF (pre_dec:DI (reg/f:DI 7 sp)) [2  S16 A128])
+        (reg/v:XF 91 [ x ])) w_ilogbl.c:28 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_ilogbl") [flags 0x41]  <function_decl 0x2b41e5b33360 __ieee754_ilogbl>) [0 __ieee754_ilogbl S1 A8])
+            (const_int 16 [0x10]))) w_ilogbl.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_ilogbl") [flags 0x41]  <function_decl 0x2b41e5b33360 __ieee754_ilogbl>)
+        (nil))
+    (nil))
+(insn 8 7 9 2 (set (reg/v:SI 87 [ r ])
+        (reg:SI 0 ax)) w_ilogbl.c:28 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:SI 92 [ D.8906 ])
+                (plus:SI (reg/v:SI 87 [ r ])
+                    (const_int 2147483647 [0x7fffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) w_ilogbl.c:31 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) w_ilogbl.c:31 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 11 10 12 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 92 [ D.8906 ])
+            (const_int -3 [0xfffffffffffffffd]))) w_ilogbl.c:31 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) w_ilogbl.c:31 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 18)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:DI 93)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b41e5ad3090 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [3  S8 A8])) w_ilogbl.c:33 -1
+     (nil))
+(insn 15 14 16 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 93)) [1 errno+0 S4 A32])
+        (const_int 33 [0x21])) w_ilogbl.c:33 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:SF 94)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [4  S4 A32])) ../sysdeps/x86/fpu/bits/fenv.h:119 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 17 16 18 4 (parallel [
+            (asm_operands/v ("divss %0, %0 ") ("") 0 [
+                    (reg:SF 94)
+                ]
+                 [
+                    (asm_input:SF ("x") ../sysdeps/x86/fpu/bits/fenv.h:119)
+                ]
+                 [] ../sysdeps/x86/fpu/bits/fenv.h:119)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86/fpu/bits/fenv.h:119 -1
+     (nil))
+(code_label 18 17 19 5 2 "" [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 24 5 (set (reg:SI 90 [ <retval> ])
+        (reg/v:SI 87 [ r ])) w_ilogbl.c:36 -1
+     (nil))
+(insn 24 20 25 5 (set (reg/i:SI 0 ax)
+        (reg:SI 90 [ <retval> ])) w_ilogbl.c:37 -1
+     (nil))
+(insn 25 24 0 5 (use (reg/i:SI 0 ax)) w_ilogbl.c:37 -1
+     (nil))

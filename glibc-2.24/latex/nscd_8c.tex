@@ -1,0 +1,226 @@
+\hypertarget{nscd_8c}{}\doxysection{nscd/nscd.c File Reference}
+\label{nscd_8c}\index{nscd/nscd.c@{nscd/nscd.c}}
+{\ttfamily \#include $<$argp.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$paths.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$syslog.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/un.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}dbg\+\_\+log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nscd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}selinux.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../nss/nsswitch.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$device-\/nrs.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include $<$version.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nscd_8c_aca8570fb706c81df371b7f9bc454ae03}{P\+A\+C\+K\+A\+GE}}~\mbox{\hyperlink{SYS__libc_8c_adc1580228bc28505838b0ac8e6f5e05e}{\+\_\+libc\+\_\+intl\+\_\+domainname}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2}{run\+\_\+modes}} \{ \mbox{\hyperlink{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2ac6b65acf4a80f4c0cd2c7018368dca37}{R\+U\+N\+\_\+\+D\+A\+E\+M\+O\+N\+I\+ZE}}, 
+\mbox{\hyperlink{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2a88eecf778e0dc8330f1269db0ad3f57c}{R\+U\+N\+\_\+\+F\+O\+R\+E\+G\+R\+O\+U\+ND}}, 
+\mbox{\hyperlink{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2a9993161b2383bdb24d553031e86f9b7a}{R\+U\+N\+\_\+\+D\+E\+B\+UG}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8c_a7f15435f185e33f9d85b1df150d47861}{nscd\+\_\+open\+\_\+socket}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8c_a57dae6bcf94a70cbe68aedc2a25f2286}{termination\+\_\+handler}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} signum)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8c_af25a8300abc39df0d94c053ea98b02dc}{do\+\_\+exit}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} child\+\_\+ret, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} errnum, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}},...)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8c_a8f935a43a2809ee367d0a439913697da}{notify\+\_\+parent}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} child\+\_\+ret)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8c_a13cbbbe046e3b42dcbe3e68702c06262}{do\+\_\+shutdown}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8c_a7b3babd60ada79abf1965d7d56de6217}{disabled\+\_\+passwd}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8c_ad8d625f42e3b8791f37d836f4daef2e6}{disabled\+\_\+group}}
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\+\_\+time}}
+\item 
+\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{nscd_8c_aab1f32594b4a761fe402f29824ae3a94}{pagesize\+\_\+m1}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8c_a238fdb20babc729d11c1b5a11f4787b6}{paranoia}}
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8c_a12f3b86e75216ad35ff0d88fcb2d77c3}{restart\+\_\+time}}
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8c_a2f3faf0ae01120b3b59bb6ecccaab73b}{restart\+\_\+interval}} = \mbox{\hyperlink{nscd_8h_af4b27c328a263a85eca16613ebad5ca6}{R\+E\+S\+T\+A\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{nscd_8c_a38a133c240497650a863dc16374bff58}{oldcwd}}
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{nscd_8c_afd4bfe8311516e5062b82b5712331103}{old\+\_\+uid}}
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} \mbox{\hyperlink{nscd_8c_a9e9296057f1552fc1f20c3cd6803d253}{old\+\_\+gid}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ \mbox{\hyperlink{nscd_8c_acde468a0825fa258e397e0885b11ce08}{argp\+\_\+program\+\_\+version\+\_\+hook}} )(\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$, struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$) = print\+\_\+version
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nscd_8c_aca8570fb706c81df371b7f9bc454ae03}\label{nscd_8c_aca8570fb706c81df371b7f9bc454ae03}} 
+\index{nscd.c@{nscd.c}!PACKAGE@{PACKAGE}}
+\index{PACKAGE@{PACKAGE}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{PACKAGE}{PACKAGE}}
+{\footnotesize\ttfamily \#define P\+A\+C\+K\+A\+GE~\mbox{\hyperlink{SYS__libc_8c_adc1580228bc28505838b0ac8e6f5e05e}{\+\_\+libc\+\_\+intl\+\_\+domainname}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2}\label{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2}} 
+\index{nscd.c@{nscd.c}!run\_modes@{run\_modes}}
+\index{run\_modes@{run\_modes}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{run\_modes}{run\_modes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2}{run\+\_\+modes}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUN\_DAEMONIZE@{RUN\_DAEMONIZE}!nscd.c@{nscd.c}}\index{nscd.c@{nscd.c}!RUN\_DAEMONIZE@{RUN\_DAEMONIZE}}}\mbox{\Hypertarget{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2ac6b65acf4a80f4c0cd2c7018368dca37}\label{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2ac6b65acf4a80f4c0cd2c7018368dca37}} 
+R\+U\+N\+\_\+\+D\+A\+E\+M\+O\+N\+I\+ZE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUN\_FOREGROUND@{RUN\_FOREGROUND}!nscd.c@{nscd.c}}\index{nscd.c@{nscd.c}!RUN\_FOREGROUND@{RUN\_FOREGROUND}}}\mbox{\Hypertarget{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2a88eecf778e0dc8330f1269db0ad3f57c}\label{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2a88eecf778e0dc8330f1269db0ad3f57c}} 
+R\+U\+N\+\_\+\+F\+O\+R\+E\+G\+R\+O\+U\+ND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUN\_DEBUG@{RUN\_DEBUG}!nscd.c@{nscd.c}}\index{nscd.c@{nscd.c}!RUN\_DEBUG@{RUN\_DEBUG}}}\mbox{\Hypertarget{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2a9993161b2383bdb24d553031e86f9b7a}\label{nscd_8c_ae48aeda3f3bc96e8920865fd209e0de2a9993161b2383bdb24d553031e86f9b7a}} 
+R\+U\+N\+\_\+\+D\+E\+B\+UG&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nscd_8c_af25a8300abc39df0d94c053ea98b02dc}\label{nscd_8c_af25a8300abc39df0d94c053ea98b02dc}} 
+\index{nscd.c@{nscd.c}!do\_exit@{do\_exit}}
+\index{do\_exit@{do\_exit}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{do\_exit()}{do\_exit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} do\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{child\+\_\+ret,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{errnum,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{nscd_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{nscd.c@{nscd.c}!main@{main}}
+\index{main@{main}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8c_a8f935a43a2809ee367d0a439913697da}\label{nscd_8c_a8f935a43a2809ee367d0a439913697da}} 
+\index{nscd.c@{nscd.c}!notify\_parent@{notify\_parent}}
+\index{notify\_parent@{notify\_parent}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{notify\_parent()}{notify\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} notify\+\_\+parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{child\+\_\+ret }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8c_a7f15435f185e33f9d85b1df150d47861}\label{nscd_8c_a7f15435f185e33f9d85b1df150d47861}} 
+\index{nscd.c@{nscd.c}!nscd\_open\_socket@{nscd\_open\_socket}}
+\index{nscd\_open\_socket@{nscd\_open\_socket}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{nscd\_open\_socket()}{nscd\_open\_socket()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} nscd\+\_\+open\+\_\+socket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8c_a57dae6bcf94a70cbe68aedc2a25f2286}\label{nscd_8c_a57dae6bcf94a70cbe68aedc2a25f2286}} 
+\index{nscd.c@{nscd.c}!termination\_handler@{termination\_handler}}
+\index{termination\_handler@{termination\_handler}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{termination\_handler()}{termination\_handler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} termination\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{signum }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{nscd_8c_acde468a0825fa258e397e0885b11ce08}\label{nscd_8c_acde468a0825fa258e397e0885b11ce08}} 
+\index{nscd.c@{nscd.c}!argp\_program\_version\_hook@{argp\_program\_version\_hook}}
+\index{argp\_program\_version\_hook@{argp\_program\_version\_hook}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{argp\_program\_version\_hook}{argp\_program\_version\_hook}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ argp\+\_\+program\+\_\+version\+\_\+hook) (\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$, struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$) = print\+\_\+version}
+
+\mbox{\Hypertarget{nscd_8c_ad8d625f42e3b8791f37d836f4daef2e6}\label{nscd_8c_ad8d625f42e3b8791f37d836f4daef2e6}} 
+\index{nscd.c@{nscd.c}!disabled\_group@{disabled\_group}}
+\index{disabled\_group@{disabled\_group}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{disabled\_group}{disabled\_group}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} disabled\+\_\+group}
+
+\mbox{\Hypertarget{nscd_8c_a7b3babd60ada79abf1965d7d56de6217}\label{nscd_8c_a7b3babd60ada79abf1965d7d56de6217}} 
+\index{nscd.c@{nscd.c}!disabled\_passwd@{disabled\_passwd}}
+\index{disabled\_passwd@{disabled\_passwd}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{disabled\_passwd}{disabled\_passwd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} disabled\+\_\+passwd}
+
+\mbox{\Hypertarget{nscd_8c_a13cbbbe046e3b42dcbe3e68702c06262}\label{nscd_8c_a13cbbbe046e3b42dcbe3e68702c06262}} 
+\index{nscd.c@{nscd.c}!do\_shutdown@{do\_shutdown}}
+\index{do\_shutdown@{do\_shutdown}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{do\_shutdown}{do\_shutdown}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} do\+\_\+shutdown}
+
+\mbox{\Hypertarget{nscd_8c_a9e9296057f1552fc1f20c3cd6803d253}\label{nscd_8c_a9e9296057f1552fc1f20c3cd6803d253}} 
+\index{nscd.c@{nscd.c}!old\_gid@{old\_gid}}
+\index{old\_gid@{old\_gid}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{old\_gid}{old\_gid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} old\+\_\+gid}
+
+\mbox{\Hypertarget{nscd_8c_afd4bfe8311516e5062b82b5712331103}\label{nscd_8c_afd4bfe8311516e5062b82b5712331103}} 
+\index{nscd.c@{nscd.c}!old\_uid@{old\_uid}}
+\index{old\_uid@{old\_uid}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{old\_uid}{old\_uid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} old\+\_\+uid}
+
+\mbox{\Hypertarget{nscd_8c_a38a133c240497650a863dc16374bff58}\label{nscd_8c_a38a133c240497650a863dc16374bff58}} 
+\index{nscd.c@{nscd.c}!oldcwd@{oldcwd}}
+\index{oldcwd@{oldcwd}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{oldcwd}{oldcwd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ oldcwd}
+
+\mbox{\Hypertarget{nscd_8c_aab1f32594b4a761fe402f29824ae3a94}\label{nscd_8c_aab1f32594b4a761fe402f29824ae3a94}} 
+\index{nscd.c@{nscd.c}!pagesize\_m1@{pagesize\_m1}}
+\index{pagesize\_m1@{pagesize\_m1}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{pagesize\_m1}{pagesize\_m1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} pagesize\+\_\+m1}
+
+\mbox{\Hypertarget{nscd_8c_a238fdb20babc729d11c1b5a11f4787b6}\label{nscd_8c_a238fdb20babc729d11c1b5a11f4787b6}} 
+\index{nscd.c@{nscd.c}!paranoia@{paranoia}}
+\index{paranoia@{paranoia}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{paranoia}{paranoia}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} paranoia}
+
+\mbox{\Hypertarget{nscd_8c_a2f3faf0ae01120b3b59bb6ecccaab73b}\label{nscd_8c_a2f3faf0ae01120b3b59bb6ecccaab73b}} 
+\index{nscd.c@{nscd.c}!restart\_interval@{restart\_interval}}
+\index{restart\_interval@{restart\_interval}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{restart\_interval}{restart\_interval}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} restart\+\_\+interval = \mbox{\hyperlink{nscd_8h_af4b27c328a263a85eca16613ebad5ca6}{R\+E\+S\+T\+A\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}}
+
+\mbox{\Hypertarget{nscd_8c_a12f3b86e75216ad35ff0d88fcb2d77c3}\label{nscd_8c_a12f3b86e75216ad35ff0d88fcb2d77c3}} 
+\index{nscd.c@{nscd.c}!restart\_time@{restart\_time}}
+\index{restart\_time@{restart\_time}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{restart\_time}{restart\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} restart\+\_\+time}
+
+\mbox{\Hypertarget{nscd_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}\label{nscd_8c_ad20e89e0c86aa812dc3a8e2fb7b5777b}} 
+\index{nscd.c@{nscd.c}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!nscd.c@{nscd.c}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} start\+\_\+time}
+

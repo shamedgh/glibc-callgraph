@@ -1,0 +1,59 @@
+\hypertarget{debug_2backtrace_8c}{}\doxysection{debug/backtrace.c File Reference}
+\label{debug_2backtrace_8c}\index{debug/backtrace.c@{debug/backtrace.c}}
+{\ttfamily \#include $<$execinfo.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$frame.\+h$>$}\newline
+{\ttfamily \#include $<$sigcontextinfo.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{debug_2backtrace_8c_ac6218c0f7314436574d1769fe7c2dd8e}{C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+ME}}~(\{ char \+\_\+\+\_\+csf; \&\+\_\+\+\_\+csf; \})
+\item 
+\#define \mbox{\hyperlink{debug_2backtrace_8c_a500f10240a8ac57e93208bf80465961a}{I\+N\+N\+E\+R\+\_\+\+T\+H\+AN}}~$<$
+\item 
+\#define \mbox{\hyperlink{debug_2backtrace_8c_a24d0bb385d14bd64264cd43fc58aa8d0}{A\+D\+V\+A\+N\+C\+E\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+ME}}(next)~((struct \mbox{\hyperlink{structlayout}{layout}} $\ast$) (next))
+\item 
+\#define \mbox{\hyperlink{debug_2backtrace_8c_a59505f775c361198f5a3cfa35e4d9648}{F\+I\+R\+S\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+O\+I\+N\+T\+ER}}~\+\_\+\+\_\+builtin\+\_\+frame\+\_\+address (0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{debug_2backtrace_8c_a25b44576ba3d97a5ea73c0c5067bfd89}{\+\_\+\+\_\+backtrace}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$$\ast$\mbox{\hyperlink{tst-qsort2_8c_aced3600acb4bfcc18756a75d531bcfa7}{array}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{debug_2backtrace_8c_a24d0bb385d14bd64264cd43fc58aa8d0}\label{debug_2backtrace_8c_a24d0bb385d14bd64264cd43fc58aa8d0}} 
+\index{backtrace.c@{backtrace.c}!ADVANCE\_STACK\_FRAME@{ADVANCE\_STACK\_FRAME}}
+\index{ADVANCE\_STACK\_FRAME@{ADVANCE\_STACK\_FRAME}!backtrace.c@{backtrace.c}}
+\doxysubsubsection{\texorpdfstring{ADVANCE\_STACK\_FRAME}{ADVANCE\_STACK\_FRAME}}
+{\footnotesize\ttfamily \#define A\+D\+V\+A\+N\+C\+E\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+ME(\begin{DoxyParamCaption}\item[{}]{next }\end{DoxyParamCaption})~((struct \mbox{\hyperlink{structlayout}{layout}} $\ast$) (next))}
+
+\mbox{\Hypertarget{debug_2backtrace_8c_ac6218c0f7314436574d1769fe7c2dd8e}\label{debug_2backtrace_8c_ac6218c0f7314436574d1769fe7c2dd8e}} 
+\index{backtrace.c@{backtrace.c}!CURRENT\_STACK\_FRAME@{CURRENT\_STACK\_FRAME}}
+\index{CURRENT\_STACK\_FRAME@{CURRENT\_STACK\_FRAME}!backtrace.c@{backtrace.c}}
+\doxysubsubsection{\texorpdfstring{CURRENT\_STACK\_FRAME}{CURRENT\_STACK\_FRAME}}
+{\footnotesize\ttfamily \#define C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+ME~(\{ char \+\_\+\+\_\+csf; \&\+\_\+\+\_\+csf; \})}
+
+\mbox{\Hypertarget{debug_2backtrace_8c_a59505f775c361198f5a3cfa35e4d9648}\label{debug_2backtrace_8c_a59505f775c361198f5a3cfa35e4d9648}} 
+\index{backtrace.c@{backtrace.c}!FIRST\_FRAME\_POINTER@{FIRST\_FRAME\_POINTER}}
+\index{FIRST\_FRAME\_POINTER@{FIRST\_FRAME\_POINTER}!backtrace.c@{backtrace.c}}
+\doxysubsubsection{\texorpdfstring{FIRST\_FRAME\_POINTER}{FIRST\_FRAME\_POINTER}}
+{\footnotesize\ttfamily \#define F\+I\+R\+S\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+O\+I\+N\+T\+ER~\+\_\+\+\_\+builtin\+\_\+frame\+\_\+address (0)}
+
+\mbox{\Hypertarget{debug_2backtrace_8c_a500f10240a8ac57e93208bf80465961a}\label{debug_2backtrace_8c_a500f10240a8ac57e93208bf80465961a}} 
+\index{backtrace.c@{backtrace.c}!INNER\_THAN@{INNER\_THAN}}
+\index{INNER\_THAN@{INNER\_THAN}!backtrace.c@{backtrace.c}}
+\doxysubsubsection{\texorpdfstring{INNER\_THAN}{INNER\_THAN}}
+{\footnotesize\ttfamily \#define I\+N\+N\+E\+R\+\_\+\+T\+H\+AN~$<$}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{debug_2backtrace_8c_a25b44576ba3d97a5ea73c0c5067bfd89}\label{debug_2backtrace_8c_a25b44576ba3d97a5ea73c0c5067bfd89}} 
+\index{backtrace.c@{backtrace.c}!\_\_backtrace@{\_\_backtrace}}
+\index{\_\_backtrace@{\_\_backtrace}!backtrace.c@{backtrace.c}}
+\doxysubsubsection{\texorpdfstring{\_\_backtrace()}{\_\_backtrace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+backtrace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$$\ast$}]{array,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{size }\end{DoxyParamCaption})}
+

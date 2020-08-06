@@ -1,0 +1,102 @@
+\hypertarget{qsort_8c}{}\doxysection{stdlib/qsort.c File Reference}
+\label{qsort_8c}\index{stdlib/qsort.c@{stdlib/qsort.c}}
+{\ttfamily \#include $<$alloca.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structstack__node}{stack\+\_\+node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{qsort_8c_a29bc801ab28db7ec3f9cda2e85811c11}{S\+W\+AP}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}},  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\item 
+\#define \mbox{\hyperlink{qsort_8c_a4c76d6ac54df967f4f2d09030fdaa610}{M\+A\+X\+\_\+\+T\+H\+R\+E\+SH}}~4
+\item 
+\#define \mbox{\hyperlink{qsort_8c_a6423a880df59733d2d9b509c7718d3a9}{S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}}~(\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}} $\ast$ sizeof(\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}))
+\item 
+\#define \mbox{\hyperlink{qsort_8c_a69ef59788a88729c75837e2e31173b40}{P\+U\+SH}}(low,  \mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}})~((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) ((\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$\mbox{\hyperlink{htontest_8c_aff641d36df72cd022811ae4ee35edd45}{lo}} = (low)), (\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$hi = (\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}})), ++\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}))
+\item 
+\#define \mbox{\hyperlink{qsort_8c_a758f1b86ee730e07c2f60f1aafaf33b3}{P\+OP}}(low,  \mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}})~((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) (-\/-\/\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}, (low = \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$\mbox{\hyperlink{htontest_8c_aff641d36df72cd022811ae4ee35edd45}{lo}}), (\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}} = \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$hi)))
+\item 
+\#define \mbox{\hyperlink{qsort_8c_afaf5dcd5667fd1b91657bfe7aa4d0788}{S\+T\+A\+C\+K\+\_\+\+N\+O\+T\+\_\+\+E\+M\+P\+TY}}~(stack $<$ \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}})
+\item 
+\#define \mbox{\hyperlink{qsort_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}},  \mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) $<$ (\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) ? (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \+: (\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{qsort_8c_a0f92d62ccb43218e959c3a7cd6cf8023}{\+\_\+quicksort}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} pbase, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} total\+\_\+elems, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}, \+\_\+\+\_\+compar\+\_\+d\+\_\+fn\+\_\+t cmp, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{qsort_8c_a4c76d6ac54df967f4f2d09030fdaa610}\label{qsort_8c_a4c76d6ac54df967f4f2d09030fdaa610}} 
+\index{qsort.c@{qsort.c}!MAX\_THRESH@{MAX\_THRESH}}
+\index{MAX\_THRESH@{MAX\_THRESH}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_THRESH}{MAX\_THRESH}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+H\+R\+E\+SH~4}
+
+\mbox{\Hypertarget{qsort_8c_abb702d8b501669a23aa0ab3b281b9384}\label{qsort_8c_abb702d8b501669a23aa0ab3b281b9384}} 
+\index{qsort.c@{qsort.c}!min@{min}}
+\index{min@{min}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}},  }\item[{}]{\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) $<$ (\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) ? (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \+: (\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}))}
+
+\mbox{\Hypertarget{qsort_8c_a758f1b86ee730e07c2f60f1aafaf33b3}\label{qsort_8c_a758f1b86ee730e07c2f60f1aafaf33b3}} 
+\index{qsort.c@{qsort.c}!POP@{POP}}
+\index{POP@{POP}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{POP}{POP}}
+{\footnotesize\ttfamily \#define P\+OP(\begin{DoxyParamCaption}\item[{}]{low,  }\item[{}]{\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) (-\/-\/\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}, (low = \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$\mbox{\hyperlink{htontest_8c_aff641d36df72cd022811ae4ee35edd45}{lo}}), (\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}} = \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$hi)))}
+
+\mbox{\Hypertarget{qsort_8c_a69ef59788a88729c75837e2e31173b40}\label{qsort_8c_a69ef59788a88729c75837e2e31173b40}} 
+\index{qsort.c@{qsort.c}!PUSH@{PUSH}}
+\index{PUSH@{PUSH}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{PUSH}{PUSH}}
+{\footnotesize\ttfamily \#define P\+U\+SH(\begin{DoxyParamCaption}\item[{}]{low,  }\item[{}]{\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) ((\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$\mbox{\hyperlink{htontest_8c_aff641d36df72cd022811ae4ee35edd45}{lo}} = (low)), (\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}-\/$>$hi = (\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}})), ++\mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}))}
+
+\mbox{\Hypertarget{qsort_8c_afaf5dcd5667fd1b91657bfe7aa4d0788}\label{qsort_8c_afaf5dcd5667fd1b91657bfe7aa4d0788}} 
+\index{qsort.c@{qsort.c}!STACK\_NOT\_EMPTY@{STACK\_NOT\_EMPTY}}
+\index{STACK\_NOT\_EMPTY@{STACK\_NOT\_EMPTY}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{STACK\_NOT\_EMPTY}{STACK\_NOT\_EMPTY}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+N\+O\+T\+\_\+\+E\+M\+P\+TY~(stack $<$ \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}})}
+
+\mbox{\Hypertarget{qsort_8c_a6423a880df59733d2d9b509c7718d3a9}\label{qsort_8c_a6423a880df59733d2d9b509c7718d3a9}} 
+\index{qsort.c@{qsort.c}!STACK\_SIZE@{STACK\_SIZE}}
+\index{STACK\_SIZE@{STACK\_SIZE}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{STACK\_SIZE}{STACK\_SIZE}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE~(\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}} $\ast$ sizeof(\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}))}
+
+\mbox{\Hypertarget{qsort_8c_a29bc801ab28db7ec3f9cda2e85811c11}\label{qsort_8c_a29bc801ab28db7ec3f9cda2e85811c11}} 
+\index{qsort.c@{qsort.c}!SWAP@{SWAP}}
+\index{SWAP@{SWAP}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{SWAP}{SWAP}}
+{\footnotesize\ttfamily \#define S\+W\+AP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}},  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      size\_t \mbox{\hyperlink{include_2execinfo_8h_a16d9b05c6b70a6e35a7090ee149b0121}{\_\_size}} = (\mbox{\hyperlink{scratch__buffer_8h_a34e10fdac079a9ca4512b8ccd7f20b8a}{size}});                           \(\backslash\)}
+\DoxyCodeLine{      char *\_\_a = (\mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}), *\_\_b = (b);                       \(\backslash\)}
+\DoxyCodeLine{      do                                      \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      char \_\_tmp = *\_\_a;                              \(\backslash\)}
+\DoxyCodeLine{      *\_\_a++ = *\_\_b;                              \(\backslash\)}
+\DoxyCodeLine{      *\_\_b++ = \_\_tmp;                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (-\/-\/\mbox{\hyperlink{include_2execinfo_8h_a16d9b05c6b70a6e35a7090ee149b0121}{\_\_size}} > 0);                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{qsort_8c_a0f92d62ccb43218e959c3a7cd6cf8023}\label{qsort_8c_a0f92d62ccb43218e959c3a7cd6cf8023}} 
+\index{qsort.c@{qsort.c}!\_quicksort@{\_quicksort}}
+\index{\_quicksort@{\_quicksort}!qsort.c@{qsort.c}}
+\doxysubsubsection{\texorpdfstring{\_quicksort()}{\_quicksort()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+quicksort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}]{pbase,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{total\+\_\+elems,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{size,  }\item[{\+\_\+\+\_\+compar\+\_\+d\+\_\+fn\+\_\+t}]{cmp,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{arg }\end{DoxyParamCaption})}
+

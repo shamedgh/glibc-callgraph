@@ -1,0 +1,112 @@
+\hypertarget{mtrace_8c}{}\doxysection{malloc/mtrace.c File Reference}
+\label{mtrace_8c}\index{malloc/mtrace.c@{malloc/mtrace.c}}
+{\ttfamily \#include $<$malloc.\+h$>$}\newline
+{\ttfamily \#include $<$mcheck.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$\+\_\+itoa.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$libio/iolibio.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mtrace_8c_a489c241a7e24aaa40175ad094016d47e}{\+\_\+\+M\+A\+L\+L\+O\+C\+\_\+\+I\+N\+T\+E\+R\+N\+AL}}
+\item 
+\#define \mbox{\hyperlink{mtrace_8c_a4c3d12ee063ba35de601c0bccce6ed3c}{setvbuf}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}},  \mbox{\hyperlink{bug269-setjmp_8c_a470bef4e681b2849d922b05ec7d44e47}{f}},  l)~\mbox{\hyperlink{iosetvbuf_8c_affd5de57d96d2f54f1383b35788dca75}{\+\_\+\+I\+O\+\_\+setvbuf}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}, \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}, \mbox{\hyperlink{bug269-setjmp_8c_a470bef4e681b2849d922b05ec7d44e47}{f}}, l)
+\item 
+\#define \mbox{\hyperlink{mtrace_8c_a3829a3fb3f546e0775cd66c06018df5d}{fwrite}}(\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}},  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}},  \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}},  \mbox{\hyperlink{tst-umask1_8c_a9c210569ea05d08854ceeaa7dd0c14e5}{fp}})~\mbox{\hyperlink{iofwrite_8c_ac532493c9e5b7b588dec84f8800848d9}{\+\_\+\+I\+O\+\_\+fwrite}} (\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}, \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}}, \mbox{\hyperlink{tst-umask1_8c_a9c210569ea05d08854ceeaa7dd0c14e5}{fp}})
+\item 
+\#define \mbox{\hyperlink{mtrace_8c_a85f9a678e5f44d97a8a21adab8c065b7}{T\+R\+A\+C\+E\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~512
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{mtrace_8c_a22e1ccd66c522451f089672c4dd1ff26}{\+\_\+\+\_\+libc\+\_\+lock\+\_\+define\+\_\+initialized}} (static, \mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{mtrace_8c_ae8543ca3cbabb5df8aababc0cd8e499e}{tr\+\_\+break}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{mtrace_8c_a63074cb5e1d84dc2a8196188d02dedbd}{libc\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{mtrace_8c_ae8543ca3cbabb5df8aababc0cd8e499e}{tr\+\_\+break}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{mtrace_8c_ada1d528880e3ca73c85a8705b8c4221f}{mtrace}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{mtrace_8c_a96f4fee47c3186a0b57fd08381d37f4c}{muntrace}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sysdeps_2tile_2memcmp_8c_a97c2ff9da355218a9f2cefb0e9097855}{\+\_\+\+\_\+ptr\+\_\+t}} \mbox{\hyperlink{mtrace_8c_a169e6d9ccd84e17338c16b51d7f183c2}{mallwatch}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mtrace_8c_a489c241a7e24aaa40175ad094016d47e}\label{mtrace_8c_a489c241a7e24aaa40175ad094016d47e}} 
+\index{mtrace.c@{mtrace.c}!\_MALLOC\_INTERNAL@{\_MALLOC\_INTERNAL}}
+\index{\_MALLOC\_INTERNAL@{\_MALLOC\_INTERNAL}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{\_MALLOC\_INTERNAL}{\_MALLOC\_INTERNAL}}
+{\footnotesize\ttfamily \#define \+\_\+\+M\+A\+L\+L\+O\+C\+\_\+\+I\+N\+T\+E\+R\+N\+AL}
+
+\mbox{\Hypertarget{mtrace_8c_a3829a3fb3f546e0775cd66c06018df5d}\label{mtrace_8c_a3829a3fb3f546e0775cd66c06018df5d}} 
+\index{mtrace.c@{mtrace.c}!fwrite@{fwrite}}
+\index{fwrite@{fwrite}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{fwrite}{fwrite}}
+{\footnotesize\ttfamily \#define fwrite(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}},  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}},  }\item[{}]{\mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}},  }\item[{}]{\mbox{\hyperlink{tst-umask1_8c_a9c210569ea05d08854ceeaa7dd0c14e5}{fp}} }\end{DoxyParamCaption})~\mbox{\hyperlink{iofwrite_8c_ac532493c9e5b7b588dec84f8800848d9}{\+\_\+\+I\+O\+\_\+fwrite}} (\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}, \mbox{\hyperlink{tst-raise_8c_ab2caed1cbe66b4adb794da880e147fdc}{count}}, \mbox{\hyperlink{tst-umask1_8c_a9c210569ea05d08854ceeaa7dd0c14e5}{fp}})}
+
+\mbox{\Hypertarget{mtrace_8c_a4c3d12ee063ba35de601c0bccce6ed3c}\label{mtrace_8c_a4c3d12ee063ba35de601c0bccce6ed3c}} 
+\index{mtrace.c@{mtrace.c}!setvbuf@{setvbuf}}
+\index{setvbuf@{setvbuf}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{setvbuf}{setvbuf}}
+{\footnotesize\ttfamily \#define setvbuf(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}},  }\item[{}]{\mbox{\hyperlink{bug269-setjmp_8c_a470bef4e681b2849d922b05ec7d44e47}{f}},  }\item[{}]{l }\end{DoxyParamCaption})~\mbox{\hyperlink{iosetvbuf_8c_affd5de57d96d2f54f1383b35788dca75}{\+\_\+\+I\+O\+\_\+setvbuf}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}, \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}, \mbox{\hyperlink{bug269-setjmp_8c_a470bef4e681b2849d922b05ec7d44e47}{f}}, l)}
+
+\mbox{\Hypertarget{mtrace_8c_a85f9a678e5f44d97a8a21adab8c065b7}\label{mtrace_8c_a85f9a678e5f44d97a8a21adab8c065b7}} 
+\index{mtrace.c@{mtrace.c}!TRACE\_BUFFER\_SIZE@{TRACE\_BUFFER\_SIZE}}
+\index{TRACE\_BUFFER\_SIZE@{TRACE\_BUFFER\_SIZE}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{TRACE\_BUFFER\_SIZE}{TRACE\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define T\+R\+A\+C\+E\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~512}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mtrace_8c_a22e1ccd66c522451f089672c4dd1ff26}\label{mtrace_8c_a22e1ccd66c522451f089672c4dd1ff26}} 
+\index{mtrace.c@{mtrace.c}!\_\_libc\_lock\_define\_initialized@{\_\_libc\_lock\_define\_initialized}}
+\index{\_\_libc\_lock\_define\_initialized@{\_\_libc\_lock\_define\_initialized}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{\_\_libc\_lock\_define\_initialized()}{\_\_libc\_lock\_define\_initialized()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+libc\+\_\+lock\+\_\+define\+\_\+initialized (\begin{DoxyParamCaption}\item[{static}]{,  }\item[{\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mtrace_8c_a63074cb5e1d84dc2a8196188d02dedbd}\label{mtrace_8c_a63074cb5e1d84dc2a8196188d02dedbd}} 
+\index{mtrace.c@{mtrace.c}!libc\_hidden\_def@{libc\_hidden\_def}}
+\index{libc\_hidden\_def@{libc\_hidden\_def}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_def()}{libc\_hidden\_def()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{mtrace_8c_ae8543ca3cbabb5df8aababc0cd8e499e}{tr\+\_\+break}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mtrace_8c_ada1d528880e3ca73c85a8705b8c4221f}\label{mtrace_8c_ada1d528880e3ca73c85a8705b8c4221f}} 
+\index{mtrace.c@{mtrace.c}!mtrace@{mtrace}}
+\index{mtrace@{mtrace}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{mtrace()}{mtrace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} mtrace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mtrace_8c_a96f4fee47c3186a0b57fd08381d37f4c}\label{mtrace_8c_a96f4fee47c3186a0b57fd08381d37f4c}} 
+\index{mtrace.c@{mtrace.c}!muntrace@{muntrace}}
+\index{muntrace@{muntrace}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{muntrace()}{muntrace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} muntrace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mtrace_8c_ae8543ca3cbabb5df8aababc0cd8e499e}\label{mtrace_8c_ae8543ca3cbabb5df8aababc0cd8e499e}} 
+\index{mtrace.c@{mtrace.c}!tr\_break@{tr\_break}}
+\index{tr\_break@{tr\_break}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{tr\_break()}{tr\_break()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} tr\+\_\+break (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{mtrace_8c_a169e6d9ccd84e17338c16b51d7f183c2}\label{mtrace_8c_a169e6d9ccd84e17338c16b51d7f183c2}} 
+\index{mtrace.c@{mtrace.c}!mallwatch@{mallwatch}}
+\index{mallwatch@{mallwatch}!mtrace.c@{mtrace.c}}
+\doxysubsubsection{\texorpdfstring{mallwatch}{mallwatch}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sysdeps_2tile_2memcmp_8c_a97c2ff9da355218a9f2cefb0e9097855}{\+\_\+\+\_\+ptr\+\_\+t}} mallwatch}
+

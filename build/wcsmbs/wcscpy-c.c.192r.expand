@@ -1,0 +1,105 @@
+
+;; Function __wcscpy_sse2 (__wcscpy_sse2, funcdef_no=3, decl_uid=1856, cgraph_uid=3, symbol_order=6)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 42.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 23 0 27 NOTE_INSN_DELETED)
+(note 27 23 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 24 27 25 2 (set (reg/v/f:DI 118 [ dest ])
+        (reg:DI 5 di [ dest ])) ../wcsmbs/wcscpy.c:30 -1
+     (nil))
+(insn 25 24 26 2 (set (reg/v/f:DI 119 [ src ])
+        (reg:DI 4 si [ src ])) ../wcsmbs/wcscpy.c:30 -1
+     (nil))
+(note 26 25 29 2 NOTE_INSN_FUNCTION_BEG)
+(insn 29 26 30 2 (parallel [
+            (set (reg:DI 120 [ D.2503 ])
+                (minus:DI (reg/v/f:DI 118 [ dest ])
+                    (reg/v/f:DI 119 [ src ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 30 29 31 2 (parallel [
+            (set (reg:DI 122 [ D.2503 ])
+                (ashiftrt:DI (reg:DI 120 [ D.2503 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 120 [ D.2503 ])
+            (const_int 4 [0x4]))
+        (nil)))
+(insn 31 30 32 2 (parallel [
+            (set (reg:DI 123 [ off ])
+                (plus:DI (reg:DI 122 [ D.2503 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 32 31 37 2 (parallel [
+            (set (reg:DI 116 [ D.2505 ])
+                (ashift:DI (reg:DI 123 [ off ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 37 32 33 4 2 "" [1 uses])
+(note 33 37 34 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 4 (parallel [
+            (set (reg/v/f:DI 119 [ src ])
+                (plus:DI (reg/v/f:DI 119 [ src ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) ../wcsmbs/wcscpy.c:42 -1
+     (nil))
+(insn 35 34 36 4 (set (reg:SI 114 [ D.2504 ])
+        (mem:SI (plus:DI (reg/v/f:DI 119 [ src ])
+                (const_int -4 [0xfffffffffffffffc])) [1 MEM[base: src_11, offset: -4B]+0 S4 A32])) ../wcsmbs/wcscpy.c:42 -1
+     (nil))
+(insn 36 35 38 4 (set (mem:SI (plus:DI (reg/v/f:DI 119 [ src ])
+                (reg:DI 116 [ D.2505 ])) [1 MEM[base: src_11, index: _20, offset: 0B]+0 S4 A32])
+        (reg:SI 114 [ D.2504 ])) ../wcsmbs/wcscpy.c:43 -1
+     (nil))
+(insn 38 36 39 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 114 [ D.2504 ])
+            (const_int 0 [0]))) ../wcsmbs/wcscpy.c:45 -1
+     (nil))
+(jump_insn 39 38 40 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) ../wcsmbs/wcscpy.c:45 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 37)
+(note 40 39 41 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 45 5 (set (reg:DI 117 [ <retval> ])
+        (reg/v/f:DI 118 [ dest ])) ../wcsmbs/wcscpy.c:59 -1
+     (nil))
+(insn 45 41 46 5 (set (reg/i:DI 0 ax)
+        (reg:DI 117 [ <retval> ])) ../wcsmbs/wcscpy.c:60 -1
+     (nil))
+(insn 46 45 0 5 (use (reg/i:DI 0 ax)) ../wcsmbs/wcscpy.c:60 -1
+     (nil))

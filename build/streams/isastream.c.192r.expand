@@ -1,0 +1,73 @@
+
+;; Function isastream (isastream, funcdef_no=32, decl_uid=7276, cgraph_uid=32, symbol_order=36)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 14.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 92 [ fildes ])
+        (reg:SI 5 di [ fildes ])) isastream.c:24 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) isastream.c:28 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 5 di)
+        (reg/v:SI 92 [ fildes ])) isastream.c:28 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) isastream.c:28 -1
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___fcntl") [flags 0x43]  <function_decl 0x2ad9d0bd6ca8 __fcntl>) [0 __fcntl S1 A8])
+            (const_int 0 [0]))) isastream.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___fcntl") [flags 0x43]  <function_decl 0x2ad9d0bd6ca8 __fcntl>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (nil)))))
+(insn 10 9 11 2 (set (reg:SI 87 [ D.7320 ])
+        (reg:SI 0 ax)) isastream.c:28 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:SI 94 [ D.7321 ])
+                (lshiftrt:SI (reg:SI 87 [ D.7320 ])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 12 11 13 2 (parallel [
+            (set (reg:SI 93 [ D.7320 ])
+                (neg:SI (reg:SI 94 [ D.7321 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 13 12 17 2 (set (reg:SI 91 [ <retval> ])
+        (reg:SI 93 [ D.7320 ])) -1
+     (nil))
+(insn 17 13 18 2 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) isastream.c:33 -1
+     (nil))
+(insn 18 17 0 2 (use (reg/i:SI 0 ax)) isastream.c:33 -1
+     (nil))

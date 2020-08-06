@@ -1,0 +1,159 @@
+
+;; Function __stpncpy_sse2 (__stpncpy_sse2, funcdef_no=9, decl_uid=2519, cgraph_uid=9, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 40.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 92 [ dest ])
+        (reg:DI 5 di [ dest ])) ./stpncpy.c:41 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 93 [ src ])
+        (reg:DI 4 si [ src ])) ./stpncpy.c:41 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 94 [ n ])
+        (reg:DI 1 dx [ n ])) ./stpncpy.c:41 -1
+     (nil))
+(note 5 4 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 5 10 2 (set (reg:DI 4 si)
+        (reg/v:DI 94 [ n ])) ./stpncpy.c:42 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ src ])) ./stpncpy.c:42 -1
+     (nil))
+(call_insn/i 11 10 12 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___strnlen") [flags 0x43]  <function_decl 0x2aeabd2800d8 __strnlen>) [0 __strnlen S1 A8])
+            (const_int 0 [0]))) ./stpncpy.c:42 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___strnlen") [flags 0x43]  <function_decl 0x2aeabd2800d8 __strnlen>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 12 11 13 2 (set (reg/v:DI 88 [ size ])
+        (reg:DI 0 ax)) ./stpncpy.c:42 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 95)
+        (reg/v/f:DI 92 [ dest ])) ./stpncpy.c:43 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:DI 96)
+        (reg/v/f:DI 93 [ src ])) ./stpncpy.c:43 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 97)
+        (reg/v:DI 88 [ size ])) ./stpncpy.c:43 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 1 dx)
+        (reg:DI 97)) ./stpncpy.c:43 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 4 si)
+        (reg:DI 96)) ./stpncpy.c:43 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 5 di)
+        (reg:DI 95)) ./stpncpy.c:43 -1
+     (nil))
+(call_insn 19 18 20 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2aeabd2c2288 memcpy>) [0 memcpy S1 A8])
+            (const_int 0 [0]))) ./stpncpy.c:43 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2aeabd2c2288 memcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 20 19 21 2 (set (reg:DI 98)
+        (reg:DI 0 ax)) ./stpncpy.c:43 -1
+     (nil))
+(insn 21 20 22 2 (set (reg:DI 99)
+        (reg:DI 98)) ./stpncpy.c:43 -1
+     (nil))
+(insn 22 21 23 2 (parallel [
+            (set (reg/v/f:DI 89 [ dest ])
+                (plus:DI (reg/v/f:DI 92 [ dest ])
+                    (reg/v:DI 88 [ size ])))
+            (clobber (reg:CC 17 flags))
+        ]) ./stpncpy.c:44 -1
+     (nil))
+(insn 23 22 24 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 94 [ n ])
+            (reg/v:DI 88 [ size ]))) ./stpncpy.c:45 -1
+     (nil))
+(jump_insn 24 23 25 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) ./stpncpy.c:45 -1
+     (int_list:REG_BR_PROB 3784 (nil))
+ -> 37)
+(note 25 24 26 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 4 (parallel [
+            (set (reg:DI 100 [ D.2535 ])
+                (minus:DI (reg/v:DI 94 [ n ])
+                    (reg/v:DI 88 [ size ])))
+            (clobber (reg:CC 17 flags))
+        ]) ./stpncpy.c:47 -1
+     (nil))
+(insn 27 26 28 4 (set (reg:DI 101)
+        (reg/v/f:DI 89 [ dest ])) ./stpncpy.c:47 -1
+     (nil))
+(insn 28 27 29 4 (set (reg:DI 102)
+        (reg:DI 100 [ D.2535 ])) ./stpncpy.c:47 -1
+     (nil))
+(insn 29 28 30 4 (set (reg:DI 1 dx)
+        (reg:DI 102)) ./stpncpy.c:47 -1
+     (nil))
+(insn 30 29 31 4 (set (reg:SI 4 si)
+        (const_int 0 [0])) ./stpncpy.c:47 -1
+     (nil))
+(insn 31 30 32 4 (set (reg:DI 5 di)
+        (reg:DI 101)) ./stpncpy.c:47 -1
+     (nil))
+(call_insn/j 32 31 33 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memset") [flags 0x41]  <function_decl 0x2aeabd2c2a20 memset>) [0 memset S1 A8])
+            (const_int 0 [0]))) ./stpncpy.c:47 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memset") [flags 0x41]  <function_decl 0x2aeabd2c2a20 memset>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(barrier 33 32 37)
+(code_label 37 33 38 5 2 "" [1 uses])
+(note 38 37 6 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 6 38 39 5 (set (reg/f:DI 87 [ D.2534 ])
+        (reg/v/f:DI 89 [ dest ])) ./stpncpy.c:44 -1
+     (nil))
+(insn 39 6 43 5 (set (reg:DI 91 [ <retval> ])
+        (reg/f:DI 87 [ D.2534 ])) -1
+     (nil))
+(insn 43 39 44 5 (set (reg/i:DI 0 ax)
+        (reg:DI 91 [ <retval> ])) ./stpncpy.c:48 -1
+     (nil))
+(insn 44 43 0 5 (use (reg/i:DI 0 ax)) ./stpncpy.c:48 -1
+     (nil))

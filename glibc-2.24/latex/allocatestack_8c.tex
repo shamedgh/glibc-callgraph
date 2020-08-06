@@ -1,0 +1,174 @@
+\hypertarget{allocatestack_8c}{}\doxysection{nptl/allocatestack.c File Reference}
+\label{allocatestack_8c}\index{nptl/allocatestack.c@{nptl/allocatestack.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/tls.\+h$>$}\newline
+{\ttfamily \#include $<$tls.\+h$>$}\newline
+{\ttfamily \#include $<$list.\+h$>$}\newline
+{\ttfamily \#include $<$lowlevellock.\+h$>$}\newline
+{\ttfamily \#include $<$futex-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include $<$stack-\/aliasing.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_ad6e9912d8187a47085d09f310367e4c6}{S\+T\+A\+C\+K\+\_\+\+V\+A\+R\+I\+A\+B\+L\+ES}}~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$stackaddr = \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_a66ee28f7346359d08966a3a40b9dfdc5}{S\+T\+A\+C\+K\+\_\+\+V\+A\+R\+I\+A\+B\+L\+E\+S\+\_\+\+A\+R\+GS}}~stackaddr
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_a7097ba0a57d5947d80c20437aadb937e}{S\+T\+A\+C\+K\+\_\+\+V\+A\+R\+I\+A\+B\+L\+E\+S\+\_\+\+P\+A\+R\+MS}}~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$stackaddr
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_a31ec72662c0a089cab3cd0a730cbf734}{A\+L\+L\+O\+C\+A\+T\+E\+\_\+\+S\+T\+A\+C\+K\+\_\+\+P\+A\+R\+MS}}~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$$\ast$stack
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_a326cb227b6888af1c1aacd2315de6310}{A\+L\+L\+O\+C\+A\+T\+E\+\_\+\+S\+T\+A\+CK}}(\mbox{\hyperlink{tst-mutexpi6_8c_a7b2d6ff3af98efb959e36acd9be1abc2}{attr}},  \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}})~allocate\+\_\+stack (\mbox{\hyperlink{tst-mutexpi6_8c_a7b2d6ff3af98efb959e36acd9be1abc2}{attr}}, \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}}, \&stackaddr)
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_a88839b8a36578f9480c960dbc381448b}{S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+GN}}~\+\_\+\+\_\+alignof\+\_\+\+\_\+ (\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} double)
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_aaa8d4a07434696f4120a94e54ff2a0b5}{M\+I\+N\+I\+M\+A\+L\+\_\+\+R\+E\+S\+T\+\_\+\+S\+T\+A\+CK}}~4096
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_a06c706c6cc07f13a3d0e1252e923ec69}{M\+A\+P\+\_\+\+S\+T\+A\+CK}}~0
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_ae13bafd2ce53a4ea46899b5d19ec8a8f}{F\+R\+E\+E\+\_\+P}}(descr)~((descr)-\/$>$\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}} $<$= 0)
+\item 
+\#define \mbox{\hyperlink{allocatestack_8c_afac0866aaaf3d7b487e97efb2ed83943}{coloring}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{list_8h_a1a51b3146546f8fdb4e186ecb909ca60}{list\+\_\+t}} \mbox{\hyperlink{nptl_2pthreadP_8h_a6d93bd3c85e0aa18436441c61a290d90}{\+\_\+\+\_\+stack\+\_\+user}} \mbox{\hyperlink{allocatestack_8c_a4025c57e26c013b45df59504774f6ea3}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((nocommon))
+\item 
+\mbox{\hyperlink{allocatestack_8c_a38cb45298e9682679a66d19cb8252761}{hidden\+\_\+data\+\_\+def}} (\mbox{\hyperlink{nptl_2pthreadP_8h_a6d93bd3c85e0aa18436441c61a290d90}{\+\_\+\+\_\+stack\+\_\+user}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{allocatestack_8c_ac61ee7aea4aa64608ea3bf8d1518a273}{\+\_\+\+\_\+free\+\_\+stacks}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} limit)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{allocatestack_8c_ad4f77adea9be12d0ebe68f89349ae446}{\+\_\+\+\_\+deallocate\+\_\+stack}} (struct \mbox{\hyperlink{structpthread}{pthread}} $\ast$\mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{allocatestack_8c_a7be82d4f1992a697a6e04a4654400866}{\+\_\+\+\_\+make\+\_\+stacks\+\_\+executable}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$$\ast$stack\+\_\+endp)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{allocatestack_8c_a632703631e3a4f27dc72be70bf01c03e}{\+\_\+\+\_\+reclaim\+\_\+stacks}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}} \mbox{\hyperlink{allocatestack_8c_ab7e319b6a9cf95c22c0c5be02663df50}{\+\_\+\+\_\+pthread\+\_\+init\+\_\+static\+\_\+tls}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}} \mbox{\hyperlink{allocatestack_8c_acfdf79f37877f89a18d1039ae4c1b82c}{\+\_\+\+\_\+wait\+\_\+lookup\+\_\+done}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{allocatestack_8c_a326cb227b6888af1c1aacd2315de6310}\label{allocatestack_8c_a326cb227b6888af1c1aacd2315de6310}} 
+\index{allocatestack.c@{allocatestack.c}!ALLOCATE\_STACK@{ALLOCATE\_STACK}}
+\index{ALLOCATE\_STACK@{ALLOCATE\_STACK}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{ALLOCATE\_STACK}{ALLOCATE\_STACK}}
+{\footnotesize\ttfamily \#define A\+L\+L\+O\+C\+A\+T\+E\+\_\+\+S\+T\+A\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-mutexpi6_8c_a7b2d6ff3af98efb959e36acd9be1abc2}{attr}},  }\item[{}]{\mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}} }\end{DoxyParamCaption})~allocate\+\_\+stack (\mbox{\hyperlink{tst-mutexpi6_8c_a7b2d6ff3af98efb959e36acd9be1abc2}{attr}}, \mbox{\hyperlink{i386_2nptl_2tls_8h_aa29a1f325eaf72ed3cd3fdb869c95744}{pd}}, \&stackaddr)}
+
+\mbox{\Hypertarget{allocatestack_8c_a31ec72662c0a089cab3cd0a730cbf734}\label{allocatestack_8c_a31ec72662c0a089cab3cd0a730cbf734}} 
+\index{allocatestack.c@{allocatestack.c}!ALLOCATE\_STACK\_PARMS@{ALLOCATE\_STACK\_PARMS}}
+\index{ALLOCATE\_STACK\_PARMS@{ALLOCATE\_STACK\_PARMS}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{ALLOCATE\_STACK\_PARMS}{ALLOCATE\_STACK\_PARMS}}
+{\footnotesize\ttfamily \#define A\+L\+L\+O\+C\+A\+T\+E\+\_\+\+S\+T\+A\+C\+K\+\_\+\+P\+A\+R\+MS~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$$\ast$stack}
+
+\mbox{\Hypertarget{allocatestack_8c_afac0866aaaf3d7b487e97efb2ed83943}\label{allocatestack_8c_afac0866aaaf3d7b487e97efb2ed83943}} 
+\index{allocatestack.c@{allocatestack.c}!coloring@{coloring}}
+\index{coloring@{coloring}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{coloring}{coloring}}
+{\footnotesize\ttfamily \#define coloring~0}
+
+\mbox{\Hypertarget{allocatestack_8c_ae13bafd2ce53a4ea46899b5d19ec8a8f}\label{allocatestack_8c_ae13bafd2ce53a4ea46899b5d19ec8a8f}} 
+\index{allocatestack.c@{allocatestack.c}!FREE\_P@{FREE\_P}}
+\index{FREE\_P@{FREE\_P}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{FREE\_P}{FREE\_P}}
+{\footnotesize\ttfamily \#define F\+R\+E\+E\+\_\+P(\begin{DoxyParamCaption}\item[{}]{descr }\end{DoxyParamCaption})~((descr)-\/$>$\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}} $<$= 0)}
+
+\mbox{\Hypertarget{allocatestack_8c_a06c706c6cc07f13a3d0e1252e923ec69}\label{allocatestack_8c_a06c706c6cc07f13a3d0e1252e923ec69}} 
+\index{allocatestack.c@{allocatestack.c}!MAP\_STACK@{MAP\_STACK}}
+\index{MAP\_STACK@{MAP\_STACK}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{MAP\_STACK}{MAP\_STACK}}
+{\footnotesize\ttfamily \#define M\+A\+P\+\_\+\+S\+T\+A\+CK~0}
+
+\mbox{\Hypertarget{allocatestack_8c_aaa8d4a07434696f4120a94e54ff2a0b5}\label{allocatestack_8c_aaa8d4a07434696f4120a94e54ff2a0b5}} 
+\index{allocatestack.c@{allocatestack.c}!MINIMAL\_REST\_STACK@{MINIMAL\_REST\_STACK}}
+\index{MINIMAL\_REST\_STACK@{MINIMAL\_REST\_STACK}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{MINIMAL\_REST\_STACK}{MINIMAL\_REST\_STACK}}
+{\footnotesize\ttfamily \#define M\+I\+N\+I\+M\+A\+L\+\_\+\+R\+E\+S\+T\+\_\+\+S\+T\+A\+CK~4096}
+
+\mbox{\Hypertarget{allocatestack_8c_a88839b8a36578f9480c960dbc381448b}\label{allocatestack_8c_a88839b8a36578f9480c960dbc381448b}} 
+\index{allocatestack.c@{allocatestack.c}!STACK\_ALIGN@{STACK\_ALIGN}}
+\index{STACK\_ALIGN@{STACK\_ALIGN}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{STACK\_ALIGN}{STACK\_ALIGN}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+GN~\+\_\+\+\_\+alignof\+\_\+\+\_\+ (\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} double)}
+
+\mbox{\Hypertarget{allocatestack_8c_ad6e9912d8187a47085d09f310367e4c6}\label{allocatestack_8c_ad6e9912d8187a47085d09f310367e4c6}} 
+\index{allocatestack.c@{allocatestack.c}!STACK\_VARIABLES@{STACK\_VARIABLES}}
+\index{STACK\_VARIABLES@{STACK\_VARIABLES}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{STACK\_VARIABLES}{STACK\_VARIABLES}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+V\+A\+R\+I\+A\+B\+L\+ES~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$stackaddr = \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}}
+
+\mbox{\Hypertarget{allocatestack_8c_a66ee28f7346359d08966a3a40b9dfdc5}\label{allocatestack_8c_a66ee28f7346359d08966a3a40b9dfdc5}} 
+\index{allocatestack.c@{allocatestack.c}!STACK\_VARIABLES\_ARGS@{STACK\_VARIABLES\_ARGS}}
+\index{STACK\_VARIABLES\_ARGS@{STACK\_VARIABLES\_ARGS}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{STACK\_VARIABLES\_ARGS}{STACK\_VARIABLES\_ARGS}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+V\+A\+R\+I\+A\+B\+L\+E\+S\+\_\+\+A\+R\+GS~stackaddr}
+
+\mbox{\Hypertarget{allocatestack_8c_a7097ba0a57d5947d80c20437aadb937e}\label{allocatestack_8c_a7097ba0a57d5947d80c20437aadb937e}} 
+\index{allocatestack.c@{allocatestack.c}!STACK\_VARIABLES\_PARMS@{STACK\_VARIABLES\_PARMS}}
+\index{STACK\_VARIABLES\_PARMS@{STACK\_VARIABLES\_PARMS}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{STACK\_VARIABLES\_PARMS}{STACK\_VARIABLES\_PARMS}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+V\+A\+R\+I\+A\+B\+L\+E\+S\+\_\+\+P\+A\+R\+MS~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$stackaddr}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{allocatestack_8c_a4025c57e26c013b45df59504774f6ea3}\label{allocatestack_8c_a4025c57e26c013b45df59504774f6ea3}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{list_8h_a1a51b3146546f8fdb4e186ecb909ca60}{list\+\_\+t}} \mbox{\hyperlink{nptl_2pthreadP_8h_a6d93bd3c85e0aa18436441c61a290d90}{\+\_\+\+\_\+stack\+\_\+user}} \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} (\begin{DoxyParamCaption}\item[{(nocommon)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_ad4f77adea9be12d0ebe68f89349ae446}\label{allocatestack_8c_ad4f77adea9be12d0ebe68f89349ae446}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_deallocate\_stack@{\_\_deallocate\_stack}}
+\index{\_\_deallocate\_stack@{\_\_deallocate\_stack}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_deallocate\_stack()}{\_\_deallocate\_stack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+\+\_\+deallocate\+\_\+stack (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpthread}{pthread}} $\ast$}]{pd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_ac61ee7aea4aa64608ea3bf8d1518a273}\label{allocatestack_8c_ac61ee7aea4aa64608ea3bf8d1518a273}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_free\_stacks@{\_\_free\_stacks}}
+\index{\_\_free\_stacks@{\_\_free\_stacks}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_free\_stacks()}{\_\_free\_stacks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+free\+\_\+stacks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{limit }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_a7be82d4f1992a697a6e04a4654400866}\label{allocatestack_8c_a7be82d4f1992a697a6e04a4654400866}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_make\_stacks\_executable@{\_\_make\_stacks\_executable}}
+\index{\_\_make\_stacks\_executable@{\_\_make\_stacks\_executable}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_make\_stacks\_executable()}{\_\_make\_stacks\_executable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+\+\_\+make\+\_\+stacks\+\_\+executable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$$\ast$}]{stack\+\_\+endp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_ab7e319b6a9cf95c22c0c5be02663df50}\label{allocatestack_8c_ab7e319b6a9cf95c22c0c5be02663df50}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_pthread\_init\_static\_tls@{\_\_pthread\_init\_static\_tls}}
+\index{\_\_pthread\_init\_static\_tls@{\_\_pthread\_init\_static\_tls}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_pthread\_init\_static\_tls()}{\_\_pthread\_init\_static\_tls()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}} \+\_\+\+\_\+pthread\+\_\+init\+\_\+static\+\_\+tls (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_a632703631e3a4f27dc72be70bf01c03e}\label{allocatestack_8c_a632703631e3a4f27dc72be70bf01c03e}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_reclaim\_stacks@{\_\_reclaim\_stacks}}
+\index{\_\_reclaim\_stacks@{\_\_reclaim\_stacks}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_reclaim\_stacks()}{\_\_reclaim\_stacks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+reclaim\+\_\+stacks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_acfdf79f37877f89a18d1039ae4c1b82c}\label{allocatestack_8c_acfdf79f37877f89a18d1039ae4c1b82c}} 
+\index{allocatestack.c@{allocatestack.c}!\_\_wait\_lookup\_done@{\_\_wait\_lookup\_done}}
+\index{\_\_wait\_lookup\_done@{\_\_wait\_lookup\_done}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wait\_lookup\_done()}{\_\_wait\_lookup\_done()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}} \+\_\+\+\_\+wait\+\_\+lookup\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{allocatestack_8c_a38cb45298e9682679a66d19cb8252761}\label{allocatestack_8c_a38cb45298e9682679a66d19cb8252761}} 
+\index{allocatestack.c@{allocatestack.c}!hidden\_data\_def@{hidden\_data\_def}}
+\index{hidden\_data\_def@{hidden\_data\_def}!allocatestack.c@{allocatestack.c}}
+\doxysubsubsection{\texorpdfstring{hidden\_data\_def()}{hidden\_data\_def()}}
+{\footnotesize\ttfamily hidden\+\_\+data\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{nptl_2pthreadP_8h_a6d93bd3c85e0aa18436441c61a290d90}{\+\_\+\+\_\+stack\+\_\+user}}}]{ }\end{DoxyParamCaption})}
+

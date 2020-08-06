@@ -1,0 +1,193 @@
+
+;; Function __strcat_chk (__strcat_chk, funcdef_no=9, decl_uid=1051, cgraph_uid=9, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 5->3 redirected to 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 66.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 23 0 32 NOTE_INSN_DELETED)
+(note 32 23 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 24 32 25 2 (set (reg/v/f:DI 118 [ dest ])
+        (reg:DI 5 di [ dest ])) strcat_chk.c:25 -1
+     (nil))
+(insn 25 24 26 2 (set (reg/v/f:DI 119 [ src ])
+        (reg:DI 4 si [ src ])) strcat_chk.c:25 -1
+     (nil))
+(insn 26 25 27 2 (set (reg/v:DI 120 [ destlen ])
+        (reg:DI 1 dx [ destlen ])) strcat_chk.c:25 -1
+     (nil))
+(note 27 26 34 2 NOTE_INSN_FUNCTION_BEG)
+(insn 34 27 28 2 (parallel [
+            (set (reg/f:DI 112 [ D.2566 ])
+                (plus:DI (reg/v/f:DI 118 [ dest ])
+                    (reg/v:DI 120 [ destlen ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 28 34 72 2 (set (reg/v/f:DI 110 [ dest ])
+        (reg/v/f:DI 118 [ dest ])) strcat_chk.c:26 -1
+     (nil))
+(jump_insn 72 28 73 2 (set (pc)
+        (label_ref 45)) -1
+     (nil)
+ -> 45)
+(barrier 73 72 75)
+(code_label 75 73 74 4 7 "" [1 uses])
+(note 74 75 29 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 29 74 30 4 (set (reg/v/f:DI 110 [ dest ])
+        (reg/v/f:DI 113 [ dest ])) -1
+     (nil))
+(insn 30 29 45 4 (set (reg/v:DI 120 [ destlen ])
+        (reg/v:DI 109 [ destlen ])) strcat_chk.c:33 -1
+     (nil))
+(code_label 45 30 35 5 3 "" [1 uses])
+(note 35 45 36 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 5 (parallel [
+            (set (reg/v:DI 109 [ destlen ])
+                (plus:DI (reg/v:DI 120 [ destlen ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) strcat_chk.c:33 -1
+     (nil))
+(insn 37 36 38 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ dest ])
+            (reg/f:DI 112 [ D.2566 ]))) strcat_chk.c:33 -1
+     (nil))
+(jump_insn 38 37 54 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) strcat_chk.c:33 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 42)
+(code_label 54 38 39 6 5 "" [1 uses])
+(note 39 54 40 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 40 39 41 6 (call (mem:QI (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2ac927f9da20 __chk_fail>) [0 __chk_fail S1 A8])
+        (const_int 0 [0])) strcat_chk.c:34 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2ac927f9da20 __chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 41 40 42)
+(code_label 42 41 43 7 2 "" [1 uses])
+(note 43 42 44 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 46 7 (parallel [
+            (set (reg/v/f:DI 113 [ dest ])
+                (plus:DI (reg/v/f:DI 110 [ dest ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) strcat_chk.c:35 -1
+     (nil))
+(insn 46 44 47 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 113 [ dest ])
+                    (const_int -1 [0xffffffffffffffff])) [0 MEM[base: dest_14, offset: -1B]+0 S1 A8])
+            (const_int 0 [0]))) strcat_chk.c:37 -1
+     (nil))
+(jump_insn 47 46 48 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 75)
+            (pc))) strcat_chk.c:37 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 75)
+(note 48 47 49 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 31 8 (parallel [
+            (set (reg/v/f:DI 115 [ s1 ])
+                (plus:DI (reg/v/f:DI 110 [ dest ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) strcat_chk.c:42 -1
+     (nil))
+(insn 31 49 50 8 (set (reg:DI 111 [ ivtmp.8 ])
+        (const_int 0 [0])) strcat_chk.c:42 -1
+     (nil))
+(jump_insn 50 31 51 8 (set (pc)
+        (label_ref 57)) strcat_chk.c:42 -1
+     (nil)
+ -> 57)
+(barrier 51 50 61)
+(code_label 61 51 52 9 6 "" [1 uses])
+(note 52 61 53 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 55 9 (parallel [
+            (set (reg:DI 111 [ ivtmp.8 ])
+                (plus:DI (reg:DI 111 [ ivtmp.8 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 55 53 56 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 120 [ destlen ])
+            (reg:DI 111 [ ivtmp.8 ]))) strcat_chk.c:46 -1
+     (nil))
+(jump_insn 56 55 57 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 54)
+            (pc))) strcat_chk.c:46 -1
+     (int_list:REG_BR_PROB 1163 (nil))
+ -> 54)
+(code_label 57 56 58 10 4 "" [1 uses])
+(note 58 57 59 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 10 (set (reg/v:QI 116 [ c ])
+        (mem:QI (plus:DI (reg/v/f:DI 119 [ src ])
+                (reg:DI 111 [ ivtmp.8 ])) [0 MEM[base: src_8(D), index: ivtmp.8_5, offset: 0B]+0 S1 A8])) strcat_chk.c:48 -1
+     (nil))
+(insn 60 59 62 10 (set (mem:QI (plus:DI (plus:DI (reg/v/f:DI 115 [ s1 ])
+                    (reg:DI 111 [ ivtmp.8 ]))
+                (const_int 1 [0x1])) [0 MEM[base: s1_17, index: ivtmp.8_5, offset: 1B]+0 S1 A8])
+        (reg/v:QI 116 [ c ])) strcat_chk.c:49 -1
+     (nil))
+(insn 62 60 63 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 116 [ c ])
+            (const_int 0 [0]))) strcat_chk.c:51 -1
+     (nil))
+(jump_insn 63 62 64 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 61)
+            (pc))) strcat_chk.c:51 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 61)
+(note 64 63 65 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 69 11 (set (reg:DI 117 [ <retval> ])
+        (reg/v/f:DI 118 [ dest ])) strcat_chk.c:53 -1
+     (nil))
+(insn 69 65 70 11 (set (reg/i:DI 0 ax)
+        (reg:DI 117 [ <retval> ])) strcat_chk.c:54 -1
+     (nil))
+(insn 70 69 0 11 (use (reg/i:DI 0 ax)) strcat_chk.c:54 -1
+     (nil))

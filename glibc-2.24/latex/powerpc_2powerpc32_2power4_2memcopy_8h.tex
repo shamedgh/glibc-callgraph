@@ -1,0 +1,92 @@
+\hypertarget{powerpc_2powerpc32_2power4_2memcopy_8h}{}\doxysection{sysdeps/powerpc/powerpc32/power4/memcopy.h File Reference}
+\label{powerpc_2powerpc32_2power4_2memcopy_8h}\index{sysdeps/powerpc/powerpc32/power4/memcopy.h@{sysdeps/powerpc/powerpc32/power4/memcopy.h}}
+{\ttfamily \#include $<$sysdeps/generic/memcopy.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{powerpc_2powerpc32_2power4_2memcopy_8h_a5ba4325e274dd195be8ab8ef88e6490d}{O\+P\+\_\+\+T\+\_\+\+T\+H\+R\+ES}}~16
+\item 
+\#define \mbox{\hyperlink{powerpc_2powerpc32_2power4_2memcopy_8h_a2a5a4caa5aeab271c4b266c19f9a9dfc}{B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+F\+WD}}(dst\+\_\+bp,  src\+\_\+bp,  nbytes)
+\item 
+\#define \mbox{\hyperlink{powerpc_2powerpc32_2power4_2memcopy_8h_a18f8f8e7bc9225733e12c5296f8d093e}{B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+B\+WD}}(dst\+\_\+ep,  src\+\_\+ep,  nbytes)
+\item 
+\#define \mbox{\hyperlink{powerpc_2powerpc32_2power4_2memcopy_8h_a546380034cdac10221400f21cd60c11c}{M\+E\+M\+C\+P\+Y\+\_\+\+O\+K\+\_\+\+F\+O\+R\+\_\+\+F\+W\+D\+\_\+\+M\+E\+M\+M\+O\+VE}}~1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{powerpc_2powerpc32_2power4_2memcopy_8h_a18f8f8e7bc9225733e12c5296f8d093e}\label{powerpc_2powerpc32_2power4_2memcopy_8h_a18f8f8e7bc9225733e12c5296f8d093e}} 
+\index{memcopy.h@{memcopy.h}!BYTE\_COPY\_BWD@{BYTE\_COPY\_BWD}}
+\index{BYTE\_COPY\_BWD@{BYTE\_COPY\_BWD}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{BYTE\_COPY\_BWD}{BYTE\_COPY\_BWD}}
+{\footnotesize\ttfamily \#define B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+B\+WD(\begin{DoxyParamCaption}\item[{}]{dst\+\_\+ep,  }\item[{}]{src\+\_\+ep,  }\item[{}]{nbytes }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      size\_t \_\_nbytes = (nbytes);                         \(\backslash\)}
+\DoxyCodeLine{      if (\_\_nbytes \& 1)                               \(\backslash\)}
+\DoxyCodeLine{        \{                                     \(\backslash\)}
+\DoxyCodeLine{      src\_ep -\/= 1;                                \(\backslash\)}
+\DoxyCodeLine{      dst\_ep -\/= 1;                                \(\backslash\)}
+\DoxyCodeLine{      ((\textcolor{keywordtype}{byte} *) dst\_ep)[0] =  ((\textcolor{keywordtype}{byte} *) src\_ep)[0];               \(\backslash\)}
+\DoxyCodeLine{      \_\_nbytes -\/= 1;                              \(\backslash\)}
+\DoxyCodeLine{        \}                                     \(\backslash\)}
+\DoxyCodeLine{      while (\_\_nbytes > 0)                            \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      byte \_\_x, \_\_y;                              \(\backslash\)}
+\DoxyCodeLine{      src\_ep -\/= 2;                                \(\backslash\)}
+\DoxyCodeLine{      \_\_y = ((\textcolor{keywordtype}{byte} *) src\_ep)[1];                         \(\backslash\)}
+\DoxyCodeLine{      \_\_x = ((\textcolor{keywordtype}{byte} *) src\_ep)[0];                         \(\backslash\)}
+\DoxyCodeLine{      dst\_ep -\/= 2;                                \(\backslash\)}
+\DoxyCodeLine{      \_\_nbytes -\/= 2;                              \(\backslash\)}
+\DoxyCodeLine{      ((\textcolor{keywordtype}{byte} *) dst\_ep)[1] = \_\_y;                         \(\backslash\)}
+\DoxyCodeLine{      ((\textcolor{keywordtype}{byte} *) dst\_ep)[0] = \_\_x;                         \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2powerpc32_2power4_2memcopy_8h_a2a5a4caa5aeab271c4b266c19f9a9dfc}\label{powerpc_2powerpc32_2power4_2memcopy_8h_a2a5a4caa5aeab271c4b266c19f9a9dfc}} 
+\index{memcopy.h@{memcopy.h}!BYTE\_COPY\_FWD@{BYTE\_COPY\_FWD}}
+\index{BYTE\_COPY\_FWD@{BYTE\_COPY\_FWD}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{BYTE\_COPY\_FWD}{BYTE\_COPY\_FWD}}
+{\footnotesize\ttfamily \#define B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+F\+WD(\begin{DoxyParamCaption}\item[{}]{dst\+\_\+bp,  }\item[{}]{src\+\_\+bp,  }\item[{}]{nbytes }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      size\_t \_\_nbytes = (nbytes);                         \(\backslash\)}
+\DoxyCodeLine{      if (\_\_nbytes \& 1)                               \(\backslash\)}
+\DoxyCodeLine{        \{                                     \(\backslash\)}
+\DoxyCodeLine{      ((\textcolor{keywordtype}{byte} *) dst\_bp)[0] =  ((\textcolor{keywordtype}{byte} *) src\_bp)[0];               \(\backslash\)}
+\DoxyCodeLine{      src\_bp += 1;                                \(\backslash\)}
+\DoxyCodeLine{      dst\_bp += 1;                                \(\backslash\)}
+\DoxyCodeLine{      \_\_nbytes -\/= 1;                              \(\backslash\)}
+\DoxyCodeLine{        \}                                     \(\backslash\)}
+\DoxyCodeLine{      while (\_\_nbytes > 0)                            \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      byte \_\_x = ((\textcolor{keywordtype}{byte} *) src\_bp)[0];                    \(\backslash\)}
+\DoxyCodeLine{      byte \_\_y = ((\textcolor{keywordtype}{byte} *) src\_bp)[1];                    \(\backslash\)}
+\DoxyCodeLine{      src\_bp += 2;                                \(\backslash\)}
+\DoxyCodeLine{      \_\_nbytes -\/= 2;                              \(\backslash\)}
+\DoxyCodeLine{      ((\textcolor{keywordtype}{byte} *) dst\_bp)[0] = \_\_x;                         \(\backslash\)}
+\DoxyCodeLine{      ((\textcolor{keywordtype}{byte} *) dst\_bp)[1] = \_\_y;                         \(\backslash\)}
+\DoxyCodeLine{      dst\_bp += 2;                                \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2powerpc32_2power4_2memcopy_8h_a546380034cdac10221400f21cd60c11c}\label{powerpc_2powerpc32_2power4_2memcopy_8h_a546380034cdac10221400f21cd60c11c}} 
+\index{memcopy.h@{memcopy.h}!MEMCPY\_OK\_FOR\_FWD\_MEMMOVE@{MEMCPY\_OK\_FOR\_FWD\_MEMMOVE}}
+\index{MEMCPY\_OK\_FOR\_FWD\_MEMMOVE@{MEMCPY\_OK\_FOR\_FWD\_MEMMOVE}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{MEMCPY\_OK\_FOR\_FWD\_MEMMOVE}{MEMCPY\_OK\_FOR\_FWD\_MEMMOVE}}
+{\footnotesize\ttfamily \#define M\+E\+M\+C\+P\+Y\+\_\+\+O\+K\+\_\+\+F\+O\+R\+\_\+\+F\+W\+D\+\_\+\+M\+E\+M\+M\+O\+VE~1}
+
+\mbox{\Hypertarget{powerpc_2powerpc32_2power4_2memcopy_8h_a5ba4325e274dd195be8ab8ef88e6490d}\label{powerpc_2powerpc32_2power4_2memcopy_8h_a5ba4325e274dd195be8ab8ef88e6490d}} 
+\index{memcopy.h@{memcopy.h}!OP\_T\_THRES@{OP\_T\_THRES}}
+\index{OP\_T\_THRES@{OP\_T\_THRES}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{OP\_T\_THRES}{OP\_T\_THRES}}
+{\footnotesize\ttfamily \#define O\+P\+\_\+\+T\+\_\+\+T\+H\+R\+ES~16}
+

@@ -1,0 +1,65 @@
+\hypertarget{dl-version_8c}{}\doxysection{elf/dl-\/version.c File Reference}
+\label{dl-version_8c}\index{elf/dl-\/version.c@{elf/dl-\/version.c}}
+{\ttfamily \#include $<$elf.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+{\ttfamily \#include $<$\+\_\+itoa.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dl-version_8c_a9b8571f1e48785eab7ac276403a2dfe3}{make\+\_\+string}}(\mbox{\hyperlink{tst-strxfrm_8c_a2ae17f9e290d69d3fd0056962778ec4c}{string}},  rest...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-version_8c_a34374fbe6990d3fb83cdd11b946efeeb}{\+\_\+dl\+\_\+check\+\_\+map\+\_\+versions}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{localedef_8h_a0b2caeb4b6f130be43e5a2f0267dd453}{verbose}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} trace\+\_\+mode)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-version_8c_a91d5f31cb60dce6dc15677ad0a1cf24c}{\+\_\+dl\+\_\+check\+\_\+all\+\_\+versions}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{localedef_8h_a0b2caeb4b6f130be43e5a2f0267dd453}{verbose}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} trace\+\_\+mode)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dl-version_8c_a9b8571f1e48785eab7ac276403a2dfe3}\label{dl-version_8c_a9b8571f1e48785eab7ac276403a2dfe3}} 
+\index{dl-\/version.c@{dl-\/version.c}!make\_string@{make\_string}}
+\index{make\_string@{make\_string}!dl-\/version.c@{dl-\/version.c}}
+\doxysubsubsection{\texorpdfstring{make\_string}{make\_string}}
+{\footnotesize\ttfamily \#define make\+\_\+string(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strxfrm_8c_a2ae17f9e290d69d3fd0056962778ec4c}{string}},  }\item[{}]{rest... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{    const \textcolor{keywordtype}{char} *all[] = \{ \mbox{\hyperlink{localeinfo_8h_a5b7c2b5c96c13d5b5d2842e91794f6c1a6b30bda829e4fe673ed1afb7101a4746}{string}}, \#\# rest \};                    \(\backslash\)}
+\DoxyCodeLine{    size\_t \mbox{\hyperlink{cp1255_8c_a77124bd5f7e31e6fffc19f335da0c23f}{len}}, \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}};                                \(\backslash\)}
+\DoxyCodeLine{    char *\mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}}, *\mbox{\hyperlink{cns11643_8h_a410c39e57a7ae81d3a202d7b8cc66085}{cp}};                                \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    len = 1;                                      \(\backslash\)}
+\DoxyCodeLine{    for (cnt = 0; \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}} < \textcolor{keyword}{sizeof} (all) / \textcolor{keyword}{sizeof} (all[0]); ++\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}})              \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{cp1255_8c_a77124bd5f7e31e6fffc19f335da0c23f}{len}} += \mbox{\hyperlink{stpcpy-power7_8c_a417fef1b5cd577cfc9a2836bb40fa885}{strlen}} (all[cnt]);                              \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    cp = \mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}} = \mbox{\hyperlink{dcigettext_8c_a03a200320a749aaf2faa1d1719ffb4de}{alloca}} (\mbox{\hyperlink{cp1255_8c_a77124bd5f7e31e6fffc19f335da0c23f}{len}});                            \(\backslash\)}
+\DoxyCodeLine{    for (cnt = 0; \mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}} < \textcolor{keyword}{sizeof} (all) / \textcolor{keyword}{sizeof} (all[0]); ++\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}})              \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{cns11643_8h_a410c39e57a7ae81d3a202d7b8cc66085}{cp}} = \mbox{\hyperlink{io_2ftw_8c_a3a59e7dd010cec5c2dc6e037f582794e}{\_\_stpcpy}} (\mbox{\hyperlink{cns11643_8h_a410c39e57a7ae81d3a202d7b8cc66085}{cp}}, all[cnt]);                       \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    result;                                   \(\backslash\)}
+\DoxyCodeLine{  \})}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dl-version_8c_a91d5f31cb60dce6dc15677ad0a1cf24c}\label{dl-version_8c_a91d5f31cb60dce6dc15677ad0a1cf24c}} 
+\index{dl-\/version.c@{dl-\/version.c}!\_dl\_check\_all\_versions@{\_dl\_check\_all\_versions}}
+\index{\_dl\_check\_all\_versions@{\_dl\_check\_all\_versions}!dl-\/version.c@{dl-\/version.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_check\_all\_versions()}{\_dl\_check\_all\_versions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+check\+\_\+all\+\_\+versions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{verbose,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{trace\+\_\+mode }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-version_8c_a34374fbe6990d3fb83cdd11b946efeeb}\label{dl-version_8c_a34374fbe6990d3fb83cdd11b946efeeb}} 
+\index{dl-\/version.c@{dl-\/version.c}!\_dl\_check\_map\_versions@{\_dl\_check\_map\_versions}}
+\index{\_dl\_check\_map\_versions@{\_dl\_check\_map\_versions}!dl-\/version.c@{dl-\/version.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_check\_map\_versions()}{\_dl\_check\_map\_versions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+check\+\_\+map\+\_\+versions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{verbose,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{trace\+\_\+mode }\end{DoxyParamCaption})}
+

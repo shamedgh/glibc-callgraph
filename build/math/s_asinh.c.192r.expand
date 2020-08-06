@@ -1,0 +1,470 @@
+
+;; Function __asinh (__asinh, funcdef_no=77, decl_uid=1891, cgraph_uid=77, symbol_order=80)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+Edge 5->14 redirected to 19
+Purged non-fallthru edges from bb 21
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 4->6 redirected to 7
+Forwarding edge 4->5 to 8 failed.
+Forwarding edge 4->5 to 8 failed.
+deleting block 6
+Forwarding edge 8->9 to 17 failed.
+Forwarding edge 11->12 to 17 failed.
+Removing jump 106.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 8 failed.
+Forwarding edge 8->9 to 17 failed.
+Forwarding edge 11->12 to 17 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:DF 112 [ x ])
+        (reg:DF 21 xmm0 [ x ])) ../sysdeps/ieee754/dbl-64/s_asinh.c:35 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 9 2 (set (reg/v:DI 110 [ gh_u ])
+        (subreg:DI (reg/v:DF 112 [ x ]) 0)) ../sysdeps/ieee754/dbl-64/s_asinh.c:38 -1
+     (nil))
+(insn 9 7 10 2 (parallel [
+            (set (reg:DI 114)
+                (lshiftrt:DI (reg/v:DI 110 [ gh_u ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/s_asinh.c:38 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:SI 90 [ hx ])
+        (subreg:SI (reg:DI 114) 0)) ../sysdeps/ieee754/dbl-64/s_asinh.c:38 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg/v:SI 91 [ ix ])
+                (and:SI (reg/v:SI 90 [ hx ])
+                    (const_int 2147483647 [0x7fffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/s_asinh.c:39 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 91 [ ix ])
+            (const_int 1043333119 [0x3e2fffff]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:40 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) ../sysdeps/ieee754/dbl-64/s_asinh.c:40 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 36)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg:V2DF 115)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 16 15 17 4 (parallel [
+            (set (reg:DF 92 [ D.5419 ])
+                (abs:DF (reg/v:DF 112 [ x ])))
+            (use (reg:V2DF 115))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 112 [ x ]))
+        (nil)))
+(insn 17 16 18 4 (set (reg:DF 116)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [1  S8 A64])) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (expr_list:REG_EQUAL (const_double:DF 2.22507385850720138309023271733240406421921598046233e-308 [0x0.8p-1021])
+        (nil)))
+(insn 18 17 19 4 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 116)
+            (reg:DF 92 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (nil))
+(jump_insn 19 18 116 4 (set (pc)
+        (if_then_else (gt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 118)
+            (pc))) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 118)
+(note 116 19 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 20 116 21 5 (set (pc)
+        (label_ref 26)) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (nil)
+ -> 26)
+(barrier 21 20 118)
+(code_label 118 21 23 7 12 "" [1 uses])
+(note 23 118 24 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 7 (set (reg:DF 117 [ force_underflow_tmp2 ])
+        (mult:DF (reg/v:DF 112 [ x ])
+            (reg/v:DF 112 [ x ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (nil))
+(insn 25 24 26 7 (parallel [
+            (asm_operands/v ("") ("") 0 [
+                    (reg:DF 117 [ force_underflow_tmp2 ])
+                ]
+                 [
+                    (asm_input:DF ("x") ../sysdeps/ieee754/dbl-64/s_asinh.c:42)
+                ]
+                 [] ../sysdeps/ieee754/dbl-64/s_asinh.c:42)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/s_asinh.c:42 -1
+     (nil))
+(code_label 26 25 27 8 3 "" [1 uses])
+(note 27 26 28 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 8 (set (reg:DF 119)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [1  S8 A64])) ../sysdeps/ieee754/dbl-64/s_asinh.c:43 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.00000000000000005250476025520442024870446858110816e+300 [0x0.bf21e44003acep+997])
+        (nil)))
+(insn 29 28 30 8 (set (reg:DF 118 [ D.5419 ])
+        (plus:DF (reg/v:DF 112 [ x ])
+            (reg:DF 119))) ../sysdeps/ieee754/dbl-64/s_asinh.c:43 -1
+     (nil))
+(insn 30 29 31 8 (set (reg:DF 120)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S8 A64])) ../sysdeps/ieee754/dbl-64/s_asinh.c:43 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 31 30 32 8 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 118 [ D.5419 ])
+            (reg:DF 120))) ../sysdeps/ieee754/dbl-64/s_asinh.c:43 -1
+     (nil))
+(jump_insn 32 31 35 8 (set (pc)
+        (if_then_else (gt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 115)
+            (pc))) ../sysdeps/ieee754/dbl-64/s_asinh.c:43 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6335 (nil))
+ -> 115)
+(note 35 32 33 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 33 35 34 9 (set (pc)
+        (label_ref 84)) -1
+     (nil)
+ -> 84)
+(barrier 34 33 36)
+(code_label 36 34 37 10 2 "" [1 uses])
+(note 37 36 38 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 91 [ ix ])
+            (const_int 1102053376 [0x41b00000]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:46 -1
+     (nil))
+(jump_insn 39 38 40 10 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) ../sysdeps/ieee754/dbl-64/s_asinh.c:46 -1
+     (int_list:REG_BR_PROB 1041 (nil))
+ -> 48)
+(note 40 39 41 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 11 (set (reg:V2DF 121)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 42 41 43 11 (parallel [
+            (set (reg:DF 92 [ D.5419 ])
+                (abs:DF (reg/v:DF 112 [ x ])))
+            (use (reg:V2DF 121))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 112 [ x ]))
+        (nil)))
+(insn 43 42 44 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 91 [ ix ])
+            (const_int 1073741824 [0x40000000]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:55 -1
+     (nil))
+(jump_insn 44 43 47 11 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 67)
+            (pc))) ../sysdeps/ieee754/dbl-64/s_asinh.c:55 -1
+     (int_list:REG_BR_PROB 5227 (nil))
+ -> 67)
+(note 47 44 45 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 45 47 46 12 (set (pc)
+        (label_ref 84)) -1
+     (nil)
+ -> 84)
+(barrier 46 45 48)
+(code_label 48 46 49 13 7 "" [1 uses])
+(note 49 48 50 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 13 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 91 [ ix ])
+            (const_int 2146435071 [0x7fefffff]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:48 -1
+     (nil))
+(jump_insn 51 50 52 13 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) ../sysdeps/ieee754/dbl-64/s_asinh.c:48 -1
+     (int_list:REG_BR_PROB 3898 (nil))
+ -> 56)
+(note 52 51 53 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 14 (set (reg:DF 88 [ D.5419 ])
+        (plus:DF (reg/v:DF 112 [ x ])
+            (reg/v:DF 112 [ x ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:49 -1
+     (nil))
+(jump_insn 54 53 55 14 (set (pc)
+        (label_ref 103)) ../sysdeps/ieee754/dbl-64/s_asinh.c:49 -1
+     (nil)
+ -> 103)
+(barrier 55 54 56)
+(code_label 56 55 57 15 9 "" [1 uses])
+(note 57 56 58 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 15 (set (reg:V2DF 123)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 59 58 60 15 (parallel [
+            (set (reg:DF 122 [ D.5419 ])
+                (abs:DF (reg/v:DF 112 [ x ])))
+            (use (reg:V2DF 123))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 112 [ x ]))
+        (nil)))
+(insn 60 59 61 15 (set (reg:DF 21 xmm0)
+        (reg:DF 122 [ D.5419 ])) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (nil))
+(call_insn 61 60 62 15 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_log") [flags 0x41]  <function_decl 0x2aeae68ff948 __ieee754_log>) [0 __ieee754_log S1 A8])
+            (const_int 0 [0]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_log") [flags 0x41]  <function_decl 0x2aeae68ff948 __ieee754_log>)
+        (nil))
+    (expr_list:DF (use (reg:DF 21 xmm0))
+        (nil)))
+(insn 62 61 63 15 (set (reg:DF 96 [ D.5419 ])
+        (reg:DF 21 xmm0)) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (nil))
+(insn 63 62 64 15 (set (reg:DF 124)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC4") [flags 0x2]) [1  S8 A64])) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (expr_list:REG_EQUAL (const_double:DF 6.9314718055994528622676398299518041312694549560546875e-1 [0x0.b17217f7d1cf78p+0])
+        (nil)))
+(insn 64 63 65 15 (set (reg/v:DF 87 [ w ])
+        (plus:DF (reg:DF 96 [ D.5419 ])
+            (reg:DF 124))) ../sysdeps/ieee754/dbl-64/s_asinh.c:50 -1
+     (nil))
+(jump_insn 65 64 66 15 (set (pc)
+        (label_ref 98)) -1
+     (nil)
+ -> 98)
+(barrier 66 65 67)
+(code_label 67 66 68 16 8 "" [1 uses])
+(note 68 67 69 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 70 16 (set (reg:DF 126 [ D.5419 ])
+        (mult:DF (reg:DF 92 [ D.5419 ])
+            (reg:DF 92 [ D.5419 ]))) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 70 69 71 16 (set (reg:DF 128)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S8 A64])) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 71 70 72 16 (set (reg:DF 127 [ D.5419 ])
+        (plus:DF (reg:DF 126 [ D.5419 ])
+            (reg:DF 128))) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 72 71 73 16 (parallel [
+            (set (reg:DF 125 [ res ])
+                (asm_operands:DF ("sqrtsd %1, %0") ("=x") 0 [
+                        (reg:DF 127 [ D.5419 ])
+                    ]
+                     [
+                        (asm_input:DF ("xm") ../sysdeps/x86_64/fpu/math_private.h:58)
+                    ]
+                     [] ../sysdeps/x86_64/fpu/math_private.h:58))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 73 72 74 16 (set (reg/v:DF 106 [ res ])
+        (reg:DF 125 [ res ])) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 74 73 75 16 (set (reg:DF 129 [ D.5419 ])
+        (plus:DF (reg:DF 92 [ D.5419 ])
+            (reg/v:DF 106 [ res ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (nil))
+(insn 75 74 76 16 (set (reg:DF 131)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S8 A64])) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 76 75 77 16 (set (reg:DF 130 [ D.5419 ])
+        (div:DF (reg:DF 131)
+            (reg:DF 129 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (nil))
+(insn 77 76 78 16 (set (reg:DF 132 [ D.5419 ])
+        (plus:DF (reg:DF 92 [ D.5419 ])
+            (reg:DF 92 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (nil))
+(insn 78 77 79 16 (set (reg:DF 133 [ D.5419 ])
+        (plus:DF (reg:DF 130 [ D.5419 ])
+            (reg:DF 132 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (nil))
+(insn 79 78 80 16 (set (reg:DF 21 xmm0)
+        (reg:DF 133 [ D.5419 ])) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (nil))
+(call_insn 80 79 81 16 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_log") [flags 0x41]  <function_decl 0x2aeae68ff948 __ieee754_log>) [0 __ieee754_log S1 A8])
+            (const_int 0 [0]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_log") [flags 0x41]  <function_decl 0x2aeae68ff948 __ieee754_log>)
+        (nil))
+    (expr_list:DF (use (reg:DF 21 xmm0))
+        (nil)))
+(insn 81 80 82 16 (set (reg/v:DF 87 [ w ])
+        (reg:DF 21 xmm0)) ../sysdeps/ieee754/dbl-64/s_asinh.c:57 -1
+     (nil))
+(jump_insn 82 81 83 16 (set (pc)
+        (label_ref 98)) -1
+     (nil)
+ -> 98)
+(barrier 83 82 84)
+(code_label 84 83 85 17 6 "" [2 uses])
+(note 85 84 86 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 86 85 87 17 (set (reg/v:DF 104 [ t ])
+        (mult:DF (reg:DF 92 [ D.5419 ])
+            (reg:DF 92 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:62 -1
+     (nil))
+(insn 87 86 88 17 (set (reg:DF 136)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S8 A64])) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 88 87 89 17 (set (reg:DF 135 [ D.5419 ])
+        (plus:DF (reg/v:DF 104 [ t ])
+            (reg:DF 136))) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 89 88 90 17 (parallel [
+            (set (reg:DF 134 [ res ])
+                (asm_operands:DF ("sqrtsd %1, %0") ("=x") 0 [
+                        (reg:DF 135 [ D.5419 ])
+                    ]
+                     [
+                        (asm_input:DF ("xm") ../sysdeps/x86_64/fpu/math_private.h:58)
+                    ]
+                     [] ../sysdeps/x86_64/fpu/math_private.h:58))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 90 89 91 17 (set (reg/v:DF 100 [ res ])
+        (reg:DF 134 [ res ])) ../sysdeps/x86_64/fpu/math_private.h:58 -1
+     (nil))
+(insn 91 90 92 17 (set (reg:DF 138)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S8 A64])) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 92 91 93 17 (set (reg:DF 137 [ D.5419 ])
+        (plus:DF (reg/v:DF 100 [ res ])
+            (reg:DF 138))) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (nil))
+(insn 93 92 94 17 (set (reg:DF 139 [ D.5419 ])
+        (div:DF (reg/v:DF 104 [ t ])
+            (reg:DF 137 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (nil))
+(insn 94 93 95 17 (set (reg:DF 140 [ D.5419 ])
+        (plus:DF (reg:DF 139 [ D.5419 ])
+            (reg:DF 92 [ D.5419 ]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (nil))
+(insn 95 94 96 17 (set (reg:DF 21 xmm0)
+        (reg:DF 140 [ D.5419 ])) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (nil))
+(call_insn 96 95 97 17 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__log1p") [flags 0x41]  <function_decl 0x2aeae66d8438 __log1p>) [0 __log1p S1 A8])
+            (const_int 0 [0]))) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__log1p") [flags 0x41]  <function_decl 0x2aeae66d8438 __log1p>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DF (use (reg:DF 21 xmm0))
+        (nil)))
+(insn 97 96 98 17 (set (reg/v:DF 87 [ w ])
+        (reg:DF 21 xmm0)) ../sysdeps/ieee754/dbl-64/s_asinh.c:63 -1
+     (nil))
+(code_label 98 97 99 18 10 "" [2 uses])
+(note 99 98 100 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 100 99 101 18 (set (reg:V2DF 141)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) ../sysdeps/generic/math_private.h:233 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 101 100 102 18 (set (reg:V2DF 142)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC5") [flags 0x2]) [1  S16 A128])) ../sysdeps/generic/math_private.h:233 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF -0.0 [-0x0.0p+0])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 102 101 112 18 (parallel [
+            (set (reg:DF 88 [ D.5419 ])
+                (unspec:DF [
+                        (reg/v:DF 87 [ w ])
+                        (reg/v:DF 112 [ x ])
+                        (reg:V2DF 141)
+                        (reg:V2DF 142)
+                    ] UNSPEC_COPYSIGN))
+            (clobber (scratch:V2DF))
+        ]) ../sysdeps/generic/math_private.h:233 -1
+     (nil))
+(jump_insn 112 102 113 18 (set (pc)
+        (label_ref 103)) ../sysdeps/ieee754/dbl-64/s_asinh.c:66 -1
+     (nil)
+ -> 103)
+(barrier 113 112 115)
+(code_label 115 113 114 19 11 "" [1 uses])
+(note 114 115 4 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 4 114 103 19 (set (reg:DF 88 [ D.5419 ])
+        (reg/v:DF 112 [ x ])) ../sysdeps/ieee754/dbl-64/s_asinh.c:44 -1
+     (nil))
+(code_label 103 4 104 20 5 "" [2 uses])
+(note 104 103 105 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 105 104 109 20 (set (reg:DF 111 [ <retval> ])
+        (reg:DF 88 [ D.5419 ])) -1
+     (nil))
+(insn 109 105 110 20 (set (reg/i:DF 21 xmm0)
+        (reg:DF 111 [ <retval> ])) ../sysdeps/ieee754/dbl-64/s_asinh.c:67 -1
+     (nil))
+(insn 110 109 0 20 (use (reg/i:DF 21 xmm0)) ../sysdeps/ieee754/dbl-64/s_asinh.c:67 -1
+     (nil))

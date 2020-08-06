@@ -1,0 +1,97 @@
+
+;; Function __feholdexcept (*__GI___feholdexcept, funcdef_no=3, decl_uid=1929, cgraph_uid=3, symbol_order=3)
+
+Partition 0: size 4 align 4
+	mxcsr
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 13.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 91 [ envp ])
+        (reg:DI 5 di [ envp ])) ../sysdeps/x86_64/fpu/feholdexcpt.c:23 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (mem:BLK (reg/v/f:DI 91 [ envp ]) [1 *envp_2(D)+0 S32 A32])
+                (asm_operands:BLK ("fnstenv %0
+	stmxcsr %1
+	fnclex") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/feholdexcpt.c:28))
+            (set (mem:SI (plus:DI (reg/v/f:DI 91 [ envp ])
+                        (const_int 28 [0x1c])) [3 envp_2(D)->__mxcsr+0 S4 A32])
+                (asm_operands:SI ("fnstenv %0
+	stmxcsr %1
+	fnclex") ("=m") 1 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/feholdexcpt.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/feholdexcpt.c:28 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 93)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ envp ])
+                (const_int 28 [0x1c])) [3 envp_2(D)->__mxcsr+0 S4 A32])) ../sysdeps/x86_64/fpu/feholdexcpt.c:34 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:SI 92 [ D.1972 ])
+                (and:SI (reg:SI 93)
+                    (const_int -8128 [0xffffffffffffe040])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/feholdexcpt.c:34 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (plus:DI (reg/v/f:DI 91 [ envp ])
+                    (const_int 28 [0x1c])) [3 envp_2(D)->__mxcsr+0 S4 A32])
+            (const_int -8128 [0xffffffffffffe040]))
+        (nil)))
+(insn 9 8 10 2 (parallel [
+            (set (reg:SI 94)
+                (ior:SI (reg:SI 92 [ D.1972 ])
+                    (const_int 8064 [0x1f80])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/feholdexcpt.c:34 -1
+     (nil))
+(insn 10 9 11 2 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [3 mxcsr+0 S4 A32])
+        (reg:SI 94)) ../sysdeps/x86_64/fpu/feholdexcpt.c:34 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (asm_operands/v ("ldmxcsr %0") ("") 0 [
+                    (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -4 [0xfffffffffffffffc])) [3 mxcsr+0 S4 A32])
+                ]
+                 [
+                    (asm_input:SI ("m") ../sysdeps/x86_64/fpu/feholdexcpt.c:35)
+                ]
+                 [] ../sysdeps/x86_64/fpu/feholdexcpt.c:35)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/feholdexcpt.c:35 -1
+     (nil))
+(insn 12 11 16 2 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) ../sysdeps/x86_64/fpu/feholdexcpt.c:37 -1
+     (nil))
+(insn 16 12 17 2 (set (reg/i:SI 0 ax)
+        (reg:SI 90 [ <retval> ])) ../sysdeps/x86_64/fpu/feholdexcpt.c:38 -1
+     (nil))
+(insn 17 16 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/x86_64/fpu/feholdexcpt.c:38 -1
+     (nil))

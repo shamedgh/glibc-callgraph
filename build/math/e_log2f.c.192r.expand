@@ -1,0 +1,652 @@
+
+;; Function __ieee754_log2f (__ieee754_log2f, funcdef_no=77, decl_uid=5010, cgraph_uid=77, symbol_order=87)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+Edge 2->8 redirected to 19
+Edge 11->16 redirected to 20
+Purged non-fallthru edges from bb 22
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 13->15 redirected to 16
+Forwarding edge 14->15 to 16 failed.
+Deleted label in block 15.
+Removing jump 145.
+Merging block 22 into block 21...
+Merged blocks 21 and 22.
+Merged 21 and 22 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 14->15 to 16 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:SF 146 [ x ])
+        (reg:SF 21 xmm0 [ x ])) ../sysdeps/ieee754/flt-32/e_log2f.c:37 -1
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (parallel [
+            (set (reg:SI 147 [ ix ])
+                (asm_operands:SI ("movd %1, %0") ("=rm") 0 [
+                        (reg/v:SF 146 [ x ])
+                    ]
+                     [
+                        (asm_input:SF ("x") ../sysdeps/ieee754/flt-32/e_log2f.c:41)
+                    ]
+                     [] ../sysdeps/ieee754/flt-32/e_log2f.c:41))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:41 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:SI 88 [ ix ])
+        (reg:SI 147 [ ix ])) ../sysdeps/ieee754/flt-32/e_log2f.c:41 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 88 [ ix ])
+            (const_int 8388607 [0x7fffff]))) ../sysdeps/ieee754/flt-32/e_log2f.c:44 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 154)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:44 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 154)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (parallel [
+            (set (reg:SI 148 [ D.5439 ])
+                (and:SI (reg/v:SI 88 [ ix ])
+                    (const_int 2147483647 [0x7fffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:45 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 148 [ D.5439 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/flt-32/e_log2f.c:45 -1
+     (nil))
+(jump_insn 16 15 17 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:45 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 23)
+(note 17 16 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 5 (set (reg:SF 149 [ D.5438 ])
+        (minus:SF (reg/v:SF 146 [ x ])
+            (reg/v:SF 146 [ x ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:46 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:SF 150)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:46 -1
+     (expr_list:REG_EQUAL (const_double:SF -3.3554432e+7 [-0x0.8p+26])
+        (nil)))
+(insn 20 19 21 5 (set (reg:SF 89 [ D.5438 ])
+        (div:SF (reg:SF 150)
+            (reg:SF 149 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:46 -1
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (label_ref 142)) ../sysdeps/ieee754/flt-32/e_log2f.c:46 -1
+     (nil)
+ -> 142)
+(barrier 22 21 23)
+(code_label 23 22 24 6 3 "" [1 uses])
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 6 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 88 [ ix ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/flt-32/e_log2f.c:47 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 32)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:47 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 32)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg:SF 92 [ D.5438 ])
+        (minus:SF (reg/v:SF 146 [ x ])
+            (reg/v:SF 146 [ x ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:48 -1
+     (nil))
+(insn 29 28 30 7 (set (reg:SF 89 [ D.5438 ])
+        (div:SF (reg:SF 92 [ D.5438 ])
+            (reg:SF 92 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:48 -1
+     (nil))
+(jump_insn 30 29 31 7 (set (pc)
+        (label_ref 142)) ../sysdeps/ieee754/flt-32/e_log2f.c:48 -1
+     (nil)
+ -> 142)
+(barrier 31 30 32)
+(code_label 32 31 33 8 5 "" [1 uses])
+(note 33 32 34 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 8 (set (reg:SF 151)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:49 -1
+     (expr_list:REG_EQUAL (const_double:SF 3.3554432e+7 [0x0.8p+26])
+        (nil)))
+(insn 35 34 36 8 (set (reg/v:SF 146 [ x ])
+        (mult:SF (reg/v:SF 146 [ x ])
+            (reg:SF 151))) ../sysdeps/ieee754/flt-32/e_log2f.c:49 -1
+     (nil))
+(insn 36 35 37 8 (parallel [
+            (set (reg:SI 152 [ ix ])
+                (asm_operands:SI ("movd %1, %0") ("=rm") 0 [
+                        (reg/v:SF 146 [ x ])
+                    ]
+                     [
+                        (asm_input:SF ("x") ../sysdeps/ieee754/flt-32/e_log2f.c:50)
+                    ]
+                     [] ../sysdeps/ieee754/flt-32/e_log2f.c:50))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:50 -1
+     (nil))
+(insn 37 36 5 8 (set (reg/v:SI 88 [ ix ])
+        (reg:SI 152 [ ix ])) ../sysdeps/ieee754/flt-32/e_log2f.c:50 -1
+     (nil))
+(insn 5 37 151 8 (set (reg/v:SI 87 [ k ])
+        (const_int -25 [0xffffffffffffffe7])) ../sysdeps/ieee754/flt-32/e_log2f.c:49 -1
+     (nil))
+(jump_insn 151 5 152 8 (set (pc)
+        (label_ref 38)) -1
+     (nil)
+ -> 38)
+(barrier 152 151 154)
+(code_label 154 152 153 9 10 "" [1 uses])
+(note 153 154 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 153 38 9 (set (reg/v:SI 87 [ k ])
+        (const_int 0 [0])) ../sysdeps/ieee754/flt-32/e_log2f.c:43 -1
+     (nil))
+(code_label 38 4 39 10 2 "" [1 uses])
+(note 39 38 40 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 88 [ ix ])
+            (const_int 2139095039 [0x7f7fffff]))) ../sysdeps/ieee754/flt-32/e_log2f.c:52 -1
+     (nil))
+(jump_insn 41 40 42 10 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:52 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 46)
+(note 42 41 43 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 11 (set (reg:SF 89 [ D.5438 ])
+        (plus:SF (reg/v:SF 146 [ x ])
+            (reg/v:SF 146 [ x ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:52 -1
+     (nil))
+(jump_insn 44 43 45 11 (set (pc)
+        (label_ref 142)) ../sysdeps/ieee754/flt-32/e_log2f.c:52 -1
+     (nil)
+ -> 142)
+(barrier 45 44 46)
+(code_label 46 45 47 12 6 "" [1 uses])
+(note 47 46 48 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 12 (parallel [
+            (set (reg:SI 153 [ D.5439 ])
+                (ashiftrt:SI (reg/v:SI 88 [ ix ])
+                    (const_int 23 [0x17])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:53 -1
+     (nil))
+(insn 49 48 50 12 (parallel [
+            (set (reg:SI 154 [ D.5439 ])
+                (plus:SI (reg:SI 153 [ D.5439 ])
+                    (const_int -127 [0xffffffffffffff81])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:53 -1
+     (nil))
+(insn 50 49 51 12 (parallel [
+            (set (reg/v:SI 95 [ k ])
+                (plus:SI (reg:SI 154 [ D.5439 ])
+                    (reg/v:SI 87 [ k ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:53 -1
+     (nil))
+(insn 51 50 52 12 (parallel [
+            (set (reg/v:SI 96 [ ix ])
+                (and:SI (reg/v:SI 88 [ ix ])
+                    (const_int 8388607 [0x7fffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:54 -1
+     (nil))
+(insn 52 51 53 12 (parallel [
+            (set (reg:SI 155 [ D.5439 ])
+                (plus:SI (reg/v:SI 96 [ ix ])
+                    (const_int 4913952 [0x4afb20])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:55 -1
+     (nil))
+(insn 53 52 54 12 (parallel [
+            (set (reg/v:SI 98 [ i ])
+                (and:SI (reg:SI 155 [ D.5439 ])
+                    (const_int 8388608 [0x800000])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:55 -1
+     (nil))
+(insn 54 53 55 12 (parallel [
+            (set (reg:SI 157 [ D.5439 ])
+                (xor:SI (reg/v:SI 98 [ i ])
+                    (const_int 1065353216 [0x3f800000])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:56 -1
+     (nil))
+(insn 55 54 56 12 (parallel [
+            (set (reg:SI 158 [ i_ ])
+                (ior:SI (reg:SI 157 [ D.5439 ])
+                    (reg/v:SI 96 [ ix ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:56 -1
+     (nil))
+(insn 56 55 57 12 (parallel [
+            (set (reg:SF 156 [ x ])
+                (asm_operands:SF ("movd %1, %0") ("=x") 0 [
+                        (reg:SI 158 [ i_ ])
+                    ]
+                     [
+                        (asm_input:SI ("rm") ../sysdeps/ieee754/flt-32/e_log2f.c:56)
+                    ]
+                     [] ../sysdeps/ieee754/flt-32/e_log2f.c:56))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:56 -1
+     (nil))
+(insn 57 56 58 12 (set (reg/v:SF 101 [ x ])
+        (reg:SF 156 [ x ])) ../sysdeps/ieee754/flt-32/e_log2f.c:56 -1
+     (nil))
+(insn 58 57 59 12 (parallel [
+            (set (reg:SI 159 [ D.5439 ])
+                (ashiftrt:SI (reg/v:SI 98 [ i ])
+                    (const_int 23 [0x17])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:58 -1
+     (nil))
+(insn 59 58 60 12 (parallel [
+            (set (reg:SI 160 [ k ])
+                (plus:SI (reg:SI 159 [ D.5439 ])
+                    (reg/v:SI 95 [ k ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:58 -1
+     (nil))
+(insn 60 59 61 12 (set (reg/v:SF 104 [ dk ])
+        (float:SF (reg:SI 160 [ k ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:58 -1
+     (nil))
+(insn 61 60 62 12 (set (reg:SF 161)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:59 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 62 61 63 12 (set (reg/v:SF 105 [ f ])
+        (minus:SF (reg/v:SF 101 [ x ])
+            (reg:SF 161))) ../sysdeps/ieee754/flt-32/e_log2f.c:59 -1
+     (nil))
+(insn 63 62 64 12 (parallel [
+            (set (reg:SI 162 [ D.5439 ])
+                (plus:SI (reg/v:SI 96 [ ix ])
+                    (const_int 15 [0xf])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:60 -1
+     (nil))
+(insn 64 63 65 12 (parallel [
+            (set (reg:SI 163 [ D.5439 ])
+                (and:SI (reg:SI 162 [ D.5439 ])
+                    (const_int 8388607 [0x7fffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:60 -1
+     (nil))
+(insn 65 64 66 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 163 [ D.5439 ])
+            (const_int 15 [0xf]))) ../sysdeps/ieee754/flt-32/e_log2f.c:60 -1
+     (nil))
+(jump_insn 66 65 67 12 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 88)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:60 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 88)
+(note 67 66 68 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 13 (set (reg:SF 164)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:61 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 69 68 70 13 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 105 [ f ])
+            (reg:SF 164))) ../sysdeps/ieee754/flt-32/e_log2f.c:61 -1
+     (nil))
+(jump_insn 70 69 159 13 (set (pc)
+        (if_then_else (unordered (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 161)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:61 612 {*jcc_1}
+     (int_list:REG_BR_PROB 100 (nil))
+ -> 161)
+(note 159 70 71 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 71 159 72 14 (set (reg:SF 165)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:61 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 72 71 73 14 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:SF 105 [ f ])
+            (reg:SF 165))) ../sysdeps/ieee754/flt-32/e_log2f.c:61 -1
+     (nil))
+(jump_insn 73 72 160 14 (set (pc)
+        (if_then_else (uneq (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 158)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:61 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 158)
+(note 160 73 161 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(code_label 161 160 75 16 12 "" [1 uses])
+(note 75 161 76 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 16 (set (reg:SF 167)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC4") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (expr_list:REG_EQUAL (const_double:SF 3.333333432674407958984375e-1 [0x0.aaaaabp-1])
+        (nil)))
+(insn 77 76 78 16 (set (reg:SF 166 [ D.5438 ])
+        (mult:SF (reg/v:SF 105 [ f ])
+            (reg:SF 167))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(insn 78 77 79 16 (set (reg:SF 169)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC5") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (expr_list:REG_EQUAL (const_double:SF 5.0e-1 [0x0.8p+0])
+        (nil)))
+(insn 79 78 80 16 (set (reg:SF 168 [ D.5438 ])
+        (minus:SF (reg:SF 169)
+            (reg:SF 166 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(insn 80 79 81 16 (set (reg:SF 170 [ D.5438 ])
+        (mult:SF (reg/v:SF 105 [ f ])
+            (reg/v:SF 105 [ f ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(insn 81 80 82 16 (set (reg:SF 171 [ R ])
+        (mult:SF (reg:SF 168 [ D.5438 ])
+            (reg:SF 170 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(insn 82 81 83 16 (set (reg:SF 172 [ D.5438 ])
+        (minus:SF (reg:SF 171 [ R ])
+            (reg/v:SF 105 [ f ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(insn 83 82 84 16 (set (reg:SF 174)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC6") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (expr_list:REG_EQUAL (const_double:SF 6.93147182464599609375e-1 [0x0.b17218p+0])
+        (nil)))
+(insn 84 83 85 16 (set (reg:SF 173 [ D.5438 ])
+        (div:SF (reg:SF 172 [ D.5438 ])
+            (reg:SF 174))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(insn 85 84 86 16 (set (reg:SF 89 [ D.5438 ])
+        (minus:SF (reg/v:SF 104 [ dk ])
+            (reg:SF 173 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil))
+(jump_insn 86 85 87 16 (set (pc)
+        (label_ref 142)) ../sysdeps/ieee754/flt-32/e_log2f.c:68 -1
+     (nil)
+ -> 142)
+(barrier 87 86 88)
+(code_label 88 87 89 17 7 "" [1 uses])
+(note 89 88 90 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 90 89 91 17 (set (reg:SF 176)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC7") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:70 -1
+     (expr_list:REG_EQUAL (const_double:SF 2.0e+0 [0x0.8p+2])
+        (nil)))
+(insn 91 90 92 17 (set (reg:SF 175 [ D.5438 ])
+        (plus:SF (reg/v:SF 105 [ f ])
+            (reg:SF 176))) ../sysdeps/ieee754/flt-32/e_log2f.c:70 -1
+     (nil))
+(insn 92 91 93 17 (set (reg/v:SF 115 [ s ])
+        (div:SF (reg/v:SF 105 [ f ])
+            (reg:SF 175 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:70 -1
+     (nil))
+(insn 93 92 94 17 (set (reg/v:SF 116 [ z ])
+        (mult:SF (reg/v:SF 115 [ s ])
+            (reg/v:SF 115 [ s ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:71 -1
+     (nil))
+(insn 94 93 95 17 (parallel [
+            (set (reg/v:SI 117 [ i ])
+                (plus:SI (reg/v:SI 96 [ ix ])
+                    (const_int -3187664 [0xffffffffffcf5c30])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:72 -1
+     (nil))
+(insn 95 94 96 17 (set (reg/v:SF 118 [ w ])
+        (mult:SF (reg/v:SF 116 [ z ])
+            (reg/v:SF 116 [ z ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:73 -1
+     (nil))
+(insn 96 95 97 17 (set (reg:SF 178)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC8") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.4798198640346527099609375e-1 [0x0.978897p-2])
+        (nil)))
+(insn 97 96 98 17 (set (reg:SF 177 [ D.5438 ])
+        (mult:SF (reg/v:SF 118 [ w ])
+            (reg:SF 178))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 98 97 99 17 (set (reg:SF 180)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC9") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.8183572590351104736328125e-1 [0x0.ba3325p-2])
+        (nil)))
+(insn 99 98 100 17 (set (reg:SF 179 [ D.5438 ])
+        (plus:SF (reg:SF 177 [ D.5438 ])
+            (reg:SF 180))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 100 99 101 17 (set (reg:SF 181 [ D.5438 ])
+        (mult:SF (reg:SF 179 [ D.5438 ])
+            (reg/v:SF 118 [ w ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 101 100 102 17 (set (reg:SF 183)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC10") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 2.857142984867095947265625e-1 [0x0.924925p-1])
+        (nil)))
+(insn 102 101 103 17 (set (reg:SF 182 [ D.5438 ])
+        (plus:SF (reg:SF 181 [ D.5438 ])
+            (reg:SF 183))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 103 102 104 17 (set (reg:SF 184 [ D.5438 ])
+        (mult:SF (reg:SF 182 [ D.5438 ])
+            (reg/v:SF 118 [ w ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 104 103 105 17 (set (reg:SF 186)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC11") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 6.66666686534881591796875e-1 [0x0.aaaaabp+0])
+        (nil)))
+(insn 105 104 106 17 (set (reg:SF 185 [ D.5438 ])
+        (plus:SF (reg:SF 184 [ D.5438 ])
+            (reg:SF 186))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 106 105 107 17 (set (reg:SF 187 [ t2 ])
+        (mult:SF (reg:SF 185 [ D.5438 ])
+            (reg/v:SF 116 [ z ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 107 106 108 17 (set (reg:SF 189)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC12") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.5313838422298431396484375e-1 [0x0.9cd04fp-2])
+        (nil)))
+(insn 108 107 109 17 (set (reg:SF 188 [ D.5438 ])
+        (mult:SF (reg/v:SF 118 [ w ])
+            (reg:SF 189))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 109 108 110 17 (set (reg:SF 191)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC13") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 2.2222198545932769775390625e-1 [0x0.e38e29p-2])
+        (nil)))
+(insn 110 109 111 17 (set (reg:SF 190 [ D.5438 ])
+        (plus:SF (reg:SF 188 [ D.5438 ])
+            (reg:SF 191))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 111 110 112 17 (set (reg:SF 192 [ D.5438 ])
+        (mult:SF (reg:SF 190 [ D.5438 ])
+            (reg/v:SF 118 [ w ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 112 111 113 17 (set (reg:SF 194)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (expr_list:REG_EQUAL (const_double:SF 4.000000059604644775390625e-1 [0x0.cccccdp-1])
+        (nil)))
+(insn 113 112 114 17 (set (reg:SF 193 [ D.5438 ])
+        (plus:SF (reg:SF 192 [ D.5438 ])
+            (reg:SF 194))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 114 113 115 17 (set (reg:SF 195 [ t1 ])
+        (mult:SF (reg:SF 193 [ D.5438 ])
+            (reg/v:SF 118 [ w ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 115 114 116 17 (set (reg/v:SF 133 [ R ])
+        (plus:SF (reg:SF 187 [ t2 ])
+            (reg:SF 195 [ t1 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:78 -1
+     (nil))
+(insn 116 115 117 17 (set (reg:SI 197)
+        (const_int 3523208 [0x35c288])) ../sysdeps/ieee754/flt-32/e_log2f.c:79 -1
+     (nil))
+(insn 117 116 118 17 (parallel [
+            (set (reg:SI 196 [ j ])
+                (minus:SI (reg:SI 197)
+                    (reg/v:SI 96 [ ix ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:79 -1
+     (nil))
+(insn 118 117 119 17 (parallel [
+            (set (reg:SI 198 [ i ])
+                (ior:SI (reg:SI 196 [ j ])
+                    (reg/v:SI 117 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/flt-32/e_log2f.c:79 -1
+     (nil))
+(insn 119 118 120 17 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 198 [ i ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/flt-32/e_log2f.c:79 -1
+     (nil))
+(jump_insn 120 119 121 17 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 134)
+            (pc))) ../sysdeps/ieee754/flt-32/e_log2f.c:79 -1
+     (int_list:REG_BR_PROB 3665 (nil))
+ -> 134)
+(note 121 120 122 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 123 18 (set (reg:SF 200)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC5") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:80 -1
+     (expr_list:REG_EQUAL (const_double:SF 5.0e-1 [0x0.8p+0])
+        (nil)))
+(insn 123 122 124 18 (set (reg:SF 199 [ D.5438 ])
+        (mult:SF (reg/v:SF 105 [ f ])
+            (reg:SF 200))) ../sysdeps/ieee754/flt-32/e_log2f.c:80 -1
+     (nil))
+(insn 124 123 125 18 (set (reg/v:SF 135 [ hfsq ])
+        (mult:SF (reg:SF 199 [ D.5438 ])
+            (reg/v:SF 105 [ f ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:80 -1
+     (nil))
+(insn 125 124 126 18 (set (reg:SF 201 [ D.5438 ])
+        (plus:SF (reg/v:SF 133 [ R ])
+            (reg/v:SF 135 [ hfsq ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil))
+(insn 126 125 127 18 (set (reg:SF 202 [ D.5438 ])
+        (mult:SF (reg:SF 201 [ D.5438 ])
+            (reg/v:SF 115 [ s ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil))
+(insn 127 126 128 18 (set (reg:SF 203 [ D.5438 ])
+        (minus:SF (reg/v:SF 135 [ hfsq ])
+            (reg:SF 202 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil))
+(insn 128 127 129 18 (set (reg:SF 204 [ D.5438 ])
+        (minus:SF (reg:SF 203 [ D.5438 ])
+            (reg/v:SF 105 [ f ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil))
+(insn 129 128 130 18 (set (reg:SF 206)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC6") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (expr_list:REG_EQUAL (const_double:SF 6.93147182464599609375e-1 [0x0.b17218p+0])
+        (nil)))
+(insn 130 129 131 18 (set (reg:SF 205 [ D.5438 ])
+        (div:SF (reg:SF 204 [ D.5438 ])
+            (reg:SF 206))) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil))
+(insn 131 130 132 18 (set (reg:SF 89 [ D.5438 ])
+        (minus:SF (reg/v:SF 104 [ dk ])
+            (reg:SF 205 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil))
+(jump_insn 132 131 133 18 (set (pc)
+        (label_ref 142)) ../sysdeps/ieee754/flt-32/e_log2f.c:81 -1
+     (nil)
+ -> 142)
+(barrier 133 132 134)
+(code_label 134 133 135 19 9 "" [1 uses])
+(note 135 134 136 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 136 135 137 19 (set (reg:SF 207 [ D.5438 ])
+        (minus:SF (reg/v:SF 105 [ f ])
+            (reg/v:SF 133 [ R ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (nil))
+(insn 137 136 138 19 (set (reg:SF 208 [ D.5438 ])
+        (mult:SF (reg:SF 207 [ D.5438 ])
+            (reg/v:SF 115 [ s ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (nil))
+(insn 138 137 139 19 (set (reg:SF 209 [ D.5438 ])
+        (minus:SF (reg:SF 208 [ D.5438 ])
+            (reg/v:SF 105 [ f ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (nil))
+(insn 139 138 140 19 (set (reg:SF 211)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC6") [flags 0x2]) [1  S4 A32])) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (expr_list:REG_EQUAL (const_double:SF 6.93147182464599609375e-1 [0x0.b17218p+0])
+        (nil)))
+(insn 140 139 141 19 (set (reg:SF 210 [ D.5438 ])
+        (div:SF (reg:SF 209 [ D.5438 ])
+            (reg:SF 211))) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (nil))
+(insn 141 140 155 19 (set (reg:SF 89 [ D.5438 ])
+        (minus:SF (reg/v:SF 104 [ dk ])
+            (reg:SF 210 [ D.5438 ]))) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (nil))
+(jump_insn 155 141 156 19 (set (pc)
+        (label_ref 142)) ../sysdeps/ieee754/flt-32/e_log2f.c:83 -1
+     (nil)
+ -> 142)
+(barrier 156 155 158)
+(code_label 158 156 157 20 11 "" [1 uses])
+(note 157 158 6 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 6 157 142 20 (set (reg:SF 89 [ D.5438 ])
+        (reg/v:SF 104 [ dk ])) ../sysdeps/ieee754/flt-32/e_log2f.c:65 -1
+     (nil))
+(code_label 142 6 143 21 4 "" [6 uses])
+(note 143 142 144 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 144 143 148 21 (set (reg:SF 145 [ <retval> ])
+        (reg:SF 89 [ D.5438 ])) -1
+     (nil))
+(insn 148 144 149 21 (set (reg/i:SF 21 xmm0)
+        (reg:SF 145 [ <retval> ])) ../sysdeps/ieee754/flt-32/e_log2f.c:85 -1
+     (nil))
+(insn 149 148 0 21 (use (reg/i:SF 21 xmm0)) ../sysdeps/ieee754/flt-32/e_log2f.c:85 -1
+     (nil))

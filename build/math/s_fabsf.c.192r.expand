@@ -1,0 +1,56 @@
+
+;; Function __fabsf (__fabsf, funcdef_no=3, decl_uid=2345, cgraph_uid=3, symbol_order=3)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 9.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SF 89 [ x ])
+        (reg:SF 21 xmm0 [ x ])) ../sysdeps/x86_64/fpu/s_fabsf.c:23 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:V4SF 91)
+        (mem/u/c:V4SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) ../sysdeps/x86_64/fpu/s_fabsf.c:24 -1
+     (expr_list:REG_EQUAL (const_vector:V4SF [
+                (const_double:SF +QNaN [+QNaN])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+                (const_double:SF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 7 6 8 2 (parallel [
+            (set (reg:SF 90 [ D.2997 ])
+                (abs:SF (reg/v:SF 89 [ x ])))
+            (use (reg:V4SF 91))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/s_fabsf.c:24 -1
+     (expr_list:REG_EQUAL (abs:SF (reg/v:SF 89 [ x ]))
+        (nil)))
+(insn 8 7 12 2 (set (reg:SF 88 [ <retval> ])
+        (reg:SF 90 [ D.2997 ])) ../sysdeps/x86_64/fpu/s_fabsf.c:24 -1
+     (nil))
+(insn 12 8 13 2 (set (reg/i:SF 21 xmm0)
+        (reg:SF 88 [ <retval> ])) ../sysdeps/x86_64/fpu/s_fabsf.c:25 -1
+     (nil))
+(insn 13 12 0 2 (use (reg/i:SF 21 xmm0)) ../sysdeps/x86_64/fpu/s_fabsf.c:25 -1
+     (nil))

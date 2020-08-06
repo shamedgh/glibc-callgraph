@@ -1,0 +1,55 @@
+
+;; Function __ieee754_sqrt (__ieee754_sqrt, funcdef_no=74, decl_uid=3705, cgraph_uid=71, symbol_order=71)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 9.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:DF 89 [ x ])
+        (reg:DF 21 xmm0 [ x ])) ../sysdeps/x86_64/fpu/e_sqrt.c:24 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (reg:DF 90 [ res ])
+                (asm_operands:DF ("sqrtsd %1, %0") ("=x") 0 [
+                        (reg/v:DF 89 [ x ])
+                    ]
+                     [
+                        (asm_input:DF ("xm") ../sysdeps/x86_64/fpu/e_sqrt.c:27)
+                    ]
+                     [] ../sysdeps/x86_64/fpu/e_sqrt.c:27))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/e_sqrt.c:27 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/v:DF 87 [ res ])
+        (reg:DF 90 [ res ])) ../sysdeps/x86_64/fpu/e_sqrt.c:27 -1
+     (nil))
+(insn 8 7 12 2 (set (reg:DF 88 [ <retval> ])
+        (reg/v:DF 87 [ res ])) ../sysdeps/x86_64/fpu/e_sqrt.c:29 -1
+     (nil))
+(insn 12 8 13 2 (set (reg/i:DF 21 xmm0)
+        (reg:DF 88 [ <retval> ])) ../sysdeps/x86_64/fpu/e_sqrt.c:30 -1
+     (nil))
+(insn 13 12 0 2 (use (reg/i:DF 21 xmm0)) ../sysdeps/x86_64/fpu/e_sqrt.c:30 -1
+     (nil))

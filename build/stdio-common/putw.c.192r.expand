@@ -1,0 +1,92 @@
+
+;; Function putw (putw, funcdef_no=45, decl_uid=7723, cgraph_uid=45, symbol_order=45)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 19.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 w+0 S4 A32])
+        (reg:SI 5 di [ w ])) putw.c:25 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 92 [ stream ])
+        (reg:DI 4 si [ stream ])) putw.c:25 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (parallel [
+            (set (reg:DI 93)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) putw.c:27 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 2 cx)
+        (reg/v/f:DI 92 [ stream ])) putw.c:27 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 1 dx)
+        (const_int 1 [0x1])) putw.c:27 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 4 si)
+        (const_int 4 [0x4])) putw.c:27 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 93)) putw.c:27 -1
+     (nil))
+(call_insn 12 11 13 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_IO_fwrite") [flags 0x41]  <function_decl 0x2b6e30e79bd0 _IO_fwrite>) [0 _IO_fwrite S1 A8])
+            (const_int 0 [0]))) putw.c:27 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_IO_fwrite") [flags 0x41]  <function_decl 0x2b6e30e79bd0 _IO_fwrite>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 13 12 14 2 (set (reg:DI 87 [ D.8239 ])
+        (reg:DI 0 ax)) putw.c:27 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 87 [ D.8239 ])
+            (const_int 0 [0]))) -1
+     (nil))
+(insn 15 14 16 2 (set (reg:QI 96)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) -1
+     (nil))
+(insn 16 15 17 2 (set (reg:SI 95 [ D.8240 ])
+        (zero_extend:SI (reg:QI 96))) -1
+     (nil))
+(insn 17 16 18 2 (parallel [
+            (set (reg:SI 94 [ D.8241 ])
+                (neg:SI (reg:SI 95 [ D.8240 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 18 17 22 2 (set (reg:SI 91 [ <retval> ])
+        (reg:SI 94 [ D.8241 ])) -1
+     (nil))
+(insn 22 18 23 2 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) putw.c:30 -1
+     (nil))
+(insn 23 22 0 2 (use (reg/i:SI 0 ax)) putw.c:30 -1
+     (nil))

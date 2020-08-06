@@ -1,0 +1,70 @@
+\hypertarget{hurdfault_8h}{}\doxysection{hurd/hurdfault.h File Reference}
+\label{hurdfault_8h}\index{hurd/hurdfault.h@{hurd/hurdfault.h}}
+{\ttfamily \#include $<$hurd/sigpreempt.\+h$>$}\newline
+{\ttfamily \#include $<$setjmp.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hurdfault_8h_a9caa3c80560a67160af1059df7bc38ec}{\+\_\+hurdsig\+\_\+catch\+\_\+fault}}(\mbox{\hyperlink{sysdeps_2posix_2sigset_8c_ae3a3a4243d7fcd23330f47e58ffbbfe2}{sigset}},  firstcode,  lastcode)
+\item 
+\#define \mbox{\hyperlink{hurdfault_8h_a2d5ce38f1ebf2c255091ffa397e37cc1}{\+\_\+hurdsig\+\_\+end\+\_\+catch\+\_\+fault}}()~(\+\_\+hurdsig\+\_\+fault\+\_\+preemptor.\+signals = 0)
+\item 
+\#define \mbox{\hyperlink{hurdfault_8h_a11a48d622a2539ce53bfda5e41a8b69f}{\+\_\+hurdsig\+\_\+catch\+\_\+memory\+\_\+fault}}(\mbox{\hyperlink{structobject}{object}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{setjmp_2setjmp_8h_ad0456a7aa332127ebd188912b126c8fa}{jmp\+\_\+buf}} \mbox{\hyperlink{hurdfault_8h_a9c0669ce169269435467dab6d6a48ecf}{\+\_\+hurdsig\+\_\+fault\+\_\+env}}
+\item 
+struct \mbox{\hyperlink{structhurd__signal__preemptor}{hurd\+\_\+signal\+\_\+preemptor}} \mbox{\hyperlink{hurdfault_8h_a5ba6bce1b2242c7bc871144090bf4a14}{\+\_\+hurdsig\+\_\+fault\+\_\+preemptor}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hurdfault_8h_a9caa3c80560a67160af1059df7bc38ec}\label{hurdfault_8h_a9caa3c80560a67160af1059df7bc38ec}} 
+\index{hurdfault.h@{hurdfault.h}!\_hurdsig\_catch\_fault@{\_hurdsig\_catch\_fault}}
+\index{\_hurdsig\_catch\_fault@{\_hurdsig\_catch\_fault}!hurdfault.h@{hurdfault.h}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_catch\_fault}{\_hurdsig\_catch\_fault}}
+{\footnotesize\ttfamily \#define \+\_\+hurdsig\+\_\+catch\+\_\+fault(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{sysdeps_2posix_2sigset_8c_ae3a3a4243d7fcd23330f47e58ffbbfe2}{sigset}},  }\item[{}]{firstcode,  }\item[{}]{lastcode }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{hurdfault_8h_a5ba6bce1b2242c7bc871144090bf4a14}{\_hurdsig\_fault\_preemptor}}.\mbox{\hyperlink{structhurd__signal__preemptor_a3121cb45d2a3a8de76bd0f7f9bb897b0}{signals}} = (\mbox{\hyperlink{signal_2sigset_8c_ae3a3a4243d7fcd23330f47e58ffbbfe2}{sigset}}),          \(\backslash\)}
+\DoxyCodeLine{   \mbox{\hyperlink{hurdfault_8h_a5ba6bce1b2242c7bc871144090bf4a14}{\_hurdsig\_fault\_preemptor}}.\mbox{\hyperlink{structhurd__signal__preemptor_a778d177b382ab32ef42995436c2a8c23}{first}} = (\textcolor{keywordtype}{long} \textcolor{keywordtype}{int}) (firstcode),    \(\backslash\)}
+\DoxyCodeLine{   \mbox{\hyperlink{hurdfault_8h_a5ba6bce1b2242c7bc871144090bf4a14}{\_hurdsig\_fault\_preemptor}}.\mbox{\hyperlink{structhurd__signal__preemptor_a344b0f1b318eb850c882f58c15551dd6}{last}} = (\textcolor{keywordtype}{long} \textcolor{keywordtype}{int}) (lastcode),   \(\backslash\)}
+\DoxyCodeLine{   \mbox{\hyperlink{setjmp_2setjmp_8h_a9082c17eccdfd2bdc391bcc0b58aa590}{setjmp}} (\mbox{\hyperlink{hurdfault_8h_a9c0669ce169269435467dab6d6a48ecf}{\_hurdsig\_fault\_env}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hurdfault_8h_a11a48d622a2539ce53bfda5e41a8b69f}\label{hurdfault_8h_a11a48d622a2539ce53bfda5e41a8b69f}} 
+\index{hurdfault.h@{hurdfault.h}!\_hurdsig\_catch\_memory\_fault@{\_hurdsig\_catch\_memory\_fault}}
+\index{\_hurdsig\_catch\_memory\_fault@{\_hurdsig\_catch\_memory\_fault}!hurdfault.h@{hurdfault.h}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_catch\_memory\_fault}{\_hurdsig\_catch\_memory\_fault}}
+{\footnotesize\ttfamily \#define \+\_\+hurdsig\+\_\+catch\+\_\+memory\+\_\+fault(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structobject}{object}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{hurdfault_8h_a9caa3c80560a67160af1059df7bc38ec}{\_hurdsig\_catch\_fault}} (sigmask (SIGSEGV) | sigmask (SIGBUS), \(\backslash\)}
+\DoxyCodeLine{            (\textcolor{keywordtype}{object}), (\textcolor{keywordtype}{object}) + 1)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hurdfault_8h_a2d5ce38f1ebf2c255091ffa397e37cc1}\label{hurdfault_8h_a2d5ce38f1ebf2c255091ffa397e37cc1}} 
+\index{hurdfault.h@{hurdfault.h}!\_hurdsig\_end\_catch\_fault@{\_hurdsig\_end\_catch\_fault}}
+\index{\_hurdsig\_end\_catch\_fault@{\_hurdsig\_end\_catch\_fault}!hurdfault.h@{hurdfault.h}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_end\_catch\_fault}{\_hurdsig\_end\_catch\_fault}}
+{\footnotesize\ttfamily \#define \+\_\+hurdsig\+\_\+end\+\_\+catch\+\_\+fault(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(\+\_\+hurdsig\+\_\+fault\+\_\+preemptor.\+signals = 0)}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{hurdfault_8h_a9c0669ce169269435467dab6d6a48ecf}\label{hurdfault_8h_a9c0669ce169269435467dab6d6a48ecf}} 
+\index{hurdfault.h@{hurdfault.h}!\_hurdsig\_fault\_env@{\_hurdsig\_fault\_env}}
+\index{\_hurdsig\_fault\_env@{\_hurdsig\_fault\_env}!hurdfault.h@{hurdfault.h}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_fault\_env}{\_hurdsig\_fault\_env}}
+{\footnotesize\ttfamily \mbox{\hyperlink{setjmp_2setjmp_8h_ad0456a7aa332127ebd188912b126c8fa}{jmp\+\_\+buf}} \+\_\+hurdsig\+\_\+fault\+\_\+env}
+
+\mbox{\Hypertarget{hurdfault_8h_a5ba6bce1b2242c7bc871144090bf4a14}\label{hurdfault_8h_a5ba6bce1b2242c7bc871144090bf4a14}} 
+\index{hurdfault.h@{hurdfault.h}!\_hurdsig\_fault\_preemptor@{\_hurdsig\_fault\_preemptor}}
+\index{\_hurdsig\_fault\_preemptor@{\_hurdsig\_fault\_preemptor}!hurdfault.h@{hurdfault.h}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_fault\_preemptor}{\_hurdsig\_fault\_preemptor}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhurd__signal__preemptor}{hurd\+\_\+signal\+\_\+preemptor}} \+\_\+hurdsig\+\_\+fault\+\_\+preemptor}
+

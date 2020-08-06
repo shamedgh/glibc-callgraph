@@ -1,0 +1,290 @@
+
+;; Function __exp10l (__exp10l, funcdef_no=77, decl_uid=2657, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 3->9 redirected to 12
+Edge 4->9 redirected to 13
+Edge 5->9 redirected to 14
+Edge 6->8 redirected to 15
+Purged non-fallthru edges from bb 18
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 5->7 redirected to 8
+Forwarding edge 5->6 to 14 failed.
+Forwarding edge 5->6 to 14 failed.
+deleting block 7
+Removing jump 59.
+Merging block 18 into block 17...
+Merged blocks 17 and 18.
+Merged 17 and 18 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 14 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v:XF 95 [ x ])
+        (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [2 x+0 S16 A128])) w_exp10l.c:29 -1
+     (expr_list:REG_EQUIV (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [2 x+0 S16 A128])
+        (nil)))
+(note 3 2 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 3 12 2 (set (mem:XF (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A128])
+        (reg/v:XF 95 [ x ])) w_exp10l.c:30 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(call_insn 12 11 13 2 (set (reg:XF 8 st)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_exp10l") [flags 0x41]  <function_decl 0x2b7616b351b0 __ieee754_exp10l>) [0 __ieee754_exp10l S1 A8])
+            (const_int 16 [0x10]))) w_exp10l.c:30 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_exp10l") [flags 0x41]  <function_decl 0x2b7616b351b0 __ieee754_exp10l>)
+        (nil))
+    (nil))
+(insn 13 12 14 2 (set (reg/v:XF 88 [ z ])
+        (reg:XF 8 st)) w_exp10l.c:30 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:XF 96 [ D.5385 ])
+        (abs:XF (reg/v:XF 88 [ z ]))) w_exp10l.c:31 -1
+     (nil))
+(insn 15 14 16 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) w_exp10l.c:31 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 16 15 17 2 (set (reg:XF 97)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [2  S16 A128])) w_exp10l.c:31 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.1897314953572317650212638530309702051690633222946e+4932 [0x0.ffffffffffffffffp+16384])
+        (nil)))
+(insn 17 16 18 2 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:XF 97)
+            (reg:XF 96 [ D.5385 ]))) w_exp10l.c:31 -1
+     (nil))
+(jump_insn 18 17 19 2 (set (pc)
+        (if_then_else (unlt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) w_exp10l.c:31 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 31)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 4 (set (reg:SF 99)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32])) w_exp10l.c:31 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 21 20 22 4 (set (reg:XF 98)
+        (float_extend:XF (reg:SF 99))) w_exp10l.c:31 -1
+     (expr_list:REG_EQUAL (const_double:XF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 22 21 23 4 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:XF 88 [ z ])
+            (reg:XF 98))) w_exp10l.c:31 -1
+     (nil))
+(jump_insn 23 22 81 4 (set (pc)
+        (if_then_else (unordered (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 68)
+            (pc))) w_exp10l.c:31 612 {*jcc_1}
+     (int_list:REG_BR_PROB 100 (nil))
+ -> 68)
+(note 81 23 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 81 25 5 (set (reg:SF 101)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32])) w_exp10l.c:31 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 25 24 26 5 (set (reg:XF 100)
+        (float_extend:XF (reg:SF 101))) w_exp10l.c:31 -1
+     (expr_list:REG_EQUAL (const_double:XF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 26 25 27 5 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg/v:XF 88 [ z ])
+            (reg:XF 100))) w_exp10l.c:31 -1
+     (nil))
+(jump_insn 27 26 82 5 (set (pc)
+        (if_then_else (uneq (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 31)
+            (pc))) w_exp10l.c:31 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 31)
+(note 82 27 28 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 28 82 29 6 (set (pc)
+        (label_ref:DI 68)) w_exp10l.c:31 654 {jump}
+     (nil)
+ -> 68)
+(barrier 29 28 31)
+(code_label 31 29 32 8 2 "" [2 uses])
+(note 32 31 33 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 8 (set (reg:XF 102 [ D.5385 ])
+        (abs:XF (reg/v:XF 95 [ x ]))) w_exp10l.c:32 -1
+     (nil))
+(insn 34 33 35 8 (set (reg:XF 103)
+        (mem/u/c:XF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [2  S16 A128])) w_exp10l.c:32 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.1897314953572317650212638530309702051690633222946e+4932 [0x0.ffffffffffffffffp+16384])
+        (nil)))
+(insn 35 34 36 8 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:XF 103)
+            (reg:XF 102 [ D.5385 ]))) w_exp10l.c:32 -1
+     (nil))
+(jump_insn 36 35 37 8 (set (pc)
+        (if_then_else (unlt (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 72)
+            (pc))) w_exp10l.c:32 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 72)
+(note 37 36 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 9 (set (reg/f:DI 104)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_LIB_VERSION") [flags 0x40]  <var_decl 0x2b76168df1b0 _LIB_VERSION>)
+                    ] UNSPEC_GOTPCREL)) [4  S8 A8])) w_exp10l.c:32 -1
+     (nil))
+(insn 39 38 40 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (reg/f:DI 104) [1 _LIB_VERSION+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))) w_exp10l.c:32 -1
+     (nil))
+(jump_insn 40 39 41 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) w_exp10l.c:32 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1991 (nil))
+ -> 76)
+(note 41 40 42 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 10 (set (reg:HI 106)
+        (unspec:HI [
+                (reg/v:XF 95 [ x ])
+            ] UNSPEC_FXAM)) w_exp10l.c:34 -1
+     (nil))
+(insn 43 42 44 10 (parallel [
+            (set (reg:SI 105)
+                (and:SI (subreg:SI (reg:HI 106) 0)
+                    (const_int 512 [0x200])))
+            (clobber (reg:CC 17 flags))
+        ]) w_exp10l.c:34 -1
+     (nil))
+(insn 44 43 45 10 (set (reg:SI 92 [ D.5387 ])
+        (reg:SI 105)) w_exp10l.c:34 -1
+     (nil))
+(insn 45 44 46 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 92 [ D.5387 ])
+            (const_int 0 [0]))) w_exp10l.c:34 -1
+     (nil))
+(jump_insn 46 45 47 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) w_exp10l.c:34 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 80)
+(note 47 46 5 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 5 47 77 11 (set (reg:SI 93 [ D.5387 ])
+        (const_int 246 [0xf6])) w_exp10l.c:34 -1
+     (nil))
+(jump_insn 77 5 78 11 (set (pc)
+        (label_ref 48)) -1
+     (nil)
+ -> 48)
+(barrier 78 77 80)
+(code_label 80 78 79 12 9 "" [1 uses])
+(note 79 80 4 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 4 79 48 12 (set (reg:SI 93 [ D.5387 ])
+        (const_int 247 [0xf7])) w_exp10l.c:34 -1
+     (nil))
+(code_label 48 4 49 13 5 "" [1 uses])
+(note 49 48 50 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 13 (set (mem:XF (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A128])
+        (reg/v:XF 95 [ x ])) w_exp10l.c:34 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 51 50 52 13 (set (mem:XF (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A128])
+        (reg/v:XF 95 [ x ])) w_exp10l.c:34 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 52 51 53 13 (set (reg:SI 5 di)
+        (reg:SI 93 [ D.5387 ])) w_exp10l.c:34 -1
+     (nil))
+(call_insn 53 52 54 13 (set (reg:XF 8 st)
+        (call (mem:QI (symbol_ref:DI ("__kernel_standard_l") [flags 0x41]  <function_decl 0x2b7616b29438 __kernel_standard_l>) [0 __kernel_standard_l S1 A8])
+            (const_int 32 [0x20]))) w_exp10l.c:34 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__kernel_standard_l") [flags 0x41]  <function_decl 0x2b7616b29438 __kernel_standard_l>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 54 53 55 13 (set (reg:XF 87 [ D.5385 ])
+        (reg:XF 8 st)) w_exp10l.c:34 -1
+     (nil))
+(insn 55 54 65 13 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) w_exp10l.c:34 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(jump_insn 65 55 66 13 (set (pc)
+        (label_ref 56)) -1
+     (nil)
+ -> 56)
+(barrier 66 65 68)
+(code_label 68 66 67 14 6 "" [2 uses])
+(note 67 68 7 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 7 67 69 14 (set (reg:XF 87 [ D.5385 ])
+        (reg/v:XF 88 [ z ])) w_exp10l.c:36 -1
+     (nil))
+(jump_insn 69 7 70 14 (set (pc)
+        (label_ref 56)) -1
+     (nil)
+ -> 56)
+(barrier 70 69 72)
+(code_label 72 70 71 15 7 "" [1 uses])
+(note 71 72 6 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 6 71 73 15 (set (reg:XF 87 [ D.5385 ])
+        (reg/v:XF 88 [ z ])) w_exp10l.c:36 -1
+     (nil))
+(jump_insn 73 6 74 15 (set (pc)
+        (label_ref 56)) -1
+     (nil)
+ -> 56)
+(barrier 74 73 76)
+(code_label 76 74 75 16 8 "" [1 uses])
+(note 75 76 8 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 8 75 56 16 (set (reg:XF 87 [ D.5385 ])
+        (reg/v:XF 88 [ z ])) w_exp10l.c:36 -1
+     (nil))
+(code_label 56 8 57 17 3 "" [3 uses])
+(note 57 56 58 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 62 17 (set (reg:XF 94 [ <retval> ])
+        (reg:XF 87 [ D.5385 ])) -1
+     (nil))
+(insn 62 58 63 17 (set (reg/i:XF 8 st)
+        (reg:XF 94 [ <retval> ])) w_exp10l.c:37 -1
+     (nil))
+(insn 63 62 0 17 (use (reg/i:XF 8 st)) w_exp10l.c:37 -1
+     (nil))

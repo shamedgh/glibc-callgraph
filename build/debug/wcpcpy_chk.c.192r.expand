@@ -1,0 +1,150 @@
+
+;; Function __wcpcpy_chk (__wcpcpy_chk, funcdef_no=3, decl_uid=2460, cgraph_uid=3, symbol_order=6)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 53.
+Merging block 8 into block 7...
+Merged blocks 7 and 8.
+Merged 7 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 23 0 29 NOTE_INSN_DELETED)
+(note 29 23 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 24 29 25 2 (set (reg/v/f:DI 120 [ dest ])
+        (reg:DI 5 di [ dest ])) wcpcpy_chk.c:29 -1
+     (nil))
+(insn 25 24 26 2 (set (reg/v/f:DI 121 [ src ])
+        (reg:DI 4 si [ src ])) wcpcpy_chk.c:29 -1
+     (nil))
+(insn 26 25 27 2 (set (reg/v:DI 122 [ destlen ])
+        (reg:DI 1 dx [ destlen ])) wcpcpy_chk.c:29 -1
+     (nil))
+(note 27 26 31 2 NOTE_INSN_FUNCTION_BEG)
+(insn 31 27 32 2 (parallel [
+            (set (reg/v/f:DI 109 [ wcp ])
+                (plus:DI (reg/v/f:DI 120 [ dest ])
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) wcpcpy_chk.c:30 -1
+     (nil))
+(insn 32 31 33 2 (parallel [
+            (set (reg:DI 123 [ D.2500 ])
+                (minus:DI (reg/v/f:DI 121 [ src ])
+                    (reg/v/f:DI 120 [ dest ])))
+            (clobber (reg:CC 17 flags))
+        ]) wcpcpy_chk.c:38 -1
+     (nil))
+(insn 33 32 34 2 (parallel [
+            (set (reg:DI 125 [ D.2500 ])
+                (ashiftrt:DI (reg:DI 123 [ D.2500 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) wcpcpy_chk.c:38 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 123 [ D.2500 ])
+            (const_int 4 [0x4]))
+        (nil)))
+(insn 34 33 35 2 (parallel [
+            (set (reg:DI 126 [ off ])
+                (plus:DI (reg:DI 125 [ D.2500 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) wcpcpy_chk.c:38 -1
+     (nil))
+(insn 35 34 28 2 (parallel [
+            (set (reg:DI 117 [ D.2501 ])
+                (ashift:DI (reg:DI 126 [ off ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) wcpcpy_chk.c:38 -1
+     (nil))
+(insn 28 35 48 2 (set (reg:DI 115 [ ivtmp.9 ])
+        (const_int 0 [0])) wcpcpy_chk.c:38 -1
+     (nil))
+(code_label 48 28 36 4 3 "" [1 uses])
+(note 36 48 37 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 122 [ destlen ])
+            (reg:DI 115 [ ivtmp.9 ]))) wcpcpy_chk.c:36 -1
+     (nil))
+(jump_insn 38 37 39 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) wcpcpy_chk.c:36 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 42)
+(note 39 38 40 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 40 39 41 5 (call (mem:QI (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b5fbb286a20 __chk_fail>) [0 __chk_fail S1 A8])
+        (const_int 0 [0])) wcpcpy_chk.c:37 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b5fbb286a20 __chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 41 40 42)
+(code_label 42 41 43 6 2 "" [1 uses])
+(note 43 42 44 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 6 (set (reg:SI 118 [ D.2502 ])
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ wcp ])
+                (reg:DI 117 [ D.2501 ])) [1 MEM[base: wcp_2, index: _19, offset: 0B]+0 S4 A32])) wcpcpy_chk.c:38 -1
+     (nil))
+(insn 45 44 46 6 (parallel [
+            (set (reg/v/f:DI 109 [ wcp ])
+                (plus:DI (reg/v/f:DI 109 [ wcp ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) wcpcpy_chk.c:39 -1
+     (nil))
+(insn 46 45 47 6 (set (mem:SI (reg/v/f:DI 109 [ wcp ]) [1 MEM[base: wcp_22, offset: 0B]+0 S4 A32])
+        (reg:SI 118 [ D.2502 ])) wcpcpy_chk.c:39 -1
+     (nil))
+(insn 47 46 49 6 (parallel [
+            (set (reg:DI 115 [ ivtmp.9 ])
+                (plus:DI (reg:DI 115 [ ivtmp.9 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 49 47 50 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 118 [ D.2502 ])
+            (const_int 0 [0]))) wcpcpy_chk.c:41 -1
+     (nil))
+(jump_insn 50 49 51 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) wcpcpy_chk.c:41 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 48)
+(note 51 50 52 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 56 7 (set (reg:DI 119 [ <retval> ])
+        (reg/v/f:DI 109 [ wcp ])) wcpcpy_chk.c:43 -1
+     (nil))
+(insn 56 52 57 7 (set (reg/i:DI 0 ax)
+        (reg:DI 119 [ <retval> ])) wcpcpy_chk.c:44 -1
+     (nil))
+(insn 57 56 0 7 (use (reg/i:DI 0 ax)) wcpcpy_chk.c:44 -1
+     (nil))

@@ -1,0 +1,166 @@
+
+;; Function __memccpy (__memccpy, funcdef_no=9, decl_uid=2084, cgraph_uid=9, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 39.
+Merging block 7 into block 5...
+Merged blocks 5 and 7.
+Merged 5 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 95 [ dest ])
+        (reg:DI 5 di [ dest ])) memccpy.c:32 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 96 [ src ])
+        (reg:DI 4 si [ src ])) memccpy.c:32 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 97 [ c ])
+        (reg:SI 1 dx [ c ])) memccpy.c:32 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:DI 98 [ n ])
+        (reg:DI 2 cx [ n ])) memccpy.c:32 -1
+     (nil))
+(note 6 5 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 6 11 2 (set (reg:DI 1 dx)
+        (reg/v:DI 98 [ n ])) memccpy.c:33 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:SI 4 si)
+        (reg/v:SI 97 [ c ])) memccpy.c:33 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ src ])) memccpy.c:33 -1
+     (nil))
+(call_insn/i 13 12 14 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memchr") [flags 0x43]  <function_decl 0x2adf560aeaf8 memchr>) [0 __builtin_memchr S1 A8])
+            (const_int 0 [0]))) memccpy.c:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memchr") [flags 0x43]  <function_decl 0x2adf560aeaf8 memchr>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 14 13 15 2 (set (reg/v/f:DI 88 [ p ])
+        (reg:DI 0 ax)) memccpy.c:33 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ p ])
+            (const_int 0 [0]))) memccpy.c:35 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) memccpy.c:35 -1
+     (int_list:REG_BR_PROB 192 (nil))
+ -> 26)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (parallel [
+            (set (reg:DI 99 [ D.2539 ])
+                (minus:DI (reg/v/f:DI 88 [ p ])
+                    (reg/v/f:DI 96 [ src ])))
+            (clobber (reg:CC 17 flags))
+        ]) memccpy.c:36 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:DI 100 [ D.2539 ])
+                (plus:DI (reg:DI 99 [ D.2539 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) memccpy.c:36 -1
+     (nil))
+(insn 20 19 21 4 (set (reg:DI 1 dx)
+        (reg:DI 100 [ D.2539 ])) memccpy.c:36 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 96 [ src ])) memccpy.c:36 -1
+     (nil))
+(insn 22 21 23 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ dest ])) memccpy.c:36 -1
+     (nil))
+(call_insn/j 23 22 24 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___mempcpy") [flags 0x43]  <function_decl 0x2adf561bd000 __mempcpy>) [0 __mempcpy S1 A8])
+            (const_int 0 [0]))) memccpy.c:36 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___mempcpy") [flags 0x43]  <function_decl 0x2adf561bd000 __mempcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(barrier 24 23 26)
+(code_label 26 24 27 5 2 "" [1 uses])
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (set (reg:DI 101)
+        (reg/v/f:DI 95 [ dest ])) memccpy.c:38 -1
+     (nil))
+(insn 29 28 30 5 (set (reg:DI 102)
+        (reg/v/f:DI 96 [ src ])) memccpy.c:38 -1
+     (nil))
+(insn 30 29 31 5 (set (reg:DI 103)
+        (reg/v:DI 98 [ n ])) memccpy.c:38 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:DI 1 dx)
+        (reg:DI 103)) memccpy.c:38 -1
+     (nil))
+(insn 32 31 33 5 (set (reg:DI 4 si)
+        (reg:DI 102)) memccpy.c:38 -1
+     (nil))
+(insn 33 32 34 5 (set (reg:DI 5 di)
+        (reg:DI 101)) memccpy.c:38 -1
+     (nil))
+(call_insn 34 33 35 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2adf561f70d8 memcpy>) [0 memcpy S1 A8])
+            (const_int 0 [0]))) memccpy.c:38 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2adf561f70d8 memcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 35 34 36 5 (set (reg:DI 104)
+        (reg:DI 0 ax)) memccpy.c:38 -1
+     (nil))
+(insn 36 35 7 5 (set (reg:DI 105)
+        (reg:DI 104)) memccpy.c:38 -1
+     (nil))
+(insn 7 36 38 5 (set (reg/f:DI 87 [ D.2538 ])
+        (const_int 0 [0])) memccpy.c:39 -1
+     (nil))
+(insn 38 7 42 5 (set (reg:DI 94 [ <retval> ])
+        (reg/f:DI 87 [ D.2538 ])) -1
+     (nil))
+(insn 42 38 43 5 (set (reg/i:DI 0 ax)
+        (reg:DI 94 [ <retval> ])) memccpy.c:40 -1
+     (nil))
+(insn 43 42 0 5 (use (reg/i:DI 0 ax)) memccpy.c:40 -1
+     (nil))

@@ -1,0 +1,109 @@
+
+;; Function getwchar_unlocked (getwchar_unlocked, funcdef_no=40, decl_uid=10150, cgraph_uid=40, symbol_order=45)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 26.
+Merging block 8 into block 6...
+Merged blocks 6 and 8.
+Merged 6 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 88 [ D.10455 ])
+        (mem/f/c:DI (symbol_ref:DI ("_IO_stdin") [flags 0x42]  <var_decl 0x2afd01bb0990 _IO_stdin>) [1 _IO_stdin+0 S8 A64])) getwchar_u.c:35 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/f:DI 89 [ D.10456 ])
+        (mem/f:DI (plus:DI (reg/f:DI 88 [ D.10455 ])
+                (const_int 160 [0xa0])) [1 _4->_wide_data+0 S8 A64])) getwchar_u.c:35 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ D.10456 ])
+            (const_int 0 [0]))) getwchar_u.c:35 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 13)
+            (pc))) getwchar_u.c:35 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 13)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg/f:DI 90 [ D.10457 ])
+        (mem/f:DI (reg/f:DI 89 [ D.10456 ]) [1 _5->_IO_read_ptr+0 S8 A64])) getwchar_u.c:35 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 90 [ D.10457 ])
+            (mem/f:DI (plus:DI (reg/f:DI 89 [ D.10456 ])
+                    (const_int 8 [0x8])) [1 _5->_IO_read_end+0 S8 A64]))) getwchar_u.c:35 -1
+     (nil))
+(jump_insn 12 11 13 4 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) getwchar_u.c:35 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 19)
+(code_label 13 12 14 5 2 "" [1 uses])
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg:DI 5 di)
+        (reg/f:DI 88 [ D.10455 ])) getwchar_u.c:35 -1
+     (nil))
+(call_insn/j 16 15 17 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___wuflow") [flags 0x43]  <function_decl 0x2afd01bbf870 __wuflow>) [0 __wuflow S1 A8])
+            (const_int 0 [0]))) getwchar_u.c:35 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___wuflow") [flags 0x43]  <function_decl 0x2afd01bbf870 __wuflow>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 17 16 19)
+(code_label 19 17 20 6 3 "" [1 uses])
+(note 20 19 21 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 6 (parallel [
+            (set (reg:DI 95)
+                (plus:DI (reg/f:DI 90 [ D.10457 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) getwchar_u.c:35 -1
+     (nil))
+(insn 22 21 23 6 (set (mem/f:DI (reg/f:DI 89 [ D.10456 ]) [1 _5->_IO_read_ptr+0 S8 A64])
+        (reg:DI 95)) getwchar_u.c:35 -1
+     (nil))
+(insn 23 22 25 6 (set (reg:SI 87 [ D.10454 ])
+        (mem:SI (reg/f:DI 90 [ D.10457 ]) [3 *_9+0 S4 A32])) getwchar_u.c:35 -1
+     (nil))
+(insn 25 23 29 6 (set (reg:SI 94 [ <retval> ])
+        (reg:SI 87 [ D.10454 ])) getwchar_u.c:35 -1
+     (nil))
+(insn 29 25 30 6 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) getwchar_u.c:36 -1
+     (nil))
+(insn 30 29 0 6 (use (reg/i:SI 0 ax)) getwchar_u.c:36 -1
+     (nil))

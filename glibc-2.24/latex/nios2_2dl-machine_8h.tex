@@ -1,0 +1,127 @@
+\hypertarget{nios2_2dl-machine_8h}{}\doxysection{sysdeps/nios2/dl-\/machine.h File Reference}
+\label{nios2_2dl-machine_8h}\index{sysdeps/nios2/dl-\/machine.h@{sysdeps/nios2/dl-\/machine.h}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$link.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/tls.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME}}~\char`\"{}nios2\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}{R\+T\+L\+D\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}.text\textbackslash{}n\textbackslash{}.\+globl \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{\+\_\+start\textbackslash{}n\textbackslash{}.\+type}} \mbox{\hyperlink{powerpc_2powerpc64_2entry_8h_a8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start}}, \%function\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}        /$\ast$ At \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}}, all the args are on the stack.  $\ast$/\textbackslash{}n\textbackslash{}        \mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aee5112554278db0c07e505c6a6d87534}{r4}}, sp\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Start the calculation of the G\+OT pointer.  $\ast$/\textbackslash{}n\textbackslash{}        nextpc r22\textbackslash{}n\textbackslash{}1\+:      movhi r8, \%hiadj(\+\_\+gp\+\_\+got -\/ 1b)\textbackslash{}n\textbackslash{}        addi r8, r8, \%lo(\+\_\+gp\+\_\+got -\/ 1b)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Figure out where \+\_\+dl\+\_\+start will need to return to.  $\ast$/\textbackslash{}n\textbackslash{}        movhi ra, \%hiadj(2f -\/ 1b)\textbackslash{}n\textbackslash{}        addi ra, ra, \%lo(2f -\/ 1b)\textbackslash{}n\textbackslash{}        add ra, ra, r22\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Finish the calculation of the G\+O\+T pointer.  $\ast$/\textbackslash{}n\textbackslash{}        add r22, r22, r8\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        br \+\_\+dl\+\_\+start\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Save the returned user entry point.  $\ast$/\textbackslash{}n\textbackslash{}2\+:      mov r16, r2\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Initialize gp.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r4, \%got(\+\_\+rtld\+\_\+local)(r22)\textbackslash{}n\textbackslash{}        ldw r4, 0(r4)\textbackslash{}n\textbackslash{}        ldw r8, \%call(\+\_\+dl\+\_\+nios2\+\_\+get\+\_\+gp\+\_\+value)(r22)\textbackslash{}n\textbackslash{}        callr r8\textbackslash{}n\textbackslash{}        mov gp, r2\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the number of arguments to skip.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r8, \%got(\+\_\+dl\+\_\+skip\+\_\+args)(r22)\textbackslash{}n\textbackslash{}        ldw r8, 0(r8)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the main\+\_\+map from the G\+O\+T.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r4, \%got(\+\_\+rtld\+\_\+local)(r22)\textbackslash{}n\textbackslash{}        ldw r4, 0(r4)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find argc.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r5, 0(sp)\textbackslash{}n\textbackslash{}        sub r5, r5, r8\textbackslash{}n\textbackslash{}        stw r5, 0(sp)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the first unskipped argument.  $\ast$/\textbackslash{}n\textbackslash{}        slli r8, r8, 2\textbackslash{}n\textbackslash{}        addi r6, sp, 4\textbackslash{}n\textbackslash{}        add r9, r6, r8\textbackslash{}n\textbackslash{}        mov r10, r6\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Shuffle argv down.  $\ast$/\textbackslash{}n\textbackslash{}3\+:      ldw r11, 0(r9)\textbackslash{}n\textbackslash{}        stw r11, 0(r10)\textbackslash{}n\textbackslash{}        addi r9, r9, 4\textbackslash{}n\textbackslash{}        addi r10, r10, 4\textbackslash{}n\textbackslash{}        bne r11, zero, 3b\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Shuffle envp down.  $\ast$/\textbackslash{}n\textbackslash{}        mov r7, r10\textbackslash{}n\textbackslash{}4\+:      ldw r11, 0(r9)\textbackslash{}n\textbackslash{}        stw r11, 0(r10)\textbackslash{}n\textbackslash{}        addi r9, r9, 4\textbackslash{}n\textbackslash{}        addi r10, r10, 4\textbackslash{}n\textbackslash{}        bne r11, zero, 4b\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Shuffle auxv down.  $\ast$/\textbackslash{}n\textbackslash{}5\+:      ldw r11, 4(r9)\textbackslash{}n\textbackslash{}        stw r11, 4(r10)\textbackslash{}n\textbackslash{}        ldw r11, 0(r9)\textbackslash{}n\textbackslash{}        stw r11, 0(r10)\textbackslash{}n\textbackslash{}        addi r9, r9, 8\textbackslash{}n\textbackslash{}        addi r10, r10, 8\textbackslash{}n\textbackslash{}        bne r11, zero, 5b\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Update \+\_\+dl\+\_\+argv.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r2, \%got(\+\_\+dl\+\_\+argv)(r22)\textbackslash{}n\textbackslash{}        stw r6, 0(r2)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Call \+\_\+dl\+\_\+init through the P\+L\+T.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r8, \%call(\+\_\+dl\+\_\+init)(r22)\textbackslash{}n\textbackslash{}        callr r8\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the finalization function.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r4, \%got(\+\_\+dl\+\_\+fini)(r22)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Jump to the user\textquotesingle{}s entry point.  $\ast$/\textbackslash{}n\textbackslash{}        jmp r16\textbackslash{}n\textbackslash{}\char`\"{});
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}{elf\+\_\+machine\+\_\+type\+\_\+class}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}~\mbox{\hyperlink{elf_2elf_8h_a792003636a93289445f3dff6de629710}{R\+\_\+\+N\+I\+O\+S2\+\_\+\+J\+U\+M\+P\+\_\+\+S\+L\+OT}}
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL}}~1
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA}}~0
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER}}~nios2\+\_\+gnu\+\_\+pltenter
+\item 
+\#define \mbox{\hyperlink{nios2_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT}}~nios2\+\_\+gnu\+\_\+pltexit
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{nios2_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}{if}} (l-\/$>$l\+\_\+info\mbox{[}\mbox{\hyperlink{elf_2elf_8h_ad7cbdc6f9aeb70f37aec7ae6c2311edc}{D\+T\+\_\+\+J\+M\+P\+R\+EL}}\mbox{]} \&\&\mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nios2_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nios2_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nios2_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}\label{nios2_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}}
+\index{ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTENTER}{ARCH\_LA\_PLTENTER}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER~nios2\+\_\+gnu\+\_\+pltenter}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}\label{nios2_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}}
+\index{ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTEXIT}{ARCH\_LA\_PLTEXIT}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT~nios2\+\_\+gnu\+\_\+pltexit}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}\label{nios2_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}}
+\index{ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_JMP\_SLOT}{ELF\_MACHINE\_JMP\_SLOT}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT~\mbox{\hyperlink{elf_2elf_8h_a792003636a93289445f3dff6de629710}{R\+\_\+\+N\+I\+O\+S2\+\_\+\+J\+U\+M\+P\+\_\+\+S\+L\+OT}}}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}\label{nios2_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}}
+\index{ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NAME}{ELF\_MACHINE\_NAME}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME~\char`\"{}nios2\char`\"{}}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}\label{nios2_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}}
+\index{ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_REL}{ELF\_MACHINE\_NO\_REL}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL~1}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}\label{nios2_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}}
+\index{ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_RELA}{ELF\_MACHINE\_NO\_RELA}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA~0}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}\label{nios2_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!elf\_machine\_type\_class@{elf\_machine\_type\_class}}
+\index{elf\_machine\_type\_class@{elf\_machine\_type\_class}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{elf\_machine\_type\_class}{elf\_machine\_type\_class}}
+{\footnotesize\ttfamily \#define elf\+\_\+machine\+\_\+type\+\_\+class(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a792003636a93289445f3dff6de629710}{R\_NIOS2\_JUMP\_SLOT}}             \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_ad7f160f40256fdf82834a54e23a23cae}{R\_NIOS2\_TLS\_DTPMOD}}              \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a035d7362b90c506aaa90c4e19f13e556}{R\_NIOS2\_TLS\_DTPREL}}              \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a10787f94984268dfed51510e37703ca0}{R\_NIOS2\_TLS\_TPREL}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_ae76990eaa2473ebb2af4f8601b5ccb0a}{ELF\_RTYPE\_CLASS\_PLT}}) \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a6f82f76d09f553ca18aaf1af31f91989}{R\_NIOS2\_COPY}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_a364a19b974b8cd186911f1a59041e7c1}{ELF\_RTYPE\_CLASS\_COPY}})      \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_ab5a8a366d9ef0dfa90ee6616d6da0e9b}{R\_NIOS2\_GLOB\_DAT}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_aaba2db383082ce62d6cafa84dc1b2126}{ELF\_RTYPE\_CLASS\_EXTERN\_PROTECTED\_DATA}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nios2_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}\label{nios2_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!RTLD\_START@{RTLD\_START}}
+\index{RTLD\_START@{RTLD\_START}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{RTLD\_START}{RTLD\_START}}
+{\footnotesize\ttfamily \#define R\+T\+L\+D\+\_\+\+S\+T\+A\+RT~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}.text\textbackslash{}n\textbackslash{}.\+globl \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{\+\_\+start\textbackslash{}n\textbackslash{}.\+type}} \mbox{\hyperlink{powerpc_2powerpc64_2entry_8h_a8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start}}, \%function\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}        /$\ast$ At \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}}, all the args are on the stack.  $\ast$/\textbackslash{}n\textbackslash{}        \mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aee5112554278db0c07e505c6a6d87534}{r4}}, sp\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Start the calculation of the G\+OT pointer.  $\ast$/\textbackslash{}n\textbackslash{}        nextpc r22\textbackslash{}n\textbackslash{}1\+:      movhi r8, \%hiadj(\+\_\+gp\+\_\+got -\/ 1b)\textbackslash{}n\textbackslash{}        addi r8, r8, \%lo(\+\_\+gp\+\_\+got -\/ 1b)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Figure out where \+\_\+dl\+\_\+start will need to return to.  $\ast$/\textbackslash{}n\textbackslash{}        movhi ra, \%hiadj(2f -\/ 1b)\textbackslash{}n\textbackslash{}        addi ra, ra, \%lo(2f -\/ 1b)\textbackslash{}n\textbackslash{}        add ra, ra, r22\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Finish the calculation of the G\+O\+T pointer.  $\ast$/\textbackslash{}n\textbackslash{}        add r22, r22, r8\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        br \+\_\+dl\+\_\+start\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Save the returned user entry point.  $\ast$/\textbackslash{}n\textbackslash{}2\+:      mov r16, r2\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Initialize gp.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r4, \%got(\+\_\+rtld\+\_\+local)(r22)\textbackslash{}n\textbackslash{}        ldw r4, 0(r4)\textbackslash{}n\textbackslash{}        ldw r8, \%call(\+\_\+dl\+\_\+nios2\+\_\+get\+\_\+gp\+\_\+value)(r22)\textbackslash{}n\textbackslash{}        callr r8\textbackslash{}n\textbackslash{}        mov gp, r2\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the number of arguments to skip.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r8, \%got(\+\_\+dl\+\_\+skip\+\_\+args)(r22)\textbackslash{}n\textbackslash{}        ldw r8, 0(r8)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the main\+\_\+map from the G\+O\+T.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r4, \%got(\+\_\+rtld\+\_\+local)(r22)\textbackslash{}n\textbackslash{}        ldw r4, 0(r4)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find argc.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r5, 0(sp)\textbackslash{}n\textbackslash{}        sub r5, r5, r8\textbackslash{}n\textbackslash{}        stw r5, 0(sp)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the first unskipped argument.  $\ast$/\textbackslash{}n\textbackslash{}        slli r8, r8, 2\textbackslash{}n\textbackslash{}        addi r6, sp, 4\textbackslash{}n\textbackslash{}        add r9, r6, r8\textbackslash{}n\textbackslash{}        mov r10, r6\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Shuffle argv down.  $\ast$/\textbackslash{}n\textbackslash{}3\+:      ldw r11, 0(r9)\textbackslash{}n\textbackslash{}        stw r11, 0(r10)\textbackslash{}n\textbackslash{}        addi r9, r9, 4\textbackslash{}n\textbackslash{}        addi r10, r10, 4\textbackslash{}n\textbackslash{}        bne r11, zero, 3b\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Shuffle envp down.  $\ast$/\textbackslash{}n\textbackslash{}        mov r7, r10\textbackslash{}n\textbackslash{}4\+:      ldw r11, 0(r9)\textbackslash{}n\textbackslash{}        stw r11, 0(r10)\textbackslash{}n\textbackslash{}        addi r9, r9, 4\textbackslash{}n\textbackslash{}        addi r10, r10, 4\textbackslash{}n\textbackslash{}        bne r11, zero, 4b\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Shuffle auxv down.  $\ast$/\textbackslash{}n\textbackslash{}5\+:      ldw r11, 4(r9)\textbackslash{}n\textbackslash{}        stw r11, 4(r10)\textbackslash{}n\textbackslash{}        ldw r11, 0(r9)\textbackslash{}n\textbackslash{}        stw r11, 0(r10)\textbackslash{}n\textbackslash{}        addi r9, r9, 8\textbackslash{}n\textbackslash{}        addi r10, r10, 8\textbackslash{}n\textbackslash{}        bne r11, zero, 5b\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Update \+\_\+dl\+\_\+argv.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r2, \%got(\+\_\+dl\+\_\+argv)(r22)\textbackslash{}n\textbackslash{}        stw r6, 0(r2)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Call \+\_\+dl\+\_\+init through the P\+L\+T.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r8, \%call(\+\_\+dl\+\_\+init)(r22)\textbackslash{}n\textbackslash{}        callr r8\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Find the finalization function.  $\ast$/\textbackslash{}n\textbackslash{}        ldw r4, \%got(\+\_\+dl\+\_\+fini)(r22)\textbackslash{}n\textbackslash{}\textbackslash{}n\textbackslash{}        /$\ast$ Jump to the user\textquotesingle{}s entry point.  $\ast$/\textbackslash{}n\textbackslash{}        jmp r16\textbackslash{}n\textbackslash{}\char`\"{});}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nios2_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}\label{nios2_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!if@{if}}
+\index{if@{if}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{l-\/$>$l\+\_\+info \&\&}]{lazy\mbox{[}\+D\+T\+\_\+\+J\+M\+P\+R\+E\+L\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{nios2_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}\label{nios2_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!lazy@{lazy}}
+\index{lazy@{lazy}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{lazy}{lazy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} lazy}
+
+\mbox{\Hypertarget{nios2_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}\label{nios2_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!profile@{profile}}
+\index{profile@{profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{profile}{profile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} profile}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{arm_2dl-machine_8h_a1496fe125ed93a7c4777a28f74d66618}{\_dl\_runtime\_resolve}} (\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\_Word}})}
+
+\end{DoxyCode}

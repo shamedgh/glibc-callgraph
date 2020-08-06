@@ -1,0 +1,985 @@
+
+;; Function __new_sem_wait_fast (__new_sem_wait_fast, funcdef_no=68, decl_uid=8659, cgraph_uid=68, symbol_order=69)
+
+Partition 0: size 8 align 8
+	d
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+Edge 5->8 redirected to 11
+Predictions for insn 27 bb 5
+  no prediction heuristics: 50.0%
+  combined heuristics: 50.0%
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 44.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 94 [ sem ])
+        (reg:DI 5 di [ sem ])) sem_waitcommon.c:125 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 95 [ definitive_result ])
+        (reg:SI 4 si [ definitive_result ])) sem_waitcommon.c:125 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg/f:DI 88 [ D.8849 ])
+        (reg/v/f:DI 94 [ sem ])) sem_waitcommon.c:135 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 92 [ D.8850 ])
+        (mem/v:DI (reg/f:DI 88 [ D.8849 ]) [-1  S8 A64])) sem_waitcommon.c:135 -1
+     (nil))
+(insn 11 10 38 2 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [2 d+0 S8 A64])
+        (reg:DI 92 [ D.8850 ])) sem_waitcommon.c:135 -1
+     (nil))
+(code_label 38 11 12 4 6 "" [1 uses])
+(note 12 38 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg:DI 96 [ D.8850 ])
+        (zero_extend:DI (subreg:SI (reg:DI 92 [ D.8850 ]) 0))) sem_waitcommon.c:138 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 96 [ D.8850 ])
+            (const_int 0 [0]))) sem_waitcommon.c:138 -1
+     (nil))
+(jump_insn 15 14 33 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) sem_waitcommon.c:138 -1
+     (int_list:REG_BR_PROB 9700 (nil))
+ -> 19)
+(code_label 33 15 16 5 5 "" [1 uses])
+(note 16 33 6 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 6 16 17 5 (set (reg:SI 87 [ D.8848 ])
+        (const_int -1 [0xffffffffffffffff])) sem_waitcommon.c:144 -1
+     (nil))
+(jump_insn 17 6 18 5 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 18 17 19)
+(code_label 19 18 20 6 2 "" [1 uses])
+(note 20 19 21 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 6 (parallel [
+            (set (reg:DI 97)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:140 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 98 [ D.8850 ])
+                (plus:DI (reg:DI 92 [ D.8850 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:140 -1
+     (nil))
+(insn 23 22 24 6 (set (reg:DI 99)
+        (mem:DI (reg:DI 97) [0  S8 A8])) sem_waitcommon.c:140 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 100)
+                (unspec_volatile:DI [
+                        (mem/v:DI (reg/f:DI 88 [ D.8849 ]) [-1  S8 A64])
+                        (reg:DI 99)
+                        (reg:DI 98 [ D.8850 ])
+                        (const_int 2 [0x2])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:DI (reg/f:DI 88 [ D.8849 ]) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) sem_waitcommon.c:140 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:QI 91 [ D.8851 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sem_waitcommon.c:140 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 91 [ D.8851 ])
+            (const_int 0 [0]))) sem_waitcommon.c:140 -1
+     (nil))
+(jump_insn 27 26 52 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 29)
+            (pc))) sem_waitcommon.c:140 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 29)
+(note 52 27 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 52 29 7 (set (mem:DI (reg:DI 97) [0  S8 A8])
+        (reg:DI 100)) sem_waitcommon.c:140 -1
+     (nil))
+(code_label 29 28 53 8 4 "" [1 uses])
+(note 53 29 30 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 30 53 31 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 91 [ D.8851 ])
+            (const_int 0 [0]))) sem_waitcommon.c:140 -1
+     (nil))
+(jump_insn 31 30 32 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 51)
+            (pc))) sem_waitcommon.c:140 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1 (nil))
+ -> 51)
+(note 32 31 34 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 34 32 35 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ definitive_result ])
+            (const_int 0 [0]))) sem_waitcommon.c:143 -1
+     (nil))
+(jump_insn 35 34 36 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) sem_waitcommon.c:143 -1
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 33)
+(note 36 35 37 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 39 10 (set (reg:DI 92 [ D.8850 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [2 d+0 S8 A64])) -1
+     (nil))
+(jump_insn 39 37 40 10 (set (pc)
+        (label_ref 38)) -1
+     (nil)
+ -> 38)
+(barrier 40 39 51)
+(code_label 51 40 50 11 7 "" [1 uses])
+(note 50 51 5 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 5 50 41 11 (set (reg:SI 87 [ D.8848 ])
+        (const_int 0 [0])) sem_waitcommon.c:141 -1
+     (nil))
+(code_label 41 5 42 12 3 "" [1 uses])
+(note 42 41 43 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 47 12 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 87 [ D.8848 ])) -1
+     (nil))
+(insn 47 43 48 12 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) sem_waitcommon.c:158 -1
+     (nil))
+(insn 48 47 0 12 (use (reg/i:SI 0 ax)) sem_waitcommon.c:158 -1
+     (nil))
+
+;; Function __sem_wait_cleanup (__sem_wait_cleanup, funcdef_no=66, decl_uid=8648, cgraph_uid=66, symbol_order=67)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 88 [ arg ])
+        (reg:DI 5 di [ arg ])) sem_waitcommon.c:88 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 0 2 (parallel [
+            (set (mem/v:DI (reg/v/f:DI 88 [ arg ]) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (plus:DI (mem/v:DI (reg/v/f:DI 88 [ arg ]) [-1  S8 A64])
+                            (const_int -4294967296 [0xffffffff00000000]))
+                        (const_int 0 [0])
+                    ] UNSPECV_LOCK))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:93 -1
+     (nil))
+
+;; Function do_futex_wait.constprop (do_futex_wait.constprop.2, funcdef_no=73, decl_uid=8819, cgraph_uid=0, symbol_order=86)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+Purged edges from bb 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 6->7 to 10 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 6->7 to 10 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 97 [ sem ])
+        (reg:DI 5 di [ sem ])) sem_waitcommon.c:106 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:SI 87 [ D.8858 ])
+        (mem:SI (plus:DI (reg/v/f:DI 97 [ sem ])
+                (const_int 8 [0x8])) [4 sem_1(D)->private+0 S4 A64])) sem_waitcommon.c:111 -1
+     (nil))
+(call_insn 8 7 9 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__pthread_enable_asynccancel") [flags 0x41]  <function_decl 0x2b76f6059ca8 __pthread_enable_asynccancel>) [0 __pthread_enable_asynccancel S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/futex-internal.h:204 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_enable_asynccancel") [flags 0x41]  <function_decl 0x2b76f6059ca8 __pthread_enable_asynccancel>)
+        (nil))
+    (nil))
+(insn 9 8 10 2 (set (reg/v:SI 89 [ oldtype ])
+        (reg:SI 0 ax)) ../sysdeps/unix/sysv/linux/futex-internal.h:204 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:DI 38 r9 [ _a6 ])
+        (const_int 4294967295 [0xffffffff])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v:DI 37 r8 [ _a5 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 12 11 13 2 (set (reg/v:DI 39 r10 [ _a4 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 13 12 14 2 (set (reg/v:DI 1 dx [ _a3 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 14 13 15 2 (parallel [
+            (set (reg:SI 98 [ D.8858 ])
+                (xor:SI (reg:SI 87 [ D.8858 ])
+                    (const_int 393 [0x189])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 15 14 16 2 (set (reg/v:DI 4 si [ _a2 ])
+        (sign_extend:DI (reg:SI 98 [ D.8858 ]))) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 16 15 17 2 (set (reg/v:DI 5 di [ _a1 ])
+        (reg/v/f:DI 97 [ sem ])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:SI 100)
+        (const_int 202 [0xca])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 18 17 19 2 (parallel [
+            (set (reg:DI 99 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 100)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                        (reg/v:DI 39 r10 [ _a4 ])
+                        (reg/v:DI 37 r8 [ _a5 ])
+                        (reg/v:DI 38 r9 [ _a6 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:205)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/futex-internal.h:205))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 19 18 20 2 (set (reg/v:DI 93 [ resultvar ])
+        (reg:DI 99 [ resultvar ])) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 93 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(jump_insn 21 20 22 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 46)
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 4 (set (reg/v:SI 95 [ err ])
+        (subreg:SI (reg/v:DI 93 [ resultvar ]) 0)) ../sysdeps/unix/sysv/linux/futex-internal.h:205 -1
+     (nil))
+(insn 24 23 25 4 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ oldtype ])) ../sysdeps/unix/sysv/linux/futex-internal.h:207 -1
+     (nil))
+(call_insn 25 24 26 4 (call (mem:QI (symbol_ref:DI ("__pthread_disable_asynccancel") [flags 0x41]  <function_decl 0x2b76f6059d80 __pthread_disable_asynccancel>) [0 __pthread_disable_asynccancel S1 A8])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:207 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_disable_asynccancel") [flags 0x41]  <function_decl 0x2b76f6059d80 __pthread_disable_asynccancel>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 26 25 27 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ err ])
+            (const_int -11 [0xfffffffffffffff5]))) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (nil))
+(jump_insn 27 26 57 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 34)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (int_list:REG_BR_PROB 3319 (nil))
+ -> 34)
+(note 57 27 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 57 29 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ err ])
+            (const_int -4 [0xfffffffffffffffc]))) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (nil))
+(jump_insn 29 28 58 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 34)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (int_list:REG_BR_PROB 4967 (nil))
+ -> 34)
+(note 58 29 30 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 30 58 31 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ err ])
+            (const_int -110 [0xffffffffffffff92]))) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (nil))
+(jump_insn 31 30 59 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 34)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (int_list:REG_BR_PROB 4967 (nil))
+ -> 34)
+(note 59 31 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 32 59 33 7 (set (pc)
+        (label_ref 41)) ../sysdeps/unix/sysv/linux/futex-internal.h:208 -1
+     (nil)
+ -> 41)
+(barrier 33 32 34)
+(code_label 34 33 35 8 17 "" [3 uses])
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 50 8 (parallel [
+            (set (reg:SI 94 [ D.8858 ])
+                (neg:SI (reg/v:SI 95 [ err ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 50 36 37 9 18 "" [1 uses])
+(note 37 50 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 9 (set (reg:SI 96 [ <retval> ])
+        (reg:SI 94 [ D.8858 ])) sem_waitcommon.c:119 -1
+     (nil))
+(jump_insn 39 38 40 9 (set (pc)
+        (label_ref 53)) sem_waitcommon.c:119 -1
+     (nil)
+ -> 53)
+(barrier 40 39 41)
+(code_label 41 40 42 10 16 "" [1 uses])
+(note 42 41 43 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 10 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b76f60e66c0 *.LC2>)) ../sysdeps/nptl/futex-internal.h:200 -1
+     (nil))
+(call_insn 44 43 45 10 (call (mem:QI (symbol_ref:DI ("__libc_fatal") [flags 0x41]  <function_decl 0x2b76f5fedbd0 __libc_fatal>) [0 __libc_fatal S1 A8])
+        (const_int 0 [0])) ../sysdeps/nptl/futex-internal.h:200 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__libc_fatal") [flags 0x41]  <function_decl 0x2b76f5fedbd0 __libc_fatal>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 45 44 46)
+(code_label 46 45 47 11 15 "" [1 uses])
+(note 47 46 48 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 11 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ oldtype ])) ../sysdeps/unix/sysv/linux/futex-internal.h:207 -1
+     (nil))
+(call_insn 49 48 4 11 (call (mem:QI (symbol_ref:DI ("__pthread_disable_asynccancel") [flags 0x41]  <function_decl 0x2b76f6059d80 __pthread_disable_asynccancel>) [0 __pthread_disable_asynccancel S1 A8])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:207 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_disable_asynccancel") [flags 0x41]  <function_decl 0x2b76f6059d80 __pthread_disable_asynccancel>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 4 49 51 11 (set (reg:SI 94 [ D.8858 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:207 -1
+     (nil))
+(jump_insn 51 4 52 11 (set (pc)
+        (label_ref 50)) ../sysdeps/unix/sysv/linux/futex-internal.h:207 -1
+     (nil)
+ -> 50)
+(barrier 52 51 53)
+(code_label 53 52 56 12 14 "" [1 uses])
+(note 56 53 54 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 54 56 55 12 (set (reg/i:SI 0 ax)
+        (reg:SI 96 [ <retval> ])) sem_waitcommon.c:120 -1
+     (nil))
+(insn 55 54 0 12 (use (reg/i:SI 0 ax)) sem_waitcommon.c:120 -1
+     (nil))
+
+;; Function __new_sem_wait_slow.constprop (__new_sem_wait_slow.constprop.1, funcdef_no=74, decl_uid=8818, cgraph_uid=47, symbol_order=85)
+
+Partition 1: size 32 align 16
+	_buffer
+Partition 0: size 8 align 8
+	d
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+Purged non-fallthru edges from bb 15
+Predictions for insn 62 bb 9
+  no prediction heuristics: 50.0%
+  combined heuristics: 50.0%
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 7->9 redirected to 10
+Forwarding edge 8->9 to 10 failed.
+Deleted label in block 9.
+Removing jump 75.
+Merging block 17 into block 16...
+Merged blocks 16 and 17.
+Merged 16 and 17 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 8->9 to 10 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 99 [ sem ])
+        (reg:DI 5 di [ sem ])) sem_waitcommon.c:163 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg/f:DI 87 [ D.8865 ])
+        (reg/v/f:DI 99 [ sem ])) sem_waitcommon.c:170 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:DI 88 [ D.8866 ])
+                (unspec_volatile:DI [
+                        (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                        (const_int 0 [0])
+                    ] UNSPECV_XCHG))
+            (set (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                (plus:DI (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                    (const_int 4294967296 [0x100000000])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:170 -1
+     (nil))
+(insn 10 9 11 2 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [2 d+0 S8 A64])
+        (reg:DI 88 [ D.8866 ])) sem_waitcommon.c:170 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:DI 100)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:173 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 1 dx)
+        (reg/v/f:DI 99 [ sem ])) sem_waitcommon.c:173 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 4 si)
+        (symbol_ref:DI ("__sem_wait_cleanup") [flags 0x3]  <function_decl 0x2b76f6093a20 __sem_wait_cleanup>)) sem_waitcommon.c:173 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:DI 5 di)
+        (reg:DI 100)) sem_waitcommon.c:173 -1
+     (nil))
+(call_insn 15 14 16 2 (call (mem:QI (symbol_ref:DI ("__pthread_cleanup_push") [flags 0x41]  <function_decl 0x2b76f605e870 __pthread_cleanup_push>) [0 __pthread_cleanup_push S1 A8])
+        (const_int 0 [0])) sem_waitcommon.c:173 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_cleanup_push") [flags 0x41]  <function_decl 0x2b76f605e870 __pthread_cleanup_push>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 16 15 17 2 (set (reg:DI 97 [ D.8866 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [2 d+0 S8 A64])) -1
+     (nil))
+(jump_insn 17 16 18 2 (set (pc)
+        (label_ref 22)) -1
+     (nil)
+ -> 22)
+(barrier 18 17 65)
+(code_label 65 18 19 4 31 "" [1 uses])
+(note 19 65 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 50 4 (set (reg:DI 97 [ D.8866 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [2 d+0 S8 A64])) -1
+     (nil))
+(code_label 50 20 21 5 29 "" [1 uses])
+(note 21 50 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(code_label 22 21 23 6 24 "" [1 uses])
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 6 (set (reg:DI 101 [ D.8866 ])
+        (zero_extend:DI (subreg:SI (reg:DI 97 [ D.8866 ]) 0))) sem_waitcommon.c:179 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 101 [ D.8866 ])
+            (const_int 0 [0]))) sem_waitcommon.c:179 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) sem_waitcommon.c:179 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 53)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ sem ])) sem_waitcommon.c:181 -1
+     (nil))
+(call_insn 29 28 30 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("do_futex_wait.constprop.2") [flags 0x3]  <function_decl 0x2b76f60b2e58 do_futex_wait.constprop>) [0 do_futex_wait.constprop S1 A8])
+            (const_int 0 [0]))) sem_waitcommon.c:181 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("do_futex_wait.constprop.2") [flags 0x3]  <function_decl 0x2b76f60b2e58 do_futex_wait.constprop>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 30 29 31 7 (set (reg/v:SI 90 [ err ])
+        (reg:SI 0 ax)) sem_waitcommon.c:181 -1
+     (nil))
+(insn 31 30 32 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 90 [ err ])
+            (const_int 110 [0x6e]))) sem_waitcommon.c:191 -1
+     (nil))
+(insn 32 31 33 7 (set (reg:QI 103 [ D.8867 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sem_waitcommon.c:191 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 103 [ D.8867 ])
+            (const_int 0 [0]))) sem_waitcommon.c:191 -1
+     (nil))
+(jump_insn 34 33 82 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 86)
+            (pc))) sem_waitcommon.c:191 612 {*jcc_1}
+     (int_list:REG_BR_PROB 225 (nil))
+ -> 86)
+(note 82 34 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 35 82 36 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 90 [ err ])
+            (const_int 4 [0x4]))) sem_waitcommon.c:191 -1
+     (nil))
+(insn 36 35 37 8 (set (reg:QI 105 [ D.8867 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sem_waitcommon.c:191 -1
+     (nil))
+(insn 37 36 38 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 105 [ D.8867 ])
+            (const_int 0 [0]))) sem_waitcommon.c:191 -1
+     (nil))
+(jump_insn 38 37 83 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) sem_waitcommon.c:191 -1
+     (int_list:REG_BR_PROB 9770 (nil))
+ -> 46)
+(note 83 38 86 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(code_label 86 83 40 10 32 "" [1 uses])
+(note 40 86 41 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 10 (set (reg:DI 106)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b76f5f743f0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [8  S8 A8])) sem_waitcommon.c:193 -1
+     (nil))
+(insn 42 41 43 10 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 106)) [4 errno+0 S4 A32])
+        (reg/v:SI 90 [ err ])) sem_waitcommon.c:193 -1
+     (nil))
+(insn 43 42 4 10 (parallel [
+            (set (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (plus:DI (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                            (const_int -4294967296 [0xffffffff00000000]))
+                        (const_int 0 [0])
+                    ] UNSPECV_LOCK))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:196 -1
+     (nil))
+(insn 4 43 44 10 (set (reg/v:SI 96 [ err ])
+        (const_int -1 [0xffffffffffffffff])) sem_waitcommon.c:194 -1
+     (nil))
+(jump_insn 44 4 45 10 (set (pc)
+        (label_ref 68)) sem_waitcommon.c:196 -1
+     (nil)
+ -> 68)
+(barrier 45 44 46)
+(code_label 46 45 47 11 26 "" [1 uses])
+(note 47 46 48 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 11 (set (reg:DI 97 [ D.8866 ])
+        (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])) sem_waitcommon.c:201 -1
+     (nil))
+(insn 49 48 51 11 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [2 d+0 S8 A64])
+        (reg:DI 97 [ D.8866 ])) sem_waitcommon.c:201 -1
+     (nil))
+(jump_insn 51 49 52 11 (set (pc)
+        (label_ref 50)) sem_waitcommon.c:201 -1
+     (nil)
+ -> 50)
+(barrier 52 51 53)
+(code_label 53 52 54 12 25 "" [1 uses])
+(note 54 53 55 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 56 12 (parallel [
+            (set (reg:DI 107)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -40 [0xffffffffffffffd8])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:212 -1
+     (nil))
+(insn 56 55 57 12 (set (reg:DI 109)
+        (const_int -4294967297 [0xfffffffeffffffff])) sem_waitcommon.c:212 -1
+     (nil))
+(insn 57 56 58 12 (parallel [
+            (set (reg:DI 108 [ D.8866 ])
+                (plus:DI (reg:DI 97 [ D.8866 ])
+                    (reg:DI 109)))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:212 -1
+     (nil))
+(insn 58 57 59 12 (set (reg:DI 110)
+        (mem:DI (reg:DI 107) [0  S8 A8])) sem_waitcommon.c:212 -1
+     (nil))
+(insn 59 58 60 12 (parallel [
+            (set (reg:DI 111)
+                (unspec_volatile:DI [
+                        (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                        (reg:DI 110)
+                        (reg:DI 108 [ D.8866 ])
+                        (const_int 2 [0x2])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:DI (reg/f:DI 87 [ D.8865 ]) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) sem_waitcommon.c:212 -1
+     (nil))
+(insn 60 59 61 12 (set (reg:QI 95 [ D.8867 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sem_waitcommon.c:212 -1
+     (nil))
+(insn 61 60 62 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 95 [ D.8867 ])
+            (const_int 0 [0]))) sem_waitcommon.c:212 -1
+     (nil))
+(jump_insn 62 61 84 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 64)
+            (pc))) sem_waitcommon.c:212 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 64)
+(note 84 62 63 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 63 84 64 13 (set (mem:DI (reg:DI 107) [0  S8 A8])
+        (reg:DI 111)) sem_waitcommon.c:212 -1
+     (nil))
+(code_label 64 63 85 14 30 "" [1 uses])
+(note 85 64 66 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 66 85 67 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 95 [ D.8867 ])
+            (const_int 0 [0]))) sem_waitcommon.c:212 -1
+     (nil))
+(jump_insn 67 66 81 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 65)
+            (pc))) sem_waitcommon.c:212 -1
+     (int_list:REG_BR_PROB 9999 (nil))
+ -> 65)
+(note 81 67 5 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 5 81 68 15 (set (reg/v:SI 96 [ err ])
+        (const_int 0 [0])) sem_waitcommon.c:215 -1
+     (nil))
+(code_label 68 5 69 16 28 "" [1 uses])
+(note 69 68 70 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 16 (parallel [
+            (set (reg:DI 112)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) sem_waitcommon.c:221 -1
+     (nil))
+(insn 71 70 72 16 (set (reg:SI 4 si)
+        (const_int 0 [0])) sem_waitcommon.c:221 -1
+     (nil))
+(insn 72 71 73 16 (set (reg:DI 5 di)
+        (reg:DI 112)) sem_waitcommon.c:221 -1
+     (nil))
+(call_insn 73 72 74 16 (call (mem:QI (symbol_ref:DI ("__pthread_cleanup_pop") [flags 0x41]  <function_decl 0x2b76f605e948 __pthread_cleanup_pop>) [0 __pthread_cleanup_pop S1 A8])
+        (const_int 0 [0])) sem_waitcommon.c:221 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__pthread_cleanup_pop") [flags 0x41]  <function_decl 0x2b76f605e948 __pthread_cleanup_pop>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 74 73 78 16 (set (reg:SI 98 [ <retval> ])
+        (reg/v:SI 96 [ err ])) sem_waitcommon.c:310 -1
+     (nil))
+(insn 78 74 79 16 (set (reg/i:SI 0 ax)
+        (reg:SI 98 [ <retval> ])) sem_waitcommon.c:311 -1
+     (nil))
+(insn 79 78 0 16 (use (reg/i:SI 0 ax)) sem_waitcommon.c:311 -1
+     (nil))
+
+;; Function __new_sem_wait (__new_sem_wait, funcdef_no=70, decl_uid=8680, cgraph_uid=70, symbol_order=71)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 20.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 89 [ sem ])
+        (reg:DI 5 di [ sem ])) sem_wait.c:25 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 4 si)
+        (const_int 0 [0])) sem_wait.c:26 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 89 [ sem ])) sem_wait.c:26 -1
+     (nil))
+(call_insn 8 7 9 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__new_sem_wait_fast") [flags 0x3]  <function_decl 0x2b76f6093d80 __new_sem_wait_fast>) [0 __new_sem_wait_fast S1 A8])
+            (const_int 0 [0]))) sem_wait.c:26 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__new_sem_wait_fast") [flags 0x3]  <function_decl 0x2b76f6093d80 __new_sem_wait_fast>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 9 8 10 2 (set (reg:SI 87 [ D.8872 ])
+        (reg:SI 0 ax)) sem_wait.c:26 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ D.8872 ])
+            (const_int 0 [0]))) sem_wait.c:26 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) sem_wait.c:26 -1
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 17)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 89 [ sem ])) sem_wait.c:29 -1
+     (nil))
+(call_insn/j 14 13 15 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__new_sem_wait_slow.constprop.1") [flags 0x3]  <function_decl 0x2b76f60b2ca8 __new_sem_wait_slow.constprop>) [0 __new_sem_wait_slow.constprop S1 A8])
+            (const_int 0 [0]))) sem_wait.c:29 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__new_sem_wait_slow.constprop.1") [flags 0x3]  <function_decl 0x2b76f60b2ca8 __new_sem_wait_slow.constprop>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 15 14 17)
+(code_label 17 15 18 5 38 "" [1 uses])
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 23 5 (set (reg:SI 88 [ <retval> ])
+        (reg:SI 87 [ D.8872 ])) -1
+     (nil))
+(insn 23 19 24 5 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) sem_wait.c:30 -1
+     (nil))
+(insn 24 23 0 5 (use (reg/i:SI 0 ax)) sem_wait.c:30 -1
+     (nil))
+
+;; Function __new_sem_trywait (__new_sem_trywait, funcdef_no=71, decl_uid=8684, cgraph_uid=72, symbol_order=73)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 19.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 89 [ sem ])
+        (reg:DI 5 di [ sem ])) sem_wait.c:66 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) sem_wait.c:69 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 89 [ sem ])) sem_wait.c:69 -1
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__new_sem_wait_fast") [flags 0x3]  <function_decl 0x2b76f6093d80 __new_sem_wait_fast>) [0 __new_sem_wait_fast S1 A8])
+            (const_int 0 [0]))) sem_wait.c:69 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__new_sem_wait_fast") [flags 0x3]  <function_decl 0x2b76f6093d80 __new_sem_wait_fast>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 10 9 11 2 (set (reg:SI 87 [ D.8875 ])
+        (reg:SI 0 ax)) sem_wait.c:69 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ D.8875 ])
+            (const_int 0 [0]))) sem_wait.c:69 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 16)
+            (pc))) sem_wait.c:69 -1
+     (int_list:REG_BR_PROB 9600 (nil))
+ -> 16)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:DI 90)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b76f5f743f0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [8  S8 A8])) sem_wait.c:71 -1
+     (nil))
+(insn 15 14 4 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 90)) [4 errno+0 S4 A32])
+        (const_int 11 [0xb])) sem_wait.c:71 -1
+     (nil))
+(insn 4 15 16 4 (set (reg:SI 87 [ D.8875 ])
+        (const_int -1 [0xffffffffffffffff])) sem_wait.c:72 -1
+     (nil))
+(code_label 16 4 17 5 42 "" [1 uses])
+(note 17 16 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 22 5 (set (reg:SI 88 [ <retval> ])
+        (reg:SI 87 [ D.8875 ])) -1
+     (nil))
+(insn 22 18 23 5 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) sem_wait.c:73 -1
+     (nil))
+(insn 23 22 0 5 (use (reg/i:SI 0 ax)) sem_wait.c:73 -1
+     (nil))

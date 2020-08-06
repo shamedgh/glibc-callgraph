@@ -1,0 +1,94 @@
+\hypertarget{unix_2sysv_2linux_2dl-osinfo_8h}{}\doxysection{sysdeps/unix/sysv/linux/dl-\/osinfo.h File Reference}
+\label{unix_2sysv_2linux_2dl-osinfo_8h}\index{sysdeps/unix/sysv/linux/dl-\/osinfo.h@{sysdeps/unix/sysv/linux/dl-\/osinfo.h}}
+{\ttfamily \#include $<$dl-\/sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$endian.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{M\+IN}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})~(((\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})$<$(\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}))?(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})\+:(\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}))
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_a82a0d11a81bae446fc335a01105bc60c}{D\+L\+\_\+\+S\+Y\+S\+D\+E\+P\+\_\+\+O\+S\+C\+H\+E\+CK}}(F\+A\+T\+AL)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{string_2string_8h_a614b1baf4154b802cf728c27d5bbfca8}{memcpy}} \& \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}{ret}} (char $\ast$) dl\+\_\+random+sizeof(ret), sizeof(ret)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_a47f17488565b76ae41de770fb1194c60}{stack\+\_\+chk\+\_\+guard}}
+\item 
+\mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} \mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_a339672ff94e6199019102f50d317c3d7}{ret}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2dl-osinfo_8h_a82a0d11a81bae446fc335a01105bc60c}\label{unix_2sysv_2linux_2dl-osinfo_8h_a82a0d11a81bae446fc335a01105bc60c}} 
+\index{dl-\/osinfo.h@{dl-\/osinfo.h}!DL\_SYSDEP\_OSCHECK@{DL\_SYSDEP\_OSCHECK}}
+\index{DL\_SYSDEP\_OSCHECK@{DL\_SYSDEP\_OSCHECK}!dl-\/osinfo.h@{dl-\/osinfo.h}}
+\doxysubsubsection{\texorpdfstring{DL\_SYSDEP\_OSCHECK}{DL\_SYSDEP\_OSCHECK}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+S\+Y\+S\+D\+E\+P\+\_\+\+O\+S\+C\+H\+E\+CK(\begin{DoxyParamCaption}\item[{}]{F\+A\+T\+AL }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* Test whether the kernel is new enough.  This test is only performed    \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{       if the library is not compiled to run on all kernels.  */}          \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    int \mbox{\hyperlink{nis__intern_8h_af19b8db86b41b300855242ee9c233b12}{version}} = \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2dl-sysdep_8c_adbae22ce5b0542270d074383840c7a2f}{\_dl\_discover\_osversion}} ();                     \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aa5c70c33bdf7b0122f8a8cf5ebb850da}{\_\_glibc\_likely}} (\mbox{\hyperlink{nis__intern_8h_af19b8db86b41b300855242ee9c233b12}{version}} >= 0))                       \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}} (\mbox{\hyperlink{generic_2ldsodefs_8h_abde74c56f2ec45d1c235614e29077a47}{GLRO}}(dl\_osversion) == 0, 1)             \(\backslash\)}
+\DoxyCodeLine{        || \mbox{\hyperlink{generic_2ldsodefs_8h_abde74c56f2ec45d1c235614e29077a47}{GLRO}}(dl\_osversion) > \mbox{\hyperlink{nis__intern_8h_af19b8db86b41b300855242ee9c233b12}{version}})                   \(\backslash\)}
+\DoxyCodeLine{      GLRO(dl\_osversion) = \mbox{\hyperlink{nis__intern_8h_af19b8db86b41b300855242ee9c233b12}{version}};                        \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* Now we can test with the required version.  */}             \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{unix_2sysv_2linux_2kernel-features_8h_aee7764ff33c5d57c49918e57010d55cd}{\_\_LINUX\_KERNEL\_VERSION}} > 0 \&\& \mbox{\hyperlink{nis__intern_8h_af19b8db86b41b300855242ee9c233b12}{version}} < \mbox{\hyperlink{unix_2sysv_2linux_2kernel-features_8h_aee7764ff33c5d57c49918e57010d55cd}{\_\_LINUX\_KERNEL\_VERSION}})   \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* Not sufficent.  */}                           \(\backslash\)}
+\DoxyCodeLine{      FATAL (\textcolor{stringliteral}{"FATAL: kernel too old\(\backslash\)n"});                      \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\mbox{\hyperlink{unix_2sysv_2linux_2kernel-features_8h_aee7764ff33c5d57c49918e57010d55cd}{\_\_LINUX\_KERNEL\_VERSION}} > 0)                    \(\backslash\)}
+\DoxyCodeLine{      FATAL (\textcolor{stringliteral}{"FATAL: cannot determine kernel version\(\backslash\)n"});             \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2dl-osinfo_8h_a3acffbd305ee72dcd4593c0d8af64a4f}\label{unix_2sysv_2linux_2dl-osinfo_8h_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\index{dl-\/osinfo.h@{dl-\/osinfo.h}!MIN@{MIN}}
+\index{MIN@{MIN}!dl-\/osinfo.h@{dl-\/osinfo.h}}
+\doxysubsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define M\+IN(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})$<$(\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}))?(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})\+:(\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}\label{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}} 
+\index{dl-\/osinfo.h@{dl-\/osinfo.h}!ret@{ret}}
+\index{ret@{ret}!dl-\/osinfo.h@{dl-\/osinfo.h}}
+\doxysubsubsection{\texorpdfstring{ret()}{ret()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{string_2string_8h_a614b1baf4154b802cf728c27d5bbfca8}{memcpy}}\& ret (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2dl-osinfo_8h_a339672ff94e6199019102f50d317c3d7}\label{unix_2sysv_2linux_2dl-osinfo_8h_a339672ff94e6199019102f50d317c3d7}} 
+\index{dl-\/osinfo.h@{dl-\/osinfo.h}!ret@{ret}}
+\index{ret@{ret}!dl-\/osinfo.h@{dl-\/osinfo.h}}
+\doxysubsubsection{\texorpdfstring{ret}{ret}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} ret}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2dl-osinfo_8h_a47f17488565b76ae41de770fb1194c60}\label{unix_2sysv_2linux_2dl-osinfo_8h_a47f17488565b76ae41de770fb1194c60}} 
+\index{dl-\/osinfo.h@{dl-\/osinfo.h}!stack\_chk\_guard@{stack\_chk\_guard}}
+\index{stack\_chk\_guard@{stack\_chk\_guard}!dl-\/osinfo.h@{dl-\/osinfo.h}}
+\doxysubsubsection{\texorpdfstring{stack\_chk\_guard}{stack\_chk\_guard}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} stack\+\_\+chk\+\_\+guard}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\_t}} \mbox{\hyperlink{generic_2dl-osinfo_8h_a339672ff94e6199019102f50d317c3d7}{ret}}}
+
+\end{DoxyCode}

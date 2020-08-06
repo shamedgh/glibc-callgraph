@@ -1,0 +1,131 @@
+
+;; Function pthread_mutexattr_getprioceiling (pthread_mutexattr_getprioceiling, funcdef_no=42, decl_uid=2596, cgraph_uid=42, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 30.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 95 [ attr ])
+        (reg:DI 5 di [ attr ])) pthread_mutexattr_getprioceiling.c:27 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 96 [ prioceiling ])
+        (reg:DI 4 si [ prioceiling ])) pthread_mutexattr_getprioceiling.c:27 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:SI 98)
+        (mem:SI (reg/v/f:DI 95 [ attr ]) [2 MEM[(const struct pthread_mutexattr *)attr_4(D)].mutexkind+0 S4 A32])) pthread_mutexattr_getprioceiling.c:33 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:SI 97 [ D.7578 ])
+                (and:SI (reg:SI 98)
+                    (const_int 16773120 [0xfff000])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_mutexattr_getprioceiling.c:33 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 95 [ attr ]) [2 MEM[(const struct pthread_mutexattr *)attr_4(D)].mutexkind+0 S4 A32])
+            (const_int 16773120 [0xfff000]))
+        (nil)))
+(insn 9 8 10 2 (parallel [
+            (set (reg/v:SI 87 [ ceiling ])
+                (ashiftrt:SI (reg:SI 97 [ D.7578 ])
+                    (const_int 12 [0xc])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_mutexattr_getprioceiling.c:33 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 87 [ ceiling ])
+            (const_int 0 [0]))) pthread_mutexattr_getprioceiling.c:36 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) pthread_mutexattr_getprioceiling.c:36 -1
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 26)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg:SI 90 [ D.7579 ])
+        (mem/v:SI (symbol_ref:DI ("__sched_fifo_min_prio") [flags 0x40]  <var_decl 0x2b7265813480 __sched_fifo_min_prio>) [-1  S4 A32])) pthread_mutexattr_getprioceiling.c:39 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.7579 ])
+            (const_int -1 [0xffffffffffffffff]))) pthread_mutexattr_getprioceiling.c:39 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) pthread_mutexattr_getprioceiling.c:39 -1
+     (int_list:REG_BR_PROB 8629 (nil))
+ -> 18)
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 17 16 18 5 (call (mem:QI (symbol_ref:DI ("__init_sched_fifo_prio") [flags 0x41]  <function_decl 0x2b7265807798 __init_sched_fifo_prio>) [0 __init_sched_fifo_prio S1 A8])
+        (const_int 0 [0])) pthread_mutexattr_getprioceiling.c:40 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__init_sched_fifo_prio") [flags 0x41]  <function_decl 0x2b7265807798 __init_sched_fifo_prio>)
+        (nil))
+    (nil))
+(code_label 18 17 19 6 3 "" [1 uses])
+(note 19 18 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:SI 91 [ D.7579 ])
+        (mem/v:SI (symbol_ref:DI ("__sched_fifo_min_prio") [flags 0x40]  <var_decl 0x2b7265813480 __sched_fifo_min_prio>) [-1  S4 A32])) pthread_mutexattr_getprioceiling.c:41 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 91 [ D.7579 ])
+            (const_int 0 [0]))) pthread_mutexattr_getprioceiling.c:41 -1
+     (nil))
+(jump_insn 22 21 23 6 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) pthread_mutexattr_getprioceiling.c:41 -1
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 26)
+(note 23 22 24 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 7 (set (reg:SI 93 [ D.7579 ])
+        (mem/v:SI (symbol_ref:DI ("__sched_fifo_min_prio") [flags 0x40]  <var_decl 0x2b7265813480 __sched_fifo_min_prio>) [-1  S4 A32])) pthread_mutexattr_getprioceiling.c:42 -1
+     (nil))
+(insn 25 24 26 7 (set (reg/v:SI 87 [ ceiling ])
+        (reg:SI 93 [ D.7579 ])) pthread_mutexattr_getprioceiling.c:42 -1
+     (nil))
+(code_label 26 25 27 8 2 "" [2 uses])
+(note 27 26 28 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 8 (set (mem:SI (reg/v/f:DI 96 [ prioceiling ]) [2 *prioceiling_18(D)+0 S4 A32])
+        (reg/v:SI 87 [ ceiling ])) pthread_mutexattr_getprioceiling.c:45 -1
+     (nil))
+(insn 29 28 33 8 (set (reg:SI 94 [ <retval> ])
+        (const_int 0 [0])) pthread_mutexattr_getprioceiling.c:47 -1
+     (nil))
+(insn 33 29 34 8 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) pthread_mutexattr_getprioceiling.c:48 -1
+     (nil))
+(insn 34 33 0 8 (use (reg/i:SI 0 ax)) pthread_mutexattr_getprioceiling.c:48 -1
+     (nil))

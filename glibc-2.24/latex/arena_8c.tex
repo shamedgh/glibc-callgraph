@@ -1,0 +1,188 @@
+\hypertarget{arena_8c}{}\doxysection{malloc/arena.c File Reference}
+\label{arena_8c}\index{malloc/arena.c@{malloc/arena.c}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__heap__info}{\+\_\+heap\+\_\+info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{arena_8c_a6000da6aee6de14d187fec34f0648279}{H\+E\+A\+P\+\_\+\+M\+I\+N\+\_\+\+S\+I\+ZE}}~(32 $\ast$ 1024)
+\item 
+\#define \mbox{\hyperlink{arena_8c_a7085c62c43230e23f6fa23eed518061e}{H\+E\+A\+P\+\_\+\+M\+A\+X\+\_\+\+S\+I\+ZE}}~(1024 $\ast$ 1024) /$\ast$ must be \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} power of \mbox{\hyperlink{tester_8c_aa99655c3878749f6bc84e3c3e4981049}{two}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}{top}}(ar\+\_\+ptr)~((ar\+\_\+ptr)-\/$>$top)
+\item 
+\#define \mbox{\hyperlink{arena_8c_ac0af098778c8ed0b412aa594255f4854}{arena\+\_\+get}}(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}},  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\item 
+\#define \mbox{\hyperlink{arena_8c_a10b78e4fe61db4903fdd95cfa886fd13}{arena\+\_\+lock}}(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}},  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\item 
+\#define \mbox{\hyperlink{arena_8c_a68fec30bfd0b7a45bfef61d540623e92}{heap\+\_\+for\+\_\+ptr}}(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}})~((\mbox{\hyperlink{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}{heap\+\_\+info}} $\ast$) ((unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}}) (\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}}) \& $\sim$(\mbox{\hyperlink{arena_8c_a7085c62c43230e23f6fa23eed518061e}{H\+E\+A\+P\+\_\+\+M\+A\+X\+\_\+\+S\+I\+ZE}} -\/ 1)))
+\item 
+\#define \mbox{\hyperlink{arena_8c_a9619b96205896fd6c11f2fd6ac202e8e}{arena\+\_\+for\+\_\+chunk}}(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}})~(\mbox{\hyperlink{malloc_8c_a345da43a3a1e13b4310a786b15177f17}{chunk\+\_\+non\+\_\+main\+\_\+arena}} (\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}}) ? \mbox{\hyperlink{arena_8c_a68fec30bfd0b7a45bfef61d540623e92}{heap\+\_\+for\+\_\+ptr}} (\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}})-\/$>$ar\+\_\+ptr \+: \&main\+\_\+arena)
+\item 
+\#define \mbox{\hyperlink{arena_8c_a85b8e91eebbc62edb9cc64ca92b376d1}{delete\+\_\+heap}}(heap)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__heap__info}{\+\_\+heap\+\_\+info}} \mbox{\hyperlink{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}{heap\+\_\+info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{arena_8c_ae8413ffce230ab8cc738397ce0ec6365}{\+\_\+\+\_\+malloc\+\_\+fork\+\_\+lock\+\_\+parent}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{arena_8c_a2c212b30f28a2b0334284013938b3a04}{\+\_\+\+\_\+malloc\+\_\+fork\+\_\+unlock\+\_\+parent}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{arena_8c_a5ac4917f5fb98f35a101dffde7c57848}{\+\_\+\+\_\+malloc\+\_\+fork\+\_\+unlock\+\_\+child}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{arena_8c_a45c3570c2fde92596031acc072c0957f}{text\+\_\+set\+\_\+element}} (\+\_\+\+\_\+libc\+\_\+thread\+\_\+subfreeres, arena\+\_\+thread\+\_\+freeres)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{arena_8c_a578294041ed5e8bd099f70dff2f00652}{sanity\+\_\+check\+\_\+heap\+\_\+info\+\_\+alignment}} \mbox{[}(sizeof(\mbox{\hyperlink{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}{heap\+\_\+info}})+2 $\ast$\mbox{\hyperlink{malloc_8c_aae84999b7cdf339cd61a37a29a174c4a}{S\+I\+Z\+E\+\_\+\+SZ}}) \% \mbox{\hyperlink{malloc_8c_a05897f13370acbdecbf31034f8bec0d5}{M\+A\+L\+L\+O\+C\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}} ? -\/1 \+:1\mbox{]}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{arena_8c_a8f3e8c7d69fa6322212d1ef3d3bd28a2}{\+\_\+\+\_\+malloc\+\_\+initialized}} = -\/1
+\item 
+char $\ast$$\ast$ \mbox{\hyperlink{arena_8c_acf0766f6ff77c0dfc5114652471a9dad}{\+\_\+environ}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{arena_8c_a9619b96205896fd6c11f2fd6ac202e8e}\label{arena_8c_a9619b96205896fd6c11f2fd6ac202e8e}} 
+\index{arena.c@{arena.c}!arena\_for\_chunk@{arena\_for\_chunk}}
+\index{arena\_for\_chunk@{arena\_for\_chunk}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{arena\_for\_chunk}{arena\_for\_chunk}}
+{\footnotesize\ttfamily \#define arena\+\_\+for\+\_\+chunk(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{malloc_8c_a345da43a3a1e13b4310a786b15177f17}{chunk\+\_\+non\+\_\+main\+\_\+arena}} (\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}}) ? \mbox{\hyperlink{arena_8c_a68fec30bfd0b7a45bfef61d540623e92}{heap\+\_\+for\+\_\+ptr}} (\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}})-\/$>$ar\+\_\+ptr \+: \&main\+\_\+arena)}
+
+\mbox{\Hypertarget{arena_8c_ac0af098778c8ed0b412aa594255f4854}\label{arena_8c_ac0af098778c8ed0b412aa594255f4854}} 
+\index{arena.c@{arena.c}!arena\_get@{arena\_get}}
+\index{arena\_get@{arena\_get}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{arena\_get}{arena\_get}}
+{\footnotesize\ttfamily \#define arena\+\_\+get(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}},  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{      ptr = thread\_arena;                             \(\backslash\)}
+\DoxyCodeLine{      arena\_lock (\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}}, \mbox{\hyperlink{scratch__buffer_8h_a34e10fdac079a9ca4512b8ccd7f20b8a}{size}});                              \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{arena_8c_a10b78e4fe61db4903fdd95cfa886fd13}\label{arena_8c_a10b78e4fe61db4903fdd95cfa886fd13}} 
+\index{arena.c@{arena.c}!arena\_lock@{arena\_lock}}
+\index{arena\_lock@{arena\_lock}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{arena\_lock}{arena\_lock}}
+{\footnotesize\ttfamily \#define arena\+\_\+lock(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}},  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                          \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}} \&\& !\mbox{\hyperlink{malloc_8c_a4b05e8c965da198d2be64d7dff27b62a}{arena\_is\_corrupt}} (\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}}))                   \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{mach_2hurd_2malloc-machine_8h_a29d3956dd6e06e14b8ea0f7afa7c123b}{mutex\_lock}} (\&\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}}-\/>mutex);                     \(\backslash\)}
+\DoxyCodeLine{      else                                    \(\backslash\)}
+\DoxyCodeLine{        ptr = arena\_get2 ((\mbox{\hyperlink{scratch__buffer_8h_a34e10fdac079a9ca4512b8ccd7f20b8a}{size}}), \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}});                      \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{arena_8c_a85b8e91eebbc62edb9cc64ca92b376d1}\label{arena_8c_a85b8e91eebbc62edb9cc64ca92b376d1}} 
+\index{arena.c@{arena.c}!delete\_heap@{delete\_heap}}
+\index{delete\_heap@{delete\_heap}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{delete\_heap}{delete\_heap}}
+{\footnotesize\ttfamily \#define delete\+\_\+heap(\begin{DoxyParamCaption}\item[{}]{heap }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{      if ((\textcolor{keywordtype}{char} *) (heap) + \mbox{\hyperlink{arena_8c_a7085c62c43230e23f6fa23eed518061e}{HEAP\_MAX\_SIZE}} == aligned\_heap\_area)              \(\backslash\)}
+\DoxyCodeLine{        aligned\_heap\_area = \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}};                         \(\backslash\)}
+\DoxyCodeLine{      \_\_munmap ((\textcolor{keywordtype}{char} *) (heap), \mbox{\hyperlink{arena_8c_a7085c62c43230e23f6fa23eed518061e}{HEAP\_MAX\_SIZE}});                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{arena_8c_a68fec30bfd0b7a45bfef61d540623e92}\label{arena_8c_a68fec30bfd0b7a45bfef61d540623e92}} 
+\index{arena.c@{arena.c}!heap\_for\_ptr@{heap\_for\_ptr}}
+\index{heap\_for\_ptr@{heap\_for\_ptr}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{heap\_for\_ptr}{heap\_for\_ptr}}
+{\footnotesize\ttfamily \#define heap\+\_\+for\+\_\+ptr(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}{heap\+\_\+info}} $\ast$) ((unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}}) (\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}}) \& $\sim$(\mbox{\hyperlink{arena_8c_a7085c62c43230e23f6fa23eed518061e}{H\+E\+A\+P\+\_\+\+M\+A\+X\+\_\+\+S\+I\+ZE}} -\/ 1)))}
+
+\mbox{\Hypertarget{arena_8c_a7085c62c43230e23f6fa23eed518061e}\label{arena_8c_a7085c62c43230e23f6fa23eed518061e}} 
+\index{arena.c@{arena.c}!HEAP\_MAX\_SIZE@{HEAP\_MAX\_SIZE}}
+\index{HEAP\_MAX\_SIZE@{HEAP\_MAX\_SIZE}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{HEAP\_MAX\_SIZE}{HEAP\_MAX\_SIZE}}
+{\footnotesize\ttfamily \#define H\+E\+A\+P\+\_\+\+M\+A\+X\+\_\+\+S\+I\+ZE~(1024 $\ast$ 1024) /$\ast$ must be \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} power of \mbox{\hyperlink{tester_8c_aa99655c3878749f6bc84e3c3e4981049}{two}} $\ast$/}
+
+\mbox{\Hypertarget{arena_8c_a6000da6aee6de14d187fec34f0648279}\label{arena_8c_a6000da6aee6de14d187fec34f0648279}} 
+\index{arena.c@{arena.c}!HEAP\_MIN\_SIZE@{HEAP\_MIN\_SIZE}}
+\index{HEAP\_MIN\_SIZE@{HEAP\_MIN\_SIZE}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{HEAP\_MIN\_SIZE}{HEAP\_MIN\_SIZE}}
+{\footnotesize\ttfamily \#define H\+E\+A\+P\+\_\+\+M\+I\+N\+\_\+\+S\+I\+ZE~(32 $\ast$ 1024)}
+
+\mbox{\Hypertarget{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}\label{arena_8c_a08ec56872a96d52ae5bc5bf304e4e30b}} 
+\index{arena.c@{arena.c}!top@{top}}
+\index{top@{top}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{top}{top}}
+{\footnotesize\ttfamily \#define top(\begin{DoxyParamCaption}\item[{}]{ar\+\_\+ptr }\end{DoxyParamCaption})~((ar\+\_\+ptr)-\/$>$top)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}\label{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}} 
+\index{arena.c@{arena.c}!heap\_info@{heap\_info}}
+\index{heap\_info@{heap\_info}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{heap\_info}{heap\_info}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__heap__info}{\+\_\+heap\+\_\+info}}  \mbox{\hyperlink{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}{heap\+\_\+info}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{arena_8c_ae8413ffce230ab8cc738397ce0ec6365}\label{arena_8c_ae8413ffce230ab8cc738397ce0ec6365}} 
+\index{arena.c@{arena.c}!\_\_malloc\_fork\_lock\_parent@{\_\_malloc\_fork\_lock\_parent}}
+\index{\_\_malloc\_fork\_lock\_parent@{\_\_malloc\_fork\_lock\_parent}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_fork\_lock\_parent()}{\_\_malloc\_fork\_lock\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+\+\_\+malloc\+\_\+fork\+\_\+lock\+\_\+parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{arena_8c_a5ac4917f5fb98f35a101dffde7c57848}\label{arena_8c_a5ac4917f5fb98f35a101dffde7c57848}} 
+\index{arena.c@{arena.c}!\_\_malloc\_fork\_unlock\_child@{\_\_malloc\_fork\_unlock\_child}}
+\index{\_\_malloc\_fork\_unlock\_child@{\_\_malloc\_fork\_unlock\_child}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_fork\_unlock\_child()}{\_\_malloc\_fork\_unlock\_child()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+\+\_\+malloc\+\_\+fork\+\_\+unlock\+\_\+child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{arena_8c_a2c212b30f28a2b0334284013938b3a04}\label{arena_8c_a2c212b30f28a2b0334284013938b3a04}} 
+\index{arena.c@{arena.c}!\_\_malloc\_fork\_unlock\_parent@{\_\_malloc\_fork\_unlock\_parent}}
+\index{\_\_malloc\_fork\_unlock\_parent@{\_\_malloc\_fork\_unlock\_parent}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_fork\_unlock\_parent()}{\_\_malloc\_fork\_unlock\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+\+\_\+malloc\+\_\+fork\+\_\+unlock\+\_\+parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{arena_8c_a45c3570c2fde92596031acc072c0957f}\label{arena_8c_a45c3570c2fde92596031acc072c0957f}} 
+\index{arena.c@{arena.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+\+\_\+libc\+\_\+thread\+\_\+subfreeres}]{,  }\item[{arena\+\_\+thread\+\_\+freeres}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{arena_8c_a8f3e8c7d69fa6322212d1ef3d3bd28a2}\label{arena_8c_a8f3e8c7d69fa6322212d1ef3d3bd28a2}} 
+\index{arena.c@{arena.c}!\_\_malloc\_initialized@{\_\_malloc\_initialized}}
+\index{\_\_malloc\_initialized@{\_\_malloc\_initialized}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_initialized}{\_\_malloc\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+malloc\+\_\+initialized = -\/1}
+
+\mbox{\Hypertarget{arena_8c_acf0766f6ff77c0dfc5114652471a9dad}\label{arena_8c_acf0766f6ff77c0dfc5114652471a9dad}} 
+\index{arena.c@{arena.c}!\_environ@{\_environ}}
+\index{\_environ@{\_environ}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{\_environ}{\_environ}}
+{\footnotesize\ttfamily char$\ast$$\ast$ \+\_\+environ}
+
+\mbox{\Hypertarget{arena_8c_a578294041ed5e8bd099f70dff2f00652}\label{arena_8c_a578294041ed5e8bd099f70dff2f00652}} 
+\index{arena.c@{arena.c}!sanity\_check\_heap\_info\_alignment@{sanity\_check\_heap\_info\_alignment}}
+\index{sanity\_check\_heap\_info\_alignment@{sanity\_check\_heap\_info\_alignment}!arena.c@{arena.c}}
+\doxysubsubsection{\texorpdfstring{sanity\_check\_heap\_info\_alignment}{sanity\_check\_heap\_info\_alignment}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} sanity\+\_\+check\+\_\+heap\+\_\+info\+\_\+alignment\mbox{[}(sizeof(\mbox{\hyperlink{arena_8c_a4d0320d27bf63f20af50edc8b0a587a8}{heap\+\_\+info}})+2 $\ast$\mbox{\hyperlink{malloc_8c_aae84999b7cdf339cd61a37a29a174c4a}{S\+I\+Z\+E\+\_\+\+SZ}}) \% \mbox{\hyperlink{malloc_8c_a05897f13370acbdecbf31034f8bec0d5}{M\+A\+L\+L\+O\+C\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}} ? -\/1 \+:1\mbox{]}}
+

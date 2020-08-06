@@ -1,0 +1,152 @@
+
+;; Function __acosl (__acosl, funcdef_no=77, decl_uid=2685, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 35.
+Merging block 8 into block 7...
+Merged blocks 7 and 8.
+Merged 7 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:XF 91 [ x ])
+        (mem/c:XF (reg/f:DI 81 virtual-incoming-args) [2 x+0 S16 A128])) w_acosl.c:27 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:XF 92 [ D.5392 ])
+        (abs:XF (reg/v:XF 91 [ x ]))) w_acosl.c:28 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SF 94)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [3  S4 A32])) w_acosl.c:28 -1
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 8 7 9 2 (set (reg:XF 93)
+        (float_extend:XF (reg:SF 94))) w_acosl.c:28 -1
+     (expr_list:REG_EQUAL (const_double:XF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 9 8 10 2 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:XF 92 [ D.5392 ])
+            (reg:XF 93))) w_acosl.c:28 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) w_acosl.c:28 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 26)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg/f:DI 95)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_LIB_VERSION") [flags 0x40]  <var_decl 0x2b716ccf4480 _LIB_VERSION>)
+                    ] UNSPEC_GOTPCREL)) [4  S8 A8])) w_acosl.c:29 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (reg/f:DI 95) [1 _LIB_VERSION+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))) w_acosl.c:29 -1
+     (nil))
+(jump_insn 14 13 15 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) w_acosl.c:29 -1
+     (int_list:REG_BR_PROB 5983 (nil))
+ -> 26)
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 5 (set (reg:SF 96)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [3  S4 A32])) ../sysdeps/x86/fpu/bits/fenv.h:119 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 17 16 18 5 (parallel [
+            (asm_operands/v ("divss %0, %0 ") ("") 0 [
+                    (reg:SF 96)
+                ]
+                 [
+                    (asm_input:SF ("x") ../sysdeps/x86/fpu/bits/fenv.h:119)
+                ]
+                 [] ../sysdeps/x86/fpu/bits/fenv.h:119)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86/fpu/bits/fenv.h:119 -1
+     (nil))
+(insn 18 17 19 5 (set (mem:XF (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A128])
+        (reg/v:XF 91 [ x ])) w_acosl.c:33 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 19 18 20 5 (set (mem:XF (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A128])
+        (reg/v:XF 91 [ x ])) w_acosl.c:33 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 20 19 21 5 (set (reg:SI 5 di)
+        (const_int 201 [0xc9])) w_acosl.c:33 -1
+     (nil))
+(call_insn 21 20 22 5 (set (reg:XF 8 st)
+        (call (mem:QI (symbol_ref:DI ("__kernel_standard_l") [flags 0x41]  <function_decl 0x2b716cf38438 __kernel_standard_l>) [0 __kernel_standard_l S1 A8])
+            (const_int 32 [0x20]))) w_acosl.c:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__kernel_standard_l") [flags 0x41]  <function_decl 0x2b716cf38438 __kernel_standard_l>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 22 21 23 5 (set (reg:XF 87 [ D.5392 ])
+        (reg:XF 8 st)) w_acosl.c:33 -1
+     (nil))
+(insn 23 22 24 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) w_acosl.c:33 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(jump_insn 24 23 25 5 (set (pc)
+        (label_ref 32)) w_acosl.c:33 -1
+     (nil)
+ -> 32)
+(barrier 25 24 26)
+(code_label 26 25 27 6 2 "" [2 uses])
+(note 27 26 28 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 6 (set (mem:XF (reg/f:DI 81 virtual-incoming-args) [0  S16 A128])
+        (reg/v:XF 91 [ x ])) w_acosl.c:36 -1
+     (nil))
+(call_insn/j 29 28 30 6 (set (reg:XF 8 st)
+        (call (mem:QI (symbol_ref:DI ("__ieee754_acosl") [flags 0x41]  <function_decl 0x2b716cf40bd0 __ieee754_acosl>) [0 __ieee754_acosl S1 A8])
+            (const_int 16 [0x10]))) w_acosl.c:36 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ieee754_acosl") [flags 0x41]  <function_decl 0x2b716cf40bd0 __ieee754_acosl>)
+        (nil))
+    (expr_list:XF (use (mem:XF (reg/f:DI 81 virtual-incoming-args) [0  S16 A128]))
+        (nil)))
+(barrier 30 29 32)
+(code_label 32 30 33 7 3 "" [1 uses])
+(note 33 32 34 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 38 7 (set (reg:XF 90 [ <retval> ])
+        (reg:XF 87 [ D.5392 ])) -1
+     (nil))
+(insn 38 34 39 7 (set (reg/i:XF 8 st)
+        (reg:XF 90 [ <retval> ])) w_acosl.c:37 -1
+     (nil))
+(insn 39 38 0 7 (use (reg/i:XF 8 st)) w_acosl.c:37 -1
+     (nil))

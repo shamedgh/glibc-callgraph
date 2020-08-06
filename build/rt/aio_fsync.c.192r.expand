@@ -1,0 +1,211 @@
+
+;; Function aio_fsync (aio_fsync, funcdef_no=67, decl_uid=2174, cgraph_uid=67, symbol_order=68)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 6->8 redirected to 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 50.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 95 [ op ])
+        (reg:SI 5 di [ op ])) ../sysdeps/pthread/aio_fsync.c:38 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 96 [ aiocbp ])
+        (reg:DI 4 si [ aiocbp ])) ../sysdeps/pthread/aio_fsync.c:38 -1
+     (nil))
+(note 4 3 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 4 11 2 (parallel [
+            (set (reg:SI 97 [ D.9057 ])
+                (and:SI (reg/v:SI 95 [ op ])
+                    (const_int -1048577 [0xffffffffffefffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_fsync.c:39 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 97 [ D.9057 ])
+            (const_int 4096 [0x1000]))) ../sysdeps/pthread/aio_fsync.c:39 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) ../sysdeps/pthread/aio_fsync.c:39 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 18)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:DI 98)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b4932d94870 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [9  S8 A8])) ../sysdeps/pthread/aio_fsync.c:41 -1
+     (nil))
+(insn 15 14 7 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 98)) [2 errno+0 S4 A32])
+        (const_int 22 [0x16])) ../sysdeps/pthread/aio_fsync.c:41 -1
+     (nil))
+(insn 7 15 16 4 (set (reg:SI 87 [ D.9057 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/pthread/aio_fsync.c:42 -1
+     (nil))
+(jump_insn 16 7 17 4 (set (pc)
+        (label_ref 47)) ../sysdeps/pthread/aio_fsync.c:42 -1
+     (nil)
+ -> 47)
+(barrier 17 16 18)
+(code_label 18 17 19 5 2 "" [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (set (reg:SI 4 si)
+        (const_int 3 [0x3])) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:SI 5 di)
+        (mem:SI (reg/v/f:DI 96 [ aiocbp ]) [2 aiocbp_10(D)->aio_fildes+0 S4 A64])) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (nil))
+(insn 22 21 23 5 (set (reg:QI 0 ax)
+        (const_int 0 [0])) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (nil))
+(call_insn 23 22 24 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fcntl") [flags 0x41]  <function_decl 0x2b4932dcd870 fcntl>) [0 fcntl S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fcntl") [flags 0x41]  <function_decl 0x2b4932dcd870 fcntl>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (nil)))))
+(insn 24 23 25 5 (set (reg:SI 87 [ D.9057 ])
+        (reg:SI 0 ax)) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (nil))
+(insn 25 24 26 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ D.9057 ])
+            (const_int -1 [0xffffffffffffffff]))) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (nil))
+(jump_insn 26 25 27 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 32)
+            (pc))) ../sysdeps/pthread/aio_fsync.c:46 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 32)
+(note 27 26 28 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 6 (set (reg:DI 99)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b4932d94870 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [9  S8 A8])) ../sysdeps/pthread/aio_fsync.c:48 -1
+     (nil))
+(insn 29 28 30 6 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 99)) [2 errno+0 S4 A32])
+        (const_int 9 [0x9])) ../sysdeps/pthread/aio_fsync.c:48 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (label_ref 47)) ../sysdeps/pthread/aio_fsync.c:49 -1
+     (nil)
+ -> 47)
+(barrier 31 30 32)
+(code_label 32 31 33 7 4 "" [1 uses])
+(note 33 32 34 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ op ])
+            (const_int 1052672 [0x101000]))) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (nil))
+(jump_insn 35 34 36 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 59)
+            (pc))) ../sysdeps/pthread/aio_fsync.c:52 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 59)
+(note 36 35 6 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 6 36 56 8 (set (reg:SI 88 [ D.9057 ])
+        (const_int 3 [0x3])) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (nil))
+(jump_insn 56 6 57 8 (set (pc)
+        (label_ref 37)) -1
+     (nil)
+ -> 37)
+(barrier 57 56 59)
+(code_label 59 57 58 9 6 "" [1 uses])
+(note 58 59 5 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 5 58 37 9 (set (reg:SI 88 [ D.9057 ])
+        (const_int 4 [0x4])) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (nil))
+(code_label 37 5 38 10 5 "" [1 uses])
+(note 38 37 39 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 10 (set (reg:SI 4 si)
+        (reg:SI 88 [ D.9057 ])) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (nil))
+(insn 40 39 41 10 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ aiocbp ])) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (nil))
+(call_insn 41 40 42 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__aio_enqueue_request") [flags 0x43]  <function_decl 0x2b4932f1ed80 __aio_enqueue_request>) [0 __aio_enqueue_request S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__aio_enqueue_request") [flags 0x43]  <function_decl 0x2b4932f1ed80 __aio_enqueue_request>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 42 41 43 10 (set (reg/f:DI 92 [ D.9059 ])
+        (reg:DI 0 ax)) ../sysdeps/pthread/aio_fsync.c:52 -1
+     (nil))
+(insn 43 42 44 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 92 [ D.9059 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_fsync.c:54 -1
+     (nil))
+(insn 44 43 45 10 (set (reg:QI 101)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_fsync.c:54 -1
+     (nil))
+(insn 45 44 46 10 (set (reg:SI 100 [ D.9058 ])
+        (zero_extend:SI (reg:QI 101))) ../sysdeps/pthread/aio_fsync.c:54 -1
+     (nil))
+(insn 46 45 47 10 (parallel [
+            (set (reg:SI 87 [ D.9057 ])
+                (neg:SI (reg:SI 100 [ D.9058 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_fsync.c:54 -1
+     (nil))
+(code_label 47 46 48 11 3 "" [2 uses])
+(note 48 47 49 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 53 11 (set (reg:SI 94 [ <retval> ])
+        (reg:SI 87 [ D.9057 ])) -1
+     (nil))
+(insn 53 49 54 11 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) ../sysdeps/pthread/aio_fsync.c:55 -1
+     (nil))
+(insn 54 53 0 11 (use (reg/i:SI 0 ax)) ../sysdeps/pthread/aio_fsync.c:55 -1
+     (nil))

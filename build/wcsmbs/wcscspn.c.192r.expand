@@ -1,0 +1,139 @@
+
+;; Function wcscspn (wcscspn, funcdef_no=3, decl_uid=1924, cgraph_uid=3, symbol_order=6)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+Edge 2->6 redirected to 10
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 6->7 to 9 failed.
+Removing jump 51.
+Merging block 10 into block 9...
+Merged blocks 9 and 10.
+Merged 9 and 10 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 6->7 to 9 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 23 0 29 NOTE_INSN_DELETED)
+(note 29 23 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 24 29 25 2 (set (reg/v/f:DI 113 [ wcs ])
+        (reg:DI 5 di [ wcs ])) wcscspn.c:29 -1
+     (nil))
+(insn 25 24 26 2 (set (reg/v/f:DI 114 [ reject ])
+        (reg:DI 4 si [ reject ])) wcscspn.c:29 -1
+     (nil))
+(note 26 25 31 2 NOTE_INSN_FUNCTION_BEG)
+(insn 31 26 32 2 (set (reg:SI 111 [ D.2486 ])
+        (mem:SI (reg/v/f:DI 113 [ wcs ]) [1 *wcs_3(D)+0 S4 A32])) wcscspn.c:32 -1
+     (nil))
+(insn 32 31 33 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.2486 ])
+            (const_int 0 [0]))) wcscspn.c:32 -1
+     (nil))
+(jump_insn 33 32 34 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 61)
+            (pc))) wcscspn.c:32 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 61)
+(note 34 33 27 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 27 34 45 4 (set (reg/v:DI 110 [ count ])
+        (const_int 0 [0])) wcscspn.c:32 -1
+     (nil))
+(code_label 45 27 35 5 3 "" [1 uses])
+(note 35 45 36 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 5 (set (reg:SI 4 si)
+        (reg:SI 111 [ D.2486 ])) wcscspn.c:33 -1
+     (nil))
+(insn 37 36 38 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 114 [ reject ])) wcscspn.c:33 -1
+     (nil))
+(call_insn/i 38 37 39 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_wcschr") [flags 0x43]  <function_decl 0x2aaf9c93eaf8 wcschr>) [0 wcschr S1 A8])
+            (const_int 0 [0]))) wcscspn.c:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_wcschr") [flags 0x43]  <function_decl 0x2aaf9c93eaf8 wcschr>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 39 38 40 5 (set (reg/f:DI 109 [ D.2485 ])
+        (reg:DI 0 ax)) wcscspn.c:33 -1
+     (nil))
+(insn 40 39 41 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 109 [ D.2485 ])
+            (const_int 0 [0]))) wcscspn.c:33 -1
+     (nil))
+(jump_insn 41 40 42 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) wcscspn.c:33 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 48)
+(note 42 41 43 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 6 (parallel [
+            (set (reg/v:DI 110 [ count ])
+                (plus:DI (reg/v:DI 110 [ count ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) wcscspn.c:34 -1
+     (nil))
+(insn 44 43 46 6 (set (reg:SI 111 [ D.2486 ])
+        (mem:SI (plus:DI (mult:DI (reg/v:DI 110 [ count ])
+                    (const_int 4 [0x4]))
+                (reg/v/f:DI 113 [ wcs ])) [1 MEM[base: wcs_3(D), index: count_9, step: 4, offset: 0B]+0 S4 A32])) wcscspn.c:32 -1
+     (nil))
+(insn 46 44 47 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.2486 ])
+            (const_int 0 [0]))) wcscspn.c:32 -1
+     (nil))
+(jump_insn 47 46 57 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 45)
+            (pc))) wcscspn.c:32 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 45)
+(note 57 47 58 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 58 57 59 7 (set (pc)
+        (label_ref 48)) -1
+     (nil)
+ -> 48)
+(barrier 59 58 61)
+(code_label 61 59 60 8 4 "" [1 uses])
+(note 60 61 28 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 28 60 48 8 (set (reg/v:DI 110 [ count ])
+        (const_int 0 [0])) wcscspn.c:30 -1
+     (nil))
+(code_label 48 28 49 9 2 "" [2 uses])
+(note 49 48 50 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 54 9 (set (reg:DI 112 [ <retval> ])
+        (reg/v:DI 110 [ count ])) -1
+     (nil))
+(insn 54 50 55 9 (set (reg/i:DI 0 ax)
+        (reg:DI 112 [ <retval> ])) wcscspn.c:39 -1
+     (nil))
+(insn 55 54 0 9 (use (reg/i:DI 0 ax)) wcscspn.c:39 -1
+     (nil))

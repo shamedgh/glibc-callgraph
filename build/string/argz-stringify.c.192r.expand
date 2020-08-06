@@ -1,0 +1,132 @@
+
+;; Function __argz_stringify (*__GI___argz_stringify, funcdef_no=34, decl_uid=7103, cgraph_uid=34, symbol_order=38)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->7 redirected to 8
+Edge 5->7 redirected to 8
+deleting block 7
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 92 [ argz ])
+        (reg:DI 5 di [ argz ])) argz-stringify.c:27 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 93 [ len ])
+        (reg:DI 4 si [ len ])) argz-stringify.c:27 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 94 [ sep ])
+        (reg:SI 1 dx [ sep ])) argz-stringify.c:27 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 93 [ len ])
+            (const_int 0 [0]))) argz-stringify.c:28 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 30)
+            (pc))) argz-stringify.c:28 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 30)
+(note 10 9 25 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(code_label 25 10 11 5 3 "" [1 uses])
+(note 11 25 12 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 5 (set (reg:DI 4 si)
+        (reg/v:DI 93 [ len ])) argz-stringify.c:31 -1
+     (nil))
+(insn 13 12 14 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ argz ])) argz-stringify.c:31 -1
+     (nil))
+(call_insn/i 14 13 15 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___strnlen") [flags 0x43]  <function_decl 0x2b5e504c8ca8 __strnlen>) [0 __strnlen S1 A8])
+            (const_int 0 [0]))) argz-stringify.c:31 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___strnlen") [flags 0x43]  <function_decl 0x2b5e504c8ca8 __strnlen>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 15 14 16 5 (set (reg/v:DI 87 [ part_len ])
+        (reg:DI 0 ax)) argz-stringify.c:31 -1
+     (nil))
+(insn 16 15 17 5 (parallel [
+            (set (reg/v/f:DI 88 [ argz ])
+                (plus:DI (reg/v/f:DI 92 [ argz ])
+                    (reg/v:DI 87 [ part_len ])))
+            (clobber (reg:CC 17 flags))
+        ]) argz-stringify.c:32 -1
+     (nil))
+(insn 17 16 18 5 (parallel [
+            (set (reg/v:DI 89 [ len ])
+                (minus:DI (reg/v:DI 93 [ len ])
+                    (reg/v:DI 87 [ part_len ])))
+            (clobber (reg:CC 17 flags))
+        ]) argz-stringify.c:33 -1
+     (nil))
+(insn 18 17 19 5 (parallel [
+            (set (reg/v:DI 93 [ len ])
+                (plus:DI (reg/v:DI 89 [ len ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) argz-stringify.c:34 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 89 [ len ])
+            (const_int 1 [0x1]))) argz-stringify.c:34 -1
+     (nil))
+(jump_insn 20 19 21 5 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 30)
+            (pc))) argz-stringify.c:34 612 {*jcc_1}
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 30)
+(note 21 20 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 95 [ D.7220 ])
+                (plus:DI (reg/v:DI 87 [ part_len ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) argz-stringify.c:36 -1
+     (nil))
+(insn 23 22 24 6 (parallel [
+            (set (reg/v/f:DI 92 [ argz ])
+                (plus:DI (reg/v/f:DI 92 [ argz ])
+                    (reg:DI 95 [ D.7220 ])))
+            (clobber (reg:CC 17 flags))
+        ]) argz-stringify.c:36 -1
+     (nil))
+(insn 24 23 26 6 (set (mem:QI (reg/v/f:DI 88 [ argz ]) [0 *argz_12+0 S1 A8])
+        (subreg:QI (reg/v:SI 94 [ sep ]) 0)) argz-stringify.c:36 -1
+     (nil))
+(jump_insn 26 24 27 6 (set (pc)
+        (label_ref 25)) argz-stringify.c:36 -1
+     (nil)
+ -> 25)
+(barrier 27 26 30)
+(code_label 30 27 31 8 1 "" [2 uses])
+(note 31 30 0 8 [bb 8] NOTE_INSN_BASIC_BLOCK)

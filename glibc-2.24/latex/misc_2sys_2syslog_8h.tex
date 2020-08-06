@@ -1,0 +1,393 @@
+\hypertarget{misc_2sys_2syslog_8h}{}\doxysection{misc/sys/syslog.h File Reference}
+\label{misc_2sys_2syslog_8h}\index{misc/sys/syslog.h@{misc/sys/syslog.h}}
+{\ttfamily \#include $<$features.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$bits/syslog-\/path.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_ac40d7139209bc29da98f6b73a9b5cb80}{\+\_\+\+\_\+need\+\_\+\+\_\+\+\_\+va\+\_\+list}}
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a5c6e8b60c2512dfc0e0224d25a61cb2c}{L\+O\+G\+\_\+\+E\+M\+E\+RG}}~0	/$\ast$ \mbox{\hyperlink{stdlib_2stdlib_8h_afaf123b3aabf3632d9ec5f8a7eb0419f}{system}} \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} unusable $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a12b2a3bb9e3adfeb35b4e5514e7d9043}{L\+O\+G\+\_\+\+A\+L\+E\+RT}}~1	/$\ast$ \mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} must be taken immediately $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aaa731313f5c63e855fefb5f6519c3283}{L\+O\+G\+\_\+\+C\+R\+IT}}~2	/$\ast$ critical conditions $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a96fad55b3f5adf08c39e4c877cf185e3}{L\+O\+G\+\_\+\+E\+RR}}~3	/$\ast$ \mbox{\hyperlink{rpc__util_8h_a4866b2d37ffc80c5ba705d3fcd1e0ecf}{error}} conditions $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_adf4476a6a4ea6c74231c826e899d7189}{L\+O\+G\+\_\+\+W\+A\+R\+N\+I\+NG}}~4	/$\ast$ warning conditions $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_ad89ee324d180cdcd7defcc709ff9ca42}{L\+O\+G\+\_\+\+N\+O\+T\+I\+CE}}~5	/$\ast$ normal but significant \mbox{\hyperlink{tst-cond6_8c_ada3c07b32e1b95b6a81d59f283f01014}{condition}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aeb4f36db01bd128c7afeac5889dac311}{L\+O\+G\+\_\+\+I\+N\+FO}}~6	/$\ast$ informational $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a6ff63e8955665c4a58b1598f2b07c51a}{L\+O\+G\+\_\+\+D\+E\+B\+UG}}~7	/$\ast$ \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}}-\/\mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} messages $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a709050545b621c5eba19d44e17b5da52}{L\+O\+G\+\_\+\+P\+R\+I\+M\+A\+SK}}~0x07	/$\ast$ mask to extract priority part (internal) $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aaa76273872f6d8e1a2626b76d417209d}{L\+O\+G\+\_\+\+P\+RI}}(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})~((\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}) \& \mbox{\hyperlink{misc_2sys_2syslog_8h_a709050545b621c5eba19d44e17b5da52}{L\+O\+G\+\_\+\+P\+R\+I\+M\+A\+SK}})
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_adad2d7c1f25f7a94c697894722469c83}{L\+O\+G\+\_\+\+M\+A\+K\+E\+P\+RI}}(fac,  pri)~((fac) $\vert$ (pri))
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a3782c789d7d0eeab593758f80e436da4}{L\+O\+G\+\_\+\+K\+E\+RN}}~(0$<$$<$3)	/$\ast$ kernel messages $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_ac8b1ae5666bff93a5db0bb45f99f5832}{L\+O\+G\+\_\+\+U\+S\+ER}}~(1$<$$<$3)	/$\ast$ random \mbox{\hyperlink{structuser}{user}}-\/\mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} messages $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a135a6127cf9b508b4361594e842eefc0}{L\+O\+G\+\_\+\+M\+A\+IL}}~(2$<$$<$3)	/$\ast$ mail \mbox{\hyperlink{stdlib_2stdlib_8h_afaf123b3aabf3632d9ec5f8a7eb0419f}{system}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a9961fc94ec213d970dc7c8d9608e1d42}{L\+O\+G\+\_\+\+D\+A\+E\+M\+ON}}~(3$<$$<$3)	/$\ast$ \mbox{\hyperlink{stdlib_2stdlib_8h_afaf123b3aabf3632d9ec5f8a7eb0419f}{system}} daemons $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a22b8a93c6a27426f9a8ad4ce9407e86d}{L\+O\+G\+\_\+\+A\+U\+TH}}~(4$<$$<$3)	/$\ast$ security/authorization messages $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aac5b42b45757c49927892523f0367356}{L\+O\+G\+\_\+\+S\+Y\+S\+L\+OG}}~(5$<$$<$3)	/$\ast$ messages generated internally by syslogd $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a3c6927ac15f5eaa92ee6d79b2837b68e}{L\+O\+G\+\_\+\+L\+PR}}~(6$<$$<$3)	/$\ast$ line printer subsystem $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aeae7c4754f60a7931ce0141bac37e798}{L\+O\+G\+\_\+\+N\+E\+WS}}~(7$<$$<$3)	/$\ast$ \mbox{\hyperlink{tst-network_8c_a401098f5aef1991a0444deeaeee4084d}{network}} news subsystem $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_ab0db5f3df16ec19a5897b852930bca54}{L\+O\+G\+\_\+\+U\+U\+CP}}~(8$<$$<$3)	/$\ast$ U\+U\+CP subsystem $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a285963d2ea1986d2f31ae7c6c0b5dc4e}{L\+O\+G\+\_\+\+C\+R\+ON}}~(9$<$$<$3)	/$\ast$ \mbox{\hyperlink{time_2time_8h_aa0cda89fee38b6960a38406fe8baf226}{clock}} \mbox{\hyperlink{daemon_8c_af298996def620cbda4cd529988218cb0}{daemon}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a692679f0c66ec0af21cf1232c90dd843}{L\+O\+G\+\_\+\+A\+U\+T\+H\+P\+R\+IV}}~(10$<$$<$3)	/$\ast$ security/authorization messages (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}}) $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_acf5d4c2811adb735aaf5b32f62cc3cea}{L\+O\+G\+\_\+\+F\+TP}}~(11$<$$<$3)	/$\ast$ ftp \mbox{\hyperlink{daemon_8c_af298996def620cbda4cd529988218cb0}{daemon}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a25eab08bcadd790ad09db8ab1391d7b4}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L0}}~(16$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_ae2702880c720b92d9b133a394536fc55}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L1}}~(17$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a3bba702c131c9a343f43cefe9dc54806}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L2}}~(18$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_adc43741bf59af027c44c46f6c4692592}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L3}}~(19$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a7c96c20eb0501c681dea19b78c36e475}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L4}}~(20$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_ac19bfe79880b74eb63d406c218c89350}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L5}}~(21$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a71d48fd009db4d4e57019903d372347a}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L6}}~(22$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aea1efd5b3880503ca94c623d0517e497}{L\+O\+G\+\_\+\+L\+O\+C\+A\+L7}}~(23$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_af7e64a388ebd11693b6982b361aba8fa}{L\+O\+G\+\_\+\+N\+F\+A\+C\+I\+L\+I\+T\+I\+ES}}~24	/$\ast$ \mbox{\hyperlink{lc-ctype_8c_a5da039047631088cede59f8042b31f8d}{current}} \mbox{\hyperlink{unionnumber}{number}} of facilities $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a0e487f6cabd1b68612374a0a1dce72f0}{L\+O\+G\+\_\+\+F\+A\+C\+M\+A\+SK}}~0x03f8	/$\ast$ mask to extract facility part $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aa6996a065648a99f5dfbd7c704a11ec8}{L\+O\+G\+\_\+\+F\+AC}}(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})~(((\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}) \& \mbox{\hyperlink{misc_2sys_2syslog_8h_a0e487f6cabd1b68612374a0a1dce72f0}{L\+O\+G\+\_\+\+F\+A\+C\+M\+A\+SK}}) $>$$>$ 3)
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a12b268e754674380f5c5df9a488a6311}{L\+O\+G\+\_\+\+M\+A\+SK}}(pri)~(1 $<$$<$ (pri))		/$\ast$ \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}} priority $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_af55a665e2caa1cb189cf7391349ab418}{L\+O\+G\+\_\+\+U\+P\+TO}}(pri)~((1 $<$$<$ ((pri)+1)) -\/ 1)	/$\ast$ all priorities through pri $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a7b264572ee428bb73548226ba5bbe88a}{L\+O\+G\+\_\+\+P\+ID}}~0x01	/$\ast$ log the pid with each message $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aeccd30c76c44f407cd9d5441318b6aba}{L\+O\+G\+\_\+\+C\+O\+NS}}~0x02	/$\ast$ log on the console if errors in sending $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_aed1240a0e0d7f574a09ea915d4e1af85}{L\+O\+G\+\_\+\+O\+D\+E\+L\+AY}}~0x04	/$\ast$ delay open until first syslog() (default) $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a446430791b21a34e7308046826759d25}{L\+O\+G\+\_\+\+N\+D\+E\+L\+AY}}~0x08	/$\ast$ don\textquotesingle{}t delay open $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a9dff0ca45769bfa276ce3f0080acc397}{L\+O\+G\+\_\+\+N\+O\+W\+A\+IT}}~0x10	/$\ast$ don\textquotesingle{}t wait for console forks\+: D\+E\+P\+R\+E\+C\+A\+T\+E\+D $\ast$/
+\item 
+\#define \mbox{\hyperlink{misc_2sys_2syslog_8h_a542160b84335cc94dfb75604fd40d341}{L\+O\+G\+\_\+\+P\+E\+R\+R\+OR}}~0x20	/$\ast$ log to stderr as well $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{misc_2sys_2cdefs_8h_a568e6bde99652b7fd271ad206cfe38f5}{\+\_\+\+\_\+\+B\+E\+G\+I\+N\+\_\+\+D\+E\+C\+LS}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{misc_2sys_2syslog_8h_a2a0697b80bde31cfbf9a9afcdbcd64a6}{closelog}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{misc_2sys_2syslog_8h_a1926b66e857d779b0ab70d4d5b8c163b}{openlog}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\+\_\+\+\_\+ident, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+option, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+facility)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{misc_2sys_2syslog_8h_aee2e56ef577ddc11700013a57af8d4e2}{setlogmask}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{include_2ctype_8h_a114206ec79e402dc447f6386b342944a}{\+\_\+\+\_\+mask}}) \mbox{\hyperlink{libioP_8h_a350a94e75772113b30ba236c031f2f29}{\+\_\+\+\_\+\+T\+H\+R\+OW}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{misc_2sys_2syslog_8h_ae537700d3ca3243579517feceb7cc890}{syslog}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+pri, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{include_2sys_2syslog_8h_aec1ab396608acbacd9a384420c5e8e02}{\+\_\+\+\_\+fmt}},...) \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\mbox{\hyperlink{misc_2err_8h_a7ac72b7446498242c9e4e054250f8ee9}{\+\_\+\+\_\+format\+\_\+\+\_\+}}(\mbox{\hyperlink{argp_2argp_8h_a10ea4bdaa1534c2e792509268b4e597e}{\+\_\+\+\_\+printf\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ac40d7139209bc29da98f6b73a9b5cb80}\label{misc_2sys_2syslog_8h_ac40d7139209bc29da98f6b73a9b5cb80}} 
+\index{syslog.h@{syslog.h}!\_\_need\_\_\_va\_list@{\_\_need\_\_\_va\_list}}
+\index{\_\_need\_\_\_va\_list@{\_\_need\_\_\_va\_list}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{\_\_need\_\_\_va\_list}{\_\_need\_\_\_va\_list}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+need\+\_\+\+\_\+\+\_\+va\+\_\+list}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a12b2a3bb9e3adfeb35b4e5514e7d9043}\label{misc_2sys_2syslog_8h_a12b2a3bb9e3adfeb35b4e5514e7d9043}} 
+\index{syslog.h@{syslog.h}!LOG\_ALERT@{LOG\_ALERT}}
+\index{LOG\_ALERT@{LOG\_ALERT}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_ALERT}{LOG\_ALERT}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+A\+L\+E\+RT~1	/$\ast$ \mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} must be taken immediately $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a22b8a93c6a27426f9a8ad4ce9407e86d}\label{misc_2sys_2syslog_8h_a22b8a93c6a27426f9a8ad4ce9407e86d}} 
+\index{syslog.h@{syslog.h}!LOG\_AUTH@{LOG\_AUTH}}
+\index{LOG\_AUTH@{LOG\_AUTH}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_AUTH}{LOG\_AUTH}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+A\+U\+TH~(4$<$$<$3)	/$\ast$ security/authorization messages $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a692679f0c66ec0af21cf1232c90dd843}\label{misc_2sys_2syslog_8h_a692679f0c66ec0af21cf1232c90dd843}} 
+\index{syslog.h@{syslog.h}!LOG\_AUTHPRIV@{LOG\_AUTHPRIV}}
+\index{LOG\_AUTHPRIV@{LOG\_AUTHPRIV}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_AUTHPRIV}{LOG\_AUTHPRIV}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+A\+U\+T\+H\+P\+R\+IV~(10$<$$<$3)	/$\ast$ security/authorization messages (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}}) $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aeccd30c76c44f407cd9d5441318b6aba}\label{misc_2sys_2syslog_8h_aeccd30c76c44f407cd9d5441318b6aba}} 
+\index{syslog.h@{syslog.h}!LOG\_CONS@{LOG\_CONS}}
+\index{LOG\_CONS@{LOG\_CONS}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_CONS}{LOG\_CONS}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+C\+O\+NS~0x02	/$\ast$ log on the console if errors in sending $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aaa731313f5c63e855fefb5f6519c3283}\label{misc_2sys_2syslog_8h_aaa731313f5c63e855fefb5f6519c3283}} 
+\index{syslog.h@{syslog.h}!LOG\_CRIT@{LOG\_CRIT}}
+\index{LOG\_CRIT@{LOG\_CRIT}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_CRIT}{LOG\_CRIT}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+C\+R\+IT~2	/$\ast$ critical conditions $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a285963d2ea1986d2f31ae7c6c0b5dc4e}\label{misc_2sys_2syslog_8h_a285963d2ea1986d2f31ae7c6c0b5dc4e}} 
+\index{syslog.h@{syslog.h}!LOG\_CRON@{LOG\_CRON}}
+\index{LOG\_CRON@{LOG\_CRON}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_CRON}{LOG\_CRON}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+C\+R\+ON~(9$<$$<$3)	/$\ast$ \mbox{\hyperlink{time_2time_8h_aa0cda89fee38b6960a38406fe8baf226}{clock}} \mbox{\hyperlink{daemon_8c_af298996def620cbda4cd529988218cb0}{daemon}} $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a9961fc94ec213d970dc7c8d9608e1d42}\label{misc_2sys_2syslog_8h_a9961fc94ec213d970dc7c8d9608e1d42}} 
+\index{syslog.h@{syslog.h}!LOG\_DAEMON@{LOG\_DAEMON}}
+\index{LOG\_DAEMON@{LOG\_DAEMON}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_DAEMON}{LOG\_DAEMON}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+D\+A\+E\+M\+ON~(3$<$$<$3)	/$\ast$ \mbox{\hyperlink{stdlib_2stdlib_8h_afaf123b3aabf3632d9ec5f8a7eb0419f}{system}} daemons $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a6ff63e8955665c4a58b1598f2b07c51a}\label{misc_2sys_2syslog_8h_a6ff63e8955665c4a58b1598f2b07c51a}} 
+\index{syslog.h@{syslog.h}!LOG\_DEBUG@{LOG\_DEBUG}}
+\index{LOG\_DEBUG@{LOG\_DEBUG}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_DEBUG}{LOG\_DEBUG}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+D\+E\+B\+UG~7	/$\ast$ \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}}-\/\mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} messages $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a5c6e8b60c2512dfc0e0224d25a61cb2c}\label{misc_2sys_2syslog_8h_a5c6e8b60c2512dfc0e0224d25a61cb2c}} 
+\index{syslog.h@{syslog.h}!LOG\_EMERG@{LOG\_EMERG}}
+\index{LOG\_EMERG@{LOG\_EMERG}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_EMERG}{LOG\_EMERG}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+E\+M\+E\+RG~0	/$\ast$ \mbox{\hyperlink{stdlib_2stdlib_8h_afaf123b3aabf3632d9ec5f8a7eb0419f}{system}} \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} unusable $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a96fad55b3f5adf08c39e4c877cf185e3}\label{misc_2sys_2syslog_8h_a96fad55b3f5adf08c39e4c877cf185e3}} 
+\index{syslog.h@{syslog.h}!LOG\_ERR@{LOG\_ERR}}
+\index{LOG\_ERR@{LOG\_ERR}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_ERR}{LOG\_ERR}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+E\+RR~3	/$\ast$ \mbox{\hyperlink{rpc__util_8h_a4866b2d37ffc80c5ba705d3fcd1e0ecf}{error}} conditions $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aa6996a065648a99f5dfbd7c704a11ec8}\label{misc_2sys_2syslog_8h_aa6996a065648a99f5dfbd7c704a11ec8}} 
+\index{syslog.h@{syslog.h}!LOG\_FAC@{LOG\_FAC}}
+\index{LOG\_FAC@{LOG\_FAC}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_FAC}{LOG\_FAC}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+F\+AC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}) \& \mbox{\hyperlink{misc_2sys_2syslog_8h_a0e487f6cabd1b68612374a0a1dce72f0}{L\+O\+G\+\_\+\+F\+A\+C\+M\+A\+SK}}) $>$$>$ 3)}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a0e487f6cabd1b68612374a0a1dce72f0}\label{misc_2sys_2syslog_8h_a0e487f6cabd1b68612374a0a1dce72f0}} 
+\index{syslog.h@{syslog.h}!LOG\_FACMASK@{LOG\_FACMASK}}
+\index{LOG\_FACMASK@{LOG\_FACMASK}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_FACMASK}{LOG\_FACMASK}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+F\+A\+C\+M\+A\+SK~0x03f8	/$\ast$ mask to extract facility part $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_acf5d4c2811adb735aaf5b32f62cc3cea}\label{misc_2sys_2syslog_8h_acf5d4c2811adb735aaf5b32f62cc3cea}} 
+\index{syslog.h@{syslog.h}!LOG\_FTP@{LOG\_FTP}}
+\index{LOG\_FTP@{LOG\_FTP}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_FTP}{LOG\_FTP}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+F\+TP~(11$<$$<$3)	/$\ast$ ftp \mbox{\hyperlink{daemon_8c_af298996def620cbda4cd529988218cb0}{daemon}} $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aeb4f36db01bd128c7afeac5889dac311}\label{misc_2sys_2syslog_8h_aeb4f36db01bd128c7afeac5889dac311}} 
+\index{syslog.h@{syslog.h}!LOG\_INFO@{LOG\_INFO}}
+\index{LOG\_INFO@{LOG\_INFO}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_INFO}{LOG\_INFO}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+I\+N\+FO~6	/$\ast$ informational $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a3782c789d7d0eeab593758f80e436da4}\label{misc_2sys_2syslog_8h_a3782c789d7d0eeab593758f80e436da4}} 
+\index{syslog.h@{syslog.h}!LOG\_KERN@{LOG\_KERN}}
+\index{LOG\_KERN@{LOG\_KERN}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_KERN}{LOG\_KERN}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+K\+E\+RN~(0$<$$<$3)	/$\ast$ kernel messages $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a25eab08bcadd790ad09db8ab1391d7b4}\label{misc_2sys_2syslog_8h_a25eab08bcadd790ad09db8ab1391d7b4}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL0@{LOG\_LOCAL0}}
+\index{LOG\_LOCAL0@{LOG\_LOCAL0}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL0}{LOG\_LOCAL0}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L0~(16$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ae2702880c720b92d9b133a394536fc55}\label{misc_2sys_2syslog_8h_ae2702880c720b92d9b133a394536fc55}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL1@{LOG\_LOCAL1}}
+\index{LOG\_LOCAL1@{LOG\_LOCAL1}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL1}{LOG\_LOCAL1}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L1~(17$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a3bba702c131c9a343f43cefe9dc54806}\label{misc_2sys_2syslog_8h_a3bba702c131c9a343f43cefe9dc54806}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL2@{LOG\_LOCAL2}}
+\index{LOG\_LOCAL2@{LOG\_LOCAL2}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL2}{LOG\_LOCAL2}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L2~(18$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_adc43741bf59af027c44c46f6c4692592}\label{misc_2sys_2syslog_8h_adc43741bf59af027c44c46f6c4692592}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL3@{LOG\_LOCAL3}}
+\index{LOG\_LOCAL3@{LOG\_LOCAL3}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL3}{LOG\_LOCAL3}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L3~(19$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a7c96c20eb0501c681dea19b78c36e475}\label{misc_2sys_2syslog_8h_a7c96c20eb0501c681dea19b78c36e475}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL4@{LOG\_LOCAL4}}
+\index{LOG\_LOCAL4@{LOG\_LOCAL4}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL4}{LOG\_LOCAL4}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L4~(20$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ac19bfe79880b74eb63d406c218c89350}\label{misc_2sys_2syslog_8h_ac19bfe79880b74eb63d406c218c89350}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL5@{LOG\_LOCAL5}}
+\index{LOG\_LOCAL5@{LOG\_LOCAL5}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL5}{LOG\_LOCAL5}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L5~(21$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a71d48fd009db4d4e57019903d372347a}\label{misc_2sys_2syslog_8h_a71d48fd009db4d4e57019903d372347a}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL6@{LOG\_LOCAL6}}
+\index{LOG\_LOCAL6@{LOG\_LOCAL6}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL6}{LOG\_LOCAL6}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L6~(22$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aea1efd5b3880503ca94c623d0517e497}\label{misc_2sys_2syslog_8h_aea1efd5b3880503ca94c623d0517e497}} 
+\index{syslog.h@{syslog.h}!LOG\_LOCAL7@{LOG\_LOCAL7}}
+\index{LOG\_LOCAL7@{LOG\_LOCAL7}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LOCAL7}{LOG\_LOCAL7}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+O\+C\+A\+L7~(23$<$$<$3)	/$\ast$ reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{tst-tls10_8c_a7ad3a2c48905b1677884613350db3aaa}{local}} use $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a3c6927ac15f5eaa92ee6d79b2837b68e}\label{misc_2sys_2syslog_8h_a3c6927ac15f5eaa92ee6d79b2837b68e}} 
+\index{syslog.h@{syslog.h}!LOG\_LPR@{LOG\_LPR}}
+\index{LOG\_LPR@{LOG\_LPR}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LPR}{LOG\_LPR}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+L\+PR~(6$<$$<$3)	/$\ast$ line printer subsystem $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a135a6127cf9b508b4361594e842eefc0}\label{misc_2sys_2syslog_8h_a135a6127cf9b508b4361594e842eefc0}} 
+\index{syslog.h@{syslog.h}!LOG\_MAIL@{LOG\_MAIL}}
+\index{LOG\_MAIL@{LOG\_MAIL}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_MAIL}{LOG\_MAIL}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+M\+A\+IL~(2$<$$<$3)	/$\ast$ mail \mbox{\hyperlink{stdlib_2stdlib_8h_afaf123b3aabf3632d9ec5f8a7eb0419f}{system}} $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_adad2d7c1f25f7a94c697894722469c83}\label{misc_2sys_2syslog_8h_adad2d7c1f25f7a94c697894722469c83}} 
+\index{syslog.h@{syslog.h}!LOG\_MAKEPRI@{LOG\_MAKEPRI}}
+\index{LOG\_MAKEPRI@{LOG\_MAKEPRI}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_MAKEPRI}{LOG\_MAKEPRI}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+M\+A\+K\+E\+P\+RI(\begin{DoxyParamCaption}\item[{}]{fac,  }\item[{}]{pri }\end{DoxyParamCaption})~((fac) $\vert$ (pri))}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a12b268e754674380f5c5df9a488a6311}\label{misc_2sys_2syslog_8h_a12b268e754674380f5c5df9a488a6311}} 
+\index{syslog.h@{syslog.h}!LOG\_MASK@{LOG\_MASK}}
+\index{LOG\_MASK@{LOG\_MASK}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_MASK}{LOG\_MASK}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+M\+A\+SK(\begin{DoxyParamCaption}\item[{}]{pri }\end{DoxyParamCaption})~(1 $<$$<$ (pri))		/$\ast$ \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}} priority $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a446430791b21a34e7308046826759d25}\label{misc_2sys_2syslog_8h_a446430791b21a34e7308046826759d25}} 
+\index{syslog.h@{syslog.h}!LOG\_NDELAY@{LOG\_NDELAY}}
+\index{LOG\_NDELAY@{LOG\_NDELAY}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NDELAY}{LOG\_NDELAY}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+N\+D\+E\+L\+AY~0x08	/$\ast$ don\textquotesingle{}t delay open $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aeae7c4754f60a7931ce0141bac37e798}\label{misc_2sys_2syslog_8h_aeae7c4754f60a7931ce0141bac37e798}} 
+\index{syslog.h@{syslog.h}!LOG\_NEWS@{LOG\_NEWS}}
+\index{LOG\_NEWS@{LOG\_NEWS}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NEWS}{LOG\_NEWS}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+N\+E\+WS~(7$<$$<$3)	/$\ast$ \mbox{\hyperlink{tst-network_8c_a401098f5aef1991a0444deeaeee4084d}{network}} news subsystem $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_af7e64a388ebd11693b6982b361aba8fa}\label{misc_2sys_2syslog_8h_af7e64a388ebd11693b6982b361aba8fa}} 
+\index{syslog.h@{syslog.h}!LOG\_NFACILITIES@{LOG\_NFACILITIES}}
+\index{LOG\_NFACILITIES@{LOG\_NFACILITIES}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NFACILITIES}{LOG\_NFACILITIES}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+N\+F\+A\+C\+I\+L\+I\+T\+I\+ES~24	/$\ast$ \mbox{\hyperlink{lc-ctype_8c_a5da039047631088cede59f8042b31f8d}{current}} \mbox{\hyperlink{unionnumber}{number}} of facilities $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ad89ee324d180cdcd7defcc709ff9ca42}\label{misc_2sys_2syslog_8h_ad89ee324d180cdcd7defcc709ff9ca42}} 
+\index{syslog.h@{syslog.h}!LOG\_NOTICE@{LOG\_NOTICE}}
+\index{LOG\_NOTICE@{LOG\_NOTICE}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NOTICE}{LOG\_NOTICE}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+N\+O\+T\+I\+CE~5	/$\ast$ normal but significant \mbox{\hyperlink{tst-cond6_8c_ada3c07b32e1b95b6a81d59f283f01014}{condition}} $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a9dff0ca45769bfa276ce3f0080acc397}\label{misc_2sys_2syslog_8h_a9dff0ca45769bfa276ce3f0080acc397}} 
+\index{syslog.h@{syslog.h}!LOG\_NOWAIT@{LOG\_NOWAIT}}
+\index{LOG\_NOWAIT@{LOG\_NOWAIT}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NOWAIT}{LOG\_NOWAIT}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+N\+O\+W\+A\+IT~0x10	/$\ast$ don\textquotesingle{}t wait for console forks\+: D\+E\+P\+R\+E\+C\+A\+T\+E\+D $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aed1240a0e0d7f574a09ea915d4e1af85}\label{misc_2sys_2syslog_8h_aed1240a0e0d7f574a09ea915d4e1af85}} 
+\index{syslog.h@{syslog.h}!LOG\_ODELAY@{LOG\_ODELAY}}
+\index{LOG\_ODELAY@{LOG\_ODELAY}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_ODELAY}{LOG\_ODELAY}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+O\+D\+E\+L\+AY~0x04	/$\ast$ delay open until first syslog() (default) $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a542160b84335cc94dfb75604fd40d341}\label{misc_2sys_2syslog_8h_a542160b84335cc94dfb75604fd40d341}} 
+\index{syslog.h@{syslog.h}!LOG\_PERROR@{LOG\_PERROR}}
+\index{LOG\_PERROR@{LOG\_PERROR}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_PERROR}{LOG\_PERROR}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+P\+E\+R\+R\+OR~0x20	/$\ast$ log to stderr as well $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a7b264572ee428bb73548226ba5bbe88a}\label{misc_2sys_2syslog_8h_a7b264572ee428bb73548226ba5bbe88a}} 
+\index{syslog.h@{syslog.h}!LOG\_PID@{LOG\_PID}}
+\index{LOG\_PID@{LOG\_PID}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_PID}{LOG\_PID}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+P\+ID~0x01	/$\ast$ log the pid with each message $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aaa76273872f6d8e1a2626b76d417209d}\label{misc_2sys_2syslog_8h_aaa76273872f6d8e1a2626b76d417209d}} 
+\index{syslog.h@{syslog.h}!LOG\_PRI@{LOG\_PRI}}
+\index{LOG\_PRI@{LOG\_PRI}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_PRI}{LOG\_PRI}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+P\+RI(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}) \& \mbox{\hyperlink{misc_2sys_2syslog_8h_a709050545b621c5eba19d44e17b5da52}{L\+O\+G\+\_\+\+P\+R\+I\+M\+A\+SK}})}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a709050545b621c5eba19d44e17b5da52}\label{misc_2sys_2syslog_8h_a709050545b621c5eba19d44e17b5da52}} 
+\index{syslog.h@{syslog.h}!LOG\_PRIMASK@{LOG\_PRIMASK}}
+\index{LOG\_PRIMASK@{LOG\_PRIMASK}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_PRIMASK}{LOG\_PRIMASK}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+P\+R\+I\+M\+A\+SK~0x07	/$\ast$ mask to extract priority part (internal) $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aac5b42b45757c49927892523f0367356}\label{misc_2sys_2syslog_8h_aac5b42b45757c49927892523f0367356}} 
+\index{syslog.h@{syslog.h}!LOG\_SYSLOG@{LOG\_SYSLOG}}
+\index{LOG\_SYSLOG@{LOG\_SYSLOG}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_SYSLOG}{LOG\_SYSLOG}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+S\+Y\+S\+L\+OG~(5$<$$<$3)	/$\ast$ messages generated internally by syslogd $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_af55a665e2caa1cb189cf7391349ab418}\label{misc_2sys_2syslog_8h_af55a665e2caa1cb189cf7391349ab418}} 
+\index{syslog.h@{syslog.h}!LOG\_UPTO@{LOG\_UPTO}}
+\index{LOG\_UPTO@{LOG\_UPTO}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_UPTO}{LOG\_UPTO}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+U\+P\+TO(\begin{DoxyParamCaption}\item[{}]{pri }\end{DoxyParamCaption})~((1 $<$$<$ ((pri)+1)) -\/ 1)	/$\ast$ all priorities through pri $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ac8b1ae5666bff93a5db0bb45f99f5832}\label{misc_2sys_2syslog_8h_ac8b1ae5666bff93a5db0bb45f99f5832}} 
+\index{syslog.h@{syslog.h}!LOG\_USER@{LOG\_USER}}
+\index{LOG\_USER@{LOG\_USER}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_USER}{LOG\_USER}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+U\+S\+ER~(1$<$$<$3)	/$\ast$ random \mbox{\hyperlink{structuser}{user}}-\/\mbox{\hyperlink{tst-gnuglob_8c_acf4d33ee4cff36f69b924471174dcb11}{level}} messages $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ab0db5f3df16ec19a5897b852930bca54}\label{misc_2sys_2syslog_8h_ab0db5f3df16ec19a5897b852930bca54}} 
+\index{syslog.h@{syslog.h}!LOG\_UUCP@{LOG\_UUCP}}
+\index{LOG\_UUCP@{LOG\_UUCP}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_UUCP}{LOG\_UUCP}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+U\+U\+CP~(8$<$$<$3)	/$\ast$ U\+U\+CP subsystem $\ast$/}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_adf4476a6a4ea6c74231c826e899d7189}\label{misc_2sys_2syslog_8h_adf4476a6a4ea6c74231c826e899d7189}} 
+\index{syslog.h@{syslog.h}!LOG\_WARNING@{LOG\_WARNING}}
+\index{LOG\_WARNING@{LOG\_WARNING}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_WARNING}{LOG\_WARNING}}
+{\footnotesize\ttfamily \#define L\+O\+G\+\_\+\+W\+A\+R\+N\+I\+NG~4	/$\ast$ warning conditions $\ast$/}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a2a0697b80bde31cfbf9a9afcdbcd64a6}\label{misc_2sys_2syslog_8h_a2a0697b80bde31cfbf9a9afcdbcd64a6}} 
+\index{syslog.h@{syslog.h}!closelog@{closelog}}
+\index{closelog@{closelog}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{closelog()}{closelog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{misc_2sys_2cdefs_8h_a568e6bde99652b7fd271ad206cfe38f5}{\+\_\+\+\_\+\+B\+E\+G\+I\+N\+\_\+\+D\+E\+C\+LS}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} closelog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_a1926b66e857d779b0ab70d4d5b8c163b}\label{misc_2sys_2syslog_8h_a1926b66e857d779b0ab70d4d5b8c163b}} 
+\index{syslog.h@{syslog.h}!openlog@{openlog}}
+\index{openlog@{openlog}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{openlog()}{openlog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} openlog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{\+\_\+\+\_\+ident,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{\+\_\+\+\_\+option,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{\+\_\+\+\_\+facility }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_aee2e56ef577ddc11700013a57af8d4e2}\label{misc_2sys_2syslog_8h_aee2e56ef577ddc11700013a57af8d4e2}} 
+\index{syslog.h@{syslog.h}!setlogmask@{setlogmask}}
+\index{setlogmask@{setlogmask}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{setlogmask()}{setlogmask()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} setlogmask (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{\+\_\+\+\_\+mask }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_2sys_2syslog_8h_ae537700d3ca3243579517feceb7cc890}\label{misc_2sys_2syslog_8h_ae537700d3ca3243579517feceb7cc890}} 
+\index{syslog.h@{syslog.h}!syslog@{syslog}}
+\index{syslog@{syslog}!syslog.h@{syslog.h}}
+\doxysubsubsection{\texorpdfstring{syslog()}{syslog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} syslog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{\+\_\+\+\_\+pri,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{\+\_\+\+\_\+fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+

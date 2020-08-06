@@ -1,0 +1,69 @@
+\hypertarget{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c}{}\doxysection{sysdeps/unix/sysv/linux/clock\+\_\+gettime.c File Reference}
+\label{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c}\index{sysdeps/unix/sysv/linux/clock\_gettime.c@{sysdeps/unix/sysv/linux/clock\_gettime.c}}
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}kernel-\/posix-\/cpu-\/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sysdep-\/vdso.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/unix/clock\+\_\+gettime.\+c$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a813969159e49bedb3a78bb9ceafa42be}{S\+Y\+S\+D\+E\+P\+\_\+\+G\+E\+T\+T\+I\+ME}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a69d170a819b49693f58663dcf781ad67}{H\+A\+N\+D\+L\+E\+D\+\_\+\+R\+E\+A\+L\+T\+I\+ME}}~1
+\item 
+\#define \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a0caf10ed4cb02dfbd5282acafa12591c}{H\+A\+N\+D\+L\+E\+D\+\_\+\+C\+P\+U\+T\+I\+ME}}~1
+\item 
+\#define \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a898ca2ecf8843eb29d353a43f451f412}{S\+Y\+S\+D\+E\+P\+\_\+\+G\+E\+T\+T\+I\+M\+E\+\_\+\+C\+PU}}(clock\+\_\+id,  tp)
+\item 
+\#define \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a5581e187b996f065cae143223e80c00b}{S\+Y\+S\+D\+E\+P\+\_\+\+G\+E\+T\+T\+I\+M\+E\+\_\+\+C\+P\+U\+T\+I\+ME}}~/$\ast$ Default catches them too.  $\ast$/
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a0caf10ed4cb02dfbd5282acafa12591c}\label{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a0caf10ed4cb02dfbd5282acafa12591c}} 
+\index{clock\_gettime.c@{clock\_gettime.c}!HANDLED\_CPUTIME@{HANDLED\_CPUTIME}}
+\index{HANDLED\_CPUTIME@{HANDLED\_CPUTIME}!clock\_gettime.c@{clock\_gettime.c}}
+\doxysubsubsection{\texorpdfstring{HANDLED\_CPUTIME}{HANDLED\_CPUTIME}}
+{\footnotesize\ttfamily \#define H\+A\+N\+D\+L\+E\+D\+\_\+\+C\+P\+U\+T\+I\+ME~1}
+
+\mbox{\Hypertarget{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a69d170a819b49693f58663dcf781ad67}\label{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a69d170a819b49693f58663dcf781ad67}} 
+\index{clock\_gettime.c@{clock\_gettime.c}!HANDLED\_REALTIME@{HANDLED\_REALTIME}}
+\index{HANDLED\_REALTIME@{HANDLED\_REALTIME}!clock\_gettime.c@{clock\_gettime.c}}
+\doxysubsubsection{\texorpdfstring{HANDLED\_REALTIME}{HANDLED\_REALTIME}}
+{\footnotesize\ttfamily \#define H\+A\+N\+D\+L\+E\+D\+\_\+\+R\+E\+A\+L\+T\+I\+ME~1}
+
+\mbox{\Hypertarget{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a813969159e49bedb3a78bb9ceafa42be}\label{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a813969159e49bedb3a78bb9ceafa42be}} 
+\index{clock\_gettime.c@{clock\_gettime.c}!SYSDEP\_GETTIME@{SYSDEP\_GETTIME}}
+\index{SYSDEP\_GETTIME@{SYSDEP\_GETTIME}!clock\_gettime.c@{clock\_gettime.c}}
+\doxysubsubsection{\texorpdfstring{SYSDEP\_GETTIME}{SYSDEP\_GETTIME}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+D\+E\+P\+\_\+\+G\+E\+T\+T\+I\+ME}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a5581e187b996f065cae143223e80c00b}{SYSDEP\_GETTIME\_CPUTIME}};                             \(\backslash\)}
+\DoxyCodeLine{  case CLOCK\_REALTIME:                                \(\backslash\)}
+\DoxyCodeLine{  case CLOCK\_MONOTONIC:                               \(\backslash\)}
+\DoxyCodeLine{    retval = \mbox{\hyperlink{nptl_2pthread__cond__timedwait_8c_a3dba175a600971ee2311eaa5bbafc2a6}{INLINE\_VSYSCALL}} (\mbox{\hyperlink{perf_8c_a10b73e75d375e5c244e32ea46be775bf}{clock\_gettime}}, 2, clock\_id, tp);            \(\backslash\)}
+\DoxyCodeLine{    break}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a898ca2ecf8843eb29d353a43f451f412}\label{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a898ca2ecf8843eb29d353a43f451f412}} 
+\index{clock\_gettime.c@{clock\_gettime.c}!SYSDEP\_GETTIME\_CPU@{SYSDEP\_GETTIME\_CPU}}
+\index{SYSDEP\_GETTIME\_CPU@{SYSDEP\_GETTIME\_CPU}!clock\_gettime.c@{clock\_gettime.c}}
+\doxysubsubsection{\texorpdfstring{SYSDEP\_GETTIME\_CPU}{SYSDEP\_GETTIME\_CPU}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+D\+E\+P\+\_\+\+G\+E\+T\+T\+I\+M\+E\+\_\+\+C\+PU(\begin{DoxyParamCaption}\item[{}]{clock\+\_\+id,  }\item[{}]{tp }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{libio_2tst-swscanf_8c_a09c17276b90fb1fcf8997e6d1f2d1ac9}{retval}} = \mbox{\hyperlink{nptl_2pthread__cond__timedwait_8c_a3dba175a600971ee2311eaa5bbafc2a6}{INLINE\_VSYSCALL}} (\mbox{\hyperlink{perf_8c_a10b73e75d375e5c244e32ea46be775bf}{clock\_gettime}}, 2, clock\_id, tp); \(\backslash\)}
+\DoxyCodeLine{  break}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a5581e187b996f065cae143223e80c00b}\label{sysdeps_2unix_2sysv_2linux_2clock__gettime_8c_a5581e187b996f065cae143223e80c00b}} 
+\index{clock\_gettime.c@{clock\_gettime.c}!SYSDEP\_GETTIME\_CPUTIME@{SYSDEP\_GETTIME\_CPUTIME}}
+\index{SYSDEP\_GETTIME\_CPUTIME@{SYSDEP\_GETTIME\_CPUTIME}!clock\_gettime.c@{clock\_gettime.c}}
+\doxysubsubsection{\texorpdfstring{SYSDEP\_GETTIME\_CPUTIME}{SYSDEP\_GETTIME\_CPUTIME}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+D\+E\+P\+\_\+\+G\+E\+T\+T\+I\+M\+E\+\_\+\+C\+P\+U\+T\+I\+ME~/$\ast$ Default catches them too.  $\ast$/}
+

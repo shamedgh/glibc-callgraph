@@ -1,0 +1,143 @@
+
+;; Function __fread_unlocked (*__GI___fread_unlocked, funcdef_no=49, decl_uid=10375, cgraph_uid=49, symbol_order=54)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+Edge 2->5 redirected to 8
+Edge 3->5 redirected to 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 28.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 91 [ buf ])
+        (reg:DI 5 di [ buf ])) iofread_u.c:34 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 92 [ size ])
+        (reg:DI 4 si [ size ])) iofread_u.c:34 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 93 [ count ])
+        (reg:DI 1 dx [ count ])) iofread_u.c:34 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 94 [ fp ])
+        (reg:DI 2 cx [ fp ])) iofread_u.c:34 -1
+     (nil))
+(note 6 5 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 6 12 2 (parallel [
+            (set (reg/v:DI 88 [ bytes_requested ])
+                (mult:DI (reg/v:DI 92 [ size ])
+                    (reg/v:DI 93 [ count ])))
+            (clobber (reg:CC 17 flags))
+        ]) iofread_u.c:35 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 88 [ bytes_requested ])
+            (const_int 0 [0]))) iofread_u.c:38 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) iofread_u.c:38 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 37)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg:DI 1 dx)
+        (reg/v:DI 88 [ bytes_requested ])) iofread_u.c:40 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 91 [ buf ])) iofread_u.c:40 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ fp ])) iofread_u.c:40 -1
+     (nil))
+(call_insn 18 17 19 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI__IO_sgetn") [flags 0x43]  <function_decl 0x2b94be5b9510 _IO_sgetn>) [0 _IO_sgetn S1 A8])
+            (const_int 0 [0]))) iofread_u.c:40 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI__IO_sgetn") [flags 0x43]  <function_decl 0x2b94be5b9510 _IO_sgetn>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 19 18 20 4 (set (reg/v:DI 89 [ bytes_read ])
+        (reg:DI 0 ax)) iofread_u.c:40 -1
+     (nil))
+(insn 20 19 21 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 88 [ bytes_requested ])
+            (reg/v:DI 89 [ bytes_read ]))) iofread_u.c:41 -1
+     (nil))
+(jump_insn 21 20 22 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 41)
+            (pc))) iofread_u.c:41 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1991 (nil))
+ -> 41)
+(note 22 21 23 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 5 (parallel [
+            (set (reg:DI 95)
+                (udiv:DI (reg/v:DI 89 [ bytes_read ])
+                    (reg/v:DI 92 [ size ])))
+            (set (reg:DI 96)
+                (umod:DI (reg/v:DI 89 [ bytes_read ])
+                    (reg/v:DI 92 [ size ])))
+            (clobber (reg:CC 17 flags))
+        ]) iofread_u.c:41 -1
+     (nil))
+(insn 24 23 34 5 (set (reg:DI 87 [ D.10427 ])
+        (reg:DI 95)) iofread_u.c:41 -1
+     (nil))
+(jump_insn 34 24 35 5 (set (pc)
+        (label_ref 25)) -1
+     (nil)
+ -> 25)
+(barrier 35 34 37)
+(code_label 37 35 36 6 3 "" [1 uses])
+(note 36 37 7 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 7 36 38 6 (set (reg:DI 87 [ D.10427 ])
+        (const_int 0 [0])) iofread_u.c:39 -1
+     (nil))
+(jump_insn 38 7 39 6 (set (pc)
+        (label_ref 25)) -1
+     (nil)
+ -> 25)
+(barrier 39 38 41)
+(code_label 41 39 40 7 4 "" [1 uses])
+(note 40 41 8 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 8 40 25 7 (set (reg:DI 87 [ D.10427 ])
+        (reg/v:DI 93 [ count ])) iofread_u.c:41 -1
+     (nil))
+(code_label 25 8 26 8 2 "" [2 uses])
+(note 26 25 27 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 31 8 (set (reg:DI 90 [ <retval> ])
+        (reg:DI 87 [ D.10427 ])) -1
+     (nil))
+(insn 31 27 32 8 (set (reg/i:DI 0 ax)
+        (reg:DI 90 [ <retval> ])) iofread_u.c:42 -1
+     (nil))
+(insn 32 31 0 8 (use (reg/i:DI 0 ax)) iofread_u.c:42 -1
+     (nil))

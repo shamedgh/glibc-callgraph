@@ -1,0 +1,90 @@
+
+;; Function fetestexcept (*__GI_fetestexcept, funcdef_no=3, decl_uid=1890, cgraph_uid=3, symbol_order=3)
+
+Partition 1: size 4 align 4
+	mxscr
+Partition 0: size 4 align 4
+	temp
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 12.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 96 [ excepts ])
+        (reg:SI 5 di [ excepts ])) ../sysdeps/x86_64/fpu/ftestexcept.c:23 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [1 temp+0 S4 A64])
+                (asm_operands:SI ("fnstsw %0
+stmxcsr %1") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/ftestexcept.c:28))
+            (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -4 [0xfffffffffffffffc])) [1 mxscr+0 S4 A32])
+                (asm_operands:SI ("fnstsw %0
+stmxcsr %1") ("=m") 1 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/ftestexcept.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/ftestexcept.c:28 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 98)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [1 temp+0 S4 A64])) ../sysdeps/x86_64/fpu/ftestexcept.c:31 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:SI 97 [ D.1975 ])
+                (ior:SI (reg:SI 98)
+                    (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -4 [0xfffffffffffffffc])) [1 mxscr+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/ftestexcept.c:31 -1
+     (expr_list:REG_EQUAL (ior:SI (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [1 temp+0 S4 A64])
+            (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [1 mxscr+0 S4 A32]))
+        (nil)))
+(insn 9 8 10 2 (parallel [
+            (set (reg:SI 99 [ D.1975 ])
+                (and:SI (reg:SI 97 [ D.1975 ])
+                    (reg/v:SI 96 [ excepts ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/ftestexcept.c:31 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:SI 94 [ D.1974 ])
+                (and:SI (reg:SI 99 [ D.1975 ])
+                    (const_int 61 [0x3d])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/ftestexcept.c:31 -1
+     (nil))
+(insn 11 10 15 2 (set (reg:SI 95 [ <retval> ])
+        (reg:SI 94 [ D.1974 ])) ../sysdeps/x86_64/fpu/ftestexcept.c:31 -1
+     (nil))
+(insn 15 11 16 2 (set (reg/i:SI 0 ax)
+        (reg:SI 95 [ <retval> ])) ../sysdeps/x86_64/fpu/ftestexcept.c:32 -1
+     (nil))
+(insn 16 15 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/x86_64/fpu/ftestexcept.c:32 -1
+     (nil))

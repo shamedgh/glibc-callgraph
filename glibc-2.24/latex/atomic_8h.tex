@@ -1,0 +1,855 @@
+\hypertarget{atomic_8h}{}\doxysection{include/atomic.h File Reference}
+\label{atomic_8h}\index{include/atomic.h@{include/atomic.h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$atomic-\/machine.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a6e0ba47632b22e73ecb1f88c55c6cf51}{\+\_\+\+\_\+atomic\+\_\+val\+\_\+bysize}}(pre,  post,  mem, ...)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_aa1382d10be7ecf4c3fefb93c4f57c258}{\+\_\+\+\_\+atomic\+\_\+bool\+\_\+bysize}}(pre,  post,  mem, ...)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a808b432a55fc8c496dc3da26ac13dea2}{catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}} (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a933e4eba52f9253050561c34cb878bea}{catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+rel}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})~\mbox{\hyperlink{atomic_8h_a808b432a55fc8c496dc3da26ac13dea2}{catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}} (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_acac6e3724b2d49a7fb2e13eed4fb3b67}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+rel}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}} (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+bool\+\_\+acq}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_afb54341e8cbb21909b342518e1b6058e}{catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+bool\+\_\+acq}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}{atomic\+\_\+exchange\+\_\+acq}}(mem,  newvalue)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ac177adbc5d7f927cbc848a6e6e700977}{atomic\+\_\+exchange\+\_\+rel}}(mem,  newvalue)~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}{atomic\+\_\+exchange\+\_\+acq}} (mem, newvalue)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ad4b43a0d87452233ae262bf3e98dd757}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+rel}}(mem,  \mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{powerpc_2atomic-machine_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}}(mem, \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}}(mem,  \mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{powerpc_2atomic-machine_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}}(mem, \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a8fca870909737c6a021cf55e0ecb59e4}{atomic\+\_\+max}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a8fe4e7ae3dd86d87dbc71ea3e567467f}{catomic\+\_\+max}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a870e0b76edf4a4e2886b493f57e1dffe}{atomic\+\_\+min}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ad21b70a27be6ece11778e1304df2aecd}{atomic\+\_\+add}}(mem,  \mbox{\hyperlink{structvalue}{value}})~(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), (\mbox{\hyperlink{structvalue}{value}}))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a5a87023de552fd5e3e76b185731b2400}{catomic\+\_\+add}}(mem,  \mbox{\hyperlink{structvalue}{value}})~(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{x86__64_2atomic-machine_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), (\mbox{\hyperlink{structvalue}{value}}))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a9dae0c3c8486c7a3824271de4a0ab74d}{atomic\+\_\+increment}}(mem)~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ad21b70a27be6ece11778e1304df2aecd}{atomic\+\_\+add}} ((mem), 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a8f2ce36460d66016442c950ecd87b4da}{catomic\+\_\+increment}}(mem)~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5a87023de552fd5e3e76b185731b2400}{catomic\+\_\+add}} ((mem), 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a418d1eecb792d388129d5ba54b50d950}{atomic\+\_\+increment\+\_\+val}}(mem)~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), 1) + 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ad0c4a5ef40fe64ce56a82bd6da2c5170}{catomic\+\_\+increment\+\_\+val}}(mem)~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), 1) + 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a510701d7efa8c49dda6014528466cf23}{atomic\+\_\+increment\+\_\+and\+\_\+test}}(mem)~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), 1) + 1 == 0)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a063453cab22a4e86cf3857ce91aa55e3}{atomic\+\_\+decrement}}(mem)~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ad21b70a27be6ece11778e1304df2aecd}{atomic\+\_\+add}} ((mem), -\/1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ae307e75deed316f760aab9ed501e5fb7}{catomic\+\_\+decrement}}(mem)~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5a87023de552fd5e3e76b185731b2400}{catomic\+\_\+add}} ((mem), -\/1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_abdb4692bf45139d40737cdb6c2c35704}{atomic\+\_\+decrement\+\_\+val}}(mem)~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), -\/1) -\/ 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a9a55770b47faf4c3fedf3a71da68e30f}{catomic\+\_\+decrement\+\_\+val}}(mem)~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), -\/1) -\/ 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a0833af9de5bef8c973c54e8153729da8}{atomic\+\_\+decrement\+\_\+and\+\_\+test}}(mem)~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), -\/1) == 1)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a3acf0020d5f63d33dac6a17a50426fe2}{atomic\+\_\+decrement\+\_\+if\+\_\+positive}}(mem)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_aa21f64952ae8712a85ced07671c5f20e}{atomic\+\_\+add\+\_\+negative}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a21cebf0a828b354e25538f83cc0049f0}{atomic\+\_\+add\+\_\+zero}}(mem,  \mbox{\hyperlink{structvalue}{value}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_aa08fa00fa8de98393dacfc776f6f9572}{atomic\+\_\+bit\+\_\+set}}(mem,  bit)~(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{x86__64_2atomic-machine_8h_a6491b5765e18f6760e14a85339297ce0}{atomic\+\_\+bit\+\_\+test\+\_\+set}}(mem, bit)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a6491b5765e18f6760e14a85339297ce0}{atomic\+\_\+bit\+\_\+test\+\_\+set}}(mem,  bit)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_aed668ecdb56c4375c0ff49e4651618d9}{atomic\+\_\+and}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a15ef96554cb1d3b35bd02f363f37d512}{catomic\+\_\+and}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a5541715cc88d242e8274b93750105a1a}{atomic\+\_\+and\+\_\+val}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a3bff7a8c94fd150323ad59f28eecdfd4}{atomic\+\_\+or}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_afbc429b50e045fa672b73f886a1029c7}{catomic\+\_\+or}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a60a1ff510171561015255a646f6a8bb1}{atomic\+\_\+or\+\_\+val}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}}()~\+\_\+\+\_\+asm (\char`\"{}\char`\"{} \+::: \char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ac1183175f1a484afa7c451f3a78915cf}{atomic\+\_\+read\+\_\+barrier}}()~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}} ()
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a3cea9b394f5e044287916cc17b11caab}{atomic\+\_\+write\+\_\+barrier}}()~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}} ()
+\item 
+\#define \mbox{\hyperlink{atomic_8h_af1254e89ad3e7f9d6b230e87633bc619}{atomic\+\_\+forced\+\_\+read}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~(\{ \mbox{\hyperlink{personality_8c_ab989787cabce0ed9e4b30eed95f8f1f2}{\+\_\+\+\_\+typeof}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \+\_\+\+\_\+x; \+\_\+\+\_\+asm (\char`\"{}\char`\"{} \+: \char`\"{}=r\char`\"{} (\+\_\+\+\_\+x) \+: \char`\"{}0\char`\"{} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})); \+\_\+\+\_\+x; \})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a19f7514be323184f5fb5a0ab49445cb4}{atomic\+\_\+thread\+\_\+fence\+\_\+acquire}}()~\mbox{\hyperlink{nptl_2unwind-forcedunwind_8c_ac5f8482e8a6591f362339040d1bd6286}{atomic\+\_\+read\+\_\+barrier}} ()
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a66c79321b78ff0febedd9d9ea00ed930}{atomic\+\_\+thread\+\_\+fence\+\_\+release}}()~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a3cea9b394f5e044287916cc17b11caab}{atomic\+\_\+write\+\_\+barrier}} ()
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a40f6f4b6ab464ff44c087a5558d36f55}{atomic\+\_\+thread\+\_\+fence\+\_\+seq\+\_\+cst}}()~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}} ()
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a51942c35164da59fb38d9dd43092f6be}{atomic\+\_\+load\+\_\+relaxed}}(mem)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a4a14c8c10c17c89403ce8d573b2e95a5}{atomic\+\_\+load\+\_\+acquire}}(mem)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_addf2c818aa92607e05e51727a3264268}{atomic\+\_\+store\+\_\+relaxed}}(mem,  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})~do \{ $\ast$(mem) = (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}}); \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a2ba0d645807053a9b8066d7feeeae8c1}{atomic\+\_\+store\+\_\+release}}(mem,  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a256901d568f7d26bb76e5212d9ff6515}{atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+acquire}}(mem,  \mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}},  desired)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ab9f2e332e92e6ef3f6536ef1f56eb4ec}{atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+relaxed}}(mem,  \mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}},  desired)~\mbox{\hyperlink{atomic_8h_a256901d568f7d26bb76e5212d9ff6515}{atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+acquire}} ((mem), (\mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}}), (desired))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a0e35db7c638c599d00090f048b9c7d9f}{atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+release}}(mem,  \mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}},  desired)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ab55691374d361aa55b895a8f399e7596}{atomic\+\_\+exchange\+\_\+acquire}}(mem,  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}{atomic\+\_\+exchange\+\_\+acq}} ((mem), (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}}))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_af69b2ead417f9cc4309297de5f371636}{atomic\+\_\+exchange\+\_\+release}}(mem,  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})~\mbox{\hyperlink{tile_2atomic-machine_8h_a140f9d065df51dcd59924e1cb6c12bb8}{atomic\+\_\+exchange\+\_\+rel}} ((mem), (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}}))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ac057fb5a6527d559b426ac130e1aed8e}{atomic\+\_\+fetch\+\_\+add\+\_\+acquire}}(mem,  operand)~\mbox{\hyperlink{powerpc_2atomic-machine_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}} ((mem), (operand))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a9317eb4549ae5fe96c5d51b0e1ca7a5c}{atomic\+\_\+fetch\+\_\+add\+\_\+relaxed}}(mem,  operand)~\mbox{\hyperlink{atomic_8h_ac057fb5a6527d559b426ac130e1aed8e}{atomic\+\_\+fetch\+\_\+add\+\_\+acquire}} ((mem), (operand))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ab4ce24a24564dbcbf6a61abf1128f3a8}{atomic\+\_\+fetch\+\_\+add\+\_\+release}}(mem,  operand)~\mbox{\hyperlink{powerpc_2atomic-machine_8h_ad4b43a0d87452233ae262bf3e98dd757}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+rel}} ((mem), (operand))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a10330e19c7d3748ccde3a686bb46dc1a}{atomic\+\_\+fetch\+\_\+add\+\_\+acq\+\_\+rel}}(mem,  operand)
+\item 
+\#define \mbox{\hyperlink{atomic_8h_a97c03f955005fd07d31969c8b8addd77}{atomic\+\_\+fetch\+\_\+and\+\_\+acquire}}(mem,  operand)~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a5541715cc88d242e8274b93750105a1a}{atomic\+\_\+and\+\_\+val}} ((mem), (operand))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_acd8b1ab32792c3fb35964d9d195df8e1}{atomic\+\_\+fetch\+\_\+or\+\_\+acquire}}(mem,  operand)~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a60a1ff510171561015255a646f6a8bb1}{atomic\+\_\+or\+\_\+val}} ((mem), (operand))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_ac640f3f1bdfea3b0bda8ebb477f37f7a}{atomic\+\_\+fetch\+\_\+or\+\_\+relaxed}}(mem,  operand)~\mbox{\hyperlink{atomic_8h_acd8b1ab32792c3fb35964d9d195df8e1}{atomic\+\_\+fetch\+\_\+or\+\_\+acquire}} ((mem), (operand))
+\item 
+\#define \mbox{\hyperlink{atomic_8h_aeb4e40b00021266fef10cb44745858f9}{atomic\+\_\+spin\+\_\+nop}}()~do \{ /$\ast$ nothing $\ast$/ \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{atomic_8h_aa1382d10be7ecf4c3fefb93c4f57c258}\label{atomic_8h_aa1382d10be7ecf4c3fefb93c4f57c258}} 
+\index{atomic.h@{atomic.h}!\_\_atomic\_bool\_bysize@{\_\_atomic\_bool\_bysize}}
+\index{\_\_atomic\_bool\_bysize@{\_\_atomic\_bool\_bysize}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{\_\_atomic\_bool\_bysize}{\_\_atomic\_bool\_bysize}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+atomic\+\_\+bool\+\_\+bysize(\begin{DoxyParamCaption}\item[{}]{pre,  }\item[{}]{post,  }\item[{}]{mem,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{    int \_\_atg2\_result;                                \(\backslash\)}
+\DoxyCodeLine{    if (\textcolor{keyword}{sizeof} (*mem) == 1)                           \(\backslash\)}
+\DoxyCodeLine{      \_\_atg2\_result = pre\#\#\_8\_\#\#post (mem, \_\_VA\_ARGS\_\_);              \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (*mem) == 2)                          \(\backslash\)}
+\DoxyCodeLine{      \_\_atg2\_result = pre\#\#\_16\_\#\#post (mem, \_\_VA\_ARGS\_\_);             \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (*mem) == 4)                          \(\backslash\)}
+\DoxyCodeLine{      \_\_atg2\_result = pre\#\#\_32\_\#\#post (mem, \_\_VA\_ARGS\_\_);             \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (*mem) == 8)                          \(\backslash\)}
+\DoxyCodeLine{      \_\_atg2\_result = pre\#\#\_64\_\#\#post (mem, \_\_VA\_ARGS\_\_);             \mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{    else                                      \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{      abort}} ();                                    \(\backslash\)}
+\DoxyCodeLine{    \_\_atg2\_result;                                \(\backslash\)}
+\DoxyCodeLine{  \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a6e0ba47632b22e73ecb1f88c55c6cf51}\label{atomic_8h_a6e0ba47632b22e73ecb1f88c55c6cf51}} 
+\index{atomic.h@{atomic.h}!\_\_atomic\_val\_bysize@{\_\_atomic\_val\_bysize}}
+\index{\_\_atomic\_val\_bysize@{\_\_atomic\_val\_bysize}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{\_\_atomic\_val\_bysize}{\_\_atomic\_val\_bysize}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+atomic\+\_\+val\+\_\+bysize(\begin{DoxyParamCaption}\item[{}]{pre,  }\item[{}]{post,  }\item[{}]{mem,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*mem) \_\_atg1\_result;                        \(\backslash\)}
+\DoxyCodeLine{    if (\textcolor{keyword}{sizeof} (*mem) == 1)                           \(\backslash\)}
+\DoxyCodeLine{      \_\_atg1\_result = pre\#\#\_8\_\#\#post (mem, \_\_VA\_ARGS\_\_);              \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (*mem) == 2)                          \(\backslash\)}
+\DoxyCodeLine{      \_\_atg1\_result = pre\#\#\_16\_\#\#post (mem, \_\_VA\_ARGS\_\_);             \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (*mem) == 4)                          \(\backslash\)}
+\DoxyCodeLine{      \_\_atg1\_result = pre\#\#\_32\_\#\#post (mem, \_\_VA\_ARGS\_\_);             \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof} (*mem) == 8)                          \(\backslash\)}
+\DoxyCodeLine{      \_\_atg1\_result = pre\#\#\_64\_\#\#post (mem, \_\_VA\_ARGS\_\_);             \mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{    else                                      \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{3level_8h_a029265b7f0b5d6fd04b795bead69826e}{      abort}} ();                                    \(\backslash\)}
+\DoxyCodeLine{    \_\_atg1\_result;                                \(\backslash\)}
+\DoxyCodeLine{  \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_ad21b70a27be6ece11778e1304df2aecd}\label{atomic_8h_ad21b70a27be6ece11778e1304df2aecd}} 
+\index{atomic.h@{atomic.h}!atomic\_add@{atomic\_add}}
+\index{atomic\_add@{atomic\_add}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_add}{atomic\_add}}
+{\footnotesize\ttfamily \#define atomic\+\_\+add(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), (\mbox{\hyperlink{structvalue}{value}}))}
+
+\mbox{\Hypertarget{atomic_8h_aa21f64952ae8712a85ced07671c5f20e}\label{atomic_8h_aa21f64952ae8712a85ced07671c5f20e}} 
+\index{atomic.h@{atomic.h}!atomic\_add\_negative@{atomic\_add\_negative}}
+\index{atomic\_add\_negative@{atomic\_add\_negative}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_add\_negative}{atomic\_add\_negative}}
+{\footnotesize\ttfamily \#define atomic\+\_\+add\+\_\+negative(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{structvalue}{value}}) \_\_atg12\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                    \(\backslash\)}
+\DoxyCodeLine{     atomic\_exchange\_and\_add (mem, \_\_atg12\_value) < -\/\_\_atg12\_value; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a21cebf0a828b354e25538f83cc0049f0}\label{atomic_8h_a21cebf0a828b354e25538f83cc0049f0}} 
+\index{atomic.h@{atomic.h}!atomic\_add\_zero@{atomic\_add\_zero}}
+\index{atomic\_add\_zero@{atomic\_add\_zero}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_add\_zero}{atomic\_add\_zero}}
+{\footnotesize\ttfamily \#define atomic\+\_\+add\+\_\+zero(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{structvalue}{value}}) \_\_atg13\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                    \(\backslash\)}
+\DoxyCodeLine{     atomic\_exchange\_and\_add (mem, \_\_atg13\_value) == -\/\_\_atg13\_value; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_aed668ecdb56c4375c0ff49e4651618d9}\label{atomic_8h_aed668ecdb56c4375c0ff49e4651618d9}} 
+\index{atomic.h@{atomic.h}!atomic\_and@{atomic\_and}}
+\index{atomic\_and@{atomic\_and}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_and}{atomic\_and}}
+{\footnotesize\ttfamily \#define atomic\+\_\+and(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg15\_old;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg15\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg15\_mask = (\mbox{\hyperlink{generic_2sigset-cvt-mask_8h_a99ff9f84d4ad34062c1a77b0e3b3884f}{mask}});                      \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    do                                        \(\backslash\)}
+\DoxyCodeLine{      \_\_atg15\_old = (*\_\_atg15\_memp);                          \(\backslash\)}
+\DoxyCodeLine{    while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                           \(\backslash\)}
+\DoxyCodeLine{       (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg15\_memp,           \(\backslash\)}
+\DoxyCodeLine{                          \_\_atg15\_old \& \_\_atg15\_mask, \(\backslash\)}
+\DoxyCodeLine{                          \_\_atg15\_old), 0));          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a5541715cc88d242e8274b93750105a1a}\label{atomic_8h_a5541715cc88d242e8274b93750105a1a}} 
+\index{atomic.h@{atomic.h}!atomic\_and\_val@{atomic\_and\_val}}
+\index{atomic\_and\_val@{atomic\_and\_val}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_and\_val}{atomic\_and\_val}}
+{\footnotesize\ttfamily \#define atomic\+\_\+and\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg16\_old;                         \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg16\_memp = (mem);                     \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*(mem)) \_\_atg16\_mask = (\mbox{\hyperlink{generic_2sigset-cvt-mask_8h_a99ff9f84d4ad34062c1a77b0e3b3884f}{mask}});                     \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \_\_atg16\_old = (*\_\_atg16\_memp);                         \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg16\_memp,          \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg16\_old \& \_\_atg16\_mask,\(\backslash\)}
+\DoxyCodeLine{                           \_\_atg16\_old), 0));         \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     \_\_atg16\_old; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_aa08fa00fa8de98393dacfc776f6f9572}\label{atomic_8h_aa08fa00fa8de98393dacfc776f6f9572}} 
+\index{atomic.h@{atomic.h}!atomic\_bit\_set@{atomic\_bit\_set}}
+\index{atomic\_bit\_set@{atomic\_bit\_set}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_bit\_set}{atomic\_bit\_set}}
+{\footnotesize\ttfamily \#define atomic\+\_\+bit\+\_\+set(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{bit }\end{DoxyParamCaption})~(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{x86__64_2atomic-machine_8h_a6491b5765e18f6760e14a85339297ce0}{atomic\+\_\+bit\+\_\+test\+\_\+set}}(mem, bit)}
+
+\mbox{\Hypertarget{atomic_8h_a6491b5765e18f6760e14a85339297ce0}\label{atomic_8h_a6491b5765e18f6760e14a85339297ce0}} 
+\index{atomic.h@{atomic.h}!atomic\_bit\_test\_set@{atomic\_bit\_test\_set}}
+\index{atomic\_bit\_test\_set@{atomic\_bit\_test\_set}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_bit\_test\_set}{atomic\_bit\_test\_set}}
+{\footnotesize\ttfamily \#define atomic\+\_\+bit\+\_\+test\+\_\+set(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{bit }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg14\_old;                         \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg14\_memp = (mem);                     \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*(mem)) \_\_atg14\_mask = ((\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem))) 1 << (bit));       \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \_\_atg14\_old = (*\_\_atg14\_memp);                         \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg14\_memp,          \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg14\_old | \_\_atg14\_mask,\(\backslash\)}
+\DoxyCodeLine{                           \_\_atg14\_old), 0));         \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     \_\_atg14\_old \& \_\_atg14\_mask; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}\label{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}} 
+\index{atomic.h@{atomic.h}!atomic\_compare\_and\_exchange\_bool\_acq@{atomic\_compare\_and\_exchange\_bool\_acq}}
+\index{atomic\_compare\_and\_exchange\_bool\_acq@{atomic\_compare\_and\_exchange\_bool\_acq}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_and\_exchange\_bool\_acq}{atomic\_compare\_and\_exchange\_bool\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+bool\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{comment}{/* Cannot use \_\_oldval here, because macros later in this file might     \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{    call this macro with \_\_oldval argument.  */}               \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}) \_\_atg3\_old = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}});                     \(\backslash\)}
+\DoxyCodeLine{     atomic\_compare\_and\_exchange\_val\_acq (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \_\_atg3\_old)          \(\backslash\)}
+\DoxyCodeLine{       != \_\_atg3\_old;                                 \(\backslash\)}
+\DoxyCodeLine{  \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_acac6e3724b2d49a7fb2e13eed4fb3b67}\label{atomic_8h_acac6e3724b2d49a7fb2e13eed4fb3b67}} 
+\index{atomic.h@{atomic.h}!atomic\_compare\_and\_exchange\_val\_rel@{atomic\_compare\_and\_exchange\_val\_rel}}
+\index{atomic\_compare\_and\_exchange\_val\_rel@{atomic\_compare\_and\_exchange\_val\_rel}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_and\_exchange\_val\_rel}{atomic\_compare\_and\_exchange\_val\_rel}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+rel(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}} (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})}
+
+\mbox{\Hypertarget{atomic_8h_a256901d568f7d26bb76e5212d9ff6515}\label{atomic_8h_a256901d568f7d26bb76e5212d9ff6515}} 
+\index{atomic.h@{atomic.h}!atomic\_compare\_exchange\_weak\_acquire@{atomic\_compare\_exchange\_weak\_acquire}}
+\index{atomic\_compare\_exchange\_weak\_acquire@{atomic\_compare\_exchange\_weak\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_exchange\_weak\_acquire}{atomic\_compare\_exchange\_weak\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}},  }\item[{}]{desired }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{sysdeps_2tile_2tilegx_2strstr_8c_a53b5376d0390d24de2ac980214a739a1}{typeof}} (*(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}})) \_\_atg102\_expected = *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}});            \(\backslash\)}
+\DoxyCodeLine{   *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}}) =                                  \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{aarch64_2atomic-machine_8h_a6564903e39b72bf6bbe1e5393e2f17ca}{atomic\_compare\_and\_exchange\_val\_acq}} ((mem), (desired), *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}}));     \(\backslash\)}
+\DoxyCodeLine{   *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}}) == \_\_atg102\_expected; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_ab9f2e332e92e6ef3f6536ef1f56eb4ec}\label{atomic_8h_ab9f2e332e92e6ef3f6536ef1f56eb4ec}} 
+\index{atomic.h@{atomic.h}!atomic\_compare\_exchange\_weak\_relaxed@{atomic\_compare\_exchange\_weak\_relaxed}}
+\index{atomic\_compare\_exchange\_weak\_relaxed@{atomic\_compare\_exchange\_weak\_relaxed}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_exchange\_weak\_relaxed}{atomic\_compare\_exchange\_weak\_relaxed}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+relaxed(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}},  }\item[{}]{desired }\end{DoxyParamCaption})~\mbox{\hyperlink{atomic_8h_a256901d568f7d26bb76e5212d9ff6515}{atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+acquire}} ((mem), (\mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}}), (desired))}
+
+\mbox{\Hypertarget{atomic_8h_a0e35db7c638c599d00090f048b9c7d9f}\label{atomic_8h_a0e35db7c638c599d00090f048b9c7d9f}} 
+\index{atomic.h@{atomic.h}!atomic\_compare\_exchange\_weak\_release@{atomic\_compare\_exchange\_weak\_release}}
+\index{atomic\_compare\_exchange\_weak\_release@{atomic\_compare\_exchange\_weak\_release}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_exchange\_weak\_release}{atomic\_compare\_exchange\_weak\_release}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+exchange\+\_\+weak\+\_\+release(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{test-tz_8c_a9bed7e001026b7e98fb4e01e2f00665c}{expected}},  }\item[{}]{desired }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{sysdeps_2tile_2tilegx_2strstr_8c_a53b5376d0390d24de2ac980214a739a1}{typeof}} (*(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}})) \_\_atg103\_expected = *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}});            \(\backslash\)}
+\DoxyCodeLine{   *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}}) =                                  \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{atomic_8h_acac6e3724b2d49a7fb2e13eed4fb3b67}{atomic\_compare\_and\_exchange\_val\_rel}} ((mem), (desired), *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}}));     \(\backslash\)}
+\DoxyCodeLine{   *(\mbox{\hyperlink{sha256c-test_8c_a6bd2df38d42655885c78a17a25f56d11}{expected}}) == \_\_atg103\_expected; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a063453cab22a4e86cf3857ce91aa55e3}\label{atomic_8h_a063453cab22a4e86cf3857ce91aa55e3}} 
+\index{atomic.h@{atomic.h}!atomic\_decrement@{atomic\_decrement}}
+\index{atomic\_decrement@{atomic\_decrement}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_decrement}{atomic\_decrement}}
+{\footnotesize\ttfamily \#define atomic\+\_\+decrement(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ad21b70a27be6ece11778e1304df2aecd}{atomic\+\_\+add}} ((mem), -\/1)}
+
+\mbox{\Hypertarget{atomic_8h_a0833af9de5bef8c973c54e8153729da8}\label{atomic_8h_a0833af9de5bef8c973c54e8153729da8}} 
+\index{atomic.h@{atomic.h}!atomic\_decrement\_and\_test@{atomic\_decrement\_and\_test}}
+\index{atomic\_decrement\_and\_test@{atomic\_decrement\_and\_test}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_decrement\_and\_test}{atomic\_decrement\_and\_test}}
+{\footnotesize\ttfamily \#define atomic\+\_\+decrement\+\_\+and\+\_\+test(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), -\/1) == 1)}
+
+\mbox{\Hypertarget{atomic_8h_a3acf0020d5f63d33dac6a17a50426fe2}\label{atomic_8h_a3acf0020d5f63d33dac6a17a50426fe2}} 
+\index{atomic.h@{atomic.h}!atomic\_decrement\_if\_positive@{atomic\_decrement\_if\_positive}}
+\index{atomic\_decrement\_if\_positive@{atomic\_decrement\_if\_positive}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_decrement\_if\_positive}{atomic\_decrement\_if\_positive}}
+{\footnotesize\ttfamily \#define atomic\+\_\+decrement\+\_\+if\+\_\+positive(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg11\_oldval;                          \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg11\_memp = (mem);                     \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \{                                      \(\backslash\)}
+\DoxyCodeLine{     \_\_atg11\_oldval = *\_\_atg11\_memp;                      \(\backslash\)}
+\DoxyCodeLine{     if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (\_\_atg11\_oldval <= 0))                  \(\backslash\)}
+\DoxyCodeLine{       break;                                 \(\backslash\)}
+\DoxyCodeLine{       \}                                      \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg11\_memp,          \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg11\_oldval -\/ 1,        \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg11\_oldval), 0));      \(\backslash\)}
+\DoxyCodeLine{     \_\_atg11\_oldval; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_abdb4692bf45139d40737cdb6c2c35704}\label{atomic_8h_abdb4692bf45139d40737cdb6c2c35704}} 
+\index{atomic.h@{atomic.h}!atomic\_decrement\_val@{atomic\_decrement\_val}}
+\index{atomic\_decrement\_val@{atomic\_decrement\_val}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_decrement\_val}{atomic\_decrement\_val}}
+{\footnotesize\ttfamily \#define atomic\+\_\+decrement\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), -\/1) -\/ 1)}
+
+\mbox{\Hypertarget{atomic_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}\label{atomic_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_acq@{atomic\_exchange\_acq}}
+\index{atomic\_exchange\_acq@{atomic\_exchange\_acq}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_acq}{atomic\_exchange\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{newvalue }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg5\_oldval;                       \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg5\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*(mem)) \_\_atg5\_value = (newvalue);                 \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \_\_atg5\_oldval = *\_\_atg5\_memp;                          \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg5\_memp, \_\_atg5\_value, \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg5\_oldval), 0));       \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     \_\_atg5\_oldval; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_ab55691374d361aa55b895a8f399e7596}\label{atomic_8h_ab55691374d361aa55b895a8f399e7596}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_acquire@{atomic\_exchange\_acquire}}
+\index{atomic\_exchange\_acquire@{atomic\_exchange\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_acquire}{atomic\_exchange\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}{atomic\+\_\+exchange\+\_\+acq}} ((mem), (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}}))}
+
+\mbox{\Hypertarget{atomic_8h_a5866844ead1aa48df6a255bc7f940425}\label{atomic_8h_a5866844ead1aa48df6a255bc7f940425}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_and\_add@{atomic\_exchange\_and\_add}}
+\index{atomic\_exchange\_and\_add@{atomic\_exchange\_and\_add}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_and\_add}{atomic\_exchange\_and\_add}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+and\+\_\+add(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc_2atomic-machine_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}}(mem, \mbox{\hyperlink{structvalue}{value}})}
+
+\mbox{\Hypertarget{atomic_8h_abf5194af7b397836b48eeb15ff1c1333}\label{atomic_8h_abf5194af7b397836b48eeb15ff1c1333}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_and\_add\_acq@{atomic\_exchange\_and\_add\_acq}}
+\index{atomic\_exchange\_and\_add\_acq@{atomic\_exchange\_and\_add\_acq}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_and\_add\_acq}{atomic\_exchange\_and\_add\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg6\_oldval;                       \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg6\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*(mem)) \_\_atg6\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                   \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \_\_atg6\_oldval = *\_\_atg6\_memp;                          \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg6\_memp,           \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg6\_oldval          \(\backslash\)}
+\DoxyCodeLine{                           + \_\_atg6\_value,        \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg6\_oldval), 0));       \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     \_\_atg6\_oldval; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_ad4b43a0d87452233ae262bf3e98dd757}\label{atomic_8h_ad4b43a0d87452233ae262bf3e98dd757}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_and\_add\_rel@{atomic\_exchange\_and\_add\_rel}}
+\index{atomic\_exchange\_and\_add\_rel@{atomic\_exchange\_and\_add\_rel}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_and\_add\_rel}{atomic\_exchange\_and\_add\_rel}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+rel(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc_2atomic-machine_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}}(mem, \mbox{\hyperlink{structvalue}{value}})}
+
+\mbox{\Hypertarget{atomic_8h_ac177adbc5d7f927cbc848a6e6e700977}\label{atomic_8h_ac177adbc5d7f927cbc848a6e6e700977}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_rel@{atomic\_exchange\_rel}}
+\index{atomic\_exchange\_rel@{atomic\_exchange\_rel}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_rel}{atomic\_exchange\_rel}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+rel(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{newvalue }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}{atomic\+\_\+exchange\+\_\+acq}} (mem, newvalue)}
+
+\mbox{\Hypertarget{atomic_8h_af69b2ead417f9cc4309297de5f371636}\label{atomic_8h_af69b2ead417f9cc4309297de5f371636}} 
+\index{atomic.h@{atomic.h}!atomic\_exchange\_release@{atomic\_exchange\_release}}
+\index{atomic\_exchange\_release@{atomic\_exchange\_release}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_release}{atomic\_exchange\_release}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+release(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2atomic-machine_8h_a140f9d065df51dcd59924e1cb6c12bb8}{atomic\+\_\+exchange\+\_\+rel}} ((mem), (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}}))}
+
+\mbox{\Hypertarget{atomic_8h_a10330e19c7d3748ccde3a686bb46dc1a}\label{atomic_8h_a10330e19c7d3748ccde3a686bb46dc1a}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_add\_acq\_rel@{atomic\_fetch\_add\_acq\_rel}}
+\index{atomic\_fetch\_add\_acq\_rel@{atomic\_fetch\_add\_acq\_rel}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_add\_acq\_rel}{atomic\_fetch\_add\_acq\_rel}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+add\+\_\+acq\+\_\+rel(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{atomic_8h_a66c79321b78ff0febedd9d9ea00ed930}{atomic\_thread\_fence\_release}} ();                         \(\backslash\)}
+\DoxyCodeLine{   atomic\_exchange\_and\_add\_acq ((mem), (operand)); \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_ac057fb5a6527d559b426ac130e1aed8e}\label{atomic_8h_ac057fb5a6527d559b426ac130e1aed8e}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_add\_acquire@{atomic\_fetch\_add\_acquire}}
+\index{atomic\_fetch\_add\_acquire@{atomic\_fetch\_add\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_add\_acquire}{atomic\_fetch\_add\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+add\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc_2atomic-machine_8h_abf5194af7b397836b48eeb15ff1c1333}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+acq}} ((mem), (operand))}
+
+\mbox{\Hypertarget{atomic_8h_a9317eb4549ae5fe96c5d51b0e1ca7a5c}\label{atomic_8h_a9317eb4549ae5fe96c5d51b0e1ca7a5c}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_add\_relaxed@{atomic\_fetch\_add\_relaxed}}
+\index{atomic\_fetch\_add\_relaxed@{atomic\_fetch\_add\_relaxed}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_add\_relaxed}{atomic\_fetch\_add\_relaxed}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+add\+\_\+relaxed(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})~\mbox{\hyperlink{atomic_8h_ac057fb5a6527d559b426ac130e1aed8e}{atomic\+\_\+fetch\+\_\+add\+\_\+acquire}} ((mem), (operand))}
+
+\mbox{\Hypertarget{atomic_8h_ab4ce24a24564dbcbf6a61abf1128f3a8}\label{atomic_8h_ab4ce24a24564dbcbf6a61abf1128f3a8}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_add\_release@{atomic\_fetch\_add\_release}}
+\index{atomic\_fetch\_add\_release@{atomic\_fetch\_add\_release}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_add\_release}{atomic\_fetch\_add\_release}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+add\+\_\+release(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})~\mbox{\hyperlink{powerpc_2atomic-machine_8h_ad4b43a0d87452233ae262bf3e98dd757}{atomic\+\_\+exchange\+\_\+and\+\_\+add\+\_\+rel}} ((mem), (operand))}
+
+\mbox{\Hypertarget{atomic_8h_a97c03f955005fd07d31969c8b8addd77}\label{atomic_8h_a97c03f955005fd07d31969c8b8addd77}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_and\_acquire@{atomic\_fetch\_and\_acquire}}
+\index{atomic\_fetch\_and\_acquire@{atomic\_fetch\_and\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_and\_acquire}{atomic\_fetch\_and\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+and\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a5541715cc88d242e8274b93750105a1a}{atomic\+\_\+and\+\_\+val}} ((mem), (operand))}
+
+\mbox{\Hypertarget{atomic_8h_acd8b1ab32792c3fb35964d9d195df8e1}\label{atomic_8h_acd8b1ab32792c3fb35964d9d195df8e1}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_or\_acquire@{atomic\_fetch\_or\_acquire}}
+\index{atomic\_fetch\_or\_acquire@{atomic\_fetch\_or\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_or\_acquire}{atomic\_fetch\_or\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+or\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a60a1ff510171561015255a646f6a8bb1}{atomic\+\_\+or\+\_\+val}} ((mem), (operand))}
+
+\mbox{\Hypertarget{atomic_8h_ac640f3f1bdfea3b0bda8ebb477f37f7a}\label{atomic_8h_ac640f3f1bdfea3b0bda8ebb477f37f7a}} 
+\index{atomic.h@{atomic.h}!atomic\_fetch\_or\_relaxed@{atomic\_fetch\_or\_relaxed}}
+\index{atomic\_fetch\_or\_relaxed@{atomic\_fetch\_or\_relaxed}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_fetch\_or\_relaxed}{atomic\_fetch\_or\_relaxed}}
+{\footnotesize\ttfamily \#define atomic\+\_\+fetch\+\_\+or\+\_\+relaxed(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{operand }\end{DoxyParamCaption})~\mbox{\hyperlink{atomic_8h_acd8b1ab32792c3fb35964d9d195df8e1}{atomic\+\_\+fetch\+\_\+or\+\_\+acquire}} ((mem), (operand))}
+
+\mbox{\Hypertarget{atomic_8h_af1254e89ad3e7f9d6b230e87633bc619}\label{atomic_8h_af1254e89ad3e7f9d6b230e87633bc619}} 
+\index{atomic.h@{atomic.h}!atomic\_forced\_read@{atomic\_forced\_read}}
+\index{atomic\_forced\_read@{atomic\_forced\_read}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_forced\_read}{atomic\_forced\_read}}
+{\footnotesize\ttfamily \#define atomic\+\_\+forced\+\_\+read(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~(\{ \mbox{\hyperlink{personality_8c_ab989787cabce0ed9e4b30eed95f8f1f2}{\+\_\+\+\_\+typeof}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \+\_\+\+\_\+x; \+\_\+\+\_\+asm (\char`\"{}\char`\"{} \+: \char`\"{}=r\char`\"{} (\+\_\+\+\_\+x) \+: \char`\"{}0\char`\"{} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})); \+\_\+\+\_\+x; \})}
+
+\mbox{\Hypertarget{atomic_8h_a344b85d33b7dd8f040b20efa47c69791}\label{atomic_8h_a344b85d33b7dd8f040b20efa47c69791}} 
+\index{atomic.h@{atomic.h}!atomic\_full\_barrier@{atomic\_full\_barrier}}
+\index{atomic\_full\_barrier@{atomic\_full\_barrier}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_full\_barrier}{atomic\_full\_barrier}}
+{\footnotesize\ttfamily \#define atomic\+\_\+full\+\_\+barrier(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\+\_\+\+\_\+asm (\char`\"{}\char`\"{} \+::: \char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{atomic_8h_a9dae0c3c8486c7a3824271de4a0ab74d}\label{atomic_8h_a9dae0c3c8486c7a3824271de4a0ab74d}} 
+\index{atomic.h@{atomic.h}!atomic\_increment@{atomic\_increment}}
+\index{atomic\_increment@{atomic\_increment}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_increment}{atomic\_increment}}
+{\footnotesize\ttfamily \#define atomic\+\_\+increment(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_ad21b70a27be6ece11778e1304df2aecd}{atomic\+\_\+add}} ((mem), 1)}
+
+\mbox{\Hypertarget{atomic_8h_a510701d7efa8c49dda6014528466cf23}\label{atomic_8h_a510701d7efa8c49dda6014528466cf23}} 
+\index{atomic.h@{atomic.h}!atomic\_increment\_and\_test@{atomic\_increment\_and\_test}}
+\index{atomic\_increment\_and\_test@{atomic\_increment\_and\_test}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_increment\_and\_test}{atomic\_increment\_and\_test}}
+{\footnotesize\ttfamily \#define atomic\+\_\+increment\+\_\+and\+\_\+test(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), 1) + 1 == 0)}
+
+\mbox{\Hypertarget{atomic_8h_a418d1eecb792d388129d5ba54b50d950}\label{atomic_8h_a418d1eecb792d388129d5ba54b50d950}} 
+\index{atomic.h@{atomic.h}!atomic\_increment\_val@{atomic\_increment\_val}}
+\index{atomic\_increment\_val@{atomic\_increment\_val}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_increment\_val}{atomic\_increment\_val}}
+{\footnotesize\ttfamily \#define atomic\+\_\+increment\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), 1) + 1)}
+
+\mbox{\Hypertarget{atomic_8h_a4a14c8c10c17c89403ce8d573b2e95a5}\label{atomic_8h_a4a14c8c10c17c89403ce8d573b2e95a5}} 
+\index{atomic.h@{atomic.h}!atomic\_load\_acquire@{atomic\_load\_acquire}}
+\index{atomic\_load\_acquire@{atomic\_load\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_load\_acquire}{atomic\_load\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+load\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg101\_val = \mbox{\hyperlink{atomic_8h_a51942c35164da59fb38d9dd43092f6be}{atomic\_load\_relaxed}} (mem);         \(\backslash\)}
+\DoxyCodeLine{   atomic\_thread\_fence\_acquire ();                        \(\backslash\)}
+\DoxyCodeLine{   \_\_atg101\_val; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a51942c35164da59fb38d9dd43092f6be}\label{atomic_8h_a51942c35164da59fb38d9dd43092f6be}} 
+\index{atomic.h@{atomic.h}!atomic\_load\_relaxed@{atomic\_load\_relaxed}}
+\index{atomic\_load\_relaxed@{atomic\_load\_relaxed}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_load\_relaxed}{atomic\_load\_relaxed}}
+{\footnotesize\ttfamily \#define atomic\+\_\+load\+\_\+relaxed(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg100\_val;                        \(\backslash\)}
+\DoxyCodeLine{   \_\_asm (\textcolor{stringliteral}{""} : \textcolor{stringliteral}{"=r"} (\_\_atg100\_val) : \textcolor{stringliteral}{"0"} (*(mem)));               \(\backslash\)}
+\DoxyCodeLine{   \_\_atg100\_val; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a8fca870909737c6a021cf55e0ecb59e4}\label{atomic_8h_a8fca870909737c6a021cf55e0ecb59e4}} 
+\index{atomic.h@{atomic.h}!atomic\_max@{atomic\_max}}
+\index{atomic\_max@{atomic\_max}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_max}{atomic\_max}}
+{\footnotesize\ttfamily \#define atomic\+\_\+max(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg8\_oldval;                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg8\_memp = (mem);                       \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg8\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                    \(\backslash\)}
+\DoxyCodeLine{    do \{                                      \(\backslash\)}
+\DoxyCodeLine{      \_\_atg8\_oldval = *\_\_atg8\_memp;                       \(\backslash\)}
+\DoxyCodeLine{      if (\_\_atg8\_oldval >= \_\_atg8\_value)                      \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                             \(\backslash\)}
+\DoxyCodeLine{         (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg8\_memp, \_\_atg8\_value,\(\backslash\)}
+\DoxyCodeLine{                            \_\_atg8\_oldval), 0));      \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a870e0b76edf4a4e2886b493f57e1dffe}\label{atomic_8h_a870e0b76edf4a4e2886b493f57e1dffe}} 
+\index{atomic.h@{atomic.h}!atomic\_min@{atomic\_min}}
+\index{atomic\_min@{atomic\_min}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_min}{atomic\_min}}
+{\footnotesize\ttfamily \#define atomic\+\_\+min(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg10\_oldval;                         \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg10\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg10\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                   \(\backslash\)}
+\DoxyCodeLine{    do \{                                      \(\backslash\)}
+\DoxyCodeLine{      \_\_atg10\_oldval = *\_\_atg10\_memp;                         \(\backslash\)}
+\DoxyCodeLine{      if (\_\_atg10\_oldval <= \_\_atg10\_value)                    \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                             \(\backslash\)}
+\DoxyCodeLine{         (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg10\_memp,         \(\backslash\)}
+\DoxyCodeLine{                            \_\_atg10\_value,        \(\backslash\)}
+\DoxyCodeLine{                            \_\_atg10\_oldval), 0));     \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a3bff7a8c94fd150323ad59f28eecdfd4}\label{atomic_8h_a3bff7a8c94fd150323ad59f28eecdfd4}} 
+\index{atomic.h@{atomic.h}!atomic\_or@{atomic\_or}}
+\index{atomic\_or@{atomic\_or}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_or}{atomic\_or}}
+{\footnotesize\ttfamily \#define atomic\+\_\+or(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg17\_old;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg17\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg17\_mask = (\mbox{\hyperlink{generic_2sigset-cvt-mask_8h_a99ff9f84d4ad34062c1a77b0e3b3884f}{mask}});                      \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    do                                        \(\backslash\)}
+\DoxyCodeLine{      \_\_atg17\_old = (*\_\_atg17\_memp);                          \(\backslash\)}
+\DoxyCodeLine{    while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                           \(\backslash\)}
+\DoxyCodeLine{       (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg17\_memp,           \(\backslash\)}
+\DoxyCodeLine{                          \_\_atg17\_old | \_\_atg17\_mask, \(\backslash\)}
+\DoxyCodeLine{                          \_\_atg17\_old), 0));          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a60a1ff510171561015255a646f6a8bb1}\label{atomic_8h_a60a1ff510171561015255a646f6a8bb1}} 
+\index{atomic.h@{atomic.h}!atomic\_or\_val@{atomic\_or\_val}}
+\index{atomic\_or\_val@{atomic\_or\_val}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_or\_val}{atomic\_or\_val}}
+{\footnotesize\ttfamily \#define atomic\+\_\+or\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg19\_old;                         \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg19\_memp = (mem);                     \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*(mem)) \_\_atg19\_mask = (\mbox{\hyperlink{generic_2sigset-cvt-mask_8h_a99ff9f84d4ad34062c1a77b0e3b3884f}{mask}});                     \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \_\_atg19\_old = (*\_\_atg19\_memp);                         \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg19\_memp,          \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg19\_old | \_\_atg19\_mask,\(\backslash\)}
+\DoxyCodeLine{                           \_\_atg19\_old), 0));         \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     \_\_atg19\_old; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_ac1183175f1a484afa7c451f3a78915cf}\label{atomic_8h_ac1183175f1a484afa7c451f3a78915cf}} 
+\index{atomic.h@{atomic.h}!atomic\_read\_barrier@{atomic\_read\_barrier}}
+\index{atomic\_read\_barrier@{atomic\_read\_barrier}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_read\_barrier}{atomic\_read\_barrier}}
+{\footnotesize\ttfamily \#define atomic\+\_\+read\+\_\+barrier(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}} ()}
+
+\mbox{\Hypertarget{atomic_8h_aeb4e40b00021266fef10cb44745858f9}\label{atomic_8h_aeb4e40b00021266fef10cb44745858f9}} 
+\index{atomic.h@{atomic.h}!atomic\_spin\_nop@{atomic\_spin\_nop}}
+\index{atomic\_spin\_nop@{atomic\_spin\_nop}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_spin\_nop}{atomic\_spin\_nop}}
+{\footnotesize\ttfamily \#define atomic\+\_\+spin\+\_\+nop(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~do \{ /$\ast$ nothing $\ast$/ \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{atomic_8h_addf2c818aa92607e05e51727a3264268}\label{atomic_8h_addf2c818aa92607e05e51727a3264268}} 
+\index{atomic.h@{atomic.h}!atomic\_store\_relaxed@{atomic\_store\_relaxed}}
+\index{atomic\_store\_relaxed@{atomic\_store\_relaxed}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_store\_relaxed}{atomic\_store\_relaxed}}
+{\footnotesize\ttfamily \#define atomic\+\_\+store\+\_\+relaxed(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})~do \{ $\ast$(mem) = (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}}); \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{atomic_8h_a2ba0d645807053a9b8066d7feeeae8c1}\label{atomic_8h_a2ba0d645807053a9b8066d7feeeae8c1}} 
+\index{atomic.h@{atomic.h}!atomic\_store\_release@{atomic\_store\_release}}
+\index{atomic\_store\_release@{atomic\_store\_release}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_store\_release}{atomic\_store\_release}}
+{\footnotesize\ttfamily \#define atomic\+\_\+store\+\_\+release(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{     atomic\_thread\_fence\_release ();                          \(\backslash\)}
+\DoxyCodeLine{     atomic\_store\_relaxed ((mem), (val));                     \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a19f7514be323184f5fb5a0ab49445cb4}\label{atomic_8h_a19f7514be323184f5fb5a0ab49445cb4}} 
+\index{atomic.h@{atomic.h}!atomic\_thread\_fence\_acquire@{atomic\_thread\_fence\_acquire}}
+\index{atomic\_thread\_fence\_acquire@{atomic\_thread\_fence\_acquire}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_thread\_fence\_acquire}{atomic\_thread\_fence\_acquire}}
+{\footnotesize\ttfamily \#define atomic\+\_\+thread\+\_\+fence\+\_\+acquire(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{nptl_2unwind-forcedunwind_8c_ac5f8482e8a6591f362339040d1bd6286}{atomic\+\_\+read\+\_\+barrier}} ()}
+
+\mbox{\Hypertarget{atomic_8h_a66c79321b78ff0febedd9d9ea00ed930}\label{atomic_8h_a66c79321b78ff0febedd9d9ea00ed930}} 
+\index{atomic.h@{atomic.h}!atomic\_thread\_fence\_release@{atomic\_thread\_fence\_release}}
+\index{atomic\_thread\_fence\_release@{atomic\_thread\_fence\_release}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_thread\_fence\_release}{atomic\_thread\_fence\_release}}
+{\footnotesize\ttfamily \#define atomic\+\_\+thread\+\_\+fence\+\_\+release(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a3cea9b394f5e044287916cc17b11caab}{atomic\+\_\+write\+\_\+barrier}} ()}
+
+\mbox{\Hypertarget{atomic_8h_a40f6f4b6ab464ff44c087a5558d36f55}\label{atomic_8h_a40f6f4b6ab464ff44c087a5558d36f55}} 
+\index{atomic.h@{atomic.h}!atomic\_thread\_fence\_seq\_cst@{atomic\_thread\_fence\_seq\_cst}}
+\index{atomic\_thread\_fence\_seq\_cst@{atomic\_thread\_fence\_seq\_cst}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_thread\_fence\_seq\_cst}{atomic\_thread\_fence\_seq\_cst}}
+{\footnotesize\ttfamily \#define atomic\+\_\+thread\+\_\+fence\+\_\+seq\+\_\+cst(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}} ()}
+
+\mbox{\Hypertarget{atomic_8h_a3cea9b394f5e044287916cc17b11caab}\label{atomic_8h_a3cea9b394f5e044287916cc17b11caab}} 
+\index{atomic.h@{atomic.h}!atomic\_write\_barrier@{atomic\_write\_barrier}}
+\index{atomic\_write\_barrier@{atomic\_write\_barrier}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_write\_barrier}{atomic\_write\_barrier}}
+{\footnotesize\ttfamily \#define atomic\+\_\+write\+\_\+barrier(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a344b85d33b7dd8f040b20efa47c69791}{atomic\+\_\+full\+\_\+barrier}} ()}
+
+\mbox{\Hypertarget{atomic_8h_a5a87023de552fd5e3e76b185731b2400}\label{atomic_8h_a5a87023de552fd5e3e76b185731b2400}} 
+\index{atomic.h@{atomic.h}!catomic\_add@{catomic\_add}}
+\index{catomic\_add@{catomic\_add}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_add}{catomic\_add}}
+{\footnotesize\ttfamily \#define catomic\+\_\+add(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{x86__64_2atomic-machine_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), (\mbox{\hyperlink{structvalue}{value}}))}
+
+\mbox{\Hypertarget{atomic_8h_a15ef96554cb1d3b35bd02f363f37d512}\label{atomic_8h_a15ef96554cb1d3b35bd02f363f37d512}} 
+\index{atomic.h@{atomic.h}!catomic\_and@{catomic\_and}}
+\index{catomic\_and@{catomic\_and}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_and}{catomic\_and}}
+{\footnotesize\ttfamily \#define catomic\+\_\+and(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg20\_old;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg20\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg20\_mask = (\mbox{\hyperlink{generic_2sigset-cvt-mask_8h_a99ff9f84d4ad34062c1a77b0e3b3884f}{mask}});                      \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    do                                        \(\backslash\)}
+\DoxyCodeLine{      \_\_atg20\_old = (*\_\_atg20\_memp);                          \(\backslash\)}
+\DoxyCodeLine{    while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                           \(\backslash\)}
+\DoxyCodeLine{       (\mbox{\hyperlink{atomic_8h_afb54341e8cbb21909b342518e1b6058e}{catomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg20\_memp,         \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg20\_old \& \_\_atg20\_mask,\(\backslash\)}
+\DoxyCodeLine{                           \_\_atg20\_old), 0));         \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_afb54341e8cbb21909b342518e1b6058e}\label{atomic_8h_afb54341e8cbb21909b342518e1b6058e}} 
+\index{atomic.h@{atomic.h}!catomic\_compare\_and\_exchange\_bool\_acq@{catomic\_compare\_and\_exchange\_bool\_acq}}
+\index{catomic\_compare\_and\_exchange\_bool\_acq@{catomic\_compare\_and\_exchange\_bool\_acq}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_compare\_and\_exchange\_bool\_acq}{catomic\_compare\_and\_exchange\_bool\_acq}}
+{\footnotesize\ttfamily \#define catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+bool\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{comment}{/* Cannot use \_\_oldval here, because macros later in this file might     \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{    call this macro with \_\_oldval argument.  */}               \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}) \_\_atg4\_old = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}});                     \(\backslash\)}
+\DoxyCodeLine{     catomic\_compare\_and\_exchange\_val\_acq (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \_\_atg4\_old)         \(\backslash\)}
+\DoxyCodeLine{       != \_\_atg4\_old;                                 \(\backslash\)}
+\DoxyCodeLine{  \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a808b432a55fc8c496dc3da26ac13dea2}\label{atomic_8h_a808b432a55fc8c496dc3da26ac13dea2}} 
+\index{atomic.h@{atomic.h}!catomic\_compare\_and\_exchange\_val\_acq@{catomic\_compare\_and\_exchange\_val\_acq}}
+\index{catomic\_compare\_and\_exchange\_val\_acq@{catomic\_compare\_and\_exchange\_val\_acq}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_compare\_and\_exchange\_val\_acq}{catomic\_compare\_and\_exchange\_val\_acq}}
+{\footnotesize\ttfamily \#define catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}} (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})}
+
+\mbox{\Hypertarget{atomic_8h_a933e4eba52f9253050561c34cb878bea}\label{atomic_8h_a933e4eba52f9253050561c34cb878bea}} 
+\index{atomic.h@{atomic.h}!catomic\_compare\_and\_exchange\_val\_rel@{catomic\_compare\_and\_exchange\_val\_rel}}
+\index{catomic\_compare\_and\_exchange\_val\_rel@{catomic\_compare\_and\_exchange\_val\_rel}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_compare\_and\_exchange\_val\_rel}{catomic\_compare\_and\_exchange\_val\_rel}}
+{\footnotesize\ttfamily \#define catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+rel(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})~\mbox{\hyperlink{atomic_8h_a808b432a55fc8c496dc3da26ac13dea2}{catomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}} (mem, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}, \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})}
+
+\mbox{\Hypertarget{atomic_8h_ae307e75deed316f760aab9ed501e5fb7}\label{atomic_8h_ae307e75deed316f760aab9ed501e5fb7}} 
+\index{atomic.h@{atomic.h}!catomic\_decrement@{catomic\_decrement}}
+\index{catomic\_decrement@{catomic\_decrement}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_decrement}{catomic\_decrement}}
+{\footnotesize\ttfamily \#define catomic\+\_\+decrement(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5a87023de552fd5e3e76b185731b2400}{catomic\+\_\+add}} ((mem), -\/1)}
+
+\mbox{\Hypertarget{atomic_8h_a9a55770b47faf4c3fedf3a71da68e30f}\label{atomic_8h_a9a55770b47faf4c3fedf3a71da68e30f}} 
+\index{atomic.h@{atomic.h}!catomic\_decrement\_val@{catomic\_decrement\_val}}
+\index{catomic\_decrement\_val@{catomic\_decrement\_val}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_decrement\_val}{catomic\_decrement\_val}}
+{\footnotesize\ttfamily \#define catomic\+\_\+decrement\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), -\/1) -\/ 1)}
+
+\mbox{\Hypertarget{atomic_8h_a82a47235a98348b08e3c2b20d828f184}\label{atomic_8h_a82a47235a98348b08e3c2b20d828f184}} 
+\index{atomic.h@{atomic.h}!catomic\_exchange\_and\_add@{catomic\_exchange\_and\_add}}
+\index{catomic\_exchange\_and\_add@{catomic\_exchange\_and\_add}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_exchange\_and\_add}{catomic\_exchange\_and\_add}}
+{\footnotesize\ttfamily \#define catomic\+\_\+exchange\+\_\+and\+\_\+add(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem)) \_\_atg7\_oldv;                         \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (mem) \_\_atg7\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*(mem)) \_\_atg7\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                   \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     do                                       \(\backslash\)}
+\DoxyCodeLine{       \_\_atg7\_oldv = *\_\_atg7\_memp;                        \(\backslash\)}
+\DoxyCodeLine{     while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                              \(\backslash\)}
+\DoxyCodeLine{        (\mbox{\hyperlink{atomic_8h_afb54341e8cbb21909b342518e1b6058e}{catomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg7\_memp,         \(\backslash\)}
+\DoxyCodeLine{                            \_\_atg7\_oldv           \(\backslash\)}
+\DoxyCodeLine{                            + \_\_atg7\_value,       \(\backslash\)}
+\DoxyCodeLine{                            \_\_atg7\_oldv), 0));        \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{     \_\_atg7\_oldv; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_a8f2ce36460d66016442c950ecd87b4da}\label{atomic_8h_a8f2ce36460d66016442c950ecd87b4da}} 
+\index{atomic.h@{atomic.h}!catomic\_increment@{catomic\_increment}}
+\index{catomic\_increment@{catomic\_increment}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_increment}{catomic\_increment}}
+{\footnotesize\ttfamily \#define catomic\+\_\+increment(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~\mbox{\hyperlink{x86__64_2atomic-machine_8h_a5a87023de552fd5e3e76b185731b2400}{catomic\+\_\+add}} ((mem), 1)}
+
+\mbox{\Hypertarget{atomic_8h_ad0c4a5ef40fe64ce56a82bd6da2c5170}\label{atomic_8h_ad0c4a5ef40fe64ce56a82bd6da2c5170}} 
+\index{atomic.h@{atomic.h}!catomic\_increment\_val@{catomic\_increment\_val}}
+\index{catomic\_increment\_val@{catomic\_increment\_val}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_increment\_val}{catomic\_increment\_val}}
+{\footnotesize\ttfamily \#define catomic\+\_\+increment\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~(\mbox{\hyperlink{x86__64_2atomic-machine_8h_a82a47235a98348b08e3c2b20d828f184}{catomic\+\_\+exchange\+\_\+and\+\_\+add}} ((mem), 1) + 1)}
+
+\mbox{\Hypertarget{atomic_8h_a8fe4e7ae3dd86d87dbc71ea3e567467f}\label{atomic_8h_a8fe4e7ae3dd86d87dbc71ea3e567467f}} 
+\index{atomic.h@{atomic.h}!catomic\_max@{catomic\_max}}
+\index{catomic\_max@{catomic\_max}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_max}{catomic\_max}}
+{\footnotesize\ttfamily \#define catomic\+\_\+max(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg9\_oldv;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg9\_memp = (mem);                       \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg9\_value = (\mbox{\hyperlink{3level_8h_aacce635d68067370c70caa2381ea1040}{value}});                    \(\backslash\)}
+\DoxyCodeLine{    do \{                                      \(\backslash\)}
+\DoxyCodeLine{      \_\_atg9\_oldv = *\_\_atg9\_memp;                         \(\backslash\)}
+\DoxyCodeLine{      if (\_\_atg9\_oldv >= \_\_atg9\_value)                        \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                             \(\backslash\)}
+\DoxyCodeLine{         (\mbox{\hyperlink{atomic_8h_afb54341e8cbb21909b342518e1b6058e}{catomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg9\_memp,        \(\backslash\)}
+\DoxyCodeLine{                             \_\_atg9\_value,        \(\backslash\)}
+\DoxyCodeLine{                             \_\_atg9\_oldv), 0));       \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atomic_8h_afbc429b50e045fa672b73f886a1029c7}\label{atomic_8h_afbc429b50e045fa672b73f886a1029c7}} 
+\index{atomic.h@{atomic.h}!catomic\_or@{catomic\_or}}
+\index{catomic\_or@{catomic\_or}!atomic.h@{atomic.h}}
+\doxysubsubsection{\texorpdfstring{catomic\_or}{catomic\_or}}
+{\footnotesize\ttfamily \#define catomic\+\_\+or(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg18\_old;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (mem) \_\_atg18\_memp = (mem);                      \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (*(mem)) \_\_atg18\_mask = (\mbox{\hyperlink{generic_2sigset-cvt-mask_8h_a99ff9f84d4ad34062c1a77b0e3b3884f}{mask}});                      \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    do                                        \(\backslash\)}
+\DoxyCodeLine{      \_\_atg18\_old = (*\_\_atg18\_memp);                          \(\backslash\)}
+\DoxyCodeLine{    while (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}}                           \(\backslash\)}
+\DoxyCodeLine{       (\mbox{\hyperlink{atomic_8h_afb54341e8cbb21909b342518e1b6058e}{catomic\_compare\_and\_exchange\_bool\_acq}} (\_\_atg18\_memp,         \(\backslash\)}
+\DoxyCodeLine{                           \_\_atg18\_old | \_\_atg18\_mask,\(\backslash\)}
+\DoxyCodeLine{                           \_\_atg18\_old), 0));         \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

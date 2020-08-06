@@ -1,0 +1,172 @@
+\hypertarget{sysdeps_2posix_2getaddrinfo_8c}{}\doxysection{sysdeps/posix/getaddrinfo.c File Reference}
+\label{sysdeps_2posix_2getaddrinfo_8c}\index{sysdeps/posix/getaddrinfo.c@{sysdeps/posix/getaddrinfo.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$ifaddrs.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$nss.\+h$>$}\newline
+{\ttfamily \#include $<$resolv.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdio\+\_\+ext.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$net/if.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/un.\+h$>$}\newline
+{\ttfamily \#include $<$sys/utsname.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$nsswitch.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+{\ttfamily \#include $<$nscd/nscd-\/client.\+h$>$}\newline
+{\ttfamily \#include $<$nscd/nscd\+\_\+proto.\+h$>$}\newline
+{\ttfamily \#include $<$resolv/res\+\_\+hconf.\+h$>$}\newline
+{\ttfamily \#include $<$scratch\+\_\+buffer.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgaih__service}{gaih\+\_\+service}}
+\item 
+struct \mbox{\hyperlink{structgaih__servtuple}{gaih\+\_\+servtuple}}
+\item 
+struct \mbox{\hyperlink{structgaih__typeproto}{gaih\+\_\+typeproto}}
+\item 
+struct \mbox{\hyperlink{structsort__result}{sort\+\_\+result}}
+\item 
+struct \mbox{\hyperlink{structsort__result__combo}{sort\+\_\+result\+\_\+combo}}
+\item 
+struct {\bfseries scopeentry}
+\item 
+struct \mbox{\hyperlink{structprefixentry}{prefixentry}}
+\item 
+struct \mbox{\hyperlink{structprefixlist}{prefixlist}}
+\item 
+struct \mbox{\hyperlink{structscopelist}{scopelist}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a54641200e818228d125826fce36e52fe}{G\+A\+I\+\_\+\+P\+R\+O\+T\+O\+\_\+\+N\+O\+S\+E\+R\+V\+I\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a9d6799f9bb3204455cee509cd8996a99}{G\+A\+I\+\_\+\+P\+R\+O\+T\+O\+\_\+\+P\+R\+O\+T\+O\+A\+NY}}~2
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a44a578d9fa1557477e4a0512b3244e04}{gethosts}}(\+\_\+family,  \+\_\+type)
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_acbbfc0e90b6a50a1a3034b9fc81042d4}{htonl\+\_\+c}}(\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})~\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a2455028501bdd3709a69d9cc2b6c4f2c}{G\+A\+I\+C\+O\+N\+F\+\_\+\+F\+N\+A\+ME}}~\char`\"{}/etc/gai.\+conf\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}}($\ast$ \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_ac067c3ae5323f4e3565c526fa6ff574b}{nss\+\_\+gethostbyname4\+\_\+r}}) (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, struct \mbox{\hyperlink{structgaih__addrtuple}{gaih\+\_\+addrtuple}} $\ast$$\ast$pat, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop, \mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}} $\ast$ttlp)
+\item 
+typedef enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}}($\ast$ \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a0fd6d83e25d18b72ccf9a4f712feba77}{nss\+\_\+gethostbyname3\+\_\+r}}) (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}, struct \mbox{\hyperlink{structhostent}{hostent}} $\ast$host, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop, \mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}} $\ast$ttlp, char $\ast$$\ast$canonp)
+\item 
+typedef enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}}($\ast$ \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_aafeb77fe3f6c9ff833feb428f9070015}{nss\+\_\+getcanonname\+\_\+r}}) (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, char $\ast$$\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a2f508a4627a644f13b315d7fe6628d72}{libc\+\_\+freeres\+\_\+fn}} (\mbox{\hyperlink{order_8c_a7c26403b8b155ef9059736019dbdf71a}{fini}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_abb0e64223c840c8e64076505da2598b7}{getaddrinfo}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$service, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct addrinfo $\ast$hints, struct addrinfo $\ast$$\ast$pai)
+\item 
+\mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a6ed4d0bf2587d01f961e3b3c152067f1}{libc\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_abb0e64223c840c8e64076505da2598b7}{getaddrinfo}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structservice__user}{service\+\_\+user}} $\ast$\mbox{\hyperlink{gai_8c_ab3a35396c13dde3d95465e39b5f1ba22}{\+\_\+\+\_\+nss\+\_\+hosts\+\_\+database}} \mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_a613763bc0de01ae72e7f8569433ada72}{attribute\+\_\+hidden}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a54641200e818228d125826fce36e52fe}\label{sysdeps_2posix_2getaddrinfo_8c_a54641200e818228d125826fce36e52fe}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!GAI\_PROTO\_NOSERVICE@{GAI\_PROTO\_NOSERVICE}}
+\index{GAI\_PROTO\_NOSERVICE@{GAI\_PROTO\_NOSERVICE}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{GAI\_PROTO\_NOSERVICE}{GAI\_PROTO\_NOSERVICE}}
+{\footnotesize\ttfamily \#define G\+A\+I\+\_\+\+P\+R\+O\+T\+O\+\_\+\+N\+O\+S\+E\+R\+V\+I\+CE~1}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a9d6799f9bb3204455cee509cd8996a99}\label{sysdeps_2posix_2getaddrinfo_8c_a9d6799f9bb3204455cee509cd8996a99}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!GAI\_PROTO\_PROTOANY@{GAI\_PROTO\_PROTOANY}}
+\index{GAI\_PROTO\_PROTOANY@{GAI\_PROTO\_PROTOANY}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{GAI\_PROTO\_PROTOANY}{GAI\_PROTO\_PROTOANY}}
+{\footnotesize\ttfamily \#define G\+A\+I\+\_\+\+P\+R\+O\+T\+O\+\_\+\+P\+R\+O\+T\+O\+A\+NY~2}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a2455028501bdd3709a69d9cc2b6c4f2c}\label{sysdeps_2posix_2getaddrinfo_8c_a2455028501bdd3709a69d9cc2b6c4f2c}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!GAICONF\_FNAME@{GAICONF\_FNAME}}
+\index{GAICONF\_FNAME@{GAICONF\_FNAME}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{GAICONF\_FNAME}{GAICONF\_FNAME}}
+{\footnotesize\ttfamily \#define G\+A\+I\+C\+O\+N\+F\+\_\+\+F\+N\+A\+ME~\char`\"{}/etc/gai.\+conf\char`\"{}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a44a578d9fa1557477e4a0512b3244e04}\label{sysdeps_2posix_2getaddrinfo_8c_a44a578d9fa1557477e4a0512b3244e04}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!gethosts@{gethosts}}
+\index{gethosts@{gethosts}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{gethosts}{gethosts}}
+{\footnotesize\ttfamily \#define gethosts(\begin{DoxyParamCaption}\item[{}]{\+\_\+family,  }\item[{}]{\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_acbbfc0e90b6a50a1a3034b9fc81042d4}\label{sysdeps_2posix_2getaddrinfo_8c_acbbfc0e90b6a50a1a3034b9fc81042d4}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!htonl\_c@{htonl\_c}}
+\index{htonl\_c@{htonl\_c}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{htonl\_c}{htonl\_c}}
+{\footnotesize\ttfamily \#define htonl\+\_\+c(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}} }\end{DoxyParamCaption})~\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_aafeb77fe3f6c9ff833feb428f9070015}\label{sysdeps_2posix_2getaddrinfo_8c_aafeb77fe3f6c9ff833feb428f9070015}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!nss\_getcanonname\_r@{nss\_getcanonname\_r}}
+\index{nss\_getcanonname\_r@{nss\_getcanonname\_r}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{nss\_getcanonname\_r}{nss\_getcanonname\_r}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}}($\ast$ nss\+\_\+getcanonname\+\_\+r) (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, char $\ast$$\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop)}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a0fd6d83e25d18b72ccf9a4f712feba77}\label{sysdeps_2posix_2getaddrinfo_8c_a0fd6d83e25d18b72ccf9a4f712feba77}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!nss\_gethostbyname3\_r@{nss\_gethostbyname3\_r}}
+\index{nss\_gethostbyname3\_r@{nss\_gethostbyname3\_r}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{nss\_gethostbyname3\_r}{nss\_gethostbyname3\_r}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}}($\ast$ nss\+\_\+gethostbyname3\+\_\+r) (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}, struct \mbox{\hyperlink{structhostent}{hostent}} $\ast$host, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop, \mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}} $\ast$ttlp, char $\ast$$\ast$canonp)}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_ac067c3ae5323f4e3565c526fa6ff574b}\label{sysdeps_2posix_2getaddrinfo_8c_ac067c3ae5323f4e3565c526fa6ff574b}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!nss\_gethostbyname4\_r@{nss\_gethostbyname4\_r}}
+\index{nss\_gethostbyname4\_r@{nss\_gethostbyname4\_r}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{nss\_gethostbyname4\_r}{nss\_gethostbyname4\_r}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{nss_2nss_8h_a1afd5e11f01212d239b1241cc63e9fd9}{nss\+\_\+status}}($\ast$ nss\+\_\+gethostbyname4\+\_\+r) (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, struct \mbox{\hyperlink{structgaih__addrtuple}{gaih\+\_\+addrtuple}} $\ast$$\ast$pat, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errnop, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop, \mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}} $\ast$ttlp)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_abb0e64223c840c8e64076505da2598b7}\label{sysdeps_2posix_2getaddrinfo_8c_abb0e64223c840c8e64076505da2598b7}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!getaddrinfo@{getaddrinfo}}
+\index{getaddrinfo@{getaddrinfo}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{getaddrinfo()}{getaddrinfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} getaddrinfo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{service,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct addrinfo $\ast$}]{hints,  }\item[{struct addrinfo $\ast$$\ast$}]{pai }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a2f508a4627a644f13b315d7fe6628d72}\label{sysdeps_2posix_2getaddrinfo_8c_a2f508a4627a644f13b315d7fe6628d72}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!libc\_freeres\_fn@{libc\_freeres\_fn}}
+\index{libc\_freeres\_fn@{libc\_freeres\_fn}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{libc\_freeres\_fn()}{libc\_freeres\_fn()}}
+{\footnotesize\ttfamily libc\+\_\+freeres\+\_\+fn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{order_8c_a7c26403b8b155ef9059736019dbdf71a}{fini}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a6ed4d0bf2587d01f961e3b3c152067f1}\label{sysdeps_2posix_2getaddrinfo_8c_a6ed4d0bf2587d01f961e3b3c152067f1}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!libc\_hidden\_def@{libc\_hidden\_def}}
+\index{libc\_hidden\_def@{libc\_hidden\_def}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_def()}{libc\_hidden\_def()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sysdeps_2posix_2getaddrinfo_8c_abb0e64223c840c8e64076505da2598b7}{getaddrinfo}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sysdeps_2posix_2getaddrinfo_8c_a613763bc0de01ae72e7f8569433ada72}\label{sysdeps_2posix_2getaddrinfo_8c_a613763bc0de01ae72e7f8569433ada72}} 
+\index{getaddrinfo.c@{getaddrinfo.c}!attribute\_hidden@{attribute\_hidden}}
+\index{attribute\_hidden@{attribute\_hidden}!getaddrinfo.c@{getaddrinfo.c}}
+\doxysubsubsection{\texorpdfstring{attribute\_hidden}{attribute\_hidden}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structservice__user}{service\+\_\+user}}$\ast$ \mbox{\hyperlink{gai_8c_ab3a35396c13dde3d95465e39b5f1ba22}{\+\_\+\+\_\+nss\+\_\+hosts\+\_\+database}} attribute\+\_\+hidden}
+

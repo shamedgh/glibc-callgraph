@@ -1,0 +1,59 @@
+\hypertarget{s390_2s390-64_2________longjmp__chk_8c}{}\doxysection{sysdeps/unix/sysv/linux/s390/s390-\/64/\+\_\+\+\_\+\+\_\+\+\_\+longjmp\+\_\+chk.c File Reference}
+\label{s390_2s390-64_2________longjmp__chk_8c}\index{sysdeps/unix/sysv/linux/s390/s390-\/64/\_\_\_\_longjmp\_chk.c@{sysdeps/unix/sysv/linux/s390/s390-\/64/\_\_\_\_longjmp\_chk.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$setjmp.\+h$>$}\newline
+{\ttfamily \#include $<$bits/setjmp.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$sys/syscall.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}\+\_\+\+\_\+longjmp.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s390_2s390-64_2________longjmp__chk_8c_a524adbd82db7b437a59d7436fddf0e96}{\+\_\+\+\_\+longjmp}}~\mbox{\hyperlink{generic_2________longjmp__chk_8c_a6c9abe25c7b31f9604c5bd1297b76aaa}{\+\_\+\+\_\+\+\_\+\+\_\+longjmp\+\_\+chk}}
+\item 
+\#define \mbox{\hyperlink{s390_2s390-64_2________longjmp__chk_8c_a668c03c34e56402d440094fbf78f850f}{C\+H\+E\+C\+K\+\_\+\+SP}}(\mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}},  guard)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s390_2s390-64_2________longjmp__chk_8c_a524adbd82db7b437a59d7436fddf0e96}\label{s390_2s390-64_2________longjmp__chk_8c_a524adbd82db7b437a59d7436fddf0e96}} 
+\index{\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}!\_\_longjmp@{\_\_longjmp}}
+\index{\_\_longjmp@{\_\_longjmp}!\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}}
+\doxysubsubsection{\texorpdfstring{\_\_longjmp}{\_\_longjmp}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+longjmp~\mbox{\hyperlink{generic_2________longjmp__chk_8c_a6c9abe25c7b31f9604c5bd1297b76aaa}{\+\_\+\+\_\+\+\_\+\+\_\+longjmp\+\_\+chk}}}
+
+\mbox{\Hypertarget{s390_2s390-64_2________longjmp__chk_8c_a668c03c34e56402d440094fbf78f850f}\label{s390_2s390-64_2________longjmp__chk_8c_a668c03c34e56402d440094fbf78f850f}} 
+\index{\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}!CHECK\_SP@{CHECK\_SP}}
+\index{CHECK\_SP@{CHECK\_SP}!\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SP}{CHECK\_SP}}
+{\footnotesize\ttfamily \#define C\+H\+E\+C\+K\+\_\+\+SP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}},  }\item[{}]{guard }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                  \(\backslash\)}
+\DoxyCodeLine{    \{                                   \(\backslash\)}
+\DoxyCodeLine{      uintptr\_t cur\_sp;                         \(\backslash\)}
+\DoxyCodeLine{      uintptr\_t new\_sp = \mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}}-\/>\_\_gregs[9];                \(\backslash\)}
+\DoxyCodeLine{      \_\_asm\_\_ (\textcolor{stringliteral}{"lgr \%0, \%\%r15"} : \textcolor{stringliteral}{"=r"} (cur\_sp));            \(\backslash\)}
+\DoxyCodeLine{      new\_sp \string^= guard;                          \(\backslash\)}
+\DoxyCodeLine{      if (new\_sp < cur\_sp)                      \(\backslash\)}
+\DoxyCodeLine{    \{                               \(\backslash\)}
+\DoxyCodeLine{      stack\_t oss;                          \(\backslash\)}
+\DoxyCodeLine{      INTERNAL\_SYSCALL\_DECL (\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a19339d73d40f003bc954bfd93893aba7}{err}});                   \(\backslash\)}
+\DoxyCodeLine{      int \mbox{\hyperlink{iso-ir-165_8h_a5e111f6687f261e4e28bd6528e7f5b48}{res}} = \mbox{\hyperlink{unix_2alpha_2sysdep_8h_ac619f7d9908f45eee6acdf05363377ab}{INTERNAL\_SYSCALL}} (\mbox{\hyperlink{structsigaltstack}{sigaltstack}}, \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a19339d73d40f003bc954bfd93893aba7}{err}}, 2, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}, \&oss);    \(\backslash\)}
+\DoxyCodeLine{      if (!\mbox{\hyperlink{unix_2alpha_2sysdep_8h_ab29987ea6b9886b47757dd66c67fbd0e}{INTERNAL\_SYSCALL\_ERROR\_P}} (res, \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a19339d73d40f003bc954bfd93893aba7}{err}}))          \(\backslash\)}
+\DoxyCodeLine{        \{                               \(\backslash\)}
+\DoxyCodeLine{          if ((oss.ss\_flags \& \mbox{\hyperlink{bits_2sigstack_8h_a17bcfefa3c6fafd5d3277d867bd723fb}{SS\_ONSTACK}}) == 0            \(\backslash\)}
+\DoxyCodeLine{          || ((\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\_t}}) (oss.ss\_sp + oss.ss\_size) -\/ new\_sp   \(\backslash\)}
+\DoxyCodeLine{              < oss.ss\_size))                   \(\backslash\)}
+\DoxyCodeLine{        \_\_fortify\_fail (\textcolor{stringliteral}{"longjmp causes uninitialized stack frame"});\(\backslash\)}
+\DoxyCodeLine{        \}                               \(\backslash\)}
+\DoxyCodeLine{    \}                               \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

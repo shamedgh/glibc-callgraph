@@ -1,0 +1,180 @@
+\hypertarget{obstack_8c}{}\doxysection{malloc/obstack.c File Reference}
+\label{obstack_8c}\index{malloc/obstack.c@{malloc/obstack.c}}
+{\ttfamily \#include $<$config.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}obstack.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}exitfail.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gettext.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionfooround}{fooround}}
+\item 
+struct \mbox{\hyperlink{structfooalign}{fooalign}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{obstack_8c_a6639dcd54c98e0151df9b56d8db2d873}{O\+B\+S\+T\+A\+C\+K\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+V\+E\+R\+S\+I\+ON}}~1
+\item 
+\#define \mbox{\hyperlink{obstack_8c_a154bd4b4f48a0728631316046a61aa54}{C\+O\+P\+Y\+I\+N\+G\+\_\+\+U\+N\+IT}}~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}
+\item 
+\#define \mbox{\hyperlink{obstack_8c_a56eca938d1e3e3a38ecb59d2e1695063}{obstack\+\_\+exit\+\_\+failure}}~exit\+\_\+failure
+\item 
+\#define \mbox{\hyperlink{obstack_8c_ab48005725f62a4a2868fd56b53f61434}{C\+A\+L\+L\+\_\+\+C\+H\+U\+N\+K\+F\+UN}}(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}},  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\item 
+\#define \mbox{\hyperlink{obstack_8c_afbb8d80a67aba6ea3e0485cb9e343c96}{C\+A\+L\+L\+\_\+\+F\+R\+E\+E\+F\+UN}}(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}},  old\+\_\+chunk)
+\item 
+\#define \mbox{\hyperlink{obstack_8c_a86a239addea586602343007a370bf8ad}{\+\_\+}}(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})~\mbox{\hyperlink{intl_2libintl_8h_a1a738f586a2a2bb0eaa993361a6b7ec7}{gettext}} (\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54a7d69a1ccda7665d7a6f494085b91f410}{D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}} = offsetof (struct fooalign, u), 
+\mbox{\hyperlink{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54a6b2aa0c54b724b90fb51364207996ad6}{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+O\+U\+N\+D\+I\+NG}} = sizeof (union fooround)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{obstack_8c_a4b6acf2cf557f00d25903d27bc6d6eef}{\+\_\+obstack\+\_\+begin}} (struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} alignment, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$($\ast$chunkfun)(\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}}), \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$freefun)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$))
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{obstack_8c_a8857d591f95d4d1d5b1c7e739a8b91fa}{\+\_\+obstack\+\_\+begin\+\_\+1}} (struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} alignment, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$($\ast$chunkfun)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$, \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}}), \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$freefun)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$), \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{descr_8h_a9ce2ec4812a92cb6ab39f6e81e9173a9}{arg}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{obstack_8c_a7353a287f529ab6db13c7b07a2f41bdd}{\+\_\+obstack\+\_\+newchunk}} (struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unwind-dw2-fde_8h_a8489cf2ea7d3a7f7c34c018044644565}{length}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{obstack_8c_a2208303de2838f9aad5f3b4863637d90}{\+\_\+obstack\+\_\+allocated\+\_\+p}} (struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}}, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$obj) \mbox{\hyperlink{include_2wchar_8h_a5a83f2f574b278ec2608c630a70fdd9a}{\+\_\+\+\_\+attribute\+\_\+pure\+\_\+\+\_\+}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{obstack_8c_a0550d15778d0a880cbe527a8847bb856}{\+\_\+\+\_\+obstack\+\_\+free}} (struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}}, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$obj)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{obstack_8c_aa06a7434b048e777bd13a0367dd5fbb0}{\+\_\+obstack\+\_\+memory\+\_\+used}} (struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ \mbox{\hyperlink{obstack_8c_aabd47037ed93e99f730d4c8597652230}{obstack\+\_\+alloc\+\_\+failed\+\_\+handler}} )(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) = print\+\_\+and\+\_\+abort
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{obstack_8c_a86a239addea586602343007a370bf8ad}\label{obstack_8c_a86a239addea586602343007a370bf8ad}} 
+\index{obstack.c@{obstack.c}!\_@{\_}}
+\index{\_@{\_}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_}{\_}}
+{\footnotesize\ttfamily \#define \+\_\+(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}} }\end{DoxyParamCaption})~\mbox{\hyperlink{intl_2libintl_8h_a1a738f586a2a2bb0eaa993361a6b7ec7}{gettext}} (\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})}
+
+\mbox{\Hypertarget{obstack_8c_ab48005725f62a4a2868fd56b53f61434}\label{obstack_8c_ab48005725f62a4a2868fd56b53f61434}} 
+\index{obstack.c@{obstack.c}!CALL\_CHUNKFUN@{CALL\_CHUNKFUN}}
+\index{CALL\_CHUNKFUN@{CALL\_CHUNKFUN}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{CALL\_CHUNKFUN}{CALL\_CHUNKFUN}}
+{\footnotesize\ttfamily \#define C\+A\+L\+L\+\_\+\+C\+H\+U\+N\+K\+F\+UN(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}},  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>use\_extra\_arg)                                \(\backslash\)}
+\DoxyCodeLine{   ? (*(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>chunkfun)((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>extra\_arg, (\mbox{\hyperlink{scratch__buffer_8h_a34e10fdac079a9ca4512b8ccd7f20b8a}{size}}))                   \(\backslash\)}
+\DoxyCodeLine{   : (*(\textcolor{keyword}{struct} \mbox{\hyperlink{struct__obstack__chunk}{\_obstack\_chunk}} *(*)(\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a1d2c03cda6182c0d6798bff9167bf58d}{long}}))(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>chunkfun)((\mbox{\hyperlink{scratch__buffer_8h_a34e10fdac079a9ca4512b8ccd7f20b8a}{size}})))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{obstack_8c_afbb8d80a67aba6ea3e0485cb9e343c96}\label{obstack_8c_afbb8d80a67aba6ea3e0485cb9e343c96}} 
+\index{obstack.c@{obstack.c}!CALL\_FREEFUN@{CALL\_FREEFUN}}
+\index{CALL\_FREEFUN@{CALL\_FREEFUN}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{CALL\_FREEFUN}{CALL\_FREEFUN}}
+{\footnotesize\ttfamily \#define C\+A\+L\+L\+\_\+\+F\+R\+E\+E\+F\+UN(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}},  }\item[{}]{old\+\_\+chunk }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{      if ((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>use\_extra\_arg)                            \(\backslash\)}
+\DoxyCodeLine{    (*(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>freefun)((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>extra\_arg, (old\_chunk));               \(\backslash\)}
+\DoxyCodeLine{      else                                    \(\backslash\)}
+\DoxyCodeLine{    (*(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} (*)(\textcolor{keywordtype}{void} *))(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/>freefun)((old\_chunk));                  \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{obstack_8c_a154bd4b4f48a0728631316046a61aa54}\label{obstack_8c_a154bd4b4f48a0728631316046a61aa54}} 
+\index{obstack.c@{obstack.c}!COPYING\_UNIT@{COPYING\_UNIT}}
+\index{COPYING\_UNIT@{COPYING\_UNIT}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{COPYING\_UNIT}{COPYING\_UNIT}}
+{\footnotesize\ttfamily \#define C\+O\+P\+Y\+I\+N\+G\+\_\+\+U\+N\+IT~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}
+
+\mbox{\Hypertarget{obstack_8c_a56eca938d1e3e3a38ecb59d2e1695063}\label{obstack_8c_a56eca938d1e3e3a38ecb59d2e1695063}} 
+\index{obstack.c@{obstack.c}!obstack\_exit\_failure@{obstack\_exit\_failure}}
+\index{obstack\_exit\_failure@{obstack\_exit\_failure}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_exit\_failure}{obstack\_exit\_failure}}
+{\footnotesize\ttfamily \#define obstack\+\_\+exit\+\_\+failure~exit\+\_\+failure}
+
+\mbox{\Hypertarget{obstack_8c_a6639dcd54c98e0151df9b56d8db2d873}\label{obstack_8c_a6639dcd54c98e0151df9b56d8db2d873}} 
+\index{obstack.c@{obstack.c}!OBSTACK\_INTERFACE\_VERSION@{OBSTACK\_INTERFACE\_VERSION}}
+\index{OBSTACK\_INTERFACE\_VERSION@{OBSTACK\_INTERFACE\_VERSION}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{OBSTACK\_INTERFACE\_VERSION}{OBSTACK\_INTERFACE\_VERSION}}
+{\footnotesize\ttfamily \#define O\+B\+S\+T\+A\+C\+K\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+V\+E\+R\+S\+I\+ON~1}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54}\label{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_ALIGNMENT@{DEFAULT\_ALIGNMENT}!obstack.c@{obstack.c}}\index{obstack.c@{obstack.c}!DEFAULT\_ALIGNMENT@{DEFAULT\_ALIGNMENT}}}\mbox{\Hypertarget{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54a7d69a1ccda7665d7a6f494085b91f410}\label{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54a7d69a1ccda7665d7a6f494085b91f410}} 
+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_ROUNDING@{DEFAULT\_ROUNDING}!obstack.c@{obstack.c}}\index{obstack.c@{obstack.c}!DEFAULT\_ROUNDING@{DEFAULT\_ROUNDING}}}\mbox{\Hypertarget{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54a6b2aa0c54b724b90fb51364207996ad6}\label{obstack_8c_a63cbfa53a16c7eeb228a37be887ccf54a6b2aa0c54b724b90fb51364207996ad6}} 
+D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+O\+U\+N\+D\+I\+NG&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{obstack_8c_a0550d15778d0a880cbe527a8847bb856}\label{obstack_8c_a0550d15778d0a880cbe527a8847bb856}} 
+\index{obstack.c@{obstack.c}!\_\_obstack\_free@{\_\_obstack\_free}}
+\index{\_\_obstack\_free@{\_\_obstack\_free}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_\_obstack\_free()}{\_\_obstack\_free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+obstack\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{obstack_8c_a2208303de2838f9aad5f3b4863637d90}\label{obstack_8c_a2208303de2838f9aad5f3b4863637d90}} 
+\index{obstack.c@{obstack.c}!\_obstack\_allocated\_p@{\_obstack\_allocated\_p}}
+\index{\_obstack\_allocated\_p@{\_obstack\_allocated\_p}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_obstack\_allocated\_p()}{\_obstack\_allocated\_p()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+obstack\+\_\+allocated\+\_\+p (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{obstack_8c_a4b6acf2cf557f00d25903d27bc6d6eef}\label{obstack_8c_a4b6acf2cf557f00d25903d27bc6d6eef}} 
+\index{obstack.c@{obstack.c}!\_obstack\_begin@{\_obstack\_begin}}
+\index{\_obstack\_begin@{\_obstack\_begin}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_obstack\_begin()}{\_obstack\_begin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+obstack\+\_\+begin (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{size,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{alignment,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$($\ast$)(\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}})}]{chunkfun,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$)}]{freefun }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{obstack_8c_a8857d591f95d4d1d5b1c7e739a8b91fa}\label{obstack_8c_a8857d591f95d4d1d5b1c7e739a8b91fa}} 
+\index{obstack.c@{obstack.c}!\_obstack\_begin\_1@{\_obstack\_begin\_1}}
+\index{\_obstack\_begin\_1@{\_obstack\_begin\_1}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_obstack\_begin\_1()}{\_obstack\_begin\_1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+obstack\+\_\+begin\+\_\+1 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{size,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{alignment,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$($\ast$)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$, \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}})}]{chunkfun,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$)}]{freefun,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{arg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{obstack_8c_aa06a7434b048e777bd13a0367dd5fbb0}\label{obstack_8c_aa06a7434b048e777bd13a0367dd5fbb0}} 
+\index{obstack.c@{obstack.c}!\_obstack\_memory\_used@{\_obstack\_memory\_used}}
+\index{\_obstack\_memory\_used@{\_obstack\_memory\_used}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_obstack\_memory\_used()}{\_obstack\_memory\_used()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+obstack\+\_\+memory\+\_\+used (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{obstack_8c_a7353a287f529ab6db13c7b07a2f41bdd}\label{obstack_8c_a7353a287f529ab6db13c7b07a2f41bdd}} 
+\index{obstack.c@{obstack.c}!\_obstack\_newchunk@{\_obstack\_newchunk}}
+\index{\_obstack\_newchunk@{\_obstack\_newchunk}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{\_obstack\_newchunk()}{\_obstack\_newchunk()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+obstack\+\_\+newchunk (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structobstack}{obstack}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{length }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{obstack_8c_aabd47037ed93e99f730d4c8597652230}\label{obstack_8c_aabd47037ed93e99f730d4c8597652230}} 
+\index{obstack.c@{obstack.c}!obstack\_alloc\_failed\_handler@{obstack\_alloc\_failed\_handler}}
+\index{obstack\_alloc\_failed\_handler@{obstack\_alloc\_failed\_handler}!obstack.c@{obstack.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_alloc\_failed\_handler}{obstack\_alloc\_failed\_handler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ obstack\+\_\+alloc\+\_\+failed\+\_\+handler) (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) = print\+\_\+and\+\_\+abort}
+

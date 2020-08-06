@@ -1,0 +1,531 @@
+\hypertarget{vfscanf_8c}{}\doxysection{stdio-\/common/vfscanf.c File Reference}
+\label{vfscanf_8c}\index{stdio-\/common/vfscanf.c@{stdio-\/common/vfscanf.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$wctype.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include $<$locale/localeinfo.\+h$>$}\newline
+{\ttfamily \#include $<$scratch\+\_\+buffer.\+h$>$}\newline
+{\ttfamily \#include $<$libio\+P.\+h$>$}\newline
+{\ttfamily \#include $<$libio.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structptrs__to__free}{ptrs\+\_\+to\+\_\+free}}
+\item 
+struct \mbox{\hyperlink{structchar__buffer}{char\+\_\+buffer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ae7280f281da2560d38bd890220d80c2e}{L\+O\+N\+G\+L\+O\+NG}}~\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}}
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_aa1885a3bca1c5e3be7fbcc2727db0b36}{need\+\_\+longlong}}~0
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a6174cab48d2b888686b5d720dceaa74b}{need\+\_\+long}}~0
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_acaa7b8a7167a8214f499c71c413ddcca}{L\+O\+NG}}~0x0001	/$\ast$ l\+: long or double $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a53b59ff02a262de8193da5426909974a}{L\+O\+N\+G\+D\+BL}}~0x0002	/$\ast$ L\+: long long or long double $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a9fbb14850a9f176447733a089071cd70}{S\+H\+O\+RT}}~0x0004	/$\ast$ h\+: short $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_afe7aa227b351b74112d638ac09ced71a}{S\+U\+P\+P\+R\+E\+SS}}~0x0008	/$\ast$ $\ast$\+: suppress assignment $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a84def408d1c5413e2c1d7fe9eeb18f09}{P\+O\+I\+N\+T\+ER}}~0x0010	/$\ast$ weird \%p pointer (\`{}fake hex\textquotesingle{}) $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ad7023916fb29f81f6d12c882994886ea}{N\+O\+S\+K\+IP}}~0x0020	/$\ast$ do not skip blanks $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a7badd3756258a0dbdc4212f5c675f417}{N\+U\+M\+B\+E\+R\+\_\+\+S\+I\+G\+N\+ED}}~0x0040	/$\ast$ signed integer $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a5f6b617b45eb12646bb651ecf77f6dcd}{G\+R\+O\+UP}}~0x0080	/$\ast$ \textquotesingle{}\+: group numbers $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a42bc2d1ffb54ab3683e7003bd8a96c31}{G\+N\+U\+\_\+\+M\+A\+L\+L\+OC}}~0x0100	/$\ast$ a\+: malloc strings $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a35cd67ba7bb0db8105eb6267467535d7}{C\+H\+AR}}~0x0200	/$\ast$ hh\+: char $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a856e99014eca41e3b38b95d135b2ff02}{I18N}}~0x0400	/$\ast$ I\+: use locale\textquotesingle{}s digits $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_adcc96a0599079a672754a4bc416c7fea}{H\+E\+X\+A\+\_\+\+F\+L\+O\+AT}}~0x0800	/$\ast$ hexadecimal float $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a269a24a990d6b4c3fdc5a76e674c315b}{R\+E\+A\+D\+\_\+\+P\+O\+I\+N\+T\+ER}}~0x1000	/$\ast$ this is a pointer value $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ab97304ec7171d2c736e5cd8d1c41f7d9}{P\+O\+S\+I\+X\+\_\+\+M\+A\+L\+L\+OC}}~0x2000	/$\ast$ m\+: malloc strings $\ast$/
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a3e218828af7ddd3f4cd0d3772562b520}{M\+A\+L\+L\+OC}}~(\mbox{\hyperlink{vfscanf_8c_a42bc2d1ffb54ab3683e7003bd8a96c31}{G\+N\+U\+\_\+\+M\+A\+L\+L\+OC}} $\vert$ \mbox{\hyperlink{vfscanf_8c_ab97304ec7171d2c736e5cd8d1c41f7d9}{P\+O\+S\+I\+X\+\_\+\+M\+A\+L\+L\+OC}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}{va\+\_\+list}}~\mbox{\hyperlink{libio_2libio_8h_a64db8a37cd6c5bff17c37b512c161f50}{\+\_\+\+I\+O\+\_\+va\+\_\+list}}
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a38aa3e7ad9ad6a8ad540a5def890fb96}{ungetc}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}},  \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a6ab4e85dc04f2d6561cbbde243d8b397}{ungetc\+\_\+not\+\_\+eof}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}},  \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a47246ce3bc4fb5df93237f4e7e9bcca2}{inchar}}()
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a568ae28540e1553d7d02af1b884fb53e}{I\+S\+S\+P\+A\+CE}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~\+\_\+\+\_\+isspace\+\_\+l (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}, \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_adbe3550007af420334b04c2aeb8b9ad4}{I\+S\+D\+I\+G\+IT}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~\+\_\+\+\_\+isdigit\+\_\+l (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}, \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a3407c21a7271200b445e1a78d2b78172}{I\+S\+X\+D\+I\+G\+IT}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~\+\_\+\+\_\+isxdigit\+\_\+l (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}, \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_af051f69e2931c47fa772ea913f7a24a3}{T\+O\+L\+O\+W\+ER}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~\+\_\+\+\_\+tolower\+\_\+l ((unsigned char) (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}), \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a24359de1e3903d232de74d77c3817ec4}{O\+R\+I\+E\+NT}}
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ad5a8487dc9e2e8571531abcf57c0d11b}{L\+\_\+}}(Str)~Str
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a9ea0f4a7e303689f687a679107d81da9}{C\+H\+A\+R\+\_\+T}}~char
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ad60a5d1bae658721148545fac7e81789}{U\+C\+H\+A\+R\+\_\+T}}~unsigned char
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ac40196c8b410f69835eb0e8881dcc4b3}{W\+I\+N\+T\+\_\+T}}~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a89ea90285d0eebbd7791ba4be8d533cf}{encode\+\_\+error}}()
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_acc8409f683a7643028fcae59355b95b7}{conv\+\_\+error}}()
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_acd07f75427de11b90788411e7465e1d8}{input\+\_\+error}}()
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ab222ebbed1afc6e8498870f28be11ce2}{add\+\_\+ptr\+\_\+to\+\_\+free}}(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a5b5a98777e57b9cc1af083b086dd15d8}{A\+R\+G\+C\+H\+E\+CK}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}},  \mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ad9e996ec7cf37796a770b7eb0ffccea5}{L\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM}}(\mbox{\hyperlink{structS}{S}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_aa073f3a0e899f30c6b021613fccae8c6}{U\+N\+L\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM}}(\mbox{\hyperlink{structS}{S}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_a620288a74aaee7c92a8a07ffa7d6d4b8}{exp\+\_\+char}}~not\+\_\+in
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_af2a2d8f7f0421a39f4f092c8b6065705}{A\+RG}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{vfscanf_8c_ae1eb6e07e1225a570a0c423677e03411}{S\+T\+R\+I\+N\+G\+\_\+\+A\+RG}}(Str,  Type,  Width)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{vfscanf_8c_a78b0a3f09798a16abd387447c72c126e}{\+\_\+\+I\+O\+\_\+vfscanf\+\_\+internal}} (\mbox{\hyperlink{struct__IO__FILE}{\+\_\+\+I\+O\+\_\+\+F\+I\+LE}} $\ast$\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}}, \mbox{\hyperlink{libio_2libio_8h_a64db8a37cd6c5bff17c37b512c161f50}{\+\_\+\+I\+O\+\_\+va\+\_\+list}} argptr, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$errp)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{vfscanf_8c_a400f6c4682c72a630d27499d82b59d1c}{\+\_\+\+\_\+\+\_\+vfscanf}} (\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}}, \mbox{\hyperlink{vfscanf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}{va\+\_\+list}} argptr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{vfscanf_8c_ab222ebbed1afc6e8498870f28be11ce2}\label{vfscanf_8c_ab222ebbed1afc6e8498870f28be11ce2}} 
+\index{vfscanf.c@{vfscanf.c}!add\_ptr\_to\_free@{add\_ptr\_to\_free}}
+\index{add\_ptr\_to\_free@{add\_ptr\_to\_free}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{add\_ptr\_to\_free}{add\_ptr\_to\_free}}
+{\footnotesize\ttfamily \#define add\+\_\+ptr\+\_\+to\+\_\+free(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}} == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}                            \(\backslash\)}
+\DoxyCodeLine{      || \mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}}-\/>\mbox{\hyperlink{structptrs__to__free_a7e1566cf7ac7f1a27101ae12c9a5c9b8}{count}} == (sizeof (\mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}}-\/>\mbox{\hyperlink{structptrs__to__free_a5301615b2f9a7ad1f4dee850070b9965}{ptrs}})         \(\backslash\)}
+\DoxyCodeLine{                     / sizeof (\mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}}-\/>\mbox{\hyperlink{structptrs__to__free_a5301615b2f9a7ad1f4dee850070b9965}{ptrs}}[0])))       \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      struct \mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}} *new\_ptrs = \mbox{\hyperlink{dcigettext_8c_a03a200320a749aaf2faa1d1719ffb4de}{alloca}} (\textcolor{keyword}{sizeof} (*\mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}}));    \(\backslash\)}
+\DoxyCodeLine{      new\_ptrs-\/>count = 0;                            \(\backslash\)}
+\DoxyCodeLine{      new\_ptrs-\/>next = \mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}};                      \(\backslash\)}
+\DoxyCodeLine{      ptrs\_to\_free = new\_ptrs;                        \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      ptrs\_to\_free-\/>\mbox{\hyperlink{structptrs__to__free_a5301615b2f9a7ad1f4dee850070b9965}{ptrs}}[\mbox{\hyperlink{structptrs__to__free}{ptrs\_to\_free}}-\/>\mbox{\hyperlink{structptrs__to__free_a7e1566cf7ac7f1a27101ae12c9a5c9b8}{count}}++] = (\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}});              \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_af2a2d8f7f0421a39f4f092c8b6065705}\label{vfscanf_8c_af2a2d8f7f0421a39f4f092c8b6065705}} 
+\index{vfscanf.c@{vfscanf.c}!ARG@{ARG}}
+\index{ARG@{ARG}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ARG}{ARG}}
+{\footnotesize\ttfamily \#define A\+RG(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(argpos == 0 ? va\_arg (\mbox{\hyperlink{libio_2tst-swscanf_8c_a51e23ad18b55dbc1bcb4d15765cbf86c}{arg}}, \mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) :            \(\backslash\)}
+\DoxyCodeLine{             (\{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} pos = argpos;                \(\backslash\)}
+\DoxyCodeLine{                va\_list \mbox{\hyperlink{libio_2tst-swscanf_8c_a51e23ad18b55dbc1bcb4d15765cbf86c}{arg}} = (\mbox{\hyperlink{vfscanf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}{va\_list}}) argptr;             \(\backslash\)}
+\DoxyCodeLine{                while (-\/-\/pos > 0)                     \(\backslash\)}
+\DoxyCodeLine{                  (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) va\_arg (\mbox{\hyperlink{libio_2tst-swscanf_8c_a51e23ad18b55dbc1bcb4d15765cbf86c}{arg}}, \textcolor{keywordtype}{void} *);             \(\backslash\)}
+\DoxyCodeLine{                va\_arg (\mbox{\hyperlink{libio_2tst-swscanf_8c_a51e23ad18b55dbc1bcb4d15765cbf86c}{arg}}, \mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}});                    \(\backslash\)}
+\DoxyCodeLine{              \}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a5b5a98777e57b9cc1af083b086dd15d8}\label{vfscanf_8c_a5b5a98777e57b9cc1af083b086dd15d8}} 
+\index{vfscanf.c@{vfscanf.c}!ARGCHECK@{ARGCHECK}}
+\index{ARGCHECK@{ARGCHECK}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ARGCHECK}{ARGCHECK}}
+{\footnotesize\ttfamily \#define A\+R\+G\+C\+H\+E\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}},  }\item[{}]{\mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* Check file argument for consistence.  */}                 \(\backslash\)}
+\DoxyCodeLine{      CHECK\_FILE (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}});                            \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}-\/>\_flags \& \mbox{\hyperlink{libio_2libio_8h_a704b3f2139ad0709a9728c9c85e177df}{\_IO\_NO\_READS}})                          \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      \_\_set\_errno (EBADF);                            \(\backslash\)}
+\DoxyCodeLine{      return \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}};                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      else \textcolor{keywordflow}{if} (\mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}} == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                              \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      MAYBE\_SET\_EINVAL;                           \(\backslash\)}
+\DoxyCodeLine{      return \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}};                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a35cd67ba7bb0db8105eb6267467535d7}\label{vfscanf_8c_a35cd67ba7bb0db8105eb6267467535d7}} 
+\index{vfscanf.c@{vfscanf.c}!CHAR@{CHAR}}
+\index{CHAR@{CHAR}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{CHAR}{CHAR}}
+{\footnotesize\ttfamily \#define C\+H\+AR~0x0200	/$\ast$ hh\+: char $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a9ea0f4a7e303689f687a679107d81da9}\label{vfscanf_8c_a9ea0f4a7e303689f687a679107d81da9}} 
+\index{vfscanf.c@{vfscanf.c}!CHAR\_T@{CHAR\_T}}
+\index{CHAR\_T@{CHAR\_T}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{CHAR\_T}{CHAR\_T}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+T~char}
+
+\mbox{\Hypertarget{vfscanf_8c_acc8409f683a7643028fcae59355b95b7}\label{vfscanf_8c_acc8409f683a7643028fcae59355b95b7}} 
+\index{vfscanf.c@{vfscanf.c}!conv\_error@{conv\_error}}
+\index{conv\_error@{conv\_error}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{conv\_error}{conv\_error}}
+{\footnotesize\ttfamily \#define conv\+\_\+error(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                              \(\backslash\)}
+\DoxyCodeLine{              errval = 2;                         \(\backslash\)}
+\DoxyCodeLine{              goto errout;                        \(\backslash\)}
+\DoxyCodeLine{            \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a89ea90285d0eebbd7791ba4be8d533cf}\label{vfscanf_8c_a89ea90285d0eebbd7791ba4be8d533cf}} 
+\index{vfscanf.c@{vfscanf.c}!encode\_error@{encode\_error}}
+\index{encode\_error@{encode\_error}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{encode\_error}{encode\_error}}
+{\footnotesize\ttfamily \#define encode\+\_\+error(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                              \(\backslash\)}
+\DoxyCodeLine{              errval = 4;                         \(\backslash\)}
+\DoxyCodeLine{              \_\_set\_errno (\mbox{\hyperlink{iconv_2gconv__simple_8c_ac6c071293826a4e66a717bb38db7794d}{EILSEQ}});                     \(\backslash\)}
+\DoxyCodeLine{              goto errout;                        \(\backslash\)}
+\DoxyCodeLine{            \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a620288a74aaee7c92a8a07ffa7d6d4b8}\label{vfscanf_8c_a620288a74aaee7c92a8a07ffa7d6d4b8}} 
+\index{vfscanf.c@{vfscanf.c}!exp\_char@{exp\_char}}
+\index{exp\_char@{exp\_char}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{exp\_char}{exp\_char}}
+{\footnotesize\ttfamily \#define exp\+\_\+char~not\+\_\+in}
+
+\mbox{\Hypertarget{vfscanf_8c_a42bc2d1ffb54ab3683e7003bd8a96c31}\label{vfscanf_8c_a42bc2d1ffb54ab3683e7003bd8a96c31}} 
+\index{vfscanf.c@{vfscanf.c}!GNU\_MALLOC@{GNU\_MALLOC}}
+\index{GNU\_MALLOC@{GNU\_MALLOC}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{GNU\_MALLOC}{GNU\_MALLOC}}
+{\footnotesize\ttfamily \#define G\+N\+U\+\_\+\+M\+A\+L\+L\+OC~0x0100	/$\ast$ a\+: malloc strings $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a5f6b617b45eb12646bb651ecf77f6dcd}\label{vfscanf_8c_a5f6b617b45eb12646bb651ecf77f6dcd}} 
+\index{vfscanf.c@{vfscanf.c}!GROUP@{GROUP}}
+\index{GROUP@{GROUP}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{GROUP}{GROUP}}
+{\footnotesize\ttfamily \#define G\+R\+O\+UP~0x0080	/$\ast$ \textquotesingle{}\+: group numbers $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_adcc96a0599079a672754a4bc416c7fea}\label{vfscanf_8c_adcc96a0599079a672754a4bc416c7fea}} 
+\index{vfscanf.c@{vfscanf.c}!HEXA\_FLOAT@{HEXA\_FLOAT}}
+\index{HEXA\_FLOAT@{HEXA\_FLOAT}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{HEXA\_FLOAT}{HEXA\_FLOAT}}
+{\footnotesize\ttfamily \#define H\+E\+X\+A\+\_\+\+F\+L\+O\+AT~0x0800	/$\ast$ hexadecimal float $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a856e99014eca41e3b38b95d135b2ff02}\label{vfscanf_8c_a856e99014eca41e3b38b95d135b2ff02}} 
+\index{vfscanf.c@{vfscanf.c}!I18N@{I18N}}
+\index{I18N@{I18N}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{I18N}{I18N}}
+{\footnotesize\ttfamily \#define I18N~0x0400	/$\ast$ I\+: use locale\textquotesingle{}s digits $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a47246ce3bc4fb5df93237f4e7e9bcca2}\label{vfscanf_8c_a47246ce3bc4fb5df93237f4e7e9bcca2}} 
+\index{vfscanf.c@{vfscanf.c}!inchar@{inchar}}
+\index{inchar@{inchar}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{inchar}{inchar}}
+{\footnotesize\ttfamily \#define inchar(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{tst-sem14_8c_a4e1e0e72dd773439e333c84dd762a9c3}{c}} == \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}} ? ((\mbox{\hyperlink{csu_2errno_8c_a852dac476b9a86acaf91ccb9f90a2741}{errno}} = inchar\_errno), \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}})         \(\backslash\)}
+\DoxyCodeLine{             : ((\mbox{\hyperlink{tst-sem14_8c_a4e1e0e72dd773439e333c84dd762a9c3}{c}} = \mbox{\hyperlink{libio_2libio_8h_a155240e50f077aad84fb965f0fd75492}{\_IO\_getc\_unlocked}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}})),           \(\backslash\)}
+\DoxyCodeLine{                (\textcolor{keywordtype}{void}) (\mbox{\hyperlink{tst-sem14_8c_a4e1e0e72dd773439e333c84dd762a9c3}{c}} != \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}}                      \(\backslash\)}
+\DoxyCodeLine{                    ? ++read\_in                   \(\backslash\)}
+\DoxyCodeLine{                    : (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\_t}}) (inchar\_errno = \mbox{\hyperlink{csu_2errno_8c_a852dac476b9a86acaf91ccb9f90a2741}{errno}})), c))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_acd07f75427de11b90788411e7465e1d8}\label{vfscanf_8c_acd07f75427de11b90788411e7465e1d8}} 
+\index{vfscanf.c@{vfscanf.c}!input\_error@{input\_error}}
+\index{input\_error@{input\_error}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{input\_error}{input\_error}}
+{\footnotesize\ttfamily \#define input\+\_\+error(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                              \(\backslash\)}
+\DoxyCodeLine{              errval = 1;                         \(\backslash\)}
+\DoxyCodeLine{              if (\mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} == 0) \mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} = \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}};               \(\backslash\)}
+\DoxyCodeLine{              goto errout;                        \(\backslash\)}
+\DoxyCodeLine{            \} \mbox{\hyperlink{gconv__charset_8h_a049e12ce982de08855ecf2ac6043a5e3}{while}} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_adbe3550007af420334b04c2aeb8b9ad4}\label{vfscanf_8c_adbe3550007af420334b04c2aeb8b9ad4}} 
+\index{vfscanf.c@{vfscanf.c}!ISDIGIT@{ISDIGIT}}
+\index{ISDIGIT@{ISDIGIT}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ISDIGIT}{ISDIGIT}}
+{\footnotesize\ttfamily \#define I\+S\+D\+I\+G\+IT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~\+\_\+\+\_\+isdigit\+\_\+l (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}, \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})}
+
+\mbox{\Hypertarget{vfscanf_8c_a568ae28540e1553d7d02af1b884fb53e}\label{vfscanf_8c_a568ae28540e1553d7d02af1b884fb53e}} 
+\index{vfscanf.c@{vfscanf.c}!ISSPACE@{ISSPACE}}
+\index{ISSPACE@{ISSPACE}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ISSPACE}{ISSPACE}}
+{\footnotesize\ttfamily \#define I\+S\+S\+P\+A\+CE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~\+\_\+\+\_\+isspace\+\_\+l (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}, \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})}
+
+\mbox{\Hypertarget{vfscanf_8c_a3407c21a7271200b445e1a78d2b78172}\label{vfscanf_8c_a3407c21a7271200b445e1a78d2b78172}} 
+\index{vfscanf.c@{vfscanf.c}!ISXDIGIT@{ISXDIGIT}}
+\index{ISXDIGIT@{ISXDIGIT}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ISXDIGIT}{ISXDIGIT}}
+{\footnotesize\ttfamily \#define I\+S\+X\+D\+I\+G\+IT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~\+\_\+\+\_\+isxdigit\+\_\+l (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}, \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})}
+
+\mbox{\Hypertarget{vfscanf_8c_ad5a8487dc9e2e8571531abcf57c0d11b}\label{vfscanf_8c_ad5a8487dc9e2e8571531abcf57c0d11b}} 
+\index{vfscanf.c@{vfscanf.c}!L\_@{L\_}}
+\index{L\_@{L\_}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{L\_}{L\_}}
+{\footnotesize\ttfamily \#define L\+\_\+(\begin{DoxyParamCaption}\item[{}]{Str }\end{DoxyParamCaption})~Str}
+
+\mbox{\Hypertarget{vfscanf_8c_ad9e996ec7cf37796a770b7eb0ffccea5}\label{vfscanf_8c_ad9e996ec7cf37796a770b7eb0ffccea5}} 
+\index{vfscanf.c@{vfscanf.c}!LOCK\_STREAM@{LOCK\_STREAM}}
+\index{LOCK\_STREAM@{LOCK\_STREAM}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{LOCK\_STREAM}{LOCK\_STREAM}}
+{\footnotesize\ttfamily \#define L\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structS}{S}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{generic_2libc-lock_8h_a083aed4e64cb19c6735ffc69d7ab9fda}{\_\_libc\_cleanup\_region\_start}} (1, (\textcolor{keywordtype}{void} (*) (\textcolor{keywordtype}{void} *)) \&\mbox{\hyperlink{libio_2libio_8h_a451445f1de100adf8203f868372a153b}{\_IO\_funlockfile}}, (\mbox{\hyperlink{structS}{S}})); \(\backslash\)}
+\DoxyCodeLine{  \_IO\_flockfile (\mbox{\hyperlink{structS}{S}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_acaa7b8a7167a8214f499c71c413ddcca}\label{vfscanf_8c_acaa7b8a7167a8214f499c71c413ddcca}} 
+\index{vfscanf.c@{vfscanf.c}!LONG@{LONG}}
+\index{LONG@{LONG}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{LONG}{LONG}}
+{\footnotesize\ttfamily \#define L\+O\+NG~0x0001	/$\ast$ l\+: long or double $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a53b59ff02a262de8193da5426909974a}\label{vfscanf_8c_a53b59ff02a262de8193da5426909974a}} 
+\index{vfscanf.c@{vfscanf.c}!LONGDBL@{LONGDBL}}
+\index{LONGDBL@{LONGDBL}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{LONGDBL}{LONGDBL}}
+{\footnotesize\ttfamily \#define L\+O\+N\+G\+D\+BL~0x0002	/$\ast$ L\+: long long or long double $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_ae7280f281da2560d38bd890220d80c2e}\label{vfscanf_8c_ae7280f281da2560d38bd890220d80c2e}} 
+\index{vfscanf.c@{vfscanf.c}!LONGLONG@{LONGLONG}}
+\index{LONGLONG@{LONGLONG}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{LONGLONG}{LONGLONG}}
+{\footnotesize\ttfamily \#define L\+O\+N\+G\+L\+O\+NG~\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}}}
+
+\mbox{\Hypertarget{vfscanf_8c_a3e218828af7ddd3f4cd0d3772562b520}\label{vfscanf_8c_a3e218828af7ddd3f4cd0d3772562b520}} 
+\index{vfscanf.c@{vfscanf.c}!MALLOC@{MALLOC}}
+\index{MALLOC@{MALLOC}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{MALLOC}{MALLOC}}
+{\footnotesize\ttfamily \#define M\+A\+L\+L\+OC~(\mbox{\hyperlink{vfscanf_8c_a42bc2d1ffb54ab3683e7003bd8a96c31}{G\+N\+U\+\_\+\+M\+A\+L\+L\+OC}} $\vert$ \mbox{\hyperlink{vfscanf_8c_ab97304ec7171d2c736e5cd8d1c41f7d9}{P\+O\+S\+I\+X\+\_\+\+M\+A\+L\+L\+OC}})}
+
+\mbox{\Hypertarget{vfscanf_8c_a6174cab48d2b888686b5d720dceaa74b}\label{vfscanf_8c_a6174cab48d2b888686b5d720dceaa74b}} 
+\index{vfscanf.c@{vfscanf.c}!need\_long@{need\_long}}
+\index{need\_long@{need\_long}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{need\_long}{need\_long}}
+{\footnotesize\ttfamily \#define need\+\_\+long~0}
+
+\mbox{\Hypertarget{vfscanf_8c_aa1885a3bca1c5e3be7fbcc2727db0b36}\label{vfscanf_8c_aa1885a3bca1c5e3be7fbcc2727db0b36}} 
+\index{vfscanf.c@{vfscanf.c}!need\_longlong@{need\_longlong}}
+\index{need\_longlong@{need\_longlong}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{need\_longlong}{need\_longlong}}
+{\footnotesize\ttfamily \#define need\+\_\+longlong~0}
+
+\mbox{\Hypertarget{vfscanf_8c_ad7023916fb29f81f6d12c882994886ea}\label{vfscanf_8c_ad7023916fb29f81f6d12c882994886ea}} 
+\index{vfscanf.c@{vfscanf.c}!NOSKIP@{NOSKIP}}
+\index{NOSKIP@{NOSKIP}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{NOSKIP}{NOSKIP}}
+{\footnotesize\ttfamily \#define N\+O\+S\+K\+IP~0x0020	/$\ast$ do not skip blanks $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a7badd3756258a0dbdc4212f5c675f417}\label{vfscanf_8c_a7badd3756258a0dbdc4212f5c675f417}} 
+\index{vfscanf.c@{vfscanf.c}!NUMBER\_SIGNED@{NUMBER\_SIGNED}}
+\index{NUMBER\_SIGNED@{NUMBER\_SIGNED}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_SIGNED}{NUMBER\_SIGNED}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+S\+I\+G\+N\+ED~0x0040	/$\ast$ signed integer $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a24359de1e3903d232de74d77c3817ec4}\label{vfscanf_8c_a24359de1e3903d232de74d77c3817ec4}} 
+\index{vfscanf.c@{vfscanf.c}!ORIENT@{ORIENT}}
+\index{ORIENT@{ORIENT}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ORIENT}{ORIENT}}
+{\footnotesize\ttfamily \#define O\+R\+I\+E\+NT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{libioP_8h_a6c41b0a43c57d6b3d1b467c8e96147cf}{\_IO\_vtable\_offset}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}) == 0                  \(\backslash\)}
+\DoxyCodeLine{                  \&\& \mbox{\hyperlink{iofwide_8c_a7d63878dc0686d799588d3dd1d010f92}{\_IO\_fwide}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, -\/1) != -\/1)           \(\backslash\)}
+\DoxyCodeLine{                return \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a84def408d1c5413e2c1d7fe9eeb18f09}\label{vfscanf_8c_a84def408d1c5413e2c1d7fe9eeb18f09}} 
+\index{vfscanf.c@{vfscanf.c}!POINTER@{POINTER}}
+\index{POINTER@{POINTER}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{POINTER}{POINTER}}
+{\footnotesize\ttfamily \#define P\+O\+I\+N\+T\+ER~0x0010	/$\ast$ weird \%p pointer (\`{}fake hex\textquotesingle{}) $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_ab97304ec7171d2c736e5cd8d1c41f7d9}\label{vfscanf_8c_ab97304ec7171d2c736e5cd8d1c41f7d9}} 
+\index{vfscanf.c@{vfscanf.c}!POSIX\_MALLOC@{POSIX\_MALLOC}}
+\index{POSIX\_MALLOC@{POSIX\_MALLOC}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{POSIX\_MALLOC}{POSIX\_MALLOC}}
+{\footnotesize\ttfamily \#define P\+O\+S\+I\+X\+\_\+\+M\+A\+L\+L\+OC~0x2000	/$\ast$ m\+: malloc strings $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a269a24a990d6b4c3fdc5a76e674c315b}\label{vfscanf_8c_a269a24a990d6b4c3fdc5a76e674c315b}} 
+\index{vfscanf.c@{vfscanf.c}!READ\_POINTER@{READ\_POINTER}}
+\index{READ\_POINTER@{READ\_POINTER}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{READ\_POINTER}{READ\_POINTER}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+P\+O\+I\+N\+T\+ER~0x1000	/$\ast$ this is a pointer value $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_a9fbb14850a9f176447733a089071cd70}\label{vfscanf_8c_a9fbb14850a9f176447733a089071cd70}} 
+\index{vfscanf.c@{vfscanf.c}!SHORT@{SHORT}}
+\index{SHORT@{SHORT}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{SHORT}{SHORT}}
+{\footnotesize\ttfamily \#define S\+H\+O\+RT~0x0004	/$\ast$ h\+: short $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_ae1eb6e07e1225a570a0c423677e03411}\label{vfscanf_8c_ae1eb6e07e1225a570a0c423677e03411}} 
+\index{vfscanf.c@{vfscanf.c}!STRING\_ARG@{STRING\_ARG}}
+\index{STRING\_ARG@{STRING\_ARG}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{STRING\_ARG}{STRING\_ARG}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+A\+RG(\begin{DoxyParamCaption}\item[{}]{Str,  }\item[{}]{Type,  }\item[{}]{Width }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \textcolor{keywordflow}{if} (!(\mbox{\hyperlink{include_2unistd_8h_aa894e293e2b55edfcc20525fbf577895}{flags}} \& \mbox{\hyperlink{vfscanf_8c_afe7aa227b351b74112d638ac09ced71a}{SUPPRESS}}))                      \(\backslash\)}
+\DoxyCodeLine{        \{                                 \(\backslash\)}
+\DoxyCodeLine{          if (\mbox{\hyperlink{include_2unistd_8h_aa894e293e2b55edfcc20525fbf577895}{flags}} \& \mbox{\hyperlink{vfscanf_8c_a3e218828af7ddd3f4cd0d3772562b520}{MALLOC}})                          \(\backslash\)}
+\DoxyCodeLine{            \{                                 \(\backslash\)}
+\DoxyCodeLine{              \textcolor{comment}{/* The string is to be stored in a malloc'd buffer.  */} \(\backslash\)}
+\DoxyCodeLine{              \textcolor{comment}{/* For \%mS using char ** is actually wrong, but         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{             shouldn't make a difference on any arch glibc        \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{             supports and would unnecessarily complicate          \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{             things. */}                       \(\backslash\)}
+\DoxyCodeLine{              strptr = \mbox{\hyperlink{vfscanf_8c_af2a2d8f7f0421a39f4f092c8b6065705}{ARG}} (\textcolor{keywordtype}{char} **);                      \(\backslash\)}
+\DoxyCodeLine{              if (strptr == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                     \(\backslash\)}
+\DoxyCodeLine{            conv\_error ();                        \(\backslash\)}
+\DoxyCodeLine{              \textcolor{comment}{/* Allocate an initial buffer.  */}              \(\backslash\)}
+\DoxyCodeLine{              strsize = Width;                        \(\backslash\)}
+\DoxyCodeLine{              *strptr = (\textcolor{keywordtype}{char} *) \mbox{\hyperlink{hurdmalloc_8h_acf143577800376dd931c059ecc61ba06}{malloc}} (strsize * \textcolor{keyword}{sizeof} (Type));    \(\backslash\)}
+\DoxyCodeLine{              Str = (Type *) *strptr;                     \(\backslash\)}
+\DoxyCodeLine{              if (Str != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                        \(\backslash\)}
+\DoxyCodeLine{            add\_ptr\_to\_free (strptr);                 \(\backslash\)}
+\DoxyCodeLine{              else \textcolor{keywordflow}{if} (\mbox{\hyperlink{include_2unistd_8h_aa894e293e2b55edfcc20525fbf577895}{flags}} \& \mbox{\hyperlink{vfscanf_8c_ab97304ec7171d2c736e5cd8d1c41f7d9}{POSIX\_MALLOC}})                 \(\backslash\)}
+\DoxyCodeLine{            \{                             \(\backslash\)}
+\DoxyCodeLine{              done = \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}};                          \(\backslash\)}
+\DoxyCodeLine{              goto errout;                        \(\backslash\)}
+\DoxyCodeLine{            \}                             \(\backslash\)}
+\DoxyCodeLine{            \}                                 \(\backslash\)}
+\DoxyCodeLine{          else                                \(\backslash\)}
+\DoxyCodeLine{            Str = \mbox{\hyperlink{vfscanf_8c_af2a2d8f7f0421a39f4f092c8b6065705}{ARG}} (Type *);                        \(\backslash\)}
+\DoxyCodeLine{          if (Str == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                        \(\backslash\)}
+\DoxyCodeLine{            conv\_error ();                        \(\backslash\)}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_afe7aa227b351b74112d638ac09ced71a}\label{vfscanf_8c_afe7aa227b351b74112d638ac09ced71a}} 
+\index{vfscanf.c@{vfscanf.c}!SUPPRESS@{SUPPRESS}}
+\index{SUPPRESS@{SUPPRESS}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{SUPPRESS}{SUPPRESS}}
+{\footnotesize\ttfamily \#define S\+U\+P\+P\+R\+E\+SS~0x0008	/$\ast$ $\ast$\+: suppress assignment $\ast$/}
+
+\mbox{\Hypertarget{vfscanf_8c_af051f69e2931c47fa772ea913f7a24a3}\label{vfscanf_8c_af051f69e2931c47fa772ea913f7a24a3}} 
+\index{vfscanf.c@{vfscanf.c}!TOLOWER@{TOLOWER}}
+\index{TOLOWER@{TOLOWER}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{TOLOWER}{TOLOWER}}
+{\footnotesize\ttfamily \#define T\+O\+L\+O\+W\+ER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~\+\_\+\+\_\+tolower\+\_\+l ((unsigned char) (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}), \mbox{\hyperlink{tst-mbrtowc2_8c_aff8c0b5089f41c9f29cbfd18e53793d9}{loc}})}
+
+\mbox{\Hypertarget{vfscanf_8c_ad60a5d1bae658721148545fac7e81789}\label{vfscanf_8c_ad60a5d1bae658721148545fac7e81789}} 
+\index{vfscanf.c@{vfscanf.c}!UCHAR\_T@{UCHAR\_T}}
+\index{UCHAR\_T@{UCHAR\_T}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{UCHAR\_T}{UCHAR\_T}}
+{\footnotesize\ttfamily \#define U\+C\+H\+A\+R\+\_\+T~unsigned char}
+
+\mbox{\Hypertarget{vfscanf_8c_a38aa3e7ad9ad6a8ad540a5def890fb96}\label{vfscanf_8c_a38aa3e7ad9ad6a8ad540a5def890fb96}} 
+\index{vfscanf.c@{vfscanf.c}!ungetc@{ungetc}}
+\index{ungetc@{ungetc}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ungetc}{ungetc}}
+{\footnotesize\ttfamily \#define ungetc(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}},  }\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) ((\textcolor{keywordtype}{int}) \mbox{\hyperlink{tst-sem14_8c_a4e1e0e72dd773439e333c84dd762a9c3}{c}} == \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}}                   \(\backslash\)}
+\DoxyCodeLine{                 || (-\/-\/read\_in,                   \(\backslash\)}
+\DoxyCodeLine{                     \_IO\_sputbackc (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}) c))))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a6ab4e85dc04f2d6561cbbde243d8b397}\label{vfscanf_8c_a6ab4e85dc04f2d6561cbbde243d8b397}} 
+\index{vfscanf.c@{vfscanf.c}!ungetc\_not\_eof@{ungetc\_not\_eof}}
+\index{ungetc\_not\_eof@{ungetc\_not\_eof}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{ungetc\_not\_eof}{ungetc\_not\_eof}}
+{\footnotesize\ttfamily \#define ungetc\+\_\+not\+\_\+eof(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}},  }\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) (-\/-\/read\_in,               \(\backslash\)}
+\DoxyCodeLine{                     \mbox{\hyperlink{genops_8c_a734a759e2c0abc324f1e22f3dd7999e3}{\_IO\_sputbackc}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}) c)))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_aa073f3a0e899f30c6b021613fccae8c6}\label{vfscanf_8c_aa073f3a0e899f30c6b021613fccae8c6}} 
+\index{vfscanf.c@{vfscanf.c}!UNLOCK\_STREAM@{UNLOCK\_STREAM}}
+\index{UNLOCK\_STREAM@{UNLOCK\_STREAM}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{UNLOCK\_STREAM}{UNLOCK\_STREAM}}
+{\footnotesize\ttfamily \#define U\+N\+L\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structS}{S}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{libio_2libio_8h_a451445f1de100adf8203f868372a153b}{\_IO\_funlockfile}} (\mbox{\hyperlink{structS}{S}});                                  \(\backslash\)}
+\DoxyCodeLine{  \_\_libc\_cleanup\_region\_end (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfscanf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}\label{vfscanf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}} 
+\index{vfscanf.c@{vfscanf.c}!va\_list@{va\_list}}
+\index{va\_list@{va\_list}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{va\_list}{va\_list}}
+{\footnotesize\ttfamily \#define va\+\_\+list~\mbox{\hyperlink{libio_2libio_8h_a64db8a37cd6c5bff17c37b512c161f50}{\+\_\+\+I\+O\+\_\+va\+\_\+list}}}
+
+\mbox{\Hypertarget{vfscanf_8c_ac40196c8b410f69835eb0e8881dcc4b3}\label{vfscanf_8c_ac40196c8b410f69835eb0e8881dcc4b3}} 
+\index{vfscanf.c@{vfscanf.c}!WINT\_T@{WINT\_T}}
+\index{WINT\_T@{WINT\_T}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{WINT\_T}{WINT\_T}}
+{\footnotesize\ttfamily \#define W\+I\+N\+T\+\_\+T~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{vfscanf_8c_a400f6c4682c72a630d27499d82b59d1c}\label{vfscanf_8c_a400f6c4682c72a630d27499d82b59d1c}} 
+\index{vfscanf.c@{vfscanf.c}!\_\_\_vfscanf@{\_\_\_vfscanf}}
+\index{\_\_\_vfscanf@{\_\_\_vfscanf}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{\_\_\_vfscanf()}{\_\_\_vfscanf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+\+\_\+vfscanf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{format,  }\item[{\mbox{\hyperlink{vfscanf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}{va\+\_\+list}}}]{argptr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{vfscanf_8c_a78b0a3f09798a16abd387447c72c126e}\label{vfscanf_8c_a78b0a3f09798a16abd387447c72c126e}} 
+\index{vfscanf.c@{vfscanf.c}!\_IO\_vfscanf\_internal@{\_IO\_vfscanf\_internal}}
+\index{\_IO\_vfscanf\_internal@{\_IO\_vfscanf\_internal}!vfscanf.c@{vfscanf.c}}
+\doxysubsubsection{\texorpdfstring{\_IO\_vfscanf\_internal()}{\_IO\_vfscanf\_internal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+I\+O\+\_\+vfscanf\+\_\+internal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__IO__FILE}{\+\_\+\+I\+O\+\_\+\+F\+I\+LE}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{format,  }\item[{\mbox{\hyperlink{libio_2libio_8h_a64db8a37cd6c5bff17c37b512c161f50}{\+\_\+\+I\+O\+\_\+va\+\_\+list}}}]{argptr,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{errp }\end{DoxyParamCaption})}
+

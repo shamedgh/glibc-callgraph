@@ -1,0 +1,546 @@
+\hypertarget{sg_8h}{}\doxysection{sysdeps/unix/sysv/linux/scsi/sg.h File Reference}
+\label{sg_8h}\index{sysdeps/unix/sysv/linux/scsi/sg.h@{sysdeps/unix/sysv/linux/scsi/sg.h}}
+{\ttfamily \#include $<$features.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsg__iovec}{sg\+\_\+iovec}}
+\item 
+struct \mbox{\hyperlink{structsg__io__hdr}{sg\+\_\+io\+\_\+hdr}}
+\item 
+struct \mbox{\hyperlink{structsg__scsi__id}{sg\+\_\+scsi\+\_\+id}}
+\item 
+struct \mbox{\hyperlink{structsg__req__info}{sg\+\_\+req\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structsg__header}{sg\+\_\+header}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sg_8h_a2898830827f947f003d187388f7e6c72}{\+\_\+\+\_\+need\+\_\+size\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{sg_8h_ac1496474132206180ae994a46cf1cd3c}{S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+N\+O\+NE}}~-\/1        /$\ast$ e.\+g. \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} S\+C\+SI Test Unit Ready \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_aad87ca74b6290e2202b08aebdd304bb5}{S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+T\+O\+\_\+\+D\+EV}}~-\/2      /$\ast$ e.\+g. \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} S\+C\+SI W\+R\+I\+TE \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a202216320f2a375df976219487fa0a7d}{S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+F\+R\+O\+M\+\_\+\+D\+EV}}~-\/3    /$\ast$ e.\+g. \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} S\+C\+SI R\+E\+AD \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a62b3d1b4a0bf7921c6d10220f025c3db}{S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+T\+O\+\_\+\+F\+R\+O\+M\+\_\+\+D\+EV}}
+\item 
+\#define \mbox{\hyperlink{sg_8h_ada3aee2f812159a2bfe13c90fe032ffe}{S\+G\+\_\+\+F\+L\+A\+G\+\_\+\+D\+I\+R\+E\+C\+T\+\_\+\+IO}}~1     /$\ast$ default \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} \mbox{\hyperlink{weightwc_8h_a2079143f03e3c5e64ea02d4e72963c3b}{indirect}} \mbox{\hyperlink{generic_2siglist_8h_a0cd32bef1a29cec2e3365845947b5a3a}{IO}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a8971899b0e52b2d4c0311f392d3ba789}{S\+G\+\_\+\+F\+L\+A\+G\+\_\+\+L\+U\+N\+\_\+\+I\+N\+H\+I\+B\+IT}}~2   /$\ast$ default \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} put device\textquotesingle{}\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} lun into $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a5f8bbb8b0c051e8766cc042431905660}{S\+G\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+\_\+\+D\+X\+F\+ER}}~0x10000 /$\ast$ no transfer of kernel buffers to/from $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ae32c757909ae942fbdbb8517be3a2aaf}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+O\+K\+\_\+\+M\+A\+SK}}~0x1
+\item 
+\#define \mbox{\hyperlink{sg_8h_a45b3e178e645fa0537a44a3ea002a268}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+OK}}~0x0	/$\ast$ no sense, host nor driver \char`\"{}noise\char`\"{} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_abd78dcdc16b734fb046f6a595e45fb2d}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+C\+H\+E\+CK}}~0x1     /$\ast$ something abnormal happened $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_aebf13d6b5f43d02acea3b2f4da238a77}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+D\+I\+R\+E\+C\+T\+\_\+\+I\+O\+\_\+\+M\+A\+SK}}~0x6
+\item 
+\#define \mbox{\hyperlink{sg_8h_ab2338fb70e52edf5ad959abc006ce634}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+I\+N\+D\+I\+R\+E\+C\+T\+\_\+\+IO}}~0x0	/$\ast$ data xfer via kernel buffers (or no xfer) $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a958784c16bd2f4df922f5a695d38647a}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+D\+I\+R\+E\+C\+T\+\_\+\+IO}}~0x2	/$\ast$ direct I\+O requested and performed $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a3d8574e663301dee8db3ef97c1269a2d}{S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+M\+I\+X\+E\+D\+\_\+\+IO}}~0x4	/$\ast$ part direct, part indirect I\+O $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ac5ca0cb020723db7c27e5b925314e32a}{S\+G\+\_\+\+E\+M\+U\+L\+A\+T\+E\+D\+\_\+\+H\+O\+ST}}~0x2203 /$\ast$ true for emulated host adapter (\+A\+T\+A\+P\+I) $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_acbd82164ecad84b8638f63bc47aacbc1}{S\+G\+\_\+\+S\+E\+T\+\_\+\+T\+R\+A\+N\+S\+F\+O\+RM}}~0x2204 /$\ast$ N.\+B. 3rd arg is not pointer but value\+: $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a7a3abc6e5acc90a1325d45258003c15c}{S\+G\+\_\+\+G\+E\+T\+\_\+\+T\+R\+A\+N\+S\+F\+O\+RM}}~0x2205
+\item 
+\#define \mbox{\hyperlink{sg_8h_a1e01b262c67c2cb702daefdab8cd8f24}{S\+G\+\_\+\+S\+E\+T\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}}~0x2275  /$\ast$ request a new reserved buffer size $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a123d36f05352e55e10afaa4e194e11d0}{S\+G\+\_\+\+G\+E\+T\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}}~0x2272  /$\ast$ actual size of reserved buffer $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a10cb47f27da85b706e006a8fbd15e5b9}{S\+G\+\_\+\+G\+E\+T\+\_\+\+S\+C\+S\+I\+\_\+\+ID}}~0x2276   /$\ast$ Yields fd\textquotesingle{}s bus, chan, dev, lun + type $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a12325eac00ba367d185a1634729295d8}{S\+G\+\_\+\+S\+E\+T\+\_\+\+F\+O\+R\+C\+E\+\_\+\+L\+O\+W\+\_\+\+D\+MA}}~0x2279  /$\ast$ 0-\/$>$ use adapter setting, 1-\/$>$ force $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a4212682870df7bed1e74fd8794055d22}{S\+G\+\_\+\+G\+E\+T\+\_\+\+L\+O\+W\+\_\+\+D\+MA}}~0x227a   /$\ast$ 0-\/$>$ use all ram for dma; 1-\/$>$ low dma ram $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_aaa223f7fe4106863dc85845eb5dbdbc8}{S\+G\+\_\+\+S\+E\+T\+\_\+\+F\+O\+R\+C\+E\+\_\+\+P\+A\+C\+K\+\_\+\+ID}}~0x227b
+\item 
+\#define \mbox{\hyperlink{sg_8h_ad92a1233a51788699b5fccb768cb24da}{S\+G\+\_\+\+G\+E\+T\+\_\+\+P\+A\+C\+K\+\_\+\+ID}}~0x227c /$\ast$ Yields oldest readable pack\+\_\+id (or -\/1) $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a8ea4f1f464a755b69c22a1ac32010e01}{S\+G\+\_\+\+G\+E\+T\+\_\+\+N\+U\+M\+\_\+\+W\+A\+I\+T\+I\+NG}}~0x227d /$\ast$ Number of commands awaiting read() $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a232ccea9ab7f07ecee61c4e64594661a}{S\+G\+\_\+\+G\+E\+T\+\_\+\+S\+G\+\_\+\+T\+A\+B\+L\+E\+S\+I\+ZE}}~0x227\+F  /$\ast$ 0 implies can\textquotesingle{}t do scatter gather $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a20366e42c960758a9fdbc4c1a1585376}{S\+G\+\_\+\+G\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+N\+UM}}~0x2282 /$\ast$ Example\+: version 2.\+1.\+34 yields 20134 $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a7db0ae4b5cd4f1dd1d029666b9e6098b}{S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+ET}}~0x2284
+\item 
+\#define \mbox{\hyperlink{sg_8h_a8e2958f66c7c9efd8db0c3ec10e3a208}{S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+N\+O\+T\+H\+I\+NG}}~0
+\item 
+\#define \mbox{\hyperlink{sg_8h_a2bd237f3ddd98f5204fd176ef84a6567}{S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+D\+E\+V\+I\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{sg_8h_af448c9e8f059409148327d4874738df6}{S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+B\+US}}~2
+\item 
+\#define \mbox{\hyperlink{sg_8h_a3ae3f0b699b07c0c8acbd339cea617b0}{S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+H\+O\+ST}}~3
+\item 
+\#define \mbox{\hyperlink{sg_8h_ae2e3cdc96eeb266d2aadcf8615bd014f}{S\+G\+\_\+\+IO}}~0x2285   /$\ast$ similar effect as write() followed by read() $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ad3734141bb856e1071cf284925a9cd8f}{S\+G\+\_\+\+G\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+T\+A\+B\+LE}}~0x2286   /$\ast$ yields table of active requests $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ae769636a7b657b9aaab3650c22194af1}{S\+G\+\_\+\+S\+E\+T\+\_\+\+K\+E\+E\+P\+\_\+\+O\+R\+P\+H\+AN}}~0x2287 /$\ast$ 1 -\/$>$ hold for read(), 0 -\/$>$ drop (def) $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ac27de5e9ed89217fb5d44969915cbb05}{S\+G\+\_\+\+G\+E\+T\+\_\+\+K\+E\+E\+P\+\_\+\+O\+R\+P\+H\+AN}}~0x2288
+\item 
+\#define \mbox{\hyperlink{sg_8h_aed41f0a80ded626e24011e0bf7b5302d}{S\+G\+\_\+\+S\+C\+A\+T\+T\+E\+R\+\_\+\+SZ}}~(8 $\ast$ 4096)  /$\ast$ \mbox{\hyperlink{x86_2sys_2user_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{P\+A\+G\+E\+\_\+\+S\+I\+ZE}} not available \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} \mbox{\hyperlink{structuser}{user}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a31dc0dc0fcd8ba9b92fba51b3464cc4b}{S\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+E\+T\+R\+I\+ES}}~1
+\item 
+\#define \mbox{\hyperlink{sg_8h_a4946dc5d17f7d1422501d621b21235ae}{S\+G\+\_\+\+D\+E\+F\+\_\+\+F\+O\+R\+C\+E\+\_\+\+L\+O\+W\+\_\+\+D\+MA}}~0  /$\ast$ was 1 -\/$>$ memory below 16\+M\+B on i386 $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ae16483a3f50a48f8f3d5024fd05c845d}{S\+G\+\_\+\+D\+E\+F\+\_\+\+F\+O\+R\+C\+E\+\_\+\+P\+A\+C\+K\+\_\+\+ID}}~0
+\item 
+\#define \mbox{\hyperlink{sg_8h_ab646216b3143362cb2b8f6ff8b0b768c}{S\+G\+\_\+\+D\+E\+F\+\_\+\+K\+E\+E\+P\+\_\+\+O\+R\+P\+H\+AN}}~0
+\item 
+\#define \mbox{\hyperlink{sg_8h_a6a8d803a766f3ba15a01df2a1a9ae10e}{S\+G\+\_\+\+D\+E\+F\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}}~\mbox{\hyperlink{sg_8h_aed41f0a80ded626e24011e0bf7b5302d}{S\+G\+\_\+\+S\+C\+A\+T\+T\+E\+R\+\_\+\+SZ}} /$\ast$ load \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}} \mbox{\hyperlink{structoption}{option}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a3cbe55331d0ec401035b81b13533cfdb}{S\+G\+\_\+\+M\+A\+X\+\_\+\+Q\+U\+E\+UE}}~16
+\item 
+\#define \mbox{\hyperlink{sg_8h_a40166d73455668074dc84bee0f5ad08f}{S\+G\+\_\+\+B\+I\+G\+\_\+\+B\+U\+FF}}~\mbox{\hyperlink{sg_8h_a6a8d803a766f3ba15a01df2a1a9ae10e}{S\+G\+\_\+\+D\+E\+F\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}}    /$\ast$ \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} backward compatibility $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_ab8704d66b54085d4b5c45f8adb1509d6}{S\+G\+\_\+\+M\+A\+X\+\_\+\+S\+E\+N\+SE}}~16   /$\ast$ this only applies \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} the \mbox{\hyperlink{structsg__header}{sg\+\_\+header}} interface $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a3026b74a2f738200ffa26341f8ad3154}{S\+G\+\_\+\+S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x2201	/$\ast$ Set timeout; $\ast$(int $\ast$)arg==timeout.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a551f648805bb7e40aab17c14b754a0eb}{S\+G\+\_\+\+G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x2202	/$\ast$ Get timeout; return timeout.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a99dfec75d96824a01b72b407565b00e2}{S\+G\+\_\+\+G\+E\+T\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+Q}}~0x2270	/$\ast$ Yields 0 (queuing off) or 1 (on).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_af2db9b9c81cd8809e93f1bfff5d3c4e2}{S\+G\+\_\+\+S\+E\+T\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+Q}}~0x2271	/$\ast$ Change queuing state with 0 or 1.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a1f6738b7c5a80fb7fec9a8b96ed96516}{S\+G\+\_\+\+S\+E\+T\+\_\+\+D\+E\+B\+UG}}~0x227e	/$\ast$ 0 -\/$>$ turn off debug $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_abae11679ab95736b9d25f6e7cb84ee2a}{S\+G\+\_\+\+N\+E\+X\+T\+\_\+\+C\+M\+D\+\_\+\+L\+EN}}
+\item 
+\#define \mbox{\hyperlink{sg_8h_ac4b2178ac0cc38f54c829bd0b9ef981a}{S\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+UT}}~(60$\ast$HZ) /$\ast$ HZ == \textquotesingle{}jiffies \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} 1 second\textquotesingle{} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sg_8h_a8c123077a3aed9d01013f93e51f0cc25}{S\+G\+\_\+\+D\+E\+F\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+Q}}
+\item 
+\#define \mbox{\hyperlink{sg_8h_a26b1be0bc43e61ad6809f65fa7bd9272}{S\+G\+\_\+\+D\+E\+F\+\_\+\+U\+N\+D\+E\+R\+R\+U\+N\+\_\+\+F\+L\+AG}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structsg__iovec}{sg\+\_\+iovec}} \mbox{\hyperlink{sg_8h_ac6a898cb17f5a5f22e5187801c59e405}{sg\+\_\+iovec\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structsg__io__hdr}{sg\+\_\+io\+\_\+hdr}} \mbox{\hyperlink{sg_8h_a7407c58b5d96715bbd2f4d80145b1082}{sg\+\_\+io\+\_\+hdr\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structsg__req__info}{sg\+\_\+req\+\_\+info}} \mbox{\hyperlink{sg_8h_a9135f22577eb2a4073e99b692a4f3b9a}{sg\+\_\+req\+\_\+info\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structsg__io__hdr}{sg\+\_\+io\+\_\+hdr}} \mbox{\hyperlink{sg_8h_a3ea73dd364804412875a884612722e78}{Sg\+\_\+io\+\_\+hdr}}
+\item 
+typedef struct sg\+\_\+io\+\_\+vec \mbox{\hyperlink{sg_8h_a1d76488807016d87efd144874e800bd9}{Sg\+\_\+io\+\_\+vec}}
+\item 
+typedef struct \mbox{\hyperlink{structsg__scsi__id}{sg\+\_\+scsi\+\_\+id}} \mbox{\hyperlink{sg_8h_aa98885c74057907d93d43dee7a2ef75e}{Sg\+\_\+scsi\+\_\+id}}
+\item 
+typedef struct \mbox{\hyperlink{structsg__req__info}{sg\+\_\+req\+\_\+info}} \mbox{\hyperlink{sg_8h_add54be4235d66e442188679598f47c61}{Sg\+\_\+req\+\_\+info}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sg_8h_a2898830827f947f003d187388f7e6c72}\label{sg_8h_a2898830827f947f003d187388f7e6c72}} 
+\index{sg.h@{sg.h}!\_\_need\_size\_t@{\_\_need\_size\_t}}
+\index{\_\_need\_size\_t@{\_\_need\_size\_t}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{\_\_need\_size\_t}{\_\_need\_size\_t}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+need\+\_\+size\+\_\+t}
+
+\mbox{\Hypertarget{sg_8h_a40166d73455668074dc84bee0f5ad08f}\label{sg_8h_a40166d73455668074dc84bee0f5ad08f}} 
+\index{sg.h@{sg.h}!SG\_BIG\_BUFF@{SG\_BIG\_BUFF}}
+\index{SG\_BIG\_BUFF@{SG\_BIG\_BUFF}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_BIG\_BUFF}{SG\_BIG\_BUFF}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+B\+I\+G\+\_\+\+B\+U\+FF~\mbox{\hyperlink{sg_8h_a6a8d803a766f3ba15a01df2a1a9ae10e}{S\+G\+\_\+\+D\+E\+F\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}}    /$\ast$ \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} backward compatibility $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a8c123077a3aed9d01013f93e51f0cc25}\label{sg_8h_a8c123077a3aed9d01013f93e51f0cc25}} 
+\index{sg.h@{sg.h}!SG\_DEF\_COMMAND\_Q@{SG\_DEF\_COMMAND\_Q}}
+\index{SG\_DEF\_COMMAND\_Q@{SG\_DEF\_COMMAND\_Q}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEF\_COMMAND\_Q}{SG\_DEF\_COMMAND\_Q}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+Q}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{0     \textcolor{comment}{/* command queuing is always on when}}
+\DoxyCodeLine{\textcolor{comment}{                  the new interface is used */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sg_8h_a4946dc5d17f7d1422501d621b21235ae}\label{sg_8h_a4946dc5d17f7d1422501d621b21235ae}} 
+\index{sg.h@{sg.h}!SG\_DEF\_FORCE\_LOW\_DMA@{SG\_DEF\_FORCE\_LOW\_DMA}}
+\index{SG\_DEF\_FORCE\_LOW\_DMA@{SG\_DEF\_FORCE\_LOW\_DMA}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEF\_FORCE\_LOW\_DMA}{SG\_DEF\_FORCE\_LOW\_DMA}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+\_\+\+F\+O\+R\+C\+E\+\_\+\+L\+O\+W\+\_\+\+D\+MA~0  /$\ast$ was 1 -\/$>$ memory below 16\+M\+B on i386 $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ae16483a3f50a48f8f3d5024fd05c845d}\label{sg_8h_ae16483a3f50a48f8f3d5024fd05c845d}} 
+\index{sg.h@{sg.h}!SG\_DEF\_FORCE\_PACK\_ID@{SG\_DEF\_FORCE\_PACK\_ID}}
+\index{SG\_DEF\_FORCE\_PACK\_ID@{SG\_DEF\_FORCE\_PACK\_ID}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEF\_FORCE\_PACK\_ID}{SG\_DEF\_FORCE\_PACK\_ID}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+\_\+\+F\+O\+R\+C\+E\+\_\+\+P\+A\+C\+K\+\_\+\+ID~0}
+
+\mbox{\Hypertarget{sg_8h_ab646216b3143362cb2b8f6ff8b0b768c}\label{sg_8h_ab646216b3143362cb2b8f6ff8b0b768c}} 
+\index{sg.h@{sg.h}!SG\_DEF\_KEEP\_ORPHAN@{SG\_DEF\_KEEP\_ORPHAN}}
+\index{SG\_DEF\_KEEP\_ORPHAN@{SG\_DEF\_KEEP\_ORPHAN}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEF\_KEEP\_ORPHAN}{SG\_DEF\_KEEP\_ORPHAN}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+\_\+\+K\+E\+E\+P\+\_\+\+O\+R\+P\+H\+AN~0}
+
+\mbox{\Hypertarget{sg_8h_a6a8d803a766f3ba15a01df2a1a9ae10e}\label{sg_8h_a6a8d803a766f3ba15a01df2a1a9ae10e}} 
+\index{sg.h@{sg.h}!SG\_DEF\_RESERVED\_SIZE@{SG\_DEF\_RESERVED\_SIZE}}
+\index{SG\_DEF\_RESERVED\_SIZE@{SG\_DEF\_RESERVED\_SIZE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEF\_RESERVED\_SIZE}{SG\_DEF\_RESERVED\_SIZE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE~\mbox{\hyperlink{sg_8h_aed41f0a80ded626e24011e0bf7b5302d}{S\+G\+\_\+\+S\+C\+A\+T\+T\+E\+R\+\_\+\+SZ}} /$\ast$ load \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}} \mbox{\hyperlink{structoption}{option}} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a26b1be0bc43e61ad6809f65fa7bd9272}\label{sg_8h_a26b1be0bc43e61ad6809f65fa7bd9272}} 
+\index{sg.h@{sg.h}!SG\_DEF\_UNDERRUN\_FLAG@{SG\_DEF\_UNDERRUN\_FLAG}}
+\index{SG\_DEF\_UNDERRUN\_FLAG@{SG\_DEF\_UNDERRUN\_FLAG}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEF\_UNDERRUN\_FLAG}{SG\_DEF\_UNDERRUN\_FLAG}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+\_\+\+U\+N\+D\+E\+R\+R\+U\+N\+\_\+\+F\+L\+AG~0}
+
+\mbox{\Hypertarget{sg_8h_a31dc0dc0fcd8ba9b92fba51b3464cc4b}\label{sg_8h_a31dc0dc0fcd8ba9b92fba51b3464cc4b}} 
+\index{sg.h@{sg.h}!SG\_DEFAULT\_RETRIES@{SG\_DEFAULT\_RETRIES}}
+\index{SG\_DEFAULT\_RETRIES@{SG\_DEFAULT\_RETRIES}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEFAULT\_RETRIES}{SG\_DEFAULT\_RETRIES}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+E\+T\+R\+I\+ES~1}
+
+\mbox{\Hypertarget{sg_8h_ac4b2178ac0cc38f54c829bd0b9ef981a}\label{sg_8h_ac4b2178ac0cc38f54c829bd0b9ef981a}} 
+\index{sg.h@{sg.h}!SG\_DEFAULT\_TIMEOUT@{SG\_DEFAULT\_TIMEOUT}}
+\index{SG\_DEFAULT\_TIMEOUT@{SG\_DEFAULT\_TIMEOUT}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DEFAULT\_TIMEOUT}{SG\_DEFAULT\_TIMEOUT}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+UT~(60$\ast$HZ) /$\ast$ HZ == \textquotesingle{}jiffies \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} 1 second\textquotesingle{} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a202216320f2a375df976219487fa0a7d}\label{sg_8h_a202216320f2a375df976219487fa0a7d}} 
+\index{sg.h@{sg.h}!SG\_DXFER\_FROM\_DEV@{SG\_DXFER\_FROM\_DEV}}
+\index{SG\_DXFER\_FROM\_DEV@{SG\_DXFER\_FROM\_DEV}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DXFER\_FROM\_DEV}{SG\_DXFER\_FROM\_DEV}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+F\+R\+O\+M\+\_\+\+D\+EV~-\/3    /$\ast$ e.\+g. \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} S\+C\+SI R\+E\+AD \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ac1496474132206180ae994a46cf1cd3c}\label{sg_8h_ac1496474132206180ae994a46cf1cd3c}} 
+\index{sg.h@{sg.h}!SG\_DXFER\_NONE@{SG\_DXFER\_NONE}}
+\index{SG\_DXFER\_NONE@{SG\_DXFER\_NONE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DXFER\_NONE}{SG\_DXFER\_NONE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+N\+O\+NE~-\/1        /$\ast$ e.\+g. \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} S\+C\+SI Test Unit Ready \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_aad87ca74b6290e2202b08aebdd304bb5}\label{sg_8h_aad87ca74b6290e2202b08aebdd304bb5}} 
+\index{sg.h@{sg.h}!SG\_DXFER\_TO\_DEV@{SG\_DXFER\_TO\_DEV}}
+\index{SG\_DXFER\_TO\_DEV@{SG\_DXFER\_TO\_DEV}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DXFER\_TO\_DEV}{SG\_DXFER\_TO\_DEV}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+T\+O\+\_\+\+D\+EV~-\/2      /$\ast$ e.\+g. \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} S\+C\+SI W\+R\+I\+TE \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a62b3d1b4a0bf7921c6d10220f025c3db}\label{sg_8h_a62b3d1b4a0bf7921c6d10220f025c3db}} 
+\index{sg.h@{sg.h}!SG\_DXFER\_TO\_FROM\_DEV@{SG\_DXFER\_TO\_FROM\_DEV}}
+\index{SG\_DXFER\_TO\_FROM\_DEV@{SG\_DXFER\_TO\_FROM\_DEV}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_DXFER\_TO\_FROM\_DEV}{SG\_DXFER\_TO\_FROM\_DEV}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+D\+X\+F\+E\+R\+\_\+\+T\+O\+\_\+\+F\+R\+O\+M\+\_\+\+D\+EV}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/4 \textcolor{comment}{/* treated like SG\_DXFER\_FROM\_DEV with the}}
+\DoxyCodeLine{\textcolor{comment}{                   additional property than during indirect}}
+\DoxyCodeLine{\textcolor{comment}{                   IO the user buffer is copied into the}}
+\DoxyCodeLine{\textcolor{comment}{                   kernel buffers before the transfer */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sg_8h_ac5ca0cb020723db7c27e5b925314e32a}\label{sg_8h_ac5ca0cb020723db7c27e5b925314e32a}} 
+\index{sg.h@{sg.h}!SG\_EMULATED\_HOST@{SG\_EMULATED\_HOST}}
+\index{SG\_EMULATED\_HOST@{SG\_EMULATED\_HOST}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_EMULATED\_HOST}{SG\_EMULATED\_HOST}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+E\+M\+U\+L\+A\+T\+E\+D\+\_\+\+H\+O\+ST~0x2203 /$\ast$ true for emulated host adapter (\+A\+T\+A\+P\+I) $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ada3aee2f812159a2bfe13c90fe032ffe}\label{sg_8h_ada3aee2f812159a2bfe13c90fe032ffe}} 
+\index{sg.h@{sg.h}!SG\_FLAG\_DIRECT\_IO@{SG\_FLAG\_DIRECT\_IO}}
+\index{SG\_FLAG\_DIRECT\_IO@{SG\_FLAG\_DIRECT\_IO}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_FLAG\_DIRECT\_IO}{SG\_FLAG\_DIRECT\_IO}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+F\+L\+A\+G\+\_\+\+D\+I\+R\+E\+C\+T\+\_\+\+IO~1     /$\ast$ default \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} \mbox{\hyperlink{weightwc_8h_a2079143f03e3c5e64ea02d4e72963c3b}{indirect}} \mbox{\hyperlink{generic_2siglist_8h_a0cd32bef1a29cec2e3365845947b5a3a}{IO}} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a8971899b0e52b2d4c0311f392d3ba789}\label{sg_8h_a8971899b0e52b2d4c0311f392d3ba789}} 
+\index{sg.h@{sg.h}!SG\_FLAG\_LUN\_INHIBIT@{SG\_FLAG\_LUN\_INHIBIT}}
+\index{SG\_FLAG\_LUN\_INHIBIT@{SG\_FLAG\_LUN\_INHIBIT}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_FLAG\_LUN\_INHIBIT}{SG\_FLAG\_LUN\_INHIBIT}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+F\+L\+A\+G\+\_\+\+L\+U\+N\+\_\+\+I\+N\+H\+I\+B\+IT~2   /$\ast$ default \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} put device\textquotesingle{}\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} lun into $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a5f8bbb8b0c051e8766cc042431905660}\label{sg_8h_a5f8bbb8b0c051e8766cc042431905660}} 
+\index{sg.h@{sg.h}!SG\_FLAG\_NO\_DXFER@{SG\_FLAG\_NO\_DXFER}}
+\index{SG\_FLAG\_NO\_DXFER@{SG\_FLAG\_NO\_DXFER}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_FLAG\_NO\_DXFER}{SG\_FLAG\_NO\_DXFER}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+\_\+\+D\+X\+F\+ER~0x10000 /$\ast$ no transfer of kernel buffers to/from $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a99dfec75d96824a01b72b407565b00e2}\label{sg_8h_a99dfec75d96824a01b72b407565b00e2}} 
+\index{sg.h@{sg.h}!SG\_GET\_COMMAND\_Q@{SG\_GET\_COMMAND\_Q}}
+\index{SG\_GET\_COMMAND\_Q@{SG\_GET\_COMMAND\_Q}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_COMMAND\_Q}{SG\_GET\_COMMAND\_Q}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+Q~0x2270	/$\ast$ Yields 0 (queuing off) or 1 (on).  $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ac27de5e9ed89217fb5d44969915cbb05}\label{sg_8h_ac27de5e9ed89217fb5d44969915cbb05}} 
+\index{sg.h@{sg.h}!SG\_GET\_KEEP\_ORPHAN@{SG\_GET\_KEEP\_ORPHAN}}
+\index{SG\_GET\_KEEP\_ORPHAN@{SG\_GET\_KEEP\_ORPHAN}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_KEEP\_ORPHAN}{SG\_GET\_KEEP\_ORPHAN}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+K\+E\+E\+P\+\_\+\+O\+R\+P\+H\+AN~0x2288}
+
+\mbox{\Hypertarget{sg_8h_a4212682870df7bed1e74fd8794055d22}\label{sg_8h_a4212682870df7bed1e74fd8794055d22}} 
+\index{sg.h@{sg.h}!SG\_GET\_LOW\_DMA@{SG\_GET\_LOW\_DMA}}
+\index{SG\_GET\_LOW\_DMA@{SG\_GET\_LOW\_DMA}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_LOW\_DMA}{SG\_GET\_LOW\_DMA}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+L\+O\+W\+\_\+\+D\+MA~0x227a   /$\ast$ 0-\/$>$ use all ram for dma; 1-\/$>$ low dma ram $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a8ea4f1f464a755b69c22a1ac32010e01}\label{sg_8h_a8ea4f1f464a755b69c22a1ac32010e01}} 
+\index{sg.h@{sg.h}!SG\_GET\_NUM\_WAITING@{SG\_GET\_NUM\_WAITING}}
+\index{SG\_GET\_NUM\_WAITING@{SG\_GET\_NUM\_WAITING}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_NUM\_WAITING}{SG\_GET\_NUM\_WAITING}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+N\+U\+M\+\_\+\+W\+A\+I\+T\+I\+NG~0x227d /$\ast$ Number of commands awaiting read() $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ad92a1233a51788699b5fccb768cb24da}\label{sg_8h_ad92a1233a51788699b5fccb768cb24da}} 
+\index{sg.h@{sg.h}!SG\_GET\_PACK\_ID@{SG\_GET\_PACK\_ID}}
+\index{SG\_GET\_PACK\_ID@{SG\_GET\_PACK\_ID}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_PACK\_ID}{SG\_GET\_PACK\_ID}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+P\+A\+C\+K\+\_\+\+ID~0x227c /$\ast$ Yields oldest readable pack\+\_\+id (or -\/1) $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ad3734141bb856e1071cf284925a9cd8f}\label{sg_8h_ad3734141bb856e1071cf284925a9cd8f}} 
+\index{sg.h@{sg.h}!SG\_GET\_REQUEST\_TABLE@{SG\_GET\_REQUEST\_TABLE}}
+\index{SG\_GET\_REQUEST\_TABLE@{SG\_GET\_REQUEST\_TABLE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_REQUEST\_TABLE}{SG\_GET\_REQUEST\_TABLE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+T\+A\+B\+LE~0x2286   /$\ast$ yields table of active requests $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a123d36f05352e55e10afaa4e194e11d0}\label{sg_8h_a123d36f05352e55e10afaa4e194e11d0}} 
+\index{sg.h@{sg.h}!SG\_GET\_RESERVED\_SIZE@{SG\_GET\_RESERVED\_SIZE}}
+\index{SG\_GET\_RESERVED\_SIZE@{SG\_GET\_RESERVED\_SIZE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_RESERVED\_SIZE}{SG\_GET\_RESERVED\_SIZE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE~0x2272  /$\ast$ actual size of reserved buffer $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a10cb47f27da85b706e006a8fbd15e5b9}\label{sg_8h_a10cb47f27da85b706e006a8fbd15e5b9}} 
+\index{sg.h@{sg.h}!SG\_GET\_SCSI\_ID@{SG\_GET\_SCSI\_ID}}
+\index{SG\_GET\_SCSI\_ID@{SG\_GET\_SCSI\_ID}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_SCSI\_ID}{SG\_GET\_SCSI\_ID}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+S\+C\+S\+I\+\_\+\+ID~0x2276   /$\ast$ Yields fd\textquotesingle{}s bus, chan, dev, lun + type $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a232ccea9ab7f07ecee61c4e64594661a}\label{sg_8h_a232ccea9ab7f07ecee61c4e64594661a}} 
+\index{sg.h@{sg.h}!SG\_GET\_SG\_TABLESIZE@{SG\_GET\_SG\_TABLESIZE}}
+\index{SG\_GET\_SG\_TABLESIZE@{SG\_GET\_SG\_TABLESIZE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_SG\_TABLESIZE}{SG\_GET\_SG\_TABLESIZE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+S\+G\+\_\+\+T\+A\+B\+L\+E\+S\+I\+ZE~0x227\+F  /$\ast$ 0 implies can\textquotesingle{}t do scatter gather $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a551f648805bb7e40aab17c14b754a0eb}\label{sg_8h_a551f648805bb7e40aab17c14b754a0eb}} 
+\index{sg.h@{sg.h}!SG\_GET\_TIMEOUT@{SG\_GET\_TIMEOUT}}
+\index{SG\_GET\_TIMEOUT@{SG\_GET\_TIMEOUT}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_TIMEOUT}{SG\_GET\_TIMEOUT}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+UT~0x2202	/$\ast$ Get timeout; return timeout.  $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a7a3abc6e5acc90a1325d45258003c15c}\label{sg_8h_a7a3abc6e5acc90a1325d45258003c15c}} 
+\index{sg.h@{sg.h}!SG\_GET\_TRANSFORM@{SG\_GET\_TRANSFORM}}
+\index{SG\_GET\_TRANSFORM@{SG\_GET\_TRANSFORM}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_TRANSFORM}{SG\_GET\_TRANSFORM}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+T\+R\+A\+N\+S\+F\+O\+RM~0x2205}
+
+\mbox{\Hypertarget{sg_8h_a20366e42c960758a9fdbc4c1a1585376}\label{sg_8h_a20366e42c960758a9fdbc4c1a1585376}} 
+\index{sg.h@{sg.h}!SG\_GET\_VERSION\_NUM@{SG\_GET\_VERSION\_NUM}}
+\index{SG\_GET\_VERSION\_NUM@{SG\_GET\_VERSION\_NUM}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_GET\_VERSION\_NUM}{SG\_GET\_VERSION\_NUM}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+G\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+N\+UM~0x2282 /$\ast$ Example\+: version 2.\+1.\+34 yields 20134 $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_abd78dcdc16b734fb046f6a595e45fb2d}\label{sg_8h_abd78dcdc16b734fb046f6a595e45fb2d}} 
+\index{sg.h@{sg.h}!SG\_INFO\_CHECK@{SG\_INFO\_CHECK}}
+\index{SG\_INFO\_CHECK@{SG\_INFO\_CHECK}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_CHECK}{SG\_INFO\_CHECK}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+C\+H\+E\+CK~0x1     /$\ast$ something abnormal happened $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a958784c16bd2f4df922f5a695d38647a}\label{sg_8h_a958784c16bd2f4df922f5a695d38647a}} 
+\index{sg.h@{sg.h}!SG\_INFO\_DIRECT\_IO@{SG\_INFO\_DIRECT\_IO}}
+\index{SG\_INFO\_DIRECT\_IO@{SG\_INFO\_DIRECT\_IO}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_DIRECT\_IO}{SG\_INFO\_DIRECT\_IO}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+D\+I\+R\+E\+C\+T\+\_\+\+IO~0x2	/$\ast$ direct I\+O requested and performed $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_aebf13d6b5f43d02acea3b2f4da238a77}\label{sg_8h_aebf13d6b5f43d02acea3b2f4da238a77}} 
+\index{sg.h@{sg.h}!SG\_INFO\_DIRECT\_IO\_MASK@{SG\_INFO\_DIRECT\_IO\_MASK}}
+\index{SG\_INFO\_DIRECT\_IO\_MASK@{SG\_INFO\_DIRECT\_IO\_MASK}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_DIRECT\_IO\_MASK}{SG\_INFO\_DIRECT\_IO\_MASK}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+D\+I\+R\+E\+C\+T\+\_\+\+I\+O\+\_\+\+M\+A\+SK~0x6}
+
+\mbox{\Hypertarget{sg_8h_ab2338fb70e52edf5ad959abc006ce634}\label{sg_8h_ab2338fb70e52edf5ad959abc006ce634}} 
+\index{sg.h@{sg.h}!SG\_INFO\_INDIRECT\_IO@{SG\_INFO\_INDIRECT\_IO}}
+\index{SG\_INFO\_INDIRECT\_IO@{SG\_INFO\_INDIRECT\_IO}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_INDIRECT\_IO}{SG\_INFO\_INDIRECT\_IO}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+I\+N\+D\+I\+R\+E\+C\+T\+\_\+\+IO~0x0	/$\ast$ data xfer via kernel buffers (or no xfer) $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a3d8574e663301dee8db3ef97c1269a2d}\label{sg_8h_a3d8574e663301dee8db3ef97c1269a2d}} 
+\index{sg.h@{sg.h}!SG\_INFO\_MIXED\_IO@{SG\_INFO\_MIXED\_IO}}
+\index{SG\_INFO\_MIXED\_IO@{SG\_INFO\_MIXED\_IO}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_MIXED\_IO}{SG\_INFO\_MIXED\_IO}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+M\+I\+X\+E\+D\+\_\+\+IO~0x4	/$\ast$ part direct, part indirect I\+O $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a45b3e178e645fa0537a44a3ea002a268}\label{sg_8h_a45b3e178e645fa0537a44a3ea002a268}} 
+\index{sg.h@{sg.h}!SG\_INFO\_OK@{SG\_INFO\_OK}}
+\index{SG\_INFO\_OK@{SG\_INFO\_OK}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_OK}{SG\_INFO\_OK}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+OK~0x0	/$\ast$ no sense, host nor driver \char`\"{}noise\char`\"{} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_ae32c757909ae942fbdbb8517be3a2aaf}\label{sg_8h_ae32c757909ae942fbdbb8517be3a2aaf}} 
+\index{sg.h@{sg.h}!SG\_INFO\_OK\_MASK@{SG\_INFO\_OK\_MASK}}
+\index{SG\_INFO\_OK\_MASK@{SG\_INFO\_OK\_MASK}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_INFO\_OK\_MASK}{SG\_INFO\_OK\_MASK}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+I\+N\+F\+O\+\_\+\+O\+K\+\_\+\+M\+A\+SK~0x1}
+
+\mbox{\Hypertarget{sg_8h_ae2e3cdc96eeb266d2aadcf8615bd014f}\label{sg_8h_ae2e3cdc96eeb266d2aadcf8615bd014f}} 
+\index{sg.h@{sg.h}!SG\_IO@{SG\_IO}}
+\index{SG\_IO@{SG\_IO}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_IO}{SG\_IO}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+IO~0x2285   /$\ast$ similar effect as write() followed by read() $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a3cbe55331d0ec401035b81b13533cfdb}\label{sg_8h_a3cbe55331d0ec401035b81b13533cfdb}} 
+\index{sg.h@{sg.h}!SG\_MAX\_QUEUE@{SG\_MAX\_QUEUE}}
+\index{SG\_MAX\_QUEUE@{SG\_MAX\_QUEUE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_MAX\_QUEUE}{SG\_MAX\_QUEUE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+M\+A\+X\+\_\+\+Q\+U\+E\+UE~16}
+
+\mbox{\Hypertarget{sg_8h_ab8704d66b54085d4b5c45f8adb1509d6}\label{sg_8h_ab8704d66b54085d4b5c45f8adb1509d6}} 
+\index{sg.h@{sg.h}!SG\_MAX\_SENSE@{SG\_MAX\_SENSE}}
+\index{SG\_MAX\_SENSE@{SG\_MAX\_SENSE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_MAX\_SENSE}{SG\_MAX\_SENSE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+M\+A\+X\+\_\+\+S\+E\+N\+SE~16   /$\ast$ this only applies \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} the \mbox{\hyperlink{structsg__header}{sg\+\_\+header}} interface $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_abae11679ab95736b9d25f6e7cb84ee2a}\label{sg_8h_abae11679ab95736b9d25f6e7cb84ee2a}} 
+\index{sg.h@{sg.h}!SG\_NEXT\_CMD\_LEN@{SG\_NEXT\_CMD\_LEN}}
+\index{SG\_NEXT\_CMD\_LEN@{SG\_NEXT\_CMD\_LEN}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_NEXT\_CMD\_LEN}{SG\_NEXT\_CMD\_LEN}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+N\+E\+X\+T\+\_\+\+C\+M\+D\+\_\+\+L\+EN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{0x2283  \textcolor{comment}{/* Override SCSI command length with given}}
+\DoxyCodeLine{\textcolor{comment}{                       number on the next write() on this file}}
+\DoxyCodeLine{\textcolor{comment}{                       descriptor.  */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sg_8h_aed41f0a80ded626e24011e0bf7b5302d}\label{sg_8h_aed41f0a80ded626e24011e0bf7b5302d}} 
+\index{sg.h@{sg.h}!SG\_SCATTER\_SZ@{SG\_SCATTER\_SZ}}
+\index{SG\_SCATTER\_SZ@{SG\_SCATTER\_SZ}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SCATTER\_SZ}{SG\_SCATTER\_SZ}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+C\+A\+T\+T\+E\+R\+\_\+\+SZ~(8 $\ast$ 4096)  /$\ast$ \mbox{\hyperlink{x86_2sys_2user_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{P\+A\+G\+E\+\_\+\+S\+I\+ZE}} not available \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} \mbox{\hyperlink{structuser}{user}} $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a7db0ae4b5cd4f1dd1d029666b9e6098b}\label{sg_8h_a7db0ae4b5cd4f1dd1d029666b9e6098b}} 
+\index{sg.h@{sg.h}!SG\_SCSI\_RESET@{SG\_SCSI\_RESET}}
+\index{SG\_SCSI\_RESET@{SG\_SCSI\_RESET}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SCSI\_RESET}{SG\_SCSI\_RESET}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+ET~0x2284}
+
+\mbox{\Hypertarget{sg_8h_af448c9e8f059409148327d4874738df6}\label{sg_8h_af448c9e8f059409148327d4874738df6}} 
+\index{sg.h@{sg.h}!SG\_SCSI\_RESET\_BUS@{SG\_SCSI\_RESET\_BUS}}
+\index{SG\_SCSI\_RESET\_BUS@{SG\_SCSI\_RESET\_BUS}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SCSI\_RESET\_BUS}{SG\_SCSI\_RESET\_BUS}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+B\+US~2}
+
+\mbox{\Hypertarget{sg_8h_a2bd237f3ddd98f5204fd176ef84a6567}\label{sg_8h_a2bd237f3ddd98f5204fd176ef84a6567}} 
+\index{sg.h@{sg.h}!SG\_SCSI\_RESET\_DEVICE@{SG\_SCSI\_RESET\_DEVICE}}
+\index{SG\_SCSI\_RESET\_DEVICE@{SG\_SCSI\_RESET\_DEVICE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SCSI\_RESET\_DEVICE}{SG\_SCSI\_RESET\_DEVICE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+D\+E\+V\+I\+CE~1}
+
+\mbox{\Hypertarget{sg_8h_a3ae3f0b699b07c0c8acbd339cea617b0}\label{sg_8h_a3ae3f0b699b07c0c8acbd339cea617b0}} 
+\index{sg.h@{sg.h}!SG\_SCSI\_RESET\_HOST@{SG\_SCSI\_RESET\_HOST}}
+\index{SG\_SCSI\_RESET\_HOST@{SG\_SCSI\_RESET\_HOST}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SCSI\_RESET\_HOST}{SG\_SCSI\_RESET\_HOST}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+H\+O\+ST~3}
+
+\mbox{\Hypertarget{sg_8h_a8e2958f66c7c9efd8db0c3ec10e3a208}\label{sg_8h_a8e2958f66c7c9efd8db0c3ec10e3a208}} 
+\index{sg.h@{sg.h}!SG\_SCSI\_RESET\_NOTHING@{SG\_SCSI\_RESET\_NOTHING}}
+\index{SG\_SCSI\_RESET\_NOTHING@{SG\_SCSI\_RESET\_NOTHING}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SCSI\_RESET\_NOTHING}{SG\_SCSI\_RESET\_NOTHING}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+C\+S\+I\+\_\+\+R\+E\+S\+E\+T\+\_\+\+N\+O\+T\+H\+I\+NG~0}
+
+\mbox{\Hypertarget{sg_8h_af2db9b9c81cd8809e93f1bfff5d3c4e2}\label{sg_8h_af2db9b9c81cd8809e93f1bfff5d3c4e2}} 
+\index{sg.h@{sg.h}!SG\_SET\_COMMAND\_Q@{SG\_SET\_COMMAND\_Q}}
+\index{SG\_SET\_COMMAND\_Q@{SG\_SET\_COMMAND\_Q}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_COMMAND\_Q}{SG\_SET\_COMMAND\_Q}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+Q~0x2271	/$\ast$ Change queuing state with 0 or 1.  $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a1f6738b7c5a80fb7fec9a8b96ed96516}\label{sg_8h_a1f6738b7c5a80fb7fec9a8b96ed96516}} 
+\index{sg.h@{sg.h}!SG\_SET\_DEBUG@{SG\_SET\_DEBUG}}
+\index{SG\_SET\_DEBUG@{SG\_SET\_DEBUG}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_DEBUG}{SG\_SET\_DEBUG}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+D\+E\+B\+UG~0x227e	/$\ast$ 0 -\/$>$ turn off debug $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a12325eac00ba367d185a1634729295d8}\label{sg_8h_a12325eac00ba367d185a1634729295d8}} 
+\index{sg.h@{sg.h}!SG\_SET\_FORCE\_LOW\_DMA@{SG\_SET\_FORCE\_LOW\_DMA}}
+\index{SG\_SET\_FORCE\_LOW\_DMA@{SG\_SET\_FORCE\_LOW\_DMA}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_FORCE\_LOW\_DMA}{SG\_SET\_FORCE\_LOW\_DMA}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+F\+O\+R\+C\+E\+\_\+\+L\+O\+W\+\_\+\+D\+MA~0x2279  /$\ast$ 0-\/$>$ use adapter setting, 1-\/$>$ force $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_aaa223f7fe4106863dc85845eb5dbdbc8}\label{sg_8h_aaa223f7fe4106863dc85845eb5dbdbc8}} 
+\index{sg.h@{sg.h}!SG\_SET\_FORCE\_PACK\_ID@{SG\_SET\_FORCE\_PACK\_ID}}
+\index{SG\_SET\_FORCE\_PACK\_ID@{SG\_SET\_FORCE\_PACK\_ID}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_FORCE\_PACK\_ID}{SG\_SET\_FORCE\_PACK\_ID}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+F\+O\+R\+C\+E\+\_\+\+P\+A\+C\+K\+\_\+\+ID~0x227b}
+
+\mbox{\Hypertarget{sg_8h_ae769636a7b657b9aaab3650c22194af1}\label{sg_8h_ae769636a7b657b9aaab3650c22194af1}} 
+\index{sg.h@{sg.h}!SG\_SET\_KEEP\_ORPHAN@{SG\_SET\_KEEP\_ORPHAN}}
+\index{SG\_SET\_KEEP\_ORPHAN@{SG\_SET\_KEEP\_ORPHAN}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_KEEP\_ORPHAN}{SG\_SET\_KEEP\_ORPHAN}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+K\+E\+E\+P\+\_\+\+O\+R\+P\+H\+AN~0x2287 /$\ast$ 1 -\/$>$ hold for read(), 0 -\/$>$ drop (def) $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a1e01b262c67c2cb702daefdab8cd8f24}\label{sg_8h_a1e01b262c67c2cb702daefdab8cd8f24}} 
+\index{sg.h@{sg.h}!SG\_SET\_RESERVED\_SIZE@{SG\_SET\_RESERVED\_SIZE}}
+\index{SG\_SET\_RESERVED\_SIZE@{SG\_SET\_RESERVED\_SIZE}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_RESERVED\_SIZE}{SG\_SET\_RESERVED\_SIZE}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE~0x2275  /$\ast$ request a new reserved buffer size $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_a3026b74a2f738200ffa26341f8ad3154}\label{sg_8h_a3026b74a2f738200ffa26341f8ad3154}} 
+\index{sg.h@{sg.h}!SG\_SET\_TIMEOUT@{SG\_SET\_TIMEOUT}}
+\index{SG\_SET\_TIMEOUT@{SG\_SET\_TIMEOUT}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_TIMEOUT}{SG\_SET\_TIMEOUT}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+UT~0x2201	/$\ast$ Set timeout; $\ast$(int $\ast$)arg==timeout.  $\ast$/}
+
+\mbox{\Hypertarget{sg_8h_acbd82164ecad84b8638f63bc47aacbc1}\label{sg_8h_acbd82164ecad84b8638f63bc47aacbc1}} 
+\index{sg.h@{sg.h}!SG\_SET\_TRANSFORM@{SG\_SET\_TRANSFORM}}
+\index{SG\_SET\_TRANSFORM@{SG\_SET\_TRANSFORM}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{SG\_SET\_TRANSFORM}{SG\_SET\_TRANSFORM}}
+{\footnotesize\ttfamily \#define S\+G\+\_\+\+S\+E\+T\+\_\+\+T\+R\+A\+N\+S\+F\+O\+RM~0x2204 /$\ast$ N.\+B. 3rd arg is not pointer but value\+: $\ast$/}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{sg_8h_a3ea73dd364804412875a884612722e78}\label{sg_8h_a3ea73dd364804412875a884612722e78}} 
+\index{sg.h@{sg.h}!Sg\_io\_hdr@{Sg\_io\_hdr}}
+\index{Sg\_io\_hdr@{Sg\_io\_hdr}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{Sg\_io\_hdr}{Sg\_io\_hdr}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsg__io__hdr}{sg\+\_\+io\+\_\+hdr}} \mbox{\hyperlink{sg_8h_a3ea73dd364804412875a884612722e78}{Sg\+\_\+io\+\_\+hdr}}}
+
+\mbox{\Hypertarget{sg_8h_a7407c58b5d96715bbd2f4d80145b1082}\label{sg_8h_a7407c58b5d96715bbd2f4d80145b1082}} 
+\index{sg.h@{sg.h}!sg\_io\_hdr\_t@{sg\_io\_hdr\_t}}
+\index{sg\_io\_hdr\_t@{sg\_io\_hdr\_t}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{sg\_io\_hdr\_t}{sg\_io\_hdr\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsg__io__hdr}{sg\+\_\+io\+\_\+hdr}}  \mbox{\hyperlink{sg_8h_a7407c58b5d96715bbd2f4d80145b1082}{sg\+\_\+io\+\_\+hdr\+\_\+t}}}
+
+\mbox{\Hypertarget{sg_8h_a1d76488807016d87efd144874e800bd9}\label{sg_8h_a1d76488807016d87efd144874e800bd9}} 
+\index{sg.h@{sg.h}!Sg\_io\_vec@{Sg\_io\_vec}}
+\index{Sg\_io\_vec@{Sg\_io\_vec}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{Sg\_io\_vec}{Sg\_io\_vec}}
+{\footnotesize\ttfamily typedef struct sg\+\_\+io\+\_\+vec \mbox{\hyperlink{sg_8h_a1d76488807016d87efd144874e800bd9}{Sg\+\_\+io\+\_\+vec}}}
+
+\mbox{\Hypertarget{sg_8h_ac6a898cb17f5a5f22e5187801c59e405}\label{sg_8h_ac6a898cb17f5a5f22e5187801c59e405}} 
+\index{sg.h@{sg.h}!sg\_iovec\_t@{sg\_iovec\_t}}
+\index{sg\_iovec\_t@{sg\_iovec\_t}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{sg\_iovec\_t}{sg\_iovec\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsg__iovec}{sg\+\_\+iovec}}  \mbox{\hyperlink{sg_8h_ac6a898cb17f5a5f22e5187801c59e405}{sg\+\_\+iovec\+\_\+t}}}
+
+\mbox{\Hypertarget{sg_8h_add54be4235d66e442188679598f47c61}\label{sg_8h_add54be4235d66e442188679598f47c61}} 
+\index{sg.h@{sg.h}!Sg\_req\_info@{Sg\_req\_info}}
+\index{Sg\_req\_info@{Sg\_req\_info}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{Sg\_req\_info}{Sg\_req\_info}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsg__req__info}{sg\+\_\+req\+\_\+info}} \mbox{\hyperlink{sg_8h_add54be4235d66e442188679598f47c61}{Sg\+\_\+req\+\_\+info}}}
+
+\mbox{\Hypertarget{sg_8h_a9135f22577eb2a4073e99b692a4f3b9a}\label{sg_8h_a9135f22577eb2a4073e99b692a4f3b9a}} 
+\index{sg.h@{sg.h}!sg\_req\_info\_t@{sg\_req\_info\_t}}
+\index{sg\_req\_info\_t@{sg\_req\_info\_t}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{sg\_req\_info\_t}{sg\_req\_info\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsg__req__info}{sg\+\_\+req\+\_\+info}}  \mbox{\hyperlink{sg_8h_a9135f22577eb2a4073e99b692a4f3b9a}{sg\+\_\+req\+\_\+info\+\_\+t}}}
+
+\mbox{\Hypertarget{sg_8h_aa98885c74057907d93d43dee7a2ef75e}\label{sg_8h_aa98885c74057907d93d43dee7a2ef75e}} 
+\index{sg.h@{sg.h}!Sg\_scsi\_id@{Sg\_scsi\_id}}
+\index{Sg\_scsi\_id@{Sg\_scsi\_id}!sg.h@{sg.h}}
+\doxysubsubsection{\texorpdfstring{Sg\_scsi\_id}{Sg\_scsi\_id}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsg__scsi__id}{sg\+\_\+scsi\+\_\+id}} \mbox{\hyperlink{sg_8h_aa98885c74057907d93d43dee7a2ef75e}{Sg\+\_\+scsi\+\_\+id}}}
+

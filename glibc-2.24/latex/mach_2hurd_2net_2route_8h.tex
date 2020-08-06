@@ -1,0 +1,465 @@
+\hypertarget{mach_2hurd_2net_2route_8h}{}\doxysection{sysdeps/mach/hurd/net/route.h File Reference}
+\label{mach_2hurd_2net_2route_8h}\index{sysdeps/mach/hurd/net/route.h@{sysdeps/mach/hurd/net/route.h}}
+{\ttfamily \#include $<$features.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtentry}{rtentry}}
+\item 
+struct \mbox{\hyperlink{structin6__rtmsg}{in6\+\_\+rtmsg}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa164342657d56e3783de2c42e1e7adc6}{rt\+\_\+mss}}~rt\+\_\+mtu
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a3ced94f5c7488264357531ad11479031}{R\+T\+F\+\_\+\+UP}}~0x0001		/$\ast$ Route usable.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a3fbffc5cab919bb14ee1569d0d8c4036}{R\+T\+F\+\_\+\+G\+A\+T\+E\+W\+AY}}~0x0002		/$\ast$ Destination is a gateway.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a5aa6d150d2de8be21c10336734edd292}{R\+T\+F\+\_\+\+H\+O\+ST}}~0x0004		/$\ast$ Host entry (net otherwise).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac4796c25c1eb89b520ed58d56dac7b03}{R\+T\+F\+\_\+\+R\+E\+I\+N\+S\+T\+A\+TE}}~0x0008		/$\ast$ Reinstate route after timeout.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a20e773cc94b8a576c0f6759c29634fca}{R\+T\+F\+\_\+\+D\+Y\+N\+A\+M\+IC}}~0x0010		/$\ast$ Created dyn. (by redirect).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a672d404a4add03250f99b83536be039c}{R\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ED}}~0x0020		/$\ast$ Modified dyn. (by redirect).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa2aa6e434f5b14e0f3a73a335c69f52e}{R\+T\+F\+\_\+\+M\+TU}}~0x0040		/$\ast$ Specific M\+T\+U for this route.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a843c4533a2e4e7825de1b708f59ed48b}{R\+T\+F\+\_\+\+M\+SS}}~\mbox{\hyperlink{unix_2sysv_2linux_2net_2route_8h_aa2aa6e434f5b14e0f3a73a335c69f52e}{R\+T\+F\+\_\+\+M\+TU}}		/$\ast$ Compatibility.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_adf0e0cacca508c4427c1d725d2c68c19}{R\+T\+F\+\_\+\+W\+I\+N\+D\+OW}}~0x0080		/$\ast$ Per route window clamping.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a0cffd4c7a0bbb910e271d30d79a9be9a}{R\+T\+F\+\_\+\+I\+R\+TT}}~0x0100		/$\ast$ Initial round trip time.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a89a4c6818c975103d5bc0a32d9a23846}{R\+T\+F\+\_\+\+R\+E\+J\+E\+CT}}~0x0200		/$\ast$ Reject route.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a2d4f53cc8775c7bf6badd86540cb41a9}{R\+T\+F\+\_\+\+S\+T\+A\+T\+IC}}~0x0400		/$\ast$ Manually injected route.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aca3988ec35ac1f94c4338a8770faec9c}{R\+T\+F\+\_\+\+X\+R\+E\+S\+O\+L\+VE}}~0x0800		/$\ast$ External resolver.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_abe67a63287e9dcdf65d46e682d025672}{R\+T\+F\+\_\+\+N\+O\+F\+O\+R\+W\+A\+RD}}~0x1000		/$\ast$ Forwarding inhibited.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa953e393933f4549cc2f262eeb8faaf4}{R\+T\+F\+\_\+\+T\+H\+R\+OW}}~0x2000		/$\ast$ Go to next class.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_acee112756cb087f69984b83dbf69365c}{R\+T\+F\+\_\+\+N\+O\+P\+M\+T\+U\+D\+I\+SC}}~0x4000		/$\ast$ Do not send packets with D\+F.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a9799b97bd6d67d7a8d3f9893882aff15}{R\+T\+F\+\_\+\+D\+E\+F\+A\+U\+LT}}~0x00010000	/$\ast$ default -\/ learned via N\+D	$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa076b4c3d950b35280f290b5ddece8f1}{R\+T\+F\+\_\+\+A\+L\+L\+O\+N\+L\+I\+NK}}~0x00020000	/$\ast$ fallback, no routers on link	$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a03ce6948ff86c9bf4a466d826d452c6a}{R\+T\+F\+\_\+\+A\+D\+D\+R\+C\+O\+NF}}~0x00040000	/$\ast$ addrconf route -\/ R\+A		$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a94043ef0be84a3b58fd2cf586ee082a5}{R\+T\+F\+\_\+\+L\+I\+N\+K\+RT}}~0x00100000	/$\ast$ link specific -\/ device match	$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a30ee17f8d314b644c614a7dff6d8869c}{R\+T\+F\+\_\+\+N\+O\+N\+E\+X\+T\+H\+OP}}~0x00200000	/$\ast$ route with no nexthop	$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a049f2f79dc59a0b02aca35af8a77f9c2}{R\+T\+F\+\_\+\+C\+A\+C\+HE}}~0x01000000	/$\ast$ cache entry			$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a95efdca3451f3a4336696d93380f6103}{R\+T\+F\+\_\+\+F\+L\+OW}}~0x02000000	/$\ast$ flow significant route	$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac97fcb731f9a2cc6a8e1032be627109a}{R\+T\+F\+\_\+\+P\+O\+L\+I\+CY}}~0x04000000	/$\ast$ policy route			$\ast$/
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa9c08a95b9db1429bee130cffa9140d0}{R\+T\+C\+F\+\_\+\+V\+A\+L\+VE}}~0x00200000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_af97de969dd29c72b1f30f796014903ae}{R\+T\+C\+F\+\_\+\+M\+A\+SQ}}~0x00400000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a86623153a97bb4030d4109327f696acc}{R\+T\+C\+F\+\_\+\+N\+AT}}~0x00800000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_af67deec610bb4938c2fd638a45b43327}{R\+T\+C\+F\+\_\+\+D\+O\+R\+E\+D\+I\+R\+E\+CT}}~0x01000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac6ee48c284a4e271b929ad510cabd9f0}{R\+T\+C\+F\+\_\+\+L\+OG}}~0x02000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a54643763b2524e6cb8761a06119c869e}{R\+T\+C\+F\+\_\+\+D\+I\+R\+E\+C\+T\+S\+RC}}~0x04000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ad7290203a8082156d2cf6c0882d7f4d0}{R\+T\+F\+\_\+\+L\+O\+C\+AL}}~0x80000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa8af0bac70b2c020041b64e1ee95e0d9}{R\+T\+F\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE}}~0x40000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac96bfa3ed21f19480b0f110ab83b642b}{R\+T\+F\+\_\+\+M\+U\+L\+T\+I\+C\+A\+ST}}~0x20000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a96857577934187977f35e94eca0b7b93}{R\+T\+F\+\_\+\+B\+R\+O\+A\+D\+C\+A\+ST}}~0x10000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_acaf123f1331b54014117ed0af3c2d487}{R\+T\+F\+\_\+\+N\+AT}}~0x08000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac1e59af02c2f6a357f0dbb785e65e703}{R\+T\+F\+\_\+\+A\+D\+D\+R\+C\+L\+A\+S\+S\+M\+A\+SK}}~0x\+F8000000
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a06f69f0db97851eb579dcea4d0aaac0f}{R\+T\+\_\+\+A\+D\+D\+R\+C\+L\+A\+SS}}(\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}})~((\+\_\+\+\_\+u\+\_\+int32\+\_\+t) \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} $>$$>$ 23)
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a4d1843e0ebf8ebe0e9e5a0c81dfce562}{R\+T\+\_\+\+T\+OS}}(tos)~((tos) \& \mbox{\hyperlink{ip_8h_a4bc64f5f52739a41d25425e2190fa217}{I\+P\+T\+O\+S\+\_\+\+T\+O\+S\+\_\+\+M\+A\+SK}})
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a085d3001f992b6471f847d2111c79dd3}{R\+T\+\_\+\+L\+O\+C\+A\+L\+A\+D\+DR}}(\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}})
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a50e062a7d75cefb42ade5f8efefd0701}{R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+U\+N\+S\+P\+EC}}~0
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ae7eeb7a10007205fe56ec752b5e5b5d7}{R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+D\+E\+F\+A\+U\+LT}}~253
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aace21f0f1408d374ebaf2821b0f7d060}{R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+M\+A\+IN}}~254
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a1a25bc035539167d41a4980fe11577a8}{R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+L\+O\+C\+AL}}~255
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a4d89a26c89d2bc55094c025a3c2e756f}{R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+M\+AX}}~255
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a6b0c582717ca977030f71e1d068abb9b}{R\+T\+M\+S\+G\+\_\+\+A\+CK}}~N\+L\+M\+S\+G\+\_\+\+A\+CK
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa19a1440eaa1225325c07a2f21acb5d9}{R\+T\+M\+S\+G\+\_\+\+O\+V\+E\+R\+R\+UN}}~N\+L\+M\+S\+G\+\_\+\+O\+V\+E\+R\+R\+UN
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a0d91f7fd0dc972c70f28bedcb5391215}{R\+T\+M\+S\+G\+\_\+\+N\+E\+W\+D\+E\+V\+I\+CE}}~0x11
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a4c1db0ab03d9d994cde10df543d0e35a}{R\+T\+M\+S\+G\+\_\+\+D\+E\+L\+D\+E\+V\+I\+CE}}~0x12
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac0af50950b51b2e60a19a5bc8748703e}{R\+T\+M\+S\+G\+\_\+\+N\+E\+W\+R\+O\+U\+TE}}~0x21
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a702addc66d281151ac18f694748d00f2}{R\+T\+M\+S\+G\+\_\+\+D\+E\+L\+R\+O\+U\+TE}}~0x22
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a2215ddc65b65aae791a8865d56bd6845}{R\+T\+M\+S\+G\+\_\+\+N\+E\+W\+R\+U\+LE}}~0x31
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a3c9c392cc4e35f12c51127be713b8684}{R\+T\+M\+S\+G\+\_\+\+D\+E\+L\+R\+U\+LE}}~0x32
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a0a1ab7aba731f207f98219655aec31ec}{R\+T\+M\+S\+G\+\_\+\+C\+O\+N\+T\+R\+OL}}~0x40
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2net_2route_8h_a298d203bb6e474f0abb6808758023c46}{R\+T\+M\+S\+G\+\_\+\+A\+R\+\_\+\+F\+A\+I\+L\+ED}}~0x51	/$\ast$ Address Resolution failed.  $\ast$/
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a06f69f0db97851eb579dcea4d0aaac0f}\label{mach_2hurd_2net_2route_8h_a06f69f0db97851eb579dcea4d0aaac0f}} 
+\index{route.h@{route.h}!RT\_ADDRCLASS@{RT\_ADDRCLASS}}
+\index{RT\_ADDRCLASS@{RT\_ADDRCLASS}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_ADDRCLASS}{RT\_ADDRCLASS}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+A\+D\+D\+R\+C\+L\+A\+SS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} }\end{DoxyParamCaption})~((\+\_\+\+\_\+u\+\_\+int32\+\_\+t) \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} $>$$>$ 23)}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ae7eeb7a10007205fe56ec752b5e5b5d7}\label{mach_2hurd_2net_2route_8h_ae7eeb7a10007205fe56ec752b5e5b5d7}} 
+\index{route.h@{route.h}!RT\_CLASS\_DEFAULT@{RT\_CLASS\_DEFAULT}}
+\index{RT\_CLASS\_DEFAULT@{RT\_CLASS\_DEFAULT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_CLASS\_DEFAULT}{RT\_CLASS\_DEFAULT}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+D\+E\+F\+A\+U\+LT~253}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a1a25bc035539167d41a4980fe11577a8}\label{mach_2hurd_2net_2route_8h_a1a25bc035539167d41a4980fe11577a8}} 
+\index{route.h@{route.h}!RT\_CLASS\_LOCAL@{RT\_CLASS\_LOCAL}}
+\index{RT\_CLASS\_LOCAL@{RT\_CLASS\_LOCAL}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_CLASS\_LOCAL}{RT\_CLASS\_LOCAL}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+L\+O\+C\+AL~255}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aace21f0f1408d374ebaf2821b0f7d060}\label{mach_2hurd_2net_2route_8h_aace21f0f1408d374ebaf2821b0f7d060}} 
+\index{route.h@{route.h}!RT\_CLASS\_MAIN@{RT\_CLASS\_MAIN}}
+\index{RT\_CLASS\_MAIN@{RT\_CLASS\_MAIN}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_CLASS\_MAIN}{RT\_CLASS\_MAIN}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+M\+A\+IN~254}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a4d89a26c89d2bc55094c025a3c2e756f}\label{mach_2hurd_2net_2route_8h_a4d89a26c89d2bc55094c025a3c2e756f}} 
+\index{route.h@{route.h}!RT\_CLASS\_MAX@{RT\_CLASS\_MAX}}
+\index{RT\_CLASS\_MAX@{RT\_CLASS\_MAX}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_CLASS\_MAX}{RT\_CLASS\_MAX}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+M\+AX~255}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a50e062a7d75cefb42ade5f8efefd0701}\label{mach_2hurd_2net_2route_8h_a50e062a7d75cefb42ade5f8efefd0701}} 
+\index{route.h@{route.h}!RT\_CLASS\_UNSPEC@{RT\_CLASS\_UNSPEC}}
+\index{RT\_CLASS\_UNSPEC@{RT\_CLASS\_UNSPEC}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_CLASS\_UNSPEC}{RT\_CLASS\_UNSPEC}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+U\+N\+S\+P\+EC~0}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a085d3001f992b6471f847d2111c79dd3}\label{mach_2hurd_2net_2route_8h_a085d3001f992b6471f847d2111c79dd3}} 
+\index{route.h@{route.h}!RT\_LOCALADDR@{RT\_LOCALADDR}}
+\index{RT\_LOCALADDR@{RT\_LOCALADDR}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_LOCALADDR}{RT\_LOCALADDR}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+L\+O\+C\+A\+L\+A\+D\+DR(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{include_2unistd_8h_aa894e293e2b55edfcc20525fbf577895}{flags}} \& \mbox{\hyperlink{mach_2hurd_2net_2route_8h_ac1e59af02c2f6a357f0dbb785e65e703}{RTF\_ADDRCLASSMASK}}) \(\backslash\)}
+\DoxyCodeLine{                 == (\mbox{\hyperlink{mach_2hurd_2net_2route_8h_ad7290203a8082156d2cf6c0882d7f4d0}{RTF\_LOCAL}}|\mbox{\hyperlink{mach_2hurd_2net_2route_8h_aa8af0bac70b2c020041b64e1ee95e0d9}{RTF\_INTERFACE}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa164342657d56e3783de2c42e1e7adc6}\label{mach_2hurd_2net_2route_8h_aa164342657d56e3783de2c42e1e7adc6}} 
+\index{route.h@{route.h}!rt\_mss@{rt\_mss}}
+\index{rt\_mss@{rt\_mss}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{rt\_mss}{rt\_mss}}
+{\footnotesize\ttfamily \#define rt\+\_\+mss~rt\+\_\+mtu}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a4d1843e0ebf8ebe0e9e5a0c81dfce562}\label{mach_2hurd_2net_2route_8h_a4d1843e0ebf8ebe0e9e5a0c81dfce562}} 
+\index{route.h@{route.h}!RT\_TOS@{RT\_TOS}}
+\index{RT\_TOS@{RT\_TOS}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RT\_TOS}{RT\_TOS}}
+{\footnotesize\ttfamily \#define R\+T\+\_\+\+T\+OS(\begin{DoxyParamCaption}\item[{}]{tos }\end{DoxyParamCaption})~((tos) \& \mbox{\hyperlink{ip_8h_a4bc64f5f52739a41d25425e2190fa217}{I\+P\+T\+O\+S\+\_\+\+T\+O\+S\+\_\+\+M\+A\+SK}})}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a54643763b2524e6cb8761a06119c869e}\label{mach_2hurd_2net_2route_8h_a54643763b2524e6cb8761a06119c869e}} 
+\index{route.h@{route.h}!RTCF\_DIRECTSRC@{RTCF\_DIRECTSRC}}
+\index{RTCF\_DIRECTSRC@{RTCF\_DIRECTSRC}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTCF\_DIRECTSRC}{RTCF\_DIRECTSRC}}
+{\footnotesize\ttfamily \#define R\+T\+C\+F\+\_\+\+D\+I\+R\+E\+C\+T\+S\+RC~0x04000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_af67deec610bb4938c2fd638a45b43327}\label{mach_2hurd_2net_2route_8h_af67deec610bb4938c2fd638a45b43327}} 
+\index{route.h@{route.h}!RTCF\_DOREDIRECT@{RTCF\_DOREDIRECT}}
+\index{RTCF\_DOREDIRECT@{RTCF\_DOREDIRECT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTCF\_DOREDIRECT}{RTCF\_DOREDIRECT}}
+{\footnotesize\ttfamily \#define R\+T\+C\+F\+\_\+\+D\+O\+R\+E\+D\+I\+R\+E\+CT~0x01000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ac6ee48c284a4e271b929ad510cabd9f0}\label{mach_2hurd_2net_2route_8h_ac6ee48c284a4e271b929ad510cabd9f0}} 
+\index{route.h@{route.h}!RTCF\_LOG@{RTCF\_LOG}}
+\index{RTCF\_LOG@{RTCF\_LOG}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTCF\_LOG}{RTCF\_LOG}}
+{\footnotesize\ttfamily \#define R\+T\+C\+F\+\_\+\+L\+OG~0x02000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_af97de969dd29c72b1f30f796014903ae}\label{mach_2hurd_2net_2route_8h_af97de969dd29c72b1f30f796014903ae}} 
+\index{route.h@{route.h}!RTCF\_MASQ@{RTCF\_MASQ}}
+\index{RTCF\_MASQ@{RTCF\_MASQ}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTCF\_MASQ}{RTCF\_MASQ}}
+{\footnotesize\ttfamily \#define R\+T\+C\+F\+\_\+\+M\+A\+SQ~0x00400000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a86623153a97bb4030d4109327f696acc}\label{mach_2hurd_2net_2route_8h_a86623153a97bb4030d4109327f696acc}} 
+\index{route.h@{route.h}!RTCF\_NAT@{RTCF\_NAT}}
+\index{RTCF\_NAT@{RTCF\_NAT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTCF\_NAT}{RTCF\_NAT}}
+{\footnotesize\ttfamily \#define R\+T\+C\+F\+\_\+\+N\+AT~0x00800000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa9c08a95b9db1429bee130cffa9140d0}\label{mach_2hurd_2net_2route_8h_aa9c08a95b9db1429bee130cffa9140d0}} 
+\index{route.h@{route.h}!RTCF\_VALVE@{RTCF\_VALVE}}
+\index{RTCF\_VALVE@{RTCF\_VALVE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTCF\_VALVE}{RTCF\_VALVE}}
+{\footnotesize\ttfamily \#define R\+T\+C\+F\+\_\+\+V\+A\+L\+VE~0x00200000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ac1e59af02c2f6a357f0dbb785e65e703}\label{mach_2hurd_2net_2route_8h_ac1e59af02c2f6a357f0dbb785e65e703}} 
+\index{route.h@{route.h}!RTF\_ADDRCLASSMASK@{RTF\_ADDRCLASSMASK}}
+\index{RTF\_ADDRCLASSMASK@{RTF\_ADDRCLASSMASK}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_ADDRCLASSMASK}{RTF\_ADDRCLASSMASK}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+A\+D\+D\+R\+C\+L\+A\+S\+S\+M\+A\+SK~0x\+F8000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a03ce6948ff86c9bf4a466d826d452c6a}\label{mach_2hurd_2net_2route_8h_a03ce6948ff86c9bf4a466d826d452c6a}} 
+\index{route.h@{route.h}!RTF\_ADDRCONF@{RTF\_ADDRCONF}}
+\index{RTF\_ADDRCONF@{RTF\_ADDRCONF}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_ADDRCONF}{RTF\_ADDRCONF}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+A\+D\+D\+R\+C\+O\+NF~0x00040000	/$\ast$ addrconf route -\/ R\+A		$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa076b4c3d950b35280f290b5ddece8f1}\label{mach_2hurd_2net_2route_8h_aa076b4c3d950b35280f290b5ddece8f1}} 
+\index{route.h@{route.h}!RTF\_ALLONLINK@{RTF\_ALLONLINK}}
+\index{RTF\_ALLONLINK@{RTF\_ALLONLINK}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_ALLONLINK}{RTF\_ALLONLINK}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+A\+L\+L\+O\+N\+L\+I\+NK~0x00020000	/$\ast$ fallback, no routers on link	$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a96857577934187977f35e94eca0b7b93}\label{mach_2hurd_2net_2route_8h_a96857577934187977f35e94eca0b7b93}} 
+\index{route.h@{route.h}!RTF\_BROADCAST@{RTF\_BROADCAST}}
+\index{RTF\_BROADCAST@{RTF\_BROADCAST}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_BROADCAST}{RTF\_BROADCAST}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+B\+R\+O\+A\+D\+C\+A\+ST~0x10000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a049f2f79dc59a0b02aca35af8a77f9c2}\label{mach_2hurd_2net_2route_8h_a049f2f79dc59a0b02aca35af8a77f9c2}} 
+\index{route.h@{route.h}!RTF\_CACHE@{RTF\_CACHE}}
+\index{RTF\_CACHE@{RTF\_CACHE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_CACHE}{RTF\_CACHE}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+C\+A\+C\+HE~0x01000000	/$\ast$ cache entry			$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a9799b97bd6d67d7a8d3f9893882aff15}\label{mach_2hurd_2net_2route_8h_a9799b97bd6d67d7a8d3f9893882aff15}} 
+\index{route.h@{route.h}!RTF\_DEFAULT@{RTF\_DEFAULT}}
+\index{RTF\_DEFAULT@{RTF\_DEFAULT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_DEFAULT}{RTF\_DEFAULT}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+D\+E\+F\+A\+U\+LT~0x00010000	/$\ast$ default -\/ learned via N\+D	$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a20e773cc94b8a576c0f6759c29634fca}\label{mach_2hurd_2net_2route_8h_a20e773cc94b8a576c0f6759c29634fca}} 
+\index{route.h@{route.h}!RTF\_DYNAMIC@{RTF\_DYNAMIC}}
+\index{RTF\_DYNAMIC@{RTF\_DYNAMIC}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_DYNAMIC}{RTF\_DYNAMIC}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+D\+Y\+N\+A\+M\+IC~0x0010		/$\ast$ Created dyn. (by redirect).  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a95efdca3451f3a4336696d93380f6103}\label{mach_2hurd_2net_2route_8h_a95efdca3451f3a4336696d93380f6103}} 
+\index{route.h@{route.h}!RTF\_FLOW@{RTF\_FLOW}}
+\index{RTF\_FLOW@{RTF\_FLOW}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_FLOW}{RTF\_FLOW}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+F\+L\+OW~0x02000000	/$\ast$ flow significant route	$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a3fbffc5cab919bb14ee1569d0d8c4036}\label{mach_2hurd_2net_2route_8h_a3fbffc5cab919bb14ee1569d0d8c4036}} 
+\index{route.h@{route.h}!RTF\_GATEWAY@{RTF\_GATEWAY}}
+\index{RTF\_GATEWAY@{RTF\_GATEWAY}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_GATEWAY}{RTF\_GATEWAY}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+G\+A\+T\+E\+W\+AY~0x0002		/$\ast$ Destination is a gateway.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a5aa6d150d2de8be21c10336734edd292}\label{mach_2hurd_2net_2route_8h_a5aa6d150d2de8be21c10336734edd292}} 
+\index{route.h@{route.h}!RTF\_HOST@{RTF\_HOST}}
+\index{RTF\_HOST@{RTF\_HOST}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_HOST}{RTF\_HOST}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+H\+O\+ST~0x0004		/$\ast$ Host entry (net otherwise).  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa8af0bac70b2c020041b64e1ee95e0d9}\label{mach_2hurd_2net_2route_8h_aa8af0bac70b2c020041b64e1ee95e0d9}} 
+\index{route.h@{route.h}!RTF\_INTERFACE@{RTF\_INTERFACE}}
+\index{RTF\_INTERFACE@{RTF\_INTERFACE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_INTERFACE}{RTF\_INTERFACE}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE~0x40000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a0cffd4c7a0bbb910e271d30d79a9be9a}\label{mach_2hurd_2net_2route_8h_a0cffd4c7a0bbb910e271d30d79a9be9a}} 
+\index{route.h@{route.h}!RTF\_IRTT@{RTF\_IRTT}}
+\index{RTF\_IRTT@{RTF\_IRTT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_IRTT}{RTF\_IRTT}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+I\+R\+TT~0x0100		/$\ast$ Initial round trip time.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a94043ef0be84a3b58fd2cf586ee082a5}\label{mach_2hurd_2net_2route_8h_a94043ef0be84a3b58fd2cf586ee082a5}} 
+\index{route.h@{route.h}!RTF\_LINKRT@{RTF\_LINKRT}}
+\index{RTF\_LINKRT@{RTF\_LINKRT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_LINKRT}{RTF\_LINKRT}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+L\+I\+N\+K\+RT~0x00100000	/$\ast$ link specific -\/ device match	$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ad7290203a8082156d2cf6c0882d7f4d0}\label{mach_2hurd_2net_2route_8h_ad7290203a8082156d2cf6c0882d7f4d0}} 
+\index{route.h@{route.h}!RTF\_LOCAL@{RTF\_LOCAL}}
+\index{RTF\_LOCAL@{RTF\_LOCAL}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_LOCAL}{RTF\_LOCAL}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+L\+O\+C\+AL~0x80000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a672d404a4add03250f99b83536be039c}\label{mach_2hurd_2net_2route_8h_a672d404a4add03250f99b83536be039c}} 
+\index{route.h@{route.h}!RTF\_MODIFIED@{RTF\_MODIFIED}}
+\index{RTF\_MODIFIED@{RTF\_MODIFIED}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_MODIFIED}{RTF\_MODIFIED}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ED~0x0020		/$\ast$ Modified dyn. (by redirect).  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a843c4533a2e4e7825de1b708f59ed48b}\label{mach_2hurd_2net_2route_8h_a843c4533a2e4e7825de1b708f59ed48b}} 
+\index{route.h@{route.h}!RTF\_MSS@{RTF\_MSS}}
+\index{RTF\_MSS@{RTF\_MSS}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_MSS}{RTF\_MSS}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+M\+SS~\mbox{\hyperlink{unix_2sysv_2linux_2net_2route_8h_aa2aa6e434f5b14e0f3a73a335c69f52e}{R\+T\+F\+\_\+\+M\+TU}}		/$\ast$ Compatibility.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa2aa6e434f5b14e0f3a73a335c69f52e}\label{mach_2hurd_2net_2route_8h_aa2aa6e434f5b14e0f3a73a335c69f52e}} 
+\index{route.h@{route.h}!RTF\_MTU@{RTF\_MTU}}
+\index{RTF\_MTU@{RTF\_MTU}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_MTU}{RTF\_MTU}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+M\+TU~0x0040		/$\ast$ Specific M\+T\+U for this route.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ac96bfa3ed21f19480b0f110ab83b642b}\label{mach_2hurd_2net_2route_8h_ac96bfa3ed21f19480b0f110ab83b642b}} 
+\index{route.h@{route.h}!RTF\_MULTICAST@{RTF\_MULTICAST}}
+\index{RTF\_MULTICAST@{RTF\_MULTICAST}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_MULTICAST}{RTF\_MULTICAST}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+M\+U\+L\+T\+I\+C\+A\+ST~0x20000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_acaf123f1331b54014117ed0af3c2d487}\label{mach_2hurd_2net_2route_8h_acaf123f1331b54014117ed0af3c2d487}} 
+\index{route.h@{route.h}!RTF\_NAT@{RTF\_NAT}}
+\index{RTF\_NAT@{RTF\_NAT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_NAT}{RTF\_NAT}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+N\+AT~0x08000000}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_abe67a63287e9dcdf65d46e682d025672}\label{mach_2hurd_2net_2route_8h_abe67a63287e9dcdf65d46e682d025672}} 
+\index{route.h@{route.h}!RTF\_NOFORWARD@{RTF\_NOFORWARD}}
+\index{RTF\_NOFORWARD@{RTF\_NOFORWARD}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_NOFORWARD}{RTF\_NOFORWARD}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+N\+O\+F\+O\+R\+W\+A\+RD~0x1000		/$\ast$ Forwarding inhibited.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a30ee17f8d314b644c614a7dff6d8869c}\label{mach_2hurd_2net_2route_8h_a30ee17f8d314b644c614a7dff6d8869c}} 
+\index{route.h@{route.h}!RTF\_NONEXTHOP@{RTF\_NONEXTHOP}}
+\index{RTF\_NONEXTHOP@{RTF\_NONEXTHOP}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_NONEXTHOP}{RTF\_NONEXTHOP}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+N\+O\+N\+E\+X\+T\+H\+OP~0x00200000	/$\ast$ route with no nexthop	$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_acee112756cb087f69984b83dbf69365c}\label{mach_2hurd_2net_2route_8h_acee112756cb087f69984b83dbf69365c}} 
+\index{route.h@{route.h}!RTF\_NOPMTUDISC@{RTF\_NOPMTUDISC}}
+\index{RTF\_NOPMTUDISC@{RTF\_NOPMTUDISC}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_NOPMTUDISC}{RTF\_NOPMTUDISC}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+N\+O\+P\+M\+T\+U\+D\+I\+SC~0x4000		/$\ast$ Do not send packets with D\+F.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ac97fcb731f9a2cc6a8e1032be627109a}\label{mach_2hurd_2net_2route_8h_ac97fcb731f9a2cc6a8e1032be627109a}} 
+\index{route.h@{route.h}!RTF\_POLICY@{RTF\_POLICY}}
+\index{RTF\_POLICY@{RTF\_POLICY}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_POLICY}{RTF\_POLICY}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+P\+O\+L\+I\+CY~0x04000000	/$\ast$ policy route			$\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ac4796c25c1eb89b520ed58d56dac7b03}\label{mach_2hurd_2net_2route_8h_ac4796c25c1eb89b520ed58d56dac7b03}} 
+\index{route.h@{route.h}!RTF\_REINSTATE@{RTF\_REINSTATE}}
+\index{RTF\_REINSTATE@{RTF\_REINSTATE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_REINSTATE}{RTF\_REINSTATE}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+R\+E\+I\+N\+S\+T\+A\+TE~0x0008		/$\ast$ Reinstate route after timeout.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a89a4c6818c975103d5bc0a32d9a23846}\label{mach_2hurd_2net_2route_8h_a89a4c6818c975103d5bc0a32d9a23846}} 
+\index{route.h@{route.h}!RTF\_REJECT@{RTF\_REJECT}}
+\index{RTF\_REJECT@{RTF\_REJECT}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_REJECT}{RTF\_REJECT}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+R\+E\+J\+E\+CT~0x0200		/$\ast$ Reject route.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a2d4f53cc8775c7bf6badd86540cb41a9}\label{mach_2hurd_2net_2route_8h_a2d4f53cc8775c7bf6badd86540cb41a9}} 
+\index{route.h@{route.h}!RTF\_STATIC@{RTF\_STATIC}}
+\index{RTF\_STATIC@{RTF\_STATIC}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_STATIC}{RTF\_STATIC}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+S\+T\+A\+T\+IC~0x0400		/$\ast$ Manually injected route.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa953e393933f4549cc2f262eeb8faaf4}\label{mach_2hurd_2net_2route_8h_aa953e393933f4549cc2f262eeb8faaf4}} 
+\index{route.h@{route.h}!RTF\_THROW@{RTF\_THROW}}
+\index{RTF\_THROW@{RTF\_THROW}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_THROW}{RTF\_THROW}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+T\+H\+R\+OW~0x2000		/$\ast$ Go to next class.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a3ced94f5c7488264357531ad11479031}\label{mach_2hurd_2net_2route_8h_a3ced94f5c7488264357531ad11479031}} 
+\index{route.h@{route.h}!RTF\_UP@{RTF\_UP}}
+\index{RTF\_UP@{RTF\_UP}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_UP}{RTF\_UP}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+UP~0x0001		/$\ast$ Route usable.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_adf0e0cacca508c4427c1d725d2c68c19}\label{mach_2hurd_2net_2route_8h_adf0e0cacca508c4427c1d725d2c68c19}} 
+\index{route.h@{route.h}!RTF\_WINDOW@{RTF\_WINDOW}}
+\index{RTF\_WINDOW@{RTF\_WINDOW}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_WINDOW}{RTF\_WINDOW}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+W\+I\+N\+D\+OW~0x0080		/$\ast$ Per route window clamping.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aca3988ec35ac1f94c4338a8770faec9c}\label{mach_2hurd_2net_2route_8h_aca3988ec35ac1f94c4338a8770faec9c}} 
+\index{route.h@{route.h}!RTF\_XRESOLVE@{RTF\_XRESOLVE}}
+\index{RTF\_XRESOLVE@{RTF\_XRESOLVE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTF\_XRESOLVE}{RTF\_XRESOLVE}}
+{\footnotesize\ttfamily \#define R\+T\+F\+\_\+\+X\+R\+E\+S\+O\+L\+VE~0x0800		/$\ast$ External resolver.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a6b0c582717ca977030f71e1d068abb9b}\label{mach_2hurd_2net_2route_8h_a6b0c582717ca977030f71e1d068abb9b}} 
+\index{route.h@{route.h}!RTMSG\_ACK@{RTMSG\_ACK}}
+\index{RTMSG\_ACK@{RTMSG\_ACK}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_ACK}{RTMSG\_ACK}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+A\+CK~N\+L\+M\+S\+G\+\_\+\+A\+CK}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a298d203bb6e474f0abb6808758023c46}\label{mach_2hurd_2net_2route_8h_a298d203bb6e474f0abb6808758023c46}} 
+\index{route.h@{route.h}!RTMSG\_AR\_FAILED@{RTMSG\_AR\_FAILED}}
+\index{RTMSG\_AR\_FAILED@{RTMSG\_AR\_FAILED}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_AR\_FAILED}{RTMSG\_AR\_FAILED}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+A\+R\+\_\+\+F\+A\+I\+L\+ED~0x51	/$\ast$ Address Resolution failed.  $\ast$/}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a0a1ab7aba731f207f98219655aec31ec}\label{mach_2hurd_2net_2route_8h_a0a1ab7aba731f207f98219655aec31ec}} 
+\index{route.h@{route.h}!RTMSG\_CONTROL@{RTMSG\_CONTROL}}
+\index{RTMSG\_CONTROL@{RTMSG\_CONTROL}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_CONTROL}{RTMSG\_CONTROL}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+C\+O\+N\+T\+R\+OL~0x40}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a4c1db0ab03d9d994cde10df543d0e35a}\label{mach_2hurd_2net_2route_8h_a4c1db0ab03d9d994cde10df543d0e35a}} 
+\index{route.h@{route.h}!RTMSG\_DELDEVICE@{RTMSG\_DELDEVICE}}
+\index{RTMSG\_DELDEVICE@{RTMSG\_DELDEVICE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_DELDEVICE}{RTMSG\_DELDEVICE}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+D\+E\+L\+D\+E\+V\+I\+CE~0x12}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a702addc66d281151ac18f694748d00f2}\label{mach_2hurd_2net_2route_8h_a702addc66d281151ac18f694748d00f2}} 
+\index{route.h@{route.h}!RTMSG\_DELROUTE@{RTMSG\_DELROUTE}}
+\index{RTMSG\_DELROUTE@{RTMSG\_DELROUTE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_DELROUTE}{RTMSG\_DELROUTE}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+D\+E\+L\+R\+O\+U\+TE~0x22}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a3c9c392cc4e35f12c51127be713b8684}\label{mach_2hurd_2net_2route_8h_a3c9c392cc4e35f12c51127be713b8684}} 
+\index{route.h@{route.h}!RTMSG\_DELRULE@{RTMSG\_DELRULE}}
+\index{RTMSG\_DELRULE@{RTMSG\_DELRULE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_DELRULE}{RTMSG\_DELRULE}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+D\+E\+L\+R\+U\+LE~0x32}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a0d91f7fd0dc972c70f28bedcb5391215}\label{mach_2hurd_2net_2route_8h_a0d91f7fd0dc972c70f28bedcb5391215}} 
+\index{route.h@{route.h}!RTMSG\_NEWDEVICE@{RTMSG\_NEWDEVICE}}
+\index{RTMSG\_NEWDEVICE@{RTMSG\_NEWDEVICE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_NEWDEVICE}{RTMSG\_NEWDEVICE}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+N\+E\+W\+D\+E\+V\+I\+CE~0x11}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_ac0af50950b51b2e60a19a5bc8748703e}\label{mach_2hurd_2net_2route_8h_ac0af50950b51b2e60a19a5bc8748703e}} 
+\index{route.h@{route.h}!RTMSG\_NEWROUTE@{RTMSG\_NEWROUTE}}
+\index{RTMSG\_NEWROUTE@{RTMSG\_NEWROUTE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_NEWROUTE}{RTMSG\_NEWROUTE}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+N\+E\+W\+R\+O\+U\+TE~0x21}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_a2215ddc65b65aae791a8865d56bd6845}\label{mach_2hurd_2net_2route_8h_a2215ddc65b65aae791a8865d56bd6845}} 
+\index{route.h@{route.h}!RTMSG\_NEWRULE@{RTMSG\_NEWRULE}}
+\index{RTMSG\_NEWRULE@{RTMSG\_NEWRULE}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_NEWRULE}{RTMSG\_NEWRULE}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+N\+E\+W\+R\+U\+LE~0x31}
+
+\mbox{\Hypertarget{mach_2hurd_2net_2route_8h_aa19a1440eaa1225325c07a2f21acb5d9}\label{mach_2hurd_2net_2route_8h_aa19a1440eaa1225325c07a2f21acb5d9}} 
+\index{route.h@{route.h}!RTMSG\_OVERRUN@{RTMSG\_OVERRUN}}
+\index{RTMSG\_OVERRUN@{RTMSG\_OVERRUN}!route.h@{route.h}}
+\doxysubsubsection{\texorpdfstring{RTMSG\_OVERRUN}{RTMSG\_OVERRUN}}
+{\footnotesize\ttfamily \#define R\+T\+M\+S\+G\+\_\+\+O\+V\+E\+R\+R\+UN~N\+L\+M\+S\+G\+\_\+\+O\+V\+E\+R\+R\+UN}
+

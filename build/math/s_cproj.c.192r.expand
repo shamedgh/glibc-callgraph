@@ -1,0 +1,201 @@
+
+;; Function __cproj (__cproj, funcdef_no=77, decl_uid=1917, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+Purged non-fallthru edges from bb 10
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 5->7 redirected to 8
+Forwarding edge 5->6 to 4 failed.
+Forwarding edge 5->6 to 4 failed.
+deleting block 7
+Removing jump 46.
+Merging block 10 into block 9...
+Merged blocks 9 and 10.
+Merged 9 and 10 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 4 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 13 NOTE_INSN_DELETED)
+(note 13 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 13 3 2 (set (reg:DF 103)
+        (reg:DF 21 xmm0 [ x ])) s_cproj.c:27 -1
+     (nil))
+(insn 3 2 4 2 (set (reg:DF 104)
+        (reg:DF 22 xmm1 [ x+8 ])) s_cproj.c:27 -1
+     (nil))
+(insn 4 3 5 2 (set (reg:DF 101)
+        (reg:DF 103)) s_cproj.c:27 -1
+     (nil))
+(insn 5 4 6 2 (set (reg:DF 102)
+        (reg:DF 104)) s_cproj.c:27 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:DF 99 [ x ])
+        (reg:DF 101)) s_cproj.c:27 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/v:DF 100 [ x+8 ])
+        (reg:DF 102)) s_cproj.c:27 -1
+     (nil))
+(note 8 7 15 2 NOTE_INSN_FUNCTION_BEG)
+(insn 15 8 16 2 (set (reg:V2DF 106)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) s_cproj.c:28 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 16 15 17 2 (parallel [
+            (set (reg:DF 105 [ D.5672 ])
+                (abs:DF (reg/v:DF 99 [ x ])))
+            (use (reg:V2DF 106))
+            (clobber (reg:CC 17 flags))
+        ]) s_cproj.c:28 -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 99 [ x ]))
+        (nil)))
+(insn 17 16 18 2 (set (reg:DF 107)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [1  S8 A64])) s_cproj.c:28 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.79769313486231570814527423731704356798070567525845e+308 [0x0.fffffffffffff8p+1024])
+        (nil)))
+(insn 18 17 19 2 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 105 [ D.5672 ])
+            (reg:DF 107))) s_cproj.c:28 -1
+     (nil))
+(jump_insn 19 18 29 2 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) s_cproj.c:28 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 27)
+(code_label 29 19 20 4 4 "" [1 uses])
+(note 20 29 21 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 4 (set (reg:V2DF 108)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [1  S16 A128])) ../sysdeps/generic/math_private.h:233 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF -0.0 [-0x0.0p+0])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 22 21 23 4 (set (reg:DF 95 [ D.5672 ])
+        (unspec:DF [
+                (const_vector:V2DF [
+                        (const_double:DF 0.0 [0x0.0p+0])
+                        (const_double:DF 0.0 [0x0.0p+0])
+                    ])
+                (reg/v:DF 100 [ x+8 ])
+                (reg:V2DF 108)
+            ] UNSPEC_COPYSIGN)) ../sysdeps/generic/math_private.h:233 -1
+     (nil))
+(insn 23 22 24 4 (set (reg/v:DF 93 [ res ])
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [1  S8 A64])) s_cproj.c:33 -1
+     (expr_list:REG_EQUAL (const_double:DF +Inf [+Inf])
+        (nil)))
+(insn 24 23 9 4 (set (reg/v:DF 94 [ res+8 ])
+        (reg:DF 95 [ D.5672 ])) s_cproj.c:33 -1
+     (nil))
+(insn 9 24 10 4 (set (reg:DF 87 [ D.5671 ])
+        (reg/v:DF 93 [ res ])) s_cproj.c:35 -1
+     (nil))
+(insn 10 9 25 4 (set (reg:DF 88 [ D.5671+8 ])
+        (reg/v:DF 94 [ res+8 ])) s_cproj.c:35 -1
+     (nil))
+(jump_insn 25 10 26 4 (set (pc)
+        (label_ref 38)) s_cproj.c:35 -1
+     (nil)
+ -> 38)
+(barrier 26 25 27)
+(code_label 27 26 28 5 2 "" [1 uses])
+(note 28 27 30 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 30 28 31 5 (set (reg:V2DF 110)
+        (mem/u/c:V2DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [1  S16 A128])) s_cproj.c:28 -1
+     (expr_list:REG_EQUAL (const_vector:V2DF [
+                (const_double:DF +QNaN [+QNaN])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])
+        (nil)))
+(insn 31 30 32 5 (parallel [
+            (set (reg:DF 109 [ D.5672 ])
+                (abs:DF (reg/v:DF 100 [ x+8 ])))
+            (use (reg:V2DF 110))
+            (clobber (reg:CC 17 flags))
+        ]) s_cproj.c:28 -1
+     (expr_list:REG_EQUAL (abs:DF (reg/v:DF 100 [ x+8 ]))
+        (nil)))
+(insn 32 31 33 5 (set (reg:DF 111)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [1  S8 A64])) s_cproj.c:28 -1
+     (expr_list:REG_EQUAL (const_double:DF 1.79769313486231570814527423731704356798070567525845e+308 [0x0.fffffffffffff8p+1024])
+        (nil)))
+(insn 33 32 34 5 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:DF 109 [ D.5672 ])
+            (reg:DF 111))) s_cproj.c:28 -1
+     (nil))
+(jump_insn 34 33 55 5 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 57)
+            (pc))) s_cproj.c:28 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 57)
+(note 55 34 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 35 55 36 6 (set (pc)
+        (label_ref 29)) s_cproj.c:28 -1
+     (nil)
+ -> 29)
+(barrier 36 35 57)
+(code_label 57 36 54 8 6 "" [1 uses])
+(note 54 57 11 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 11 54 12 8 (set (reg:DF 87 [ D.5671 ])
+        (reg/v:DF 99 [ x ])) s_cproj.c:38 -1
+     (nil))
+(insn 12 11 38 8 (set (reg:DF 88 [ D.5671+8 ])
+        (reg/v:DF 100 [ x+8 ])) s_cproj.c:38 -1
+     (nil))
+(code_label 38 12 39 9 3 "" [1 uses])
+(note 39 38 40 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 9 (set (reg:DF 114)
+        (reg:DF 87 [ D.5671 ])) -1
+     (nil))
+(insn 41 40 42 9 (set (reg:DF 115)
+        (reg:DF 88 [ D.5671+8 ])) -1
+     (nil))
+(insn 42 41 43 9 (set (reg:DF 116)
+        (reg:DF 87 [ D.5671 ])) -1
+     (nil))
+(insn 43 42 44 9 (set (reg:DF 117)
+        (reg:DF 88 [ D.5671+8 ])) -1
+     (nil))
+(insn 44 43 45 9 (set (reg:DF 97 [ <retval> ])
+        (reg:DF 114)) -1
+     (nil))
+(insn 45 44 49 9 (set (reg:DF 98 [ <retval>+8 ])
+        (reg:DF 117)) -1
+     (nil))
+(insn 49 45 50 9 (set (reg:DF 21 xmm0)
+        (reg:DF 97 [ <retval> ])) s_cproj.c:39 -1
+     (nil))
+(insn 50 49 51 9 (set (reg:DF 22 xmm1)
+        (reg:DF 98 [ <retval>+8 ])) s_cproj.c:39 -1
+     (nil))
+(insn 51 50 52 9 (use (reg:DF 21 xmm0)) s_cproj.c:39 -1
+     (nil))
+(insn 52 51 0 9 (use (reg:DF 22 xmm1)) s_cproj.c:39 -1
+     (nil))

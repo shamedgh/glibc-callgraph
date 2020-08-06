@@ -1,0 +1,412 @@
+\hypertarget{zdump_8c}{}\doxysection{timezone/zdump.c File Reference}
+\label{zdump_8c}\index{timezone/zdump.c@{timezone/zdump.c}}
+{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stdio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sys/types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}time.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stdlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}limits.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a12b2f6a03d9e9d271521f495829d2c09}{N\+E\+T\+B\+S\+D\+\_\+\+I\+N\+S\+P\+I\+R\+ED}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_abe14a941c5344b3b3151357f592fba07}{U\+S\+E\+\_\+\+L\+TZ}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_ab27cf1abd092548f1c51632e6ae35a37}{\+\_\+\+\_\+\+E\+X\+T\+E\+N\+S\+I\+O\+N\+S\+\_\+\+\_\+}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a9998e788d1738e06ada9064cea53af2e}{H\+A\+V\+E\+\_\+\+L\+O\+C\+A\+L\+T\+I\+M\+E\+\_\+R}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a5304d65117f6f5a843441c887645048a}{H\+A\+V\+E\+\_\+\+L\+O\+C\+A\+L\+T\+I\+M\+E\+\_\+\+RZ}}~0
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a25e9b8755c2164550abe5f2b4b336af9}{H\+A\+V\+E\+\_\+\+T\+Z\+S\+ET}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_ab2b4e73a2a6a0976d26c481041476d85}{Z\+D\+U\+M\+P\+\_\+\+L\+O\+\_\+\+Y\+E\+AR}}~(-\/500)
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a483076bd5487ea5f91d400007db73621}{Z\+D\+U\+M\+P\+\_\+\+H\+I\+\_\+\+Y\+E\+AR}}~2500
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a6789ebc0df71a8ef76bfbb4fb5f74aad}{M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH}}~1024
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a65e9886d74aaee76545e83dd09011727}{false}}~0
+\item 
+\#define \mbox{\hyperlink{zdump_8c_abb452686968e48b67397da5f97445f5b}{bool}}~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a687984f47d8cce148d1b914d2b79612a}{E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS}}~0
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a73efe787c131b385070f25d18b7c9aa4}{E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE}}~1
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a4fbe1b6bbb5e5f3ff7300e9ea9991f36}{S\+E\+C\+S\+P\+E\+R\+M\+IN}}~60
+\item 
+\#define \mbox{\hyperlink{zdump_8c_ab86ce8e9674b0f354c5491b71148a867}{M\+I\+N\+S\+P\+E\+R\+H\+O\+UR}}~60
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a235e72e63a254ecde04f29148b3333fb}{S\+E\+C\+S\+P\+E\+R\+H\+O\+UR}}~(\mbox{\hyperlink{zdump_8c_a4fbe1b6bbb5e5f3ff7300e9ea9991f36}{S\+E\+C\+S\+P\+E\+R\+M\+IN}} $\ast$ \mbox{\hyperlink{zdump_8c_ab86ce8e9674b0f354c5491b71148a867}{M\+I\+N\+S\+P\+E\+R\+H\+O\+UR}})
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a77e3c323dfbddadb30abe56bc5395f91}{H\+O\+U\+R\+S\+P\+E\+R\+D\+AY}}~24
+\item 
+\#define \mbox{\hyperlink{zdump_8c_aa0e47af385cda59b56c1ba71dee795d8}{E\+P\+O\+C\+H\+\_\+\+Y\+E\+AR}}~1970
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a0b24352233a7c91b5e627d2a26ffefb3}{T\+M\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+A\+SE}}~1900
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a2c13c5660e97dc3fc82bc43cd752178a}{D\+A\+Y\+S\+P\+E\+R\+N\+Y\+E\+AR}}~365
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a97fbbe36f8a1d1eea637360d903e1986}{isleap}}(\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}})~(((\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) \% 4) == 0 \&\& (((\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) \% 100) != 0 $\vert$$\vert$ ((\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) \% 400) == 0))
+\item 
+\#define \mbox{\hyperlink{zdump_8c_aae3e399339d37a6c4a1fac57e5779ca0}{isleap\+\_\+sum}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})~\mbox{\hyperlink{zdump_8c_a97fbbe36f8a1d1eea637360d903e1986}{isleap}}((\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}}) \% 400 + (\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}) \% 400)
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}{S\+E\+C\+S\+P\+E\+R\+D\+AY}}~((\mbox{\hyperlink{stdint_8h_a9db34f43e43298cb4db12999aec7c4be}{int\+\_\+fast32\+\_\+t}}) \mbox{\hyperlink{zdump_8c_a235e72e63a254ecde04f29148b3333fb}{S\+E\+C\+S\+P\+E\+R\+H\+O\+UR}} $\ast$ \mbox{\hyperlink{zdump_8c_a77e3c323dfbddadb30abe56bc5395f91}{H\+O\+U\+R\+S\+P\+E\+R\+D\+AY}})
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a712201b353a6c1a29cc85cf66b0abb37}{S\+E\+C\+S\+P\+E\+R\+N\+Y\+E\+AR}}~(\mbox{\hyperlink{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}{S\+E\+C\+S\+P\+E\+R\+D\+AY}} $\ast$ \mbox{\hyperlink{zdump_8c_a2c13c5660e97dc3fc82bc43cd752178a}{D\+A\+Y\+S\+P\+E\+R\+N\+Y\+E\+AR}})
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a4f6f0329c10cc7eb21e14e997af4607a}{S\+E\+C\+S\+P\+E\+R\+L\+Y\+E\+AR}}~(\mbox{\hyperlink{zdump_8c_a712201b353a6c1a29cc85cf66b0abb37}{S\+E\+C\+S\+P\+E\+R\+N\+Y\+E\+AR}} + \mbox{\hyperlink{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}{S\+E\+C\+S\+P\+E\+R\+D\+AY}})
+\item 
+\#define \mbox{\hyperlink{zdump_8c_ac1f6ee60af67855f083e3a85e6924827}{S\+E\+C\+S\+P\+E\+R400\+Y\+E\+A\+RS}}
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a063d99576e40e396cd73eedc079a2bf1}{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+P\+U\+RE}}~/$\ast$ empty $\ast$/
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a9fa72e909ddb8bfd6d18f91219a5f56c}{timezone\+\_\+t}}~char $\ast$$\ast$
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a2eb96152a52d739e41d16c53a2e419f3}{is\+\_\+digit}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}})~((unsigned)(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}) -\/ \textquotesingle{}0\textquotesingle{} $<$= 9)
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a21e3c70eac24a763b2d2f59104fe4034}{U\+S\+E\+\_\+\+L\+O\+C\+A\+L\+T\+I\+M\+E\+\_\+\+RZ}}~\mbox{\hyperlink{zdump_8c_a65e9886d74aaee76545e83dd09011727}{false}}
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a9e7c6104cccbed67c8f0fd510cd5c099}{localtime\+\_\+r}}~zdump\+\_\+localtime\+\_\+r
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a7aa205e01c3fdb2bff43c38e8dc622c6}{localtime\+\_\+rz}}~zdump\+\_\+localtime\+\_\+rz
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a9d1301c78d3e971b6220b6ecbe1a1f03}{tzalloc}}~zdump\+\_\+tzalloc
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a868629e27014736b3cd98bb82e770a94}{tzfree}}~zdump\+\_\+tzfree
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a283288a96aed56dbe0f9acdde6d0b13c}{my\+\_\+localtime\+\_\+rz}}~\mbox{\hyperlink{private_8h_a7bd0c77dd142cd409fe45fe7f0e134fd}{localtime\+\_\+rz}}
+\item 
+\#define \mbox{\hyperlink{zdump_8c_a536c57b2e2dab1658020baee5f963a3d}{D\+I\+V\+I\+S\+OR}}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum 
+\item 
+enum \{ \mbox{\hyperlink{zdump_8c_a2f77126ae0e6574a34ec005d56d2b822a1888e35caf09ad6a658408dc1a2eb509}{atime\+\_\+shift}} = C\+H\+A\+R\+\_\+\+B\+IT $\ast$ sizeof (time\+\_\+t) -\/ 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zdump_8c_aaf2ceae0460295ed1468985b7423368a}{getopt}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} argv\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zdump_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$$\ast$ \mbox{\hyperlink{zdump_8c_aa006daaf11f1e2e45a6ababaf463212b}{environ}}
+\item 
+char $\ast$ \mbox{\hyperlink{zdump_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}{optarg}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zdump_8c_ad5e1c16213bbee2d5e8cc363309f418c}{optind}}
+\item 
+char $\ast$ \mbox{\hyperlink{zdump_8c_a3df06a4a69fb12167cf9e251ff58c32e}{tzname}} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{zdump_8c_ab27cf1abd092548f1c51632e6ae35a37}\label{zdump_8c_ab27cf1abd092548f1c51632e6ae35a37}} 
+\index{zdump.c@{zdump.c}!\_\_EXTENSIONS\_\_@{\_\_EXTENSIONS\_\_}}
+\index{\_\_EXTENSIONS\_\_@{\_\_EXTENSIONS\_\_}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{\_\_EXTENSIONS\_\_}{\_\_EXTENSIONS\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+E\+X\+T\+E\+N\+S\+I\+O\+N\+S\+\_\+\+\_\+~1}
+
+\mbox{\Hypertarget{zdump_8c_a369266c24eacffb87046522897a570d5}\label{zdump_8c_a369266c24eacffb87046522897a570d5}} 
+\index{zdump.c@{zdump.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE~1}
+
+\mbox{\Hypertarget{zdump_8c_a063d99576e40e396cd73eedc079a2bf1}\label{zdump_8c_a063d99576e40e396cd73eedc079a2bf1}} 
+\index{zdump.c@{zdump.c}!ATTRIBUTE\_PURE@{ATTRIBUTE\_PURE}}
+\index{ATTRIBUTE\_PURE@{ATTRIBUTE\_PURE}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{ATTRIBUTE\_PURE}{ATTRIBUTE\_PURE}}
+{\footnotesize\ttfamily \#define A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+P\+U\+RE~/$\ast$ empty $\ast$/}
+
+\mbox{\Hypertarget{zdump_8c_abb452686968e48b67397da5f97445f5b}\label{zdump_8c_abb452686968e48b67397da5f97445f5b}} 
+\index{zdump.c@{zdump.c}!bool@{bool}}
+\index{bool@{bool}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily \#define bool~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}
+
+\mbox{\Hypertarget{zdump_8c_a2c13c5660e97dc3fc82bc43cd752178a}\label{zdump_8c_a2c13c5660e97dc3fc82bc43cd752178a}} 
+\index{zdump.c@{zdump.c}!DAYSPERNYEAR@{DAYSPERNYEAR}}
+\index{DAYSPERNYEAR@{DAYSPERNYEAR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{DAYSPERNYEAR}{DAYSPERNYEAR}}
+{\footnotesize\ttfamily \#define D\+A\+Y\+S\+P\+E\+R\+N\+Y\+E\+AR~365}
+
+\mbox{\Hypertarget{zdump_8c_a536c57b2e2dab1658020baee5f963a3d}\label{zdump_8c_a536c57b2e2dab1658020baee5f963a3d}} 
+\index{zdump.c@{zdump.c}!DIVISOR@{DIVISOR}}
+\index{DIVISOR@{DIVISOR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{DIVISOR}{DIVISOR}}
+{\footnotesize\ttfamily \#define D\+I\+V\+I\+S\+OR~10}
+
+\mbox{\Hypertarget{zdump_8c_aa0e47af385cda59b56c1ba71dee795d8}\label{zdump_8c_aa0e47af385cda59b56c1ba71dee795d8}} 
+\index{zdump.c@{zdump.c}!EPOCH\_YEAR@{EPOCH\_YEAR}}
+\index{EPOCH\_YEAR@{EPOCH\_YEAR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{EPOCH\_YEAR}{EPOCH\_YEAR}}
+{\footnotesize\ttfamily \#define E\+P\+O\+C\+H\+\_\+\+Y\+E\+AR~1970}
+
+\mbox{\Hypertarget{zdump_8c_a73efe787c131b385070f25d18b7c9aa4}\label{zdump_8c_a73efe787c131b385070f25d18b7c9aa4}} 
+\index{zdump.c@{zdump.c}!EXIT\_FAILURE@{EXIT\_FAILURE}}
+\index{EXIT\_FAILURE@{EXIT\_FAILURE}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{EXIT\_FAILURE}{EXIT\_FAILURE}}
+{\footnotesize\ttfamily \#define E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE~1}
+
+\mbox{\Hypertarget{zdump_8c_a687984f47d8cce148d1b914d2b79612a}\label{zdump_8c_a687984f47d8cce148d1b914d2b79612a}} 
+\index{zdump.c@{zdump.c}!EXIT\_SUCCESS@{EXIT\_SUCCESS}}
+\index{EXIT\_SUCCESS@{EXIT\_SUCCESS}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{EXIT\_SUCCESS}{EXIT\_SUCCESS}}
+{\footnotesize\ttfamily \#define E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS~0}
+
+\mbox{\Hypertarget{zdump_8c_a65e9886d74aaee76545e83dd09011727}\label{zdump_8c_a65e9886d74aaee76545e83dd09011727}} 
+\index{zdump.c@{zdump.c}!false@{false}}
+\index{false@{false}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily \#define false~0}
+
+\mbox{\Hypertarget{zdump_8c_a9998e788d1738e06ada9064cea53af2e}\label{zdump_8c_a9998e788d1738e06ada9064cea53af2e}} 
+\index{zdump.c@{zdump.c}!HAVE\_LOCALTIME\_R@{HAVE\_LOCALTIME\_R}}
+\index{HAVE\_LOCALTIME\_R@{HAVE\_LOCALTIME\_R}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{HAVE\_LOCALTIME\_R}{HAVE\_LOCALTIME\_R}}
+{\footnotesize\ttfamily \#define H\+A\+V\+E\+\_\+\+L\+O\+C\+A\+L\+T\+I\+M\+E\+\_\+R~1}
+
+\mbox{\Hypertarget{zdump_8c_a5304d65117f6f5a843441c887645048a}\label{zdump_8c_a5304d65117f6f5a843441c887645048a}} 
+\index{zdump.c@{zdump.c}!HAVE\_LOCALTIME\_RZ@{HAVE\_LOCALTIME\_RZ}}
+\index{HAVE\_LOCALTIME\_RZ@{HAVE\_LOCALTIME\_RZ}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{HAVE\_LOCALTIME\_RZ}{HAVE\_LOCALTIME\_RZ}}
+{\footnotesize\ttfamily \#define H\+A\+V\+E\+\_\+\+L\+O\+C\+A\+L\+T\+I\+M\+E\+\_\+\+RZ~0}
+
+\mbox{\Hypertarget{zdump_8c_a25e9b8755c2164550abe5f2b4b336af9}\label{zdump_8c_a25e9b8755c2164550abe5f2b4b336af9}} 
+\index{zdump.c@{zdump.c}!HAVE\_TZSET@{HAVE\_TZSET}}
+\index{HAVE\_TZSET@{HAVE\_TZSET}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{HAVE\_TZSET}{HAVE\_TZSET}}
+{\footnotesize\ttfamily \#define H\+A\+V\+E\+\_\+\+T\+Z\+S\+ET~1}
+
+\mbox{\Hypertarget{zdump_8c_a77e3c323dfbddadb30abe56bc5395f91}\label{zdump_8c_a77e3c323dfbddadb30abe56bc5395f91}} 
+\index{zdump.c@{zdump.c}!HOURSPERDAY@{HOURSPERDAY}}
+\index{HOURSPERDAY@{HOURSPERDAY}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{HOURSPERDAY}{HOURSPERDAY}}
+{\footnotesize\ttfamily \#define H\+O\+U\+R\+S\+P\+E\+R\+D\+AY~24}
+
+\mbox{\Hypertarget{zdump_8c_a2eb96152a52d739e41d16c53a2e419f3}\label{zdump_8c_a2eb96152a52d739e41d16c53a2e419f3}} 
+\index{zdump.c@{zdump.c}!is\_digit@{is\_digit}}
+\index{is\_digit@{is\_digit}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{is\_digit}{is\_digit}}
+{\footnotesize\ttfamily \#define is\+\_\+digit(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}} }\end{DoxyParamCaption})~((unsigned)(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}) -\/ \textquotesingle{}0\textquotesingle{} $<$= 9)}
+
+\mbox{\Hypertarget{zdump_8c_a97fbbe36f8a1d1eea637360d903e1986}\label{zdump_8c_a97fbbe36f8a1d1eea637360d903e1986}} 
+\index{zdump.c@{zdump.c}!isleap@{isleap}}
+\index{isleap@{isleap}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{isleap}{isleap}}
+{\footnotesize\ttfamily \#define isleap(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) \% 4) == 0 \&\& (((\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) \% 100) != 0 $\vert$$\vert$ ((\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}) \% 400) == 0))}
+
+\mbox{\Hypertarget{zdump_8c_aae3e399339d37a6c4a1fac57e5779ca0}\label{zdump_8c_aae3e399339d37a6c4a1fac57e5779ca0}} 
+\index{zdump.c@{zdump.c}!isleap\_sum@{isleap\_sum}}
+\index{isleap\_sum@{isleap\_sum}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{isleap\_sum}{isleap\_sum}}
+{\footnotesize\ttfamily \#define isleap\+\_\+sum(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})~\mbox{\hyperlink{zdump_8c_a97fbbe36f8a1d1eea637360d903e1986}{isleap}}((\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}}) \% 400 + (\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}) \% 400)}
+
+\mbox{\Hypertarget{zdump_8c_a9e7c6104cccbed67c8f0fd510cd5c099}\label{zdump_8c_a9e7c6104cccbed67c8f0fd510cd5c099}} 
+\index{zdump.c@{zdump.c}!localtime\_r@{localtime\_r}}
+\index{localtime\_r@{localtime\_r}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{localtime\_r}{localtime\_r}}
+{\footnotesize\ttfamily \#define localtime\+\_\+r~zdump\+\_\+localtime\+\_\+r}
+
+\mbox{\Hypertarget{zdump_8c_a7aa205e01c3fdb2bff43c38e8dc622c6}\label{zdump_8c_a7aa205e01c3fdb2bff43c38e8dc622c6}} 
+\index{zdump.c@{zdump.c}!localtime\_rz@{localtime\_rz}}
+\index{localtime\_rz@{localtime\_rz}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{localtime\_rz}{localtime\_rz}}
+{\footnotesize\ttfamily \#define localtime\+\_\+rz~zdump\+\_\+localtime\+\_\+rz}
+
+\mbox{\Hypertarget{zdump_8c_a6789ebc0df71a8ef76bfbb4fb5f74aad}\label{zdump_8c_a6789ebc0df71a8ef76bfbb4fb5f74aad}} 
+\index{zdump.c@{zdump.c}!MAX\_STRING\_LENGTH@{MAX\_STRING\_LENGTH}}
+\index{MAX\_STRING\_LENGTH@{MAX\_STRING\_LENGTH}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_STRING\_LENGTH}{MAX\_STRING\_LENGTH}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH~1024}
+
+\mbox{\Hypertarget{zdump_8c_ab86ce8e9674b0f354c5491b71148a867}\label{zdump_8c_ab86ce8e9674b0f354c5491b71148a867}} 
+\index{zdump.c@{zdump.c}!MINSPERHOUR@{MINSPERHOUR}}
+\index{MINSPERHOUR@{MINSPERHOUR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{MINSPERHOUR}{MINSPERHOUR}}
+{\footnotesize\ttfamily \#define M\+I\+N\+S\+P\+E\+R\+H\+O\+UR~60}
+
+\mbox{\Hypertarget{zdump_8c_a283288a96aed56dbe0f9acdde6d0b13c}\label{zdump_8c_a283288a96aed56dbe0f9acdde6d0b13c}} 
+\index{zdump.c@{zdump.c}!my\_localtime\_rz@{my\_localtime\_rz}}
+\index{my\_localtime\_rz@{my\_localtime\_rz}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{my\_localtime\_rz}{my\_localtime\_rz}}
+{\footnotesize\ttfamily \#define my\+\_\+localtime\+\_\+rz~\mbox{\hyperlink{private_8h_a7bd0c77dd142cd409fe45fe7f0e134fd}{localtime\+\_\+rz}}}
+
+\mbox{\Hypertarget{zdump_8c_a12b2f6a03d9e9d271521f495829d2c09}\label{zdump_8c_a12b2f6a03d9e9d271521f495829d2c09}} 
+\index{zdump.c@{zdump.c}!NETBSD\_INSPIRED@{NETBSD\_INSPIRED}}
+\index{NETBSD\_INSPIRED@{NETBSD\_INSPIRED}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{NETBSD\_INSPIRED}{NETBSD\_INSPIRED}}
+{\footnotesize\ttfamily \#define N\+E\+T\+B\+S\+D\+\_\+\+I\+N\+S\+P\+I\+R\+ED~1}
+
+\mbox{\Hypertarget{zdump_8c_ac1f6ee60af67855f083e3a85e6924827}\label{zdump_8c_ac1f6ee60af67855f083e3a85e6924827}} 
+\index{zdump.c@{zdump.c}!SECSPER400YEARS@{SECSPER400YEARS}}
+\index{SECSPER400YEARS@{SECSPER400YEARS}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{SECSPER400YEARS}{SECSPER400YEARS}}
+{\footnotesize\ttfamily \#define S\+E\+C\+S\+P\+E\+R400\+Y\+E\+A\+RS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{zdump_8c_a712201b353a6c1a29cc85cf66b0abb37}{SECSPERNYEAR}} * (\mbox{\hyperlink{stdint_8h_a5bf00657278276f83f23e629a2813953}{intmax\_t}}) (300 + 3)    \(\backslash\)}
+\DoxyCodeLine{             + \mbox{\hyperlink{zdump_8c_a4f6f0329c10cc7eb21e14e997af4607a}{SECSPERLYEAR}} * (\mbox{\hyperlink{stdint_8h_a5bf00657278276f83f23e629a2813953}{intmax\_t}}) (100 -\/ 3))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}\label{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}} 
+\index{zdump.c@{zdump.c}!SECSPERDAY@{SECSPERDAY}}
+\index{SECSPERDAY@{SECSPERDAY}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{SECSPERDAY}{SECSPERDAY}}
+{\footnotesize\ttfamily \#define S\+E\+C\+S\+P\+E\+R\+D\+AY~((\mbox{\hyperlink{stdint_8h_a9db34f43e43298cb4db12999aec7c4be}{int\+\_\+fast32\+\_\+t}}) \mbox{\hyperlink{zdump_8c_a235e72e63a254ecde04f29148b3333fb}{S\+E\+C\+S\+P\+E\+R\+H\+O\+UR}} $\ast$ \mbox{\hyperlink{zdump_8c_a77e3c323dfbddadb30abe56bc5395f91}{H\+O\+U\+R\+S\+P\+E\+R\+D\+AY}})}
+
+\mbox{\Hypertarget{zdump_8c_a235e72e63a254ecde04f29148b3333fb}\label{zdump_8c_a235e72e63a254ecde04f29148b3333fb}} 
+\index{zdump.c@{zdump.c}!SECSPERHOUR@{SECSPERHOUR}}
+\index{SECSPERHOUR@{SECSPERHOUR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{SECSPERHOUR}{SECSPERHOUR}}
+{\footnotesize\ttfamily \#define S\+E\+C\+S\+P\+E\+R\+H\+O\+UR~(\mbox{\hyperlink{zdump_8c_a4fbe1b6bbb5e5f3ff7300e9ea9991f36}{S\+E\+C\+S\+P\+E\+R\+M\+IN}} $\ast$ \mbox{\hyperlink{zdump_8c_ab86ce8e9674b0f354c5491b71148a867}{M\+I\+N\+S\+P\+E\+R\+H\+O\+UR}})}
+
+\mbox{\Hypertarget{zdump_8c_a4f6f0329c10cc7eb21e14e997af4607a}\label{zdump_8c_a4f6f0329c10cc7eb21e14e997af4607a}} 
+\index{zdump.c@{zdump.c}!SECSPERLYEAR@{SECSPERLYEAR}}
+\index{SECSPERLYEAR@{SECSPERLYEAR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{SECSPERLYEAR}{SECSPERLYEAR}}
+{\footnotesize\ttfamily \#define S\+E\+C\+S\+P\+E\+R\+L\+Y\+E\+AR~(\mbox{\hyperlink{zdump_8c_a712201b353a6c1a29cc85cf66b0abb37}{S\+E\+C\+S\+P\+E\+R\+N\+Y\+E\+AR}} + \mbox{\hyperlink{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}{S\+E\+C\+S\+P\+E\+R\+D\+AY}})}
+
+\mbox{\Hypertarget{zdump_8c_a4fbe1b6bbb5e5f3ff7300e9ea9991f36}\label{zdump_8c_a4fbe1b6bbb5e5f3ff7300e9ea9991f36}} 
+\index{zdump.c@{zdump.c}!SECSPERMIN@{SECSPERMIN}}
+\index{SECSPERMIN@{SECSPERMIN}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{SECSPERMIN}{SECSPERMIN}}
+{\footnotesize\ttfamily \#define S\+E\+C\+S\+P\+E\+R\+M\+IN~60}
+
+\mbox{\Hypertarget{zdump_8c_a712201b353a6c1a29cc85cf66b0abb37}\label{zdump_8c_a712201b353a6c1a29cc85cf66b0abb37}} 
+\index{zdump.c@{zdump.c}!SECSPERNYEAR@{SECSPERNYEAR}}
+\index{SECSPERNYEAR@{SECSPERNYEAR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{SECSPERNYEAR}{SECSPERNYEAR}}
+{\footnotesize\ttfamily \#define S\+E\+C\+S\+P\+E\+R\+N\+Y\+E\+AR~(\mbox{\hyperlink{zdump_8c_a0711b3fc9ababc38239df227d1bd1e62}{S\+E\+C\+S\+P\+E\+R\+D\+AY}} $\ast$ \mbox{\hyperlink{zdump_8c_a2c13c5660e97dc3fc82bc43cd752178a}{D\+A\+Y\+S\+P\+E\+R\+N\+Y\+E\+AR}})}
+
+\mbox{\Hypertarget{zdump_8c_a9fa72e909ddb8bfd6d18f91219a5f56c}\label{zdump_8c_a9fa72e909ddb8bfd6d18f91219a5f56c}} 
+\index{zdump.c@{zdump.c}!timezone\_t@{timezone\_t}}
+\index{timezone\_t@{timezone\_t}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{timezone\_t}{timezone\_t}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{timezone\+\_\+t}}~char $\ast$$\ast$}
+
+\mbox{\Hypertarget{zdump_8c_a0b24352233a7c91b5e627d2a26ffefb3}\label{zdump_8c_a0b24352233a7c91b5e627d2a26ffefb3}} 
+\index{zdump.c@{zdump.c}!TM\_YEAR\_BASE@{TM\_YEAR\_BASE}}
+\index{TM\_YEAR\_BASE@{TM\_YEAR\_BASE}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{TM\_YEAR\_BASE}{TM\_YEAR\_BASE}}
+{\footnotesize\ttfamily \#define T\+M\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+A\+SE~1900}
+
+\mbox{\Hypertarget{zdump_8c_a41f9c5fb8b08eb5dc3edce4dcb37fee7}\label{zdump_8c_a41f9c5fb8b08eb5dc3edce4dcb37fee7}} 
+\index{zdump.c@{zdump.c}!true@{true}}
+\index{true@{true}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily \#define true~1}
+
+\mbox{\Hypertarget{zdump_8c_a9d1301c78d3e971b6220b6ecbe1a1f03}\label{zdump_8c_a9d1301c78d3e971b6220b6ecbe1a1f03}} 
+\index{zdump.c@{zdump.c}!tzalloc@{tzalloc}}
+\index{tzalloc@{tzalloc}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{tzalloc}{tzalloc}}
+{\footnotesize\ttfamily \#define tzalloc~zdump\+\_\+tzalloc}
+
+\mbox{\Hypertarget{zdump_8c_a868629e27014736b3cd98bb82e770a94}\label{zdump_8c_a868629e27014736b3cd98bb82e770a94}} 
+\index{zdump.c@{zdump.c}!tzfree@{tzfree}}
+\index{tzfree@{tzfree}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{tzfree}{tzfree}}
+{\footnotesize\ttfamily \#define tzfree~zdump\+\_\+tzfree}
+
+\mbox{\Hypertarget{zdump_8c_a21e3c70eac24a763b2d2f59104fe4034}\label{zdump_8c_a21e3c70eac24a763b2d2f59104fe4034}} 
+\index{zdump.c@{zdump.c}!USE\_LOCALTIME\_RZ@{USE\_LOCALTIME\_RZ}}
+\index{USE\_LOCALTIME\_RZ@{USE\_LOCALTIME\_RZ}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{USE\_LOCALTIME\_RZ}{USE\_LOCALTIME\_RZ}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+L\+O\+C\+A\+L\+T\+I\+M\+E\+\_\+\+RZ~\mbox{\hyperlink{zdump_8c_a65e9886d74aaee76545e83dd09011727}{false}}}
+
+\mbox{\Hypertarget{zdump_8c_abe14a941c5344b3b3151357f592fba07}\label{zdump_8c_abe14a941c5344b3b3151357f592fba07}} 
+\index{zdump.c@{zdump.c}!USE\_LTZ@{USE\_LTZ}}
+\index{USE\_LTZ@{USE\_LTZ}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{USE\_LTZ}{USE\_LTZ}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+L\+TZ~1}
+
+\mbox{\Hypertarget{zdump_8c_a483076bd5487ea5f91d400007db73621}\label{zdump_8c_a483076bd5487ea5f91d400007db73621}} 
+\index{zdump.c@{zdump.c}!ZDUMP\_HI\_YEAR@{ZDUMP\_HI\_YEAR}}
+\index{ZDUMP\_HI\_YEAR@{ZDUMP\_HI\_YEAR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{ZDUMP\_HI\_YEAR}{ZDUMP\_HI\_YEAR}}
+{\footnotesize\ttfamily \#define Z\+D\+U\+M\+P\+\_\+\+H\+I\+\_\+\+Y\+E\+AR~2500}
+
+\mbox{\Hypertarget{zdump_8c_ab2b4e73a2a6a0976d26c481041476d85}\label{zdump_8c_ab2b4e73a2a6a0976d26c481041476d85}} 
+\index{zdump.c@{zdump.c}!ZDUMP\_LO\_YEAR@{ZDUMP\_LO\_YEAR}}
+\index{ZDUMP\_LO\_YEAR@{ZDUMP\_LO\_YEAR}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{ZDUMP\_LO\_YEAR}{ZDUMP\_LO\_YEAR}}
+{\footnotesize\ttfamily \#define Z\+D\+U\+M\+P\+\_\+\+L\+O\+\_\+\+Y\+E\+AR~(-\/500)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{zdump_8c_a69dde2df63db010f5bf9c71b277f9504}\label{zdump_8c_a69dde2df63db010f5bf9c71b277f9504}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\mbox{\Hypertarget{zdump_8c_a2f77126ae0e6574a34ec005d56d2b822}\label{zdump_8c_a2f77126ae0e6574a34ec005d56d2b822}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{atime\_shift@{atime\_shift}!zdump.c@{zdump.c}}\index{zdump.c@{zdump.c}!atime\_shift@{atime\_shift}}}\mbox{\Hypertarget{zdump_8c_a2f77126ae0e6574a34ec005d56d2b822a1888e35caf09ad6a658408dc1a2eb509}\label{zdump_8c_a2f77126ae0e6574a34ec005d56d2b822a1888e35caf09ad6a658408dc1a2eb509}} 
+atime\+\_\+shift&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{zdump_8c_aaf2ceae0460295ed1468985b7423368a}\label{zdump_8c_aaf2ceae0460295ed1468985b7423368a}} 
+\index{zdump.c@{zdump.c}!getopt@{getopt}}
+\index{getopt@{getopt}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{getopt()}{getopt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} getopt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{zdump_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{zdump_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{zdump.c@{zdump.c}!main@{main}}
+\index{main@{main}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{zdump_8c_aa006daaf11f1e2e45a6ababaf463212b}\label{zdump_8c_aa006daaf11f1e2e45a6ababaf463212b}} 
+\index{zdump.c@{zdump.c}!environ@{environ}}
+\index{environ@{environ}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{environ}{environ}}
+{\footnotesize\ttfamily char$\ast$$\ast$ environ}
+
+\mbox{\Hypertarget{zdump_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}\label{zdump_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}} 
+\index{zdump.c@{zdump.c}!optarg@{optarg}}
+\index{optarg@{optarg}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{optarg}{optarg}}
+{\footnotesize\ttfamily char$\ast$ optarg}
+
+\mbox{\Hypertarget{zdump_8c_ad5e1c16213bbee2d5e8cc363309f418c}\label{zdump_8c_ad5e1c16213bbee2d5e8cc363309f418c}} 
+\index{zdump.c@{zdump.c}!optind@{optind}}
+\index{optind@{optind}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{optind}{optind}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} optind}
+
+\mbox{\Hypertarget{zdump_8c_a3df06a4a69fb12167cf9e251ff58c32e}\label{zdump_8c_a3df06a4a69fb12167cf9e251ff58c32e}} 
+\index{zdump.c@{zdump.c}!tzname@{tzname}}
+\index{tzname@{tzname}!zdump.c@{zdump.c}}
+\doxysubsubsection{\texorpdfstring{tzname}{tzname}}
+{\footnotesize\ttfamily char$\ast$ tzname\mbox{[}2\mbox{]}}
+

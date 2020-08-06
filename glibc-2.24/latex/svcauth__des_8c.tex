@@ -1,0 +1,119 @@
+\hypertarget{svcauth__des_8c}{}\doxysection{sunrpc/svcauth\+\_\+des.c File Reference}
+\label{svcauth__des_8c}\index{sunrpc/svcauth\_des.c@{sunrpc/svcauth\_des.c}}
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/rpc.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/xdr.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/auth.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/auth\+\_\+des.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/svc\+\_\+auth.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/svc.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/des\+\_\+crypt.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcache__entry}{cache\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structbsdcred}{bsdcred}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}{debug}}(msg)~/$\ast$\mbox{\hyperlink{nldbl-printf_8c_a80f647666a47ce40053615af0dcfcd5a}{printf}}(\char`\"{}svcauth\+\_\+des\+: \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{s\textbackslash{}n}}\char`\"{}, msg) $\ast$/
+\item 
+\#define \mbox{\hyperlink{svcauth__des_8c_a6a69d6cbdab5f24c2e66959293f210c1}{U\+S\+E\+C\+\_\+\+P\+E\+R\+\_\+\+S\+EC}}~((\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}) 1000000\+L)
+\item 
+\#define \mbox{\hyperlink{svcauth__des_8c_a205ca06f8f568bc479c319b380635d33}{B\+E\+F\+O\+RE}}(\mbox{\hyperlink{test-get__hwcap_8c_a2eccb063a74f8dd99024929d1a7dbff3}{t1}},  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_aa4652e2d6053d420dcbea07a113db5fe}{t2}})~timercmp(\mbox{\hyperlink{test-get__hwcap_8c_a2eccb063a74f8dd99024929d1a7dbff3}{t1}}, \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, $<$)
+\item 
+\#define \mbox{\hyperlink{svcauth__des_8c_a904ef3a926e3d8a64701dfdcff4c8081}{A\+U\+T\+H\+D\+E\+S\+\_\+\+C\+A\+C\+H\+E\+SZ}}~64
+\item 
+\#define \mbox{\hyperlink{svcauth__des_8c_ac1ae4add974b9cfc6b5aaf8a578f01ab}{U\+N\+K\+N\+O\+WN}}~-\/2	/$\ast$ grouplen, \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} cached \mbox{\hyperlink{include_2rpc_2auth__des_8h_a82ba03915cb1c4d073fb76a5460bc94d}{cred}} \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} \mbox{\hyperlink{generic_2ldsodefs_8h_af4471530d715adff7967ba8fdcb971a5a5b9f6d065e6e98483b3d3ed01f4f6cbe}{unknown}} \mbox{\hyperlink{structuser}{user}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{svcauth__des_8c_adf770fe2eec438e3758ffe905dbae208}{I\+N\+V\+A\+L\+ID}}~-\/1	/$\ast$ grouplen, \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} cache \mbox{\hyperlink{structentry}{entry}} \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} invalid $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{sunrpc_2rpc_2auth_8h_a4a1c196ecf6772385718b39d615b0306}{auth\+\_\+stat}} \mbox{\hyperlink{svcauth__des_8c_a8cdb74766ad0068d863edf3a3772d840}{\+\_\+svcauth\+\_\+des}} (register struct \mbox{\hyperlink{structsvc__req}{svc\+\_\+req}} $\ast$rqst, register struct \mbox{\hyperlink{structrpc__msg}{rpc\+\_\+msg}} $\ast$msg)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{svcauth__des_8c_a30293f20030c2cca2265278c236c26e5}{authdes\+\_\+getucred}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structauthdes__cred}{authdes\+\_\+cred}} $\ast$adc, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} $\ast$\mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}}, \mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} $\ast$\mbox{\hyperlink{files-grp_8c_a66e9e561e0a87facbefc2a1332a0c04f}{gid}}, short $\ast$grouplen, \mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} $\ast$groups)
+\item 
+\mbox{\hyperlink{svcauth__des_8c_a10b267e2f4196461ea49173635a2c218}{libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc}} (\mbox{\hyperlink{svcauth__des_8c_a30293f20030c2cca2265278c236c26e5}{authdes\+\_\+getucred}}, G\+L\+I\+B\+C\+\_\+2\+\_\+1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{svcauth__des_8c_a93f5dff2fa13ef454968906e347d2153}{svcauthdes\+\_\+stats}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{svcauth__des_8c_a904ef3a926e3d8a64701dfdcff4c8081}\label{svcauth__des_8c_a904ef3a926e3d8a64701dfdcff4c8081}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!AUTHDES\_CACHESZ@{AUTHDES\_CACHESZ}}
+\index{AUTHDES\_CACHESZ@{AUTHDES\_CACHESZ}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{AUTHDES\_CACHESZ}{AUTHDES\_CACHESZ}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+D\+E\+S\+\_\+\+C\+A\+C\+H\+E\+SZ~64}
+
+\mbox{\Hypertarget{svcauth__des_8c_a205ca06f8f568bc479c319b380635d33}\label{svcauth__des_8c_a205ca06f8f568bc479c319b380635d33}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!BEFORE@{BEFORE}}
+\index{BEFORE@{BEFORE}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{BEFORE}{BEFORE}}
+{\footnotesize\ttfamily \#define B\+E\+F\+O\+RE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-get__hwcap_8c_a2eccb063a74f8dd99024929d1a7dbff3}{t1}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_aa4652e2d6053d420dcbea07a113db5fe}{t2}} }\end{DoxyParamCaption})~timercmp(\mbox{\hyperlink{test-get__hwcap_8c_a2eccb063a74f8dd99024929d1a7dbff3}{t1}}, \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, $<$)}
+
+\mbox{\Hypertarget{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}\label{svcauth__des_8c_a06818542b3c471ba114965d1526d106d}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!debug@{debug}}
+\index{debug@{debug}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily \#define debug(\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})~/$\ast$\mbox{\hyperlink{nldbl-printf_8c_a80f647666a47ce40053615af0dcfcd5a}{printf}}(\char`\"{}svcauth\+\_\+des\+: \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{s\textbackslash{}n}}\char`\"{}, msg) $\ast$/}
+
+\mbox{\Hypertarget{svcauth__des_8c_adf770fe2eec438e3758ffe905dbae208}\label{svcauth__des_8c_adf770fe2eec438e3758ffe905dbae208}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!INVALID@{INVALID}}
+\index{INVALID@{INVALID}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{INVALID}{INVALID}}
+{\footnotesize\ttfamily \#define I\+N\+V\+A\+L\+ID~-\/1	/$\ast$ grouplen, \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} cache \mbox{\hyperlink{structentry}{entry}} \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} invalid $\ast$/}
+
+\mbox{\Hypertarget{svcauth__des_8c_ac1ae4add974b9cfc6b5aaf8a578f01ab}\label{svcauth__des_8c_ac1ae4add974b9cfc6b5aaf8a578f01ab}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!UNKNOWN@{UNKNOWN}}
+\index{UNKNOWN@{UNKNOWN}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{UNKNOWN}{UNKNOWN}}
+{\footnotesize\ttfamily \#define U\+N\+K\+N\+O\+WN~-\/2	/$\ast$ grouplen, \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} cached \mbox{\hyperlink{include_2rpc_2auth__des_8h_a82ba03915cb1c4d073fb76a5460bc94d}{cred}} \mbox{\hyperlink{tst-typesizes_8c_ac6fab5db8906ec29ac5e0ca9e8fbe368}{is}} \mbox{\hyperlink{generic_2ldsodefs_8h_af4471530d715adff7967ba8fdcb971a5a5b9f6d065e6e98483b3d3ed01f4f6cbe}{unknown}} \mbox{\hyperlink{structuser}{user}} $\ast$/}
+
+\mbox{\Hypertarget{svcauth__des_8c_a6a69d6cbdab5f24c2e66959293f210c1}\label{svcauth__des_8c_a6a69d6cbdab5f24c2e66959293f210c1}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!USEC\_PER\_SEC@{USEC\_PER\_SEC}}
+\index{USEC\_PER\_SEC@{USEC\_PER\_SEC}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{USEC\_PER\_SEC}{USEC\_PER\_SEC}}
+{\footnotesize\ttfamily \#define U\+S\+E\+C\+\_\+\+P\+E\+R\+\_\+\+S\+EC~((\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}) 1000000\+L)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{svcauth__des_8c_a8cdb74766ad0068d863edf3a3772d840}\label{svcauth__des_8c_a8cdb74766ad0068d863edf3a3772d840}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!\_svcauth\_des@{\_svcauth\_des}}
+\index{\_svcauth\_des@{\_svcauth\_des}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{\_svcauth\_des()}{\_svcauth\_des()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sunrpc_2rpc_2auth_8h_a4a1c196ecf6772385718b39d615b0306}{auth\+\_\+stat}} \+\_\+svcauth\+\_\+des (\begin{DoxyParamCaption}\item[{register struct \mbox{\hyperlink{structsvc__req}{svc\+\_\+req}} $\ast$}]{rqst,  }\item[{register struct \mbox{\hyperlink{structrpc__msg}{rpc\+\_\+msg}} $\ast$}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{svcauth__des_8c_a30293f20030c2cca2265278c236c26e5}\label{svcauth__des_8c_a30293f20030c2cca2265278c236c26e5}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!authdes\_getucred@{authdes\_getucred}}
+\index{authdes\_getucred@{authdes\_getucred}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{authdes\_getucred()}{authdes\_getucred()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} authdes\+\_\+getucred (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structauthdes__cred}{authdes\+\_\+cred}} $\ast$}]{adc,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} $\ast$}]{uid,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} $\ast$}]{gid,  }\item[{short $\ast$}]{grouplen,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} $\ast$}]{groups }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{svcauth__des_8c_a10b267e2f4196461ea49173635a2c218}\label{svcauth__des_8c_a10b267e2f4196461ea49173635a2c218}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}}
+\index{libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_nolink\_sunrpc()}{libc\_hidden\_nolink\_sunrpc()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{svcauth__des_8c_a30293f20030c2cca2265278c236c26e5}{authdes\+\_\+getucred}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+1}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{svcauth__des_8c_a93f5dff2fa13ef454968906e347d2153}\label{svcauth__des_8c_a93f5dff2fa13ef454968906e347d2153}} 
+\index{svcauth\_des.c@{svcauth\_des.c}!svcauthdes\_stats@{svcauthdes\_stats}}
+\index{svcauthdes\_stats@{svcauthdes\_stats}!svcauth\_des.c@{svcauth\_des.c}}
+\doxysubsubsection{\texorpdfstring{svcauthdes\_stats}{svcauthdes\_stats}}
+{\footnotesize\ttfamily svcauthdes\+\_\+stats}
+

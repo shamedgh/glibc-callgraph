@@ -1,0 +1,227 @@
+\hypertarget{x86__64_2dl-machine_8h}{}\doxysection{sysdeps/x86\+\_\+64/dl-\/machine.h File Reference}
+\label{x86__64_2dl-machine_8h}\index{sysdeps/x86\_64/dl-\/machine.h@{sysdeps/x86\_64/dl-\/machine.h}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$tls.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/tlsdesc.\+h$>$}\newline
+{\ttfamily \#include $<$cpu-\/features.\+c$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME}}~\char`\"{}x86\+\_\+64\char`\"{}
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}{R\+T\+L\+D\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}n\textbackslash{}.\+text\textbackslash{}n\textbackslash{}	.\mbox{\hyperlink{unionalign}{align}} 16\textbackslash{}n\textbackslash{}.\+globl \+\_\+start\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}}, \%rdi\textbackslash{}n\textbackslash{}	call \+\_\+dl\+\_\+start\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:\textbackslash{}n\textbackslash{}	\# Save the \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{structentry}{entry}} point address \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \%r12.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a27f5cd40a8622f01168f67d95090c161}{rax}}, \%r12\textbackslash{}n\textbackslash{}	\# See \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} we were run as \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} with the executable file\textbackslash{}n\textbackslash{}	\# \mbox{\hyperlink{structname}{name}} as an \mbox{\hyperlink{weightwc_8h_abde4d5116c4e894ada90d24a5668a9f0}{extra}} leading argument.\textbackslash{}n\textbackslash{}	movl \+\_\+dl\+\_\+skip\+\_\+args(\%\mbox{\hyperlink{structrip}{rip}}), \%eax\textbackslash{}n\textbackslash{}	\# Pop the original argument count.\textbackslash{}n\textbackslash{}	popq \%rdx\textbackslash{}n\textbackslash{}	\# Adjust the stack pointer \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} skip \+\_\+dl\+\_\+skip\+\_\+args words.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} (\%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}},\%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a27f5cd40a8622f01168f67d95090c161}{rax}},8), \%rsp\textbackslash{}n\textbackslash{}	\# Subtract \+\_\+dl\+\_\+skip\+\_\+args \mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} argc.\textbackslash{}n\textbackslash{}	subl \%eax, \%edx\textbackslash{}n\textbackslash{}	\# Push argc \mbox{\hyperlink{tst-deep1mod3_8c_afb031782b4cd52ba30fdced9fedfa6a1}{back}} on the stack.\textbackslash{}n\textbackslash{}	pushq \%rdx\textbackslash{}n\textbackslash{}	\# Call \mbox{\hyperlink{generic_2ldsodefs_8h_ada8b2a2903901ccf94dfe3c4615db9cc}{\+\_\+dl\+\_\+init}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$main\+\_\+map, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$$\ast$argv, char $\ast$$\ast$\mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}})\textbackslash{}n\textbackslash{}	\# argc -\/$>$ rsi\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_adb0bb37b664d3b91a3e35233a9892371}{rdx}}, \%rsi\textbackslash{}n\textbackslash{}	\# Save \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}} \mbox{\hyperlink{structvalue}{value}} \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \%r13.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}}, \%r13\textbackslash{}n\textbackslash{}	\# And \mbox{\hyperlink{unionalign}{align}} stack \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} the \mbox{\hyperlink{generic_2ldsodefs_8h_ada8b2a2903901ccf94dfe3c4615db9cc}{\+\_\+dl\+\_\+init}} call. \textbackslash{}n\textbackslash{}	andq \$-\/16, \%rsp\textbackslash{}n\textbackslash{}	\# \+\_\+dl\+\_\+loaded -\/$>$ rdi\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \+\_\+rtld\+\_\+local(\%\mbox{\hyperlink{structrip}{rip}}), \%rdi\textbackslash{}n\textbackslash{}	\# \mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}} -\/$>$ rcx\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} 16(\%r13,\%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_adb0bb37b664d3b91a3e35233a9892371}{rdx}},8), \%rcx\textbackslash{}n\textbackslash{}	\# argv -\/$>$ rdx\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} 8(\%r13), \%rdx\textbackslash{}n\textbackslash{}	\# Clear \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_aa7b9c996b9b32f70195c3ab0cfd63469}{rbp}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} mark outermost frame obviously even \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} constructors.\textbackslash{}n\textbackslash{}	xorl \%ebp, \%ebp\textbackslash{}n\textbackslash{}	\# Call the \mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} run the initializers.\textbackslash{}n\textbackslash{}	call \+\_\+dl\+\_\+init\textbackslash{}n\textbackslash{}	\# Pass our finalizer \mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} the \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_adb0bb37b664d3b91a3e35233a9892371}{rdx}}, as per E\+LF A\+B\+I.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} \mbox{\hyperlink{generic_2ldsodefs_8h_a3393fe2f27730f93c077d2433bd8593c}{\+\_\+dl\+\_\+fini}}(\%\mbox{\hyperlink{structrip}{rip}}), \%rdx\textbackslash{}n\textbackslash{}	\# And make sure \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}} points \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} argc stored on the stack.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%r13, \%rsp\textbackslash{}n\textbackslash{}	\# Jump \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} the \mbox{\hyperlink{structuser}{user}}\textquotesingle{}\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} \mbox{\hyperlink{structentry}{entry}} point.\textbackslash{}n\textbackslash{}	jmp $\ast$\%r12\textbackslash{}n\textbackslash{}.\+previous\textbackslash{}n\textbackslash{}\char`\"{});
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}{elf\+\_\+machine\+\_\+type\+\_\+class}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}~\mbox{\hyperlink{elf_2elf_8h_a7190dd499fc2129f489330ae128fd2ee}{R\+\_\+\+X86\+\_\+64\+\_\+\+J\+U\+M\+P\+\_\+\+S\+L\+OT}}
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_afb0f907e1edf1e7b8357c5414318639c}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+R\+E\+L\+A\+T\+I\+VE}}~\mbox{\hyperlink{elf_2elf_8h_a2ea41514e2058d98b0a39a19286b4128}{R\+\_\+\+X86\+\_\+64\+\_\+\+I\+R\+E\+L\+A\+T\+I\+VE}}
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL}}~1
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA}}~0
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}{D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+I\+N\+IT}}~dl\+\_\+platform\+\_\+init ()
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER}}~x86\+\_\+64\+\_\+gnu\+\_\+pltenter
+\item 
+\#define \mbox{\hyperlink{x86__64_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT}}~x86\+\_\+64\+\_\+gnu\+\_\+pltexit
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{x86__64_2dl-machine_8h_aaeb1fc0baed4ad05ba338483bd82bbe2}{\+\_\+dl\+\_\+runtime\+\_\+resolve\+\_\+sse}} (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{x86__64_2dl-machine_8h_ac01035b749cfd5d48f27899af25733dd}{\+\_\+dl\+\_\+runtime\+\_\+resolve\+\_\+avx}} (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a23acbd35b4dd382e9925c0396249f61c}{\+\_\+dl\+\_\+runtime\+\_\+resolve\+\_\+avx512}} (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{x86__64_2dl-machine_8h_aa18c3ad4ddd48095adc66cae0e97c42e}{\+\_\+dl\+\_\+runtime\+\_\+profile\+\_\+sse}} (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a0f8ab38409c2b3ad24ea53b6f1bb56cd}{\+\_\+dl\+\_\+runtime\+\_\+profile\+\_\+avx}} (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a8ef65a29e7eb49ce57ec5e82d6bcd076}{\+\_\+dl\+\_\+runtime\+\_\+profile\+\_\+avx512}} (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{x86__64_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}{if}} (l-\/$>$l\+\_\+info\mbox{[}\mbox{\hyperlink{elf_2elf_8h_ad7cbdc6f9aeb70f37aec7ae6c2311edc}{D\+T\+\_\+\+J\+M\+P\+R\+EL}}\mbox{]} \&\&\mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}})
+\item 
+\mbox{\hyperlink{x86__64_2dl-machine_8h_ad9a479844dc9f2938fb4a34538835516}{if}} (l-\/$>$l\+\_\+info\mbox{[}\mbox{\hyperlink{generic_2ldsodefs_8h_a3dbb53f2d792fbc368dcf761f87cf8fe}{A\+D\+D\+R\+I\+DX}}(\mbox{\hyperlink{elf_2elf_8h_a7711c3ca0990ae02733ef532fb182194}{D\+T\+\_\+\+T\+L\+S\+D\+E\+S\+C\+\_\+\+G\+OT}})\mbox{]} \&\&\mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}) $\ast$(\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Addr) $\ast$)(\mbox{\hyperlink{generic_2ldsodefs_8h_a0e8cd7f5c52bfa200391028a98a427ba}{D\+\_\+\+P\+TR}}(l
+\item 
+static \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a26b045fafd1e61fc4e61eb57d4f3e421}{ElfW}} (Rela) $\ast$\mbox{\hyperlink{sparc64_2dl-plt_8h_a91cb9f4480223e744b9eeb3fcc4368e7}{reloc}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}}
+\item 
+l\+\_\+info \mbox{[}\mbox{\hyperlink{generic_2ldsodefs_8h_a3dbb53f2d792fbc368dcf761f87cf8fe}{A\+D\+D\+R\+I\+DX}}(\mbox{\hyperlink{elf_2elf_8h_a7711c3ca0990ae02733ef532fb182194}{D\+T\+\_\+\+T\+L\+S\+D\+E\+S\+C\+\_\+\+G\+OT}})\mbox{]} l \mbox{\hyperlink{x86__64_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}{l\+\_\+addr}} = (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Addr)) \&\mbox{\hyperlink{x86__64_2dl-tlsdesc_8h_a14e1328e78df8813381afd80b780c80d}{\+\_\+dl\+\_\+tlsdesc\+\_\+resolve\+\_\+rela}}
+\item 
+static \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} \mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}\label{x86__64_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}}
+\index{ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTENTER}{ARCH\_LA\_PLTENTER}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER~x86\+\_\+64\+\_\+gnu\+\_\+pltenter}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}\label{x86__64_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}}
+\index{ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTEXIT}{ARCH\_LA\_PLTEXIT}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT~x86\+\_\+64\+\_\+gnu\+\_\+pltexit}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}\label{x86__64_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!DL\_PLATFORM\_INIT@{DL\_PLATFORM\_INIT}}
+\index{DL\_PLATFORM\_INIT@{DL\_PLATFORM\_INIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{DL\_PLATFORM\_INIT}{DL\_PLATFORM\_INIT}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+I\+N\+IT~dl\+\_\+platform\+\_\+init ()}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_afb0f907e1edf1e7b8357c5414318639c}\label{x86__64_2dl-machine_8h_afb0f907e1edf1e7b8357c5414318639c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_IRELATIVE@{ELF\_MACHINE\_IRELATIVE}}
+\index{ELF\_MACHINE\_IRELATIVE@{ELF\_MACHINE\_IRELATIVE}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_IRELATIVE}{ELF\_MACHINE\_IRELATIVE}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+R\+E\+L\+A\+T\+I\+VE~\mbox{\hyperlink{elf_2elf_8h_a2ea41514e2058d98b0a39a19286b4128}{R\+\_\+\+X86\+\_\+64\+\_\+\+I\+R\+E\+L\+A\+T\+I\+VE}}}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}\label{x86__64_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}}
+\index{ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_JMP\_SLOT}{ELF\_MACHINE\_JMP\_SLOT}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT~\mbox{\hyperlink{elf_2elf_8h_a7190dd499fc2129f489330ae128fd2ee}{R\+\_\+\+X86\+\_\+64\+\_\+\+J\+U\+M\+P\+\_\+\+S\+L\+OT}}}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}\label{x86__64_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}}
+\index{ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NAME}{ELF\_MACHINE\_NAME}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME~\char`\"{}x86\+\_\+64\char`\"{}}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}\label{x86__64_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}}
+\index{ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_REL}{ELF\_MACHINE\_NO\_REL}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL~1}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}\label{x86__64_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}}
+\index{ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_RELA}{ELF\_MACHINE\_NO\_RELA}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA~0}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}\label{x86__64_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!elf\_machine\_type\_class@{elf\_machine\_type\_class}}
+\index{elf\_machine\_type\_class@{elf\_machine\_type\_class}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{elf\_machine\_type\_class}{elf\_machine\_type\_class}}
+{\footnotesize\ttfamily \#define elf\+\_\+machine\+\_\+type\+\_\+class(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a7190dd499fc2129f489330ae128fd2ee}{R\_X86\_64\_JUMP\_SLOT}}                         \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_aec5323fd48332b0e47715e72396645a2}{R\_X86\_64\_DTPMOD64}}                          \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a31fdf1275c4ab465d08d5f5c168c974c}{R\_X86\_64\_DTPOFF64}}                          \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a0fe33c27748088d683a49276dbc58a8f}{R\_X86\_64\_TPOFF64}}                        \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a63ed07398546f3c3d75805b2546ac77a}{R\_X86\_64\_TLSDESC}})                       \(\backslash\)}
+\DoxyCodeLine{    * \mbox{\hyperlink{generic_2ldsodefs_8h_ae76990eaa2473ebb2af4f8601b5ccb0a}{ELF\_RTYPE\_CLASS\_PLT}})                             \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a74ac888d34123ebe21ef335636126c18}{R\_X86\_64\_COPY}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_a364a19b974b8cd186911f1a59041e7c1}{ELF\_RTYPE\_CLASS\_COPY}})                  \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_ad5b3820ef30946336533f06cf452e94d}{R\_X86\_64\_GLOB\_DAT}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_aaba2db383082ce62d6cafa84dc1b2126}{ELF\_RTYPE\_CLASS\_EXTERN\_PROTECTED\_DATA}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}\label{x86__64_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!RTLD\_START@{RTLD\_START}}
+\index{RTLD\_START@{RTLD\_START}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{RTLD\_START}{RTLD\_START}}
+{\footnotesize\ttfamily \#define R\+T\+L\+D\+\_\+\+S\+T\+A\+RT~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}n\textbackslash{}.\+text\textbackslash{}n\textbackslash{}	.\mbox{\hyperlink{unionalign}{align}} 16\textbackslash{}n\textbackslash{}.\+globl \+\_\+start\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}}, \%rdi\textbackslash{}n\textbackslash{}	call \+\_\+dl\+\_\+start\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:\textbackslash{}n\textbackslash{}	\# Save the \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{structentry}{entry}} point address \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \%r12.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a27f5cd40a8622f01168f67d95090c161}{rax}}, \%r12\textbackslash{}n\textbackslash{}	\# See \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} we were run as \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} \mbox{\hyperlink{tst-cancel7_8c_a9f83d3c4b4c3bb790f90ad79865e37ab}{command}} with the executable file\textbackslash{}n\textbackslash{}	\# \mbox{\hyperlink{structname}{name}} as an \mbox{\hyperlink{weightwc_8h_abde4d5116c4e894ada90d24a5668a9f0}{extra}} leading argument.\textbackslash{}n\textbackslash{}	movl \+\_\+dl\+\_\+skip\+\_\+args(\%\mbox{\hyperlink{structrip}{rip}}), \%eax\textbackslash{}n\textbackslash{}	\# Pop the original argument count.\textbackslash{}n\textbackslash{}	popq \%rdx\textbackslash{}n\textbackslash{}	\# Adjust the stack pointer \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} skip \+\_\+dl\+\_\+skip\+\_\+args words.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} (\%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}},\%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_a27f5cd40a8622f01168f67d95090c161}{rax}},8), \%rsp\textbackslash{}n\textbackslash{}	\# Subtract \+\_\+dl\+\_\+skip\+\_\+args \mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} argc.\textbackslash{}n\textbackslash{}	subl \%eax, \%edx\textbackslash{}n\textbackslash{}	\# Push argc \mbox{\hyperlink{tst-deep1mod3_8c_afb031782b4cd52ba30fdced9fedfa6a1}{back}} on the stack.\textbackslash{}n\textbackslash{}	pushq \%rdx\textbackslash{}n\textbackslash{}	\# Call \mbox{\hyperlink{generic_2ldsodefs_8h_ada8b2a2903901ccf94dfe3c4615db9cc}{\+\_\+dl\+\_\+init}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$main\+\_\+map, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$$\ast$argv, char $\ast$$\ast$\mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}})\textbackslash{}n\textbackslash{}	\# argc -\/$>$ rsi\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_adb0bb37b664d3b91a3e35233a9892371}{rdx}}, \%rsi\textbackslash{}n\textbackslash{}	\# Save \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}} \mbox{\hyperlink{structvalue}{value}} \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \%r13.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}}, \%r13\textbackslash{}n\textbackslash{}	\# And \mbox{\hyperlink{unionalign}{align}} stack \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} the \mbox{\hyperlink{generic_2ldsodefs_8h_ada8b2a2903901ccf94dfe3c4615db9cc}{\+\_\+dl\+\_\+init}} call. \textbackslash{}n\textbackslash{}	andq \$-\/16, \%rsp\textbackslash{}n\textbackslash{}	\# \+\_\+dl\+\_\+loaded -\/$>$ rdi\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \+\_\+rtld\+\_\+local(\%\mbox{\hyperlink{structrip}{rip}}), \%rdi\textbackslash{}n\textbackslash{}	\# \mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}} -\/$>$ rcx\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} 16(\%r13,\%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_adb0bb37b664d3b91a3e35233a9892371}{rdx}},8), \%rcx\textbackslash{}n\textbackslash{}	\# argv -\/$>$ rdx\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} 8(\%r13), \%rdx\textbackslash{}n\textbackslash{}	\# Clear \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_aa7b9c996b9b32f70195c3ab0cfd63469}{rbp}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} mark outermost frame obviously even \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} constructors.\textbackslash{}n\textbackslash{}	xorl \%ebp, \%ebp\textbackslash{}n\textbackslash{}	\# Call the \mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} run the initializers.\textbackslash{}n\textbackslash{}	call \+\_\+dl\+\_\+init\textbackslash{}n\textbackslash{}	\# Pass our finalizer \mbox{\hyperlink{tst-stack4mod_8c_a6650f2c3c44a334f87f2fb2e6604a6b1}{function}} \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} the \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \%\mbox{\hyperlink{x86__64_2dl-trampoline_8h_adb0bb37b664d3b91a3e35233a9892371}{rdx}}, as per E\+LF A\+B\+I.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_a2ff95e5db21fa9fbddeefa56188ebb6b}{leaq}} \mbox{\hyperlink{generic_2ldsodefs_8h_a3393fe2f27730f93c077d2433bd8593c}{\+\_\+dl\+\_\+fini}}(\%\mbox{\hyperlink{structrip}{rip}}), \%rdx\textbackslash{}n\textbackslash{}	\# And make sure \%\mbox{\hyperlink{svml__s__wrapper__impl_8h_a5b10efa777194a1f3c73f4a543eb5003}{rsp}} points \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} argc stored on the stack.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_afa7b6b51f33371737e39cf4c5a29b3f3}{movq}} \%r13, \%rsp\textbackslash{}n\textbackslash{}	\# Jump \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} the \mbox{\hyperlink{structuser}{user}}\textquotesingle{}\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} \mbox{\hyperlink{structentry}{entry}} point.\textbackslash{}n\textbackslash{}	jmp $\ast$\%r12\textbackslash{}n\textbackslash{}.\+previous\textbackslash{}n\textbackslash{}\char`\"{});}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a0f8ab38409c2b3ad24ea53b6f1bb56cd}\label{x86__64_2dl-machine_8h_a0f8ab38409c2b3ad24ea53b6f1bb56cd}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_profile\_avx@{\_dl\_runtime\_profile\_avx}}
+\index{\_dl\_runtime\_profile\_avx@{\_dl\_runtime\_profile\_avx}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_profile\_avx()}{\_dl\_runtime\_profile\_avx()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+profile\+\_\+avx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a8ef65a29e7eb49ce57ec5e82d6bcd076}\label{x86__64_2dl-machine_8h_a8ef65a29e7eb49ce57ec5e82d6bcd076}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_profile\_avx512@{\_dl\_runtime\_profile\_avx512}}
+\index{\_dl\_runtime\_profile\_avx512@{\_dl\_runtime\_profile\_avx512}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_profile\_avx512()}{\_dl\_runtime\_profile\_avx512()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+profile\+\_\+avx512 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_aa18c3ad4ddd48095adc66cae0e97c42e}\label{x86__64_2dl-machine_8h_aa18c3ad4ddd48095adc66cae0e97c42e}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_profile\_sse@{\_dl\_runtime\_profile\_sse}}
+\index{\_dl\_runtime\_profile\_sse@{\_dl\_runtime\_profile\_sse}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_profile\_sse()}{\_dl\_runtime\_profile\_sse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+profile\+\_\+sse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ac01035b749cfd5d48f27899af25733dd}\label{x86__64_2dl-machine_8h_ac01035b749cfd5d48f27899af25733dd}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_resolve\_avx@{\_dl\_runtime\_resolve\_avx}}
+\index{\_dl\_runtime\_resolve\_avx@{\_dl\_runtime\_resolve\_avx}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_resolve\_avx()}{\_dl\_runtime\_resolve\_avx()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+resolve\+\_\+avx (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a23acbd35b4dd382e9925c0396249f61c}\label{x86__64_2dl-machine_8h_a23acbd35b4dd382e9925c0396249f61c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_resolve\_avx512@{\_dl\_runtime\_resolve\_avx512}}
+\index{\_dl\_runtime\_resolve\_avx512@{\_dl\_runtime\_resolve\_avx512}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_resolve\_avx512()}{\_dl\_runtime\_resolve\_avx512()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+resolve\+\_\+avx512 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_aaeb1fc0baed4ad05ba338483bd82bbe2}\label{x86__64_2dl-machine_8h_aaeb1fc0baed4ad05ba338483bd82bbe2}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_resolve\_sse@{\_dl\_runtime\_resolve\_sse}}
+\index{\_dl\_runtime\_resolve\_sse@{\_dl\_runtime\_resolve\_sse}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_resolve\_sse()}{\_dl\_runtime\_resolve\_sse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+resolve\+\_\+sse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a26b045fafd1e61fc4e61eb57d4f3e421}\label{x86__64_2dl-machine_8h_a26b045fafd1e61fc4e61eb57d4f3e421}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ElfW@{ElfW}}
+\index{ElfW@{ElfW}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ElfW()}{ElfW()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} ElfW (\begin{DoxyParamCaption}\item[{Rela}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ad9a479844dc9f2938fb4a34538835516}\label{x86__64_2dl-machine_8h_ad9a479844dc9f2938fb4a34538835516}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!if@{if}}
+\index{if@{if}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{l-\/$>$l\+\_\+info \&\&}]{lazy\mbox{[}\+A\+D\+D\+R\+I\+D\+X(\+D\+T\+\_\+\+T\+L\+S\+D\+E\+S\+C\+\_\+\+G\+O\+T)\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}\label{x86__64_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!if@{if}}
+\index{if@{if}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{l-\/$>$l\+\_\+info \&\&}]{lazy\mbox{[}\+D\+T\+\_\+\+J\+M\+P\+R\+E\+L\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}\label{x86__64_2dl-machine_8h_ac6c6a2a37fa2d8f23693d0ecc908d96e}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!l\_addr@{l\_addr}}
+\index{l\_addr@{l\_addr}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{l\_addr}{l\_addr}}
+{\footnotesize\ttfamily l\+\_\+info \mbox{[}\mbox{\hyperlink{generic_2ldsodefs_8h_a3dbb53f2d792fbc368dcf761f87cf8fe}{A\+D\+D\+R\+I\+DX}} (\mbox{\hyperlink{elf_2elf_8h_a7711c3ca0990ae02733ef532fb182194}{D\+T\+\_\+\+T\+L\+S\+D\+E\+S\+C\+\_\+\+G\+OT}})\mbox{]} l l\+\_\+addr = (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Addr)) \&\mbox{\hyperlink{x86__64_2dl-tlsdesc_8h_a14e1328e78df8813381afd80b780c80d}{\+\_\+dl\+\_\+tlsdesc\+\_\+resolve\+\_\+rela}}}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}\label{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!lazy@{lazy}}
+\index{lazy@{lazy}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{lazy}{lazy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} lazy}
+
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}\label{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!profile@{profile}}
+\index{profile@{profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{profile}{profile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} profile}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{elf_2elf_8h_aeed51d08e3a950d637f8ec1f0cd4ef65}{Elf64\_Addr}} *got}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}\label{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!t@{t}}
+\index{t@{t}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{generic_2ldsodefs_8h_a664c87ad0ff2d94f4894df6aae5d491a}{lookup\+\_\+t}} t}
+

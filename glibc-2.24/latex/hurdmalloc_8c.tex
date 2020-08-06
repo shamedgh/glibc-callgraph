@@ -1,0 +1,201 @@
+\hypertarget{hurdmalloc_8c}{}\doxysection{hurd/hurdmalloc.c File Reference}
+\label{hurdmalloc_8c}\index{hurd/hurdmalloc.c@{hurd/hurdmalloc.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hurdmalloc.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mach.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$cthreads.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structheader}{header}}
+\item 
+struct \mbox{\hyperlink{structfree__list}{free\+\_\+list}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_add12b4148f84bcfe9bae3c7224ee30b6}{vm\+\_\+allocate}}~\+\_\+\+\_\+vm\+\_\+allocate
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a7a321f6ff76134e0629dc3d0ab6d7da9}{vm\+\_\+page\+\_\+size}}~\mbox{\hyperlink{mach__init_8h_af0b4146fa1e87a989a37e66ed9dd3d40}{\+\_\+\+\_\+vm\+\_\+page\+\_\+size}}
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_aa4cb836344817f8d264f507437ce438d}{M\+C\+H\+E\+CK}}
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a3ee979c5c154a1525de482cbadce3da2}{C\+H\+E\+C\+K\+\_\+\+B\+U\+SY}}~0x8a3c743e
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a2dd0ca841e620f384c047f721cf1661d}{C\+H\+E\+C\+K\+\_\+\+F\+R\+EE}}~0x66688b92
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a49999be01380f41cc0d0f1f1406fb277}{H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE}}~sizeof (struct \mbox{\hyperlink{structheader}{header}})
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_aa957a2e487e2323ecb84fa567bff7e37}{H\+E\+A\+D\+E\+R\+\_\+\+N\+E\+XT}}(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})~((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/$>$u.\+next)
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a04262d181f423598b43d8d2a4b2006e0}{H\+E\+A\+D\+E\+R\+\_\+\+F\+R\+EE}}(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})~((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/$>$u.\+fl)
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_aae9fb25e04a790232245761ec76bd08f}{H\+E\+A\+D\+E\+R\+\_\+\+C\+H\+E\+CK}}(\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})~((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/$>$check)
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a278694c2333c9826f21ddd2c2d220f66}{M\+I\+N\+\_\+\+S\+I\+ZE}}~16
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_ab7ed2cf9029c2f4f6ae38ae914490eba}{L\+O\+G2\+\_\+\+M\+I\+N\+\_\+\+S\+I\+ZE}}~4
+\item 
+\#define \mbox{\hyperlink{hurdmalloc_8c_a7257cc1d5685c92d776b6f351ccfa563}{N\+B\+U\+C\+K\+E\+TS}}~29
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structheader}{header}} $\ast$ \mbox{\hyperlink{hurdmalloc_8c_a67f0d1f4f281551588080d323523fbff}{header\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structfree__list}{free\+\_\+list}} $\ast$ \mbox{\hyperlink{hurdmalloc_8c_a4136b533a3711d3667919c4a9a8dc68d}{free\+\_\+list\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{hurdmalloc_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{hurdmalloc_8c_a2da4a0a17aba58e9bdfb11aad286283c}{free}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{unix_2sysv_2linux_2ia64_2ioperm_8c_a5a99fc3d1551f7f70f02d1aa0d673abe}{base}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{hurdmalloc_8c_a582815fb928665f51364ab6484f6da63}{realloc}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$old\+\_\+base, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} new\+\_\+size)
+\item 
+\mbox{\hyperlink{hurdmalloc_8c_a9813b930410aa5ec9af7978e7504936b}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+prepare\+\_\+hook, malloc\+\_\+fork\+\_\+prepare)
+\item 
+\mbox{\hyperlink{hurdmalloc_8c_a08ab59ae65441bb0487b07feb15df3a3}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+parent\+\_\+hook, malloc\+\_\+fork\+\_\+parent)
+\item 
+\mbox{\hyperlink{hurdmalloc_8c_aca300b1a20201e52be109fc9ca6e6253}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook, malloc\+\_\+fork\+\_\+child)
+\item 
+\mbox{\hyperlink{hurdmalloc_8c_a6c8c4a149eb119a97fd7861edc0cbe96}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+preinit\+\_\+hook, malloc\+\_\+init)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hurdmalloc_8c_a3ee979c5c154a1525de482cbadce3da2}\label{hurdmalloc_8c_a3ee979c5c154a1525de482cbadce3da2}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!CHECK\_BUSY@{CHECK\_BUSY}}
+\index{CHECK\_BUSY@{CHECK\_BUSY}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_BUSY}{CHECK\_BUSY}}
+{\footnotesize\ttfamily \#define C\+H\+E\+C\+K\+\_\+\+B\+U\+SY~0x8a3c743e}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a2dd0ca841e620f384c047f721cf1661d}\label{hurdmalloc_8c_a2dd0ca841e620f384c047f721cf1661d}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!CHECK\_FREE@{CHECK\_FREE}}
+\index{CHECK\_FREE@{CHECK\_FREE}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_FREE}{CHECK\_FREE}}
+{\footnotesize\ttfamily \#define C\+H\+E\+C\+K\+\_\+\+F\+R\+EE~0x66688b92}
+
+\mbox{\Hypertarget{hurdmalloc_8c_aae9fb25e04a790232245761ec76bd08f}\label{hurdmalloc_8c_aae9fb25e04a790232245761ec76bd08f}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!HEADER\_CHECK@{HEADER\_CHECK}}
+\index{HEADER\_CHECK@{HEADER\_CHECK}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_CHECK}{HEADER\_CHECK}}
+{\footnotesize\ttfamily \#define H\+E\+A\+D\+E\+R\+\_\+\+C\+H\+E\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/$>$check)}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a04262d181f423598b43d8d2a4b2006e0}\label{hurdmalloc_8c_a04262d181f423598b43d8d2a4b2006e0}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!HEADER\_FREE@{HEADER\_FREE}}
+\index{HEADER\_FREE@{HEADER\_FREE}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_FREE}{HEADER\_FREE}}
+{\footnotesize\ttfamily \#define H\+E\+A\+D\+E\+R\+\_\+\+F\+R\+EE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/$>$u.\+fl)}
+
+\mbox{\Hypertarget{hurdmalloc_8c_aa957a2e487e2323ecb84fa567bff7e37}\label{hurdmalloc_8c_aa957a2e487e2323ecb84fa567bff7e37}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!HEADER\_NEXT@{HEADER\_NEXT}}
+\index{HEADER\_NEXT@{HEADER\_NEXT}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_NEXT}{HEADER\_NEXT}}
+{\footnotesize\ttfamily \#define H\+E\+A\+D\+E\+R\+\_\+\+N\+E\+XT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{stubs-prologue_8h_a4743bda2217e617374a0fcc187218b7c}{h}})-\/$>$u.\+next)}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a49999be01380f41cc0d0f1f1406fb277}\label{hurdmalloc_8c_a49999be01380f41cc0d0f1f1406fb277}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!HEADER\_SIZE@{HEADER\_SIZE}}
+\index{HEADER\_SIZE@{HEADER\_SIZE}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_SIZE}{HEADER\_SIZE}}
+{\footnotesize\ttfamily \#define H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE~sizeof (struct \mbox{\hyperlink{structheader}{header}})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_ab7ed2cf9029c2f4f6ae38ae914490eba}\label{hurdmalloc_8c_ab7ed2cf9029c2f4f6ae38ae914490eba}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!LOG2\_MIN\_SIZE@{LOG2\_MIN\_SIZE}}
+\index{LOG2\_MIN\_SIZE@{LOG2\_MIN\_SIZE}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{LOG2\_MIN\_SIZE}{LOG2\_MIN\_SIZE}}
+{\footnotesize\ttfamily \#define L\+O\+G2\+\_\+\+M\+I\+N\+\_\+\+S\+I\+ZE~4}
+
+\mbox{\Hypertarget{hurdmalloc_8c_aa4cb836344817f8d264f507437ce438d}\label{hurdmalloc_8c_aa4cb836344817f8d264f507437ce438d}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!MCHECK@{MCHECK}}
+\index{MCHECK@{MCHECK}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{MCHECK}{MCHECK}}
+{\footnotesize\ttfamily \#define M\+C\+H\+E\+CK}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a278694c2333c9826f21ddd2c2d220f66}\label{hurdmalloc_8c_a278694c2333c9826f21ddd2c2d220f66}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!MIN\_SIZE@{MIN\_SIZE}}
+\index{MIN\_SIZE@{MIN\_SIZE}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_SIZE}{MIN\_SIZE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+S\+I\+ZE~16}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a7257cc1d5685c92d776b6f351ccfa563}\label{hurdmalloc_8c_a7257cc1d5685c92d776b6f351ccfa563}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!NBUCKETS@{NBUCKETS}}
+\index{NBUCKETS@{NBUCKETS}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{NBUCKETS}{NBUCKETS}}
+{\footnotesize\ttfamily \#define N\+B\+U\+C\+K\+E\+TS~29}
+
+\mbox{\Hypertarget{hurdmalloc_8c_add12b4148f84bcfe9bae3c7224ee30b6}\label{hurdmalloc_8c_add12b4148f84bcfe9bae3c7224ee30b6}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!vm\_allocate@{vm\_allocate}}
+\index{vm\_allocate@{vm\_allocate}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{vm\_allocate}{vm\_allocate}}
+{\footnotesize\ttfamily \#define vm\+\_\+allocate~\+\_\+\+\_\+vm\+\_\+allocate}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a7a321f6ff76134e0629dc3d0ab6d7da9}\label{hurdmalloc_8c_a7a321f6ff76134e0629dc3d0ab6d7da9}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!vm\_page\_size@{vm\_page\_size}}
+\index{vm\_page\_size@{vm\_page\_size}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{vm\_page\_size}{vm\_page\_size}}
+{\footnotesize\ttfamily \#define vm\+\_\+page\+\_\+size~\mbox{\hyperlink{mach__init_8h_af0b4146fa1e87a989a37e66ed9dd3d40}{\+\_\+\+\_\+vm\+\_\+page\+\_\+size}}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{hurdmalloc_8c_a4136b533a3711d3667919c4a9a8dc68d}\label{hurdmalloc_8c_a4136b533a3711d3667919c4a9a8dc68d}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!free\_list\_t@{free\_list\_t}}
+\index{free\_list\_t@{free\_list\_t}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{free\_list\_t}{free\_list\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structfree__list}{free\+\_\+list}} $\ast$ \mbox{\hyperlink{hurdmalloc_8c_a4136b533a3711d3667919c4a9a8dc68d}{free\+\_\+list\+\_\+t}}}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a67f0d1f4f281551588080d323523fbff}\label{hurdmalloc_8c_a67f0d1f4f281551588080d323523fbff}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!header\_t@{header\_t}}
+\index{header\_t@{header\_t}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{header\_t}{header\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structheader}{header}} $\ast$ \mbox{\hyperlink{hurdmalloc_8c_a67f0d1f4f281551588080d323523fbff}{header\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hurdmalloc_8c_a2da4a0a17aba58e9bdfb11aad286283c}\label{hurdmalloc_8c_a2da4a0a17aba58e9bdfb11aad286283c}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!free@{free}}
+\index{free@{free}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{base }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a7ac38fce3243a7dcf448301ee9ffd392}\label{hurdmalloc_8c_a7ac38fce3243a7dcf448301ee9ffd392}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!malloc@{malloc}}
+\index{malloc@{malloc}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{malloc()}{malloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ malloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a582815fb928665f51364ab6484f6da63}\label{hurdmalloc_8c_a582815fb928665f51364ab6484f6da63}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!realloc@{realloc}}
+\index{realloc@{realloc}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{realloc()}{realloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ realloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{old\+\_\+base,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{new\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_aca300b1a20201e52be109fc9ca6e6253}\label{hurdmalloc_8c_aca300b1a20201e52be109fc9ca6e6253}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook}]{,  }\item[{malloc\+\_\+fork\+\_\+child}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a08ab59ae65441bb0487b07feb15df3a3}\label{hurdmalloc_8c_a08ab59ae65441bb0487b07feb15df3a3}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+parent\+\_\+hook}]{,  }\item[{malloc\+\_\+fork\+\_\+parent}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a9813b930410aa5ec9af7978e7504936b}\label{hurdmalloc_8c_a9813b930410aa5ec9af7978e7504936b}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+prepare\+\_\+hook}]{,  }\item[{malloc\+\_\+fork\+\_\+prepare}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmalloc_8c_a6c8c4a149eb119a97fd7861edc0cbe96}\label{hurdmalloc_8c_a6c8c4a149eb119a97fd7861edc0cbe96}} 
+\index{hurdmalloc.c@{hurdmalloc.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!hurdmalloc.c@{hurdmalloc.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+preinit\+\_\+hook}]{,  }\item[{malloc\+\_\+init}]{ }\end{DoxyParamCaption})}
+

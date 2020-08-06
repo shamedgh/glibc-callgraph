@@ -1,0 +1,164 @@
+\hypertarget{sysdeps_2posix_2tempname_8c}{}\doxysection{sysdeps/posix/tempname.c File Reference}
+\label{sysdeps_2posix_2tempname_8c}\index{sysdeps/posix/tempname.c@{sysdeps/posix/tempname.c}}
+{\ttfamily \#include $<$config.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tempname.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_ad523c4c43c3bc3539a118e4413c9c12a}{\+\_\+\+\_\+set\+\_\+errno}}(Val)~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ad65a8842cc674e3ddf69355898c0ecbf}{errno}} = (Val)
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a09ceb74f0162424b6ceb823a4c702b85}{P\+\_\+tmpdir}}~\char`\"{}/tmp\char`\"{}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_ada7e63a6fb078a062192145950369d09}{T\+M\+P\+\_\+\+M\+AX}}~238328
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a8c6ed412da0582213349e1aa916c0d15}{\+\_\+\+\_\+\+G\+T\+\_\+\+F\+I\+LE}}~0
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_ab8b0d594d96e7ca4a5161f2d8e175657}{\+\_\+\+\_\+\+G\+T\+\_\+\+D\+IR}}~1
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a91f98c2b7a023dce89772acedf99dc21}{\+\_\+\+\_\+\+G\+T\+\_\+\+N\+O\+C\+R\+E\+A\+TE}}~2
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_abf6ffa85a1279770b52209fde9daa351}{struct\+\_\+stat64}}~struct \mbox{\hyperlink{structstat}{stat}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a774ec53671f6e660eb6c0b3e4e96ad1b}{\+\_\+\+\_\+gen\+\_\+tempname}}~gen\+\_\+tempname
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_aea74d891fafaf6e88182cbb6692b51e1}{\+\_\+\+\_\+getpid}}~\mbox{\hyperlink{posix_2unistd_8h_a20c88db99e86d9d3eb7800909f28573d}{getpid}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a4b71705227ddab714cf8bfc4982e68ff}{\+\_\+\+\_\+gettimeofday}}~\mbox{\hyperlink{time_2sys_2time_8h_a5135ee8fb162c319e68b660657f1453e}{gettimeofday}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a0b0f90a69766936e1a489fed5da27861}{\+\_\+\+\_\+mkdir}}~\mbox{\hyperlink{io_2sys_2stat_8h_a3b75e5a42de4908856639e26e9a4d59a}{mkdir}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_ab835929089cc23a0ab97ca2325d06bac}{\+\_\+\+\_\+open}}~\mbox{\hyperlink{io_2fcntl_8h_a593f525c4ac0135c9f06275378e92334}{open}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a6d33216d8b900ac92dd72097f1d52fcc}{\+\_\+\+\_\+lxstat64}}(\mbox{\hyperlink{unwind-dw2-fde_8h_a6ca685b8d549d38cc9c01e4b78755af3}{version}},  \mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}},  \mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}})~\mbox{\hyperlink{io_2ftw_8c_a6c29c76bbf55d485ae4ac73a4f5ed902}{lstat}} (\mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}}, \mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}})
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_ac8a70fa2874dd8897cb9a851d6348207}{\+\_\+\+\_\+secure\+\_\+getenv}}~secure\+\_\+getenv
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a104204cb123abb831baa5adcfffc64e0}{uint64\+\_\+t}}~\mbox{\hyperlink{private_8h_a5e3377226a1ebd99c8b6535b7629d0c2}{uintmax\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_a30f9a42eb846271e30ce3e38898b3808}{A\+T\+T\+E\+M\+P\+T\+S\+\_\+\+M\+IN}}~(62 $\ast$ 62 $\ast$ 62)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2posix_2tempname_8c_ad094f75ef59750ba34467a92a4dac8fb}{\+\_\+\+\_\+gen\+\_\+tempname}} (char $\ast$tmpl, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} suffixlen, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} kind)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a774ec53671f6e660eb6c0b3e4e96ad1b}\label{sysdeps_2posix_2tempname_8c_a774ec53671f6e660eb6c0b3e4e96ad1b}} 
+\index{tempname.c@{tempname.c}!\_\_gen\_tempname@{\_\_gen\_tempname}}
+\index{\_\_gen\_tempname@{\_\_gen\_tempname}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_gen\_tempname}{\_\_gen\_tempname}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+gen\+\_\+tempname~gen\+\_\+tempname}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_aea74d891fafaf6e88182cbb6692b51e1}\label{sysdeps_2posix_2tempname_8c_aea74d891fafaf6e88182cbb6692b51e1}} 
+\index{tempname.c@{tempname.c}!\_\_getpid@{\_\_getpid}}
+\index{\_\_getpid@{\_\_getpid}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_getpid}{\_\_getpid}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+getpid~\mbox{\hyperlink{posix_2unistd_8h_a20c88db99e86d9d3eb7800909f28573d}{getpid}}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a4b71705227ddab714cf8bfc4982e68ff}\label{sysdeps_2posix_2tempname_8c_a4b71705227ddab714cf8bfc4982e68ff}} 
+\index{tempname.c@{tempname.c}!\_\_gettimeofday@{\_\_gettimeofday}}
+\index{\_\_gettimeofday@{\_\_gettimeofday}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_gettimeofday}{\_\_gettimeofday}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+gettimeofday~\mbox{\hyperlink{time_2sys_2time_8h_a5135ee8fb162c319e68b660657f1453e}{gettimeofday}}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_ab8b0d594d96e7ca4a5161f2d8e175657}\label{sysdeps_2posix_2tempname_8c_ab8b0d594d96e7ca4a5161f2d8e175657}} 
+\index{tempname.c@{tempname.c}!\_\_GT\_DIR@{\_\_GT\_DIR}}
+\index{\_\_GT\_DIR@{\_\_GT\_DIR}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_GT\_DIR}{\_\_GT\_DIR}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+G\+T\+\_\+\+D\+IR~1}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a8c6ed412da0582213349e1aa916c0d15}\label{sysdeps_2posix_2tempname_8c_a8c6ed412da0582213349e1aa916c0d15}} 
+\index{tempname.c@{tempname.c}!\_\_GT\_FILE@{\_\_GT\_FILE}}
+\index{\_\_GT\_FILE@{\_\_GT\_FILE}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_GT\_FILE}{\_\_GT\_FILE}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+G\+T\+\_\+\+F\+I\+LE~0}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a91f98c2b7a023dce89772acedf99dc21}\label{sysdeps_2posix_2tempname_8c_a91f98c2b7a023dce89772acedf99dc21}} 
+\index{tempname.c@{tempname.c}!\_\_GT\_NOCREATE@{\_\_GT\_NOCREATE}}
+\index{\_\_GT\_NOCREATE@{\_\_GT\_NOCREATE}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_GT\_NOCREATE}{\_\_GT\_NOCREATE}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+G\+T\+\_\+\+N\+O\+C\+R\+E\+A\+TE~2}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a6d33216d8b900ac92dd72097f1d52fcc}\label{sysdeps_2posix_2tempname_8c_a6d33216d8b900ac92dd72097f1d52fcc}} 
+\index{tempname.c@{tempname.c}!\_\_lxstat64@{\_\_lxstat64}}
+\index{\_\_lxstat64@{\_\_lxstat64}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_lxstat64}{\_\_lxstat64}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+lxstat64(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unwind-dw2-fde_8h_a6ca685b8d549d38cc9c01e4b78755af3}{version}},  }\item[{}]{\mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}},  }\item[{}]{\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}} }\end{DoxyParamCaption})~\mbox{\hyperlink{io_2ftw_8c_a6c29c76bbf55d485ae4ac73a4f5ed902}{lstat}} (\mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}}, \mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}})}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a0b0f90a69766936e1a489fed5da27861}\label{sysdeps_2posix_2tempname_8c_a0b0f90a69766936e1a489fed5da27861}} 
+\index{tempname.c@{tempname.c}!\_\_mkdir@{\_\_mkdir}}
+\index{\_\_mkdir@{\_\_mkdir}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_mkdir}{\_\_mkdir}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+mkdir~\mbox{\hyperlink{io_2sys_2stat_8h_a3b75e5a42de4908856639e26e9a4d59a}{mkdir}}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_ab835929089cc23a0ab97ca2325d06bac}\label{sysdeps_2posix_2tempname_8c_ab835929089cc23a0ab97ca2325d06bac}} 
+\index{tempname.c@{tempname.c}!\_\_open@{\_\_open}}
+\index{\_\_open@{\_\_open}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_open}{\_\_open}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+open~\mbox{\hyperlink{io_2fcntl_8h_a593f525c4ac0135c9f06275378e92334}{open}}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_ac8a70fa2874dd8897cb9a851d6348207}\label{sysdeps_2posix_2tempname_8c_ac8a70fa2874dd8897cb9a851d6348207}} 
+\index{tempname.c@{tempname.c}!\_\_secure\_getenv@{\_\_secure\_getenv}}
+\index{\_\_secure\_getenv@{\_\_secure\_getenv}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_secure\_getenv}{\_\_secure\_getenv}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+secure\+\_\+getenv~secure\+\_\+getenv}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_ad523c4c43c3bc3539a118e4413c9c12a}\label{sysdeps_2posix_2tempname_8c_ad523c4c43c3bc3539a118e4413c9c12a}} 
+\index{tempname.c@{tempname.c}!\_\_set\_errno@{\_\_set\_errno}}
+\index{\_\_set\_errno@{\_\_set\_errno}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_set\_errno}{\_\_set\_errno}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+set\+\_\+errno(\begin{DoxyParamCaption}\item[{}]{Val }\end{DoxyParamCaption})~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ad65a8842cc674e3ddf69355898c0ecbf}{errno}} = (Val)}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a30f9a42eb846271e30ce3e38898b3808}\label{sysdeps_2posix_2tempname_8c_a30f9a42eb846271e30ce3e38898b3808}} 
+\index{tempname.c@{tempname.c}!ATTEMPTS\_MIN@{ATTEMPTS\_MIN}}
+\index{ATTEMPTS\_MIN@{ATTEMPTS\_MIN}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{ATTEMPTS\_MIN}{ATTEMPTS\_MIN}}
+{\footnotesize\ttfamily \#define A\+T\+T\+E\+M\+P\+T\+S\+\_\+\+M\+IN~(62 $\ast$ 62 $\ast$ 62)}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a09ceb74f0162424b6ceb823a4c702b85}\label{sysdeps_2posix_2tempname_8c_a09ceb74f0162424b6ceb823a4c702b85}} 
+\index{tempname.c@{tempname.c}!P\_tmpdir@{P\_tmpdir}}
+\index{P\_tmpdir@{P\_tmpdir}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{P\_tmpdir}{P\_tmpdir}}
+{\footnotesize\ttfamily \#define P\+\_\+tmpdir~\char`\"{}/tmp\char`\"{}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_abf6ffa85a1279770b52209fde9daa351}\label{sysdeps_2posix_2tempname_8c_abf6ffa85a1279770b52209fde9daa351}} 
+\index{tempname.c@{tempname.c}!struct\_stat64@{struct\_stat64}}
+\index{struct\_stat64@{struct\_stat64}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{struct\_stat64}{struct\_stat64}}
+{\footnotesize\ttfamily \#define struct\+\_\+stat64~struct \mbox{\hyperlink{structstat}{stat}}}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_ada7e63a6fb078a062192145950369d09}\label{sysdeps_2posix_2tempname_8c_ada7e63a6fb078a062192145950369d09}} 
+\index{tempname.c@{tempname.c}!TMP\_MAX@{TMP\_MAX}}
+\index{TMP\_MAX@{TMP\_MAX}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{TMP\_MAX}{TMP\_MAX}}
+{\footnotesize\ttfamily \#define T\+M\+P\+\_\+\+M\+AX~238328}
+
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_a104204cb123abb831baa5adcfffc64e0}\label{sysdeps_2posix_2tempname_8c_a104204cb123abb831baa5adcfffc64e0}} 
+\index{tempname.c@{tempname.c}!uint64\_t@{uint64\_t}}
+\index{uint64\_t@{uint64\_t}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{uint64\_t}{uint64\_t}}
+{\footnotesize\ttfamily \#define uint64\+\_\+t~\mbox{\hyperlink{private_8h_a5e3377226a1ebd99c8b6535b7629d0c2}{uintmax\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2posix_2tempname_8c_ad094f75ef59750ba34467a92a4dac8fb}\label{sysdeps_2posix_2tempname_8c_ad094f75ef59750ba34467a92a4dac8fb}} 
+\index{tempname.c@{tempname.c}!\_\_gen\_tempname@{\_\_gen\_tempname}}
+\index{\_\_gen\_tempname@{\_\_gen\_tempname}!tempname.c@{tempname.c}}
+\doxysubsubsection{\texorpdfstring{\_\_gen\_tempname()}{\_\_gen\_tempname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+gen\+\_\+tempname (\begin{DoxyParamCaption}\item[{char $\ast$}]{tmpl,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{suffixlen,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{flags,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{kind }\end{DoxyParamCaption})}
+

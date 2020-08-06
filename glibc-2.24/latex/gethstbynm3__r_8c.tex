@@ -1,0 +1,141 @@
+\hypertarget{gethstbynm3__r_8c}{}\doxysection{nscd/gethstbynm3\+\_\+r.c File Reference}
+\label{gethstbynm3__r_8c}\index{nscd/gethstbynm3\_r.c@{nscd/gethstbynm3\_r.c}}
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../nss/get\+X\+Xby\+Y\+Y\+\_\+r.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}{L\+O\+O\+K\+U\+P\+\_\+\+T\+Y\+PE}}~struct \mbox{\hyperlink{structhostent}{hostent}}
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_a922d2784284e8f6ee4009c3d92ba48b6}{F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+N\+A\+ME}}~gethostbyname3
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_a41a1d37c71e2426f9ca2becf13237ab2}{F\+U\+N\+C\+T\+I\+O\+N2\+\_\+\+N\+A\+ME}}~\mbox{\hyperlink{gethnamaddr_8c_a79723285501c23f69098f7691a3882f1}{gethostbyname2}}
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}{D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+ME}}~hosts
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_addbc4848280d58943ee440cad4ecec6b}{A\+D\+D\+\_\+\+P\+A\+R\+A\+MS}}~\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_a351f178b48a14255fc91fc24982c55a2}{E\+X\+T\+R\+A\+\_\+\+P\+A\+R\+A\+MS}}~, \mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}} $\ast$ttlp, char $\ast$$\ast$canonp
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_addc19d5f856131b9d8b605200b696480}{A\+D\+D\+\_\+\+V\+A\+R\+I\+A\+B\+L\+ES}}~\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_a068213faeb00a93229e95b1f6404ad07}{E\+X\+T\+R\+A\+\_\+\+V\+A\+R\+I\+A\+B\+L\+ES}}~, ttlp, canonp
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_acce75f5fcc8b1e619ba67c731a3f6264}{N\+E\+E\+D\+\_\+\+H\+\_\+\+E\+R\+R\+NO}}~1
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_af4273e158c76fdb76a06291a5a6707da}{N\+E\+E\+D\+\_\+\+\_\+\+R\+E\+S\+\_\+\+H\+C\+O\+NF}}~1
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_abd1fb003cdef6420ca76d70b99af2ad1}{H\+A\+N\+D\+L\+E\+\_\+\+D\+I\+G\+I\+T\+S\+\_\+\+D\+O\+TS}}~1
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_aceb78c78b985cf608ec7708b6fbe8331}{H\+A\+V\+E\+\_\+\+L\+O\+O\+K\+U\+P\+\_\+\+B\+U\+F\+F\+ER}}~1
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_aa67e80482877b11211d67137d45ca072}{H\+A\+V\+E\+\_\+\+AF}}~1
+\item 
+\#define \mbox{\hyperlink{gethstbynm3__r_8c_abe8efd4acdf9e2c663a93433357f287a}{\+\_\+\+\_\+inet\+\_\+aton}}~inet\+\_\+aton
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{gethstbynm3__r_8c_a83085af4fe32715e76894663b32ac25f}{\+\_\+\+\_\+gethostbyname2\+\_\+r}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}, struct \mbox{\hyperlink{structhostent}{hostent}} $\ast$\mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}{ret}}, char $\ast$\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, struct \mbox{\hyperlink{structhostent}{hostent}} $\ast$$\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$h\+\_\+errnop)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gethstbynm3__r_8c_abe8efd4acdf9e2c663a93433357f287a}\label{gethstbynm3__r_8c_abe8efd4acdf9e2c663a93433357f287a}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!\_\_inet\_aton@{\_\_inet\_aton}}
+\index{\_\_inet\_aton@{\_\_inet\_aton}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{\_\_inet\_aton}{\_\_inet\_aton}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+inet\+\_\+aton~inet\+\_\+aton}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_addbc4848280d58943ee440cad4ecec6b}\label{gethstbynm3__r_8c_addbc4848280d58943ee440cad4ecec6b}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!ADD\_PARAMS@{ADD\_PARAMS}}
+\index{ADD\_PARAMS@{ADD\_PARAMS}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{ADD\_PARAMS}{ADD\_PARAMS}}
+{\footnotesize\ttfamily \#define A\+D\+D\+\_\+\+P\+A\+R\+A\+MS~\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_addc19d5f856131b9d8b605200b696480}\label{gethstbynm3__r_8c_addc19d5f856131b9d8b605200b696480}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!ADD\_VARIABLES@{ADD\_VARIABLES}}
+\index{ADD\_VARIABLES@{ADD\_VARIABLES}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{ADD\_VARIABLES}{ADD\_VARIABLES}}
+{\footnotesize\ttfamily \#define A\+D\+D\+\_\+\+V\+A\+R\+I\+A\+B\+L\+ES~\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_a16e34c920dc4ff677c4a469e11bc0b44}{af}}}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}\label{gethstbynm3__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!DATABASE\_NAME@{DATABASE\_NAME}}
+\index{DATABASE\_NAME@{DATABASE\_NAME}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{DATABASE\_NAME}{DATABASE\_NAME}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+ME~hosts}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_a351f178b48a14255fc91fc24982c55a2}\label{gethstbynm3__r_8c_a351f178b48a14255fc91fc24982c55a2}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!EXTRA\_PARAMS@{EXTRA\_PARAMS}}
+\index{EXTRA\_PARAMS@{EXTRA\_PARAMS}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_PARAMS}{EXTRA\_PARAMS}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+P\+A\+R\+A\+MS~, \mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}} $\ast$ttlp, char $\ast$$\ast$canonp}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_a068213faeb00a93229e95b1f6404ad07}\label{gethstbynm3__r_8c_a068213faeb00a93229e95b1f6404ad07}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!EXTRA\_VARIABLES@{EXTRA\_VARIABLES}}
+\index{EXTRA\_VARIABLES@{EXTRA\_VARIABLES}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_VARIABLES}{EXTRA\_VARIABLES}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+V\+A\+R\+I\+A\+B\+L\+ES~, ttlp, canonp}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_a41a1d37c71e2426f9ca2becf13237ab2}\label{gethstbynm3__r_8c_a41a1d37c71e2426f9ca2becf13237ab2}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!FUNCTION2\_NAME@{FUNCTION2\_NAME}}
+\index{FUNCTION2\_NAME@{FUNCTION2\_NAME}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{FUNCTION2\_NAME}{FUNCTION2\_NAME}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+T\+I\+O\+N2\+\_\+\+N\+A\+ME~\mbox{\hyperlink{gethnamaddr_8c_a79723285501c23f69098f7691a3882f1}{gethostbyname2}}}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_a922d2784284e8f6ee4009c3d92ba48b6}\label{gethstbynm3__r_8c_a922d2784284e8f6ee4009c3d92ba48b6}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!FUNCTION\_NAME@{FUNCTION\_NAME}}
+\index{FUNCTION\_NAME@{FUNCTION\_NAME}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{FUNCTION\_NAME}{FUNCTION\_NAME}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+N\+A\+ME~gethostbyname3}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_abd1fb003cdef6420ca76d70b99af2ad1}\label{gethstbynm3__r_8c_abd1fb003cdef6420ca76d70b99af2ad1}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!HANDLE\_DIGITS\_DOTS@{HANDLE\_DIGITS\_DOTS}}
+\index{HANDLE\_DIGITS\_DOTS@{HANDLE\_DIGITS\_DOTS}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{HANDLE\_DIGITS\_DOTS}{HANDLE\_DIGITS\_DOTS}}
+{\footnotesize\ttfamily \#define H\+A\+N\+D\+L\+E\+\_\+\+D\+I\+G\+I\+T\+S\+\_\+\+D\+O\+TS~1}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_aa67e80482877b11211d67137d45ca072}\label{gethstbynm3__r_8c_aa67e80482877b11211d67137d45ca072}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!HAVE\_AF@{HAVE\_AF}}
+\index{HAVE\_AF@{HAVE\_AF}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{HAVE\_AF}{HAVE\_AF}}
+{\footnotesize\ttfamily \#define H\+A\+V\+E\+\_\+\+AF~1}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_aceb78c78b985cf608ec7708b6fbe8331}\label{gethstbynm3__r_8c_aceb78c78b985cf608ec7708b6fbe8331}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!HAVE\_LOOKUP\_BUFFER@{HAVE\_LOOKUP\_BUFFER}}
+\index{HAVE\_LOOKUP\_BUFFER@{HAVE\_LOOKUP\_BUFFER}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{HAVE\_LOOKUP\_BUFFER}{HAVE\_LOOKUP\_BUFFER}}
+{\footnotesize\ttfamily \#define H\+A\+V\+E\+\_\+\+L\+O\+O\+K\+U\+P\+\_\+\+B\+U\+F\+F\+ER~1}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}\label{gethstbynm3__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!LOOKUP\_TYPE@{LOOKUP\_TYPE}}
+\index{LOOKUP\_TYPE@{LOOKUP\_TYPE}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{LOOKUP\_TYPE}{LOOKUP\_TYPE}}
+{\footnotesize\ttfamily \#define L\+O\+O\+K\+U\+P\+\_\+\+T\+Y\+PE~struct \mbox{\hyperlink{structhostent}{hostent}}}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_af4273e158c76fdb76a06291a5a6707da}\label{gethstbynm3__r_8c_af4273e158c76fdb76a06291a5a6707da}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!NEED\_\_RES\_HCONF@{NEED\_\_RES\_HCONF}}
+\index{NEED\_\_RES\_HCONF@{NEED\_\_RES\_HCONF}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{NEED\_\_RES\_HCONF}{NEED\_\_RES\_HCONF}}
+{\footnotesize\ttfamily \#define N\+E\+E\+D\+\_\+\+\_\+\+R\+E\+S\+\_\+\+H\+C\+O\+NF~1}
+
+\mbox{\Hypertarget{gethstbynm3__r_8c_acce75f5fcc8b1e619ba67c731a3f6264}\label{gethstbynm3__r_8c_acce75f5fcc8b1e619ba67c731a3f6264}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!NEED\_H\_ERRNO@{NEED\_H\_ERRNO}}
+\index{NEED\_H\_ERRNO@{NEED\_H\_ERRNO}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{NEED\_H\_ERRNO}{NEED\_H\_ERRNO}}
+{\footnotesize\ttfamily \#define N\+E\+E\+D\+\_\+\+H\+\_\+\+E\+R\+R\+NO~1}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gethstbynm3__r_8c_a83085af4fe32715e76894663b32ac25f}\label{gethstbynm3__r_8c_a83085af4fe32715e76894663b32ac25f}} 
+\index{gethstbynm3\_r.c@{gethstbynm3\_r.c}!\_\_gethostbyname2\_r@{\_\_gethostbyname2\_r}}
+\index{\_\_gethostbyname2\_r@{\_\_gethostbyname2\_r}!gethstbynm3\_r.c@{gethstbynm3\_r.c}}
+\doxysubsubsection{\texorpdfstring{\_\_gethostbyname2\_r()}{\_\_gethostbyname2\_r()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+gethostbyname2\+\_\+r (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{af,  }\item[{struct \mbox{\hyperlink{structhostent}{hostent}} $\ast$}]{ret,  }\item[{char $\ast$}]{buf,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{buflen,  }\item[{struct \mbox{\hyperlink{structhostent}{hostent}} $\ast$$\ast$}]{result,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{h\+\_\+errnop }\end{DoxyParamCaption})}
+

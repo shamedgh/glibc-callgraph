@@ -1,0 +1,250 @@
+\hypertarget{getXXent__r_8c}{}\doxysection{nss/get\+X\+Xent\+\_\+r.c File Reference}
+\label{getXXent__r_8c}\index{nss/getXXent\_r.c@{nss/getXXent\_r.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nsswitch.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$shlib-\/compat.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_abce49f015e80916b4c7da5a45e159f56}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}}~\mbox{\hyperlink{getXXent__r_8c_ad075bbe61a8368f9d07c43f48315f3cb}{A\+P\+P\+E\+N\+D\+\_\+R}} (\mbox{\hyperlink{getXXent_8c_a14a9c1e2ae5a980d4e56a4c6d2222cba}{G\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+ME}})
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_ad075bbe61a8368f9d07c43f48315f3cb}{A\+P\+P\+E\+N\+D\+\_\+R}}(Name)~\mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}} (Name, \+\_\+r)
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_ac6a2db0ad3beaa63d49111ab57dbc68d}{I\+N\+T\+E\+R\+N\+AL}}(Name)~\mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}} (\+\_\+\+\_\+, Name)
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_ae237fc6ca8fc1dafcf7f1dff8ffd346f}{C\+O\+N\+C\+A\+T2\+\_\+1}}(Pre,  Post)~\mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}} (Pre, Post)
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}}(Pre,  Post)~Pre\#\#Post
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a64abbe1899cb6cb2d8ea2258fb863fe9}{N\+EW}}(\mbox{\hyperlink{structname}{name}})~\mbox{\hyperlink{getXXent__r_8c_a89ab406319be5de5a0449a99f156c53a}{N\+E\+W1}} (\mbox{\hyperlink{structname}{name}})
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a89ab406319be5de5a0449a99f156c53a}{N\+E\+W1}}(\mbox{\hyperlink{structname}{name}})~\+\_\+\+\_\+new\+\_\+\#\#\mbox{\hyperlink{structname}{name}}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a16b3bc785cea7cedccaa9a97858f7a31}{S\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG}}~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getrpcent__r_8c_a46ef6dc4a423c9bd0b9bea075d69e10e}{S\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+ME}})
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a5b2cc6cee95dc7a281a29f9e18fc4fcb}{G\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG}}~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}})
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a9379fb1c6f4e49faca7bdf7fea1ddeb9}{E\+N\+D\+F\+U\+N\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG}}~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getXXent__r_8c_acea7e04272af2235d8bce01bdce0f3d1}{E\+N\+D\+F\+U\+N\+C\+\_\+\+N\+A\+ME}})
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_ad2cf2afe31739db76a63be3c490eea1c}{D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG}}~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getrpcent__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}{D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+ME}})
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}}(Name)~\mbox{\hyperlink{getXXent__r_8c_a07b265c391474d1670d7cb551c723e45}{S\+T\+R\+I\+N\+G\+I\+Z\+E1}} (Name)
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a07b265c391474d1670d7cb551c723e45}{S\+T\+R\+I\+N\+G\+I\+Z\+E1}}(Name)~\#Name
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_ae38cfa93a8d9784d8f4ecaa52d996406}{D\+B\+\_\+\+L\+O\+O\+K\+U\+P\+\_\+\+F\+CT}}~\mbox{\hyperlink{XXX-lookup_8c_a62870995537f4943ac1711c953767ca2}{C\+O\+N\+C\+A\+T3\+\_\+1}} (\+\_\+\+\_\+nss\+\_\+, \mbox{\hyperlink{getrpcent__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}{D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+ME}}, \+\_\+lookup2)
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a62870995537f4943ac1711c953767ca2}{C\+O\+N\+C\+A\+T3\+\_\+1}}(Pre,  Name,  Post)~\mbox{\hyperlink{XXX-lookup_8c_a2fed98ae6c54f1f3ae015d3f6ebaf806}{C\+O\+N\+C\+A\+T3\+\_\+2}} (Pre, Name, Post)
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a2fed98ae6c54f1f3ae015d3f6ebaf806}{C\+O\+N\+C\+A\+T3\+\_\+2}}(Pre,  Name,  Post)~Pre\#\#Name\#\#Post
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a9a54ca168d085438893520f6ab625daf}{H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+P\+A\+RM}}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a6ef8556186e030519fb6e8739183d2be}{H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+V\+AR}}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_af16645d7770814dc8e9c034de7b31d02}{H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+V\+A\+R\+\_\+P}}~\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_adcfbe42190b90fb7cec36c05155bc638}{S\+T\+A\+Y\+O\+P\+EN}}~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a68997e12de00a05591edd1a39e6b5fd2}{S\+T\+A\+Y\+O\+P\+E\+N\+\_\+\+V\+AR}}~0
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a567a171d7ccbee5d273b9d03ea9f7332}{S\+T\+A\+Y\+O\+P\+E\+N\+\_\+\+T\+M\+P\+V\+AR}}~\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a2bfd1257f3f42e13193544c5f33ec3fb}{N\+E\+E\+D\+\_\+\+\_\+\+R\+ES}}~0
+\item 
+\#define \mbox{\hyperlink{getXXent__r_8c_a9a29a955212f4280fa03ad264148b9d1}{do\+\_\+default\+\_\+symbol\+\_\+version}}(real,  \mbox{\hyperlink{structname}{name}},  \mbox{\hyperlink{unwind-dw2-fde_8h_a6ca685b8d549d38cc9c01e4b78755af3}{version}})~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2x86__64_2timer__settime_8c_ae2f7fbff58e16eb7b71053ece00737c7}{versioned\+\_\+symbol}} (libc, real, \mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{unwind-dw2-fde_8h_a6ca685b8d549d38cc9c01e4b78755af3}{version}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{getXXent__r_8c_a22e1ccd66c522451f089672c4dd1ff26}{\+\_\+\+\_\+libc\+\_\+lock\+\_\+define\+\_\+initialized}} (static, \mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{getXXent__r_8c_acea7e04272af2235d8bce01bdce0f3d1}{E\+N\+D\+F\+U\+N\+C\+\_\+\+N\+A\+ME}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stdlib_2strtold__l_8c_a30c5477de836a5a79c8c57b24b6537d4}{I\+N\+T\+E\+R\+N\+AL}}() \mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}} (\mbox{\hyperlink{getrpcent__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}{L\+O\+O\+K\+U\+P\+\_\+\+T\+Y\+PE}} $\ast$resbuf, char $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{inet_2netgroup_8h_aaf1933cdea2c77423769cdb2f98e1ac9}{buflen}}, \mbox{\hyperlink{getrpcent__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}{L\+O\+O\+K\+U\+P\+\_\+\+T\+Y\+PE}} $\ast$$\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}} \mbox{\hyperlink{getXXent__r_8c_a9a54ca168d085438893520f6ab625daf}{H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+P\+A\+RM}})
+\item 
+\mbox{\hyperlink{getXXent__r_8c_a0090f0b8b9ce4a46e3f79ee9403998d7}{strong\+\_\+alias}} (\mbox{\hyperlink{stdlib_2strtold__l_8c_a30c5477de836a5a79c8c57b24b6537d4}{I\+N\+T\+E\+R\+N\+AL}}(\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}}), \mbox{\hyperlink{strtold_8c_a7324348ee403bddaf991adcbde25b678}{N\+EW}}(\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}}))
+\item 
+\mbox{\hyperlink{getXXent__r_8c_a042fd2c4cd298be7344260e316f7f18c}{do\+\_\+default\+\_\+symbol\+\_\+version}} (\mbox{\hyperlink{strtold_8c_a7324348ee403bddaf991adcbde25b678}{N\+EW}}(\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}}), \mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}}, G\+L\+I\+B\+C\+\_\+2\+\_\+1\+\_\+2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{getXXent__r_8c_ad075bbe61a8368f9d07c43f48315f3cb}\label{getXXent__r_8c_ad075bbe61a8368f9d07c43f48315f3cb}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!APPEND\_R@{APPEND\_R}}
+\index{APPEND\_R@{APPEND\_R}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{APPEND\_R}{APPEND\_R}}
+{\footnotesize\ttfamily \#define A\+P\+P\+E\+N\+D\+\_\+R(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})~\mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}} (Name, \+\_\+r)}
+
+\mbox{\Hypertarget{getXXent__r_8c_ae237fc6ca8fc1dafcf7f1dff8ffd346f}\label{getXXent__r_8c_ae237fc6ca8fc1dafcf7f1dff8ffd346f}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!CONCAT2\_1@{CONCAT2\_1}}
+\index{CONCAT2\_1@{CONCAT2\_1}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{CONCAT2\_1}{CONCAT2\_1}}
+{\footnotesize\ttfamily \#define C\+O\+N\+C\+A\+T2\+\_\+1(\begin{DoxyParamCaption}\item[{}]{Pre,  }\item[{}]{Post }\end{DoxyParamCaption})~\mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}} (Pre, Post)}
+
+\mbox{\Hypertarget{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}\label{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!CONCAT2\_2@{CONCAT2\_2}}
+\index{CONCAT2\_2@{CONCAT2\_2}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{CONCAT2\_2}{CONCAT2\_2}}
+{\footnotesize\ttfamily \#define C\+O\+N\+C\+A\+T2\+\_\+2(\begin{DoxyParamCaption}\item[{}]{Pre,  }\item[{}]{Post }\end{DoxyParamCaption})~Pre\#\#Post}
+
+\mbox{\Hypertarget{getXXent__r_8c_a62870995537f4943ac1711c953767ca2}\label{getXXent__r_8c_a62870995537f4943ac1711c953767ca2}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!CONCAT3\_1@{CONCAT3\_1}}
+\index{CONCAT3\_1@{CONCAT3\_1}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{CONCAT3\_1}{CONCAT3\_1}}
+{\footnotesize\ttfamily \#define C\+O\+N\+C\+A\+T3\+\_\+1(\begin{DoxyParamCaption}\item[{}]{Pre,  }\item[{}]{Name,  }\item[{}]{Post }\end{DoxyParamCaption})~\mbox{\hyperlink{XXX-lookup_8c_a2fed98ae6c54f1f3ae015d3f6ebaf806}{C\+O\+N\+C\+A\+T3\+\_\+2}} (Pre, Name, Post)}
+
+\mbox{\Hypertarget{getXXent__r_8c_a2fed98ae6c54f1f3ae015d3f6ebaf806}\label{getXXent__r_8c_a2fed98ae6c54f1f3ae015d3f6ebaf806}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!CONCAT3\_2@{CONCAT3\_2}}
+\index{CONCAT3\_2@{CONCAT3\_2}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{CONCAT3\_2}{CONCAT3\_2}}
+{\footnotesize\ttfamily \#define C\+O\+N\+C\+A\+T3\+\_\+2(\begin{DoxyParamCaption}\item[{}]{Pre,  }\item[{}]{Name,  }\item[{}]{Post }\end{DoxyParamCaption})~Pre\#\#Name\#\#Post}
+
+\mbox{\Hypertarget{getXXent__r_8c_ad2cf2afe31739db76a63be3c490eea1c}\label{getXXent__r_8c_ad2cf2afe31739db76a63be3c490eea1c}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!DATABASE\_NAME\_STRING@{DATABASE\_NAME\_STRING}}
+\index{DATABASE\_NAME\_STRING@{DATABASE\_NAME\_STRING}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{DATABASE\_NAME\_STRING}{DATABASE\_NAME\_STRING}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getrpcent__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}{D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+ME}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_ae38cfa93a8d9784d8f4ecaa52d996406}\label{getXXent__r_8c_ae38cfa93a8d9784d8f4ecaa52d996406}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!DB\_LOOKUP\_FCT@{DB\_LOOKUP\_FCT}}
+\index{DB\_LOOKUP\_FCT@{DB\_LOOKUP\_FCT}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{DB\_LOOKUP\_FCT}{DB\_LOOKUP\_FCT}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+L\+O\+O\+K\+U\+P\+\_\+\+F\+CT~\mbox{\hyperlink{XXX-lookup_8c_a62870995537f4943ac1711c953767ca2}{C\+O\+N\+C\+A\+T3\+\_\+1}} (\+\_\+\+\_\+nss\+\_\+, \mbox{\hyperlink{getrpcent__r_8c_a9f4bb50e3fdcef4560fcdec270801e2b}{D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+N\+A\+ME}}, \+\_\+lookup2)}
+
+\mbox{\Hypertarget{getXXent__r_8c_a9a29a955212f4280fa03ad264148b9d1}\label{getXXent__r_8c_a9a29a955212f4280fa03ad264148b9d1}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!do\_default\_symbol\_version@{do\_default\_symbol\_version}}
+\index{do\_default\_symbol\_version@{do\_default\_symbol\_version}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{do\_default\_symbol\_version}{do\_default\_symbol\_version}}
+{\footnotesize\ttfamily \#define do\+\_\+default\+\_\+symbol\+\_\+version(\begin{DoxyParamCaption}\item[{}]{real,  }\item[{}]{\mbox{\hyperlink{structname}{name}},  }\item[{}]{\mbox{\hyperlink{unwind-dw2-fde_8h_a6ca685b8d549d38cc9c01e4b78755af3}{version}} }\end{DoxyParamCaption})~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2x86__64_2timer__settime_8c_ae2f7fbff58e16eb7b71053ece00737c7}{versioned\+\_\+symbol}} (libc, real, \mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{unwind-dw2-fde_8h_a6ca685b8d549d38cc9c01e4b78755af3}{version}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a9379fb1c6f4e49faca7bdf7fea1ddeb9}\label{getXXent__r_8c_a9379fb1c6f4e49faca7bdf7fea1ddeb9}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!ENDFUNC\_NAME\_STRING@{ENDFUNC\_NAME\_STRING}}
+\index{ENDFUNC\_NAME\_STRING@{ENDFUNC\_NAME\_STRING}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{ENDFUNC\_NAME\_STRING}{ENDFUNC\_NAME\_STRING}}
+{\footnotesize\ttfamily \#define E\+N\+D\+F\+U\+N\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getXXent__r_8c_acea7e04272af2235d8bce01bdce0f3d1}{E\+N\+D\+F\+U\+N\+C\+\_\+\+N\+A\+ME}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a5b2cc6cee95dc7a281a29f9e18fc4fcb}\label{getXXent__r_8c_a5b2cc6cee95dc7a281a29f9e18fc4fcb}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!GETFUNC\_NAME\_STRING@{GETFUNC\_NAME\_STRING}}
+\index{GETFUNC\_NAME\_STRING@{GETFUNC\_NAME\_STRING}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{GETFUNC\_NAME\_STRING}{GETFUNC\_NAME\_STRING}}
+{\footnotesize\ttfamily \#define G\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a9a54ca168d085438893520f6ab625daf}\label{getXXent__r_8c_a9a54ca168d085438893520f6ab625daf}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!H\_ERRNO\_PARM@{H\_ERRNO\_PARM}}
+\index{H\_ERRNO\_PARM@{H\_ERRNO\_PARM}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{H\_ERRNO\_PARM}{H\_ERRNO\_PARM}}
+{\footnotesize\ttfamily \#define H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+P\+A\+RM}
+
+\mbox{\Hypertarget{getXXent__r_8c_a6ef8556186e030519fb6e8739183d2be}\label{getXXent__r_8c_a6ef8556186e030519fb6e8739183d2be}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!H\_ERRNO\_VAR@{H\_ERRNO\_VAR}}
+\index{H\_ERRNO\_VAR@{H\_ERRNO\_VAR}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{H\_ERRNO\_VAR}{H\_ERRNO\_VAR}}
+{\footnotesize\ttfamily \#define H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+V\+AR}
+
+\mbox{\Hypertarget{getXXent__r_8c_af16645d7770814dc8e9c034de7b31d02}\label{getXXent__r_8c_af16645d7770814dc8e9c034de7b31d02}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!H\_ERRNO\_VAR\_P@{H\_ERRNO\_VAR\_P}}
+\index{H\_ERRNO\_VAR\_P@{H\_ERRNO\_VAR\_P}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{H\_ERRNO\_VAR\_P}{H\_ERRNO\_VAR\_P}}
+{\footnotesize\ttfamily \#define H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+V\+A\+R\+\_\+P~\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}}
+
+\mbox{\Hypertarget{getXXent__r_8c_ac6a2db0ad3beaa63d49111ab57dbc68d}\label{getXXent__r_8c_ac6a2db0ad3beaa63d49111ab57dbc68d}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!INTERNAL@{INTERNAL}}
+\index{INTERNAL@{INTERNAL}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{INTERNAL}{INTERNAL}}
+{\footnotesize\ttfamily \#define I\+N\+T\+E\+R\+N\+AL(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})~\mbox{\hyperlink{getXXent__r_8c_ab9601c499016d4dc014f4d5c2cab1bb2}{C\+O\+N\+C\+A\+T2\+\_\+2}} (\+\_\+\+\_\+, Name)}
+
+\mbox{\Hypertarget{getXXent__r_8c_a2bfd1257f3f42e13193544c5f33ec3fb}\label{getXXent__r_8c_a2bfd1257f3f42e13193544c5f33ec3fb}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!NEED\_\_RES@{NEED\_\_RES}}
+\index{NEED\_\_RES@{NEED\_\_RES}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{NEED\_\_RES}{NEED\_\_RES}}
+{\footnotesize\ttfamily \#define N\+E\+E\+D\+\_\+\+\_\+\+R\+ES~0}
+
+\mbox{\Hypertarget{getXXent__r_8c_a64abbe1899cb6cb2d8ea2258fb863fe9}\label{getXXent__r_8c_a64abbe1899cb6cb2d8ea2258fb863fe9}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!NEW@{NEW}}
+\index{NEW@{NEW}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{NEW}{NEW}}
+{\footnotesize\ttfamily \#define N\+EW(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\mbox{\hyperlink{getXXent__r_8c_a89ab406319be5de5a0449a99f156c53a}{N\+E\+W1}} (\mbox{\hyperlink{structname}{name}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a89ab406319be5de5a0449a99f156c53a}\label{getXXent__r_8c_a89ab406319be5de5a0449a99f156c53a}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!NEW1@{NEW1}}
+\index{NEW1@{NEW1}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{NEW1}{NEW1}}
+{\footnotesize\ttfamily \#define N\+E\+W1(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\+\_\+\+\_\+new\+\_\+\#\#\mbox{\hyperlink{structname}{name}}}
+
+\mbox{\Hypertarget{getXXent__r_8c_abce49f015e80916b4c7da5a45e159f56}\label{getXXent__r_8c_abce49f015e80916b4c7da5a45e159f56}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!REENTRANT\_GETNAME@{REENTRANT\_GETNAME}}
+\index{REENTRANT\_GETNAME@{REENTRANT\_GETNAME}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{REENTRANT\_GETNAME}{REENTRANT\_GETNAME}}
+{\footnotesize\ttfamily \#define R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME~\mbox{\hyperlink{getXXent__r_8c_ad075bbe61a8368f9d07c43f48315f3cb}{A\+P\+P\+E\+N\+D\+\_\+R}} (\mbox{\hyperlink{getXXent_8c_a14a9c1e2ae5a980d4e56a4c6d2222cba}{G\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+ME}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a16b3bc785cea7cedccaa9a97858f7a31}\label{getXXent__r_8c_a16b3bc785cea7cedccaa9a97858f7a31}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!SETFUNC\_NAME\_STRING@{SETFUNC\_NAME\_STRING}}
+\index{SETFUNC\_NAME\_STRING@{SETFUNC\_NAME\_STRING}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{SETFUNC\_NAME\_STRING}{SETFUNC\_NAME\_STRING}}
+{\footnotesize\ttfamily \#define S\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+T\+R\+I\+NG~\mbox{\hyperlink{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}{S\+T\+R\+I\+N\+G\+I\+ZE}} (\mbox{\hyperlink{getrpcent__r_8c_a46ef6dc4a423c9bd0b9bea075d69e10e}{S\+E\+T\+F\+U\+N\+C\+\_\+\+N\+A\+ME}})}
+
+\mbox{\Hypertarget{getXXent__r_8c_adcfbe42190b90fb7cec36c05155bc638}\label{getXXent__r_8c_adcfbe42190b90fb7cec36c05155bc638}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!STAYOPEN@{STAYOPEN}}
+\index{STAYOPEN@{STAYOPEN}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{STAYOPEN}{STAYOPEN}}
+{\footnotesize\ttfamily \#define S\+T\+A\+Y\+O\+P\+EN~\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}
+
+\mbox{\Hypertarget{getXXent__r_8c_a567a171d7ccbee5d273b9d03ea9f7332}\label{getXXent__r_8c_a567a171d7ccbee5d273b9d03ea9f7332}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!STAYOPEN\_TMPVAR@{STAYOPEN\_TMPVAR}}
+\index{STAYOPEN\_TMPVAR@{STAYOPEN\_TMPVAR}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{STAYOPEN\_TMPVAR}{STAYOPEN\_TMPVAR}}
+{\footnotesize\ttfamily \#define S\+T\+A\+Y\+O\+P\+E\+N\+\_\+\+T\+M\+P\+V\+AR~\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}}
+
+\mbox{\Hypertarget{getXXent__r_8c_a68997e12de00a05591edd1a39e6b5fd2}\label{getXXent__r_8c_a68997e12de00a05591edd1a39e6b5fd2}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!STAYOPEN\_VAR@{STAYOPEN\_VAR}}
+\index{STAYOPEN\_VAR@{STAYOPEN\_VAR}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{STAYOPEN\_VAR}{STAYOPEN\_VAR}}
+{\footnotesize\ttfamily \#define S\+T\+A\+Y\+O\+P\+E\+N\+\_\+\+V\+AR~0}
+
+\mbox{\Hypertarget{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}\label{getXXent__r_8c_aa2b7bc2a04ba000b8bdade13ca0cdb7d}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!STRINGIZE@{STRINGIZE}}
+\index{STRINGIZE@{STRINGIZE}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{STRINGIZE}{STRINGIZE}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})~\mbox{\hyperlink{getXXent__r_8c_a07b265c391474d1670d7cb551c723e45}{S\+T\+R\+I\+N\+G\+I\+Z\+E1}} (Name)}
+
+\mbox{\Hypertarget{getXXent__r_8c_a07b265c391474d1670d7cb551c723e45}\label{getXXent__r_8c_a07b265c391474d1670d7cb551c723e45}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!STRINGIZE1@{STRINGIZE1}}
+\index{STRINGIZE1@{STRINGIZE1}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{STRINGIZE1}{STRINGIZE1}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+I\+Z\+E1(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})~\#Name}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{getXXent__r_8c_a22e1ccd66c522451f089672c4dd1ff26}\label{getXXent__r_8c_a22e1ccd66c522451f089672c4dd1ff26}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!\_\_libc\_lock\_define\_initialized@{\_\_libc\_lock\_define\_initialized}}
+\index{\_\_libc\_lock\_define\_initialized@{\_\_libc\_lock\_define\_initialized}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{\_\_libc\_lock\_define\_initialized()}{\_\_libc\_lock\_define\_initialized()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+libc\+\_\+lock\+\_\+define\+\_\+initialized (\begin{DoxyParamCaption}\item[{static}]{,  }\item[{\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a042fd2c4cd298be7344260e316f7f18c}\label{getXXent__r_8c_a042fd2c4cd298be7344260e316f7f18c}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!do\_default\_symbol\_version@{do\_default\_symbol\_version}}
+\index{do\_default\_symbol\_version@{do\_default\_symbol\_version}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{do\_default\_symbol\_version()}{do\_default\_symbol\_version()}}
+{\footnotesize\ttfamily do\+\_\+default\+\_\+symbol\+\_\+version (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{strtold_8c_a7324348ee403bddaf991adcbde25b678}{N\+EW}}(\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}})}]{,  }\item[{\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+1\+\_\+2}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{getXXent__r_8c_acea7e04272af2235d8bce01bdce0f3d1}\label{getXXent__r_8c_acea7e04272af2235d8bce01bdce0f3d1}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!ENDFUNC\_NAME@{ENDFUNC\_NAME}}
+\index{ENDFUNC\_NAME@{ENDFUNC\_NAME}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{ENDFUNC\_NAME()}{ENDFUNC\_NAME()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} E\+N\+D\+F\+U\+N\+C\+\_\+\+N\+A\+ME (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}\label{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!REENTRANT\_GETNAME@{REENTRANT\_GETNAME}}
+\index{REENTRANT\_GETNAME@{REENTRANT\_GETNAME}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{REENTRANT\_GETNAME()}{REENTRANT\_GETNAME()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stdlib_2strtold__l_8c_a30c5477de836a5a79c8c57b24b6537d4}{I\+N\+T\+E\+R\+N\+AL}}() R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{getrpcent__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}{L\+O\+O\+K\+U\+P\+\_\+\+T\+Y\+PE}} $\ast$}]{resbuf,  }\item[{char $\ast$}]{buffer,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{buflen,  }\item[{\mbox{\hyperlink{getrpcent__r_8c_a7a0ab7b39a526ffc3a2258daa4a43965}{L\+O\+O\+K\+U\+P\+\_\+\+T\+Y\+PE}} $\ast$$\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}}]{H\+\_\+\+E\+R\+R\+N\+O\+\_\+\+P\+A\+RM }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{getXXent__r_8c_a0090f0b8b9ce4a46e3f79ee9403998d7}\label{getXXent__r_8c_a0090f0b8b9ce4a46e3f79ee9403998d7}} 
+\index{getXXent\_r.c@{getXXent\_r.c}!strong\_alias@{strong\_alias}}
+\index{strong\_alias@{strong\_alias}!getXXent\_r.c@{getXXent\_r.c}}
+\doxysubsubsection{\texorpdfstring{strong\_alias()}{strong\_alias()}}
+{\footnotesize\ttfamily strong\+\_\+alias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{stdlib_2strtold__l_8c_a30c5477de836a5a79c8c57b24b6537d4}{I\+N\+T\+E\+R\+N\+AL}}(\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}})}]{,  }\item[{\mbox{\hyperlink{strtold_8c_a7324348ee403bddaf991adcbde25b678}{N\+EW}}(\mbox{\hyperlink{getXXent__r_8c_a22a8c1f3dc4afca5edeaf609406c4fd4}{R\+E\+E\+N\+T\+R\+A\+N\+T\+\_\+\+G\+E\+T\+N\+A\+ME}})}]{ }\end{DoxyParamCaption})}
+

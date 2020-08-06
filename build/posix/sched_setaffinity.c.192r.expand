@@ -1,0 +1,214 @@
+
+;; Function __sched_setaffinity_new (__sched_setaffinity_new, funcdef_no=32, decl_uid=8032, cgraph_uid=32, symbol_order=37)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 33.
+Merging block 8 into block 7...
+Merged blocks 7 and 8.
+Merged 7 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:SI 96 [ pid ])
+        (reg:SI 5 di [ pid ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:31 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 97 [ cpusetsize ])
+        (reg:DI 4 si [ cpusetsize ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:31 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 98 [ cpuset ])
+        (reg:DI 1 dx [ cpuset ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:31 -1
+     (nil))
+(note 5 4 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 5 10 2 (set (reg/v:DI 1 dx [ _a3 ])
+        (reg/v/f:DI 98 [ cpuset ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:DI 4 si [ _a2 ])
+        (reg/v:DI 97 [ cpusetsize ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 96 [ pid ]))) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:SI 100)
+        (const_int 203 [0xcb])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg:DI 99 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 100)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 14 13 15 2 (set (reg/v:DI 90 [ resultvar ])
+        (reg:DI 99 [ resultvar ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 90 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 23)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (set (reg:DI 101)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b0c6bbf8900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [3  S8 A8])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:SI 102)
+                (neg:SI (subreg:SI (reg/v:DI 90 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 20 19 6 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 101)) [2 __libc_errno+0 S4 A32])
+        (reg:SI 102)) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 6 20 21 4 (set (reg/v:SI 94 [ result ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(jump_insn 21 6 22 4 (set (pc)
+        (label_ref 30)) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil)
+ -> 30)
+(barrier 22 21 23)
+(code_label 23 22 24 5 2 "" [1 uses])
+(note 24 23 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (reg/v:SI 94 [ result ])
+        (subreg:SI (reg/v:DI 90 [ resultvar ]) 0)) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:32 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 94 [ result ])
+            (const_int -1 [0xffffffffffffffff]))) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:35 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 30)
+            (pc))) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:35 -1
+     (int_list:REG_BR_PROB 1101 (nil))
+ -> 30)
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (parallel [
+            (asm_operands/v ("movl %0, %%fs:%P1
+	movl %0, %%fs:%P2") ("") 0 [
+                    (const_int 0 [0])
+                    (const_int 56 [0x38])
+                    (const_int 64 [0x40])
+                ]
+                 [
+                    (asm_input:SI ("ir") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:36)
+                    (asm_input:DI ("i") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:36)
+                    (asm_input:DI ("i") ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:36)
+                ]
+                 [] ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:36)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:36 -1
+     (nil))
+(code_label 30 29 31 7 3 "" [2 uses])
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 36 7 (set (reg:SI 95 [ <retval> ])
+        (reg/v:SI 94 [ result ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:39 -1
+     (nil))
+(insn 36 32 37 7 (set (reg/i:SI 0 ax)
+        (reg:SI 95 [ <retval> ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:40 -1
+     (nil))
+(insn 37 36 0 7 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:40 -1
+     (nil))
+
+;; Function __sched_setaffinity_old (__sched_setaffinity_old, funcdef_no=33, decl_uid=8047, cgraph_uid=33, symbol_order=39)
+
+
+;; Generating RTL for gimple basic block 2
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 89 [ pid ])
+        (reg:SI 5 di [ pid ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:49 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 90 [ cpuset ])
+        (reg:DI 4 si [ cpuset ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:49 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 1 dx)
+        (reg/v/f:DI 90 [ cpuset ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:51 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 4 si)
+        (const_int 128 [0x80])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:51 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ pid ])) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:51 -1
+     (nil))
+(call_insn/j 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sched_setaffinity_new") [flags 0x1]  <function_decl 0x2b0c6bcf1288 __sched_setaffinity_new>) [0 __sched_setaffinity_new S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86_64/../sched_setaffinity.c:51 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sched_setaffinity_new") [flags 0x1]  <function_decl 0x2b0c6bcf1288 __sched_setaffinity_new>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(barrier 11 10 0)

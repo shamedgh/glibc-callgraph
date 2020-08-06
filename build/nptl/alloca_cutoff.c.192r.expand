@@ -1,0 +1,159 @@
+
+;; Function __libc_alloca_cutoff (*__GI___libc_alloca_cutoff, funcdef_no=41, decl_uid=2183, cgraph_uid=41, symbol_order=45)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+Edge 2->5 redirected to 8
+Edge 3->5 redirected to 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 4->5 to 8 failed.
+Removing jump 27.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 8 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v:DI 95 [ size ])
+        (reg:DI 5 di [ size ])) alloca_cutoff.c:27 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (parallel [
+            (set (reg:DI 96 [ __value ])
+                (asm_operands/v:DI ("movq %%fs:%P1,%q0") ("=r") 0 [
+                        (const_int 1688 [0x698])
+                    ]
+                     [
+                        (asm_input:DI ("i") alloca_cutoff.c:28)
+                    ]
+                     [] alloca_cutoff.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) alloca_cutoff.c:28 -1
+     (nil))
+(insn 9 8 10 2 (set (reg/v:DI 88 [ __value ])
+        (reg:DI 96 [ __value ])) alloca_cutoff.c:28 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:DI 97 [ D.7734 ])
+                (lshiftrt:DI (reg/v:DI 88 [ __value ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) alloca_cutoff.c:28 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:DI 98 [ D.7734 ])
+                (plus:DI (reg:DI 97 [ D.7734 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) alloca_cutoff.c:28 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 98 [ D.7734 ])
+            (const_int 65535 [0xffff]))) alloca_cutoff.c:28 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) alloca_cutoff.c:28 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 36)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (parallel [
+            (set (reg:DI 99 [ __value ])
+                (asm_operands/v:DI ("movq %%fs:%P1,%q0") ("=r") 0 [
+                        (const_int 1688 [0x698])
+                    ]
+                     [
+                        (asm_input:DI ("i") alloca_cutoff.c:28)
+                    ]
+                     [] alloca_cutoff.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) alloca_cutoff.c:28 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v:DI 91 [ __value ])
+        (reg:DI 99 [ __value ])) alloca_cutoff.c:28 -1
+     (nil))
+(insn 17 16 18 4 (parallel [
+            (set (reg:DI 87 [ D.7733 ])
+                (lshiftrt:DI (reg/v:DI 91 [ __value ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) alloca_cutoff.c:28 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 87 [ D.7733 ])
+            (const_int 0 [0]))) alloca_cutoff.c:28 -1
+     (nil))
+(jump_insn 19 18 20 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) alloca_cutoff.c:28 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 40)
+(note 20 19 33 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 33 20 34 5 (set (pc)
+        (label_ref 21)) -1
+     (nil)
+ -> 21)
+(barrier 34 33 36)
+(code_label 36 34 35 6 3 "" [1 uses])
+(note 35 36 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 35 37 6 (set (reg:DI 87 [ D.7733 ])
+        (const_int 65536 [0x10000])) alloca_cutoff.c:28 -1
+     (nil))
+(jump_insn 37 5 38 6 (set (pc)
+        (label_ref 21)) -1
+     (nil)
+ -> 21)
+(barrier 38 37 40)
+(code_label 40 38 39 7 4 "" [1 uses])
+(note 39 40 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 39 21 7 (set (reg:DI 87 [ D.7733 ])
+        (const_int 262144 [0x40000])) alloca_cutoff.c:28 -1
+     (nil))
+(code_label 21 4 22 8 2 "" [2 uses])
+(note 22 21 23 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 8 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 87 [ D.7733 ])
+            (reg/v:DI 95 [ size ]))) alloca_cutoff.c:28 -1
+     (nil))
+(insn 24 23 25 8 (set (reg:QI 102)
+        (geu:QI (reg:CC 17 flags)
+            (const_int 0 [0]))) alloca_cutoff.c:28 -1
+     (nil))
+(insn 25 24 26 8 (set (reg:SI 101 [ D.7735 ])
+        (zero_extend:SI (reg:QI 102))) alloca_cutoff.c:28 -1
+     (nil))
+(insn 26 25 30 8 (set (reg:SI 94 [ <retval> ])
+        (reg:SI 101 [ D.7735 ])) alloca_cutoff.c:28 -1
+     (nil))
+(insn 30 26 31 8 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) alloca_cutoff.c:35 -1
+     (nil))
+(insn 31 30 0 8 (use (reg/i:SI 0 ax)) alloca_cutoff.c:35 -1
+     (nil))

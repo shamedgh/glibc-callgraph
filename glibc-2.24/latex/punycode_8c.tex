@@ -1,0 +1,121 @@
+\hypertarget{punycode_8c}{}\doxysection{libidn/punycode.c File Reference}
+\label{punycode_8c}\index{libidn/punycode.c@{libidn/punycode.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}punycode.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{punycode_8c_a58c3f226752e7033fb4eb361cf6fec2e}{basic}}(\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}})~((\mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}})(\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}}) $<$ 0x80)
+\item 
+\#define \mbox{\hyperlink{punycode_8c_a972d7a393113abc5e0f9f0ca968e9249}{delim}}(\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}})~((\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}}) == \mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaf2fa58e0a21ab5a8025bbf4b70343827}{delimiter}})
+\item 
+\#define \mbox{\hyperlink{punycode_8c_a0ef1bf7f8f3fe03e6dd8133fb97517ae}{flagged}}(bcp)~((\mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}})(bcp) -\/ 65 $<$ 26)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea27df5ef1a125f452469fe47a7158cb16}{base}} = 36, 
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea607a51606a78acf1fe37490fd7cd2694}{tmin}} = 1, 
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea40112e8d6e46b2709956e5a4538e2f86}{tmax}} = 26, 
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaaef7b58b06d21e07ec4fff31f734be7f}{skew}} = 38, 
+\newline
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea9f720516f693cfa46f6fa4e1abd6b10f}{damp}} = 700, 
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea6c11c17801e4f89d0ae13deb70f366f5}{initial\+\_\+bias}} = 72, 
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eafc6c598ae3d7003156d35de37d7dc408}{initial\+\_\+n}} = 0x80, 
+\mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaf2fa58e0a21ab5a8025bbf4b70343827}{delimiter}} = 0x2D
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{punycode_8c_a88e79695b72cdba058dee7f2955f6a58}{punycode\+\_\+encode}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} input\+\_\+length, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}} \mbox{\hyperlink{tst-strptime_8c_a9adc11d527cdd7b029b0d2ccd910ff3b}{input}}\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} unsigned char case\+\_\+flags\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$output\+\_\+length, char \mbox{\hyperlink{tst-strptime_8c_a5a832fe6e2412dfabb93a2adae30e745}{output}}\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{punycode_8c_a63fbb716449a2cabce8623ce73a7a6be}{punycode\+\_\+decode}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} input\+\_\+length, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char \mbox{\hyperlink{tst-strptime_8c_a9adc11d527cdd7b029b0d2ccd910ff3b}{input}}\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$output\+\_\+length, \mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}} \mbox{\hyperlink{tst-strptime_8c_a5a832fe6e2412dfabb93a2adae30e745}{output}}\mbox{[}$\,$\mbox{]}, unsigned char case\+\_\+flags\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{punycode_8c_a58c3f226752e7033fb4eb361cf6fec2e}\label{punycode_8c_a58c3f226752e7033fb4eb361cf6fec2e}} 
+\index{punycode.c@{punycode.c}!basic@{basic}}
+\index{basic@{basic}!punycode.c@{punycode.c}}
+\doxysubsubsection{\texorpdfstring{basic}{basic}}
+{\footnotesize\ttfamily \#define basic(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}})(\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}}) $<$ 0x80)}
+
+\mbox{\Hypertarget{punycode_8c_a972d7a393113abc5e0f9f0ca968e9249}\label{punycode_8c_a972d7a393113abc5e0f9f0ca968e9249}} 
+\index{punycode.c@{punycode.c}!delim@{delim}}
+\index{delim@{delim}!punycode.c@{punycode.c}}
+\doxysubsubsection{\texorpdfstring{delim}{delim}}
+{\footnotesize\ttfamily \#define delim(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{tester_8c_ac59636dc12da94301462938f2c98c3df}{cp}}) == \mbox{\hyperlink{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaf2fa58e0a21ab5a8025bbf4b70343827}{delimiter}})}
+
+\mbox{\Hypertarget{punycode_8c_a0ef1bf7f8f3fe03e6dd8133fb97517ae}\label{punycode_8c_a0ef1bf7f8f3fe03e6dd8133fb97517ae}} 
+\index{punycode.c@{punycode.c}!flagged@{flagged}}
+\index{flagged@{flagged}!punycode.c@{punycode.c}}
+\doxysubsubsection{\texorpdfstring{flagged}{flagged}}
+{\footnotesize\ttfamily \#define flagged(\begin{DoxyParamCaption}\item[{}]{bcp }\end{DoxyParamCaption})~((\mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}})(bcp) -\/ 65 $<$ 26)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28e}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28e}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{base@{base}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!base@{base}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea27df5ef1a125f452469fe47a7158cb16}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea27df5ef1a125f452469fe47a7158cb16}} 
+base&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{tmin@{tmin}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!tmin@{tmin}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea607a51606a78acf1fe37490fd7cd2694}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea607a51606a78acf1fe37490fd7cd2694}} 
+tmin&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{tmax@{tmax}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!tmax@{tmax}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea40112e8d6e46b2709956e5a4538e2f86}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea40112e8d6e46b2709956e5a4538e2f86}} 
+tmax&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{skew@{skew}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!skew@{skew}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaaef7b58b06d21e07ec4fff31f734be7f}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaaef7b58b06d21e07ec4fff31f734be7f}} 
+skew&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{damp@{damp}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!damp@{damp}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea9f720516f693cfa46f6fa4e1abd6b10f}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea9f720516f693cfa46f6fa4e1abd6b10f}} 
+damp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{initial\_bias@{initial\_bias}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!initial\_bias@{initial\_bias}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea6c11c17801e4f89d0ae13deb70f366f5}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28ea6c11c17801e4f89d0ae13deb70f366f5}} 
+initial\+\_\+bias&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{initial\_n@{initial\_n}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!initial\_n@{initial\_n}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eafc6c598ae3d7003156d35de37d7dc408}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eafc6c598ae3d7003156d35de37d7dc408}} 
+initial\+\_\+n&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{delimiter@{delimiter}!punycode.c@{punycode.c}}\index{punycode.c@{punycode.c}!delimiter@{delimiter}}}\mbox{\Hypertarget{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaf2fa58e0a21ab5a8025bbf4b70343827}\label{punycode_8c_a2f1398dba5e4a5616b83437528bdb28eaf2fa58e0a21ab5a8025bbf4b70343827}} 
+delimiter&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{punycode_8c_a63fbb716449a2cabce8623ce73a7a6be}\label{punycode_8c_a63fbb716449a2cabce8623ce73a7a6be}} 
+\index{punycode.c@{punycode.c}!punycode\_decode@{punycode\_decode}}
+\index{punycode\_decode@{punycode\_decode}!punycode.c@{punycode.c}}
+\doxysubsubsection{\texorpdfstring{punycode\_decode()}{punycode\_decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} punycode\+\_\+decode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{input\+\_\+length,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char}]{input\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{output\+\_\+length,  }\item[{\mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}}}]{output\mbox{[}$\,$\mbox{]},  }\item[{unsigned char}]{case\+\_\+flags\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+punycode\+\_\+decode\+: @input\+\_\+length\+: The number of A\+S\+C\+II code points in the @input array. @input\+: An array of A\+S\+C\+II code points (0..7F). @output\+\_\+length\+: The caller passes in the maximum number of code points that it can receive into the @output array (which is also the maximum number of flags that it can receive into the @case\+\_\+flags array, if @case\+\_\+flags is not a N\+U\+LL pointer). On successful return it will contain the number of code points actually output (which is also the number of flags actually output, if case\+\_\+flags is not a null pointer). The decoder will never need to output more code points than the number of A\+S\+C\+II code points in the input, because of the way the encoding is defined. The number of code points output cannot exceed the maximum possible value of a punycode\+\_\+uint, even if the supplied @output\+\_\+length is greater than that. @output\+: An array of code points like the input argument of \mbox{\hyperlink{punycode_8c_a88e79695b72cdba058dee7f2955f6a58}{punycode\+\_\+encode()}} (see above). @case\+\_\+flags\+: \mbox{\hyperlink{structA}{A}} N\+U\+LL pointer (if the flags are not needed by the caller) or an array of boolean values parallel to the @output array. Nonzero (true, flagged) suggests that the corresponding Unicode character be forced to uppercase by the caller (if possible), and zero (false, unflagged) suggests that it be forced to lowercase (if possible). A\+S\+C\+II code points (0..7F) are output already in the proper case, but their flags will be set appropriately so that applying the flags would be harmless.
+
+Converts Punycode to a sequence of code points (presumed to be Unicode code points).
+
+Return value\+: The return value can be any of the punycode\+\_\+status values defined above. If not punycode\+\_\+success, then @output\+\_\+length, @output, and @case\+\_\+flags might contain garbage. \mbox{\Hypertarget{punycode_8c_a88e79695b72cdba058dee7f2955f6a58}\label{punycode_8c_a88e79695b72cdba058dee7f2955f6a58}} 
+\index{punycode.c@{punycode.c}!punycode\_encode@{punycode\_encode}}
+\index{punycode\_encode@{punycode\_encode}!punycode.c@{punycode.c}}
+\doxysubsubsection{\texorpdfstring{punycode\_encode()}{punycode\_encode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} punycode\+\_\+encode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{input\+\_\+length,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{punycode_8h_ad443fe6e48652ab4784a310fc256d840}{punycode\+\_\+uint}}}]{input\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} unsigned char}]{case\+\_\+flags\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{output\+\_\+length,  }\item[{char}]{output\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+punycode\+\_\+encode\+: @input\+\_\+length\+: The number of code points in the @input array and the number of flags in the @case\+\_\+flags array. @input\+: An array of code points. They are presumed to be Unicode code points, but that is not strictly R\+E\+Q\+U\+I\+R\+ED. The array contains code points, not code units. U\+T\+F-\/16 uses code units D800 through D\+F\+FF to refer to code points 10000..10F\+F\+FF. The code points D800..D\+F\+FF do not occur in any valid Unicode string. The code points that can occur in Unicode strings (0..D7\+FF and E000..10F\+F\+FF) are also called Unicode scalar values. @case\+\_\+flags\+: \mbox{\hyperlink{structA}{A}} N\+U\+LL pointer or an array of boolean values parallel to the @input array. Nonzero (true, flagged) suggests that the corresponding Unicode character be forced to uppercase after being decoded (if possible), and zero (false, unflagged) suggests that it be forced to lowercase (if possible). A\+S\+C\+II code points (0..7F) are encoded literally, except that A\+S\+C\+II letters are forced to uppercase or lowercase according to the corresponding case flags. If @case\+\_\+flags is a N\+U\+LL pointer then A\+S\+C\+II letters are left as they are, and other code points are treated as unflagged. @output\+\_\+length\+: The caller passes in the maximum number of A\+S\+C\+II code points that it can receive. On successful return it will contain the number of A\+S\+C\+II code points actually output. @output\+: An array of A\+S\+C\+II code points. It is {\itshape not} null-\/terminated; it will contain zeros if and only if the @input contains zeros. (Of course the caller can leave room for a terminator and add one if needed.)
+
+Converts a sequence of code points (presumed to be Unicode code points) to Punycode.
+
+Return value\+: The return value can be any of the punycode\+\_\+status values defined above except punycode\+\_\+bad\+\_\+input. If not punycode\+\_\+success, then @output\+\_\+size and @output might contain garbage. 

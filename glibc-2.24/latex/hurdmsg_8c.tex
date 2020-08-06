@@ -1,0 +1,163 @@
+\hypertarget{hurdmsg_8c}{}\doxysection{hurd/hurdmsg.c File Reference}
+\label{hurdmsg_8c}\index{hurd/hurdmsg.c@{hurd/hurdmsg.c}}
+{\ttfamily \#include $<$hurd.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/msg\+\_\+server.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/fd.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$argz.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hurdmsg_8c_aab29c9d6cd83df7ed6bf5d77169a8a70}{A\+U\+T\+H\+C\+H\+E\+CK}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a423ccd3b15a859a770c8556471cd451e}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+port}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} which, mach\+\_\+port\+\_\+t $\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$result\+\_\+type)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a33d21717114e692c0658a0792a4d697e}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+port}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} which, mach\+\_\+port\+\_\+t port)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a6ec9e04ef98278dd65fe0becef7145d2}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+ports}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, mach\+\_\+port\+\_\+t $\ast$$\ast$ports, mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$ports\+\_\+type, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$nports)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_ac542bd1a9cd4370d6245a71ea2026144}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+ports}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, mach\+\_\+port\+\_\+t $\ast$ports, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t nports)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_ac2f3c7be6394463dcda471ed40e442d6}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+int}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} which, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$\mbox{\hyperlink{structvalue}{value}})
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a915ef35c703ccb6d31b4d93e61fcd0cc}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+ints}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$$\ast$values, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$nvalues)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_aeca7ff8d9f1ec1f54e1c97f80b18dbcd}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+int}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} which, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{structvalue}{value}})
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_af51671c47e14cf25c1652c12a545e61f}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+ints}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$values, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t nvalues)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a715e1a7e516c1c4b6cf39cde26dc22e4}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+fd}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} which, mach\+\_\+port\+\_\+t $\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$result\+\_\+type)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a85af4938c4f1cc198039f42402ecfe60}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+fd}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} which, mach\+\_\+port\+\_\+t port)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a66a0a395c824675eea3715d9f5db837e}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+env\+\_\+variable}} (mach\+\_\+port\+\_\+t msgport, char $\ast$variable, char $\ast$$\ast$\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}}, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$\mbox{\hyperlink{tst-fopenloc2_8c_a3d12e161726566d24a1d0cf6c6b416bb}{datalen}})
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a6ac43f423a02bc1268fa2d5d8c8cc81a}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+env\+\_\+variable}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, char $\ast$variable, char $\ast$\mbox{\hyperlink{structvalue}{value}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} replace)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a00d007ea295fee0727af7633c2783033}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+environment}} (mach\+\_\+port\+\_\+t msgport, char $\ast$$\ast$\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}}, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$\mbox{\hyperlink{tst-fopenloc2_8c_a3d12e161726566d24a1d0cf6c6b416bb}{datalen}})
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_abfbf4dca2f79c913bbaa8b6bafa163ea}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+environment}} (mach\+\_\+port\+\_\+t msgport, mach\+\_\+port\+\_\+t auth, char $\ast$\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}}, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t \mbox{\hyperlink{tst-fopenloc2_8c_a3d12e161726566d24a1d0cf6c6b416bb}{datalen}})
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_a219b00e531802a241051522263f3081c}{\+\_\+\+S\+\_\+msg\+\_\+get\+\_\+dtable}} (mach\+\_\+port\+\_\+t process, mach\+\_\+port\+\_\+t refport, portarray\+\_\+t $\ast$dtable, mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$dtable\+Poly, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$dtable\+Cnt)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdmsg_8c_afad4fdfadd26e43d632e8f652423d5d5}{\+\_\+\+S\+\_\+msg\+\_\+set\+\_\+dtable}} (mach\+\_\+port\+\_\+t process, mach\+\_\+port\+\_\+t refport, portarray\+\_\+t dtable, mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t dtable\+Cnt)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hurdmsg_8c_aab29c9d6cd83df7ed6bf5d77169a8a70}\label{hurdmsg_8c_aab29c9d6cd83df7ed6bf5d77169a8a70}} 
+\index{hurdmsg.c@{hurdmsg.c}!AUTHCHECK@{AUTHCHECK}}
+\index{AUTHCHECK@{AUTHCHECK}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{AUTHCHECK}{AUTHCHECK}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+C\+H\+E\+CK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (auth != \mbox{\hyperlink{mach__traps_8h_afedf0dcb3efa0b37eef9aee49a267e6d}{mach\_task\_self}} () \&\& ! \mbox{\hyperlink{hurd_8h_accb0a36a5b90465497550e866e0e819a}{\_\_USEPORT}} (\mbox{\hyperlink{structAUTH}{AUTH}}, \mbox{\hyperlink{structhurd__port_af64c423e4f7f953645f3692b612e7b04}{port}} == auth)) \(\backslash\)}
+\DoxyCodeLine{    return EPERM}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hurdmsg_8c_a219b00e531802a241051522263f3081c}\label{hurdmsg_8c_a219b00e531802a241051522263f3081c}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_dtable@{\_S\_msg\_get\_dtable}}
+\index{\_S\_msg\_get\_dtable@{\_S\_msg\_get\_dtable}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_dtable()}{\_S\_msg\_get\_dtable()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+dtable (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{process,  }\item[{mach\+\_\+port\+\_\+t}]{refport,  }\item[{portarray\+\_\+t $\ast$}]{dtable,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$}]{dtable\+Poly,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$}]{dtable\+Cnt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a66a0a395c824675eea3715d9f5db837e}\label{hurdmsg_8c_a66a0a395c824675eea3715d9f5db837e}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_env\_variable@{\_S\_msg\_get\_env\_variable}}
+\index{\_S\_msg\_get\_env\_variable@{\_S\_msg\_get\_env\_variable}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_env\_variable()}{\_S\_msg\_get\_env\_variable()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+env\+\_\+variable (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{char $\ast$}]{variable,  }\item[{char $\ast$$\ast$}]{data,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$}]{datalen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a00d007ea295fee0727af7633c2783033}\label{hurdmsg_8c_a00d007ea295fee0727af7633c2783033}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_environment@{\_S\_msg\_get\_environment}}
+\index{\_S\_msg\_get\_environment@{\_S\_msg\_get\_environment}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_environment()}{\_S\_msg\_get\_environment()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+environment (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{char $\ast$$\ast$}]{data,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$}]{datalen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a715e1a7e516c1c4b6cf39cde26dc22e4}\label{hurdmsg_8c_a715e1a7e516c1c4b6cf39cde26dc22e4}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_fd@{\_S\_msg\_get\_fd}}
+\index{\_S\_msg\_get\_fd@{\_S\_msg\_get\_fd}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_fd()}{\_S\_msg\_get\_fd()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+fd (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{which,  }\item[{mach\+\_\+port\+\_\+t $\ast$}]{result,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$}]{result\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_ac2f3c7be6394463dcda471ed40e442d6}\label{hurdmsg_8c_ac2f3c7be6394463dcda471ed40e442d6}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_init\_int@{\_S\_msg\_get\_init\_int}}
+\index{\_S\_msg\_get\_init\_int@{\_S\_msg\_get\_init\_int}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_init\_int()}{\_S\_msg\_get\_init\_int()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+int (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{which,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a915ef35c703ccb6d31b4d93e61fcd0cc}\label{hurdmsg_8c_a915ef35c703ccb6d31b4d93e61fcd0cc}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_init\_ints@{\_S\_msg\_get\_init\_ints}}
+\index{\_S\_msg\_get\_init\_ints@{\_S\_msg\_get\_init\_ints}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_init\_ints()}{\_S\_msg\_get\_init\_ints()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+ints (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$$\ast$}]{values,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$}]{nvalues }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a423ccd3b15a859a770c8556471cd451e}\label{hurdmsg_8c_a423ccd3b15a859a770c8556471cd451e}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_init\_port@{\_S\_msg\_get\_init\_port}}
+\index{\_S\_msg\_get\_init\_port@{\_S\_msg\_get\_init\_port}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_init\_port()}{\_S\_msg\_get\_init\_port()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+port (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{which,  }\item[{mach\+\_\+port\+\_\+t $\ast$}]{result,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$}]{result\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a6ec9e04ef98278dd65fe0becef7145d2}\label{hurdmsg_8c_a6ec9e04ef98278dd65fe0becef7145d2}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_get\_init\_ports@{\_S\_msg\_get\_init\_ports}}
+\index{\_S\_msg\_get\_init\_ports@{\_S\_msg\_get\_init\_ports}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_get\_init\_ports()}{\_S\_msg\_get\_init\_ports()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+get\+\_\+init\+\_\+ports (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{mach\+\_\+port\+\_\+t $\ast$$\ast$}]{ports,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t $\ast$}]{ports\+\_\+type,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t $\ast$}]{nports }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_afad4fdfadd26e43d632e8f652423d5d5}\label{hurdmsg_8c_afad4fdfadd26e43d632e8f652423d5d5}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_dtable@{\_S\_msg\_set\_dtable}}
+\index{\_S\_msg\_set\_dtable@{\_S\_msg\_set\_dtable}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_dtable()}{\_S\_msg\_set\_dtable()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+dtable (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{process,  }\item[{mach\+\_\+port\+\_\+t}]{refport,  }\item[{portarray\+\_\+t}]{dtable,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t}]{dtable\+Cnt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a6ac43f423a02bc1268fa2d5d8c8cc81a}\label{hurdmsg_8c_a6ac43f423a02bc1268fa2d5d8c8cc81a}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_env\_variable@{\_S\_msg\_set\_env\_variable}}
+\index{\_S\_msg\_set\_env\_variable@{\_S\_msg\_set\_env\_variable}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_env\_variable()}{\_S\_msg\_set\_env\_variable()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+env\+\_\+variable (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{char $\ast$}]{variable,  }\item[{char $\ast$}]{value,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_abfbf4dca2f79c913bbaa8b6bafa163ea}\label{hurdmsg_8c_abfbf4dca2f79c913bbaa8b6bafa163ea}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_environment@{\_S\_msg\_set\_environment}}
+\index{\_S\_msg\_set\_environment@{\_S\_msg\_set\_environment}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_environment()}{\_S\_msg\_set\_environment()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+environment (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{char $\ast$}]{data,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t}]{datalen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a85af4938c4f1cc198039f42402ecfe60}\label{hurdmsg_8c_a85af4938c4f1cc198039f42402ecfe60}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_fd@{\_S\_msg\_set\_fd}}
+\index{\_S\_msg\_set\_fd@{\_S\_msg\_set\_fd}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_fd()}{\_S\_msg\_set\_fd()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+fd (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{which,  }\item[{mach\+\_\+port\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_aeca7ff8d9f1ec1f54e1c97f80b18dbcd}\label{hurdmsg_8c_aeca7ff8d9f1ec1f54e1c97f80b18dbcd}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_init\_int@{\_S\_msg\_set\_init\_int}}
+\index{\_S\_msg\_set\_init\_int@{\_S\_msg\_set\_init\_int}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_init\_int()}{\_S\_msg\_set\_init\_int()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+int (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{which,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_af51671c47e14cf25c1652c12a545e61f}\label{hurdmsg_8c_af51671c47e14cf25c1652c12a545e61f}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_init\_ints@{\_S\_msg\_set\_init\_ints}}
+\index{\_S\_msg\_set\_init\_ints@{\_S\_msg\_set\_init\_ints}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_init\_ints()}{\_S\_msg\_set\_init\_ints()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+ints (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{values,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t}]{nvalues }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_a33d21717114e692c0658a0792a4d697e}\label{hurdmsg_8c_a33d21717114e692c0658a0792a4d697e}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_init\_port@{\_S\_msg\_set\_init\_port}}
+\index{\_S\_msg\_set\_init\_port@{\_S\_msg\_set\_init\_port}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_init\_port()}{\_S\_msg\_set\_init\_port()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+port (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{which,  }\item[{mach\+\_\+port\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdmsg_8c_ac542bd1a9cd4370d6245a71ea2026144}\label{hurdmsg_8c_ac542bd1a9cd4370d6245a71ea2026144}} 
+\index{hurdmsg.c@{hurdmsg.c}!\_S\_msg\_set\_init\_ports@{\_S\_msg\_set\_init\_ports}}
+\index{\_S\_msg\_set\_init\_ports@{\_S\_msg\_set\_init\_ports}!hurdmsg.c@{hurdmsg.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_set\_init\_ports()}{\_S\_msg\_set\_init\_ports()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+set\+\_\+init\+\_\+ports (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{msgport,  }\item[{mach\+\_\+port\+\_\+t}]{auth,  }\item[{mach\+\_\+port\+\_\+t $\ast$}]{ports,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+number\+\_\+t}]{nports }\end{DoxyParamCaption})}
+

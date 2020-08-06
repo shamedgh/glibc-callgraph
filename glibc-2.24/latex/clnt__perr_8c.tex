@@ -1,0 +1,432 @@
+\hypertarget{clnt__perr_8c}{}\doxysection{sunrpc/clnt\+\_\+perr.c File Reference}
+\label{clnt__perr_8c}\index{sunrpc/clnt\_perr.c@{sunrpc/clnt\_perr.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/rpc.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$libio/iolibio.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a4f9b757155077d7bc8c80b0729fc67ec}{R\+P\+C\+\_\+\+S\+U\+C\+C\+E\+S\+S\+\_\+\+I\+DX}}~0
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_ad85392871d7b329ca4f652c051f05af6}{R\+P\+C\+\_\+\+C\+A\+N\+T\+E\+N\+C\+O\+D\+E\+A\+R\+G\+S\+\_\+\+I\+DX}}~(\mbox{\hyperlink{clnt__perr_8c_a4f9b757155077d7bc8c80b0729fc67ec}{R\+P\+C\+\_\+\+S\+U\+C\+C\+E\+S\+S\+\_\+\+I\+DX}} + sizeof \char`\"{}R\+P\+C\+: Success\char`\"{})
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_afc113e6ae320e26a0ff8fba28532b7e9}{R\+P\+C\+\_\+\+C\+A\+N\+T\+D\+E\+C\+O\+D\+E\+R\+E\+S\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_aa3b94c972833d961fd926d3aec325c15}{R\+P\+C\+\_\+\+C\+A\+N\+T\+S\+E\+N\+D\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a22f6440b41074e8f0ac0bbcc4157958a}{R\+P\+C\+\_\+\+C\+A\+N\+T\+R\+E\+C\+V\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a29da983eef1f161feca7c34b40da1e41}{R\+P\+C\+\_\+\+T\+I\+M\+E\+D\+O\+U\+T\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a68e927c636363021ac74bdc99cbb6dbf}{R\+P\+C\+\_\+\+V\+E\+R\+S\+M\+I\+S\+M\+A\+T\+C\+H\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_aa4b82ec1ba609fe14c058a199b441008}{R\+P\+C\+\_\+\+A\+U\+T\+H\+E\+R\+R\+O\+R\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a04f57c03c4062979b1b8e74f0e9a0899}{R\+P\+C\+\_\+\+P\+R\+O\+G\+U\+N\+A\+V\+A\+I\+L\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a917a8f36f210c83884d84a8b4a60ecd5}{R\+P\+C\+\_\+\+P\+R\+O\+G\+V\+E\+R\+S\+M\+I\+S\+M\+A\+T\+C\+H\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a72a3efcea1517fbe15172d5fffe7e28f}{R\+P\+C\+\_\+\+P\+R\+O\+C\+U\+N\+A\+V\+A\+I\+L\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_ae4f48d061890a381ae68c37365a62a6e}{R\+P\+C\+\_\+\+C\+A\+N\+T\+D\+E\+C\+O\+D\+E\+A\+R\+G\+S\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a8e25599af4516dac3e17acd3eb1bda7a}{R\+P\+C\+\_\+\+S\+Y\+S\+T\+E\+M\+E\+R\+R\+O\+R\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a7905a2ddee9d523a11d6490855d3d278}{R\+P\+C\+\_\+\+U\+N\+K\+N\+O\+W\+N\+H\+O\+S\+T\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a81d7275d28b6b306d6facc0fad8b3cb4}{R\+P\+C\+\_\+\+U\+N\+K\+N\+O\+W\+N\+P\+R\+O\+T\+O\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a117f52c6b15db5b8d4d85f9527780faa}{R\+P\+C\+\_\+\+P\+M\+A\+P\+F\+A\+I\+L\+U\+R\+E\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a7eb7d97c67e1dc496ad198d524727da3}{R\+P\+C\+\_\+\+P\+R\+O\+G\+N\+O\+T\+R\+E\+G\+I\+S\+T\+E\+R\+E\+D\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a73d095ecca628182daf8998b4e848ac4}{R\+P\+C\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_ae380940c1faa70c489876ffe7f8fcdc4}{A\+U\+T\+H\+\_\+\+O\+K\+\_\+\+I\+DX}}~0
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_af9f527025ae5f1ae6809fe263d9da062}{A\+U\+T\+H\+\_\+\+B\+A\+D\+C\+R\+E\+D\+\_\+\+I\+DX}}~(\mbox{\hyperlink{clnt__perr_8c_ae380940c1faa70c489876ffe7f8fcdc4}{A\+U\+T\+H\+\_\+\+O\+K\+\_\+\+I\+DX}} + sizeof \char`\"{}Authentication \mbox{\hyperlink{bench-strcoll_8c_ad75d91d2a2ad02fb4a39a5fc8c4d4ec3a2bc49ec37d6a5715dd23e85f1ff5bb59}{OK}}\char`\"{})
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_af0dd5e6bea7e41fa88c159895d1513ab}{A\+U\+T\+H\+\_\+\+R\+E\+J\+E\+C\+T\+E\+D\+C\+R\+E\+D\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a7dbd78945777e1f5c3742fe1a88ae9e4}{A\+U\+T\+H\+\_\+\+B\+A\+D\+V\+E\+R\+F\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a9a1f2f50c94c0f271c51e2383c723c87}{A\+U\+T\+H\+\_\+\+R\+E\+J\+E\+C\+T\+E\+D\+V\+E\+R\+F\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a34a1c5b3c62937eefd5ecef876f4af4d}{A\+U\+T\+H\+\_\+\+T\+O\+O\+W\+E\+A\+K\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a8b73e4ef25ba80a99a604c893961c1c2}{A\+U\+T\+H\+\_\+\+I\+N\+V\+A\+L\+I\+D\+R\+E\+S\+P\+\_\+\+I\+DX}}
+\item 
+\#define \mbox{\hyperlink{clnt__perr_8c_a1bf7a77559b16b0dbb391dabe0670b05}{A\+U\+T\+H\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+I\+DX}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{clnt__perr_8c_a6b3e08d4623e8521b04e2f924710110e}{clnt\+\_\+sperror}} (\mbox{\hyperlink{structCLIENT}{C\+L\+I\+E\+NT}} $\ast$rpch, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$msg)
+\item 
+\mbox{\hyperlink{clnt__perr_8c_a4a1669669088d153bdebd542855b6e43}{libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc}} (\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a61db757da1c93d7320d96fd6facdb4f8}{clnt\+\_\+sperror}}, G\+L\+I\+B\+C\+\_\+2\+\_\+0)
+\item 
+\mbox{\hyperlink{clnt__perr_8c_aca7b5fb565f8f86b6750425ecc812918}{libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc}} (\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a99d825a42fe6f7301a0b8e8186a37839}{clnt\+\_\+perror}}, G\+L\+I\+B\+C\+\_\+2\+\_\+0)
+\item 
+char $\ast$ \mbox{\hyperlink{clnt__perr_8c_a2f9141f459e20629b551a1dc35784ce0}{clnt\+\_\+sperrno}} (enum \mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a6b123dc4588b24eb7374747a24c7820e}{clnt\+\_\+stat}} \mbox{\hyperlink{structstat}{stat}})
+\item 
+\mbox{\hyperlink{clnt__perr_8c_aaf4e2f3d01b0e5a4ae0d30e442123c20}{libc\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_ae496b82c9814985c0cdcb0259c8b800e}{clnt\+\_\+sperrno}})
+\item 
+\mbox{\hyperlink{clnt__perr_8c_a5603d214443ba9588ae45cff7494aa23}{libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc}} (\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a3595b26f837ef200431b46a4b3411512}{clnt\+\_\+perrno}}, G\+L\+I\+B\+C\+\_\+2\+\_\+0)
+\item 
+\mbox{\hyperlink{clnt__perr_8c_abe1cac70c13a9b9b2f7118dd495da282}{libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc}} (\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a735ec379055463d244f1066d691b6d13}{clnt\+\_\+spcreateerror}}, G\+L\+I\+B\+C\+\_\+2\+\_\+0)
+\item 
+\mbox{\hyperlink{clnt__perr_8c_a640fd32b80cb5f98986925faeb808fa3}{libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc}} (\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a1afb425e374b69c59f18eb577988e681}{clnt\+\_\+pcreateerror}}, G\+L\+I\+B\+C\+\_\+2\+\_\+0)
+\item 
+\mbox{\hyperlink{clnt__perr_8c_afb43ab2e3cd2938a51142fc53faabe8e}{libc\+\_\+freeres\+\_\+fn}} (free\+\_\+mem)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{clnt__perr_8c_af9f527025ae5f1ae6809fe263d9da062}\label{clnt__perr_8c_af9f527025ae5f1ae6809fe263d9da062}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_BADCRED\_IDX@{AUTH\_BADCRED\_IDX}}
+\index{AUTH\_BADCRED\_IDX@{AUTH\_BADCRED\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_BADCRED\_IDX}{AUTH\_BADCRED\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+B\+A\+D\+C\+R\+E\+D\+\_\+\+I\+DX~(\mbox{\hyperlink{clnt__perr_8c_ae380940c1faa70c489876ffe7f8fcdc4}{A\+U\+T\+H\+\_\+\+O\+K\+\_\+\+I\+DX}} + sizeof \char`\"{}Authentication \mbox{\hyperlink{bench-strcoll_8c_ad75d91d2a2ad02fb4a39a5fc8c4d4ec3a2bc49ec37d6a5715dd23e85f1ff5bb59}{OK}}\char`\"{})}
+
+\mbox{\Hypertarget{clnt__perr_8c_a7dbd78945777e1f5c3742fe1a88ae9e4}\label{clnt__perr_8c_a7dbd78945777e1f5c3742fe1a88ae9e4}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_BADVERF\_IDX@{AUTH\_BADVERF\_IDX}}
+\index{AUTH\_BADVERF\_IDX@{AUTH\_BADVERF\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_BADVERF\_IDX}{AUTH\_BADVERF\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+B\+A\+D\+V\+E\+R\+F\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_af0dd5e6bea7e41fa88c159895d1513ab}{AUTH\_REJECTEDCRED\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"Server rejected credential"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a1bf7a77559b16b0dbb391dabe0670b05}\label{clnt__perr_8c_a1bf7a77559b16b0dbb391dabe0670b05}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_FAILED\_IDX@{AUTH\_FAILED\_IDX}}
+\index{AUTH\_FAILED\_IDX@{AUTH\_FAILED\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_FAILED\_IDX}{AUTH\_FAILED\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a8b73e4ef25ba80a99a604c893961c1c2}{AUTH\_INVALIDRESP\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"Invalid server verifier"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a8b73e4ef25ba80a99a604c893961c1c2}\label{clnt__perr_8c_a8b73e4ef25ba80a99a604c893961c1c2}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_INVALIDRESP\_IDX@{AUTH\_INVALIDRESP\_IDX}}
+\index{AUTH\_INVALIDRESP\_IDX@{AUTH\_INVALIDRESP\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_INVALIDRESP\_IDX}{AUTH\_INVALIDRESP\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+I\+N\+V\+A\+L\+I\+D\+R\+E\+S\+P\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a34a1c5b3c62937eefd5ecef876f4af4d}{AUTH\_TOOWEAK\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"Client credential too weak"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_ae380940c1faa70c489876ffe7f8fcdc4}\label{clnt__perr_8c_ae380940c1faa70c489876ffe7f8fcdc4}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_OK\_IDX@{AUTH\_OK\_IDX}}
+\index{AUTH\_OK\_IDX@{AUTH\_OK\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_OK\_IDX}{AUTH\_OK\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+O\+K\+\_\+\+I\+DX~0}
+
+\mbox{\Hypertarget{clnt__perr_8c_af0dd5e6bea7e41fa88c159895d1513ab}\label{clnt__perr_8c_af0dd5e6bea7e41fa88c159895d1513ab}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_REJECTEDCRED\_IDX@{AUTH\_REJECTEDCRED\_IDX}}
+\index{AUTH\_REJECTEDCRED\_IDX@{AUTH\_REJECTEDCRED\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_REJECTEDCRED\_IDX}{AUTH\_REJECTEDCRED\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+R\+E\+J\+E\+C\+T\+E\+D\+C\+R\+E\+D\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_af9f527025ae5f1ae6809fe263d9da062}{AUTH\_BADCRED\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"Invalid client credential"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a9a1f2f50c94c0f271c51e2383c723c87}\label{clnt__perr_8c_a9a1f2f50c94c0f271c51e2383c723c87}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_REJECTEDVERF\_IDX@{AUTH\_REJECTEDVERF\_IDX}}
+\index{AUTH\_REJECTEDVERF\_IDX@{AUTH\_REJECTEDVERF\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_REJECTEDVERF\_IDX}{AUTH\_REJECTEDVERF\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+R\+E\+J\+E\+C\+T\+E\+D\+V\+E\+R\+F\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a7dbd78945777e1f5c3742fe1a88ae9e4}{AUTH\_BADVERF\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"Invalid client verifier"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a34a1c5b3c62937eefd5ecef876f4af4d}\label{clnt__perr_8c_a34a1c5b3c62937eefd5ecef876f4af4d}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!AUTH\_TOOWEAK\_IDX@{AUTH\_TOOWEAK\_IDX}}
+\index{AUTH\_TOOWEAK\_IDX@{AUTH\_TOOWEAK\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{AUTH\_TOOWEAK\_IDX}{AUTH\_TOOWEAK\_IDX}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+\_\+\+T\+O\+O\+W\+E\+A\+K\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a9a1f2f50c94c0f271c51e2383c723c87}{AUTH\_REJECTEDVERF\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"Server rejected verifier"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_aa4b82ec1ba609fe14c058a199b441008}\label{clnt__perr_8c_aa4b82ec1ba609fe14c058a199b441008}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_AUTHERROR\_IDX@{RPC\_AUTHERROR\_IDX}}
+\index{RPC\_AUTHERROR\_IDX@{RPC\_AUTHERROR\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_AUTHERROR\_IDX}{RPC\_AUTHERROR\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+A\+U\+T\+H\+E\+R\+R\+O\+R\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a68e927c636363021ac74bdc99cbb6dbf}{RPC\_VERSMISMATCH\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Incompatible versions of RPC"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_ae4f48d061890a381ae68c37365a62a6e}\label{clnt__perr_8c_ae4f48d061890a381ae68c37365a62a6e}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_CANTDECODEARGS\_IDX@{RPC\_CANTDECODEARGS\_IDX}}
+\index{RPC\_CANTDECODEARGS\_IDX@{RPC\_CANTDECODEARGS\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_CANTDECODEARGS\_IDX}{RPC\_CANTDECODEARGS\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+C\+A\+N\+T\+D\+E\+C\+O\+D\+E\+A\+R\+G\+S\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a72a3efcea1517fbe15172d5fffe7e28f}{RPC\_PROCUNAVAIL\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Procedure unavailable"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_afc113e6ae320e26a0ff8fba28532b7e9}\label{clnt__perr_8c_afc113e6ae320e26a0ff8fba28532b7e9}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_CANTDECODERES\_IDX@{RPC\_CANTDECODERES\_IDX}}
+\index{RPC\_CANTDECODERES\_IDX@{RPC\_CANTDECODERES\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_CANTDECODERES\_IDX}{RPC\_CANTDECODERES\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+C\+A\+N\+T\+D\+E\+C\+O\+D\+E\+R\+E\+S\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_ad85392871d7b329ca4f652c051f05af6}{RPC\_CANTENCODEARGS\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Can't encode arguments"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_ad85392871d7b329ca4f652c051f05af6}\label{clnt__perr_8c_ad85392871d7b329ca4f652c051f05af6}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_CANTENCODEARGS\_IDX@{RPC\_CANTENCODEARGS\_IDX}}
+\index{RPC\_CANTENCODEARGS\_IDX@{RPC\_CANTENCODEARGS\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_CANTENCODEARGS\_IDX}{RPC\_CANTENCODEARGS\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+C\+A\+N\+T\+E\+N\+C\+O\+D\+E\+A\+R\+G\+S\+\_\+\+I\+DX~(\mbox{\hyperlink{clnt__perr_8c_a4f9b757155077d7bc8c80b0729fc67ec}{R\+P\+C\+\_\+\+S\+U\+C\+C\+E\+S\+S\+\_\+\+I\+DX}} + sizeof \char`\"{}R\+P\+C\+: Success\char`\"{})}
+
+\mbox{\Hypertarget{clnt__perr_8c_a22f6440b41074e8f0ac0bbcc4157958a}\label{clnt__perr_8c_a22f6440b41074e8f0ac0bbcc4157958a}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_CANTRECV\_IDX@{RPC\_CANTRECV\_IDX}}
+\index{RPC\_CANTRECV\_IDX@{RPC\_CANTRECV\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_CANTRECV\_IDX}{RPC\_CANTRECV\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+C\+A\+N\+T\+R\+E\+C\+V\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_aa3b94c972833d961fd926d3aec325c15}{RPC\_CANTSEND\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Unable to send"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_aa3b94c972833d961fd926d3aec325c15}\label{clnt__perr_8c_aa3b94c972833d961fd926d3aec325c15}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_CANTSEND\_IDX@{RPC\_CANTSEND\_IDX}}
+\index{RPC\_CANTSEND\_IDX@{RPC\_CANTSEND\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_CANTSEND\_IDX}{RPC\_CANTSEND\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+C\+A\+N\+T\+S\+E\+N\+D\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_afc113e6ae320e26a0ff8fba28532b7e9}{RPC\_CANTDECODERES\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Can't decode result"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a73d095ecca628182daf8998b4e848ac4}\label{clnt__perr_8c_a73d095ecca628182daf8998b4e848ac4}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_FAILED\_IDX@{RPC\_FAILED\_IDX}}
+\index{RPC\_FAILED\_IDX@{RPC\_FAILED\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_FAILED\_IDX}{RPC\_FAILED\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a7eb7d97c67e1dc496ad198d524727da3}{RPC\_PROGNOTREGISTERED\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Program not registered"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a117f52c6b15db5b8d4d85f9527780faa}\label{clnt__perr_8c_a117f52c6b15db5b8d4d85f9527780faa}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_PMAPFAILURE\_IDX@{RPC\_PMAPFAILURE\_IDX}}
+\index{RPC\_PMAPFAILURE\_IDX@{RPC\_PMAPFAILURE\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_PMAPFAILURE\_IDX}{RPC\_PMAPFAILURE\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+P\+M\+A\+P\+F\+A\+I\+L\+U\+R\+E\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a81d7275d28b6b306d6facc0fad8b3cb4}{RPC\_UNKNOWNPROTO\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Unknown protocol"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a72a3efcea1517fbe15172d5fffe7e28f}\label{clnt__perr_8c_a72a3efcea1517fbe15172d5fffe7e28f}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_PROCUNAVAIL\_IDX@{RPC\_PROCUNAVAIL\_IDX}}
+\index{RPC\_PROCUNAVAIL\_IDX@{RPC\_PROCUNAVAIL\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_PROCUNAVAIL\_IDX}{RPC\_PROCUNAVAIL\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+P\+R\+O\+C\+U\+N\+A\+V\+A\+I\+L\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a917a8f36f210c83884d84a8b4a60ecd5}{RPC\_PROGVERSMISMATCH\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Program/version mismatch"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a7eb7d97c67e1dc496ad198d524727da3}\label{clnt__perr_8c_a7eb7d97c67e1dc496ad198d524727da3}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_PROGNOTREGISTERED\_IDX@{RPC\_PROGNOTREGISTERED\_IDX}}
+\index{RPC\_PROGNOTREGISTERED\_IDX@{RPC\_PROGNOTREGISTERED\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_PROGNOTREGISTERED\_IDX}{RPC\_PROGNOTREGISTERED\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+P\+R\+O\+G\+N\+O\+T\+R\+E\+G\+I\+S\+T\+E\+R\+E\+D\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a117f52c6b15db5b8d4d85f9527780faa}{RPC\_PMAPFAILURE\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                   + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Port mapper failure"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a04f57c03c4062979b1b8e74f0e9a0899}\label{clnt__perr_8c_a04f57c03c4062979b1b8e74f0e9a0899}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_PROGUNAVAIL\_IDX@{RPC\_PROGUNAVAIL\_IDX}}
+\index{RPC\_PROGUNAVAIL\_IDX@{RPC\_PROGUNAVAIL\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_PROGUNAVAIL\_IDX}{RPC\_PROGUNAVAIL\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+P\+R\+O\+G\+U\+N\+A\+V\+A\+I\+L\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_aa4b82ec1ba609fe14c058a199b441008}{RPC\_AUTHERROR\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Authentication error"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a917a8f36f210c83884d84a8b4a60ecd5}\label{clnt__perr_8c_a917a8f36f210c83884d84a8b4a60ecd5}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_PROGVERSMISMATCH\_IDX@{RPC\_PROGVERSMISMATCH\_IDX}}
+\index{RPC\_PROGVERSMISMATCH\_IDX@{RPC\_PROGVERSMISMATCH\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_PROGVERSMISMATCH\_IDX}{RPC\_PROGVERSMISMATCH\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+P\+R\+O\+G\+V\+E\+R\+S\+M\+I\+S\+M\+A\+T\+C\+H\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a04f57c03c4062979b1b8e74f0e9a0899}{RPC\_PROGUNAVAIL\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                  + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Program unavailable"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a4f9b757155077d7bc8c80b0729fc67ec}\label{clnt__perr_8c_a4f9b757155077d7bc8c80b0729fc67ec}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_SUCCESS\_IDX@{RPC\_SUCCESS\_IDX}}
+\index{RPC\_SUCCESS\_IDX@{RPC\_SUCCESS\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_SUCCESS\_IDX}{RPC\_SUCCESS\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+S\+U\+C\+C\+E\+S\+S\+\_\+\+I\+DX~0}
+
+\mbox{\Hypertarget{clnt__perr_8c_a8e25599af4516dac3e17acd3eb1bda7a}\label{clnt__perr_8c_a8e25599af4516dac3e17acd3eb1bda7a}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_SYSTEMERROR\_IDX@{RPC\_SYSTEMERROR\_IDX}}
+\index{RPC\_SYSTEMERROR\_IDX@{RPC\_SYSTEMERROR\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_SYSTEMERROR\_IDX}{RPC\_SYSTEMERROR\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+S\+Y\+S\+T\+E\+M\+E\+R\+R\+O\+R\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_ae4f48d061890a381ae68c37365a62a6e}{RPC\_CANTDECODEARGS\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Server can't decode arguments"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a29da983eef1f161feca7c34b40da1e41}\label{clnt__perr_8c_a29da983eef1f161feca7c34b40da1e41}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_TIMEDOUT\_IDX@{RPC\_TIMEDOUT\_IDX}}
+\index{RPC\_TIMEDOUT\_IDX@{RPC\_TIMEDOUT\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_TIMEDOUT\_IDX}{RPC\_TIMEDOUT\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+T\+I\+M\+E\+D\+O\+U\+T\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a22f6440b41074e8f0ac0bbcc4157958a}{RPC\_CANTRECV\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Unable to receive"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a7905a2ddee9d523a11d6490855d3d278}\label{clnt__perr_8c_a7905a2ddee9d523a11d6490855d3d278}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_UNKNOWNHOST\_IDX@{RPC\_UNKNOWNHOST\_IDX}}
+\index{RPC\_UNKNOWNHOST\_IDX@{RPC\_UNKNOWNHOST\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_UNKNOWNHOST\_IDX}{RPC\_UNKNOWNHOST\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+U\+N\+K\+N\+O\+W\+N\+H\+O\+S\+T\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a8e25599af4516dac3e17acd3eb1bda7a}{RPC\_SYSTEMERROR\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Remote system error"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a81d7275d28b6b306d6facc0fad8b3cb4}\label{clnt__perr_8c_a81d7275d28b6b306d6facc0fad8b3cb4}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_UNKNOWNPROTO\_IDX@{RPC\_UNKNOWNPROTO\_IDX}}
+\index{RPC\_UNKNOWNPROTO\_IDX@{RPC\_UNKNOWNPROTO\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_UNKNOWNPROTO\_IDX}{RPC\_UNKNOWNPROTO\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+U\+N\+K\+N\+O\+W\+N\+P\+R\+O\+T\+O\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a7905a2ddee9d523a11d6490855d3d278}{RPC\_UNKNOWNHOST\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Unknown host"})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{clnt__perr_8c_a68e927c636363021ac74bdc99cbb6dbf}\label{clnt__perr_8c_a68e927c636363021ac74bdc99cbb6dbf}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!RPC\_VERSMISMATCH\_IDX@{RPC\_VERSMISMATCH\_IDX}}
+\index{RPC\_VERSMISMATCH\_IDX@{RPC\_VERSMISMATCH\_IDX}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{RPC\_VERSMISMATCH\_IDX}{RPC\_VERSMISMATCH\_IDX}}
+{\footnotesize\ttfamily \#define R\+P\+C\+\_\+\+V\+E\+R\+S\+M\+I\+S\+M\+A\+T\+C\+H\+\_\+\+I\+DX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{clnt__perr_8c_a29da983eef1f161feca7c34b40da1e41}{RPC\_TIMEDOUT\_IDX}} \(\backslash\)}
+\DoxyCodeLine{                 + \textcolor{keyword}{sizeof} \textcolor{stringliteral}{"RPC: Timed out"})}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{clnt__perr_8c_a2f9141f459e20629b551a1dc35784ce0}\label{clnt__perr_8c_a2f9141f459e20629b551a1dc35784ce0}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!clnt\_sperrno@{clnt\_sperrno}}
+\index{clnt\_sperrno@{clnt\_sperrno}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{clnt\_sperrno()}{clnt\_sperrno()}}
+{\footnotesize\ttfamily char$\ast$ clnt\+\_\+sperrno (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a6b123dc4588b24eb7374747a24c7820e}{clnt\+\_\+stat}}}]{stat }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_a6b3e08d4623e8521b04e2f924710110e}\label{clnt__perr_8c_a6b3e08d4623e8521b04e2f924710110e}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!clnt\_sperror@{clnt\_sperror}}
+\index{clnt\_sperror@{clnt\_sperror}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{clnt\_sperror()}{clnt\_sperror()}}
+{\footnotesize\ttfamily char$\ast$ clnt\+\_\+sperror (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCLIENT}{C\+L\+I\+E\+NT}} $\ast$}]{rpch,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_afb43ab2e3cd2938a51142fc53faabe8e}\label{clnt__perr_8c_afb43ab2e3cd2938a51142fc53faabe8e}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_freeres\_fn@{libc\_freeres\_fn}}
+\index{libc\_freeres\_fn@{libc\_freeres\_fn}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_freeres\_fn()}{libc\_freeres\_fn()}}
+{\footnotesize\ttfamily libc\+\_\+freeres\+\_\+fn (\begin{DoxyParamCaption}\item[{free\+\_\+mem}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_aaf4e2f3d01b0e5a4ae0d30e442123c20}\label{clnt__perr_8c_aaf4e2f3d01b0e5a4ae0d30e442123c20}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_hidden\_def@{libc\_hidden\_def}}
+\index{libc\_hidden\_def@{libc\_hidden\_def}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_def()}{libc\_hidden\_def()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_ae496b82c9814985c0cdcb0259c8b800e}{clnt\+\_\+sperrno}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_a640fd32b80cb5f98986925faeb808fa3}\label{clnt__perr_8c_a640fd32b80cb5f98986925faeb808fa3}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}}
+\index{libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_nolink\_sunrpc()}{libc\_hidden\_nolink\_sunrpc()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a1afb425e374b69c59f18eb577988e681}{clnt\+\_\+pcreateerror}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_a5603d214443ba9588ae45cff7494aa23}\label{clnt__perr_8c_a5603d214443ba9588ae45cff7494aa23}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}}
+\index{libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_nolink\_sunrpc()}{libc\_hidden\_nolink\_sunrpc()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a3595b26f837ef200431b46a4b3411512}{clnt\+\_\+perrno}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_aca7b5fb565f8f86b6750425ecc812918}\label{clnt__perr_8c_aca7b5fb565f8f86b6750425ecc812918}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}}
+\index{libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_nolink\_sunrpc()}{libc\_hidden\_nolink\_sunrpc()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a99d825a42fe6f7301a0b8e8186a37839}{clnt\+\_\+perror}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_abe1cac70c13a9b9b2f7118dd495da282}\label{clnt__perr_8c_abe1cac70c13a9b9b2f7118dd495da282}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}}
+\index{libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_nolink\_sunrpc()}{libc\_hidden\_nolink\_sunrpc()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a735ec379055463d244f1066d691b6d13}{clnt\+\_\+spcreateerror}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{clnt__perr_8c_a4a1669669088d153bdebd542855b6e43}\label{clnt__perr_8c_a4a1669669088d153bdebd542855b6e43}} 
+\index{clnt\_perr.c@{clnt\_perr.c}!libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}}
+\index{libc\_hidden\_nolink\_sunrpc@{libc\_hidden\_nolink\_sunrpc}!clnt\_perr.c@{clnt\_perr.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_nolink\_sunrpc()}{libc\_hidden\_nolink\_sunrpc()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+nolink\+\_\+sunrpc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sunrpc_2rpc_2clnt_8h_a61db757da1c93d7320d96fd6facdb4f8}{clnt\+\_\+sperror}}}]{,  }\item[{G\+L\+I\+B\+C\+\_\+2\+\_\+0}]{ }\end{DoxyParamCaption})}
+

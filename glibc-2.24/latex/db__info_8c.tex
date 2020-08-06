@@ -1,0 +1,211 @@
+\hypertarget{db__info_8c}{}\doxysection{nptl\+\_\+db/db\+\_\+info.c File Reference}
+\label{db__info_8c}\index{nptl\_db/db\_info.c@{nptl\_db/db\_info.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}thread\+\_\+db\+P.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tls.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}structs.\+def\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpthread__key__data__level2}{pthread\+\_\+key\+\_\+data\+\_\+level2}}
+\item 
+union \mbox{\hyperlink{structdtv}{dtv}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a784ad42ce976ab845dd248dbafd6234d}{schedparam\+\_\+sched\+\_\+priority}}~\mbox{\hyperlink{posix_2sched_8h_a3b077140ce0400a06c5196d2ec0344d8}{schedparam.\+sched\+\_\+priority}}
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a5d223352400a18abef3cd8f042f1981d}{eventbuf\+\_\+eventmask}}~eventbuf.\+eventmask
+\item 
+\#define \mbox{\hyperlink{db__info_8c_acedf97a485dcdde596b0c100d8af3218}{eventbuf\+\_\+eventmask\+\_\+event\+\_\+bits}}~eventbuf.\+eventmask.\+event\+\_\+bits
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a483f614bba2b61d427084258ad253619}{D\+E\+SC}}(\mbox{\hyperlink{structname}{name}},  \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}},  obj)~\mbox{\hyperlink{thread__dbP_8h_afe5430c5fafcaf529cbac07808f70274}{D\+B\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+D\+E\+SC}} (\mbox{\hyperlink{structname}{name}}, 8 $\ast$ sizeof (obj), 1, \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}});
+\item 
+\#define \mbox{\hyperlink{db__info_8c_aca5a3e403bc150f89b6f1b170604d3be}{A\+R\+R\+A\+Y\+\_\+\+D\+E\+SC}}(\mbox{\hyperlink{structname}{name}},  \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}},  obj)
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a9c3c7cab82eee67aa6fa255090a12f47}{D\+B\+\_\+\+S\+T\+R\+U\+CT}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})~\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} \+\_\+thread\+\_\+db\+\_\+sizeof\+\_\+\#\#\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} = sizeof (\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}});
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a44a29eb53db5babd026659c0c93a094d}{D\+B\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+F\+I\+E\+LD}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}},  field)
+\item 
+\#define \mbox{\hyperlink{db__info_8c_ad135b60eaceb70f0623c86ffadb6b683}{D\+B\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+F\+I\+E\+LD}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}},  field)
+\item 
+\#define \mbox{\hyperlink{db__info_8c_aaf8b14e69934e47b340a21f56ffb363a}{D\+B\+\_\+\+V\+A\+R\+I\+A\+B\+LE}}(\mbox{\hyperlink{structname}{name}})~\mbox{\hyperlink{db__info_8c_a483f614bba2b61d427084258ad253619}{D\+E\+SC}} (\+\_\+thread\+\_\+db\+\_\+\#\#\mbox{\hyperlink{structname}{name}}, 0, \mbox{\hyperlink{structname}{name}})
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a97e152423c36a6c8ed7ab1778fb14cc1}{D\+B\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+V\+A\+R\+I\+A\+B\+LE}}(\mbox{\hyperlink{structname}{name}})~\mbox{\hyperlink{db__info_8c_aca5a3e403bc150f89b6f1b170604d3be}{A\+R\+R\+A\+Y\+\_\+\+D\+E\+SC}} (\+\_\+thread\+\_\+db\+\_\+\#\#\mbox{\hyperlink{structname}{name}}, 0, \mbox{\hyperlink{structname}{name}})
+\item 
+\#define \mbox{\hyperlink{db__info_8c_a0f9535a96e2df76ac08ecd4424ed3c86}{D\+B\+\_\+\+S\+Y\+M\+B\+OL}}(\mbox{\hyperlink{structname}{name}})~/$\ast$ Nothing.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{db__info_8c_ad8410940a5f4e0305eb76b79d205440d}{D\+B\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}(\mbox{\hyperlink{structname}{name}})~/$\ast$ Nothing.  $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structpthread}{pthread}} \mbox{\hyperlink{db__info_8c_a42ba248333b66eb0086529b84af508e1}{pthread}}
+\item 
+typedef struct \mbox{\hyperlink{structpthread__key__struct}{pthread\+\_\+key\+\_\+struct}} \mbox{\hyperlink{db__info_8c_a5e161fe24df086bd2e993af61033c095}{pthread\+\_\+key\+\_\+struct}}
+\item 
+typedef struct \mbox{\hyperlink{structpthread__key__data}{pthread\+\_\+key\+\_\+data}} \mbox{\hyperlink{db__info_8c_ab2b7176492d2b8db657df239549026b6}{pthread\+\_\+key\+\_\+data}}
+\item 
+typedef struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} \mbox{\hyperlink{db__info_8c_aa92a49867456e5f18f548e8507ed9fd6}{link\+\_\+map}}
+\item 
+typedef struct \mbox{\hyperlink{db__info_8c_aa6b187526d063b3cd8d6d759ea7f9dd5}{rtld\+\_\+global}} \mbox{\hyperlink{db__info_8c_aa6b187526d063b3cd8d6d759ea7f9dd5}{rtld\+\_\+global}}
+\item 
+typedef struct \mbox{\hyperlink{structdtv__slotinfo__list}{dtv\+\_\+slotinfo\+\_\+list}} \mbox{\hyperlink{db__info_8c_a50c4cd12553a41c92e08c1cfb065b569}{dtv\+\_\+slotinfo\+\_\+list}}
+\item 
+typedef struct \mbox{\hyperlink{db__info_8c_ad84818fc453a51db2e95ce621ba03d98}{dtv\+\_\+slotinfo}} \mbox{\hyperlink{db__info_8c_ad84818fc453a51db2e95ce621ba03d98}{dtv\+\_\+slotinfo}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} \mbox{\hyperlink{db__info_8c_a7675588df782d60bdef4edc879c36b5f}{\+\_\+\+\_\+nptl\+\_\+initial\+\_\+report\+\_\+events}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{db__info_8c_aca5a3e403bc150f89b6f1b170604d3be}\label{db__info_8c_aca5a3e403bc150f89b6f1b170604d3be}} 
+\index{db\_info.c@{db\_info.c}!ARRAY\_DESC@{ARRAY\_DESC}}
+\index{ARRAY\_DESC@{ARRAY\_DESC}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{ARRAY\_DESC}{ARRAY\_DESC}}
+{\footnotesize\ttfamily \#define A\+R\+R\+A\+Y\+\_\+\+D\+E\+SC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}},  }\item[{}]{\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}},  }\item[{}]{obj }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{thread__dbP_8h_afe5430c5fafcaf529cbac07808f70274}{DB\_DEFINE\_DESC}} (\mbox{\hyperlink{structname}{name}}, \(\backslash\)}
+\DoxyCodeLine{          8 * \textcolor{keyword}{sizeof} (obj)[0], \textcolor{keyword}{sizeof} (obj) / \textcolor{keyword}{sizeof} (obj)[0], \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{big5hkscs_8c_a894bdfa2d603d8343f8ef01dda6fcd23}{offset}});}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{db__info_8c_a97e152423c36a6c8ed7ab1778fb14cc1}\label{db__info_8c_a97e152423c36a6c8ed7ab1778fb14cc1}} 
+\index{db\_info.c@{db\_info.c}!DB\_ARRAY\_VARIABLE@{DB\_ARRAY\_VARIABLE}}
+\index{DB\_ARRAY\_VARIABLE@{DB\_ARRAY\_VARIABLE}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_ARRAY\_VARIABLE}{DB\_ARRAY\_VARIABLE}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+V\+A\+R\+I\+A\+B\+LE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\mbox{\hyperlink{db__info_8c_aca5a3e403bc150f89b6f1b170604d3be}{A\+R\+R\+A\+Y\+\_\+\+D\+E\+SC}} (\+\_\+thread\+\_\+db\+\_\+\#\#\mbox{\hyperlink{structname}{name}}, 0, \mbox{\hyperlink{structname}{name}})}
+
+\mbox{\Hypertarget{db__info_8c_ad8410940a5f4e0305eb76b79d205440d}\label{db__info_8c_ad8410940a5f4e0305eb76b79d205440d}} 
+\index{db\_info.c@{db\_info.c}!DB\_FUNCTION@{DB\_FUNCTION}}
+\index{DB\_FUNCTION@{DB\_FUNCTION}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_FUNCTION}{DB\_FUNCTION}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+F\+U\+N\+C\+T\+I\+ON(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~/$\ast$ Nothing.  $\ast$/}
+
+\mbox{\Hypertarget{db__info_8c_a9c3c7cab82eee67aa6fa255090a12f47}\label{db__info_8c_a9c3c7cab82eee67aa6fa255090a12f47}} 
+\index{db\_info.c@{db\_info.c}!DB\_STRUCT@{DB\_STRUCT}}
+\index{DB\_STRUCT@{DB\_STRUCT}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_STRUCT}{DB\_STRUCT}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+S\+T\+R\+U\+CT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})~\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} \+\_\+thread\+\_\+db\+\_\+sizeof\+\_\+\#\#\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} = sizeof (\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}});}
+
+\mbox{\Hypertarget{db__info_8c_ad135b60eaceb70f0623c86ffadb6b683}\label{db__info_8c_ad135b60eaceb70f0623c86ffadb6b683}} 
+\index{db\_info.c@{db\_info.c}!DB\_STRUCT\_ARRAY\_FIELD@{DB\_STRUCT\_ARRAY\_FIELD}}
+\index{DB\_STRUCT\_ARRAY\_FIELD@{DB\_STRUCT\_ARRAY\_FIELD}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_STRUCT\_ARRAY\_FIELD}{DB\_STRUCT\_ARRAY\_FIELD}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+F\+I\+E\+LD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}},  }\item[{}]{field }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{db__info_8c_aca5a3e403bc150f89b6f1b170604d3be}{ARRAY\_DESC}} (\_thread\_db\_\#\#\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}\#\#\mbox{\hyperlink{pcprofiledump_8c_a1018988c4e48b4e0231b292eb5a22232}{\_}}\#\#field, \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}, field), ((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}} *) 0)-\/>field)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{db__info_8c_a44a29eb53db5babd026659c0c93a094d}\label{db__info_8c_a44a29eb53db5babd026659c0c93a094d}} 
+\index{db\_info.c@{db\_info.c}!DB\_STRUCT\_FIELD@{DB\_STRUCT\_FIELD}}
+\index{DB\_STRUCT\_FIELD@{DB\_STRUCT\_FIELD}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_STRUCT\_FIELD}{DB\_STRUCT\_FIELD}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+F\+I\+E\+LD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}},  }\item[{}]{field }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{db__info_8c_a483f614bba2b61d427084258ad253619}{DESC}} (\_thread\_db\_\#\#\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}\#\#\mbox{\hyperlink{pcprofiledump_8c_a1018988c4e48b4e0231b292eb5a22232}{\_}}\#\#field, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{bindtextdom_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}, field), ((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}} *) 0)-\/>field)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{db__info_8c_a0f9535a96e2df76ac08ecd4424ed3c86}\label{db__info_8c_a0f9535a96e2df76ac08ecd4424ed3c86}} 
+\index{db\_info.c@{db\_info.c}!DB\_SYMBOL@{DB\_SYMBOL}}
+\index{DB\_SYMBOL@{DB\_SYMBOL}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_SYMBOL}{DB\_SYMBOL}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+S\+Y\+M\+B\+OL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~/$\ast$ Nothing.  $\ast$/}
+
+\mbox{\Hypertarget{db__info_8c_aaf8b14e69934e47b340a21f56ffb363a}\label{db__info_8c_aaf8b14e69934e47b340a21f56ffb363a}} 
+\index{db\_info.c@{db\_info.c}!DB\_VARIABLE@{DB\_VARIABLE}}
+\index{DB\_VARIABLE@{DB\_VARIABLE}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DB\_VARIABLE}{DB\_VARIABLE}}
+{\footnotesize\ttfamily \#define D\+B\+\_\+\+V\+A\+R\+I\+A\+B\+LE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\mbox{\hyperlink{db__info_8c_a483f614bba2b61d427084258ad253619}{D\+E\+SC}} (\+\_\+thread\+\_\+db\+\_\+\#\#\mbox{\hyperlink{structname}{name}}, 0, \mbox{\hyperlink{structname}{name}})}
+
+\mbox{\Hypertarget{db__info_8c_a483f614bba2b61d427084258ad253619}\label{db__info_8c_a483f614bba2b61d427084258ad253619}} 
+\index{db\_info.c@{db\_info.c}!DESC@{DESC}}
+\index{DESC@{DESC}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{DESC}{DESC}}
+{\footnotesize\ttfamily \#define D\+E\+SC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}},  }\item[{}]{\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}},  }\item[{}]{obj }\end{DoxyParamCaption})~\mbox{\hyperlink{thread__dbP_8h_afe5430c5fafcaf529cbac07808f70274}{D\+B\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+D\+E\+SC}} (\mbox{\hyperlink{structname}{name}}, 8 $\ast$ sizeof (obj), 1, \mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}});}
+
+\mbox{\Hypertarget{db__info_8c_a5d223352400a18abef3cd8f042f1981d}\label{db__info_8c_a5d223352400a18abef3cd8f042f1981d}} 
+\index{db\_info.c@{db\_info.c}!eventbuf\_eventmask@{eventbuf\_eventmask}}
+\index{eventbuf\_eventmask@{eventbuf\_eventmask}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{eventbuf\_eventmask}{eventbuf\_eventmask}}
+{\footnotesize\ttfamily \#define eventbuf\+\_\+eventmask~eventbuf.\+eventmask}
+
+\mbox{\Hypertarget{db__info_8c_acedf97a485dcdde596b0c100d8af3218}\label{db__info_8c_acedf97a485dcdde596b0c100d8af3218}} 
+\index{db\_info.c@{db\_info.c}!eventbuf\_eventmask\_event\_bits@{eventbuf\_eventmask\_event\_bits}}
+\index{eventbuf\_eventmask\_event\_bits@{eventbuf\_eventmask\_event\_bits}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{eventbuf\_eventmask\_event\_bits}{eventbuf\_eventmask\_event\_bits}}
+{\footnotesize\ttfamily \#define eventbuf\+\_\+eventmask\+\_\+event\+\_\+bits~eventbuf.\+eventmask.\+event\+\_\+bits}
+
+\mbox{\Hypertarget{db__info_8c_a784ad42ce976ab845dd248dbafd6234d}\label{db__info_8c_a784ad42ce976ab845dd248dbafd6234d}} 
+\index{db\_info.c@{db\_info.c}!schedparam\_sched\_priority@{schedparam\_sched\_priority}}
+\index{schedparam\_sched\_priority@{schedparam\_sched\_priority}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{schedparam\_sched\_priority}{schedparam\_sched\_priority}}
+{\footnotesize\ttfamily \#define schedparam\+\_\+sched\+\_\+priority~\mbox{\hyperlink{posix_2sched_8h_a3b077140ce0400a06c5196d2ec0344d8}{schedparam.\+sched\+\_\+priority}}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{db__info_8c_ad84818fc453a51db2e95ce621ba03d98}\label{db__info_8c_ad84818fc453a51db2e95ce621ba03d98}} 
+\index{db\_info.c@{db\_info.c}!dtv\_slotinfo@{dtv\_slotinfo}}
+\index{dtv\_slotinfo@{dtv\_slotinfo}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{dtv\_slotinfo}{dtv\_slotinfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{db__info_8c_ad84818fc453a51db2e95ce621ba03d98}{dtv\+\_\+slotinfo}} \mbox{\hyperlink{db__info_8c_ad84818fc453a51db2e95ce621ba03d98}{dtv\+\_\+slotinfo}}}
+
+\mbox{\Hypertarget{db__info_8c_a50c4cd12553a41c92e08c1cfb065b569}\label{db__info_8c_a50c4cd12553a41c92e08c1cfb065b569}} 
+\index{db\_info.c@{db\_info.c}!dtv\_slotinfo\_list@{dtv\_slotinfo\_list}}
+\index{dtv\_slotinfo\_list@{dtv\_slotinfo\_list}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{dtv\_slotinfo\_list}{dtv\_slotinfo\_list}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structdtv__slotinfo__list}{dtv\+\_\+slotinfo\+\_\+list}} \mbox{\hyperlink{structdtv__slotinfo__list}{dtv\+\_\+slotinfo\+\_\+list}}}
+
+\mbox{\Hypertarget{db__info_8c_aa92a49867456e5f18f548e8507ed9fd6}\label{db__info_8c_aa92a49867456e5f18f548e8507ed9fd6}} 
+\index{db\_info.c@{db\_info.c}!link\_map@{link\_map}}
+\index{link\_map@{link\_map}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{link\_map}{link\_map}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} \mbox{\hyperlink{structlink__map}{link\+\_\+map}}}
+
+\mbox{\Hypertarget{db__info_8c_a42ba248333b66eb0086529b84af508e1}\label{db__info_8c_a42ba248333b66eb0086529b84af508e1}} 
+\index{db\_info.c@{db\_info.c}!pthread@{pthread}}
+\index{pthread@{pthread}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{pthread}{pthread}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpthread}{pthread}} \mbox{\hyperlink{structpthread}{pthread}}}
+
+\mbox{\Hypertarget{db__info_8c_ab2b7176492d2b8db657df239549026b6}\label{db__info_8c_ab2b7176492d2b8db657df239549026b6}} 
+\index{db\_info.c@{db\_info.c}!pthread\_key\_data@{pthread\_key\_data}}
+\index{pthread\_key\_data@{pthread\_key\_data}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{pthread\_key\_data}{pthread\_key\_data}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpthread__key__data}{pthread\+\_\+key\+\_\+data}} \mbox{\hyperlink{structpthread__key__data}{pthread\+\_\+key\+\_\+data}}}
+
+\mbox{\Hypertarget{db__info_8c_a5e161fe24df086bd2e993af61033c095}\label{db__info_8c_a5e161fe24df086bd2e993af61033c095}} 
+\index{db\_info.c@{db\_info.c}!pthread\_key\_struct@{pthread\_key\_struct}}
+\index{pthread\_key\_struct@{pthread\_key\_struct}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{pthread\_key\_struct}{pthread\_key\_struct}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpthread__key__struct}{pthread\+\_\+key\+\_\+struct}} \mbox{\hyperlink{structpthread__key__struct}{pthread\+\_\+key\+\_\+struct}}}
+
+\mbox{\Hypertarget{db__info_8c_aa6b187526d063b3cd8d6d759ea7f9dd5}\label{db__info_8c_aa6b187526d063b3cd8d6d759ea7f9dd5}} 
+\index{db\_info.c@{db\_info.c}!rtld\_global@{rtld\_global}}
+\index{rtld\_global@{rtld\_global}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{rtld\_global}{rtld\_global}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{db__info_8c_aa6b187526d063b3cd8d6d759ea7f9dd5}{rtld\+\_\+global}} \mbox{\hyperlink{db__info_8c_aa6b187526d063b3cd8d6d759ea7f9dd5}{rtld\+\_\+global}}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{db__info_8c_a7675588df782d60bdef4edc879c36b5f}\label{db__info_8c_a7675588df782d60bdef4edc879c36b5f}} 
+\index{db\_info.c@{db\_info.c}!\_\_nptl\_initial\_report\_events@{\_\_nptl\_initial\_report\_events}}
+\index{\_\_nptl\_initial\_report\_events@{\_\_nptl\_initial\_report\_events}!db\_info.c@{db\_info.c}}
+\doxysubsubsection{\texorpdfstring{\_\_nptl\_initial\_report\_events}{\_\_nptl\_initial\_report\_events}}
+{\footnotesize\ttfamily \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} \+\_\+\+\_\+nptl\+\_\+initial\+\_\+report\+\_\+events}
+

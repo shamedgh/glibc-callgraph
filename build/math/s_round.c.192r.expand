@@ -1,0 +1,295 @@
+
+;; Function __round (__round, funcdef_no=77, decl_uid=2131, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+Edge 6->11 redirected to 14
+Edge 8->11 redirected to 15
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 62.
+Merging block 15 into block 14...
+Merged blocks 14 and 15.
+Merged 14 and 15 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:DF 105 [ x ])
+        (reg:DF 21 xmm0 [ x ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:28 -1
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (parallel [
+            (set (reg:DI 106 [ i0 ])
+                (asm_operands:DI ("movq %1, %0") ("=rm") 0 [
+                        (reg/v:DF 105 [ x ])
+                    ]
+                     [
+                        (asm_input:DF ("x") ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:31)
+                    ]
+                     [] ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:31))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:31 -1
+     (nil))
+(insn 10 9 11 2 (set (reg/v:DI 89 [ i0 ])
+        (reg:DI 106 [ i0 ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:31 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:DI 107 [ D.5383 ])
+                (ashiftrt:DI (reg/v:DI 89 [ i0 ])
+                    (const_int 52 [0x34])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:32 -1
+     (nil))
+(insn 12 11 13 2 (parallel [
+            (set (reg:DI 108 [ D.5383 ])
+                (and:DI (reg:DI 107 [ D.5383 ])
+                    (const_int 2047 [0x7ff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:32 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg/v:DI 92 [ j0 ])
+                (plus:DI (reg:DI 108 [ D.5383 ])
+                    (const_int -1023 [0xfffffffffffffc01])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:32 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:DI 92 [ j0 ])
+            (const_int 51 [0x33]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:33 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 47)
+            (pc))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:33 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 47)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:DI 92 [ j0 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:35 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 30)
+            (pc))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:35 -1
+     (int_list:REG_BR_PROB 7300 (nil))
+ -> 30)
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (set (reg:DI 109)
+        (const_int -9223372036854775808 [0x8000000000000000])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:37 -1
+     (nil))
+(insn 21 20 22 5 (parallel [
+            (set (reg/v:DI 87 [ i_ ])
+                (and:DI (reg/v:DI 89 [ i0 ])
+                    (reg:DI 109)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:37 -1
+     (nil))
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 92 [ j0 ])
+            (const_int -1 [0xffffffffffffffff]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:38 -1
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 55)
+            (pc))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:38 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 55)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 6 (set (reg:DI 110)
+        (const_int 4607182418800017408 [0x3ff0000000000000])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:39 -1
+     (nil))
+(insn 26 25 27 6 (parallel [
+            (set (reg:DI 102 [ D.5385 ])
+                (ior:DI (reg/v:DI 87 [ i_ ])
+                    (reg:DI 110)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:39 -1
+     (nil))
+(insn 27 26 28 6 (set (reg/v:DI 87 [ i_ ])
+        (reg:DI 102 [ D.5385 ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:39 -1
+     (nil))
+(jump_insn 28 27 29 6 (set (pc)
+        (label_ref 55)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:39 -1
+     (nil)
+ -> 55)
+(barrier 29 28 30)
+(code_label 30 29 31 7 3 "" [1 uses])
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 7 (set (reg:SI 93 [ D.5384 ])
+        (subreg:SI (reg/v:DI 92 [ j0 ]) 0)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:43 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:DI 111)
+        (const_int 4503599627370495 [0xfffffffffffff])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:43 -1
+     (nil))
+(insn 34 33 35 7 (parallel [
+            (set (reg/v:DI 94 [ i ])
+                (lshiftrt:DI (reg:DI 111)
+                    (subreg:QI (reg:SI 93 [ D.5384 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:43 -1
+     (nil))
+(insn 35 34 36 7 (set (reg:DI 95 [ D.5385 ])
+        (reg/v:DI 89 [ i0 ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:44 -1
+     (nil))
+(insn 36 35 37 7 (parallel [
+            (set (reg:DI 112 [ D.5385 ])
+                (and:DI (reg/v:DI 94 [ i ])
+                    (reg:DI 95 [ D.5385 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:44 -1
+     (nil))
+(insn 37 36 38 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 112 [ D.5385 ])
+            (const_int 0 [0]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:44 -1
+     (nil))
+(jump_insn 38 37 39 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:44 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 71)
+(note 39 38 40 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 8 (set (reg:DI 114)
+        (const_int 2251799813685248 [0x8000000000000])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:49 -1
+     (nil))
+(insn 41 40 42 8 (parallel [
+            (set (reg:DI 113 [ D.5385 ])
+                (lshiftrt:DI (reg:DI 114)
+                    (subreg:QI (reg:SI 93 [ D.5384 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:49 -1
+     (nil))
+(insn 42 41 43 8 (parallel [
+            (set (reg:DI 115 [ D.5385 ])
+                (plus:DI (reg:DI 113 [ D.5385 ])
+                    (reg:DI 95 [ D.5385 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:49 -1
+     (nil))
+(insn 43 42 44 8 (set (reg:DI 116 [ D.5385 ])
+        (not:DI (reg/v:DI 94 [ i ]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:49 -1
+     (nil))
+(insn 44 43 45 8 (parallel [
+            (set (reg/v:DI 87 [ i_ ])
+                (and:DI (reg:DI 115 [ D.5385 ])
+                    (reg:DI 116 [ D.5385 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:49 -1
+     (nil))
+(jump_insn 45 44 46 8 (set (pc)
+        (label_ref 55)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:49 -1
+     (nil)
+ -> 55)
+(barrier 46 45 47)
+(code_label 47 46 48 9 2 "" [1 uses])
+(note 48 47 49 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 92 [ j0 ])
+            (const_int 1024 [0x400]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:54 -1
+     (nil))
+(jump_insn 50 49 51 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 75)
+            (pc))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:54 612 {*jcc_1}
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 75)
+(note 51 50 52 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 10 (set (reg:DF 88 [ D.5382 ])
+        (plus:DF (reg/v:DF 105 [ x ])
+            (reg/v:DF 105 [ x ]))) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:56 -1
+     (nil))
+(jump_insn 53 52 54 10 (set (pc)
+        (label_ref 59)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:56 -1
+     (nil)
+ -> 59)
+(barrier 54 53 55)
+(code_label 55 54 56 11 4 "" [3 uses])
+(note 56 55 57 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 57 56 58 11 (parallel [
+            (set (reg:DF 117 [ x ])
+                (asm_operands:DF ("movq %1, %0") ("=x") 0 [
+                        (reg/v:DI 87 [ i_ ])
+                    ]
+                     [
+                        (asm_input:DI ("rm") ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:61)
+                    ]
+                     [] ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:61))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:61 -1
+     (nil))
+(insn 58 57 5 11 (set (reg/v:DF 103 [ x ])
+        (reg:DF 117 [ x ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:61 -1
+     (nil))
+(insn 5 58 68 11 (set (reg:DF 88 [ D.5382 ])
+        (reg/v:DF 103 [ x ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:62 -1
+     (nil))
+(jump_insn 68 5 69 11 (set (pc)
+        (label_ref 59)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:62 -1
+     (nil)
+ -> 59)
+(barrier 69 68 71)
+(code_label 71 69 70 12 6 "" [1 uses])
+(note 70 71 6 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 6 70 72 12 (set (reg:DF 88 [ D.5382 ])
+        (reg/v:DF 105 [ x ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:46 -1
+     (nil))
+(jump_insn 72 6 73 12 (set (pc)
+        (label_ref 59)) -1
+     (nil)
+ -> 59)
+(barrier 73 72 75)
+(code_label 75 73 74 13 7 "" [1 uses])
+(note 74 75 4 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 4 74 59 13 (set (reg:DF 88 [ D.5382 ])
+        (reg/v:DF 105 [ x ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:46 -1
+     (nil))
+(code_label 59 4 60 14 5 "" [3 uses])
+(note 60 59 61 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 65 14 (set (reg:DF 104 [ <retval> ])
+        (reg:DF 88 [ D.5382 ])) -1
+     (nil))
+(insn 65 61 66 14 (set (reg/i:DF 21 xmm0)
+        (reg:DF 104 [ <retval> ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:63 -1
+     (nil))
+(insn 66 65 0 14 (use (reg/i:DF 21 xmm0)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_round.c:63 -1
+     (nil))

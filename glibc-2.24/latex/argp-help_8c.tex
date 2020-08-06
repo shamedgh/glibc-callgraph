@@ -1,0 +1,258 @@
+\hypertarget{argp-help_8c}{}\doxysection{argp/argp-\/help.c File Reference}
+\label{argp-help_8c}\index{argp/argp-\/help.c@{argp/argp-\/help.c}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}argp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}argp-\/fmtstream.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}argp-\/namefrob.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structuparams}{uparams}}
+\item 
+struct \mbox{\hyperlink{structuparam__name}{uparam\+\_\+name}}
+\item 
+struct \mbox{\hyperlink{structhol__entry}{hol\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structhol__cluster}{hol\+\_\+cluster}}
+\item 
+struct \mbox{\hyperlink{structhol}{hol}}
+\item 
+struct \mbox{\hyperlink{structhol__help__state}{hol\+\_\+help\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structpentry__state}{pentry\+\_\+state}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a388e95d40b4956ff9643881d201b9f97}{dgettext}}(domain,  \mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a3c75bb398badb69c7577b21486f9963f}{S\+I\+Z\+E\+\_\+\+M\+AX}}~((\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}) -\/1)
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_aa5919b4ac459f1bf8f38a069681fcb8e}{D\+U\+P\+\_\+\+A\+R\+GS}}~0		/$\ast$ True \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} \mbox{\hyperlink{structoption}{option}} argument can be duplicated. $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_aeb7516a022c02c9760f3697f186d261d}{D\+U\+P\+\_\+\+A\+R\+G\+S\+\_\+\+N\+O\+TE}}~1		/$\ast$ True \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} print \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} note about duplicate args. $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_aee2776647d29d71b948bb6176c4abc35}{S\+H\+O\+R\+T\+\_\+\+O\+P\+T\+\_\+\+C\+OL}}~2		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which short \mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}} \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a4404d0f538f341905882349e0ddaf760}{L\+O\+N\+G\+\_\+\+O\+P\+T\+\_\+\+C\+OL}}~6		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}} \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_aceda34ea746b1bc3ecd4e146703656da}{D\+O\+C\+\_\+\+O\+P\+T\+\_\+\+C\+OL}}~2		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which doc \mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}} \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_ac3a259df3b9d5ca6629b9c1e59da6458}{O\+P\+T\+\_\+\+D\+O\+C\+\_\+\+C\+OL}}~29		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which \mbox{\hyperlink{structoption}{option}} text starts $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a6fae168fa6a39ef36d0575f7da24afd5}{H\+E\+A\+D\+E\+R\+\_\+\+C\+OL}}~1		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which \mbox{\hyperlink{structgroup}{group}} headers are printed $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_aea068a6ca7c1fcc957b904665183600c}{U\+S\+A\+G\+E\+\_\+\+I\+N\+D\+E\+NT}}~12		/$\ast$ indentation of wrapped usage \mbox{\hyperlink{structlines}{lines}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_acf50d095f3355ccb99741b46fcae524e}{R\+M\+A\+R\+G\+IN}}~79		/$\ast$ \mbox{\hyperlink{posix-timer_8h_a7fde81bd31e0d866b71a2d227009968b}{right}} margin used \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} wrapping $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a9b8046229a6f7ce3655bee0f0e1db30f}{nuparam\+\_\+names}}~(sizeof (uparam\+\_\+names) / sizeof (uparam\+\_\+names\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a70999bfeae7dfbf22b53b02550683b1f}{S\+K\+I\+P\+WS}}(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})~do \{ \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (\mbox{\hyperlink{ctype_2ctype_8h_a0c009fd6c0f22a1da6995c59b701a58f}{isspace}} ($\ast$\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})) \mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}++; \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0);
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a153b17593b989c42d977585b6091c772}{ovisible}}(opt)~(! ((opt)-\/$>$\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{argp_2argp_8h_ad18c9b8ca36a7ce077897c99c27c274a}{O\+P\+T\+I\+O\+N\+\_\+\+H\+I\+D\+D\+EN}}))
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a7ebeb526a8cba6fe247acd561dc96497}{oalias}}(opt)~((opt)-\/$>$\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{argp_2argp_8h_a7a1d39953aa3f037cbf1c94a5337f65b}{O\+P\+T\+I\+O\+N\+\_\+\+A\+L\+I\+AS}})
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_aa86f7299399e7024964a9c38974742d5}{odoc}}(opt)~((opt)-\/$>$\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{argp_2argp_8h_a1a758626b728e79dc3bf6475f1bc8691}{O\+P\+T\+I\+O\+N\+\_\+\+D\+OC}})
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a79c45e8ef6d8bd83eb275d85f158e2c3}{oend}}(opt)~\mbox{\hyperlink{argp_2argp_8h_ab1ebcfffbc07cfdf198280cc9a16ff8b}{\+\_\+\+\_\+option\+\_\+is\+\_\+end}} (opt)
+\item 
+\#define \mbox{\hyperlink{argp-help_8c_a3a4f039beef22360841d7d00a080a1fb}{oshort}}(opt)~\mbox{\hyperlink{argp_2argp_8h_adc55e874897f763eee9fa80ff9f1d453}{\+\_\+\+\_\+option\+\_\+is\+\_\+short}} (opt)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{argp-help_8c_aeb1df3e83fb069eaa2eb66ace3a0ea52}{alloca}} ()
+\item 
+char $\ast$ \mbox{\hyperlink{argp-help_8c_add46ab98f32b76457852dbb872842bf2}{strerror}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} errnum)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{argp-help_8c_ac196bab1f22244af1c4cb9f3cb38e431}{\+\_\+\+\_\+argp\+\_\+help}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp}{argp}} $\ast$\mbox{\hyperlink{structargp}{argp}}, \mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$stream, unsigned \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}}, char $\ast$\mbox{\hyperlink{structname}{name}})
+\item 
+char $\ast$ \mbox{\hyperlink{argp-help_8c_a0b13881699018835c4edbd31e005b751}{\+\_\+\+\_\+argp\+\_\+basename}} (char $\ast$\mbox{\hyperlink{structname}{name}})
+\item 
+char $\ast$ \mbox{\hyperlink{argp-help_8c_af7c78fedd3c6838cae544328806b088a}{\+\_\+\+\_\+argp\+\_\+short\+\_\+program\+\_\+name}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{argp-help_8c_a4533b84e239e9bc33c1ddf4e494db33b}{\+\_\+\+\_\+argp\+\_\+state\+\_\+help}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}}, \mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$stream, unsigned \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{argp-help_8c_a9737e2eeb5f35201460f448e0c4b2037}{\+\_\+\+\_\+argp\+\_\+error}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strftime_8c_a381d684d94e6e91dee650357e8f02fa8}{fmt}},...)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{argp-help_8c_a909a59f53e78b2a96f230def8203a833}{\+\_\+\+\_\+argp\+\_\+failure}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nss_2nsswitch_8h_a21fd5ece2dac024d267070d9eabf87d2}{status}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} errnum, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strftime_8c_a381d684d94e6e91dee650357e8f02fa8}{fmt}},...)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{argp-help_8c_a369266c24eacffb87046522897a570d5}\label{argp-help_8c_a369266c24eacffb87046522897a570d5}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE~1}
+
+\mbox{\Hypertarget{argp-help_8c_a388e95d40b4956ff9643881d201b9f97}\label{argp-help_8c_a388e95d40b4956ff9643881d201b9f97}} 
+\index{argp-\/help.c@{argp-\/help.c}!dgettext@{dgettext}}
+\index{dgettext@{dgettext}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{dgettext}{dgettext}}
+{\footnotesize\ttfamily \#define dgettext(\begin{DoxyParamCaption}\item[{}]{domain,  }\item[{}]{\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})}
+
+\mbox{\Hypertarget{argp-help_8c_aceda34ea746b1bc3ecd4e146703656da}\label{argp-help_8c_aceda34ea746b1bc3ecd4e146703656da}} 
+\index{argp-\/help.c@{argp-\/help.c}!DOC\_OPT\_COL@{DOC\_OPT\_COL}}
+\index{DOC\_OPT\_COL@{DOC\_OPT\_COL}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{DOC\_OPT\_COL}{DOC\_OPT\_COL}}
+{\footnotesize\ttfamily \#define D\+O\+C\+\_\+\+O\+P\+T\+\_\+\+C\+OL~2		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which doc \mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}} \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_aa5919b4ac459f1bf8f38a069681fcb8e}\label{argp-help_8c_aa5919b4ac459f1bf8f38a069681fcb8e}} 
+\index{argp-\/help.c@{argp-\/help.c}!DUP\_ARGS@{DUP\_ARGS}}
+\index{DUP\_ARGS@{DUP\_ARGS}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{DUP\_ARGS}{DUP\_ARGS}}
+{\footnotesize\ttfamily \#define D\+U\+P\+\_\+\+A\+R\+GS~0		/$\ast$ True \mbox{\hyperlink{wchar-lookup_8h_ade86e141d0a7ef8c4d99b41d5a7d94b0}{if}} \mbox{\hyperlink{structoption}{option}} argument can be duplicated. $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_aeb7516a022c02c9760f3697f186d261d}\label{argp-help_8c_aeb7516a022c02c9760f3697f186d261d}} 
+\index{argp-\/help.c@{argp-\/help.c}!DUP\_ARGS\_NOTE@{DUP\_ARGS\_NOTE}}
+\index{DUP\_ARGS\_NOTE@{DUP\_ARGS\_NOTE}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{DUP\_ARGS\_NOTE}{DUP\_ARGS\_NOTE}}
+{\footnotesize\ttfamily \#define D\+U\+P\+\_\+\+A\+R\+G\+S\+\_\+\+N\+O\+TE~1		/$\ast$ True \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} print \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} note about duplicate args. $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_a6fae168fa6a39ef36d0575f7da24afd5}\label{argp-help_8c_a6fae168fa6a39ef36d0575f7da24afd5}} 
+\index{argp-\/help.c@{argp-\/help.c}!HEADER\_COL@{HEADER\_COL}}
+\index{HEADER\_COL@{HEADER\_COL}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_COL}{HEADER\_COL}}
+{\footnotesize\ttfamily \#define H\+E\+A\+D\+E\+R\+\_\+\+C\+OL~1		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which \mbox{\hyperlink{structgroup}{group}} headers are printed $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_a4404d0f538f341905882349e0ddaf760}\label{argp-help_8c_a4404d0f538f341905882349e0ddaf760}} 
+\index{argp-\/help.c@{argp-\/help.c}!LONG\_OPT\_COL@{LONG\_OPT\_COL}}
+\index{LONG\_OPT\_COL@{LONG\_OPT\_COL}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{LONG\_OPT\_COL}{LONG\_OPT\_COL}}
+{\footnotesize\ttfamily \#define L\+O\+N\+G\+\_\+\+O\+P\+T\+\_\+\+C\+OL~6		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}} \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_a9b8046229a6f7ce3655bee0f0e1db30f}\label{argp-help_8c_a9b8046229a6f7ce3655bee0f0e1db30f}} 
+\index{argp-\/help.c@{argp-\/help.c}!nuparam\_names@{nuparam\_names}}
+\index{nuparam\_names@{nuparam\_names}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{nuparam\_names}{nuparam\_names}}
+{\footnotesize\ttfamily \#define nuparam\+\_\+names~(sizeof (uparam\+\_\+names) / sizeof (uparam\+\_\+names\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{argp-help_8c_a7ebeb526a8cba6fe247acd561dc96497}\label{argp-help_8c_a7ebeb526a8cba6fe247acd561dc96497}} 
+\index{argp-\/help.c@{argp-\/help.c}!oalias@{oalias}}
+\index{oalias@{oalias}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{oalias}{oalias}}
+{\footnotesize\ttfamily \#define oalias(\begin{DoxyParamCaption}\item[{}]{opt }\end{DoxyParamCaption})~((opt)-\/$>$\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{argp_2argp_8h_a7a1d39953aa3f037cbf1c94a5337f65b}{O\+P\+T\+I\+O\+N\+\_\+\+A\+L\+I\+AS}})}
+
+\mbox{\Hypertarget{argp-help_8c_aa86f7299399e7024964a9c38974742d5}\label{argp-help_8c_aa86f7299399e7024964a9c38974742d5}} 
+\index{argp-\/help.c@{argp-\/help.c}!odoc@{odoc}}
+\index{odoc@{odoc}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{odoc}{odoc}}
+{\footnotesize\ttfamily \#define odoc(\begin{DoxyParamCaption}\item[{}]{opt }\end{DoxyParamCaption})~((opt)-\/$>$\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{argp_2argp_8h_a1a758626b728e79dc3bf6475f1bc8691}{O\+P\+T\+I\+O\+N\+\_\+\+D\+OC}})}
+
+\mbox{\Hypertarget{argp-help_8c_a79c45e8ef6d8bd83eb275d85f158e2c3}\label{argp-help_8c_a79c45e8ef6d8bd83eb275d85f158e2c3}} 
+\index{argp-\/help.c@{argp-\/help.c}!oend@{oend}}
+\index{oend@{oend}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{oend}{oend}}
+{\footnotesize\ttfamily \#define oend(\begin{DoxyParamCaption}\item[{}]{opt }\end{DoxyParamCaption})~\mbox{\hyperlink{argp_2argp_8h_ab1ebcfffbc07cfdf198280cc9a16ff8b}{\+\_\+\+\_\+option\+\_\+is\+\_\+end}} (opt)}
+
+\mbox{\Hypertarget{argp-help_8c_ac3a259df3b9d5ca6629b9c1e59da6458}\label{argp-help_8c_ac3a259df3b9d5ca6629b9c1e59da6458}} 
+\index{argp-\/help.c@{argp-\/help.c}!OPT\_DOC\_COL@{OPT\_DOC\_COL}}
+\index{OPT\_DOC\_COL@{OPT\_DOC\_COL}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_DOC\_COL}{OPT\_DOC\_COL}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+D\+O\+C\+\_\+\+C\+OL~29		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which \mbox{\hyperlink{structoption}{option}} text starts $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_a3a4f039beef22360841d7d00a080a1fb}\label{argp-help_8c_a3a4f039beef22360841d7d00a080a1fb}} 
+\index{argp-\/help.c@{argp-\/help.c}!oshort@{oshort}}
+\index{oshort@{oshort}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{oshort}{oshort}}
+{\footnotesize\ttfamily \#define oshort(\begin{DoxyParamCaption}\item[{}]{opt }\end{DoxyParamCaption})~\mbox{\hyperlink{argp_2argp_8h_adc55e874897f763eee9fa80ff9f1d453}{\+\_\+\+\_\+option\+\_\+is\+\_\+short}} (opt)}
+
+\mbox{\Hypertarget{argp-help_8c_a153b17593b989c42d977585b6091c772}\label{argp-help_8c_a153b17593b989c42d977585b6091c772}} 
+\index{argp-\/help.c@{argp-\/help.c}!ovisible@{ovisible}}
+\index{ovisible@{ovisible}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{ovisible}{ovisible}}
+{\footnotesize\ttfamily \#define ovisible(\begin{DoxyParamCaption}\item[{}]{opt }\end{DoxyParamCaption})~(! ((opt)-\/$>$\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{argp_2argp_8h_ad18c9b8ca36a7ce077897c99c27c274a}{O\+P\+T\+I\+O\+N\+\_\+\+H\+I\+D\+D\+EN}}))}
+
+\mbox{\Hypertarget{argp-help_8c_acf50d095f3355ccb99741b46fcae524e}\label{argp-help_8c_acf50d095f3355ccb99741b46fcae524e}} 
+\index{argp-\/help.c@{argp-\/help.c}!RMARGIN@{RMARGIN}}
+\index{RMARGIN@{RMARGIN}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{RMARGIN}{RMARGIN}}
+{\footnotesize\ttfamily \#define R\+M\+A\+R\+G\+IN~79		/$\ast$ \mbox{\hyperlink{posix-timer_8h_a7fde81bd31e0d866b71a2d227009968b}{right}} margin used \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} wrapping $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_aee2776647d29d71b948bb6176c4abc35}\label{argp-help_8c_aee2776647d29d71b948bb6176c4abc35}} 
+\index{argp-\/help.c@{argp-\/help.c}!SHORT\_OPT\_COL@{SHORT\_OPT\_COL}}
+\index{SHORT\_OPT\_COL@{SHORT\_OPT\_COL}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{SHORT\_OPT\_COL}{SHORT\_OPT\_COL}}
+{\footnotesize\ttfamily \#define S\+H\+O\+R\+T\+\_\+\+O\+P\+T\+\_\+\+C\+OL~2		/$\ast$ column \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} which short \mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}} \mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}} $\ast$/}
+
+\mbox{\Hypertarget{argp-help_8c_a3c75bb398badb69c7577b21486f9963f}\label{argp-help_8c_a3c75bb398badb69c7577b21486f9963f}} 
+\index{argp-\/help.c@{argp-\/help.c}!SIZE\_MAX@{SIZE\_MAX}}
+\index{SIZE\_MAX@{SIZE\_MAX}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{SIZE\_MAX}{SIZE\_MAX}}
+{\footnotesize\ttfamily \#define S\+I\+Z\+E\+\_\+\+M\+AX~((\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}) -\/1)}
+
+\mbox{\Hypertarget{argp-help_8c_a70999bfeae7dfbf22b53b02550683b1f}\label{argp-help_8c_a70999bfeae7dfbf22b53b02550683b1f}} 
+\index{argp-\/help.c@{argp-\/help.c}!SKIPWS@{SKIPWS}}
+\index{SKIPWS@{SKIPWS}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{SKIPWS}{SKIPWS}}
+{\footnotesize\ttfamily \#define S\+K\+I\+P\+WS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}} }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (\mbox{\hyperlink{ctype_2ctype_8h_a0c009fd6c0f22a1da6995c59b701a58f}{isspace}} ($\ast$\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})) \mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}++; \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0);}
+
+\mbox{\Hypertarget{argp-help_8c_aea068a6ca7c1fcc957b904665183600c}\label{argp-help_8c_aea068a6ca7c1fcc957b904665183600c}} 
+\index{argp-\/help.c@{argp-\/help.c}!USAGE\_INDENT@{USAGE\_INDENT}}
+\index{USAGE\_INDENT@{USAGE\_INDENT}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{USAGE\_INDENT}{USAGE\_INDENT}}
+{\footnotesize\ttfamily \#define U\+S\+A\+G\+E\+\_\+\+I\+N\+D\+E\+NT~12		/$\ast$ indentation of wrapped usage \mbox{\hyperlink{structlines}{lines}} $\ast$/}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{argp-help_8c_a0b13881699018835c4edbd31e005b751}\label{argp-help_8c_a0b13881699018835c4edbd31e005b751}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_\_argp\_basename@{\_\_argp\_basename}}
+\index{\_\_argp\_basename@{\_\_argp\_basename}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_basename()}{\_\_argp\_basename()}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+\+\_\+argp\+\_\+basename (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_a9737e2eeb5f35201460f448e0c4b2037}\label{argp-help_8c_a9737e2eeb5f35201460f448e0c4b2037}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_\_argp\_error@{\_\_argp\_error}}
+\index{\_\_argp\_error@{\_\_argp\_error}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_error()}{\_\_argp\_error()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+argp\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$}]{state,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_a909a59f53e78b2a96f230def8203a833}\label{argp-help_8c_a909a59f53e78b2a96f230def8203a833}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_\_argp\_failure@{\_\_argp\_failure}}
+\index{\_\_argp\_failure@{\_\_argp\_failure}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_failure()}{\_\_argp\_failure()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+argp\+\_\+failure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$}]{state,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{status,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{errnum,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_ac196bab1f22244af1c4cb9f3cb38e431}\label{argp-help_8c_ac196bab1f22244af1c4cb9f3cb38e431}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_\_argp\_help@{\_\_argp\_help}}
+\index{\_\_argp\_help@{\_\_argp\_help}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_help()}{\_\_argp\_help()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+argp\+\_\+help (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp}{argp}} $\ast$}]{argp,  }\item[{\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$}]{stream,  }\item[{unsigned}]{flags,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_af7c78fedd3c6838cae544328806b088a}\label{argp-help_8c_af7c78fedd3c6838cae544328806b088a}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_\_argp\_short\_program\_name@{\_\_argp\_short\_program\_name}}
+\index{\_\_argp\_short\_program\_name@{\_\_argp\_short\_program\_name}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_short\_program\_name()}{\_\_argp\_short\_program\_name()}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+\+\_\+argp\+\_\+short\+\_\+program\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_a4533b84e239e9bc33c1ddf4e494db33b}\label{argp-help_8c_a4533b84e239e9bc33c1ddf4e494db33b}} 
+\index{argp-\/help.c@{argp-\/help.c}!\_\_argp\_state\_help@{\_\_argp\_state\_help}}
+\index{\_\_argp\_state\_help@{\_\_argp\_state\_help}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_state\_help()}{\_\_argp\_state\_help()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+argp\+\_\+state\+\_\+help (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$}]{state,  }\item[{\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$}]{stream,  }\item[{unsigned}]{flags }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_aeb1df3e83fb069eaa2eb66ace3a0ea52}\label{argp-help_8c_aeb1df3e83fb069eaa2eb66ace3a0ea52}} 
+\index{argp-\/help.c@{argp-\/help.c}!alloca@{alloca}}
+\index{alloca@{alloca}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{alloca()}{alloca()}}
+{\footnotesize\ttfamily char$\ast$ alloca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-help_8c_add46ab98f32b76457852dbb872842bf2}\label{argp-help_8c_add46ab98f32b76457852dbb872842bf2}} 
+\index{argp-\/help.c@{argp-\/help.c}!strerror@{strerror}}
+\index{strerror@{strerror}!argp-\/help.c@{argp-\/help.c}}
+\doxysubsubsection{\texorpdfstring{strerror()}{strerror()}}
+{\footnotesize\ttfamily char$\ast$ strerror (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{errnum }\end{DoxyParamCaption})}
+

@@ -1,0 +1,43 @@
+\hypertarget{nptl_2aio__misc_8h}{}\doxysection{sysdeps/nptl/aio\+\_\+misc.h File Reference}
+\label{nptl_2aio__misc_8h}\index{sysdeps/nptl/aio\_misc.h@{sysdeps/nptl/aio\_misc.h}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$nptl/pthread\+P.\+h$>$}\newline
+{\ttfamily \#include $<$futex-\/internal.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nptl_2aio__misc_8h_a489e684de1683cdc2b540a0c71159864}{D\+O\+N\+T\+\_\+\+N\+E\+E\+D\+\_\+\+A\+I\+O\+\_\+\+M\+I\+S\+C\+\_\+\+C\+O\+ND}}~1
+\item 
+\#define \mbox{\hyperlink{nptl_2aio__misc_8h_a4d78a4a77d3a436afe0d9577acf657fa}{A\+I\+O\+\_\+\+M\+I\+S\+C\+\_\+\+N\+O\+T\+I\+FY}}(\mbox{\hyperlink{structwaitlist}{waitlist}})
+\item 
+\#define \mbox{\hyperlink{nptl_2aio__misc_8h_a44445e3842f48bf5720ab5901f285c30}{A\+I\+O\+\_\+\+M\+I\+S\+C\+\_\+\+W\+A\+IT}}(\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}},  futex,  timeout,  cancel)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nptl_2aio__misc_8h_a4d78a4a77d3a436afe0d9577acf657fa}\label{nptl_2aio__misc_8h_a4d78a4a77d3a436afe0d9577acf657fa}} 
+\index{aio\_misc.h@{aio\_misc.h}!AIO\_MISC\_NOTIFY@{AIO\_MISC\_NOTIFY}}
+\index{AIO\_MISC\_NOTIFY@{AIO\_MISC\_NOTIFY}!aio\_misc.h@{aio\_misc.h}}
+\doxysubsubsection{\texorpdfstring{AIO\_MISC\_NOTIFY}{AIO\_MISC\_NOTIFY}}
+{\footnotesize\ttfamily \#define A\+I\+O\+\_\+\+M\+I\+S\+C\+\_\+\+N\+O\+T\+I\+FY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structwaitlist}{waitlist}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    if (*\mbox{\hyperlink{structwaitlist}{waitlist}}-\/>\mbox{\hyperlink{structwaitlist_a92118f90e9b9f2121d17f14533ca8c03}{counterp}} > 0 \&\& -\/-\/*\mbox{\hyperlink{structwaitlist}{waitlist}}-\/>\mbox{\hyperlink{structwaitlist_a92118f90e9b9f2121d17f14533ca8c03}{counterp}} == 0)            \(\backslash\)}
+\DoxyCodeLine{      futex\_wake ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} *) \mbox{\hyperlink{structwaitlist}{waitlist}}-\/>\mbox{\hyperlink{structwaitlist_a92118f90e9b9f2121d17f14533ca8c03}{counterp}}, 1, \mbox{\hyperlink{nptl_2futex-internal_8h_aa5cc4e4b44aefa8be261b57ebdd9695d}{FUTEX\_PRIVATE}});     \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2aio__misc_8h_a44445e3842f48bf5720ab5901f285c30}\label{nptl_2aio__misc_8h_a44445e3842f48bf5720ab5901f285c30}} 
+\index{aio\_misc.h@{aio\_misc.h}!AIO\_MISC\_WAIT@{AIO\_MISC\_WAIT}}
+\index{AIO\_MISC\_WAIT@{AIO\_MISC\_WAIT}!aio\_misc.h@{aio\_misc.h}}
+\doxysubsubsection{\texorpdfstring{AIO\_MISC\_WAIT}{AIO\_MISC\_WAIT}}
+{\footnotesize\ttfamily \#define A\+I\+O\+\_\+\+M\+I\+S\+C\+\_\+\+W\+A\+IT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}},  }\item[{}]{futex,  }\item[{}]{timeout,  }\item[{}]{cancel }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nptl_2aio__misc_8h_a489e684de1683cdc2b540a0c71159864}\label{nptl_2aio__misc_8h_a489e684de1683cdc2b540a0c71159864}} 
+\index{aio\_misc.h@{aio\_misc.h}!DONT\_NEED\_AIO\_MISC\_COND@{DONT\_NEED\_AIO\_MISC\_COND}}
+\index{DONT\_NEED\_AIO\_MISC\_COND@{DONT\_NEED\_AIO\_MISC\_COND}!aio\_misc.h@{aio\_misc.h}}
+\doxysubsubsection{\texorpdfstring{DONT\_NEED\_AIO\_MISC\_COND}{DONT\_NEED\_AIO\_MISC\_COND}}
+{\footnotesize\ttfamily \#define D\+O\+N\+T\+\_\+\+N\+E\+E\+D\+\_\+\+A\+I\+O\+\_\+\+M\+I\+S\+C\+\_\+\+C\+O\+ND~1}
+

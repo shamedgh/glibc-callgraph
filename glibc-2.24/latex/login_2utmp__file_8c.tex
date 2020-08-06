@@ -1,0 +1,142 @@
+\hypertarget{login_2utmp__file_8c}{}\doxysection{login/utmp\+\_\+file.c File Reference}
+\label{login_2utmp__file_8c}\index{login/utmp\_file.c@{login/utmp\_file.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$utmp.\+h$>$}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}utmp-\/private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utmp-\/equal.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{login_2utmp__file_8c_a45ba202b05caf39795aeca91b0ae547e}{T\+I\+M\+E\+O\+UT}}~10
+\item 
+\#define \mbox{\hyperlink{login_2utmp__file_8c_ac2242409ecb8283e781021e72bc56388}{L\+O\+C\+K\+\_\+\+F\+I\+LE}}(\mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}},  \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{login_2utmp__file_8c_a1365a34ad83da598cb57471d97ca03ce}{L\+O\+C\+K\+I\+N\+G\+\_\+\+F\+A\+I\+L\+ED}}()~goto unalarm\+\_\+return
+\item 
+\#define \mbox{\hyperlink{login_2utmp__file_8c_ae50987d32cb760ca4527f18f095da65d}{U\+N\+L\+O\+C\+K\+\_\+\+F\+I\+LE}}(\mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}})
+\item 
+\#define \mbox{\hyperlink{login_2utmp__file_8c_aecb21f3a5254886541d167638186f684}{T\+R\+A\+N\+S\+F\+O\+R\+M\+\_\+\+U\+T\+M\+P\+\_\+\+F\+I\+L\+E\+\_\+\+N\+A\+ME}}(file\+\_\+name)~(file\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{login_2utmp__file_8c_aa74bda61ec9d7eb832b482cdbdd4142d}{O\+\_\+flags}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2fcntl_8h_a1126309aa58e7c99553c7f6be1bc7348}{O\+\_\+\+L\+A\+R\+G\+E\+F\+I\+LE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structutfuncs}{utfuncs}} \mbox{\hyperlink{login_2utmp__file_8c_aab3b9c8f29785b98e28f2adf1da8d7af}{\+\_\+\+\_\+libc\+\_\+utmp\+\_\+file\+\_\+functions}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{login_2utmp__file_8c_ac2242409ecb8283e781021e72bc56388}\label{login_2utmp__file_8c_ac2242409ecb8283e781021e72bc56388}} 
+\index{utmp\_file.c@{utmp\_file.c}!LOCK\_FILE@{LOCK\_FILE}}
+\index{LOCK\_FILE@{LOCK\_FILE}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{LOCK\_FILE}{LOCK\_FILE}}
+{\footnotesize\ttfamily \#define L\+O\+C\+K\+\_\+\+F\+I\+LE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}},  }\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{  struct \mbox{\hyperlink{structflock}{flock}} fl;                               \(\backslash\)}
+\DoxyCodeLine{  struct \mbox{\hyperlink{structsigaction}{sigaction}} \mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}, old\_action;                         \(\backslash\)}
+\DoxyCodeLine{  unsigned \textcolor{keywordtype}{int} old\_timeout;                           \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Cancel any existing alarm.  */}                       \(\backslash\)}
+\DoxyCodeLine{  old\_timeout = \mbox{\hyperlink{posix_2alarm_8c_a8c476685d78ea93ee343f8a0580c79fe}{alarm}} (0);                           \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Establish signal handler.  */}                        \(\backslash\)}
+\DoxyCodeLine{  action.sa\_handler = timeout\_handler;                        \(\backslash\)}
+\DoxyCodeLine{  \_\_sigemptyset (\&\mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}.sa\_mask);                          \(\backslash\)}
+\DoxyCodeLine{  action.sa\_flags = 0;                                \(\backslash\)}
+\DoxyCodeLine{  \_\_sigaction (SIGALRM, \&\mbox{\hyperlink{tst-tsearch_8c_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}, \&old\_action);                      \mbox{\hyperlink{posix_2alarm_8c_a8c476685d78ea93ee343f8a0580c79fe}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{posix_2alarm_8c_a8c476685d78ea93ee343f8a0580c79fe}{                                          \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{posix_2alarm_8c_a8c476685d78ea93ee343f8a0580c79fe}{  alarm}} (\mbox{\hyperlink{login_2utmp__file_8c_a45ba202b05caf39795aeca91b0ae547e}{TIMEOUT}});                                  \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Try to get the lock.  */}                             \(\backslash\)}
+\DoxyCodeLine{  memset (\&fl, \textcolor{charliteral}{'\(\backslash\)0'}, \textcolor{keyword}{sizeof} (\textcolor{keyword}{struct} \mbox{\hyperlink{structflock}{flock}}));                     \(\backslash\)}
+\DoxyCodeLine{  fl.l\_type = (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}});                                 \(\backslash\)}
+\DoxyCodeLine{  fl.l\_whence = \mbox{\hyperlink{libio_2stdio_8h_a0d112bae8fd35be772185b6ec6bcbe64}{SEEK\_SET}};                             \(\backslash\)}
+\DoxyCodeLine{  if (\mbox{\hyperlink{generic_2not-cancel_8h_a8db5eb7999e4123831d7800e510bb1a0}{fcntl\_not\_cancel}} ((fd), \mbox{\hyperlink{bits_2fcntl_8h_aabb866cd0cf7ed3544dfc335e0e360fd}{F\_SETLKW}}, \&fl) < 0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{login_2utmp__file_8c_a1365a34ad83da598cb57471d97ca03ce}\label{login_2utmp__file_8c_a1365a34ad83da598cb57471d97ca03ce}} 
+\index{utmp\_file.c@{utmp\_file.c}!LOCKING\_FAILED@{LOCKING\_FAILED}}
+\index{LOCKING\_FAILED@{LOCKING\_FAILED}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{LOCKING\_FAILED}{LOCKING\_FAILED}}
+{\footnotesize\ttfamily \#define L\+O\+C\+K\+I\+N\+G\+\_\+\+F\+A\+I\+L\+ED(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~goto unalarm\+\_\+return}
+
+\mbox{\Hypertarget{login_2utmp__file_8c_aa74bda61ec9d7eb832b482cdbdd4142d}\label{login_2utmp__file_8c_aa74bda61ec9d7eb832b482cdbdd4142d}} 
+\index{utmp\_file.c@{utmp\_file.c}!O\_flags@{O\_flags}}
+\index{O\_flags@{O\_flags}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{O\_flags}{O\_flags}}
+{\footnotesize\ttfamily \#define O\+\_\+flags~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2fcntl_8h_a1126309aa58e7c99553c7f6be1bc7348}{O\+\_\+\+L\+A\+R\+G\+E\+F\+I\+LE}}}
+
+\mbox{\Hypertarget{login_2utmp__file_8c_a45ba202b05caf39795aeca91b0ae547e}\label{login_2utmp__file_8c_a45ba202b05caf39795aeca91b0ae547e}} 
+\index{utmp\_file.c@{utmp\_file.c}!TIMEOUT@{TIMEOUT}}
+\index{TIMEOUT@{TIMEOUT}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{TIMEOUT}{TIMEOUT}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+O\+UT~10}
+
+\mbox{\Hypertarget{login_2utmp__file_8c_aecb21f3a5254886541d167638186f684}\label{login_2utmp__file_8c_aecb21f3a5254886541d167638186f684}} 
+\index{utmp\_file.c@{utmp\_file.c}!TRANSFORM\_UTMP\_FILE\_NAME@{TRANSFORM\_UTMP\_FILE\_NAME}}
+\index{TRANSFORM\_UTMP\_FILE\_NAME@{TRANSFORM\_UTMP\_FILE\_NAME}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{TRANSFORM\_UTMP\_FILE\_NAME}{TRANSFORM\_UTMP\_FILE\_NAME}}
+{\footnotesize\ttfamily \#define T\+R\+A\+N\+S\+F\+O\+R\+M\+\_\+\+U\+T\+M\+P\+\_\+\+F\+I\+L\+E\+\_\+\+N\+A\+ME(\begin{DoxyParamCaption}\item[{}]{file\+\_\+name }\end{DoxyParamCaption})~(file\+\_\+name)}
+
+\mbox{\Hypertarget{login_2utmp__file_8c_ae50987d32cb760ca4527f18f095da65d}\label{login_2utmp__file_8c_ae50987d32cb760ca4527f18f095da65d}} 
+\index{utmp\_file.c@{utmp\_file.c}!UNLOCK\_FILE@{UNLOCK\_FILE}}
+\index{UNLOCK\_FILE@{UNLOCK\_FILE}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{UNLOCK\_FILE}{UNLOCK\_FILE}}
+{\footnotesize\ttfamily \#define U\+N\+L\+O\+C\+K\+\_\+\+F\+I\+LE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Unlock the file.  */}                           \(\backslash\)}
+\DoxyCodeLine{  fl.l\_type = \mbox{\hyperlink{bits_2fcntl_8h_a2ace36798dbaef59cf9c99a4bf14fb96}{F\_UNLCK}};                                 \(\backslash\)}
+\DoxyCodeLine{  fcntl\_not\_cancel ((fd), \mbox{\hyperlink{bits_2fcntl_8h_aabb866cd0cf7ed3544dfc335e0e360fd}{F\_SETLKW}}, \&fl);                     \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{ unalarm\_return:                                  \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Reset the signal handler and alarm.  We must reset the alarm         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     before resetting the handler so our alarm does not generate a        \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     spurious SIGALRM seen by the user.  However, we cannot just set          \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     the user's old alarm before restoring the handler, because then          \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     it's possible our handler could catch the user alarm's SIGARLM       \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     and then the user would never see the signal he expected.  */}        \(\backslash\)}
+\DoxyCodeLine{  alarm (0);                                      \(\backslash\)}
+\DoxyCodeLine{  \_\_sigaction (SIGALRM, \&old\_action, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}});                   \(\backslash\)}
+\DoxyCodeLine{  if (old\_timeout != 0)                               \(\backslash\)}
+\DoxyCodeLine{    alarm (old\_timeout);                              \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{login_2utmp__file_8c_aab3b9c8f29785b98e28f2adf1da8d7af}\label{login_2utmp__file_8c_aab3b9c8f29785b98e28f2adf1da8d7af}} 
+\index{utmp\_file.c@{utmp\_file.c}!\_\_libc\_utmp\_file\_functions@{\_\_libc\_utmp\_file\_functions}}
+\index{\_\_libc\_utmp\_file\_functions@{\_\_libc\_utmp\_file\_functions}!utmp\_file.c@{utmp\_file.c}}
+\doxysubsubsection{\texorpdfstring{\_\_libc\_utmp\_file\_functions}{\_\_libc\_utmp\_file\_functions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structutfuncs}{utfuncs}} \+\_\+\+\_\+libc\+\_\+utmp\+\_\+file\+\_\+functions}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  setutent\_file,}
+\DoxyCodeLine{  getutent\_r\_file,}
+\DoxyCodeLine{  getutid\_r\_file,}
+\DoxyCodeLine{  getutline\_r\_file,}
+\DoxyCodeLine{  pututline\_file,}
+\DoxyCodeLine{  endutent\_file,}
+\DoxyCodeLine{  updwtmp\_file}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

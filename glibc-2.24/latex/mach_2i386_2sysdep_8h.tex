@@ -1,0 +1,86 @@
+\hypertarget{mach_2i386_2sysdep_8h}{}\doxysection{sysdeps/mach/i386/sysdep.h File Reference}
+\label{mach_2i386_2sysdep_8h}\index{sysdeps/mach/i386/sysdep.h@{sysdeps/mach/i386/sysdep.h}}
+{\ttfamily \#include $<$dl-\/sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$tls.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/mach/sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/unix/i386/sysdep.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mach_2i386_2sysdep_8h_af682387a649b2653ad1a41ca5ccad944}{L\+O\+SE}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}hlt\char`\"{})
+\item 
+\#define \mbox{\hyperlink{mach_2i386_2sysdep_8h_a22e564efe209fcb899b13a1f72a5871d}{S\+N\+A\+R\+F\+\_\+\+A\+R\+GS}}(entry\+\_\+sp,  argc,  argv,  envp)
+\item 
+\#define \mbox{\hyperlink{mach_2i386_2sysdep_8h_a0f0bf862c1b58d174ec813c60c243080}{C\+A\+L\+L\+\_\+\+W\+I\+T\+H\+\_\+\+SP}}(\mbox{\hyperlink{tst-dlopen-aout_8c_a34b33e64648c7cb3c083248206a53bd4}{fn}},  \mbox{\hyperlink{generic_2dl-machine_8h_a39655a12515070536468c4e4b4e6e15e}{info}},  \mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}})
+\item 
+\#define \mbox{\hyperlink{mach_2i386_2sysdep_8h_ae823e9670c1e3cffec612f823fc27187}{R\+E\+T\+U\+R\+N\+\_\+\+TO}}(\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}},  pc,  \mbox{\hyperlink{login_2getutline__r_8c_a09c17276b90fb1fcf8997e6d1f2d1ac9}{retval}})
+\item 
+\#define \mbox{\hyperlink{mach_2i386_2sysdep_8h_ac813edd541302f032ac45164d7e573c4}{S\+T\+A\+C\+K\+\_\+\+G\+R\+O\+W\+T\+H\+\_\+\+D\+O\+WN}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mach_2i386_2sysdep_8h_a0f0bf862c1b58d174ec813c60c243080}\label{mach_2i386_2sysdep_8h_a0f0bf862c1b58d174ec813c60c243080}} 
+\index{sysdep.h@{sysdep.h}!CALL\_WITH\_SP@{CALL\_WITH\_SP}}
+\index{CALL\_WITH\_SP@{CALL\_WITH\_SP}!sysdep.h@{sysdep.h}}
+\doxysubsubsection{\texorpdfstring{CALL\_WITH\_SP}{CALL\_WITH\_SP}}
+{\footnotesize\ttfamily \#define C\+A\+L\+L\+\_\+\+W\+I\+T\+H\+\_\+\+SP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-dlopen-aout_8c_a34b33e64648c7cb3c083248206a53bd4}{fn}},  }\item[{}]{\mbox{\hyperlink{generic_2dl-machine_8h_a39655a12515070536468c4e4b4e6e15e}{info}},  }\item[{}]{\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    void **\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}} = (\textcolor{keywordtype}{void} **) \mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}};                       \(\backslash\)}
+\DoxyCodeLine{    *-\/-\/(\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}}) *) \mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}} = \mbox{\hyperlink{csu_2libc-tls_8c_a27d5c538c8cf29adf7d7db49c9224e60}{info}};                     \(\backslash\)}
+\DoxyCodeLine{    ptr[-\/1] = \mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}};                                 \(\backslash\)}
+\DoxyCodeLine{    -\/-\/\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}};                                     \(\backslash\)}
+\DoxyCodeLine{    asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%0, \%\%esp; call \%1"} : :                   \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"g"} (\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}}), \textcolor{stringliteral}{"m"} (*(\textcolor{keywordtype}{long} \textcolor{keywordtype}{int} *) (\mbox{\hyperlink{reldep6_8c_a0d393582901ec906b96c66076e6fc3ea}{fn}})) : \textcolor{stringliteral}{"\%esp"});         \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mach_2i386_2sysdep_8h_af682387a649b2653ad1a41ca5ccad944}\label{mach_2i386_2sysdep_8h_af682387a649b2653ad1a41ca5ccad944}} 
+\index{sysdep.h@{sysdep.h}!LOSE@{LOSE}}
+\index{LOSE@{LOSE}!sysdep.h@{sysdep.h}}
+\doxysubsubsection{\texorpdfstring{LOSE}{LOSE}}
+{\footnotesize\ttfamily \#define L\+O\+SE~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} volatile (\char`\"{}hlt\char`\"{})}
+
+\mbox{\Hypertarget{mach_2i386_2sysdep_8h_ae823e9670c1e3cffec612f823fc27187}\label{mach_2i386_2sysdep_8h_ae823e9670c1e3cffec612f823fc27187}} 
+\index{sysdep.h@{sysdep.h}!RETURN\_TO@{RETURN\_TO}}
+\index{RETURN\_TO@{RETURN\_TO}!sysdep.h@{sysdep.h}}
+\doxysubsubsection{\texorpdfstring{RETURN\_TO}{RETURN\_TO}}
+{\footnotesize\ttfamily \#define R\+E\+T\+U\+R\+N\+\_\+\+TO(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}},  }\item[{}]{pc,  }\item[{}]{\mbox{\hyperlink{login_2getutline__r_8c_a09c17276b90fb1fcf8997e6d1f2d1ac9}{retval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{asm} \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"movl \%0, \%\%esp; jmp \%*\%1 \# \%2"} \(\backslash\)}
+\DoxyCodeLine{        : : \textcolor{stringliteral}{"g"} (\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}), \textcolor{stringliteral}{"r"} (pc), \textcolor{stringliteral}{"a"} (\mbox{\hyperlink{libio_2tst-swscanf_8c_a09c17276b90fb1fcf8997e6d1f2d1ac9}{retval}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mach_2i386_2sysdep_8h_a22e564efe209fcb899b13a1f72a5871d}\label{mach_2i386_2sysdep_8h_a22e564efe209fcb899b13a1f72a5871d}} 
+\index{sysdep.h@{sysdep.h}!SNARF\_ARGS@{SNARF\_ARGS}}
+\index{SNARF\_ARGS@{SNARF\_ARGS}!sysdep.h@{sysdep.h}}
+\doxysubsubsection{\texorpdfstring{SNARF\_ARGS}{SNARF\_ARGS}}
+{\footnotesize\ttfamily \#define S\+N\+A\+R\+F\+\_\+\+A\+R\+GS(\begin{DoxyParamCaption}\item[{}]{entry\+\_\+sp,  }\item[{}]{argc,  }\item[{}]{argv,  }\item[{}]{envp }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      char **\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}};                                      \(\backslash\)}
+\DoxyCodeLine{      argc = (\mbox{\hyperlink{include_2resolv_8h_a58d4a4300447d88d10ea95d5c9efb66b}{int}}) *entry\_sp;                              \(\backslash\)}
+\DoxyCodeLine{      argv = (\textcolor{keywordtype}{char} **) (entry\_sp + 1);                        \(\backslash\)}
+\DoxyCodeLine{      p = argv;                                   \(\backslash\)}
+\DoxyCodeLine{      while (*\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}}++ != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                           \(\backslash\)}
+\DoxyCodeLine{    ;                                     \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} >= (\textcolor{keywordtype}{char} **) argv[0])                        \(\backslash\)}
+\DoxyCodeLine{    -\/-\/\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}};                                     \(\backslash\)}
+\DoxyCodeLine{      envp = \mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}};                                  \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mach_2i386_2sysdep_8h_ac813edd541302f032ac45164d7e573c4}\label{mach_2i386_2sysdep_8h_ac813edd541302f032ac45164d7e573c4}} 
+\index{sysdep.h@{sysdep.h}!STACK\_GROWTH\_DOWN@{STACK\_GROWTH\_DOWN}}
+\index{STACK\_GROWTH\_DOWN@{STACK\_GROWTH\_DOWN}!sysdep.h@{sysdep.h}}
+\doxysubsubsection{\texorpdfstring{STACK\_GROWTH\_DOWN}{STACK\_GROWTH\_DOWN}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+G\+R\+O\+W\+T\+H\+\_\+\+D\+O\+WN}
+

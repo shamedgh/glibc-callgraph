@@ -1,0 +1,155 @@
+
+;; Function __fxstat (*__GI___fxstat, funcdef_no=32, decl_uid=2029, cgraph_uid=32, symbol_order=32)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 22 from 7 to 9.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 38.
+Merging block 10 into block 9...
+Merged blocks 9 and 10.
+Merged 9 and 10 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 96 [ vers ])
+        (reg:SI 5 di [ vers ])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:33 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 97 [ fd ])
+        (reg:SI 4 si [ fd ])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:33 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 98 [ buf ])
+        (reg:DI 1 dx [ buf ])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:33 -1
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 96 [ vers ])
+            (const_int 1 [0x1]))) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:34 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 32)
+            (pc))) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:34 -1
+     (int_list:REG_BR_PROB 1012 (nil))
+ -> 32)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg/v:DI 4 si [ _a2 ])
+        (reg/v/f:DI 98 [ buf ])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 97 [ fd ]))) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:SI 100)
+        (const_int 5 [0x5])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 16 15 17 4 (parallel [
+            (set (reg:DI 99 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 100)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 17 16 18 4 (set (reg/v:DI 91 [ resultvar ])
+        (reg:DI 99 [ resultvar ])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 91 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(jump_insn 19 18 20 4 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 24)
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 5 (set (reg:SI 87 [ D.6992 ])
+        (subreg:SI (reg/v:DI 91 [ resultvar ]) 0)) -1
+     (nil))
+(jump_insn 22 21 23 5 (set (pc)
+        (label_ref:DI 35)) 654 {jump}
+     (nil)
+ -> 35)
+(barrier 23 22 24)
+(code_label 24 23 25 6 3 "" [1 uses])
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 6 (parallel [
+            (set (reg:SI 101)
+                (neg:SI (subreg:SI (reg/v:DI 91 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 27 26 6 6 (set (mem/c:SI (symbol_ref:DI ("rtld_errno") [flags 0x42]  <var_decl 0x2ba3efc6a000 rtld_errno>) [2 rtld_errno+0 S4 A32])
+        (reg:SI 101)) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(insn 6 27 30 6 (set (reg:SI 87 [ D.6992 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil))
+(jump_insn 30 6 31 6 (set (pc)
+        (label_ref 35)) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:35 -1
+     (nil)
+ -> 35)
+(barrier 31 30 32)
+(code_label 32 31 33 8 2 "" [1 uses])
+(note 33 32 34 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 7 8 (set (mem/c:SI (symbol_ref:DI ("rtld_errno") [flags 0x42]  <var_decl 0x2ba3efc6a000 rtld_errno>) [2 rtld_errno+0 S4 A32])
+        (const_int 22 [0x16])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:37 -1
+     (nil))
+(insn 7 34 35 8 (set (reg:SI 87 [ D.6992 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:38 -1
+     (nil))
+(code_label 35 7 36 9 5 "" [2 uses])
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 41 9 (set (reg:SI 95 [ <retval> ])
+        (reg:SI 87 [ D.6992 ])) -1
+     (nil))
+(insn 41 37 42 9 (set (reg/i:SI 0 ax)
+        (reg:SI 95 [ <retval> ])) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:39 -1
+     (nil))
+(insn 42 41 0 9 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/wordsize-64/fxstat.c:39 -1
+     (nil))

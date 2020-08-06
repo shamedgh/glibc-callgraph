@@ -1,0 +1,284 @@
+
+;; Function allocate (allocate, funcdef_no=48, decl_uid=11110, cgraph_uid=48, symbol_order=56)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 5 di)
+        (const_int 1024 [0x400])) getnetgrent.c:33 -1
+     (nil))
+(call_insn 6 5 7 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2ac3b4554360 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) getnetgrent.c:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2ac3b4554360 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 7 6 8 2 (set (reg/f:DI 88)
+        (reg:DI 0 ax)) getnetgrent.c:33 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 88)
+        (nil)))
+(insn 8 7 9 2 (set (reg/f:DI 87 [ D.11147 ])
+        (reg/f:DI 88)) getnetgrent.c:33 -1
+     (nil))
+(insn 9 8 0 2 (set (mem/f/c:DI (symbol_ref:DI ("buffer") [flags 0x2]  <var_decl 0x2ac3b4adac60 buffer>) [1 buffer+0 S8 A64])
+        (reg/f:DI 87 [ D.11147 ])) getnetgrent.c:33 -1
+     (nil))
+
+;; Function getnetgrent (getnetgrent, funcdef_no=49, decl_uid=7365, cgraph_uid=49, symbol_order=57)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 61.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 94 [ hostp ])
+        (reg:DI 5 di [ hostp ])) getnetgrent.c:38 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 95 [ userp ])
+        (reg:DI 4 si [ userp ])) getnetgrent.c:38 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 96 [ domainp ])
+        (reg:DI 1 dx [ domainp ])) getnetgrent.c:38 -1
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("__libc_pthread_functions_init") [flags 0x42]  <var_decl 0x2ac3b4ada6c0 __libc_pthread_functions_init>) [2 __libc_pthread_functions_init+0 S4 A32])
+            (const_int 0 [0]))) getnetgrent.c:40 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) getnetgrent.c:40 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 23)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg/f:DI 97)
+        (symbol_ref:DI ("__libc_pthread_functions") [flags 0x42]  <var_decl 0x2ac3b4ada630 __libc_pthread_functions>)) getnetgrent.c:40 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/v/f:DI 89 [ __p ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 97)
+                (const_int 312 [0x138])) [1 __libc_pthread_functions.ptr___pthread_once+0 S8 A64])) getnetgrent.c:40 -1
+     (nil))
+(insn 15 14 16 4 (parallel [
+            (set (reg:DI 98 [ __p ])
+                (asm_operands:DI ("ror $2*8+1, %0
+xor %%fs:%c2, %0") ("=r") 0 [
+                        (reg/v/f:DI 89 [ __p ])
+                        (const_int 48 [0x30])
+                    ]
+                     [
+                        (asm_input:DI ("0") getnetgrent.c:40)
+                        (asm_input:DI ("i") getnetgrent.c:40)
+                    ]
+                     [] getnetgrent.c:40))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) getnetgrent.c:40 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v/f:DI 89 [ __p ])
+        (reg:DI 98 [ __p ])) getnetgrent.c:40 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 4 si)
+        (symbol_ref:DI ("allocate") [flags 0x3]  <function_decl 0x2ac3b4b7cbd0 allocate>)) getnetgrent.c:40 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:DI 5 di)
+        (symbol_ref:DI ("once.11117") [flags 0x2]  <var_decl 0x2ac3b4adacf0 once>)) getnetgrent.c:40 -1
+     (nil))
+(call_insn 19 18 20 4 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/v/f:DI 89 [ __p ]) [0 *__p_7 S1 A8])
+            (const_int 0 [0]))) getnetgrent.c:40 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 20 19 21 4 (set (reg/f:DI 92 [ D.11154 ])
+        (mem/f/c:DI (symbol_ref:DI ("buffer") [flags 0x2]  <var_decl 0x2ac3b4adac60 buffer>) [1 buffer+0 S8 A64])) -1
+     (nil))
+(jump_insn 21 20 22 4 (set (pc)
+        (label_ref 39)) -1
+     (nil)
+ -> 39)
+(barrier 22 21 23)
+(code_label 23 22 24 5 4 "" [1 uses])
+(note 24 23 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("once.11117") [flags 0x2]  <var_decl 0x2ac3b4adacf0 once>) [2 once+0 S4 A32])
+            (const_int 0 [0]))) getnetgrent.c:40 -1
+     (nil))
+(jump_insn 26 25 27 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) getnetgrent.c:40 -1
+     (int_list:REG_BR_PROB 2900 (nil))
+ -> 31)
+(note 27 26 28 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 6 (set (reg/f:DI 92 [ D.11154 ])
+        (mem/f/c:DI (symbol_ref:DI ("buffer") [flags 0x2]  <var_decl 0x2ac3b4adac60 buffer>) [1 buffer+0 S8 A64])) -1
+     (nil))
+(jump_insn 29 28 30 6 (set (pc)
+        (label_ref 39)) -1
+     (nil)
+ -> 39)
+(barrier 30 29 31)
+(code_label 31 30 32 7 6 "" [1 uses])
+(note 32 31 33 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 7 (set (reg:DI 5 di)
+        (const_int 1024 [0x400])) getnetgrent.c:33 -1
+     (nil))
+(call_insn 34 33 35 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2ac3b4554360 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) getnetgrent.c:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2ac3b4554360 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 35 34 36 7 (set (reg/f:DI 99)
+        (reg:DI 0 ax)) getnetgrent.c:33 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 99)
+        (nil)))
+(insn 36 35 37 7 (set (reg/f:DI 91 [ D.11153 ])
+        (reg/f:DI 99)) getnetgrent.c:33 -1
+     (nil))
+(insn 37 36 38 7 (set (mem/f/c:DI (symbol_ref:DI ("buffer") [flags 0x2]  <var_decl 0x2ac3b4adac60 buffer>) [1 buffer+0 S8 A64])
+        (reg/f:DI 91 [ D.11153 ])) getnetgrent.c:33 -1
+     (nil))
+(insn 38 37 6 7 (set (mem/c:SI (symbol_ref:DI ("once.11117") [flags 0x2]  <var_decl 0x2ac3b4adacf0 once>) [2 once+0 S4 A32])
+        (const_int 2 [0x2])) getnetgrent.c:40 -1
+     (nil))
+(insn 6 38 39 7 (set (reg/f:DI 92 [ D.11154 ])
+        (reg/f:DI 91 [ D.11153 ])) getnetgrent.c:40 -1
+     (nil))
+(code_label 39 6 40 8 5 "" [2 uses])
+(note 40 39 41 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 92 [ D.11154 ])
+            (const_int 0 [0]))) getnetgrent.c:42 -1
+     (nil))
+(jump_insn 42 41 43 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) getnetgrent.c:42 -1
+     (int_list:REG_BR_PROB 9823 (nil))
+ -> 48)
+(note 43 42 44 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 9 (set (reg:DI 100)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2ac3b491b900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [4  S8 A8])) getnetgrent.c:44 -1
+     (nil))
+(insn 45 44 46 9 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 100)) [2 __libc_errno+0 S4 A32])
+        (const_int 12 [0xc])) getnetgrent.c:44 -1
+     (nil))
+(jump_insn 46 45 47 9 (set (pc)
+        (label_ref 58)) getnetgrent.c:45 -1
+     (nil)
+ -> 58)
+(barrier 47 46 48)
+(code_label 48 47 49 10 7 "" [1 uses])
+(note 49 48 50 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 10 (set (reg:DI 37 r8)
+        (const_int 1024 [0x400])) getnetgrent.c:48 -1
+     (nil))
+(insn 51 50 52 10 (set (reg:DI 2 cx)
+        (reg/f:DI 92 [ D.11154 ])) getnetgrent.c:48 -1
+     (nil))
+(insn 52 51 53 10 (set (reg:DI 1 dx)
+        (reg/v/f:DI 96 [ domainp ])) getnetgrent.c:48 -1
+     (nil))
+(insn 53 52 54 10 (set (reg:DI 4 si)
+        (reg/v/f:DI 95 [ userp ])) getnetgrent.c:48 -1
+     (nil))
+(insn 54 53 55 10 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ hostp ])) getnetgrent.c:48 -1
+     (nil))
+(call_insn/j 55 54 56 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__getnetgrent_r") [flags 0x41]  <function_decl 0x2ac3b498bca8 __getnetgrent_r>) [0 __getnetgrent_r S1 A8])
+            (const_int 0 [0]))) getnetgrent.c:48 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__getnetgrent_r") [flags 0x41]  <function_decl 0x2ac3b498bca8 __getnetgrent_r>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(barrier 56 55 58)
+(code_label 58 56 59 11 8 "" [1 uses])
+(note 59 58 7 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 7 59 60 11 (set (reg:SI 87 [ D.11152 ])
+        (const_int -1 [0xffffffffffffffff])) getnetgrent.c:45 -1
+     (nil))
+(insn 60 7 64 11 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 87 [ D.11152 ])) -1
+     (nil))
+(insn 64 60 65 11 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) getnetgrent.c:49 -1
+     (nil))
+(insn 65 64 0 11 (use (reg/i:SI 0 ax)) getnetgrent.c:49 -1
+     (nil))

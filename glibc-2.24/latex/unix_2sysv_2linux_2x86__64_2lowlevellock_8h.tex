@@ -1,0 +1,505 @@
+\hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h}{}\doxysection{sysdeps/unix/sysv/linux/x86\+\_\+64/lowlevellock.h File Reference}
+\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h}\index{sysdeps/unix/sysv/linux/x86\_64/lowlevellock.h@{sysdeps/unix/sysv/linux/x86\_64/lowlevellock.h}}
+{\ttfamily \#include $<$stap-\/probe.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$bits/pthreadtypes.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include $<$tcb-\/offsets.\+h$>$}\newline
+{\ttfamily \#include $<$lowlevellock-\/futex.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{L\+O\+C\+K\+\_\+\+I\+N\+S\+TR}}~\char`\"{}lock;\char`\"{}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a927cfa958d7f7b84a81e690f53f56143}{S\+Y\+S\+\_\+futex}}~\+\_\+\+\_\+\+N\+R\+\_\+futex
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}{L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}~(0)
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a145ab6d8afd25be59d7384d0288afca0}{L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+L\+O\+C\+K\+ED}}~(1)
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8105b289c64a79829c43f72c3d9f6730}{L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+W\+A\+I\+T\+E\+RS}}~(2)
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab2a4c4da92083d87c59afa3af8011f0a}{\+\_\+\+\_\+lll\+\_\+trylock\+\_\+asm}}~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{L\+O\+C\+K\+\_\+\+I\+N\+S\+TR}} \char`\"{}cmpxchgl \%2, \%1\char`\"{}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}{lll\+\_\+trylock}}(futex)
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afb65dbc6f81d16c124fab8da53c7ea72}{lll\+\_\+cond\+\_\+trylock}}(futex)
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad1d76e7643c9af80ca17742aa8fae029}{\+\_\+\+\_\+lll\+\_\+lock\+\_\+asm\+\_\+start}}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afef967015ea632e69db1cad31d8045b4}{lll\+\_\+lock}}(futex,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae79b92eb12efb22a2452ef272c2751dd}{lll\+\_\+robust\+\_\+lock}}(futex,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a4bc2d0a7209a05e72b505c20e96a3579}{lll\+\_\+cond\+\_\+lock}}(futex,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8333f4f143987135dfa4f09a088c5435}{lll\+\_\+robust\+\_\+cond\+\_\+lock}}(futex,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a05932777218bb92461eae254b0fb7e3f}{lll\+\_\+timedlock}}(futex,  timeout,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae3372bc266c265bc64dda457716fe70a}{lll\+\_\+timedlock\+\_\+elision}}(futex,  adapt\+\_\+count,  timeout,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab676feb2b681632b7f4ea059fd9f42ab}{\+\_\+\+\_\+lll\+\_\+timedlock\+\_\+elision}}(\&(futex), \&(adapt\+\_\+count), timeout, \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a7a6a86058231d41ed390e657aadb1242}{lll\+\_\+robust\+\_\+timedlock}}(futex,  timeout,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad2decd55d121e081bdfdd850cde67bb5}{\+\_\+\+\_\+lll\+\_\+unlock\+\_\+asm\+\_\+start}}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a41558f487b6678dd9079659b34d87b4a}{lll\+\_\+unlock}}(futex,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ac34132d6aa30e572a5e6857493a6249f}{lll\+\_\+robust\+\_\+unlock}}(futex,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a1a18496a2f27d8c16d3dd976b66fcb7d}{lll\+\_\+islocked}}(futex)~(futex != \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}{L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae8d3409b1476c95938cc7edf02dbd8ec}{lll\+\_\+wait\+\_\+tid}}(\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae2a27f95b88fa86ceacf0f06a856d2a5}{lll\+\_\+timedwait\+\_\+tid}}(\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}},  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ad46ea068e4781a9741f8485232c877a2}{abstime}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aef0c7ad58f071783942694248599f6b1}{lll\+\_\+lock\+\_\+elision}}(futex,  adapt\+\_\+count,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a33e683a5c847b9479beafd6067bc6de4}{\+\_\+\+\_\+lll\+\_\+lock\+\_\+elision}} (\&(futex), \&(adapt\+\_\+count), \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad6d2f00ebfb07c2334424f9e05ba42ef}{lll\+\_\+unlock\+\_\+elision}}(futex,  adapt\+\_\+count,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a5b6a290d865dceb780081c36b51e24ae}{\+\_\+\+\_\+lll\+\_\+unlock\+\_\+elision}} (\&(futex), \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ac9fb2489eebc677c79b4caeb22b33e6d}{lll\+\_\+trylock\+\_\+elision}}(futex,  adapt\+\_\+count)~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aeb3d07b4848c2033a87052a93df58184}{\+\_\+\+\_\+lll\+\_\+trylock\+\_\+elision}} (\&(futex), \&(adapt\+\_\+count))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab676feb2b681632b7f4ea059fd9f42ab}{\+\_\+\+\_\+lll\+\_\+timedlock\+\_\+elision}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$futex, short $\ast$adapt\+\_\+count, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct timespec $\ast$timeout, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}}) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a209d8e0b767c35809168fad3e0b6e8de}{\+\_\+\+\_\+lll\+\_\+timedwait\+\_\+tid}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct timespec $\ast$) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a33e683a5c847b9479beafd6067bc6de4}{\+\_\+\+\_\+lll\+\_\+lock\+\_\+elision}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$futex, short $\ast$adapt\+\_\+count, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}}) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a5b6a290d865dceb780081c36b51e24ae}{\+\_\+\+\_\+lll\+\_\+unlock\+\_\+elision}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}}) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aeb3d07b4848c2033a87052a93df58184}{\+\_\+\+\_\+lll\+\_\+trylock\+\_\+elision}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}}, short $\ast$adapt\+\_\+count) \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad1d76e7643c9af80ca17742aa8fae029}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad1d76e7643c9af80ca17742aa8fae029}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_lock\_asm\_start@{\_\_lll\_lock\_asm\_start}}
+\index{\_\_lll\_lock\_asm\_start@{\_\_lll\_lock\_asm\_start}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_lock\_asm\_start}{\_\_lll\_lock\_asm\_start}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+lll\+\_\+lock\+\_\+asm\+\_\+start}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%4, \%2\(\backslash\)n\(\backslash\)t"}            \(\backslash\)}
+\DoxyCodeLine{                  \textcolor{stringliteral}{"jz 24f\(\backslash\)n\(\backslash\)t"}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab2a4c4da92083d87c59afa3af8011f0a}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab2a4c4da92083d87c59afa3af8011f0a}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_trylock\_asm@{\_\_lll\_trylock\_asm}}
+\index{\_\_lll\_trylock\_asm@{\_\_lll\_trylock\_asm}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_trylock\_asm}{\_\_lll\_trylock\_asm}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+lll\+\_\+trylock\+\_\+asm~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{L\+O\+C\+K\+\_\+\+I\+N\+S\+TR}} \char`\"{}cmpxchgl \%2, \%1\char`\"{}}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad2decd55d121e081bdfdd850cde67bb5}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad2decd55d121e081bdfdd850cde67bb5}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_unlock\_asm\_start@{\_\_lll\_unlock\_asm\_start}}
+\index{\_\_lll\_unlock\_asm\_start@{\_\_lll\_unlock\_asm\_start}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_unlock\_asm\_start}{\_\_lll\_unlock\_asm\_start}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+lll\+\_\+unlock\+\_\+asm\+\_\+start}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"decl \%0\(\backslash\)n\(\backslash\)t"}            \(\backslash\)}
+\DoxyCodeLine{                \textcolor{stringliteral}{"je 24f\(\backslash\)n\(\backslash\)t"}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a4bc2d0a7209a05e72b505c20e96a3579}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a4bc2d0a7209a05e72b505c20e96a3579}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_cond\_lock@{lll\_cond\_lock}}
+\index{lll\_cond\_lock@{lll\_cond\_lock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_cond\_lock}{lll\_cond\_lock}}
+{\footnotesize\ttfamily \#define lll\+\_\+cond\+\_\+lock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})                                    \(\backslash\)}
+\DoxyCodeLine{    (\{ \textcolor{keywordtype}{int} ignore1, ignore2, ignore3;                         \(\backslash\)}
+\DoxyCodeLine{       \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%4, \%2\(\backslash\)n\(\backslash\)t"}             \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"jz 24f\(\backslash\)n"}                       \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"1:\(\backslash\)tlea \%2, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_lock\_wait\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}              \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"24:"}                            \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"=S"} (ignore1), \textcolor{stringliteral}{"=D"} (ignore2), \textcolor{stringliteral}{"=m"} (futex),      \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"=a"} (ignore3)                     \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"1"} (2), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"3"} (0), \textcolor{stringliteral}{"0"} (\textcolor{keyword}{private})       \(\backslash\)}
+\DoxyCodeLine{             : \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});              \(\backslash\)}
+\DoxyCodeLine{    \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afb65dbc6f81d16c124fab8da53c7ea72}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afb65dbc6f81d16c124fab8da53c7ea72}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_cond\_trylock@{lll\_cond\_trylock}}
+\index{lll\_cond\_trylock@{lll\_cond\_trylock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_cond\_trylock}{lll\_cond\_trylock}}
+{\footnotesize\ttfamily \#define lll\+\_\+cond\+\_\+trylock(\begin{DoxyParamCaption}\item[{}]{futex }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{int} \mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}};                                    \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%2, \%1"}               \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}}), \textcolor{stringliteral}{"=m"} (futex)                  \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"r"} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8105b289c64a79829c43f72c3d9f6730}{LLL\_LOCK\_INITIALIZER\_WAITERS}}),              \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"0"} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}{LLL\_LOCK\_INITIALIZER}})          \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"memory"});                       \(\backslash\)}
+\DoxyCodeLine{     ret; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a1a18496a2f27d8c16d3dd976b66fcb7d}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a1a18496a2f27d8c16d3dd976b66fcb7d}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_islocked@{lll\_islocked}}
+\index{lll\_islocked@{lll\_islocked}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_islocked}{lll\_islocked}}
+{\footnotesize\ttfamily \#define lll\+\_\+islocked(\begin{DoxyParamCaption}\item[{}]{futex }\end{DoxyParamCaption})~(futex != \mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}{L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afef967015ea632e69db1cad31d8045b4}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afef967015ea632e69db1cad31d8045b4}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_lock@{lll\_lock}}
+\index{lll\_lock@{lll\_lock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_lock}{lll\_lock}}
+{\footnotesize\ttfamily \#define lll\+\_\+lock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})                                    \(\backslash\)}
+\DoxyCodeLine{    (\{ \textcolor{keywordtype}{int} ignore1, ignore2, ignore3;                         \(\backslash\)}
+\DoxyCodeLine{       if (\_\_builtin\_constant\_p (\textcolor{keyword}{private}) \&\& (\textcolor{keyword}{private}) == \mbox{\hyperlink{nacl_2lowlevellock-futex_8h_afab249e7f9dd828dc45d13b232097941}{LLL\_PRIVATE}})         \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad1d76e7643c9af80ca17742aa8fae029}{\_\_lll\_lock\_asm\_start}}                     \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"1:\(\backslash\)tlea \%2, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}             \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_lock\_wait\_private\(\backslash\)n"}          \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"24:"}                          \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=S"} (ignore1), \textcolor{stringliteral}{"=\&D"} (ignore2), \textcolor{stringliteral}{"=m"} (futex),   \(\backslash\)}
+\DoxyCodeLine{                 \textcolor{stringliteral}{"=a"} (ignore3)                   \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"0"} (1), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"3"} (0)            \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});            \(\backslash\)}
+\DoxyCodeLine{       else                                   \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad1d76e7643c9af80ca17742aa8fae029}{\_\_lll\_lock\_asm\_start}}                     \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"1:\(\backslash\)tlea \%2, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}             \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_lock\_wait\(\backslash\)n"}              \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"24:"}                          \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=S"} (ignore1), \textcolor{stringliteral}{"=D"} (ignore2), \textcolor{stringliteral}{"=m"} (futex),    \(\backslash\)}
+\DoxyCodeLine{                 \textcolor{stringliteral}{"=a"} (ignore3)                   \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"1"} (1), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"3"} (0), \textcolor{stringliteral}{"0"} (\textcolor{keyword}{private})     \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});            \(\backslash\)}
+\DoxyCodeLine{    \})                                        \(\backslash\)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aef0c7ad58f071783942694248599f6b1}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aef0c7ad58f071783942694248599f6b1}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_lock\_elision@{lll\_lock\_elision}}
+\index{lll\_lock\_elision@{lll\_lock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_lock\_elision}{lll\_lock\_elision}}
+{\footnotesize\ttfamily \#define lll\+\_\+lock\+\_\+elision(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{adapt\+\_\+count,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a33e683a5c847b9479beafd6067bc6de4}{\+\_\+\+\_\+lll\+\_\+lock\+\_\+elision}} (\&(futex), \&(adapt\+\_\+count), \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}} 
+\index{lowlevellock.h@{lowlevellock.h}!LLL\_LOCK\_INITIALIZER@{LLL\_LOCK\_INITIALIZER}}
+\index{LLL\_LOCK\_INITIALIZER@{LLL\_LOCK\_INITIALIZER}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{LLL\_LOCK\_INITIALIZER}{LLL\_LOCK\_INITIALIZER}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER~(0)}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a145ab6d8afd25be59d7384d0288afca0}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a145ab6d8afd25be59d7384d0288afca0}} 
+\index{lowlevellock.h@{lowlevellock.h}!LLL\_LOCK\_INITIALIZER\_LOCKED@{LLL\_LOCK\_INITIALIZER\_LOCKED}}
+\index{LLL\_LOCK\_INITIALIZER\_LOCKED@{LLL\_LOCK\_INITIALIZER\_LOCKED}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{LLL\_LOCK\_INITIALIZER\_LOCKED}{LLL\_LOCK\_INITIALIZER\_LOCKED}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+L\+O\+C\+K\+ED~(1)}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8105b289c64a79829c43f72c3d9f6730}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8105b289c64a79829c43f72c3d9f6730}} 
+\index{lowlevellock.h@{lowlevellock.h}!LLL\_LOCK\_INITIALIZER\_WAITERS@{LLL\_LOCK\_INITIALIZER\_WAITERS}}
+\index{LLL\_LOCK\_INITIALIZER\_WAITERS@{LLL\_LOCK\_INITIALIZER\_WAITERS}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{LLL\_LOCK\_INITIALIZER\_WAITERS}{LLL\_LOCK\_INITIALIZER\_WAITERS}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+W\+A\+I\+T\+E\+RS~(2)}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8333f4f143987135dfa4f09a088c5435}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a8333f4f143987135dfa4f09a088c5435}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_robust\_cond\_lock@{lll\_robust\_cond\_lock}}
+\index{lll\_robust\_cond\_lock@{lll\_robust\_cond\_lock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_robust\_cond\_lock}{lll\_robust\_cond\_lock}}
+{\footnotesize\ttfamily \#define lll\+\_\+robust\+\_\+cond\+\_\+lock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{int} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}}, ignore1, ignore2;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%4, \%2\(\backslash\)n\(\backslash\)t"}                \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"jz 24f\(\backslash\)n"}                          \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"1:\(\backslash\)tlea \%2, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_robust\_lock\_wait\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"24:"}                           \(\backslash\)}
+\DoxyCodeLine{              : \textcolor{stringliteral}{"=S"} (ignore1), \textcolor{stringliteral}{"=D"} (ignore2), \textcolor{stringliteral}{"=m"} (futex),         \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}})                       \(\backslash\)}
+\DoxyCodeLine{              : \textcolor{stringliteral}{"1"} (\textcolor{keywordtype}{id} | \mbox{\hyperlink{nptl_2pthreadP_8h_a9349b683d05adcf8089514b9aabf420b}{FUTEX\_WAITERS}}), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"3"} (0),          \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"0"} (\textcolor{keyword}{private})                         \(\backslash\)}
+\DoxyCodeLine{              : \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});                 \(\backslash\)}
+\DoxyCodeLine{    result; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae79b92eb12efb22a2452ef272c2751dd}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae79b92eb12efb22a2452ef272c2751dd}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_robust\_lock@{lll\_robust\_lock}}
+\index{lll\_robust\_lock@{lll\_robust\_lock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_robust\_lock}{lll\_robust\_lock}}
+{\footnotesize\ttfamily \#define lll\+\_\+robust\+\_\+lock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{int} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}}, ignore1, ignore2;                        \(\backslash\)}
+\DoxyCodeLine{    \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%4, \%2\(\backslash\)n\(\backslash\)t"}                \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"jz 24f\(\backslash\)n"}                          \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"1:\(\backslash\)tlea \%2, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_robust\_lock\_wait\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"24:"}                           \(\backslash\)}
+\DoxyCodeLine{              : \textcolor{stringliteral}{"=S"} (ignore1), \textcolor{stringliteral}{"=D"} (ignore2), \textcolor{stringliteral}{"=m"} (futex),         \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}})                       \(\backslash\)}
+\DoxyCodeLine{              : \textcolor{stringliteral}{"1"} (\textcolor{keywordtype}{id}), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"3"} (0), \textcolor{stringliteral}{"0"} (\textcolor{keyword}{private})         \(\backslash\)}
+\DoxyCodeLine{              : \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});                 \(\backslash\)}
+\DoxyCodeLine{    result; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a7a6a86058231d41ed390e657aadb1242}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a7a6a86058231d41ed390e657aadb1242}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_robust\_timedlock@{lll\_robust\_timedlock}}
+\index{lll\_robust\_timedlock@{lll\_robust\_timedlock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_robust\_timedlock}{lll\_robust\_timedlock}}
+{\footnotesize\ttfamily \#define lll\+\_\+robust\+\_\+timedlock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{timeout,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{int} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}}, ignore1, ignore2, ignore3;                   \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%1, \%4\(\backslash\)n\(\backslash\)t"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"jz 24f\(\backslash\)n\(\backslash\)t"}                       \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"1:\(\backslash\)tlea \%4, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"0:\(\backslash\)tmov \%8, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_acda56cee68f68ed3d2e0d14c67e9d1fd}{RDX\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_robust\_timedlock\_wait\(\backslash\)n"}          \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"24:"}                              \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}}), \textcolor{stringliteral}{"=D"} (ignore1), \textcolor{stringliteral}{"=S"} (ignore2),       \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"=\&d"} (ignore3), \textcolor{stringliteral}{"=m"} (futex)                \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"0"} (0), \textcolor{stringliteral}{"1"} (\textcolor{keywordtype}{id}), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"m"} (timeout),       \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"2"} (\textcolor{keyword}{private})                        \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"memory"}, \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"r10"}, \textcolor{stringliteral}{"r11"});             \(\backslash\)}
+\DoxyCodeLine{     result; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ac34132d6aa30e572a5e6857493a6249f}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ac34132d6aa30e572a5e6857493a6249f}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_robust\_unlock@{lll\_robust\_unlock}}
+\index{lll\_robust\_unlock@{lll\_robust\_unlock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_robust\_unlock}{lll\_robust\_unlock}}
+{\footnotesize\ttfamily \#define lll\+\_\+robust\+\_\+unlock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      int ignore;                                 \(\backslash\)}
+\DoxyCodeLine{      \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"andl \%2, \%0\(\backslash\)n\(\backslash\)t"}                  \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"je 24f\(\backslash\)n\(\backslash\)t"}                          \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"1:\(\backslash\)tlea \%0, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_unlock\_wake\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"24:"}                             \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"=m"} (futex), \textcolor{stringliteral}{"=\&D"} (ignore)                \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"i"} (\mbox{\hyperlink{nptl_2pthreadP_8h_a9349b683d05adcf8089514b9aabf420b}{FUTEX\_WAITERS}}), \textcolor{stringliteral}{"m"} (futex),              \(\backslash\)}
+\DoxyCodeLine{              \textcolor{stringliteral}{"S"} (\textcolor{keyword}{private})                       \(\backslash\)}
+\DoxyCodeLine{            : \textcolor{stringliteral}{"ax"}, \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});             \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a05932777218bb92461eae254b0fb7e3f}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a05932777218bb92461eae254b0fb7e3f}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_timedlock@{lll\_timedlock}}
+\index{lll\_timedlock@{lll\_timedlock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_timedlock}{lll\_timedlock}}
+{\footnotesize\ttfamily \#define lll\+\_\+timedlock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{timeout,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{int} \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}}, ignore1, ignore2, ignore3;                   \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}{LOCK\_INSTR}} \textcolor{stringliteral}{"cmpxchgl \%1, \%4\(\backslash\)n\(\backslash\)t"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"jz 24f\(\backslash\)n"}                         \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"1:\(\backslash\)tlea \%4, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"0:\(\backslash\)tmov \%8, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_acda56cee68f68ed3d2e0d14c67e9d1fd}{RDX\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_timedlock\_wait\(\backslash\)n"}             \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}               \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}                \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"24:"}                              \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ade6d6d18a46c8aa95eed5e179d003e45}{result}}), \textcolor{stringliteral}{"=D"} (ignore1), \textcolor{stringliteral}{"=S"} (ignore2),         \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"=\&d"} (ignore3), \textcolor{stringliteral}{"=m"} (futex)                \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"0"} (0), \textcolor{stringliteral}{"1"} (1), \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"m"} (timeout),        \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"2"} (\textcolor{keyword}{private})                        \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"memory"}, \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"r10"}, \textcolor{stringliteral}{"r11"});             \(\backslash\)}
+\DoxyCodeLine{     result; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae3372bc266c265bc64dda457716fe70a}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae3372bc266c265bc64dda457716fe70a}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_timedlock\_elision@{lll\_timedlock\_elision}}
+\index{lll\_timedlock\_elision@{lll\_timedlock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_timedlock\_elision}{lll\_timedlock\_elision}}
+{\footnotesize\ttfamily \#define lll\+\_\+timedlock\+\_\+elision(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{adapt\+\_\+count,  }\item[{}]{timeout,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab676feb2b681632b7f4ea059fd9f42ab}{\+\_\+\+\_\+lll\+\_\+timedlock\+\_\+elision}}(\&(futex), \&(adapt\+\_\+count), timeout, \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae2a27f95b88fa86ceacf0f06a856d2a5}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae2a27f95b88fa86ceacf0f06a856d2a5}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_timedwait\_tid@{lll\_timedwait\_tid}}
+\index{lll\_timedwait\_tid@{lll\_timedwait\_tid}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_timedwait\_tid}{lll\_timedwait\_tid}}
+{\footnotesize\ttfamily \#define lll\+\_\+timedwait\+\_\+tid(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ad46ea068e4781a9741f8485232c877a2}{abstime}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{    int \mbox{\hyperlink{include_2netdb_8h_a9c7bd89e89758d84e310d7f405a7395a}{\_\_result}} = 0;                                 \(\backslash\)}
+\DoxyCodeLine{    if ((\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}) != 0)                                \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    if ((\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ad46ea068e4781a9741f8485232c877a2}{abstime}})-\/>tv\_nsec < 0 || (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ad46ea068e4781a9741f8485232c877a2}{abstime}})-\/>tv\_nsec >= 1000000000)         \(\backslash\)}
+\DoxyCodeLine{      \_\_result = EINVAL;                              \(\backslash\)}
+\DoxyCodeLine{    else                                      \(\backslash\)}
+\DoxyCodeLine{      \_\_result = \mbox{\hyperlink{nptl_2lowlevellock_8h_a209d8e0b767c35809168fad3e0b6e8de}{\_\_lll\_timedwait\_tid}} (\&(\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}), (\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_ad46ea068e4781a9741f8485232c877a2}{abstime}}));            \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{    \_\_result; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_trylock@{lll\_trylock}}
+\index{lll\_trylock@{lll\_trylock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_trylock}{lll\_trylock}}
+{\footnotesize\ttfamily \#define lll\+\_\+trylock(\begin{DoxyParamCaption}\item[{}]{futex }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keywordtype}{int} \mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}};                                    \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab2a4c4da92083d87c59afa3af8011f0a}{\_\_lll\_trylock\_asm}}                   \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}}), \textcolor{stringliteral}{"=m"} (futex)                  \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"r"} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a145ab6d8afd25be59d7384d0288afca0}{LLL\_LOCK\_INITIALIZER\_LOCKED}}), \textcolor{stringliteral}{"m"} (futex),      \(\backslash\)}
+\DoxyCodeLine{             \textcolor{stringliteral}{"0"} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_af42740c8ff76ba3186dd695bf0413e8c}{LLL\_LOCK\_INITIALIZER}})               \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"memory"});                       \(\backslash\)}
+\DoxyCodeLine{     ret; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ac9fb2489eebc677c79b4caeb22b33e6d}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ac9fb2489eebc677c79b4caeb22b33e6d}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_trylock\_elision@{lll\_trylock\_elision}}
+\index{lll\_trylock\_elision@{lll\_trylock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_trylock\_elision}{lll\_trylock\_elision}}
+{\footnotesize\ttfamily \#define lll\+\_\+trylock\+\_\+elision(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{adapt\+\_\+count }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aeb3d07b4848c2033a87052a93df58184}{\+\_\+\+\_\+lll\+\_\+trylock\+\_\+elision}} (\&(futex), \&(adapt\+\_\+count))}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a41558f487b6678dd9079659b34d87b4a}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a41558f487b6678dd9079659b34d87b4a}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_unlock@{lll\_unlock}}
+\index{lll\_unlock@{lll\_unlock}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_unlock}{lll\_unlock}}
+{\footnotesize\ttfamily \#define lll\+\_\+unlock(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})                                    \(\backslash\)}
+\DoxyCodeLine{    (\{ \textcolor{keywordtype}{int} ignore;                                \(\backslash\)}
+\DoxyCodeLine{       if (\_\_builtin\_constant\_p (\textcolor{keyword}{private}) \&\& (\textcolor{keyword}{private}) == \mbox{\hyperlink{nacl_2lowlevellock-futex_8h_afab249e7f9dd828dc45d13b232097941}{LLL\_PRIVATE}})         \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad2decd55d121e081bdfdd850cde67bb5}{\_\_lll\_unlock\_asm\_start}}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"1:\(\backslash\)tlea \%0, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}             \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_unlock\_wake\_private\(\backslash\)n"}        \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"24:"}                          \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=m"} (futex), \textcolor{stringliteral}{"=\&D"} (ignore)             \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"m"} (futex)                      \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"ax"}, \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});          \(\backslash\)}
+\DoxyCodeLine{       else                                   \(\backslash\)}
+\DoxyCodeLine{     \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad2decd55d121e081bdfdd850cde67bb5}{\_\_lll\_unlock\_asm\_start}}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"1:\(\backslash\)tlea \%0, \%\%"} \mbox{\hyperlink{x86__64_2sysdep_8h_a497455454f090596b4402247bf12c6fb}{RDI\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}                 \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"2:\(\backslash\)tsub \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset 128\(\backslash\)n"}             \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"3:\(\backslash\)tcallq \_\_lll\_unlock\_wake\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"4:\(\backslash\)tadd \$128, \%\%"} \mbox{\hyperlink{x86__64_2dl-trampoline_8h_acf002eaf265be516bd919528177e635c}{RSP\_LP}} \textcolor{stringliteral}{"\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{".cfi\_adjust\_cfa\_offset -\/128\(\backslash\)n"}            \(\backslash\)}
+\DoxyCodeLine{               \textcolor{stringliteral}{"24:"}                          \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"=m"} (futex), \textcolor{stringliteral}{"=\&D"} (ignore)             \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"m"} (futex), \textcolor{stringliteral}{"S"} (\textcolor{keyword}{private})               \(\backslash\)}
+\DoxyCodeLine{               : \textcolor{stringliteral}{"ax"}, \textcolor{stringliteral}{"cx"}, \textcolor{stringliteral}{"r11"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});          \(\backslash\)}
+\DoxyCodeLine{    \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad6d2f00ebfb07c2334424f9e05ba42ef}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ad6d2f00ebfb07c2334424f9e05ba42ef}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_unlock\_elision@{lll\_unlock\_elision}}
+\index{lll\_unlock\_elision@{lll\_unlock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_unlock\_elision}{lll\_unlock\_elision}}
+{\footnotesize\ttfamily \#define lll\+\_\+unlock\+\_\+elision(\begin{DoxyParamCaption}\item[{}]{futex,  }\item[{}]{adapt\+\_\+count,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a5b6a290d865dceb780081c36b51e24ae}{\+\_\+\+\_\+lll\+\_\+unlock\+\_\+elision}} (\&(futex), \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae8d3409b1476c95938cc7edf02dbd8ec}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ae8d3409b1476c95938cc7edf02dbd8ec}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_wait\_tid@{lll\_wait\_tid}}
+\index{lll\_wait\_tid@{lll\_wait\_tid}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_wait\_tid}{lll\_wait\_tid}}
+{\footnotesize\ttfamily \#define lll\+\_\+wait\+\_\+tid(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                    \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}) \_\_tid;        \(\backslash\)}
+\DoxyCodeLine{    while ((\_\_tid = (\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}})) != 0) \(\backslash\)}
+\DoxyCodeLine{      lll\_futex\_wait (\&(\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}), \_\_tid, \mbox{\hyperlink{nacl_2lowlevellock-futex_8h_a8f0f17e56a0e12aa9d8d486321be6348}{LLL\_SHARED}});\(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab901a8b1bea4e2abb26fa11f402fcf6f}} 
+\index{lowlevellock.h@{lowlevellock.h}!LOCK\_INSTR@{LOCK\_INSTR}}
+\index{LOCK\_INSTR@{LOCK\_INSTR}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{LOCK\_INSTR}{LOCK\_INSTR}}
+{\footnotesize\ttfamily \#define L\+O\+C\+K\+\_\+\+I\+N\+S\+TR~\char`\"{}lock;\char`\"{}}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a927cfa958d7f7b84a81e690f53f56143}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a927cfa958d7f7b84a81e690f53f56143}} 
+\index{lowlevellock.h@{lowlevellock.h}!SYS\_futex@{SYS\_futex}}
+\index{SYS\_futex@{SYS\_futex}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{SYS\_futex}{SYS\_futex}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+\_\+futex~\+\_\+\+\_\+\+N\+R\+\_\+futex}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a33e683a5c847b9479beafd6067bc6de4}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a33e683a5c847b9479beafd6067bc6de4}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_lock\_elision@{\_\_lll\_lock\_elision}}
+\index{\_\_lll\_lock\_elision@{\_\_lll\_lock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_lock\_elision()}{\_\_lll\_lock\_elision()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+lll\+\_\+lock\+\_\+elision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{futex,  }\item[{short $\ast$}]{adapt\+\_\+count,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{private }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab676feb2b681632b7f4ea059fd9f42ab}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_ab676feb2b681632b7f4ea059fd9f42ab}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_timedlock\_elision@{\_\_lll\_timedlock\_elision}}
+\index{\_\_lll\_timedlock\_elision@{\_\_lll\_timedlock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_timedlock\_elision()}{\_\_lll\_timedlock\_elision()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+lll\+\_\+timedlock\+\_\+elision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{futex,  }\item[{short $\ast$}]{adapt\+\_\+count,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct timespec $\ast$}]{timeout,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{private }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a209d8e0b767c35809168fad3e0b6e8de}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a209d8e0b767c35809168fad3e0b6e8de}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_timedwait\_tid@{\_\_lll\_timedwait\_tid}}
+\index{\_\_lll\_timedwait\_tid@{\_\_lll\_timedwait\_tid}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_timedwait\_tid()}{\_\_lll\_timedwait\_tid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+lll\+\_\+timedwait\+\_\+tid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct timespec $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aeb3d07b4848c2033a87052a93df58184}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aeb3d07b4848c2033a87052a93df58184}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_trylock\_elision@{\_\_lll\_trylock\_elision}}
+\index{\_\_lll\_trylock\_elision@{\_\_lll\_trylock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_trylock\_elision()}{\_\_lll\_trylock\_elision()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+lll\+\_\+trylock\+\_\+elision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{lock,  }\item[{short $\ast$}]{adapt\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a5b6a290d865dceb780081c36b51e24ae}\label{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_a5b6a290d865dceb780081c36b51e24ae}} 
+\index{lowlevellock.h@{lowlevellock.h}!\_\_lll\_unlock\_elision@{\_\_lll\_unlock\_elision}}
+\index{\_\_lll\_unlock\_elision@{\_\_lll\_unlock\_elision}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{\_\_lll\_unlock\_elision()}{\_\_lll\_unlock\_elision()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+lll\+\_\+unlock\+\_\+elision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{lock,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{private }\end{DoxyParamCaption})}
+

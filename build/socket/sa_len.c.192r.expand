@@ -1,0 +1,89 @@
+
+;; Function __libc_sa_len (*__GI___libc_sa_len, funcdef_no=39, decl_uid=2522, cgraph_uid=39, symbol_order=42)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 18.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg:SI 91)
+        (reg:SI 5 di [ af ])) ../socket/sa_len.c:62 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:HI 90 [ af ])
+        (subreg:HI (reg:SI 91) 0)) ../socket/sa_len.c:62 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (parallel [
+            (set (reg:HI 88 [ D.3576 ])
+                (plus:HI (reg/v:HI 90 [ af ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 9 8 10 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:HI 88 [ D.3576 ])
+            (const_int 18 [0x12]))) -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 27)
+            (pc))) 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 27)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg/f:DI 92)
+        (symbol_ref:DI ("CSWTCH.1") [flags 0x2]  <var_decl 0x2aaff416d870 CSWTCH.1>)) -1
+     (nil))
+(insn 13 12 14 4 (set (reg:DI 93)
+        (zero_extend:DI (reg:HI 88 [ D.3576 ]))) -1
+     (nil))
+(insn 14 13 24 4 (set (reg:SI 87 [ D.3575 ])
+        (mem/u:SI (plus:DI (mult:DI (reg:DI 93)
+                    (const_int 4 [0x4]))
+                (reg/f:DI 92)) [1 CSWTCH.1 S4 A32])) -1
+     (nil))
+(jump_insn 24 14 25 4 (set (pc)
+        (label_ref 15)) -1
+     (nil)
+ -> 15)
+(barrier 25 24 27)
+(code_label 27 25 26 5 3 "" [1 uses])
+(note 26 27 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 5 26 15 5 (set (reg:SI 87 [ D.3575 ])
+        (const_int 0 [0])) ../socket/sa_len.c:62 -1
+     (nil))
+(code_label 15 5 16 6 2 "" [1 uses])
+(note 16 15 17 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 21 6 (set (reg:SI 89 [ <retval> ])
+        (reg:SI 87 [ D.3575 ])) -1
+     (nil))
+(insn 21 17 22 6 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) ../socket/sa_len.c:105 -1
+     (nil))
+(insn 22 21 0 6 (use (reg/i:SI 0 ax)) ../socket/sa_len.c:105 -1
+     (nil))

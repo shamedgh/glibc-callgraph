@@ -1,0 +1,96 @@
+\hypertarget{loadarchive_8c}{}\doxysection{locale/loadarchive.c File Reference}
+\label{loadarchive_8c}\index{locale/loadarchive.c@{locale/loadarchive.c}}
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}localeinfo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}locarchive.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hashval.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structarchmapped}{archmapped}}
+\item 
+struct \mbox{\hyperlink{structlocale__in__archive}{locale\+\_\+in\+\_\+archive}}
+\item 
+struct \mbox{\hyperlink{structrange}{range}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{loadarchive_8c_a9559d7e1b8126f6605f9efb1bbda6278}{compute\+\_\+hashval}}~static \mbox{\hyperlink{gmp-impl_8h_a00d24c7231be28dbaf71f5408f30e44c}{inline}} compute\+\_\+hashval
+\item 
+\#define \mbox{\hyperlink{loadarchive_8c_a938a79bf2f2495064af780f9c332c998}{hashval\+\_\+t}}~\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{loadarchive_8c_a2e43c0ee592d06935e9b181486f485f7}{A\+R\+C\+H\+I\+V\+E\+\_\+\+M\+A\+P\+P\+I\+N\+G\+\_\+\+W\+I\+N\+D\+OW}}~(2 $\ast$ 1024 $\ast$ 1024)
+\item 
+\#define \mbox{\hyperlink{loadarchive_8c_a84c7a73f397e322703fcf39196809a19}{M\+A\+P\+\_\+\+C\+O\+PY}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2bits_2mman_8h_a398ef47a991a44389aa9818c98a28d24}{M\+A\+P\+\_\+\+P\+R\+I\+V\+A\+TE}}
+\item 
+\#define \mbox{\hyperlink{loadarchive_8c_a238feed3512d8b21b3854d082dcae6f4}{M\+A\+P\+\_\+\+F\+I\+LE}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct____locale__data}{\+\_\+\+\_\+locale\+\_\+data}} $\ast$\mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{loadarchive_8c_a14aeb05970830f18407ef04d1fe402ab}{\+\_\+nl\+\_\+load\+\_\+locale\+\_\+from\+\_\+archive}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{structcategory}{category}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$$\ast$namep)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{libc-symbols_8h_ab4ee1044cc5139fe8a98fc0830fce245}{\+\_\+\+\_\+libc\+\_\+freeres\+\_\+fn\+\_\+section}} \mbox{\hyperlink{loadarchive_8c_aec6dd5c6adaf64d12274760c7464d687}{\+\_\+nl\+\_\+archive\+\_\+subfreeres}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{loadarchive_8c_a2e43c0ee592d06935e9b181486f485f7}\label{loadarchive_8c_a2e43c0ee592d06935e9b181486f485f7}} 
+\index{loadarchive.c@{loadarchive.c}!ARCHIVE\_MAPPING\_WINDOW@{ARCHIVE\_MAPPING\_WINDOW}}
+\index{ARCHIVE\_MAPPING\_WINDOW@{ARCHIVE\_MAPPING\_WINDOW}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{ARCHIVE\_MAPPING\_WINDOW}{ARCHIVE\_MAPPING\_WINDOW}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+I\+V\+E\+\_\+\+M\+A\+P\+P\+I\+N\+G\+\_\+\+W\+I\+N\+D\+OW~(2 $\ast$ 1024 $\ast$ 1024)}
+
+\mbox{\Hypertarget{loadarchive_8c_a9559d7e1b8126f6605f9efb1bbda6278}\label{loadarchive_8c_a9559d7e1b8126f6605f9efb1bbda6278}} 
+\index{loadarchive.c@{loadarchive.c}!compute\_hashval@{compute\_hashval}}
+\index{compute\_hashval@{compute\_hashval}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{compute\_hashval}{compute\_hashval}}
+{\footnotesize\ttfamily \#define compute\+\_\+hashval~static \mbox{\hyperlink{gmp-impl_8h_a00d24c7231be28dbaf71f5408f30e44c}{inline}} compute\+\_\+hashval}
+
+\mbox{\Hypertarget{loadarchive_8c_a938a79bf2f2495064af780f9c332c998}\label{loadarchive_8c_a938a79bf2f2495064af780f9c332c998}} 
+\index{loadarchive.c@{loadarchive.c}!hashval\_t@{hashval\_t}}
+\index{hashval\_t@{hashval\_t}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{hashval\_t}{hashval\_t}}
+{\footnotesize\ttfamily \#define hashval\+\_\+t~\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}}
+
+\mbox{\Hypertarget{loadarchive_8c_a84c7a73f397e322703fcf39196809a19}\label{loadarchive_8c_a84c7a73f397e322703fcf39196809a19}} 
+\index{loadarchive.c@{loadarchive.c}!MAP\_COPY@{MAP\_COPY}}
+\index{MAP\_COPY@{MAP\_COPY}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{MAP\_COPY}{MAP\_COPY}}
+{\footnotesize\ttfamily \#define M\+A\+P\+\_\+\+C\+O\+PY~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2bits_2mman_8h_a398ef47a991a44389aa9818c98a28d24}{M\+A\+P\+\_\+\+P\+R\+I\+V\+A\+TE}}}
+
+\mbox{\Hypertarget{loadarchive_8c_a238feed3512d8b21b3854d082dcae6f4}\label{loadarchive_8c_a238feed3512d8b21b3854d082dcae6f4}} 
+\index{loadarchive.c@{loadarchive.c}!MAP\_FILE@{MAP\_FILE}}
+\index{MAP\_FILE@{MAP\_FILE}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{MAP\_FILE}{MAP\_FILE}}
+{\footnotesize\ttfamily \#define M\+A\+P\+\_\+\+F\+I\+LE~0}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{loadarchive_8c_aec6dd5c6adaf64d12274760c7464d687}\label{loadarchive_8c_aec6dd5c6adaf64d12274760c7464d687}} 
+\index{loadarchive.c@{loadarchive.c}!\_nl\_archive\_subfreeres@{\_nl\_archive\_subfreeres}}
+\index{\_nl\_archive\_subfreeres@{\_nl\_archive\_subfreeres}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{\_nl\_archive\_subfreeres()}{\_nl\_archive\_subfreeres()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{libc-symbols_8h_ab4ee1044cc5139fe8a98fc0830fce245}{\+\_\+\+\_\+libc\+\_\+freeres\+\_\+fn\+\_\+section}} \+\_\+nl\+\_\+archive\+\_\+subfreeres (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{loadarchive_8c_a14aeb05970830f18407ef04d1fe402ab}\label{loadarchive_8c_a14aeb05970830f18407ef04d1fe402ab}} 
+\index{loadarchive.c@{loadarchive.c}!\_nl\_load\_locale\_from\_archive@{\_nl\_load\_locale\_from\_archive}}
+\index{\_nl\_load\_locale\_from\_archive@{\_nl\_load\_locale\_from\_archive}!loadarchive.c@{loadarchive.c}}
+\doxysubsubsection{\texorpdfstring{\_nl\_load\_locale\_from\_archive()}{\_nl\_load\_locale\_from\_archive()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct____locale__data}{\+\_\+\+\_\+locale\+\_\+data}}$\ast$ \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+nl\+\_\+load\+\_\+locale\+\_\+from\+\_\+archive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{category,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$$\ast$}]{namep }\end{DoxyParamCaption})}
+

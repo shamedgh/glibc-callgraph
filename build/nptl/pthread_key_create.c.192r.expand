@@ -1,0 +1,218 @@
+
+;; Function __pthread_key_create (__pthread_key_create, funcdef_no=42, decl_uid=7426, cgraph_uid=42, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 58.
+Merging block 11 into block 10...
+Merged blocks 10 and 11.
+Merged 10 and 11 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 13 0 20 NOTE_INSN_DELETED)
+(note 20 13 14 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 14 20 15 2 (set (reg/v/f:DI 110 [ key ])
+        (reg:DI 5 di [ key ])) pthread_key_create.c:26 -1
+     (nil))
+(insn 15 14 16 2 (set (reg/v/f:DI 111 [ destr ])
+        (reg:DI 4 si [ destr ])) pthread_key_create.c:26 -1
+     (nil))
+(note 16 15 22 2 NOTE_INSN_FUNCTION_BEG)
+(insn 22 16 17 2 (set (reg:DI 100 [ ivtmp.9 ])
+        (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2b0d53c502d0 __pthread_keys>)) -1
+     (nil))
+(insn 17 22 52 2 (set (reg/v:DI 103 [ cnt ])
+        (const_int 0 [0])) pthread_key_create.c:28 -1
+     (nil))
+(code_label 52 17 23 4 4 "" [1 uses])
+(note 23 52 24 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 4 (set (reg/f:DI 108 [ D.7588 ])
+        (reg:DI 100 [ ivtmp.9 ])) -1
+     (nil))
+(insn 25 24 26 4 (set (reg/v:DI 101 [ seq ])
+        (mem:DI (reg/f:DI 108 [ D.7588 ]) [3 MEM[base: _26, offset: 0B]+0 S8 A64])) pthread_key_create.c:30 -1
+     (nil))
+(insn 26 25 27 4 (parallel [
+            (set (reg:DI 112 [ D.7585 ])
+                (and:DI (reg/v:DI 101 [ seq ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:32 -1
+     (nil))
+(insn 27 26 28 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 112 [ D.7585 ])
+            (const_int 0 [0]))) pthread_key_create.c:32 -1
+     (nil))
+(jump_insn 28 27 29 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) pthread_key_create.c:32 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 48)
+(note 29 28 30 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 5 (parallel [
+            (set (reg:DI 113 [ D.7585 ])
+                (plus:DI (reg/v:DI 101 [ seq ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:32 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 101 [ seq ])
+            (reg:DI 113 [ D.7585 ]))) pthread_key_create.c:32 -1
+     (nil))
+(jump_insn 32 31 33 5 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) pthread_key_create.c:32 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 48)
+(note 33 32 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 6 (parallel [
+            (set (reg:DI 114 [ D.7585 ])
+                (plus:DI (reg/v:DI 101 [ seq ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:34 -1
+     (nil))
+(insn 35 34 36 6 (parallel [
+            (set (reg:DI 115)
+                (unspec_volatile:DI [
+                        (mem/v:DI (reg/f:DI 108 [ D.7588 ]) [-1  S8 A64])
+                        (reg/v:DI 101 [ seq ])
+                        (reg:DI 114 [ D.7585 ])
+                        (const_int 32773 [0x8005])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:DI (reg/f:DI 108 [ D.7588 ]) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) pthread_key_create.c:34 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:QI 106 [ D.7586 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) pthread_key_create.c:34 -1
+     (nil))
+(insn 37 36 38 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 106 [ D.7586 ])
+            (const_int 0 [0]))) pthread_key_create.c:34 -1
+     (nil))
+(jump_insn 38 37 39 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) pthread_key_create.c:34 -1
+     (int_list:REG_BR_PROB 9999 (nil))
+ -> 48)
+(note 39 38 40 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 7 (set (reg/f:DI 116)
+        (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2b0d53c502d0 __pthread_keys>)) pthread_key_create.c:38 -1
+     (nil))
+(insn 41 40 42 7 (parallel [
+            (set (reg:DI 117)
+                (ashift:DI (reg/v:DI 103 [ cnt ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:38 -1
+     (nil))
+(insn 42 41 43 7 (parallel [
+            (set (reg:DI 118)
+                (plus:DI (reg/f:DI 116)
+                    (reg:DI 117)))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:38 -1
+     (nil))
+(insn 43 42 44 7 (parallel [
+            (set (reg/f:DI 119)
+                (plus:DI (reg:DI 118)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:38 -1
+     (nil))
+(insn 44 43 45 7 (set (mem/f:DI (reg/f:DI 119) [1 __pthread_keys[cnt_21].destr+0 S8 A64])
+        (reg/v/f:DI 111 [ destr ])) pthread_key_create.c:38 -1
+     (nil))
+(insn 45 44 18 7 (set (mem:SI (reg/v/f:DI 110 [ key ]) [4 *key_18(D)+0 S4 A32])
+        (subreg:SI (reg/v:DI 103 [ cnt ]) 0)) pthread_key_create.c:41 -1
+     (nil))
+(insn 18 45 46 7 (set (reg:SI 99 [ D.7584 ])
+        (const_int 0 [0])) pthread_key_create.c:44 -1
+     (nil))
+(jump_insn 46 18 47 7 (set (pc)
+        (label_ref 55)) pthread_key_create.c:44 -1
+     (nil)
+ -> 55)
+(barrier 47 46 48)
+(code_label 48 47 49 8 2 "" [3 uses])
+(note 49 48 50 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 8 (parallel [
+            (set (reg/v:DI 103 [ cnt ])
+                (plus:DI (reg/v:DI 103 [ cnt ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_create.c:28 -1
+     (nil))
+(insn 51 50 53 8 (parallel [
+            (set (reg:DI 100 [ ivtmp.9 ])
+                (plus:DI (reg:DI 100 [ ivtmp.9 ])
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 53 51 54 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 103 [ cnt ])
+            (const_int 1024 [0x400]))) pthread_key_create.c:28 -1
+     (nil))
+(jump_insn 54 53 64 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) pthread_key_create.c:28 -1
+     (int_list:REG_BR_PROB 9899 (nil))
+ -> 52)
+(note 64 54 19 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 19 64 55 9 (set (reg:SI 99 [ D.7584 ])
+        (const_int 11 [0xb])) pthread_key_create.c:48 -1
+     (nil))
+(code_label 55 19 56 10 3 "" [1 uses])
+(note 56 55 57 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 57 56 61 10 (set (reg:SI 109 [ <retval> ])
+        (reg:SI 99 [ D.7584 ])) -1
+     (nil))
+(insn 61 57 62 10 (set (reg/i:SI 0 ax)
+        (reg:SI 109 [ <retval> ])) pthread_key_create.c:49 -1
+     (nil))
+(insn 62 61 0 10 (use (reg/i:SI 0 ax)) pthread_key_create.c:49 -1
+     (nil))

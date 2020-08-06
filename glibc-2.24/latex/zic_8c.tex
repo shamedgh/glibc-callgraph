@@ -1,0 +1,605 @@
+\hypertarget{zic_8c}{}\doxysection{timezone/zic.c File Reference}
+\label{zic_8c}\index{timezone/zic.c@{timezone/zic.c}}
+{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}locale.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tzfile.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrule}{rule}}
+\item 
+struct \mbox{\hyperlink{structzone}{zone}}
+\item 
+struct \mbox{\hyperlink{structlink}{link}}
+\item 
+struct \mbox{\hyperlink{structlookup}{lookup}}
+\item 
+struct {\bfseries attype}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{zic_8c_a6290e2daa4e2d5f587dcbc6112cb80f1}{Z\+I\+C\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+P\+R\+E\+\_\+2013}}~\textquotesingle{}2\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{zic_8c_a042f89a46703d9543b28fd0581ba9714}{Z\+I\+C\+\_\+\+V\+E\+R\+S\+I\+ON}}~\textquotesingle{}3\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{zic_8c_a8610beb5650f262ba9efbad224f3f9ce}{Z\+I\+C\+\_\+\+M\+IN}}~\mbox{\hyperlink{private_8h_a50f0fdcb00ea2500cec0f3d6d45c36f3}{I\+N\+T\+\_\+\+F\+A\+S\+T64\+\_\+\+M\+IN}}
+\item 
+\#define \mbox{\hyperlink{zic_8c_a952951ea9303bbedef6fe8d13b2185e6}{Z\+I\+C\+\_\+\+M\+AX}}~\mbox{\hyperlink{private_8h_a13c95cf9c209d8daacb36cbf0d5ba275}{I\+N\+T\+\_\+\+F\+A\+S\+T64\+\_\+\+M\+AX}}
+\item 
+\#define \mbox{\hyperlink{zic_8c_a6999b7aebd683dd5a3c77ce4e2c0d9f5}{S\+C\+Nd\+Z\+IC}}~\mbox{\hyperlink{private_8h_a2a2d9ca0555230eab89e52e442bea64c}{S\+C\+Nd\+F\+A\+S\+T64}}
+\item 
+\#define \mbox{\hyperlink{zic_8c_ad670341bda1f67dc196642cafa4e1acc}{Z\+I\+C\+\_\+\+M\+A\+X\+\_\+\+A\+B\+B\+R\+\_\+\+L\+E\+N\+\_\+\+W\+O\+\_\+\+W\+A\+RN}}~6
+\item 
+\#define \mbox{\hyperlink{zic_8c_abbf785329e9596c8906bc2f9627e32ae}{M\+K\+D\+I\+R\+\_\+\+U\+M\+A\+SK}}~0755
+\item 
+\#define \mbox{\hyperlink{zic_8c_a581539c2ee085a53d07aca4fa4de9387}{D\+C\+\_\+\+D\+OM}}~0	/$\ast$ 1..\+31 $\ast$/	/$\ast$ \mbox{\hyperlink{tst-tlsalign-vars_8c_a438aff3f1f34c1aba501ee63f63b55ac}{unused}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{zic_8c_a8a85b0b03376dbd6f04a3ba830bbccf7}{D\+C\+\_\+\+D\+O\+W\+G\+EQ}}~1	/$\ast$ 1..\+31 $\ast$/	/$\ast$ 0..\+6 (Sun..\+Sat) $\ast$/
+\item 
+\#define \mbox{\hyperlink{zic_8c_aaa2721a2196cb6dd10443e6332d80ed8}{D\+C\+\_\+\+D\+O\+W\+L\+EQ}}~2	/$\ast$ 1..\+31 $\ast$/	/$\ast$ 0..\+6 (Sun..\+Sat) $\ast$/
+\item 
+\#define \mbox{\hyperlink{zic_8c_a60e595dc3c11044a23155f8138f7f765}{L\+C\+\_\+\+R\+U\+LE}}~0
+\item 
+\#define \mbox{\hyperlink{zic_8c_ab627e2a53f42d7fd77e57a507092944e}{L\+C\+\_\+\+Z\+O\+NE}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_a3217ea2d7cab962fc4430b73a26469c4}{L\+C\+\_\+\+L\+I\+NK}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_ab41234a6568032a1ab11dc7c5eadab8f}{L\+C\+\_\+\+L\+E\+AP}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_ad3d7d96492c93c2992a571c74a3d7224}{Z\+F\+\_\+\+N\+A\+ME}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_aeeb748f87a53fa2d327fc5976419671d}{Z\+F\+\_\+\+G\+M\+T\+O\+FF}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_a0f2be3e93452b5e67b0d838e25e61b88}{Z\+F\+\_\+\+R\+U\+LE}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_a01cfcdafb2f084038e46f33cd67cbb6d}{Z\+F\+\_\+\+F\+O\+R\+M\+AT}}~4
+\item 
+\#define \mbox{\hyperlink{zic_8c_a2f82834ca449999f1611d129bd858385}{Z\+F\+\_\+\+T\+I\+L\+Y\+E\+AR}}~5
+\item 
+\#define \mbox{\hyperlink{zic_8c_aa310302e4545663de9a05db822d22ffc}{Z\+F\+\_\+\+T\+I\+L\+M\+O\+N\+TH}}~6
+\item 
+\#define \mbox{\hyperlink{zic_8c_a4907b7141ee3fc74f9218634527046ea}{Z\+F\+\_\+\+T\+I\+L\+D\+AY}}~7
+\item 
+\#define \mbox{\hyperlink{zic_8c_adbc1e579268e58cd8ea8b05f47c23c04}{Z\+F\+\_\+\+T\+I\+L\+T\+I\+ME}}~8
+\item 
+\#define \mbox{\hyperlink{zic_8c_a5311e4d468e1da7a0de22be276709531}{Z\+O\+N\+E\+\_\+\+M\+I\+N\+F\+I\+E\+L\+DS}}~5
+\item 
+\#define \mbox{\hyperlink{zic_8c_a4bc014c8d9864d7ab194b62845a33691}{Z\+O\+N\+E\+\_\+\+M\+A\+X\+F\+I\+E\+L\+DS}}~9
+\item 
+\#define \mbox{\hyperlink{zic_8c_a1da312d9128bd1281054800b6a0be5d9}{Z\+F\+C\+\_\+\+G\+M\+T\+O\+FF}}~0
+\item 
+\#define \mbox{\hyperlink{zic_8c_a6a5197d484cd52c56e5656295c61183c}{Z\+F\+C\+\_\+\+R\+U\+LE}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_ae7a5ced55549ee593f19799f9e1ff1fc}{Z\+F\+C\+\_\+\+F\+O\+R\+M\+AT}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_a0da79dd34f7884967c46b7db05456206}{Z\+F\+C\+\_\+\+T\+I\+L\+Y\+E\+AR}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_a134ac1be263b629f6774119b8e4d5c98}{Z\+F\+C\+\_\+\+T\+I\+L\+M\+O\+N\+TH}}~4
+\item 
+\#define \mbox{\hyperlink{zic_8c_a036ce979ba22c19ae50ff23753863dbd}{Z\+F\+C\+\_\+\+T\+I\+L\+D\+AY}}~5
+\item 
+\#define \mbox{\hyperlink{zic_8c_a6f06f791ac58eb9b49f140309049eee2}{Z\+F\+C\+\_\+\+T\+I\+L\+T\+I\+ME}}~6
+\item 
+\#define \mbox{\hyperlink{zic_8c_aede783c7d84f7977c075e62ec3e00df4}{Z\+O\+N\+E\+C\+\_\+\+M\+I\+N\+F\+I\+E\+L\+DS}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_a6078ee81a8394c57de441842e62e4d9e}{Z\+O\+N\+E\+C\+\_\+\+M\+A\+X\+F\+I\+E\+L\+DS}}~7
+\item 
+\#define \mbox{\hyperlink{zic_8c_aa59d428a5dcf1a6b52194ef84252390a}{R\+F\+\_\+\+N\+A\+ME}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_a1919090bf541d216099a5abfd8a2548f}{R\+F\+\_\+\+L\+O\+Y\+E\+AR}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_a87af20ca99dbcbf64e1446577406dd7c}{R\+F\+\_\+\+H\+I\+Y\+E\+AR}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_a9a405966cdcb7ff4be3812611d883197}{R\+F\+\_\+\+C\+O\+M\+M\+A\+ND}}~4
+\item 
+\#define \mbox{\hyperlink{zic_8c_ad4a9e113f150f4a4cc16dc808fbb1d4a}{R\+F\+\_\+\+M\+O\+N\+TH}}~5
+\item 
+\#define \mbox{\hyperlink{zic_8c_ab86c6eddbae9b92fe0f5b3f459528b68}{R\+F\+\_\+\+D\+AY}}~6
+\item 
+\#define \mbox{\hyperlink{zic_8c_a958b7ce8b6f72d410c933cd23153e3b6}{R\+F\+\_\+\+T\+OD}}~7
+\item 
+\#define \mbox{\hyperlink{zic_8c_a9abf9a132de00f0de10bf82233f9e4bf}{R\+F\+\_\+\+S\+T\+D\+O\+FF}}~8
+\item 
+\#define \mbox{\hyperlink{zic_8c_a5251e2ab8ae07fe09df925fdef690d49}{R\+F\+\_\+\+A\+B\+B\+R\+V\+AR}}~9
+\item 
+\#define \mbox{\hyperlink{zic_8c_aca52f43d44322313e6a01571c26094b4}{R\+U\+L\+E\+\_\+\+F\+I\+E\+L\+DS}}~10
+\item 
+\#define \mbox{\hyperlink{zic_8c_a67626021bea3e029401956b46672d081}{L\+F\+\_\+\+F\+R\+OM}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_a773649ec71b85ace4e83f5ed722e7fa5}{L\+F\+\_\+\+TO}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_a4c32da18b366fbea39b90a529a31a4f9}{L\+I\+N\+K\+\_\+\+F\+I\+E\+L\+DS}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_a77c828b88bf2d40b07ecf88052bcca86}{L\+P\+\_\+\+Y\+E\+AR}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_a32888d64aef701aaaf0fbefab8ef9815}{L\+P\+\_\+\+M\+O\+N\+TH}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_ae15dcf9981790022fa1e0bb15eddfab1}{L\+P\+\_\+\+D\+AY}}~3
+\item 
+\#define \mbox{\hyperlink{zic_8c_a48978d005007ba5c282f60f6745f2f1c}{L\+P\+\_\+\+T\+I\+ME}}~4
+\item 
+\#define \mbox{\hyperlink{zic_8c_a475287b91e8967c83b2b5df49aaf1dce}{L\+P\+\_\+\+C\+O\+RR}}~5
+\item 
+\#define \mbox{\hyperlink{zic_8c_acbaba96c89a91dea8c3c5dced27235b5}{L\+P\+\_\+\+R\+O\+LL}}~6
+\item 
+\#define \mbox{\hyperlink{zic_8c_abf918fe6b68256c3ac4ba4a77129bc75}{L\+E\+A\+P\+\_\+\+F\+I\+E\+L\+DS}}~7
+\item 
+\#define \mbox{\hyperlink{zic_8c_ac87ffe794e8c43496a987714d9608965}{Y\+R\+\_\+\+M\+I\+N\+I\+M\+UM}}~0
+\item 
+\#define \mbox{\hyperlink{zic_8c_a01cf0d51da2b43a1b368653affda8cdc}{Y\+R\+\_\+\+M\+A\+X\+I\+M\+UM}}~1
+\item 
+\#define \mbox{\hyperlink{zic_8c_a18076616e0611cdd6ea81e65a6a24ae7}{Y\+R\+\_\+\+O\+N\+LY}}~2
+\item 
+\#define \mbox{\hyperlink{zic_8c_af65f578752e4d87a69f72c95984632a3}{T\+I\+M\+E\+\_\+\+T\+\_\+\+B\+I\+T\+S\+\_\+\+I\+N\+\_\+\+F\+I\+LE}}~64
+\item 
+\#define \mbox{\hyperlink{zic_8c_a65b0e8bf64988af6358987a949cf6511}{B\+I\+G\+\_\+\+B\+A\+NG}}~(-\/ (1\+L\+L $<$$<$ 59))
+\item 
+\#define \mbox{\hyperlink{zic_8c_a15f4b2f8cdb0e2a6f492097b6f2a537c}{DO}}(field)~\mbox{\hyperlink{libio_2stdio_8h_a87b63af45957d457e7c045d41c780cf1}{fwrite}}(tzh.\+field, sizeof tzh.\+field, 1, \mbox{\hyperlink{tst-umask1_8c_a9c210569ea05d08854ceeaa7dd0c14e5}{fp}})
+\item 
+\#define \mbox{\hyperlink{zic_8c_a2a1e53997c119c45d1c8a84f836469c3}{L\+D\+A\+Y\+S\+P\+E\+R\+W\+E\+EK}}~((\mbox{\hyperlink{zic_8c_abca162e1726dda567eadec185a2374c8}{zic\+\_\+t}}) \mbox{\hyperlink{tzfile_8h_a9bcc879e9358166ad8cb333bd23baf65}{D\+A\+Y\+S\+P\+E\+R\+W\+E\+EK}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{private_8h_aada3eab56052f7847c2187c342cb11d2}{int\+\_\+fast64\+\_\+t}} \mbox{\hyperlink{zic_8c_abca162e1726dda567eadec185a2374c8}{zic\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{zic_8c_ac2edcf4e955db86c2deb14eb460607a2a928210abee0eb46b8309e8ca8a68bc1a}{P\+E\+R\+C\+E\+N\+T\+\_\+\+Z\+\_\+\+L\+E\+N\+\_\+\+B\+O\+U\+ND}} = sizeof \char`\"{}+995959\char`\"{} -\/ 1
+ \}
+\item 
+enum \{ \mbox{\hyperlink{zic_8c_aa91808171edab519dad6cbe8119f5d9bac46be3fb26f3c5fe44aef172c8d7bf09}{Y\+E\+A\+R\+\_\+\+B\+Y\+\_\+\+Y\+E\+A\+R\+\_\+\+Z\+O\+NE}} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zic_8c_aaf2ceae0460295ed1468985b7423368a}{getopt}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} argv\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{ftwtest_8c_a149c8eb0297a1171aac6ed93ea959f76}{options}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zic_8c_a1c5deeaf333a2ca56566c1076010b4aa}{link}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$fromname, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$toname)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zic_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{zic_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}{optarg}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{zic_8c_ad5e1c16213bbee2d5e8cc363309f418c}{optind}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{zic_8c_a65b0e8bf64988af6358987a949cf6511}\label{zic_8c_a65b0e8bf64988af6358987a949cf6511}} 
+\index{zic.c@{zic.c}!BIG\_BANG@{BIG\_BANG}}
+\index{BIG\_BANG@{BIG\_BANG}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{BIG\_BANG}{BIG\_BANG}}
+{\footnotesize\ttfamily \#define B\+I\+G\+\_\+\+B\+A\+NG~(-\/ (1\+L\+L $<$$<$ 59))}
+
+\mbox{\Hypertarget{zic_8c_a581539c2ee085a53d07aca4fa4de9387}\label{zic_8c_a581539c2ee085a53d07aca4fa4de9387}} 
+\index{zic.c@{zic.c}!DC\_DOM@{DC\_DOM}}
+\index{DC\_DOM@{DC\_DOM}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{DC\_DOM}{DC\_DOM}}
+{\footnotesize\ttfamily \#define D\+C\+\_\+\+D\+OM~0	/$\ast$ 1..\+31 $\ast$/	/$\ast$ \mbox{\hyperlink{tst-tlsalign-vars_8c_a438aff3f1f34c1aba501ee63f63b55ac}{unused}} $\ast$/}
+
+\mbox{\Hypertarget{zic_8c_a8a85b0b03376dbd6f04a3ba830bbccf7}\label{zic_8c_a8a85b0b03376dbd6f04a3ba830bbccf7}} 
+\index{zic.c@{zic.c}!DC\_DOWGEQ@{DC\_DOWGEQ}}
+\index{DC\_DOWGEQ@{DC\_DOWGEQ}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{DC\_DOWGEQ}{DC\_DOWGEQ}}
+{\footnotesize\ttfamily \#define D\+C\+\_\+\+D\+O\+W\+G\+EQ~1	/$\ast$ 1..\+31 $\ast$/	/$\ast$ 0..\+6 (Sun..\+Sat) $\ast$/}
+
+\mbox{\Hypertarget{zic_8c_aaa2721a2196cb6dd10443e6332d80ed8}\label{zic_8c_aaa2721a2196cb6dd10443e6332d80ed8}} 
+\index{zic.c@{zic.c}!DC\_DOWLEQ@{DC\_DOWLEQ}}
+\index{DC\_DOWLEQ@{DC\_DOWLEQ}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{DC\_DOWLEQ}{DC\_DOWLEQ}}
+{\footnotesize\ttfamily \#define D\+C\+\_\+\+D\+O\+W\+L\+EQ~2	/$\ast$ 1..\+31 $\ast$/	/$\ast$ 0..\+6 (Sun..\+Sat) $\ast$/}
+
+\mbox{\Hypertarget{zic_8c_a15f4b2f8cdb0e2a6f492097b6f2a537c}\label{zic_8c_a15f4b2f8cdb0e2a6f492097b6f2a537c}} 
+\index{zic.c@{zic.c}!DO@{DO}}
+\index{DO@{DO}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{DO}{DO}}
+{\footnotesize\ttfamily \#define DO(\begin{DoxyParamCaption}\item[{}]{field }\end{DoxyParamCaption})~\mbox{\hyperlink{libio_2stdio_8h_a87b63af45957d457e7c045d41c780cf1}{fwrite}}(tzh.\+field, sizeof tzh.\+field, 1, \mbox{\hyperlink{tst-umask1_8c_a9c210569ea05d08854ceeaa7dd0c14e5}{fp}})}
+
+\mbox{\Hypertarget{zic_8c_ab41234a6568032a1ab11dc7c5eadab8f}\label{zic_8c_ab41234a6568032a1ab11dc7c5eadab8f}} 
+\index{zic.c@{zic.c}!LC\_LEAP@{LC\_LEAP}}
+\index{LC\_LEAP@{LC\_LEAP}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LC\_LEAP}{LC\_LEAP}}
+{\footnotesize\ttfamily \#define L\+C\+\_\+\+L\+E\+AP~3}
+
+\mbox{\Hypertarget{zic_8c_a3217ea2d7cab962fc4430b73a26469c4}\label{zic_8c_a3217ea2d7cab962fc4430b73a26469c4}} 
+\index{zic.c@{zic.c}!LC\_LINK@{LC\_LINK}}
+\index{LC\_LINK@{LC\_LINK}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LC\_LINK}{LC\_LINK}}
+{\footnotesize\ttfamily \#define L\+C\+\_\+\+L\+I\+NK~2}
+
+\mbox{\Hypertarget{zic_8c_a60e595dc3c11044a23155f8138f7f765}\label{zic_8c_a60e595dc3c11044a23155f8138f7f765}} 
+\index{zic.c@{zic.c}!LC\_RULE@{LC\_RULE}}
+\index{LC\_RULE@{LC\_RULE}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LC\_RULE}{LC\_RULE}}
+{\footnotesize\ttfamily \#define L\+C\+\_\+\+R\+U\+LE~0}
+
+\mbox{\Hypertarget{zic_8c_ab627e2a53f42d7fd77e57a507092944e}\label{zic_8c_ab627e2a53f42d7fd77e57a507092944e}} 
+\index{zic.c@{zic.c}!LC\_ZONE@{LC\_ZONE}}
+\index{LC\_ZONE@{LC\_ZONE}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LC\_ZONE}{LC\_ZONE}}
+{\footnotesize\ttfamily \#define L\+C\+\_\+\+Z\+O\+NE~1}
+
+\mbox{\Hypertarget{zic_8c_a2a1e53997c119c45d1c8a84f836469c3}\label{zic_8c_a2a1e53997c119c45d1c8a84f836469c3}} 
+\index{zic.c@{zic.c}!LDAYSPERWEEK@{LDAYSPERWEEK}}
+\index{LDAYSPERWEEK@{LDAYSPERWEEK}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LDAYSPERWEEK}{LDAYSPERWEEK}}
+{\footnotesize\ttfamily \#define L\+D\+A\+Y\+S\+P\+E\+R\+W\+E\+EK~((\mbox{\hyperlink{zic_8c_abca162e1726dda567eadec185a2374c8}{zic\+\_\+t}}) \mbox{\hyperlink{tzfile_8h_a9bcc879e9358166ad8cb333bd23baf65}{D\+A\+Y\+S\+P\+E\+R\+W\+E\+EK}})}
+
+\mbox{\Hypertarget{zic_8c_abf918fe6b68256c3ac4ba4a77129bc75}\label{zic_8c_abf918fe6b68256c3ac4ba4a77129bc75}} 
+\index{zic.c@{zic.c}!LEAP\_FIELDS@{LEAP\_FIELDS}}
+\index{LEAP\_FIELDS@{LEAP\_FIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LEAP\_FIELDS}{LEAP\_FIELDS}}
+{\footnotesize\ttfamily \#define L\+E\+A\+P\+\_\+\+F\+I\+E\+L\+DS~7}
+
+\mbox{\Hypertarget{zic_8c_a67626021bea3e029401956b46672d081}\label{zic_8c_a67626021bea3e029401956b46672d081}} 
+\index{zic.c@{zic.c}!LF\_FROM@{LF\_FROM}}
+\index{LF\_FROM@{LF\_FROM}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LF\_FROM}{LF\_FROM}}
+{\footnotesize\ttfamily \#define L\+F\+\_\+\+F\+R\+OM~1}
+
+\mbox{\Hypertarget{zic_8c_a773649ec71b85ace4e83f5ed722e7fa5}\label{zic_8c_a773649ec71b85ace4e83f5ed722e7fa5}} 
+\index{zic.c@{zic.c}!LF\_TO@{LF\_TO}}
+\index{LF\_TO@{LF\_TO}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LF\_TO}{LF\_TO}}
+{\footnotesize\ttfamily \#define L\+F\+\_\+\+TO~2}
+
+\mbox{\Hypertarget{zic_8c_a4c32da18b366fbea39b90a529a31a4f9}\label{zic_8c_a4c32da18b366fbea39b90a529a31a4f9}} 
+\index{zic.c@{zic.c}!LINK\_FIELDS@{LINK\_FIELDS}}
+\index{LINK\_FIELDS@{LINK\_FIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LINK\_FIELDS}{LINK\_FIELDS}}
+{\footnotesize\ttfamily \#define L\+I\+N\+K\+\_\+\+F\+I\+E\+L\+DS~3}
+
+\mbox{\Hypertarget{zic_8c_a475287b91e8967c83b2b5df49aaf1dce}\label{zic_8c_a475287b91e8967c83b2b5df49aaf1dce}} 
+\index{zic.c@{zic.c}!LP\_CORR@{LP\_CORR}}
+\index{LP\_CORR@{LP\_CORR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LP\_CORR}{LP\_CORR}}
+{\footnotesize\ttfamily \#define L\+P\+\_\+\+C\+O\+RR~5}
+
+\mbox{\Hypertarget{zic_8c_ae15dcf9981790022fa1e0bb15eddfab1}\label{zic_8c_ae15dcf9981790022fa1e0bb15eddfab1}} 
+\index{zic.c@{zic.c}!LP\_DAY@{LP\_DAY}}
+\index{LP\_DAY@{LP\_DAY}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LP\_DAY}{LP\_DAY}}
+{\footnotesize\ttfamily \#define L\+P\+\_\+\+D\+AY~3}
+
+\mbox{\Hypertarget{zic_8c_a32888d64aef701aaaf0fbefab8ef9815}\label{zic_8c_a32888d64aef701aaaf0fbefab8ef9815}} 
+\index{zic.c@{zic.c}!LP\_MONTH@{LP\_MONTH}}
+\index{LP\_MONTH@{LP\_MONTH}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LP\_MONTH}{LP\_MONTH}}
+{\footnotesize\ttfamily \#define L\+P\+\_\+\+M\+O\+N\+TH~2}
+
+\mbox{\Hypertarget{zic_8c_acbaba96c89a91dea8c3c5dced27235b5}\label{zic_8c_acbaba96c89a91dea8c3c5dced27235b5}} 
+\index{zic.c@{zic.c}!LP\_ROLL@{LP\_ROLL}}
+\index{LP\_ROLL@{LP\_ROLL}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LP\_ROLL}{LP\_ROLL}}
+{\footnotesize\ttfamily \#define L\+P\+\_\+\+R\+O\+LL~6}
+
+\mbox{\Hypertarget{zic_8c_a48978d005007ba5c282f60f6745f2f1c}\label{zic_8c_a48978d005007ba5c282f60f6745f2f1c}} 
+\index{zic.c@{zic.c}!LP\_TIME@{LP\_TIME}}
+\index{LP\_TIME@{LP\_TIME}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LP\_TIME}{LP\_TIME}}
+{\footnotesize\ttfamily \#define L\+P\+\_\+\+T\+I\+ME~4}
+
+\mbox{\Hypertarget{zic_8c_a77c828b88bf2d40b07ecf88052bcca86}\label{zic_8c_a77c828b88bf2d40b07ecf88052bcca86}} 
+\index{zic.c@{zic.c}!LP\_YEAR@{LP\_YEAR}}
+\index{LP\_YEAR@{LP\_YEAR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{LP\_YEAR}{LP\_YEAR}}
+{\footnotesize\ttfamily \#define L\+P\+\_\+\+Y\+E\+AR~1}
+
+\mbox{\Hypertarget{zic_8c_abbf785329e9596c8906bc2f9627e32ae}\label{zic_8c_abbf785329e9596c8906bc2f9627e32ae}} 
+\index{zic.c@{zic.c}!MKDIR\_UMASK@{MKDIR\_UMASK}}
+\index{MKDIR\_UMASK@{MKDIR\_UMASK}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{MKDIR\_UMASK}{MKDIR\_UMASK}}
+{\footnotesize\ttfamily \#define M\+K\+D\+I\+R\+\_\+\+U\+M\+A\+SK~0755}
+
+\mbox{\Hypertarget{zic_8c_a5251e2ab8ae07fe09df925fdef690d49}\label{zic_8c_a5251e2ab8ae07fe09df925fdef690d49}} 
+\index{zic.c@{zic.c}!RF\_ABBRVAR@{RF\_ABBRVAR}}
+\index{RF\_ABBRVAR@{RF\_ABBRVAR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_ABBRVAR}{RF\_ABBRVAR}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+A\+B\+B\+R\+V\+AR~9}
+
+\mbox{\Hypertarget{zic_8c_a9a405966cdcb7ff4be3812611d883197}\label{zic_8c_a9a405966cdcb7ff4be3812611d883197}} 
+\index{zic.c@{zic.c}!RF\_COMMAND@{RF\_COMMAND}}
+\index{RF\_COMMAND@{RF\_COMMAND}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_COMMAND}{RF\_COMMAND}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+C\+O\+M\+M\+A\+ND~4}
+
+\mbox{\Hypertarget{zic_8c_ab86c6eddbae9b92fe0f5b3f459528b68}\label{zic_8c_ab86c6eddbae9b92fe0f5b3f459528b68}} 
+\index{zic.c@{zic.c}!RF\_DAY@{RF\_DAY}}
+\index{RF\_DAY@{RF\_DAY}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_DAY}{RF\_DAY}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+D\+AY~6}
+
+\mbox{\Hypertarget{zic_8c_a87af20ca99dbcbf64e1446577406dd7c}\label{zic_8c_a87af20ca99dbcbf64e1446577406dd7c}} 
+\index{zic.c@{zic.c}!RF\_HIYEAR@{RF\_HIYEAR}}
+\index{RF\_HIYEAR@{RF\_HIYEAR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_HIYEAR}{RF\_HIYEAR}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+H\+I\+Y\+E\+AR~3}
+
+\mbox{\Hypertarget{zic_8c_a1919090bf541d216099a5abfd8a2548f}\label{zic_8c_a1919090bf541d216099a5abfd8a2548f}} 
+\index{zic.c@{zic.c}!RF\_LOYEAR@{RF\_LOYEAR}}
+\index{RF\_LOYEAR@{RF\_LOYEAR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_LOYEAR}{RF\_LOYEAR}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+L\+O\+Y\+E\+AR~2}
+
+\mbox{\Hypertarget{zic_8c_ad4a9e113f150f4a4cc16dc808fbb1d4a}\label{zic_8c_ad4a9e113f150f4a4cc16dc808fbb1d4a}} 
+\index{zic.c@{zic.c}!RF\_MONTH@{RF\_MONTH}}
+\index{RF\_MONTH@{RF\_MONTH}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_MONTH}{RF\_MONTH}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+M\+O\+N\+TH~5}
+
+\mbox{\Hypertarget{zic_8c_aa59d428a5dcf1a6b52194ef84252390a}\label{zic_8c_aa59d428a5dcf1a6b52194ef84252390a}} 
+\index{zic.c@{zic.c}!RF\_NAME@{RF\_NAME}}
+\index{RF\_NAME@{RF\_NAME}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_NAME}{RF\_NAME}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+N\+A\+ME~1}
+
+\mbox{\Hypertarget{zic_8c_a9abf9a132de00f0de10bf82233f9e4bf}\label{zic_8c_a9abf9a132de00f0de10bf82233f9e4bf}} 
+\index{zic.c@{zic.c}!RF\_STDOFF@{RF\_STDOFF}}
+\index{RF\_STDOFF@{RF\_STDOFF}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_STDOFF}{RF\_STDOFF}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+S\+T\+D\+O\+FF~8}
+
+\mbox{\Hypertarget{zic_8c_a958b7ce8b6f72d410c933cd23153e3b6}\label{zic_8c_a958b7ce8b6f72d410c933cd23153e3b6}} 
+\index{zic.c@{zic.c}!RF\_TOD@{RF\_TOD}}
+\index{RF\_TOD@{RF\_TOD}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RF\_TOD}{RF\_TOD}}
+{\footnotesize\ttfamily \#define R\+F\+\_\+\+T\+OD~7}
+
+\mbox{\Hypertarget{zic_8c_aca52f43d44322313e6a01571c26094b4}\label{zic_8c_aca52f43d44322313e6a01571c26094b4}} 
+\index{zic.c@{zic.c}!RULE\_FIELDS@{RULE\_FIELDS}}
+\index{RULE\_FIELDS@{RULE\_FIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{RULE\_FIELDS}{RULE\_FIELDS}}
+{\footnotesize\ttfamily \#define R\+U\+L\+E\+\_\+\+F\+I\+E\+L\+DS~10}
+
+\mbox{\Hypertarget{zic_8c_a6999b7aebd683dd5a3c77ce4e2c0d9f5}\label{zic_8c_a6999b7aebd683dd5a3c77ce4e2c0d9f5}} 
+\index{zic.c@{zic.c}!SCNdZIC@{SCNdZIC}}
+\index{SCNdZIC@{SCNdZIC}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{SCNdZIC}{SCNdZIC}}
+{\footnotesize\ttfamily \#define S\+C\+Nd\+Z\+IC~\mbox{\hyperlink{private_8h_a2a2d9ca0555230eab89e52e442bea64c}{S\+C\+Nd\+F\+A\+S\+T64}}}
+
+\mbox{\Hypertarget{zic_8c_af65f578752e4d87a69f72c95984632a3}\label{zic_8c_af65f578752e4d87a69f72c95984632a3}} 
+\index{zic.c@{zic.c}!TIME\_T\_BITS\_IN\_FILE@{TIME\_T\_BITS\_IN\_FILE}}
+\index{TIME\_T\_BITS\_IN\_FILE@{TIME\_T\_BITS\_IN\_FILE}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{TIME\_T\_BITS\_IN\_FILE}{TIME\_T\_BITS\_IN\_FILE}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+\_\+\+T\+\_\+\+B\+I\+T\+S\+\_\+\+I\+N\+\_\+\+F\+I\+LE~64}
+
+\mbox{\Hypertarget{zic_8c_a01cf0d51da2b43a1b368653affda8cdc}\label{zic_8c_a01cf0d51da2b43a1b368653affda8cdc}} 
+\index{zic.c@{zic.c}!YR\_MAXIMUM@{YR\_MAXIMUM}}
+\index{YR\_MAXIMUM@{YR\_MAXIMUM}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{YR\_MAXIMUM}{YR\_MAXIMUM}}
+{\footnotesize\ttfamily \#define Y\+R\+\_\+\+M\+A\+X\+I\+M\+UM~1}
+
+\mbox{\Hypertarget{zic_8c_ac87ffe794e8c43496a987714d9608965}\label{zic_8c_ac87ffe794e8c43496a987714d9608965}} 
+\index{zic.c@{zic.c}!YR\_MINIMUM@{YR\_MINIMUM}}
+\index{YR\_MINIMUM@{YR\_MINIMUM}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{YR\_MINIMUM}{YR\_MINIMUM}}
+{\footnotesize\ttfamily \#define Y\+R\+\_\+\+M\+I\+N\+I\+M\+UM~0}
+
+\mbox{\Hypertarget{zic_8c_a18076616e0611cdd6ea81e65a6a24ae7}\label{zic_8c_a18076616e0611cdd6ea81e65a6a24ae7}} 
+\index{zic.c@{zic.c}!YR\_ONLY@{YR\_ONLY}}
+\index{YR\_ONLY@{YR\_ONLY}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{YR\_ONLY}{YR\_ONLY}}
+{\footnotesize\ttfamily \#define Y\+R\+\_\+\+O\+N\+LY~2}
+
+\mbox{\Hypertarget{zic_8c_a01cfcdafb2f084038e46f33cd67cbb6d}\label{zic_8c_a01cfcdafb2f084038e46f33cd67cbb6d}} 
+\index{zic.c@{zic.c}!ZF\_FORMAT@{ZF\_FORMAT}}
+\index{ZF\_FORMAT@{ZF\_FORMAT}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_FORMAT}{ZF\_FORMAT}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+F\+O\+R\+M\+AT~4}
+
+\mbox{\Hypertarget{zic_8c_aeeb748f87a53fa2d327fc5976419671d}\label{zic_8c_aeeb748f87a53fa2d327fc5976419671d}} 
+\index{zic.c@{zic.c}!ZF\_GMTOFF@{ZF\_GMTOFF}}
+\index{ZF\_GMTOFF@{ZF\_GMTOFF}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_GMTOFF}{ZF\_GMTOFF}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+G\+M\+T\+O\+FF~2}
+
+\mbox{\Hypertarget{zic_8c_ad3d7d96492c93c2992a571c74a3d7224}\label{zic_8c_ad3d7d96492c93c2992a571c74a3d7224}} 
+\index{zic.c@{zic.c}!ZF\_NAME@{ZF\_NAME}}
+\index{ZF\_NAME@{ZF\_NAME}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_NAME}{ZF\_NAME}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+N\+A\+ME~1}
+
+\mbox{\Hypertarget{zic_8c_a0f2be3e93452b5e67b0d838e25e61b88}\label{zic_8c_a0f2be3e93452b5e67b0d838e25e61b88}} 
+\index{zic.c@{zic.c}!ZF\_RULE@{ZF\_RULE}}
+\index{ZF\_RULE@{ZF\_RULE}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_RULE}{ZF\_RULE}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+R\+U\+LE~3}
+
+\mbox{\Hypertarget{zic_8c_a4907b7141ee3fc74f9218634527046ea}\label{zic_8c_a4907b7141ee3fc74f9218634527046ea}} 
+\index{zic.c@{zic.c}!ZF\_TILDAY@{ZF\_TILDAY}}
+\index{ZF\_TILDAY@{ZF\_TILDAY}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_TILDAY}{ZF\_TILDAY}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+T\+I\+L\+D\+AY~7}
+
+\mbox{\Hypertarget{zic_8c_aa310302e4545663de9a05db822d22ffc}\label{zic_8c_aa310302e4545663de9a05db822d22ffc}} 
+\index{zic.c@{zic.c}!ZF\_TILMONTH@{ZF\_TILMONTH}}
+\index{ZF\_TILMONTH@{ZF\_TILMONTH}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_TILMONTH}{ZF\_TILMONTH}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+T\+I\+L\+M\+O\+N\+TH~6}
+
+\mbox{\Hypertarget{zic_8c_adbc1e579268e58cd8ea8b05f47c23c04}\label{zic_8c_adbc1e579268e58cd8ea8b05f47c23c04}} 
+\index{zic.c@{zic.c}!ZF\_TILTIME@{ZF\_TILTIME}}
+\index{ZF\_TILTIME@{ZF\_TILTIME}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_TILTIME}{ZF\_TILTIME}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+T\+I\+L\+T\+I\+ME~8}
+
+\mbox{\Hypertarget{zic_8c_a2f82834ca449999f1611d129bd858385}\label{zic_8c_a2f82834ca449999f1611d129bd858385}} 
+\index{zic.c@{zic.c}!ZF\_TILYEAR@{ZF\_TILYEAR}}
+\index{ZF\_TILYEAR@{ZF\_TILYEAR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZF\_TILYEAR}{ZF\_TILYEAR}}
+{\footnotesize\ttfamily \#define Z\+F\+\_\+\+T\+I\+L\+Y\+E\+AR~5}
+
+\mbox{\Hypertarget{zic_8c_ae7a5ced55549ee593f19799f9e1ff1fc}\label{zic_8c_ae7a5ced55549ee593f19799f9e1ff1fc}} 
+\index{zic.c@{zic.c}!ZFC\_FORMAT@{ZFC\_FORMAT}}
+\index{ZFC\_FORMAT@{ZFC\_FORMAT}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_FORMAT}{ZFC\_FORMAT}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+F\+O\+R\+M\+AT~2}
+
+\mbox{\Hypertarget{zic_8c_a1da312d9128bd1281054800b6a0be5d9}\label{zic_8c_a1da312d9128bd1281054800b6a0be5d9}} 
+\index{zic.c@{zic.c}!ZFC\_GMTOFF@{ZFC\_GMTOFF}}
+\index{ZFC\_GMTOFF@{ZFC\_GMTOFF}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_GMTOFF}{ZFC\_GMTOFF}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+G\+M\+T\+O\+FF~0}
+
+\mbox{\Hypertarget{zic_8c_a6a5197d484cd52c56e5656295c61183c}\label{zic_8c_a6a5197d484cd52c56e5656295c61183c}} 
+\index{zic.c@{zic.c}!ZFC\_RULE@{ZFC\_RULE}}
+\index{ZFC\_RULE@{ZFC\_RULE}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_RULE}{ZFC\_RULE}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+R\+U\+LE~1}
+
+\mbox{\Hypertarget{zic_8c_a036ce979ba22c19ae50ff23753863dbd}\label{zic_8c_a036ce979ba22c19ae50ff23753863dbd}} 
+\index{zic.c@{zic.c}!ZFC\_TILDAY@{ZFC\_TILDAY}}
+\index{ZFC\_TILDAY@{ZFC\_TILDAY}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_TILDAY}{ZFC\_TILDAY}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+T\+I\+L\+D\+AY~5}
+
+\mbox{\Hypertarget{zic_8c_a134ac1be263b629f6774119b8e4d5c98}\label{zic_8c_a134ac1be263b629f6774119b8e4d5c98}} 
+\index{zic.c@{zic.c}!ZFC\_TILMONTH@{ZFC\_TILMONTH}}
+\index{ZFC\_TILMONTH@{ZFC\_TILMONTH}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_TILMONTH}{ZFC\_TILMONTH}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+T\+I\+L\+M\+O\+N\+TH~4}
+
+\mbox{\Hypertarget{zic_8c_a6f06f791ac58eb9b49f140309049eee2}\label{zic_8c_a6f06f791ac58eb9b49f140309049eee2}} 
+\index{zic.c@{zic.c}!ZFC\_TILTIME@{ZFC\_TILTIME}}
+\index{ZFC\_TILTIME@{ZFC\_TILTIME}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_TILTIME}{ZFC\_TILTIME}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+T\+I\+L\+T\+I\+ME~6}
+
+\mbox{\Hypertarget{zic_8c_a0da79dd34f7884967c46b7db05456206}\label{zic_8c_a0da79dd34f7884967c46b7db05456206}} 
+\index{zic.c@{zic.c}!ZFC\_TILYEAR@{ZFC\_TILYEAR}}
+\index{ZFC\_TILYEAR@{ZFC\_TILYEAR}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZFC\_TILYEAR}{ZFC\_TILYEAR}}
+{\footnotesize\ttfamily \#define Z\+F\+C\+\_\+\+T\+I\+L\+Y\+E\+AR~3}
+
+\mbox{\Hypertarget{zic_8c_a952951ea9303bbedef6fe8d13b2185e6}\label{zic_8c_a952951ea9303bbedef6fe8d13b2185e6}} 
+\index{zic.c@{zic.c}!ZIC\_MAX@{ZIC\_MAX}}
+\index{ZIC\_MAX@{ZIC\_MAX}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZIC\_MAX}{ZIC\_MAX}}
+{\footnotesize\ttfamily \#define Z\+I\+C\+\_\+\+M\+AX~\mbox{\hyperlink{private_8h_a13c95cf9c209d8daacb36cbf0d5ba275}{I\+N\+T\+\_\+\+F\+A\+S\+T64\+\_\+\+M\+AX}}}
+
+\mbox{\Hypertarget{zic_8c_ad670341bda1f67dc196642cafa4e1acc}\label{zic_8c_ad670341bda1f67dc196642cafa4e1acc}} 
+\index{zic.c@{zic.c}!ZIC\_MAX\_ABBR\_LEN\_WO\_WARN@{ZIC\_MAX\_ABBR\_LEN\_WO\_WARN}}
+\index{ZIC\_MAX\_ABBR\_LEN\_WO\_WARN@{ZIC\_MAX\_ABBR\_LEN\_WO\_WARN}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZIC\_MAX\_ABBR\_LEN\_WO\_WARN}{ZIC\_MAX\_ABBR\_LEN\_WO\_WARN}}
+{\footnotesize\ttfamily \#define Z\+I\+C\+\_\+\+M\+A\+X\+\_\+\+A\+B\+B\+R\+\_\+\+L\+E\+N\+\_\+\+W\+O\+\_\+\+W\+A\+RN~6}
+
+\mbox{\Hypertarget{zic_8c_a8610beb5650f262ba9efbad224f3f9ce}\label{zic_8c_a8610beb5650f262ba9efbad224f3f9ce}} 
+\index{zic.c@{zic.c}!ZIC\_MIN@{ZIC\_MIN}}
+\index{ZIC\_MIN@{ZIC\_MIN}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZIC\_MIN}{ZIC\_MIN}}
+{\footnotesize\ttfamily \#define Z\+I\+C\+\_\+\+M\+IN~\mbox{\hyperlink{private_8h_a50f0fdcb00ea2500cec0f3d6d45c36f3}{I\+N\+T\+\_\+\+F\+A\+S\+T64\+\_\+\+M\+IN}}}
+
+\mbox{\Hypertarget{zic_8c_a042f89a46703d9543b28fd0581ba9714}\label{zic_8c_a042f89a46703d9543b28fd0581ba9714}} 
+\index{zic.c@{zic.c}!ZIC\_VERSION@{ZIC\_VERSION}}
+\index{ZIC\_VERSION@{ZIC\_VERSION}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZIC\_VERSION}{ZIC\_VERSION}}
+{\footnotesize\ttfamily \#define Z\+I\+C\+\_\+\+V\+E\+R\+S\+I\+ON~\textquotesingle{}3\textquotesingle{}}
+
+\mbox{\Hypertarget{zic_8c_a6290e2daa4e2d5f587dcbc6112cb80f1}\label{zic_8c_a6290e2daa4e2d5f587dcbc6112cb80f1}} 
+\index{zic.c@{zic.c}!ZIC\_VERSION\_PRE\_2013@{ZIC\_VERSION\_PRE\_2013}}
+\index{ZIC\_VERSION\_PRE\_2013@{ZIC\_VERSION\_PRE\_2013}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZIC\_VERSION\_PRE\_2013}{ZIC\_VERSION\_PRE\_2013}}
+{\footnotesize\ttfamily \#define Z\+I\+C\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+P\+R\+E\+\_\+2013~\textquotesingle{}2\textquotesingle{}}
+
+\mbox{\Hypertarget{zic_8c_a4bc014c8d9864d7ab194b62845a33691}\label{zic_8c_a4bc014c8d9864d7ab194b62845a33691}} 
+\index{zic.c@{zic.c}!ZONE\_MAXFIELDS@{ZONE\_MAXFIELDS}}
+\index{ZONE\_MAXFIELDS@{ZONE\_MAXFIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZONE\_MAXFIELDS}{ZONE\_MAXFIELDS}}
+{\footnotesize\ttfamily \#define Z\+O\+N\+E\+\_\+\+M\+A\+X\+F\+I\+E\+L\+DS~9}
+
+\mbox{\Hypertarget{zic_8c_a5311e4d468e1da7a0de22be276709531}\label{zic_8c_a5311e4d468e1da7a0de22be276709531}} 
+\index{zic.c@{zic.c}!ZONE\_MINFIELDS@{ZONE\_MINFIELDS}}
+\index{ZONE\_MINFIELDS@{ZONE\_MINFIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZONE\_MINFIELDS}{ZONE\_MINFIELDS}}
+{\footnotesize\ttfamily \#define Z\+O\+N\+E\+\_\+\+M\+I\+N\+F\+I\+E\+L\+DS~5}
+
+\mbox{\Hypertarget{zic_8c_a6078ee81a8394c57de441842e62e4d9e}\label{zic_8c_a6078ee81a8394c57de441842e62e4d9e}} 
+\index{zic.c@{zic.c}!ZONEC\_MAXFIELDS@{ZONEC\_MAXFIELDS}}
+\index{ZONEC\_MAXFIELDS@{ZONEC\_MAXFIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZONEC\_MAXFIELDS}{ZONEC\_MAXFIELDS}}
+{\footnotesize\ttfamily \#define Z\+O\+N\+E\+C\+\_\+\+M\+A\+X\+F\+I\+E\+L\+DS~7}
+
+\mbox{\Hypertarget{zic_8c_aede783c7d84f7977c075e62ec3e00df4}\label{zic_8c_aede783c7d84f7977c075e62ec3e00df4}} 
+\index{zic.c@{zic.c}!ZONEC\_MINFIELDS@{ZONEC\_MINFIELDS}}
+\index{ZONEC\_MINFIELDS@{ZONEC\_MINFIELDS}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{ZONEC\_MINFIELDS}{ZONEC\_MINFIELDS}}
+{\footnotesize\ttfamily \#define Z\+O\+N\+E\+C\+\_\+\+M\+I\+N\+F\+I\+E\+L\+DS~3}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{zic_8c_abca162e1726dda567eadec185a2374c8}\label{zic_8c_abca162e1726dda567eadec185a2374c8}} 
+\index{zic.c@{zic.c}!zic\_t@{zic\_t}}
+\index{zic\_t@{zic\_t}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{zic\_t}{zic\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{private_8h_aada3eab56052f7847c2187c342cb11d2}{int\+\_\+fast64\+\_\+t}} \mbox{\hyperlink{zic_8c_abca162e1726dda567eadec185a2374c8}{zic\+\_\+t}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{zic_8c_ac2edcf4e955db86c2deb14eb460607a2}\label{zic_8c_ac2edcf4e955db86c2deb14eb460607a2}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PERCENT\_Z\_LEN\_BOUND@{PERCENT\_Z\_LEN\_BOUND}!zic.c@{zic.c}}\index{zic.c@{zic.c}!PERCENT\_Z\_LEN\_BOUND@{PERCENT\_Z\_LEN\_BOUND}}}\mbox{\Hypertarget{zic_8c_ac2edcf4e955db86c2deb14eb460607a2a928210abee0eb46b8309e8ca8a68bc1a}\label{zic_8c_ac2edcf4e955db86c2deb14eb460607a2a928210abee0eb46b8309e8ca8a68bc1a}} 
+P\+E\+R\+C\+E\+N\+T\+\_\+\+Z\+\_\+\+L\+E\+N\+\_\+\+B\+O\+U\+ND&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{zic_8c_aa91808171edab519dad6cbe8119f5d9b}\label{zic_8c_aa91808171edab519dad6cbe8119f5d9b}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YEAR\_BY\_YEAR\_ZONE@{YEAR\_BY\_YEAR\_ZONE}!zic.c@{zic.c}}\index{zic.c@{zic.c}!YEAR\_BY\_YEAR\_ZONE@{YEAR\_BY\_YEAR\_ZONE}}}\mbox{\Hypertarget{zic_8c_aa91808171edab519dad6cbe8119f5d9bac46be3fb26f3c5fe44aef172c8d7bf09}\label{zic_8c_aa91808171edab519dad6cbe8119f5d9bac46be3fb26f3c5fe44aef172c8d7bf09}} 
+Y\+E\+A\+R\+\_\+\+B\+Y\+\_\+\+Y\+E\+A\+R\+\_\+\+Z\+O\+NE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{zic_8c_aaf2ceae0460295ed1468985b7423368a}\label{zic_8c_aaf2ceae0460295ed1468985b7423368a}} 
+\index{zic.c@{zic.c}!getopt@{getopt}}
+\index{getopt@{getopt}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{getopt()}{getopt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} getopt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{zic_8c_a1c5deeaf333a2ca56566c1076010b4aa}\label{zic_8c_a1c5deeaf333a2ca56566c1076010b4aa}} 
+\index{zic.c@{zic.c}!link@{link}}
+\index{link@{link}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{link()}{link()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{structlink}{link}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{fromname,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{toname }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{zic_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{zic_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{zic.c@{zic.c}!main@{main}}
+\index{main@{main}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{zic_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}\label{zic_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}} 
+\index{zic.c@{zic.c}!optarg@{optarg}}
+\index{optarg@{optarg}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{optarg}{optarg}}
+{\footnotesize\ttfamily char$\ast$ optarg}
+
+\mbox{\Hypertarget{zic_8c_ad5e1c16213bbee2d5e8cc363309f418c}\label{zic_8c_ad5e1c16213bbee2d5e8cc363309f418c}} 
+\index{zic.c@{zic.c}!optind@{optind}}
+\index{optind@{optind}!zic.c@{zic.c}}
+\doxysubsubsection{\texorpdfstring{optind}{optind}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} optind}
+

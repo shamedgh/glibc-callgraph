@@ -1,0 +1,61 @@
+\hypertarget{posix_2shm-directory_8h}{}\doxysection{sysdeps/posix/shm-\/directory.h File Reference}
+\label{posix_2shm-directory_8h}\index{sysdeps/posix/shm-\/directory.h@{sysdeps/posix/shm-\/directory.h}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{posix_2shm-directory_8h_ae943ab83ae1135c0b6b5bf45ec5030cc}{S\+H\+M\+\_\+\+G\+E\+T\+\_\+\+N\+A\+ME}}(errno\+\_\+for\+\_\+invalid,  retval\+\_\+for\+\_\+invalid,  prefix)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{posix_2shm-directory_8h_a1546e5c348da1ae12793f2d2e9413274}{\+\_\+\+\_\+shm\+\_\+directory}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$\mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{posix_2shm-directory_8h_ae943ab83ae1135c0b6b5bf45ec5030cc}\label{posix_2shm-directory_8h_ae943ab83ae1135c0b6b5bf45ec5030cc}} 
+\index{shm-\/directory.h@{shm-\/directory.h}!SHM\_GET\_NAME@{SHM\_GET\_NAME}}
+\index{SHM\_GET\_NAME@{SHM\_GET\_NAME}!shm-\/directory.h@{shm-\/directory.h}}
+\doxysubsubsection{\texorpdfstring{SHM\_GET\_NAME}{SHM\_GET\_NAME}}
+{\footnotesize\ttfamily \#define S\+H\+M\+\_\+\+G\+E\+T\+\_\+\+N\+A\+ME(\begin{DoxyParamCaption}\item[{}]{errno\+\_\+for\+\_\+invalid,  }\item[{}]{retval\+\_\+for\+\_\+invalid,  }\item[{}]{prefix }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t} shm\_dirlen;                                \(\backslash\)}
+\DoxyCodeLine{  const \textcolor{keywordtype}{char} *shm\_dir = \mbox{\hyperlink{posix_2shm-directory_8h_a1546e5c348da1ae12793f2d2e9413274}{\_\_shm\_directory}} (\&shm\_dirlen);                 \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* If we don't know what directory to use, there is nothing we can do.  */}  \(\backslash\)}
+\DoxyCodeLine{  if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (shm\_dir == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}))                     \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      \_\_set\_errno (\mbox{\hyperlink{unix_2sysv_2linux_2hppa_2atomic-machine_8h_a43785b9969e0bd1af532dbde06c5540b}{ENOSYS}});                             \(\backslash\)}
+\DoxyCodeLine{      return retval\_for\_invalid;                          \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Construct the filename.  */}                          \(\backslash\)}
+\DoxyCodeLine{  while (\mbox{\hyperlink{structname}{name}}[0] == \textcolor{charliteral}{'/'})                              \(\backslash\)}
+\DoxyCodeLine{    ++\mbox{\hyperlink{ldconfig_8c_a8f8f80d37794cde9472343e4487ba3eb}{name}};                                   \(\backslash\)}
+\DoxyCodeLine{  size\_t namelen = \mbox{\hyperlink{stpcpy-power7_8c_a417fef1b5cd577cfc9a2836bb40fa885}{strlen}} (\mbox{\hyperlink{structname}{name}}) + 1;                       \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Validate the filename.  */}                           \(\backslash\)}
+\DoxyCodeLine{  if (namelen == 1 || namelen >= \mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2local__lim_8h_ac64541bdd81c961304b9babef1402640}{NAME\_MAX}} || \mbox{\hyperlink{putenv_8c_a907b5e1042ad1a6bb4914ecc7d12f55c}{strchr}} (\mbox{\hyperlink{structname}{name}}, \textcolor{charliteral}{'/'}) != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})      \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      \_\_set\_errno (errno\_for\_invalid);                        \(\backslash\)}
+\DoxyCodeLine{      return retval\_for\_invalid;                          \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  char *shm\_name = \mbox{\hyperlink{include_2alloca_8h_ae994e9001f299f825ac7251f022cb254}{\_\_alloca}} (shm\_dirlen + \textcolor{keyword}{sizeof} prefix -\/ 1 + namelen);       \(\backslash\)}
+\DoxyCodeLine{  \_\_mempcpy (\mbox{\hyperlink{argp-namefrob_8h_a9a0c8e53061f1c8dacb2c7ba236dfc89}{\_\_mempcpy}} (\mbox{\hyperlink{argp-namefrob_8h_a9a0c8e53061f1c8dacb2c7ba236dfc89}{\_\_mempcpy}} (shm\_name, shm\_dir, shm\_dirlen),          \(\backslash\)}
+\DoxyCodeLine{                        prefix, \textcolor{keyword}{sizeof} prefix -\/ 1),               \(\backslash\)}
+\DoxyCodeLine{             \mbox{\hyperlink{structname}{name}}, namelen)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{posix_2shm-directory_8h_a1546e5c348da1ae12793f2d2e9413274}\label{posix_2shm-directory_8h_a1546e5c348da1ae12793f2d2e9413274}} 
+\index{shm-\/directory.h@{shm-\/directory.h}!\_\_shm\_directory@{\_\_shm\_directory}}
+\index{\_\_shm\_directory@{\_\_shm\_directory}!shm-\/directory.h@{shm-\/directory.h}}
+\doxysubsubsection{\texorpdfstring{\_\_shm\_directory()}{\_\_shm\_directory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ \+\_\+\+\_\+shm\+\_\+directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{len }\end{DoxyParamCaption})}
+

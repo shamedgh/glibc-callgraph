@@ -1,0 +1,115 @@
+\hypertarget{nscd__helper_8c}{}\doxysection{nscd/nscd\+\_\+helper.c File Reference}
+\label{nscd__helper_8c}\index{nscd/nscd\_helper.c@{nscd/nscd\_helper.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/poll.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/un.\+h$>$}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+{\ttfamily \#include $<$nis/rpcsvc/nis.\+h$>$}\newline
+{\ttfamily \#include $<$kernel-\/features.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nscd-\/client.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nscd__helper_8c_a68f108d08f67df09b5d447b12e016c13}{E\+X\+T\+R\+A\+\_\+\+R\+E\+C\+E\+I\+V\+E\+\_\+\+T\+I\+ME}}~200
+\item 
+\#define \mbox{\hyperlink{nscd__helper_8c_a9f55d0e90dc8cc6b2287312435cdde48}{M\+S\+G\+\_\+\+N\+O\+S\+I\+G\+N\+AL}}~0
+\item 
+\#define \mbox{\hyperlink{nscd__helper_8c_a18c958c07acfa7b8ee38d50cf367493f}{M\+I\+N\+I\+M\+U\+M\+\_\+\+H\+A\+S\+H\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE}}~(\mbox{\hyperlink{dcigettext_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structhashentry}{hashentry}}, dellist) + sizeof (\mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \mbox{\hyperlink{nscd__helper_8c_a0650a858501d39d0ede7ac024257d21f}{\+\_\+\+\_\+readall}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}})
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \mbox{\hyperlink{nscd__helper_8c_a9c3afac8fc6ff89b60f1202da334471d}{\+\_\+\+\_\+readvall}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} $\ast$iov, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} iovcnt)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd__helper_8c_a73d0e5c41714f6b99bd131ba8c4a896e}{\+\_\+\+\_\+nscd\+\_\+unmap}} (struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$mapped)
+\item 
+struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$ \mbox{\hyperlink{nscd__helper_8c_a5b2ec3cab735bec2ae868b9ef821c32f}{\+\_\+\+\_\+nscd\+\_\+get\+\_\+mapping}} (\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}} \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$key, struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$$\ast$mappedp)
+\item 
+struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$ \mbox{\hyperlink{nscd__helper_8c_afc1394d2c68b4331889e6098500d29db}{\+\_\+\+\_\+nscd\+\_\+get\+\_\+map\+\_\+ref}} (\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}} \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, volatile struct \mbox{\hyperlink{structlocked__map__ptr}{locked\+\_\+map\+\_\+ptr}} $\ast$mapptr, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$gc\+\_\+cyclep)
+\item 
+struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$ \mbox{\hyperlink{nscd__helper_8c_a89fb2f76e3763c3187aaccd34d0d5092}{\+\_\+\+\_\+nscd\+\_\+cache\+\_\+search}} (\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}} \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$key, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} keylen, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$mapped, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{tst-fopenloc2_8c_a3d12e161726566d24a1d0cf6c6b416bb}{datalen}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd__helper_8c_a2541a42b0b98a6a3d22e51d927205749}{\+\_\+\+\_\+nscd\+\_\+open\+\_\+socket}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$key, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} keylen, \mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}} \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$response, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} responselen)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nscd__helper_8c_a68f108d08f67df09b5d447b12e016c13}\label{nscd__helper_8c_a68f108d08f67df09b5d447b12e016c13}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!EXTRA\_RECEIVE\_TIME@{EXTRA\_RECEIVE\_TIME}}
+\index{EXTRA\_RECEIVE\_TIME@{EXTRA\_RECEIVE\_TIME}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_RECEIVE\_TIME}{EXTRA\_RECEIVE\_TIME}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+R\+E\+C\+E\+I\+V\+E\+\_\+\+T\+I\+ME~200}
+
+\mbox{\Hypertarget{nscd__helper_8c_a18c958c07acfa7b8ee38d50cf367493f}\label{nscd__helper_8c_a18c958c07acfa7b8ee38d50cf367493f}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!MINIMUM\_HASHENTRY\_SIZE@{MINIMUM\_HASHENTRY\_SIZE}}
+\index{MINIMUM\_HASHENTRY\_SIZE@{MINIMUM\_HASHENTRY\_SIZE}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{MINIMUM\_HASHENTRY\_SIZE}{MINIMUM\_HASHENTRY\_SIZE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+I\+M\+U\+M\+\_\+\+H\+A\+S\+H\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE~(\mbox{\hyperlink{dcigettext_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (struct \mbox{\hyperlink{structhashentry}{hashentry}}, dellist) + sizeof (\mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}}))}
+
+\mbox{\Hypertarget{nscd__helper_8c_a9f55d0e90dc8cc6b2287312435cdde48}\label{nscd__helper_8c_a9f55d0e90dc8cc6b2287312435cdde48}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!MSG\_NOSIGNAL@{MSG\_NOSIGNAL}}
+\index{MSG\_NOSIGNAL@{MSG\_NOSIGNAL}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{MSG\_NOSIGNAL}{MSG\_NOSIGNAL}}
+{\footnotesize\ttfamily \#define M\+S\+G\+\_\+\+N\+O\+S\+I\+G\+N\+AL~0}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nscd__helper_8c_a89fb2f76e3763c3187aaccd34d0d5092}\label{nscd__helper_8c_a89fb2f76e3763c3187aaccd34d0d5092}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_nscd\_cache\_search@{\_\_nscd\_cache\_search}}
+\index{\_\_nscd\_cache\_search@{\_\_nscd\_cache\_search}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_nscd\_cache\_search()}{\_\_nscd\_cache\_search()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structdatahead}{datahead}}$\ast$ \+\_\+\+\_\+nscd\+\_\+cache\+\_\+search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}}}]{type,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{keylen,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$}]{mapped,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{datalen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd__helper_8c_afc1394d2c68b4331889e6098500d29db}\label{nscd__helper_8c_afc1394d2c68b4331889e6098500d29db}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_nscd\_get\_map\_ref@{\_\_nscd\_get\_map\_ref}}
+\index{\_\_nscd\_get\_map\_ref@{\_\_nscd\_get\_map\_ref}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_nscd\_get\_map\_ref()}{\_\_nscd\_get\_map\_ref()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}}$\ast$ \+\_\+\+\_\+nscd\+\_\+get\+\_\+map\+\_\+ref (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}}}]{type,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{volatile struct \mbox{\hyperlink{structlocked__map__ptr}{locked\+\_\+map\+\_\+ptr}} $\ast$}]{mapptr,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{gc\+\_\+cyclep }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd__helper_8c_a5b2ec3cab735bec2ae868b9ef821c32f}\label{nscd__helper_8c_a5b2ec3cab735bec2ae868b9ef821c32f}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_nscd\_get\_mapping@{\_\_nscd\_get\_mapping}}
+\index{\_\_nscd\_get\_mapping@{\_\_nscd\_get\_mapping}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_nscd\_get\_mapping()}{\_\_nscd\_get\_mapping()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}}$\ast$ \+\_\+\+\_\+nscd\+\_\+get\+\_\+mapping (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}}}]{type,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{key,  }\item[{struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$$\ast$}]{mappedp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd__helper_8c_a2541a42b0b98a6a3d22e51d927205749}\label{nscd__helper_8c_a2541a42b0b98a6a3d22e51d927205749}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_nscd\_open\_socket@{\_\_nscd\_open\_socket}}
+\index{\_\_nscd\_open\_socket@{\_\_nscd\_open\_socket}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_nscd\_open\_socket()}{\_\_nscd\_open\_socket()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+nscd\+\_\+open\+\_\+socket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{keylen,  }\item[{\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}}}]{type,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{response,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{responselen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd__helper_8c_a73d0e5c41714f6b99bd131ba8c4a896e}\label{nscd__helper_8c_a73d0e5c41714f6b99bd131ba8c4a896e}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_nscd\_unmap@{\_\_nscd\_unmap}}
+\index{\_\_nscd\_unmap@{\_\_nscd\_unmap}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_nscd\_unmap()}{\_\_nscd\_unmap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+nscd\+\_\+unmap (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmapped__database}{mapped\+\_\+database}} $\ast$}]{mapped }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd__helper_8c_a0650a858501d39d0ede7ac024257d21f}\label{nscd__helper_8c_a0650a858501d39d0ede7ac024257d21f}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_readall@{\_\_readall}}
+\index{\_\_readall@{\_\_readall}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_readall()}{\_\_readall()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \+\_\+\+\_\+readall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{buf,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd__helper_8c_a9c3afac8fc6ff89b60f1202da334471d}\label{nscd__helper_8c_a9c3afac8fc6ff89b60f1202da334471d}} 
+\index{nscd\_helper.c@{nscd\_helper.c}!\_\_readvall@{\_\_readvall}}
+\index{\_\_readvall@{\_\_readvall}!nscd\_helper.c@{nscd\_helper.c}}
+\doxysubsubsection{\texorpdfstring{\_\_readvall()}{\_\_readvall()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \+\_\+\+\_\+readvall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} $\ast$}]{iov,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{iovcnt }\end{DoxyParamCaption})}
+

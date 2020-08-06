@@ -1,0 +1,89 @@
+
+;; Function __pread64_chk (__pread64_chk, funcdef_no=8, decl_uid=3549, cgraph_uid=8, symbol_order=12)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+deleting block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 89 [ fd ])
+        (reg:SI 5 di [ fd ])) pread64_chk.c:24 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 90 [ buf ])
+        (reg:DI 4 si [ buf ])) pread64_chk.c:24 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 91 [ nbytes ])
+        (reg:DI 1 dx [ nbytes ])) pread64_chk.c:24 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:DI 92 [ offset ])
+        (reg:DI 2 cx [ offset ])) pread64_chk.c:24 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:DI 93 [ buflen ])
+        (reg:DI 37 r8 [ buflen ])) pread64_chk.c:24 -1
+     (nil))
+(note 7 6 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 7 11 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 91 [ nbytes ])
+            (reg/v:DI 93 [ buflen ]))) pread64_chk.c:25 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) pread64_chk.c:25 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 15)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn 13 12 14 4 (call (mem:QI (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2acfabfdca20 __chk_fail>) [0 __chk_fail S1 A8])
+        (const_int 0 [0])) pread64_chk.c:26 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2acfabfdca20 __chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 14 13 15)
+(code_label 15 14 16 5 2 "" [1 uses])
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:DI 2 cx)
+        (reg/v:DI 92 [ offset ])) pread64_chk.c:28 -1
+     (nil))
+(insn 18 17 19 5 (set (reg:DI 1 dx)
+        (reg/v:DI 91 [ nbytes ])) pread64_chk.c:28 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 4 si)
+        (reg/v/f:DI 90 [ buf ])) pread64_chk.c:28 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ fd ])) pread64_chk.c:28 -1
+     (nil))
+(call_insn/j 21 20 22 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__libc_pread64") [flags 0x41]  <function_decl 0x2acfac03b948 __libc_pread64>) [0 __libc_pread64 S1 A8])
+            (const_int 0 [0]))) pread64_chk.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__libc_pread64") [flags 0x41]  <function_decl 0x2acfac03b948 __libc_pread64>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(barrier 22 21 0)

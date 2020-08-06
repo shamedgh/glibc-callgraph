@@ -1,0 +1,1001 @@
+
+;; Function abort (*__GI_abort, funcdef_no=49, decl_uid=875, cgraph_uid=49, symbol_order=58) (executed once)
+
+Partition 0: size 152 align 16
+	act
+Partition 1: size 128 align 16
+	sigs
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+
+;; Generating RTL for gimple basic block 21
+
+;; Generating RTL for gimple basic block 22
+
+;; Generating RTL for gimple basic block 23
+
+;; Generating RTL for gimple basic block 24
+
+;; Generating RTL for gimple basic block 25
+
+;; Generating RTL for gimple basic block 26
+
+;; Generating RTL for gimple basic block 27
+deleting block 30
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 28->29 to 18 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 28->29 to 18 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 25 0 27 NOTE_INSN_DELETED)
+(note 27 25 26 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 26 27 29 2 NOTE_INSN_FUNCTION_BEG)
+(insn 29 26 30 2 (parallel [
+            (set (reg:DI 132 [ self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") abort.c:56)
+                    ]
+                     [] abort.c:56))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) abort.c:56 -1
+     (nil))
+(insn 30 29 31 2 (set (reg/v/f:DI 112 [ self ])
+        (reg:DI 132 [ self ])) abort.c:56 -1
+     (nil))
+(insn 31 30 32 2 (set (reg/f:DI 133)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:56 -1
+     (nil))
+(insn 32 31 33 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 112 [ self ])
+            (mem/f/c:DI (plus:DI (reg/f:DI 133)
+                    (const_int 8 [0x8])) [5 lock.owner+0 S8 A64]))) abort.c:56 -1
+     (nil))
+(jump_insn 33 32 34 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 45)
+            (pc))) abort.c:56 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 45)
+(note 34 33 35 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 4 (set (reg/f:DI 136)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:56 -1
+     (nil))
+(insn 36 35 37 4 (set (reg:SI 138)
+        (const_int 1 [0x1])) abort.c:56 -1
+     (nil))
+(insn 37 36 38 4 (set (reg/f:DI 139)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:56 -1
+     (nil))
+(insn 38 37 39 4 (set (reg:SI 140)
+        (const_int 0 [0])) abort.c:56 -1
+     (nil))
+(insn 39 38 40 4 (parallel [
+            (set (reg:SI 134 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 138)
+                        (mem/c:SI (reg/f:DI 139) [4 lock.lock+0 S4 A128])
+                        (reg:SI 140)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:56)
+                        (asm_input:SI ("m") abort.c:56)
+                        (asm_input:SI ("3") abort.c:56)
+                    ]
+                     [] abort.c:56))
+            (set (reg:SI 135 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 138)
+                        (mem/c:SI (reg/f:DI 139) [4 lock.lock+0 S4 A128])
+                        (reg:SI 140)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:56)
+                        (asm_input:SI ("m") abort.c:56)
+                        (asm_input:SI ("3") abort.c:56)
+                    ]
+                     [] abort.c:56))
+            (set (mem/c:SI (reg/f:DI 136) [4 lock.lock+0 S4 A128])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 138)
+                        (mem/c:SI (reg/f:DI 139) [4 lock.lock+0 S4 A128])
+                        (reg:SI 140)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:56)
+                        (asm_input:SI ("m") abort.c:56)
+                        (asm_input:SI ("3") abort.c:56)
+                    ]
+                     [] abort.c:56))
+            (set (reg:SI 137 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 138)
+                        (mem/c:SI (reg/f:DI 139) [4 lock.lock+0 S4 A128])
+                        (reg:SI 140)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:56)
+                        (asm_input:SI ("m") abort.c:56)
+                        (asm_input:SI ("3") abort.c:56)
+                    ]
+                     [] abort.c:56))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) abort.c:56 -1
+     (nil))
+(insn 40 39 41 4 (set (reg/v:SI 114 [ ignore1 ])
+        (reg:SI 134 [ ignore1 ])) abort.c:56 -1
+     (nil))
+(insn 41 40 42 4 (set (reg/v:SI 115 [ ignore2 ])
+        (reg:SI 135 [ ignore2 ])) abort.c:56 -1
+     (nil))
+(insn 42 41 43 4 (set (reg/v:SI 116 [ ignore3 ])
+        (reg:SI 137 [ ignore3 ])) abort.c:56 -1
+     (nil))
+(insn 43 42 44 4 (set (reg/f:DI 141)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:56 -1
+     (nil))
+(insn 44 43 45 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 141)
+                (const_int 8 [0x8])) [5 lock.owner+0 S8 A64])
+        (reg/v/f:DI 112 [ self ])) abort.c:56 -1
+     (nil))
+(code_label 45 44 46 5 2 "" [1 uses])
+(note 46 45 47 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 5 (set (reg/f:DI 142)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:56 -1
+     (nil))
+(insn 48 47 52 5 (set (reg/f:DI 143)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:56 -1
+     (nil))
+(insn 52 48 53 5 (set (reg:SI 147)
+        (mem/c:SI (plus:DI (reg/f:DI 143)
+                (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])) abort.c:56 -1
+     (nil))
+(insn 53 52 54 5 (parallel [
+            (set (reg:SI 146 [ D.10504 ])
+                (plus:SI (reg:SI 147)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:56 -1
+     (expr_list:REG_EQUAL (plus:SI (mem/c:SI (plus:DI (reg/f:DI 143)
+                    (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 54 53 55 5 (set (mem/c:SI (plus:DI (reg/f:DI 142)
+                (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])
+        (reg:SI 146 [ D.10504 ])) abort.c:56 -1
+     (nil))
+(insn 55 54 56 5 (set (reg:SI 111 [ D.10504 ])
+        (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])) abort.c:61 -1
+     (nil))
+(insn 56 55 57 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 0 [0]))) abort.c:61 -1
+     (nil))
+(jump_insn 57 56 58 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) abort.c:61 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 72)
+(note 58 57 59 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 6 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 1 [0x1])) abort.c:63 -1
+     (nil))
+(insn 60 59 61 6 (parallel [
+            (set (reg:DI 148)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -288 [0xfffffffffffffee0])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:64 -1
+     (nil))
+(insn 61 60 62 6 (set (reg/f:DI 149)
+        (reg:DI 148)) abort.c:64 -1
+     (nil))
+(insn 62 61 63 6 (set (reg:DI 150)
+        (const_int 0 [0])) abort.c:64 -1
+     (nil))
+(insn 63 62 64 6 (set (reg:DI 151)
+        (const_int 16 [0x10])) abort.c:64 -1
+     (nil))
+(insn 64 63 65 6 (parallel [
+            (set (reg:DI 151)
+                (const_int 0 [0]))
+            (set (reg/f:DI 149)
+                (plus:DI (ashift:DI (reg:DI 151)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 149)))
+            (set (mem/c:BLK (reg/f:DI 149) [0 MEM[(void *)&sigs]+0 S128 A128])
+                (const_int 0 [0]))
+            (use (reg:DI 150))
+            (use (reg:DI 151))
+        ]) abort.c:64 -1
+     (nil))
+(insn 65 64 66 6 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -288 [0xfffffffffffffee0])) [1 sigs.__val+0 S8 A128])
+        (const_int 32 [0x20])) ../sysdeps/unix/sysv/linux/bits/sigset.h:117 -1
+     (nil))
+(insn 66 65 67 6 (parallel [
+            (set (reg:DI 152)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -288 [0xfffffffffffffee0])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:66 -1
+     (nil))
+(insn 67 66 68 6 (set (reg:DI 1 dx)
+        (const_int 0 [0])) abort.c:66 -1
+     (nil))
+(insn 68 67 69 6 (set (reg:DI 4 si)
+        (reg:DI 152)) abort.c:66 -1
+     (nil))
+(insn 69 68 70 6 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) abort.c:66 -1
+     (nil))
+(call_insn 70 69 71 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2ae02cc6d5e8 __sigprocmask>) [0 __sigprocmask S1 A8])
+            (const_int 0 [0]))) abort.c:66 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2ae02cc6d5e8 __sigprocmask>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 71 70 72 6 (set (reg:SI 111 [ D.10504 ])
+        (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])) -1
+     (nil))
+(code_label 72 71 73 7 3 "" [1 uses])
+(note 73 72 74 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 74 73 75 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 1 [0x1]))) abort.c:71 -1
+     (nil))
+(jump_insn 75 74 76 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 81)
+            (pc))) abort.c:71 -1
+     (int_list:REG_BR_PROB 8629 (nil))
+ -> 81)
+(note 76 75 77 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 77 76 78 8 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 2 [0x2])) abort.c:73 -1
+     (nil))
+(insn 78 77 79 8 (set (reg:SI 5 di)
+        (const_int 0 [0])) abort.c:74 -1
+     (nil))
+(call_insn 79 78 80 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_IO_flush_all_lockp") [flags 0x41]  <function_decl 0x2ae02d0b2798 _IO_flush_all_lockp>) [0 _IO_flush_all_lockp S1 A8])
+            (const_int 0 [0]))) abort.c:74 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_IO_flush_all_lockp") [flags 0x41]  <function_decl 0x2ae02d0b2798 _IO_flush_all_lockp>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 80 79 81 8 (set (reg:SI 111 [ D.10504 ])
+        (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])) -1
+     (nil))
+(code_label 81 80 82 9 4 "" [1 uses])
+(note 82 81 83 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 83 82 84 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 2 [0x2]))) abort.c:78 -1
+     (nil))
+(jump_insn 84 83 85 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 205)
+            (pc))) abort.c:78 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 205)
+(note 85 84 86 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 86 85 87 10 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 0 [0])) abort.c:86 -1
+     (nil))
+(insn 87 86 88 10 (set (reg/f:DI 153)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:87 -1
+     (nil))
+(insn 88 87 89 10 (set (reg:SI 154)
+        (mem/c:SI (plus:DI (reg/f:DI 153)
+                (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])) abort.c:87 -1
+     (nil))
+(insn 89 88 90 10 (parallel [
+            (set (reg:SI 122 [ D.10504 ])
+                (plus:SI (reg:SI 154)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:87 -1
+     (expr_list:REG_EQUAL (plus:SI (mem/c:SI (plus:DI (reg/f:DI 153)
+                    (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 90 89 91 10 (set (reg/f:DI 155)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:87 -1
+     (nil))
+(insn 91 90 92 10 (set (mem/c:SI (plus:DI (reg/f:DI 155)
+                (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])
+        (reg:SI 122 [ D.10504 ])) abort.c:87 -1
+     (nil))
+(insn 92 91 93 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 122 [ D.10504 ])
+            (const_int 0 [0]))) abort.c:87 -1
+     (nil))
+(jump_insn 93 92 94 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 101)
+            (pc))) abort.c:87 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 101)
+(note 94 93 95 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 95 94 96 11 (set (reg/f:DI 156)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:87 -1
+     (nil))
+(insn 96 95 97 11 (set (mem/f/c:DI (plus:DI (reg/f:DI 156)
+                (const_int 8 [0x8])) [5 lock.owner+0 S8 A64])
+        (const_int 0 [0])) abort.c:87 -1
+     (nil))
+(insn 97 96 98 11 (set (reg/f:DI 157)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:87 -1
+     (nil))
+(insn 98 97 99 11 (set (reg/f:DI 159)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:87 -1
+     (nil))
+(insn 99 98 100 11 (parallel [
+            (set (mem/c:SI (reg/f:DI 157) [4 lock.lock+0 S4 A128])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (reg/f:DI 159) [4 lock.lock+0 S4 A128])
+                    ]
+                     [
+                        (asm_input:SI ("m") abort.c:87)
+                    ]
+                     [] abort.c:87))
+            (set (reg:SI 158 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (reg/f:DI 159) [4 lock.lock+0 S4 A128])
+                    ]
+                     [
+                        (asm_input:SI ("m") abort.c:87)
+                    ]
+                     [] abort.c:87))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) abort.c:87 -1
+     (nil))
+(insn 100 99 101 11 (set (reg/v:SI 123 [ ignore ])
+        (reg:SI 158 [ ignore ])) abort.c:87 -1
+     (nil))
+(code_label 101 100 102 12 6 "" [1 uses])
+(note 102 101 103 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 103 102 104 12 (set (reg:SI 5 di)
+        (const_int 6 [0x6])) abort.c:89 -1
+     (nil))
+(call_insn 104 103 105 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_raise") [flags 0x43]  <function_decl 0x2ae02cc4a438 raise>) [0 raise S1 A8])
+            (const_int 0 [0]))) abort.c:89 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_raise") [flags 0x43]  <function_decl 0x2ae02cc4a438 raise>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 105 104 106 12 (parallel [
+            (set (reg:DI 160 [ self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") abort.c:91)
+                    ]
+                     [] abort.c:91))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) abort.c:91 -1
+     (nil))
+(insn 106 105 107 12 (set (reg/v/f:DI 124 [ self ])
+        (reg:DI 160 [ self ])) abort.c:91 -1
+     (nil))
+(insn 107 106 108 12 (set (reg/f:DI 161)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:91 -1
+     (nil))
+(insn 108 107 109 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 124 [ self ])
+            (mem/f/c:DI (plus:DI (reg/f:DI 161)
+                    (const_int 8 [0x8])) [5 lock.owner+0 S8 A64]))) abort.c:91 -1
+     (nil))
+(jump_insn 109 108 110 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 121)
+            (pc))) abort.c:91 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 121)
+(note 110 109 111 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 111 110 112 13 (set (reg/f:DI 164)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:91 -1
+     (nil))
+(insn 112 111 113 13 (set (reg:SI 166)
+        (const_int 1 [0x1])) abort.c:91 -1
+     (nil))
+(insn 113 112 114 13 (set (reg/f:DI 167)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:91 -1
+     (nil))
+(insn 114 113 115 13 (set (reg:SI 168)
+        (const_int 0 [0])) abort.c:91 -1
+     (nil))
+(insn 115 114 116 13 (parallel [
+            (set (reg:SI 162 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 166)
+                        (mem/c:SI (reg/f:DI 167) [4 lock.lock+0 S4 A128])
+                        (reg:SI 168)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:91)
+                        (asm_input:SI ("m") abort.c:91)
+                        (asm_input:SI ("3") abort.c:91)
+                    ]
+                     [] abort.c:91))
+            (set (reg:SI 163 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 166)
+                        (mem/c:SI (reg/f:DI 167) [4 lock.lock+0 S4 A128])
+                        (reg:SI 168)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:91)
+                        (asm_input:SI ("m") abort.c:91)
+                        (asm_input:SI ("3") abort.c:91)
+                    ]
+                     [] abort.c:91))
+            (set (mem/c:SI (reg/f:DI 164) [4 lock.lock+0 S4 A128])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 166)
+                        (mem/c:SI (reg/f:DI 167) [4 lock.lock+0 S4 A128])
+                        (reg:SI 168)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:91)
+                        (asm_input:SI ("m") abort.c:91)
+                        (asm_input:SI ("3") abort.c:91)
+                    ]
+                     [] abort.c:91))
+            (set (reg:SI 165 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 166)
+                        (mem/c:SI (reg/f:DI 167) [4 lock.lock+0 S4 A128])
+                        (reg:SI 168)
+                    ]
+                     [
+                        (asm_input:SI ("0") abort.c:91)
+                        (asm_input:SI ("m") abort.c:91)
+                        (asm_input:SI ("3") abort.c:91)
+                    ]
+                     [] abort.c:91))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) abort.c:91 -1
+     (nil))
+(insn 116 115 117 13 (set (reg/v:SI 126 [ ignore1 ])
+        (reg:SI 162 [ ignore1 ])) abort.c:91 -1
+     (nil))
+(insn 117 116 118 13 (set (reg/v:SI 127 [ ignore2 ])
+        (reg:SI 163 [ ignore2 ])) abort.c:91 -1
+     (nil))
+(insn 118 117 119 13 (set (reg/v:SI 128 [ ignore3 ])
+        (reg:SI 165 [ ignore3 ])) abort.c:91 -1
+     (nil))
+(insn 119 118 120 13 (set (reg/f:DI 169)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:91 -1
+     (nil))
+(insn 120 119 121 13 (set (mem/f/c:DI (plus:DI (reg/f:DI 169)
+                (const_int 8 [0x8])) [5 lock.owner+0 S8 A64])
+        (reg/v/f:DI 124 [ self ])) abort.c:91 -1
+     (nil))
+(code_label 121 120 122 14 7 "" [1 uses])
+(note 122 121 123 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 123 122 124 14 (set (reg/f:DI 170)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:91 -1
+     (nil))
+(insn 124 123 128 14 (set (reg/f:DI 171)
+        (symbol_ref:DI ("lock") [flags 0x2]  <var_decl 0x2ae02d10a360 lock>)) abort.c:91 -1
+     (nil))
+(insn 128 124 129 14 (set (reg:SI 175)
+        (mem/c:SI (plus:DI (reg/f:DI 171)
+                (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])) abort.c:91 -1
+     (nil))
+(insn 129 128 130 14 (parallel [
+            (set (reg:SI 174 [ D.10504 ])
+                (plus:SI (reg:SI 175)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:91 -1
+     (expr_list:REG_EQUAL (plus:SI (mem/c:SI (plus:DI (reg/f:DI 171)
+                    (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 130 129 131 14 (set (mem/c:SI (plus:DI (reg/f:DI 170)
+                (const_int 4 [0x4])) [4 lock.cnt+0 S4 A32])
+        (reg:SI 174 [ D.10504 ])) abort.c:91 -1
+     (nil))
+(insn 131 130 132 14 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 4 [0x4])) abort.c:98 -1
+     (nil))
+(insn 132 131 133 14 (parallel [
+            (set (reg:DI 176)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:99 -1
+     (nil))
+(insn 133 132 134 14 (set (reg/f:DI 177)
+        (reg:DI 176)) abort.c:99 -1
+     (nil))
+(insn 134 133 135 14 (set (reg:DI 178)
+        (const_int 0 [0])) abort.c:99 -1
+     (nil))
+(insn 135 134 136 14 (set (reg:DI 179)
+        (const_int 19 [0x13])) abort.c:99 -1
+     (nil))
+(insn 136 135 202 14 (parallel [
+            (set (reg:DI 179)
+                (const_int 0 [0]))
+            (set (reg/f:DI 177)
+                (plus:DI (ashift:DI (reg:DI 179)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 177)))
+            (set (mem/c:BLK (reg/f:DI 177) [0 MEM[(void *)&act]+0 S152 A128])
+                (const_int 0 [0]))
+            (use (reg:DI 178))
+            (use (reg:DI 179))
+        ]) abort.c:99 -1
+     (nil))
+(code_label 202 136 137 15 14 "" [1 uses])
+(note 137 202 138 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 138 137 139 15 (parallel [
+            (set (reg:DI 180)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 139 138 140 15 (parallel [
+            (set (reg:DI 119 [ ivtmp.15 ])
+                (plus:DI (reg:DI 180)
+                    (const_int 128 [0x80])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 140 139 145 15 (parallel [
+            (set (reg:DI 131 [ D.10506 ])
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 145 140 141 16 8 "" [1 uses])
+(note 141 145 142 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 142 141 143 16 (set (reg:DI 181)
+        (const_int -1 [0xffffffffffffffff])) abort.c:101 -1
+     (nil))
+(insn 143 142 144 16 (set (mem:DI (reg:DI 119 [ ivtmp.15 ]) [1 MEM[base: _34, offset: 0B]+0 S8 A64])
+        (reg:DI 181)) abort.c:101 -1
+     (nil))
+(insn 144 143 146 16 (parallel [
+            (set (reg:DI 119 [ ivtmp.15 ])
+                (plus:DI (reg:DI 119 [ ivtmp.15 ])
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 146 144 147 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 119 [ ivtmp.15 ])
+            (reg:DI 131 [ D.10506 ]))) abort.c:101 -1
+     (nil))
+(jump_insn 147 146 148 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 145)
+            (pc))) abort.c:101 -1
+     (int_list:REG_BR_PROB 9412 (nil))
+ -> 145)
+(note 148 147 149 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 149 148 150 17 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [4 act.sa_flags+0 S4 A64])
+        (const_int 0 [0])) abort.c:102 -1
+     (nil))
+(insn 150 149 151 17 (parallel [
+            (set (reg:DI 182)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:103 -1
+     (nil))
+(insn 151 150 152 17 (set (reg:DI 1 dx)
+        (const_int 0 [0])) abort.c:103 -1
+     (nil))
+(insn 152 151 153 17 (set (reg:DI 4 si)
+        (reg:DI 182)) abort.c:103 -1
+     (nil))
+(insn 153 152 154 17 (set (reg:SI 5 di)
+        (const_int 6 [0x6])) abort.c:103 -1
+     (nil))
+(call_insn 154 153 155 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2ae02cc6d1b0 __sigaction>) [0 __sigaction S1 A8])
+            (const_int 0 [0]))) abort.c:103 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___sigaction") [flags 0x43]  <function_decl 0x2ae02cc6d1b0 __sigaction>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 155 154 210 17 (set (reg:SI 111 [ D.10504 ])
+        (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])) -1
+     (nil))
+(code_label 210 155 156 18 16 "" [1 uses])
+(note 156 210 157 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 157 156 158 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 4 [0x4]))) abort.c:108 -1
+     (nil))
+(jump_insn 158 157 159 18 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 163)
+            (pc))) abort.c:108 -1
+     (int_list:REG_BR_PROB 8629 (nil))
+ -> 163)
+(note 159 158 160 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 160 159 161 19 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 5 [0x5])) abort.c:110 -1
+     (nil))
+(call_insn 161 160 162 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fcloseall") [flags 0x41]  <function_decl 0x2ae02cfc7438 __fcloseall>) [0 __fcloseall S1 A8])
+            (const_int 0 [0]))) abort.c:111 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fcloseall") [flags 0x41]  <function_decl 0x2ae02cfc7438 __fcloseall>)
+        (nil))
+    (nil))
+(insn 162 161 163 19 (set (reg:SI 111 [ D.10504 ])
+        (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])) -1
+     (nil))
+(code_label 163 162 164 20 9 "" [1 uses])
+(note 164 163 165 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 165 164 166 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 5 [0x5]))) abort.c:115 -1
+     (nil))
+(jump_insn 166 165 167 20 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 172)
+            (pc))) abort.c:115 -1
+     (int_list:REG_BR_PROB 8629 (nil))
+ -> 172)
+(note 167 166 168 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 168 167 169 21 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 6 [0x6])) abort.c:117 -1
+     (nil))
+(insn 169 168 170 21 (set (reg:SI 5 di)
+        (const_int 6 [0x6])) abort.c:118 -1
+     (nil))
+(call_insn 170 169 171 21 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_raise") [flags 0x43]  <function_decl 0x2ae02cc4a438 raise>) [0 raise S1 A8])
+            (const_int 0 [0]))) abort.c:118 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_raise") [flags 0x43]  <function_decl 0x2ae02cc4a438 raise>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 171 170 172 21 (set (reg:SI 111 [ D.10504 ])
+        (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])) -1
+     (nil))
+(code_label 172 171 173 22 10 "" [1 uses])
+(note 173 172 174 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 174 173 175 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 6 [0x6]))) abort.c:122 -1
+     (nil))
+(jump_insn 175 174 176 22 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 180)
+            (pc))) abort.c:122 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 180)
+(note 176 175 177 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 177 176 178 23 (asm_input/v ("hlt") abort.c:125) abort.c:125 -1
+     (nil))
+(jump_insn 178 177 179 23 (set (pc)
+        (label_ref 184)) abort.c:125 -1
+     (nil)
+ -> 184)
+(barrier 179 178 180)
+(code_label 180 179 181 24 11 "" [1 uses])
+(note 181 180 182 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 182 181 183 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 7 [0x7]))) abort.c:129 -1
+     (nil))
+(jump_insn 183 182 184 24 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) abort.c:129 -1
+     (int_list:REG_BR_PROB 8629 (nil))
+ -> 190)
+(code_label 184 183 185 25 12 "" [1 uses])
+(note 185 184 186 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 186 185 187 25 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 8 [0x8])) abort.c:131 -1
+     (nil))
+(insn 187 186 188 25 (set (reg:SI 5 di)
+        (const_int 127 [0x7f])) abort.c:132 -1
+     (nil))
+(call_insn 188 187 189 25 (call (mem:QI (symbol_ref:DI ("*__GI__exit") [flags 0x43]  <function_decl 0x2ae02cae90d8 _exit>) [0 __builtin__exit S1 A8])
+        (const_int 0 [0])) abort.c:132 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI__exit") [flags 0x43]  <function_decl 0x2ae02cae90d8 _exit>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 189 188 190)
+(code_label 190 189 191 26 13 "" [2 uses])
+(note 191 190 192 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 192 191 193 26 (asm_input/v ("hlt") abort.c:139) abort.c:139 -1
+     (nil))
+(jump_insn 193 192 194 26 (set (pc)
+        (label_ref 190)) abort.c:139 -1
+     (nil)
+ -> 190)
+(barrier 194 193 207)
+(code_label 207 194 195 27 15 "" [1 uses])
+(note 195 207 196 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 196 195 197 27 (set (mem/c:SI (symbol_ref:DI ("stage") [flags 0x2]  <var_decl 0x2ae02d10a2d0 stage>) [4 stage+0 S4 A32])
+        (const_int 4 [0x4])) abort.c:98 -1
+     (nil))
+(insn 197 196 198 27 (parallel [
+            (set (reg:DI 183)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) abort.c:99 -1
+     (nil))
+(insn 198 197 199 27 (set (reg/f:DI 184)
+        (reg:DI 183)) abort.c:99 -1
+     (nil))
+(insn 199 198 200 27 (set (reg:DI 185)
+        (const_int 0 [0])) abort.c:99 -1
+     (nil))
+(insn 200 199 201 27 (set (reg:DI 186)
+        (const_int 19 [0x13])) abort.c:99 -1
+     (nil))
+(insn 201 200 203 27 (parallel [
+            (set (reg:DI 186)
+                (const_int 0 [0]))
+            (set (reg/f:DI 184)
+                (plus:DI (ashift:DI (reg:DI 186)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 184)))
+            (set (mem/c:BLK (reg/f:DI 184) [0 MEM[(void *)&act]+0 S152 A128])
+                (const_int 0 [0]))
+            (use (reg:DI 185))
+            (use (reg:DI 186))
+        ]) abort.c:99 -1
+     (nil))
+(jump_insn 203 201 204 27 (set (pc)
+        (label_ref 202)) abort.c:99 -1
+     (nil)
+ -> 202)
+(barrier 204 203 205)
+(code_label 205 204 206 28 5 "" [1 uses])
+(note 206 205 208 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 208 206 209 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10504 ])
+            (const_int 3 [0x3]))) abort.c:96 -1
+     (nil))
+(jump_insn 209 208 213 28 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 207)
+            (pc))) abort.c:96 -1
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 207)
+(note 213 209 211 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 211 213 212 29 (set (pc)
+        (label_ref 210)) abort.c:96 -1
+     (nil)
+ -> 210)
+(barrier 212 211 0)

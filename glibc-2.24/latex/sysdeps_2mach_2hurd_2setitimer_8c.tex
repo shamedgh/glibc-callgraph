@@ -1,0 +1,103 @@
+\hypertarget{sysdeps_2mach_2hurd_2setitimer_8c}{}\doxysection{sysdeps/mach/hurd/setitimer.c File Reference}
+\label{sysdeps_2mach_2hurd_2setitimer_8c}\index{sysdeps/mach/hurd/setitimer.c@{sysdeps/mach/hurd/setitimer.c}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$hurd.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/signal.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/sigpreempt.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/msg\+\_\+request.\+h$>$}\newline
+{\ttfamily \#include $<$mach/message.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_af2a7c39e122eeef326d47f1e6803c6bb}{\+\_\+\+\_\+setitimer}} (enum \mbox{\hyperlink{time_2sys_2time_8h_ace61e2889347bbd2bb3c990e89dc6928}{\+\_\+\+\_\+itimer\+\_\+which}} which, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structitimerval}{itimerval}} $\ast$new, struct \mbox{\hyperlink{structitimerval}{itimerval}} $\ast$old)
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a61c8677f6a6ab91dc679e7b13383282f}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook, fork\+\_\+itimer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{spin-lock_8h_a9041410ca27a78a84e79cdbbbce72855}{spin\+\_\+lock\+\_\+t}} \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a62d67f467c242fda586a0b3d522f48a0}{\+\_\+hurd\+\_\+itimer\+\_\+lock}} = \mbox{\hyperlink{spin-lock_8h_a0fe85a4f3642683148b25916d6c5eafd}{S\+P\+I\+N\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}
+\item 
+struct \mbox{\hyperlink{structitimerval}{itimerval}} \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a0ce8a7ba663c06f6362da1d0f5e89a8e}{\+\_\+hurd\+\_\+itimerval}}
+\item 
+mach\+\_\+port\+\_\+t \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_afbf9164bfa0486a8dd32516ae007c9bf}{\+\_\+hurd\+\_\+itimer\+\_\+port}}
+\item 
+\mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a3a28ec29bd79659e62a5b9b1880b4fb0}{\+\_\+hurd\+\_\+itimer\+\_\+thread}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_aedf6c4400d6245dc68f999b8d9ead997}{\+\_\+hurd\+\_\+itimer\+\_\+thread\+\_\+suspended}}
+\item 
+vm\+\_\+address\+\_\+t \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a4ef0707571a7ab59cf89f72e809bb53b}{\+\_\+hurd\+\_\+itimer\+\_\+thread\+\_\+stack\+\_\+base}}
+\item 
+vm\+\_\+size\+\_\+t \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a55f9c95ce5e9113b5aa8b5e0d1eedcaf}{\+\_\+hurd\+\_\+itimer\+\_\+thread\+\_\+stack\+\_\+size}}
+\item 
+struct timeval \mbox{\hyperlink{sysdeps_2mach_2hurd_2setitimer_8c_a479a27972d1c3b4a87390cdb9fa81799}{\+\_\+hurd\+\_\+itimer\+\_\+started}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_af2a7c39e122eeef326d47f1e6803c6bb}\label{sysdeps_2mach_2hurd_2setitimer_8c_af2a7c39e122eeef326d47f1e6803c6bb}} 
+\index{setitimer.c@{setitimer.c}!\_\_setitimer@{\_\_setitimer}}
+\index{\_\_setitimer@{\_\_setitimer}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_\_setitimer()}{\_\_setitimer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+setitimer (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{time_2sys_2time_8h_ace61e2889347bbd2bb3c990e89dc6928}{\+\_\+\+\_\+itimer\+\_\+which}}}]{which,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structitimerval}{itimerval}} $\ast$}]{new,  }\item[{struct \mbox{\hyperlink{structitimerval}{itimerval}} $\ast$}]{old }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a61c8677f6a6ab91dc679e7b13383282f}\label{sysdeps_2mach_2hurd_2setitimer_8c_a61c8677f6a6ab91dc679e7b13383282f}} 
+\index{setitimer.c@{setitimer.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook}]{,  }\item[{fork\+\_\+itimer}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a62d67f467c242fda586a0b3d522f48a0}\label{sysdeps_2mach_2hurd_2setitimer_8c_a62d67f467c242fda586a0b3d522f48a0}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_lock@{\_hurd\_itimer\_lock}}
+\index{\_hurd\_itimer\_lock@{\_hurd\_itimer\_lock}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_lock}{\_hurd\_itimer\_lock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{spin-lock_8h_a9041410ca27a78a84e79cdbbbce72855}{spin\+\_\+lock\+\_\+t}} \+\_\+hurd\+\_\+itimer\+\_\+lock = \mbox{\hyperlink{spin-lock_8h_a0fe85a4f3642683148b25916d6c5eafd}{S\+P\+I\+N\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_afbf9164bfa0486a8dd32516ae007c9bf}\label{sysdeps_2mach_2hurd_2setitimer_8c_afbf9164bfa0486a8dd32516ae007c9bf}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_port@{\_hurd\_itimer\_port}}
+\index{\_hurd\_itimer\_port@{\_hurd\_itimer\_port}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_port}{\_hurd\_itimer\_port}}
+{\footnotesize\ttfamily mach\+\_\+port\+\_\+t \+\_\+hurd\+\_\+itimer\+\_\+port}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a479a27972d1c3b4a87390cdb9fa81799}\label{sysdeps_2mach_2hurd_2setitimer_8c_a479a27972d1c3b4a87390cdb9fa81799}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_started@{\_hurd\_itimer\_started}}
+\index{\_hurd\_itimer\_started@{\_hurd\_itimer\_started}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_started}{\_hurd\_itimer\_started}}
+{\footnotesize\ttfamily struct timeval \+\_\+hurd\+\_\+itimer\+\_\+started}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a3a28ec29bd79659e62a5b9b1880b4fb0}\label{sysdeps_2mach_2hurd_2setitimer_8c_a3a28ec29bd79659e62a5b9b1880b4fb0}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_thread@{\_hurd\_itimer\_thread}}
+\index{\_hurd\_itimer\_thread@{\_hurd\_itimer\_thread}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_thread}{\_hurd\_itimer\_thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} \+\_\+hurd\+\_\+itimer\+\_\+thread}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a4ef0707571a7ab59cf89f72e809bb53b}\label{sysdeps_2mach_2hurd_2setitimer_8c_a4ef0707571a7ab59cf89f72e809bb53b}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_thread\_stack\_base@{\_hurd\_itimer\_thread\_stack\_base}}
+\index{\_hurd\_itimer\_thread\_stack\_base@{\_hurd\_itimer\_thread\_stack\_base}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_thread\_stack\_base}{\_hurd\_itimer\_thread\_stack\_base}}
+{\footnotesize\ttfamily vm\+\_\+address\+\_\+t \+\_\+hurd\+\_\+itimer\+\_\+thread\+\_\+stack\+\_\+base}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a55f9c95ce5e9113b5aa8b5e0d1eedcaf}\label{sysdeps_2mach_2hurd_2setitimer_8c_a55f9c95ce5e9113b5aa8b5e0d1eedcaf}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_thread\_stack\_size@{\_hurd\_itimer\_thread\_stack\_size}}
+\index{\_hurd\_itimer\_thread\_stack\_size@{\_hurd\_itimer\_thread\_stack\_size}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_thread\_stack\_size}{\_hurd\_itimer\_thread\_stack\_size}}
+{\footnotesize\ttfamily vm\+\_\+size\+\_\+t \+\_\+hurd\+\_\+itimer\+\_\+thread\+\_\+stack\+\_\+size}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_aedf6c4400d6245dc68f999b8d9ead997}\label{sysdeps_2mach_2hurd_2setitimer_8c_aedf6c4400d6245dc68f999b8d9ead997}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimer\_thread\_suspended@{\_hurd\_itimer\_thread\_suspended}}
+\index{\_hurd\_itimer\_thread\_suspended@{\_hurd\_itimer\_thread\_suspended}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimer\_thread\_suspended}{\_hurd\_itimer\_thread\_suspended}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+hurd\+\_\+itimer\+\_\+thread\+\_\+suspended}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2setitimer_8c_a0ce8a7ba663c06f6362da1d0f5e89a8e}\label{sysdeps_2mach_2hurd_2setitimer_8c_a0ce8a7ba663c06f6362da1d0f5e89a8e}} 
+\index{setitimer.c@{setitimer.c}!\_hurd\_itimerval@{\_hurd\_itimerval}}
+\index{\_hurd\_itimerval@{\_hurd\_itimerval}!setitimer.c@{setitimer.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_itimerval}{\_hurd\_itimerval}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structitimerval}{itimerval}} \+\_\+hurd\+\_\+itimerval}
+

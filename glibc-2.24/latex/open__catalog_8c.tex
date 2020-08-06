@@ -1,0 +1,71 @@
+\hypertarget{open__catalog_8c}{}\doxysection{catgets/open\+\_\+catalog.c File Reference}
+\label{open__catalog_8c}\index{catgets/open\_catalog.c@{catgets/open\_catalog.c}}
+{\ttfamily \#include $<$byteswap.\+h$>$}\newline
+{\ttfamily \#include $<$endian.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}catgetsinfo.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{open__catalog_8c_a807ded5ee465329aee756012da8ea4f4}{S\+W\+A\+P\+U32}}(w)~\mbox{\hyperlink{string_2byteswap_8h_a5bcbf8b6ee067af4c2fd60ef3bdb39d2}{bswap\+\_\+32}} (w)
+\item 
+\#define \mbox{\hyperlink{open__catalog_8c_af5a732c2588b59c1ab542c1c2467cd64}{E\+N\+O\+U\+GH}}(\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})
+\item 
+\#define \mbox{\hyperlink{open__catalog_8c_a9913231a3a57676d858f8f5d699bff09}{S\+W\+AP}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~(swapping ? \mbox{\hyperlink{open__catalog_8c_a807ded5ee465329aee756012da8ea4f4}{S\+W\+A\+P\+U32}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \+: (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{open__catalog_8c_af2d642bcee100a4a71e9f68f732d465b}{\+\_\+\+\_\+open\+\_\+catalog}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$cat\+\_\+name, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$nlspath, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$env\+\_\+var, \mbox{\hyperlink{catgetsinfo_8h_a7aa890b6374831750bcb3bf6af7c4a0b}{\+\_\+\+\_\+nl\+\_\+catd}} \mbox{\hyperlink{structcatalog}{catalog}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{open__catalog_8c_af5a732c2588b59c1ab542c1c2467cd64}\label{open__catalog_8c_af5a732c2588b59c1ab542c1c2467cd64}} 
+\index{open\_catalog.c@{open\_catalog.c}!ENOUGH@{ENOUGH}}
+\index{ENOUGH@{ENOUGH}!open\_catalog.c@{open\_catalog.c}}
+\doxysubsubsection{\texorpdfstring{ENOUGH}{ENOUGH}}
+{\footnotesize\ttfamily \#define E\+N\+O\+U\+GH(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (bufact + (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) >= bufmax))               \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      char *old\_buf = \mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}};                             \(\backslash\)}
+\DoxyCodeLine{      bufmax += (bufmax < 256 + (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}})) ? 256 + (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) : bufmax;              \(\backslash\)}
+\DoxyCodeLine{      buf = \mbox{\hyperlink{hurdmalloc_8h_a1b739878adcdb46fb5d209af7ce79628}{realloc}} (\mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, bufmax);                          \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (\mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}} == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}))                      \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      free (old\_buf);                             \(\backslash\)}
+\DoxyCodeLine{      return -\/1;                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{open__catalog_8c_a9913231a3a57676d858f8f5d699bff09}\label{open__catalog_8c_a9913231a3a57676d858f8f5d699bff09}} 
+\index{open\_catalog.c@{open\_catalog.c}!SWAP@{SWAP}}
+\index{SWAP@{SWAP}!open\_catalog.c@{open\_catalog.c}}
+\doxysubsubsection{\texorpdfstring{SWAP}{SWAP}}
+{\footnotesize\ttfamily \#define S\+W\+AP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~(swapping ? \mbox{\hyperlink{open__catalog_8c_a807ded5ee465329aee756012da8ea4f4}{S\+W\+A\+P\+U32}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \+: (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}))}
+
+\mbox{\Hypertarget{open__catalog_8c_a807ded5ee465329aee756012da8ea4f4}\label{open__catalog_8c_a807ded5ee465329aee756012da8ea4f4}} 
+\index{open\_catalog.c@{open\_catalog.c}!SWAPU32@{SWAPU32}}
+\index{SWAPU32@{SWAPU32}!open\_catalog.c@{open\_catalog.c}}
+\doxysubsubsection{\texorpdfstring{SWAPU32}{SWAPU32}}
+{\footnotesize\ttfamily \#define S\+W\+A\+P\+U32(\begin{DoxyParamCaption}\item[{}]{w }\end{DoxyParamCaption})~\mbox{\hyperlink{string_2byteswap_8h_a5bcbf8b6ee067af4c2fd60ef3bdb39d2}{bswap\+\_\+32}} (w)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{open__catalog_8c_af2d642bcee100a4a71e9f68f732d465b}\label{open__catalog_8c_af2d642bcee100a4a71e9f68f732d465b}} 
+\index{open\_catalog.c@{open\_catalog.c}!\_\_open\_catalog@{\_\_open\_catalog}}
+\index{\_\_open\_catalog@{\_\_open\_catalog}!open\_catalog.c@{open\_catalog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_open\_catalog()}{\_\_open\_catalog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+open\+\_\+catalog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{cat\+\_\+name,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{nlspath,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{env\+\_\+var,  }\item[{\mbox{\hyperlink{catgetsinfo_8h_a7aa890b6374831750bcb3bf6af7c4a0b}{\+\_\+\+\_\+nl\+\_\+catd}}}]{catalog }\end{DoxyParamCaption})}
+

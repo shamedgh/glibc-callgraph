@@ -1,0 +1,59 @@
+\hypertarget{unix_2sysv_2linux_2hppa_2internaltypes_8h}{}\doxysection{sysdeps/unix/sysv/linux/hppa/internaltypes.h File Reference}
+\label{unix_2sysv_2linux_2hppa_2internaltypes_8h}\index{sysdeps/unix/sysv/linux/hppa/internaltypes.h@{sysdeps/unix/sysv/linux/hppa/internaltypes.h}}
+{\ttfamily \#include $<$atomic.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2hppa_2internaltypes_8h_ad66b31fe917921c442bbcc393842aea4}{cond\+\_\+compat\+\_\+clear}}(\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}})
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2hppa_2internaltypes_8h_a1a09caf8db30d7ad236b0fbe988a4fa2}{cond\+\_\+compat\+\_\+check\+\_\+and\+\_\+clear}}(\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2hppa_2internaltypes_8h_a1a09caf8db30d7ad236b0fbe988a4fa2}\label{unix_2sysv_2linux_2hppa_2internaltypes_8h_a1a09caf8db30d7ad236b0fbe988a4fa2}} 
+\index{internaltypes.h@{internaltypes.h}!cond\_compat\_check\_and\_clear@{cond\_compat\_check\_and\_clear}}
+\index{cond\_compat\_check\_and\_clear@{cond\_compat\_check\_and\_clear}!internaltypes.h@{internaltypes.h}}
+\doxysubsubsection{\texorpdfstring{cond\_compat\_check\_and\_clear}{cond\_compat\_check\_and\_clear}}
+{\footnotesize\ttfamily \#define cond\+\_\+compat\+\_\+check\+\_\+and\+\_\+clear(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                              \(\backslash\)}
+\DoxyCodeLine{  int \mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}};                           \(\backslash\)}
+\DoxyCodeLine{  volatile \textcolor{keywordtype}{int} *\mbox{\hyperlink{structvalue}{value}} = \&\mbox{\hyperlink{tst-auditmod9a_8c_af212784620c36725bedf3a9896c883f7}{var}}-\/>\_\_data.\_\_initializer;     \(\backslash\)}
+\DoxyCodeLine{  if ((\mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}} = \mbox{\hyperlink{aarch64_2atomic-machine_8h_a6564903e39b72bf6bbe1e5393e2f17ca}{atomic\_compare\_and\_exchange\_val\_acq}}(\mbox{\hyperlink{structvalue}{value}}, 2, 1)))  \(\backslash\)}
+\DoxyCodeLine{    \{                               \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}} == 1)                      \(\backslash\)}
+\DoxyCodeLine{    \{                           \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* Initialize structure.  */}              \(\backslash\)}
+\DoxyCodeLine{      cond\_compat\_clear (\mbox{\hyperlink{tst-auditmod9a_8c_af212784620c36725bedf3a9896c883f7}{var}});               \(\backslash\)}
+\DoxyCodeLine{    \}                           \(\backslash\)}
+\DoxyCodeLine{      else                          \(\backslash\)}
+\DoxyCodeLine{        \{                           \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* Yield until structure is initialized.  */}      \(\backslash\)}
+\DoxyCodeLine{      while (*\mbox{\hyperlink{structvalue}{value}} == 2) \mbox{\hyperlink{posix_2sched_8h_a960e3af53089fdbaa5a842eebbeaeb60}{sched\_yield}} ();           \(\backslash\)}
+\DoxyCodeLine{        \}                           \(\backslash\)}
+\DoxyCodeLine{    \}                               \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2hppa_2internaltypes_8h_ad66b31fe917921c442bbcc393842aea4}\label{unix_2sysv_2linux_2hppa_2internaltypes_8h_ad66b31fe917921c442bbcc393842aea4}} 
+\index{internaltypes.h@{internaltypes.h}!cond\_compat\_clear@{cond\_compat\_clear}}
+\index{cond\_compat\_clear@{cond\_compat\_clear}!internaltypes.h@{internaltypes.h}}
+\doxysubsubsection{\texorpdfstring{cond\_compat\_clear}{cond\_compat\_clear}}
+{\footnotesize\ttfamily \#define cond\+\_\+compat\+\_\+clear(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57ca850abfb66c5aa99d4efe8a80af22c23f}{var}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                          \(\backslash\)}
+\DoxyCodeLine{  int tmp = 0;                                      \(\backslash\)}
+\DoxyCodeLine{  var-\/>\_\_data.\_\_lock = 0;                               \(\backslash\)}
+\DoxyCodeLine{  var-\/>\_\_data.\_\_futex = 0;                              \(\backslash\)}
+\DoxyCodeLine{  var-\/>\_\_data.\_\_mutex = \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}};                               \(\backslash\)}
+\DoxyCodeLine{  \textcolor{comment}{/* Clear \_\_initializer last, to indicate initialization is done.  */}          \(\backslash\)}
+\DoxyCodeLine{  \_\_asm\_\_ \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a4f4f750db64434d27bfb6fc439b3776a}{\_\_volatile\_\_}} (\textcolor{stringliteral}{"stw,ma \%1,0(\%0)"}                       \(\backslash\)}
+\DoxyCodeLine{            : : \textcolor{stringliteral}{"r"} (\&\mbox{\hyperlink{tst-auditmod9a_8c_af212784620c36725bedf3a9896c883f7}{var}}-\/>\_\_data.\_\_initializer), \textcolor{stringliteral}{"r"} (tmp) : \textcolor{stringliteral}{"memory"}); \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}

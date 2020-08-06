@@ -1,0 +1,98 @@
+\hypertarget{tile_2tilegx_2atomic-machine_8h}{}\doxysection{sysdeps/tile/tilegx/atomic-\/machine.h File Reference}
+\label{tile_2tilegx_2atomic-machine_8h}\index{sysdeps/tile/tilegx/atomic-\/machine.h@{sysdeps/tile/tilegx/atomic-\/machine.h}}
+{\ttfamily \#include $<$arch/spr\+\_\+def.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/tile/atomic-\/machine.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a8e8d65bbb9c9309de702e674662b684b}{\+\_\+\+\_\+\+H\+A\+V\+E\+\_\+64\+B\+\_\+\+A\+T\+O\+M\+I\+CS}}~0
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a58dc6c3c9f758aca7e21fa8b8834215e}{U\+S\+E\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+C\+O\+M\+P\+I\+L\+E\+R\+\_\+\+B\+U\+I\+L\+T\+I\+NS}}~0
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_af211f1cc5a84b1629ab9c0bdab8e056d}{\+\_\+\+\_\+atomic\+\_\+update}}(mem,  v,  op)
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a569bafc8378b06d655af9c5f60b710c6}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}}(mem,  \mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}},  o)
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}{atomic\+\_\+exchange\+\_\+acq}}(mem,  newvalue)~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, newvalue, exch)
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}{atomic\+\_\+exchange\+\_\+and\+\_\+add}}(mem,  \mbox{\hyperlink{structvalue}{value}})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, \mbox{\hyperlink{structvalue}{value}}, fetchadd)
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a5541715cc88d242e8274b93750105a1a}{atomic\+\_\+and\+\_\+val}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}}, fetchand)
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a60a1ff510171561015255a646f6a8bb1}{atomic\+\_\+or\+\_\+val}}(mem,  \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}}, fetchor)
+\item 
+\#define \mbox{\hyperlink{tile_2tilegx_2atomic-machine_8h_a3acf0020d5f63d33dac6a17a50426fe2}{atomic\+\_\+decrement\+\_\+if\+\_\+positive}}(mem)~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, -\/1, fetchaddgez)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_af211f1cc5a84b1629ab9c0bdab8e056d}\label{tile_2tilegx_2atomic-machine_8h_af211f1cc5a84b1629ab9c0bdab8e056d}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!\_\_atomic\_update@{\_\_atomic\_update}}
+\index{\_\_atomic\_update@{\_\_atomic\_update}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_\_atomic\_update}{\_\_atomic\_update}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+atomic\+\_\+update(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{v,  }\item[{}]{op }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem))) (\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (*(mem) -\/ *(mem)))                     \(\backslash\)}
+\DoxyCodeLine{   ((\textcolor{keyword}{sizeof} (*(mem)) == 8) ?                                            \(\backslash\)}
+\DoxyCodeLine{    \_\_insn\_\#\#op ((\textcolor{keywordtype}{void} *) (mem), (\mbox{\hyperlink{posix_2sys_2types_8h_a10c9f200669fac0da850346f08196ed6}{int64\_t}}) (\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}}((v) -\/ (v))) (v)) : \(\backslash\)}
+\DoxyCodeLine{    (sizeof (*(mem)) == 4) ?                                            \(\backslash\)}
+\DoxyCodeLine{    \_\_insn\_\#\#op\#\#4 ((\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} *) (mem), (\mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\_t}}) (\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} ((v) -\/ (v))) (v)) : \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{tile_2atomic-machine_8h_a37ad5c5ff63c5b01e2b54afa5cafa557}{\_\_atomic\_error\_bad\_argument\_size}}()))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a8e8d65bbb9c9309de702e674662b684b}\label{tile_2tilegx_2atomic-machine_8h_a8e8d65bbb9c9309de702e674662b684b}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!\_\_HAVE\_64B\_ATOMICS@{\_\_HAVE\_64B\_ATOMICS}}
+\index{\_\_HAVE\_64B\_ATOMICS@{\_\_HAVE\_64B\_ATOMICS}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_\_HAVE\_64B\_ATOMICS}{\_\_HAVE\_64B\_ATOMICS}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+H\+A\+V\+E\+\_\+64\+B\+\_\+\+A\+T\+O\+M\+I\+CS~0}
+
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a5541715cc88d242e8274b93750105a1a}\label{tile_2tilegx_2atomic-machine_8h_a5541715cc88d242e8274b93750105a1a}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_and\_val@{atomic\_and\_val}}
+\index{atomic\_and\_val@{atomic\_and\_val}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_and\_val}{atomic\_and\_val}}
+{\footnotesize\ttfamily \#define atomic\+\_\+and\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}}, fetchand)}
+
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a569bafc8378b06d655af9c5f60b710c6}\label{tile_2tilegx_2atomic-machine_8h_a569bafc8378b06d655af9c5f60b710c6}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_compare\_and\_exchange\_val\_acq@{atomic\_compare\_and\_exchange\_val\_acq}}
+\index{atomic\_compare\_and\_exchange\_val\_acq@{atomic\_compare\_and\_exchange\_val\_acq}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_and\_exchange\_val\_acq}{atomic\_compare\_and\_exchange\_val\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}},  }\item[{}]{o }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \_\_insn\_mtspr (SPR\_CMPEXCH\_VALUE, (\mbox{\hyperlink{posix_2sys_2types_8h_a10c9f200669fac0da850346f08196ed6}{int64\_t}}) (\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} ((o) -\/ (o))) (o)); \(\backslash\)}
+\DoxyCodeLine{     \_\_atomic\_update (mem, \mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}, cmpexch); \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a3acf0020d5f63d33dac6a17a50426fe2}\label{tile_2tilegx_2atomic-machine_8h_a3acf0020d5f63d33dac6a17a50426fe2}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_decrement\_if\_positive@{atomic\_decrement\_if\_positive}}
+\index{atomic\_decrement\_if\_positive@{atomic\_decrement\_if\_positive}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_decrement\_if\_positive}{atomic\_decrement\_if\_positive}}
+{\footnotesize\ttfamily \#define atomic\+\_\+decrement\+\_\+if\+\_\+positive(\begin{DoxyParamCaption}\item[{}]{mem }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, -\/1, fetchaddgez)}
+
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}\label{tile_2tilegx_2atomic-machine_8h_ab2ddf0c12f4344eccc81e71f6f9792fd}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_exchange\_acq@{atomic\_exchange\_acq}}
+\index{atomic\_exchange\_acq@{atomic\_exchange\_acq}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_acq}{atomic\_exchange\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{newvalue }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, newvalue, exch)}
+
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}\label{tile_2tilegx_2atomic-machine_8h_a5866844ead1aa48df6a255bc7f940425}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_exchange\_and\_add@{atomic\_exchange\_and\_add}}
+\index{atomic\_exchange\_and\_add@{atomic\_exchange\_and\_add}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_exchange\_and\_add}{atomic\_exchange\_and\_add}}
+{\footnotesize\ttfamily \#define atomic\+\_\+exchange\+\_\+and\+\_\+add(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{structvalue}{value}} }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, \mbox{\hyperlink{structvalue}{value}}, fetchadd)}
+
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a60a1ff510171561015255a646f6a8bb1}\label{tile_2tilegx_2atomic-machine_8h_a60a1ff510171561015255a646f6a8bb1}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_or\_val@{atomic\_or\_val}}
+\index{atomic\_or\_val@{atomic\_or\_val}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_or\_val}{atomic\_or\_val}}
+{\footnotesize\ttfamily \#define atomic\+\_\+or\+\_\+val(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}} }\end{DoxyParamCaption})~\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_ae77638e1f8a4f55a95c445b02ae38deb}{\+\_\+\+\_\+atomic\+\_\+update}} (mem, \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a296d0ff8da7d718358de046a2dfcf928}{mask}}, fetchor)}
+
+\mbox{\Hypertarget{tile_2tilegx_2atomic-machine_8h_a58dc6c3c9f758aca7e21fa8b8834215e}\label{tile_2tilegx_2atomic-machine_8h_a58dc6c3c9f758aca7e21fa8b8834215e}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!USE\_ATOMIC\_COMPILER\_BUILTINS@{USE\_ATOMIC\_COMPILER\_BUILTINS}}
+\index{USE\_ATOMIC\_COMPILER\_BUILTINS@{USE\_ATOMIC\_COMPILER\_BUILTINS}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{USE\_ATOMIC\_COMPILER\_BUILTINS}{USE\_ATOMIC\_COMPILER\_BUILTINS}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+A\+T\+O\+M\+I\+C\+\_\+\+C\+O\+M\+P\+I\+L\+E\+R\+\_\+\+B\+U\+I\+L\+T\+I\+NS~0}
+

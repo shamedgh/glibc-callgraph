@@ -1,0 +1,121 @@
+
+;; Function putwchar_unlocked (putwchar_unlocked, funcdef_no=40, decl_uid=10160, cgraph_uid=40, symbol_order=45)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 29.
+Merging block 8 into block 6...
+Merged blocks 6 and 8.
+Merged 6 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 95 [ wc ])
+        (reg:SI 5 di [ wc ])) putwchar_u.c:23 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg/f:DI 88 [ D.10456 ])
+        (mem/f/c:DI (symbol_ref:DI ("_IO_stdout") [flags 0x42]  <var_decl 0x2b2084a38a20 _IO_stdout>) [1 _IO_stdout+0 S8 A64])) putwchar_u.c:25 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/f:DI 89 [ D.10457 ])
+        (mem/f:DI (plus:DI (reg/f:DI 88 [ D.10456 ])
+                (const_int 160 [0xa0])) [1 _4->_wide_data+0 S8 A64])) putwchar_u.c:25 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ D.10457 ])
+            (const_int 0 [0]))) putwchar_u.c:25 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) putwchar_u.c:25 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 14)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg/f:DI 90 [ D.10458 ])
+        (mem/f:DI (plus:DI (reg/f:DI 89 [ D.10457 ])
+                (const_int 32 [0x20])) [1 _5->_IO_write_ptr+0 S8 A64])) putwchar_u.c:25 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 90 [ D.10458 ])
+            (mem/f:DI (plus:DI (reg/f:DI 89 [ D.10457 ])
+                    (const_int 40 [0x28])) [1 _5->_IO_write_end+0 S8 A64]))) putwchar_u.c:25 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) putwchar_u.c:25 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 21)
+(code_label 14 13 15 5 2 "" [1 uses])
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 5 (set (reg:SI 4 si)
+        (reg/v:SI 95 [ wc ])) putwchar_u.c:25 -1
+     (nil))
+(insn 17 16 18 5 (set (reg:DI 5 di)
+        (reg/f:DI 88 [ D.10456 ])) putwchar_u.c:25 -1
+     (nil))
+(call_insn/j 18 17 19 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___woverflow") [flags 0x43]  <function_decl 0x2b2084a47948 __woverflow>) [0 __woverflow S1 A8])
+            (const_int 0 [0]))) putwchar_u.c:25 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___woverflow") [flags 0x43]  <function_decl 0x2b2084a47948 __woverflow>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(barrier 19 18 21)
+(code_label 21 19 22 6 3 "" [1 uses])
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (parallel [
+            (set (reg:DI 96)
+                (plus:DI (reg/f:DI 90 [ D.10458 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) putwchar_u.c:25 -1
+     (nil))
+(insn 24 23 25 6 (set (mem/f:DI (plus:DI (reg/f:DI 89 [ D.10457 ])
+                (const_int 32 [0x20])) [1 _5->_IO_write_ptr+0 S8 A64])
+        (reg:DI 96)) putwchar_u.c:25 -1
+     (nil))
+(insn 25 24 26 6 (set (mem:SI (reg/f:DI 90 [ D.10458 ]) [3 *_9+0 S4 A32])
+        (reg/v:SI 95 [ wc ])) putwchar_u.c:25 -1
+     (nil))
+(insn 26 25 28 6 (set (reg:SI 87 [ D.10455 ])
+        (reg/v:SI 95 [ wc ])) putwchar_u.c:25 -1
+     (nil))
+(insn 28 26 32 6 (set (reg:SI 94 [ <retval> ])
+        (reg:SI 87 [ D.10455 ])) putwchar_u.c:25 -1
+     (nil))
+(insn 32 28 33 6 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) putwchar_u.c:26 -1
+     (nil))
+(insn 33 32 0 6 (use (reg/i:SI 0 ax)) putwchar_u.c:26 -1
+     (nil))

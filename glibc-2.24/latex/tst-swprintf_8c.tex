@@ -1,0 +1,68 @@
+\hypertarget{tst-swprintf_8c}{}\doxysection{stdio-\/common/tst-\/swprintf.c File Reference}
+\label{tst-swprintf_8c}\index{stdio-\/common/tst-\/swprintf.c@{stdio-\/common/tst-\/swprintf.c}}
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tst-swprintf_8c_a97a9d0613088cf79ae0b5274b4300383}{nbuf}}~(sizeof (\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}) / sizeof (\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{tst-swprintf_8c_afa9ab2655780b2d287a440ce54fd2d8a}{C\+H\+E\+CK}}(\mbox{\hyperlink{tst-strftime_8c_a381d684d94e6e91dee650357e8f02fa8}{fmt}},  nexp,  \mbox{\hyperlink{libm__cpu__defs_8h_ae87cffe9d4bba63937ab959bda26aa0c}{exp}})
+\item 
+\#define \mbox{\hyperlink{tst-swprintf_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char \mbox{\hyperlink{tst-swprintf_8c_ac132c6e5530925c78abcc80a58e95a9f}{input}} \mbox{[}$\,$\mbox{]} = \char`\"{}\textbackslash{}x8e\textbackslash{}xa1g\textbackslash{}x8e\textbackslash{}xa2h\textbackslash{}x8e\textbackslash{}xa3i\textbackslash{}x8e\textbackslash{}xa4j\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tst-swprintf_8c_afa9ab2655780b2d287a440ce54fd2d8a}\label{tst-swprintf_8c_afa9ab2655780b2d287a440ce54fd2d8a}} 
+\index{tst-\/swprintf.c@{tst-\/swprintf.c}!CHECK@{CHECK}}
+\index{CHECK@{CHECK}!tst-\/swprintf.c@{tst-\/swprintf.c}}
+\doxysubsubsection{\texorpdfstring{CHECK}{CHECK}}
+{\footnotesize\ttfamily \#define C\+H\+E\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strftime_8c_a381d684d94e6e91dee650357e8f02fa8}{fmt}},  }\item[{}]{nexp,  }\item[{}]{\mbox{\hyperlink{libm__cpu__defs_8h_ae87cffe9d4bba63937ab959bda26aa0c}{exp}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}} = \mbox{\hyperlink{nldbl-swprintf_8c_a422a71f746de2d28102ee0f5b4fc451b}{swprintf}} (\mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \mbox{\hyperlink{tst-swprintf_8c_a97a9d0613088cf79ae0b5274b4300383}{nbuf}}, \mbox{\hyperlink{libio_2tst-swscanf_8c_ad9fdc174af4221e749559d77a91eb67a}{fmt}}, \mbox{\hyperlink{tst-swprintf_8c_ac132c6e5530925c78abcc80a58e95a9f}{input}});                         \(\backslash\)}
+\DoxyCodeLine{  if (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}} != nexp)                                 \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      printf (\textcolor{stringliteral}{"swprintf (.., .., L\(\backslash\)"\%ls\(\backslash\)", \(\backslash\)"\%ls\(\backslash\)") return \%d, not \%d\(\backslash\)n"},     \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{libio_2tst-swscanf_8c_ad9fdc174af4221e749559d77a91eb67a}{fmt}}, (\textcolor{keywordtype}{wchar\_t}*) \mbox{\hyperlink{tst-swprintf_8c_ac132c6e5530925c78abcc80a58e95a9f}{input}}, (\textcolor{keywordtype}{int}) \mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}, (\textcolor{keywordtype}{int}) nexp);           \(\backslash\)}
+\DoxyCodeLine{      result = 1;                                 \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  else \textcolor{keywordflow}{if} (\mbox{\hyperlink{wcsmbs_2wchar_8h_a8ffb9c127ff796a7784300d7b2f6383a}{wcscmp}} (\mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \mbox{\hyperlink{math_2tgmath_8h_a3abc74718d4e3b6211543058880165dc}{exp}}) != 0)                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      printf (\textcolor{stringliteral}{"\(\backslash\)swprintf (.., .., L\(\backslash\)"\%ls\(\backslash\)", \(\backslash\)"\%ls\(\backslash\)") produced \(\backslash\)"\%ls\(\backslash\)", not \(\backslash\)"\%ls\(\backslash\)"\(\backslash\)n"},        \(\backslash\)}
+\DoxyCodeLine{         \mbox{\hyperlink{libio_2tst-swscanf_8c_ad9fdc174af4221e749559d77a91eb67a}{fmt}}, (\textcolor{keywordtype}{wchar\_t} *) \mbox{\hyperlink{tst-swprintf_8c_ac132c6e5530925c78abcc80a58e95a9f}{input}}, \mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \mbox{\hyperlink{math_2tgmath_8h_a3abc74718d4e3b6211543058880165dc}{exp}} );                \(\backslash\)}
+\DoxyCodeLine{      result = 1;                                 \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tst-swprintf_8c_a97a9d0613088cf79ae0b5274b4300383}\label{tst-swprintf_8c_a97a9d0613088cf79ae0b5274b4300383}} 
+\index{tst-\/swprintf.c@{tst-\/swprintf.c}!nbuf@{nbuf}}
+\index{nbuf@{nbuf}!tst-\/swprintf.c@{tst-\/swprintf.c}}
+\doxysubsubsection{\texorpdfstring{nbuf}{nbuf}}
+{\footnotesize\ttfamily \#define nbuf~(sizeof (\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}) / sizeof (\mbox{\hyperlink{gb2312_8h_a01bc344a275a1b6a5b1dc4ef8247f06a}{buf}}\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{tst-swprintf_8c_a6002ab22c656c4024eb89b538930bc32}\label{tst-swprintf_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{tst-\/swprintf.c@{tst-\/swprintf.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!tst-\/swprintf.c@{tst-\/swprintf.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{tst-swprintf_8c_ac132c6e5530925c78abcc80a58e95a9f}\label{tst-swprintf_8c_ac132c6e5530925c78abcc80a58e95a9f}} 
+\index{tst-\/swprintf.c@{tst-\/swprintf.c}!input@{input}}
+\index{input@{input}!tst-\/swprintf.c@{tst-\/swprintf.c}}
+\doxysubsubsection{\texorpdfstring{input}{input}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char input\mbox{[}$\,$\mbox{]} = \char`\"{}\textbackslash{}x8e\textbackslash{}xa1g\textbackslash{}x8e\textbackslash{}xa2h\textbackslash{}x8e\textbackslash{}xa3i\textbackslash{}x8e\textbackslash{}xa4j\char`\"{}}
+

@@ -1,0 +1,43 @@
+\hypertarget{generic_2atomic-machine_8h}{}\doxysection{sysdeps/generic/atomic-\/machine.h File Reference}
+\label{generic_2atomic-machine_8h}\index{sysdeps/generic/atomic-\/machine.h@{sysdeps/generic/atomic-\/machine.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{generic_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\item 
+\#define \mbox{\hyperlink{generic_2atomic-machine_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}{atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+bool\+\_\+acq}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{generic_2atomic-machine_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}\label{generic_2atomic-machine_8h_a1ae828ec9c28a7f83175cb8c7a02c1fd}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_compare\_and\_exchange\_bool\_acq@{atomic\_compare\_and\_exchange\_bool\_acq}}
+\index{atomic\_compare\_and\_exchange\_bool\_acq@{atomic\_compare\_and\_exchange\_bool\_acq}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_and\_exchange\_bool\_acq}{atomic\_compare\_and\_exchange\_bool\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+bool\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (mem) \_\_gmemp = (mem);                    \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*mem) \_\_gnewval = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}});                  \(\backslash\)}
+\DoxyCodeLine{                                      \(\backslash\)}
+\DoxyCodeLine{     *\_\_gmemp == (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}) ? (*\_\_gmemp = \_\_gnewval, 0) : 1; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}\label{generic_2atomic-machine_8h_a2fd580b5beda1937a49bfa48f420a323}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!atomic\_compare\_and\_exchange\_val\_acq@{atomic\_compare\_and\_exchange\_val\_acq}}
+\index{atomic\_compare\_and\_exchange\_val\_acq@{atomic\_compare\_and\_exchange\_val\_acq}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{atomic\_compare\_and\_exchange\_val\_acq}{atomic\_compare\_and\_exchange\_val\_acq}}
+{\footnotesize\ttfamily \#define atomic\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (mem) \_\_gmemp = (mem);                    \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*mem) \_\_gret = *\_\_gmemp;                   \(\backslash\)}
+\DoxyCodeLine{     \_\_typeof (*mem) \_\_gnewval = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}});                  \mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{                                      \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{     if}} (\_\_gret == (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}))                         \(\backslash\)}
+\DoxyCodeLine{       *\_\_gmemp = \_\_gnewval;                          \(\backslash\)}
+\DoxyCodeLine{     \_\_gret; \})}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\hypertarget{m68k_2m680x0_2fpu_2math__private_8h}{}\doxysection{sysdeps/m68k/m680x0/fpu/math\+\_\+private.h File Reference}
+\label{m68k_2m680x0_2fpu_2math__private_8h}\index{sysdeps/m68k/m680x0/fpu/math\_private.h@{sysdeps/m68k/m680x0/fpu/math\_private.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{m68k_2m680x0_2fpu_2math__private_8h_aced15ade41dd1293f419aa44cdadce02}{math\+\_\+opt\+\_\+barrier}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})
+\item 
+\#define \mbox{\hyperlink{m68k_2m680x0_2fpu_2math__private_8h_a06180f31a667df25d658a0bebebe14bb}{math\+\_\+force\+\_\+eval}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{m68k_2m680x0_2fpu_2math__private_8h_a06180f31a667df25d658a0bebebe14bb}\label{m68k_2m680x0_2fpu_2math__private_8h_a06180f31a667df25d658a0bebebe14bb}} 
+\index{math\_private.h@{math\_private.h}!math\_force\_eval@{math\_force\_eval}}
+\index{math\_force\_eval@{math\_force\_eval}!math\_private.h@{math\_private.h}}
+\doxysubsubsection{\texorpdfstring{math\_force\_eval}{math\_force\_eval}}
+{\footnotesize\ttfamily \#define math\+\_\+force\+\_\+eval(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                          \(\backslash\)}
+\DoxyCodeLine{  \{                         \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}}) \_\_x = (\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}});               \(\backslash\)}
+\DoxyCodeLine{    if (\textcolor{keyword}{sizeof} (\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}}) <= \textcolor{keyword}{sizeof} (\textcolor{keywordtype}{double}))         \(\backslash\)}
+\DoxyCodeLine{      \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\textcolor{stringliteral}{""} : : \textcolor{stringliteral}{"m"} (\_\_x));        \(\backslash\)}
+\DoxyCodeLine{    else                        \(\backslash\)}
+\DoxyCodeLine{      \_\_asm \mbox{\hyperlink{sparc64_2dl-plt_8h_a6bdfceae5acdc3ef12f0b47b1c7b0922}{\_\_volatile}} (\textcolor{stringliteral}{""} : : \textcolor{stringliteral}{"f"} (\_\_x));        \(\backslash\)}
+\DoxyCodeLine{  \}                         \(\backslash\)}
+\DoxyCodeLine{while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{m68k_2m680x0_2fpu_2math__private_8h_aced15ade41dd1293f419aa44cdadce02}\label{m68k_2m680x0_2fpu_2math__private_8h_aced15ade41dd1293f419aa44cdadce02}} 
+\index{math\_private.h@{math\_private.h}!math\_opt\_barrier@{math\_opt\_barrier}}
+\index{math\_opt\_barrier@{math\_opt\_barrier}!math\_private.h@{math\_private.h}}
+\doxysubsubsection{\texorpdfstring{math\_opt\_barrier}{math\_opt\_barrier}}
+{\footnotesize\ttfamily \#define math\+\_\+opt\+\_\+barrier(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}}) \_\_x;                   \(\backslash\)}
+\DoxyCodeLine{   \_\_asm (\textcolor{stringliteral}{""} : \textcolor{stringliteral}{"=f"} (\_\_x) : \textcolor{stringliteral}{"0"} (\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}}));          \(\backslash\)}
+\DoxyCodeLine{   \_\_x; \})}
+
+\end{DoxyCode}

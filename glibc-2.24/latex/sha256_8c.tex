@@ -1,0 +1,89 @@
+\hypertarget{sha256_8c}{}\doxysection{crypt/sha256.c File Reference}
+\label{sha256_8c}\index{crypt/sha256.c@{crypt/sha256.c}}
+{\ttfamily \#include $<$endian.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sha256.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sha256-\/block.\+c$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sha256_8c_acb6d65a652365e0cba0cde50854acc08}{S\+W\+AP}}(\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})~(((\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}) $<$$<$ 24) $\vert$ (((\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}) \& 0xff00) $<$$<$ 8) $\vert$ (((n) $>$$>$ 8) \& 0xff00) $\vert$ ((n) $>$$>$ 24))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_ae11a48bea44647a28f4765e5ff756b60}{S\+W\+A\+P64}}(\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a025ef66080bd7cd1fd0b54d8d1498712}{U\+N\+A\+L\+I\+G\+N\+E\+D\+\_\+P}}(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})~(((\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}}) \mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}) \% sizeof (\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}) != 0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{sha256_8c_a4992d11c193c79edf504a0c0cdade761}{sha256\+\_\+process\+\_\+block}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}, struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{sha256_8c_ad7f3a19d8fd15280fbed7216168e6efc}{\+\_\+\+\_\+sha256\+\_\+init\+\_\+ctx}} (struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$ctx)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{sha256_8c_aa488e95e5d6f8cd3f0a4a3d9bb8b319f}{\+\_\+\+\_\+sha256\+\_\+finish\+\_\+ctx}} (struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$ctx, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$resbuf)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{sha256_8c_ad40bcaf3204e31f32d1c5ef09e526179}{\+\_\+\+\_\+sha256\+\_\+process\+\_\+bytes}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{tst-fdopen_8c_ad5e2d3a85512c52e869f6ad9a4c2808e}{buffer}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sha256_8c_acb6d65a652365e0cba0cde50854acc08}\label{sha256_8c_acb6d65a652365e0cba0cde50854acc08}} 
+\index{sha256.c@{sha256.c}!SWAP@{SWAP}}
+\index{SWAP@{SWAP}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{SWAP}{SWAP}}
+{\footnotesize\ttfamily \#define S\+W\+AP(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}) $<$$<$ 24) $\vert$ (((\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}) \& 0xff00) $<$$<$ 8) $\vert$ (((n) $>$$>$ 8) \& 0xff00) $\vert$ ((n) $>$$>$ 24))}
+
+\mbox{\Hypertarget{sha256_8c_ae11a48bea44647a28f4765e5ff756b60}\label{sha256_8c_ae11a48bea44647a28f4765e5ff756b60}} 
+\index{sha256.c@{sha256.c}!SWAP64@{SWAP64}}
+\index{SWAP64@{SWAP64}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{SWAP64}{SWAP64}}
+{\footnotesize\ttfamily \#define S\+W\+A\+P64(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) << 56)                   \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) \& 0xff00) << 40)            \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) \& 0xff0000) << 24)          \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) \& 0xff000000) << 8)         \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) >> 8) \& 0xff000000)         \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) >> 24) \& 0xff0000)          \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) >> 40) \& 0xff00)            \(\backslash\)}
+\DoxyCodeLine{   | ((\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}}) >> 56))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sha256_8c_a025ef66080bd7cd1fd0b54d8d1498712}\label{sha256_8c_a025ef66080bd7cd1fd0b54d8d1498712}} 
+\index{sha256.c@{sha256.c}!UNALIGNED\_P@{UNALIGNED\_P}}
+\index{UNALIGNED\_P@{UNALIGNED\_P}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{UNALIGNED\_P}{UNALIGNED\_P}}
+{\footnotesize\ttfamily \#define U\+N\+A\+L\+I\+G\+N\+E\+D\+\_\+P(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}}) \mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}) \% sizeof (\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}) != 0)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sha256_8c_aa488e95e5d6f8cd3f0a4a3d9bb8b319f}\label{sha256_8c_aa488e95e5d6f8cd3f0a4a3d9bb8b319f}} 
+\index{sha256.c@{sha256.c}!\_\_sha256\_finish\_ctx@{\_\_sha256\_finish\_ctx}}
+\index{\_\_sha256\_finish\_ctx@{\_\_sha256\_finish\_ctx}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{\_\_sha256\_finish\_ctx()}{\_\_sha256\_finish\_ctx()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ \+\_\+\+\_\+sha256\+\_\+finish\+\_\+ctx (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{resbuf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sha256_8c_ad7f3a19d8fd15280fbed7216168e6efc}\label{sha256_8c_ad7f3a19d8fd15280fbed7216168e6efc}} 
+\index{sha256.c@{sha256.c}!\_\_sha256\_init\_ctx@{\_\_sha256\_init\_ctx}}
+\index{\_\_sha256\_init\_ctx@{\_\_sha256\_init\_ctx}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{\_\_sha256\_init\_ctx()}{\_\_sha256\_init\_ctx()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+sha256\+\_\+init\+\_\+ctx (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sha256_8c_ad40bcaf3204e31f32d1c5ef09e526179}\label{sha256_8c_ad40bcaf3204e31f32d1c5ef09e526179}} 
+\index{sha256.c@{sha256.c}!\_\_sha256\_process\_bytes@{\_\_sha256\_process\_bytes}}
+\index{\_\_sha256\_process\_bytes@{\_\_sha256\_process\_bytes}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{\_\_sha256\_process\_bytes()}{\_\_sha256\_process\_bytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+sha256\+\_\+process\+\_\+bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{buffer,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len,  }\item[{struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sha256_8c_a4992d11c193c79edf504a0c0cdade761}\label{sha256_8c_a4992d11c193c79edf504a0c0cdade761}} 
+\index{sha256.c@{sha256.c}!sha256\_process\_block@{sha256\_process\_block}}
+\index{sha256\_process\_block@{sha256\_process\_block}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{sha256\_process\_block()}{sha256\_process\_block()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} sha256\+\_\+process\+\_\+block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{,  }\item[{struct \mbox{\hyperlink{structsha256__ctx}{sha256\+\_\+ctx}} $\ast$}]{ }\end{DoxyParamCaption})}
+

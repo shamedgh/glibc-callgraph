@@ -1,0 +1,453 @@
+
+;; Function _IO_ungetc (_IO_ungetc, funcdef_no=38, decl_uid=7827, cgraph_uid=38, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+Edge 2->9 redirected to 14
+Edge 7->9 redirected to 15
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v:SI 107 [ c ])
+        (reg:SI 5 di [ c ])) ioungetc.c:31 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 108 [ fp ])
+        (reg:DI 4 si [ fp ])) ioungetc.c:31 -1
+     (nil))
+(note 4 3 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 4 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 107 [ c ])
+            (const_int -1 [0xffffffffffffffff]))) ioungetc.c:34 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) ioungetc.c:34 612 {*jcc_1}
+     (int_list:REG_BR_PROB 159 (nil))
+ -> 76)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:SI 110)
+        (mem:SI (reg/v/f:DI 108 [ fp ]) [3 fp_7(D)->_flags+0 S4 A64])) ioungetc.c:36 -1
+     (nil))
+(insn 15 14 16 4 (parallel [
+            (set (reg:SI 109 [ D.9876 ])
+                (and:SI (reg:SI 110)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) ioungetc.c:36 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 108 [ fp ]) [3 fp_7(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 109 [ D.9876 ])
+            (const_int 0 [0]))) ioungetc.c:36 -1
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 54)
+            (pc))) ioungetc.c:36 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 54)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (parallel [
+            (set (reg:DI 111 [ __self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") ioungetc.c:36)
+                    ]
+                     [] ioungetc.c:36))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ioungetc.c:36 -1
+     (nil))
+(insn 20 19 21 5 (set (reg/v/f:DI 90 [ __self ])
+        (reg:DI 111 [ __self ])) ioungetc.c:36 -1
+     (nil))
+(insn 21 20 22 5 (set (reg/f:DI 95 [ D.9878 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 108 [ fp ])
+                (const_int 136 [0x88])) [1 fp_7(D)->_lock+0 S8 A64])) ioungetc.c:36 -1
+     (nil))
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 90 [ __self ])
+            (mem/f:DI (plus:DI (reg/f:DI 95 [ D.9878 ])
+                    (const_int 8 [0x8])) [1 _11->owner+0 S8 A64]))) ioungetc.c:36 -1
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) ioungetc.c:36 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 33)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 6 (set (reg:SI 115)
+        (const_int 1 [0x1])) ioungetc.c:36 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:SI 116)
+        (const_int 0 [0])) ioungetc.c:36 -1
+     (nil))
+(insn 27 26 28 6 (parallel [
+            (set (reg:SI 112 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 115)
+                        (mem:SI (reg/f:DI 95 [ D.9878 ]) [3 _11->lock+0 S4 A64])
+                        (reg:SI 116)
+                    ]
+                     [
+                        (asm_input:SI ("0") ioungetc.c:36)
+                        (asm_input:SI ("m") ioungetc.c:36)
+                        (asm_input:SI ("3") ioungetc.c:36)
+                    ]
+                     [] ioungetc.c:36))
+            (set (reg:SI 113 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 115)
+                        (mem:SI (reg/f:DI 95 [ D.9878 ]) [3 _11->lock+0 S4 A64])
+                        (reg:SI 116)
+                    ]
+                     [
+                        (asm_input:SI ("0") ioungetc.c:36)
+                        (asm_input:SI ("m") ioungetc.c:36)
+                        (asm_input:SI ("3") ioungetc.c:36)
+                    ]
+                     [] ioungetc.c:36))
+            (set (mem:SI (reg/f:DI 95 [ D.9878 ]) [3 _11->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 115)
+                        (mem:SI (reg/f:DI 95 [ D.9878 ]) [3 _11->lock+0 S4 A64])
+                        (reg:SI 116)
+                    ]
+                     [
+                        (asm_input:SI ("0") ioungetc.c:36)
+                        (asm_input:SI ("m") ioungetc.c:36)
+                        (asm_input:SI ("3") ioungetc.c:36)
+                    ]
+                     [] ioungetc.c:36))
+            (set (reg:SI 114 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 115)
+                        (mem:SI (reg/f:DI 95 [ D.9878 ]) [3 _11->lock+0 S4 A64])
+                        (reg:SI 116)
+                    ]
+                     [
+                        (asm_input:SI ("0") ioungetc.c:36)
+                        (asm_input:SI ("m") ioungetc.c:36)
+                        (asm_input:SI ("3") ioungetc.c:36)
+                    ]
+                     [] ioungetc.c:36))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) ioungetc.c:36 -1
+     (nil))
+(insn 28 27 29 6 (set (reg/v:SI 92 [ ignore1 ])
+        (reg:SI 112 [ ignore1 ])) ioungetc.c:36 -1
+     (nil))
+(insn 29 28 30 6 (set (reg/v:SI 93 [ ignore2 ])
+        (reg:SI 113 [ ignore2 ])) ioungetc.c:36 -1
+     (nil))
+(insn 30 29 31 6 (set (reg/v:SI 94 [ ignore3 ])
+        (reg:SI 114 [ ignore3 ])) ioungetc.c:36 -1
+     (nil))
+(insn 31 30 32 6 (set (reg/f:DI 95 [ D.9878 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 108 [ fp ])
+                (const_int 136 [0x88])) [1 fp_7(D)->_lock+0 S8 A64])) ioungetc.c:36 -1
+     (nil))
+(insn 32 31 33 6 (set (mem/f:DI (plus:DI (reg/f:DI 95 [ D.9878 ])
+                (const_int 8 [0x8])) [1 _17->owner+0 S8 A64])
+        (reg/v/f:DI 90 [ __self ])) ioungetc.c:36 -1
+     (nil))
+(code_label 33 32 34 7 4 "" [1 uses])
+(note 34 33 35 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 7 (parallel [
+            (set (mem:SI (plus:DI (reg/f:DI 95 [ D.9878 ])
+                        (const_int 4 [0x4])) [3 _23->cnt+0 S4 A32])
+                (plus:SI (mem:SI (plus:DI (reg/f:DI 95 [ D.9878 ])
+                            (const_int 4 [0x4])) [3 _23->cnt+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ioungetc.c:36 -1
+     (nil))
+(jump_insn 36 35 37 7 (set (pc)
+        (label_ref 54)) ioungetc.c:36 -1
+     (nil)
+ -> 54)
+(barrier 37 36 61)
+(code_label 61 37 38 8 5 "" [1 uses])
+(note 38 61 39 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 8 (set (reg/f:DI 98 [ D.9878 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 108 [ fp ])
+                (const_int 136 [0x88])) [1 fp_7(D)->_lock+0 S8 A64])) libioP.h:863 -1
+     (nil))
+(insn 40 39 41 8 (set (reg:SI 117)
+        (mem:SI (plus:DI (reg/f:DI 98 [ D.9878 ])
+                (const_int 4 [0x4])) [3 _28->cnt+0 S4 A32])) libioP.h:863 -1
+     (nil))
+(insn 41 40 42 8 (parallel [
+            (set (reg:SI 100 [ D.9876 ])
+                (plus:SI (reg:SI 117)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:863 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 98 [ D.9878 ])
+                    (const_int 4 [0x4])) [3 _28->cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 42 41 43 8 (set (mem:SI (plus:DI (reg/f:DI 98 [ D.9878 ])
+                (const_int 4 [0x4])) [3 _28->cnt+0 S4 A32])
+        (reg:SI 100 [ D.9876 ])) libioP.h:863 -1
+     (nil))
+(insn 43 42 44 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 100 [ D.9876 ])
+            (const_int 0 [0]))) libioP.h:863 -1
+     (nil))
+(jump_insn 44 43 45 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) libioP.h:863 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 80)
+(note 45 44 46 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 9 (set (mem/f:DI (plus:DI (reg/f:DI 98 [ D.9878 ])
+                (const_int 8 [0x8])) [1 _28->owner+0 S8 A64])
+        (const_int 0 [0])) libioP.h:863 -1
+     (nil))
+(insn 47 46 48 9 (parallel [
+            (set (mem:SI (reg/f:DI 98 [ D.9878 ]) [3 _28->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem:SI (reg/f:DI 98 [ D.9878 ]) [3 _28->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (set (reg:SI 118 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem:SI (reg/f:DI 98 [ D.9878 ]) [3 _28->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) libioP.h:863 -1
+     (nil))
+(insn 48 47 6 9 (set (reg/v:SI 101 [ ignore ])
+        (reg:SI 118 [ ignore ])) libioP.h:863 -1
+     (nil))
+(insn 6 48 73 9 (set (reg:SI 87 [ D.9876 ])
+        (reg/v:SI 102 [ result ])) ioungetc.c:37 -1
+     (nil))
+(jump_insn 73 6 74 9 (set (pc)
+        (label_ref 49)) -1
+     (nil)
+ -> 49)
+(barrier 74 73 76)
+(code_label 76 74 75 10 6 "" [1 uses])
+(note 75 76 5 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 5 75 77 10 (set (reg:SI 87 [ D.9876 ])
+        (const_int -1 [0xffffffffffffffff])) ioungetc.c:35 -1
+     (nil))
+(jump_insn 77 5 78 10 (set (pc)
+        (label_ref 49)) -1
+     (nil)
+ -> 49)
+(barrier 78 77 80)
+(code_label 80 78 79 11 7 "" [1 uses])
+(note 79 80 8 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 8 79 49 11 (set (reg:SI 87 [ D.9876 ])
+        (reg/v:SI 102 [ result ])) ioungetc.c:37 -1
+     (nil))
+(code_label 49 8 50 12 2 "" [3 uses])
+(note 50 49 51 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 52 12 (set (reg:SI 106 [ <retval> ])
+        (reg:SI 87 [ D.9876 ])) -1
+     (nil))
+(jump_insn 52 51 53 12 (set (pc)
+        (label_ref 69)) -1
+     (nil)
+ -> 69)
+(barrier 53 52 54)
+(code_label 54 53 55 13 3 "" [2 uses])
+(note 55 54 56 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 13 (set (reg:SI 120 [ D.9876 ])
+        (zero_extend:SI (subreg:QI (reg/v:SI 107 [ c ]) 0))) ioungetc.c:37 -1
+     (nil))
+(insn 57 56 58 13 (set (reg:SI 4 si)
+        (reg:SI 120 [ D.9876 ])) ioungetc.c:37 -1
+     (nil))
+(insn 58 57 59 13 (set (reg:DI 5 di)
+        (reg/v/f:DI 108 [ fp ])) ioungetc.c:37 -1
+     (nil))
+(call_insn 59 58 60 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI__IO_sputbackc") [flags 0x43]  <function_decl 0x2ac3fc32bd80 _IO_sputbackc>) [0 _IO_sputbackc S1 A8])
+            (const_int 0 [0]))) ioungetc.c:37 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI__IO_sputbackc") [flags 0x43]  <function_decl 0x2ac3fc32bd80 _IO_sputbackc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 60 59 62 13 (set (reg/v:SI 102 [ result ])
+        (reg:SI 0 ax)) ioungetc.c:37 -1
+     (nil))
+(insn 62 60 63 13 (set (reg:SI 122)
+        (mem:SI (reg/v/f:DI 108 [ fp ]) [3 fp_7(D)->_flags+0 S4 A64])) libioP.h:862 -1
+     (nil))
+(insn 63 62 64 13 (parallel [
+            (set (reg:SI 121 [ D.9876 ])
+                (and:SI (reg:SI 122)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:862 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 108 [ fp ]) [3 fp_7(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 64 63 65 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 121 [ D.9876 ])
+            (const_int 0 [0]))) libioP.h:862 -1
+     (nil))
+(jump_insn 65 64 68 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 61)
+            (pc))) libioP.h:862 -1
+     (int_list:REG_BR_PROB 3721 (nil))
+ -> 61)
+(note 68 65 7 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 7 68 66 14 (set (reg:SI 87 [ D.9876 ])
+        (reg/v:SI 102 [ result ])) ioungetc.c:37 -1
+     (nil))
+(jump_insn 66 7 67 14 (set (pc)
+        (label_ref 49)) libioP.h:862 -1
+     (nil)
+ -> 49)
+(barrier 67 66 69)
+(code_label 69 67 72 15 1 "" [1 uses])
+(note 72 69 70 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 70 72 71 15 (set (reg/i:SI 0 ax)
+        (reg:SI 106 [ <retval> ])) ioungetc.c:40 -1
+     (nil))
+(insn 71 70 0 15 (use (reg/i:SI 0 ax)) ioungetc.c:40 -1
+     (nil))

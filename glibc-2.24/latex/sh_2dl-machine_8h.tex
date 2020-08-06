@@ -1,0 +1,173 @@
+\hypertarget{sh_2dl-machine_8h}{}\doxysection{sysdeps/sh/dl-\/machine.h File Reference}
+\label{sh_2dl-machine_8h}\index{sysdeps/sh/dl-\/machine.h@{sysdeps/sh/dl-\/machine.h}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME}}~\char`\"{}SH\char`\"{}
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_acbdf85ce69a9d946022ed8637ac1085b}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+F\+I\+X\+U\+P\+\_\+\+A\+R\+GS}}~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} plt\+\_\+type
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_a8248a3e643d87efc51bac4a2bab70b22}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+F\+I\+X\+U\+P\+\_\+\+P\+A\+R\+A\+MS}}~plt\+\_\+type
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_a048fa8386e8001a4bd5b047a341da16f}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+U\+S\+E\+R\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK}}~0x80000000\+UL
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}{R\+T\+L\+D\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}.text\textbackslash{}n\textbackslash{}.\+globl \+\_\+start\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a732a7923eba52dd94213310a1ce8d319}{r15}},r4\textbackslash{}n\textbackslash{}	mov.\+l .L\+\_\+dl\+\_\+start,r1\textbackslash{}n\textbackslash{}	mova .L\+\_\+dl\+\_\+start,r0\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{strftime__l_8c_ace3147ee7e57195ae182ea0d7f8faafa}{add}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a688acde51e3dd07f5d5b84a4bc477dca}{r1}},r0\textbackslash{}n\textbackslash{}	jsr @r0\textbackslash{}n\textbackslash{}	 nop\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:\textbackslash{}n\textbackslash{}	! Save the \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{structentry}{entry}} point address \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} r8.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a6bd1151b354f73ff86f8153b3f73f374}{r0}},r8\textbackslash{}n\textbackslash{}	! Point \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a8041e7928a5bffcf7b01d7269d531541}{r12}} at the G\+O\+T.\textbackslash{}n\textbackslash{}	mov.\+l 1f,r12\textbackslash{}n\textbackslash{}	mova 1f,r0\textbackslash{}n\textbackslash{}	bra 2f\textbackslash{}n\textbackslash{}	 add r0,r12\textbackslash{}n\textbackslash{}	.\+align 2\textbackslash{}n\textbackslash{}1\+:	.\+long \+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+T\+A\+B\+L\+E\+\_\+\textbackslash{}n\textbackslash{}2\+:	! See if we were run as a command with the executable file\textbackslash{}n\textbackslash{}	! name as an extra leading argument.\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+skip\+\_\+args,r0\textbackslash{}n\textbackslash{}	mov.\+l @(r0,r12),r0\textbackslash{}n\textbackslash{}	mov.\+l @r0,r0\textbackslash{}n\textbackslash{}	! Get the original argument count.\textbackslash{}n\textbackslash{}	mov.\+l @r15,r5\textbackslash{}n\textbackslash{}	! Subtract \+\_\+dl\+\_\+skip\+\_\+args from it.\textbackslash{}n\textbackslash{}	sub r0,r5\textbackslash{}n\textbackslash{}	! Adjust the stack pointer to skip \+\_\+dl\+\_\+skip\+\_\+args words.\textbackslash{}n\textbackslash{}	shll2 r0\textbackslash{}n\textbackslash{}	add r0,r15\textbackslash{}n\textbackslash{}	! Store back the modified argument count.\textbackslash{}n\textbackslash{}	mov.\+l r5,@r15\textbackslash{}n\textbackslash{}	! Compute argv address and envp.\textbackslash{}n\textbackslash{}	mov r15,r6\textbackslash{}n\textbackslash{}	add \#4,r6\textbackslash{}n\textbackslash{}	mov r5,r7\textbackslash{}n\textbackslash{}	shll2 r7\textbackslash{}n\textbackslash{}	add r15,r7\textbackslash{}n\textbackslash{}	add \#8,r7\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+loaded,r0\textbackslash{}n\textbackslash{}	mov.\+l @(r0,r12),r0\textbackslash{}n\textbackslash{}	mov.\+l @r0,r4\textbackslash{}n\textbackslash{}	! Call \+\_\+dl\+\_\+init.\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+init,r1\textbackslash{}n\textbackslash{}	mova .\+L\+\_\+dl\+\_\+init,r0\textbackslash{}n\textbackslash{}	add r1,r0\textbackslash{}n\textbackslash{}	jsr @r0\textbackslash{}n\textbackslash{}	 nop\textbackslash{}n\textbackslash{}1\+:	! Pass our finalizer function to the user in r4, as per E\+L\+F A\+B\+I.\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+fini,r0\textbackslash{}n\textbackslash{}	mov.\+l @(r0,r12),r4\textbackslash{}n\textbackslash{}	! Jump to the user\textquotesingle{}s entry point.\textbackslash{}n\textbackslash{}	jmp @r8\textbackslash{}n\textbackslash{}	 nop\textbackslash{}n\textbackslash{}	.\+align 2\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+start\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+start@\+P\+L\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+skip\+\_\+args\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+skip\+\_\+args@\+G\+O\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+init\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+init@\+P\+L\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+loaded\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+rtld\+\_\+local@\+G\+O\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+fini\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+fini@\+G\+O\+T\textbackslash{}n\textbackslash{}	.\+type \+\_\+\+\_\+fpscr\+\_\+values,@object\textbackslash{}n\textbackslash{}	.\+global \+\_\+\+\_\+fpscr\+\_\+values\textbackslash{}n\textbackslash{}\+\_\+\+\_\+fpscr\+\_\+values\+:\textbackslash{}n\textbackslash{}	.\+long   0\textbackslash{}n\textbackslash{}	.\+long   0x80000\textbackslash{}n\textbackslash{}	.\+weak \+\_\+\+\_\+fpscr\+\_\+values\textbackslash{}n\textbackslash{}.\+previous\textbackslash{}n\textbackslash{}\char`\"{});
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}{elf\+\_\+machine\+\_\+type\+\_\+class}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}~\mbox{\hyperlink{elf_2elf_8h_a37db2f6d7bc0daf791aa0408ee57a3de}{R\+\_\+\+S\+H\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}{D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+I\+N\+IT}}~dl\+\_\+platform\+\_\+init ()
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER}}~sh\+\_\+gnu\+\_\+pltenter
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT}}~sh\+\_\+gnu\+\_\+pltexit
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL}}~1
+\item 
+\#define \mbox{\hyperlink{sh_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{sh_2dl-machine_8h_a1496fe125ed93a7c4777a28f74d66618}{\+\_\+dl\+\_\+runtime\+\_\+resolve}} (\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\+\_\+\+Word}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{sh_2dl-machine_8h_a04b9dbce209e5421d2c0b1667710a5ca}{\+\_\+dl\+\_\+runtime\+\_\+profile}} (\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\+\_\+\+Word}})
+\item 
+\mbox{\hyperlink{sh_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}{if}} (l-\/$>$l\+\_\+info\mbox{[}\mbox{\hyperlink{elf_2elf_8h_ad7cbdc6f9aeb70f37aec7ae6c2311edc}{D\+T\+\_\+\+J\+M\+P\+R\+EL}}\mbox{]} \&\&\mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sh_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sh_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sh_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}\label{sh_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}}
+\index{ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTENTER}{ARCH\_LA\_PLTENTER}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER~sh\+\_\+gnu\+\_\+pltenter}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}\label{sh_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}}
+\index{ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTEXIT}{ARCH\_LA\_PLTEXIT}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT~sh\+\_\+gnu\+\_\+pltexit}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}\label{sh_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!DL\_PLATFORM\_INIT@{DL\_PLATFORM\_INIT}}
+\index{DL\_PLATFORM\_INIT@{DL\_PLATFORM\_INIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{DL\_PLATFORM\_INIT}{DL\_PLATFORM\_INIT}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+I\+N\+IT~dl\+\_\+platform\+\_\+init ()}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}\label{sh_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}}
+\index{ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_JMP\_SLOT}{ELF\_MACHINE\_JMP\_SLOT}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT~\mbox{\hyperlink{elf_2elf_8h_a37db2f6d7bc0daf791aa0408ee57a3de}{R\+\_\+\+S\+H\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}\label{sh_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}}
+\index{ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NAME}{ELF\_MACHINE\_NAME}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME~\char`\"{}SH\char`\"{}}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}\label{sh_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}}
+\index{ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_REL}{ELF\_MACHINE\_NO\_REL}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL~1}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}\label{sh_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}}
+\index{ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_RELA}{ELF\_MACHINE\_NO\_RELA}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA~0}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_acbdf85ce69a9d946022ed8637ac1085b}\label{sh_2dl-machine_8h_acbdf85ce69a9d946022ed8637ac1085b}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_RUNTIME\_FIXUP\_ARGS@{ELF\_MACHINE\_RUNTIME\_FIXUP\_ARGS}}
+\index{ELF\_MACHINE\_RUNTIME\_FIXUP\_ARGS@{ELF\_MACHINE\_RUNTIME\_FIXUP\_ARGS}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_RUNTIME\_FIXUP\_ARGS}{ELF\_MACHINE\_RUNTIME\_FIXUP\_ARGS}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+F\+I\+X\+U\+P\+\_\+\+A\+R\+GS~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} plt\+\_\+type}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_a8248a3e643d87efc51bac4a2bab70b22}\label{sh_2dl-machine_8h_a8248a3e643d87efc51bac4a2bab70b22}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_RUNTIME\_FIXUP\_PARAMS@{ELF\_MACHINE\_RUNTIME\_FIXUP\_PARAMS}}
+\index{ELF\_MACHINE\_RUNTIME\_FIXUP\_PARAMS@{ELF\_MACHINE\_RUNTIME\_FIXUP\_PARAMS}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_RUNTIME\_FIXUP\_PARAMS}{ELF\_MACHINE\_RUNTIME\_FIXUP\_PARAMS}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+U\+N\+T\+I\+M\+E\+\_\+\+F\+I\+X\+U\+P\+\_\+\+P\+A\+R\+A\+MS~plt\+\_\+type}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}\label{sh_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!elf\_machine\_type\_class@{elf\_machine\_type\_class}}
+\index{elf\_machine\_type\_class@{elf\_machine\_type\_class}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{elf\_machine\_type\_class}{elf\_machine\_type\_class}}
+{\footnotesize\ttfamily \#define elf\+\_\+machine\+\_\+type\+\_\+class(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a37db2f6d7bc0daf791aa0408ee57a3de}{R\_SH\_JMP\_SLOT}} || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_ac7b14c8def3de6eb1b9db93bffff8e5c}{R\_SH\_TLS\_DTPMOD32}}           \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_af9f4b9938b2026057cc69699f9fa05da}{R\_SH\_TLS\_DTPOFF32}} || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_ad54d7b4fc08b86ba8ae7c4650c44640b}{R\_SH\_TLS\_TPOFF32}})       \(\backslash\)}
+\DoxyCodeLine{    * \mbox{\hyperlink{generic_2ldsodefs_8h_ae76990eaa2473ebb2af4f8601b5ccb0a}{ELF\_RTYPE\_CLASS\_PLT}})                             \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_acd75f0b6acb7160c9976c05d0bcabc24}{R\_SH\_COPY}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_a364a19b974b8cd186911f1a59041e7c1}{ELF\_RTYPE\_CLASS\_COPY}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sh_2dl-machine_8h_a048fa8386e8001a4bd5b047a341da16f}\label{sh_2dl-machine_8h_a048fa8386e8001a4bd5b047a341da16f}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_USER\_ADDRESS\_MASK@{ELF\_MACHINE\_USER\_ADDRESS\_MASK}}
+\index{ELF\_MACHINE\_USER\_ADDRESS\_MASK@{ELF\_MACHINE\_USER\_ADDRESS\_MASK}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_USER\_ADDRESS\_MASK}{ELF\_MACHINE\_USER\_ADDRESS\_MASK}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+U\+S\+E\+R\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK~0x80000000\+UL}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}\label{sh_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!RTLD\_START@{RTLD\_START}}
+\index{RTLD\_START@{RTLD\_START}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{RTLD\_START}{RTLD\_START}}
+{\footnotesize\ttfamily \#define R\+T\+L\+D\+\_\+\+S\+T\+A\+RT~\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2sparc_2sparc64_2swapcontext_8c_a92adb1cb65a95b31fdb02b4f497d2ad8}{asm}} (\char`\"{}\textbackslash{}.text\textbackslash{}n\textbackslash{}.\+globl \+\_\+start\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a732a7923eba52dd94213310a1ce8d319}{r15}},r4\textbackslash{}n\textbackslash{}	mov.\+l .L\+\_\+dl\+\_\+start,r1\textbackslash{}n\textbackslash{}	mova .L\+\_\+dl\+\_\+start,r0\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{strftime__l_8c_ace3147ee7e57195ae182ea0d7f8faafa}{add}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a688acde51e3dd07f5d5b84a4bc477dca}{r1}},r0\textbackslash{}n\textbackslash{}	jsr @r0\textbackslash{}n\textbackslash{}	 nop\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:\textbackslash{}n\textbackslash{}	! Save the \mbox{\hyperlink{structuser}{user}} \mbox{\hyperlink{structentry}{entry}} point address \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} r8.\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{x86__64_2dl-trampoline_8h_ad3f497ae245bafcb27080ee914ea1ba3}{mov}} \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a6bd1151b354f73ff86f8153b3f73f374}{r0}},r8\textbackslash{}n\textbackslash{}	! Point \mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_a8041e7928a5bffcf7b01d7269d531541}{r12}} at the G\+O\+T.\textbackslash{}n\textbackslash{}	mov.\+l 1f,r12\textbackslash{}n\textbackslash{}	mova 1f,r0\textbackslash{}n\textbackslash{}	bra 2f\textbackslash{}n\textbackslash{}	 add r0,r12\textbackslash{}n\textbackslash{}	.\+align 2\textbackslash{}n\textbackslash{}1\+:	.\+long \+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+T\+A\+B\+L\+E\+\_\+\textbackslash{}n\textbackslash{}2\+:	! See if we were run as a command with the executable file\textbackslash{}n\textbackslash{}	! name as an extra leading argument.\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+skip\+\_\+args,r0\textbackslash{}n\textbackslash{}	mov.\+l @(r0,r12),r0\textbackslash{}n\textbackslash{}	mov.\+l @r0,r0\textbackslash{}n\textbackslash{}	! Get the original argument count.\textbackslash{}n\textbackslash{}	mov.\+l @r15,r5\textbackslash{}n\textbackslash{}	! Subtract \+\_\+dl\+\_\+skip\+\_\+args from it.\textbackslash{}n\textbackslash{}	sub r0,r5\textbackslash{}n\textbackslash{}	! Adjust the stack pointer to skip \+\_\+dl\+\_\+skip\+\_\+args words.\textbackslash{}n\textbackslash{}	shll2 r0\textbackslash{}n\textbackslash{}	add r0,r15\textbackslash{}n\textbackslash{}	! Store back the modified argument count.\textbackslash{}n\textbackslash{}	mov.\+l r5,@r15\textbackslash{}n\textbackslash{}	! Compute argv address and envp.\textbackslash{}n\textbackslash{}	mov r15,r6\textbackslash{}n\textbackslash{}	add \#4,r6\textbackslash{}n\textbackslash{}	mov r5,r7\textbackslash{}n\textbackslash{}	shll2 r7\textbackslash{}n\textbackslash{}	add r15,r7\textbackslash{}n\textbackslash{}	add \#8,r7\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+loaded,r0\textbackslash{}n\textbackslash{}	mov.\+l @(r0,r12),r0\textbackslash{}n\textbackslash{}	mov.\+l @r0,r4\textbackslash{}n\textbackslash{}	! Call \+\_\+dl\+\_\+init.\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+init,r1\textbackslash{}n\textbackslash{}	mova .\+L\+\_\+dl\+\_\+init,r0\textbackslash{}n\textbackslash{}	add r1,r0\textbackslash{}n\textbackslash{}	jsr @r0\textbackslash{}n\textbackslash{}	 nop\textbackslash{}n\textbackslash{}1\+:	! Pass our finalizer function to the user in r4, as per E\+L\+F A\+B\+I.\textbackslash{}n\textbackslash{}	mov.\+l .\+L\+\_\+dl\+\_\+fini,r0\textbackslash{}n\textbackslash{}	mov.\+l @(r0,r12),r4\textbackslash{}n\textbackslash{}	! Jump to the user\textquotesingle{}s entry point.\textbackslash{}n\textbackslash{}	jmp @r8\textbackslash{}n\textbackslash{}	 nop\textbackslash{}n\textbackslash{}	.\+align 2\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+start\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+start@\+P\+L\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+skip\+\_\+args\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+skip\+\_\+args@\+G\+O\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+init\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+init@\+P\+L\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+loaded\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+rtld\+\_\+local@\+G\+O\+T\textbackslash{}n\textbackslash{}.\+L\+\_\+dl\+\_\+fini\+:\textbackslash{}n\textbackslash{}	.\+long \+\_\+dl\+\_\+fini@\+G\+O\+T\textbackslash{}n\textbackslash{}	.\+type \+\_\+\+\_\+fpscr\+\_\+values,@object\textbackslash{}n\textbackslash{}	.\+global \+\_\+\+\_\+fpscr\+\_\+values\textbackslash{}n\textbackslash{}\+\_\+\+\_\+fpscr\+\_\+values\+:\textbackslash{}n\textbackslash{}	.\+long   0\textbackslash{}n\textbackslash{}	.\+long   0x80000\textbackslash{}n\textbackslash{}	.\+weak \+\_\+\+\_\+fpscr\+\_\+values\textbackslash{}n\textbackslash{}.\+previous\textbackslash{}n\textbackslash{}\char`\"{});}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sh_2dl-machine_8h_a04b9dbce209e5421d2c0b1667710a5ca}\label{sh_2dl-machine_8h_a04b9dbce209e5421d2c0b1667710a5ca}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_profile@{\_dl\_runtime\_profile}}
+\index{\_dl\_runtime\_profile@{\_dl\_runtime\_profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_profile()}{\_dl\_runtime\_profile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+profile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\+\_\+\+Word}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_a1496fe125ed93a7c4777a28f74d66618}\label{sh_2dl-machine_8h_a1496fe125ed93a7c4777a28f74d66618}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_resolve@{\_dl\_runtime\_resolve}}
+\index{\_dl\_runtime\_resolve@{\_dl\_runtime\_resolve}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_resolve()}{\_dl\_runtime\_resolve()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+resolve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\+\_\+\+Word}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}\label{sh_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!if@{if}}
+\index{if@{if}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{l-\/$>$l\+\_\+info \&\&}]{lazy\mbox{[}\+D\+T\+\_\+\+J\+M\+P\+R\+E\+L\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sh_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}\label{sh_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!lazy@{lazy}}
+\index{lazy@{lazy}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{lazy}{lazy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} lazy}
+
+\mbox{\Hypertarget{sh_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}\label{sh_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!profile@{profile}}
+\index{profile@{profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{profile}{profile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} profile}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{elf_2elf_8h_a40c6d4571e6001f443cc6a6474620158}{Elf32\_Addr}} *got}
+
+\end{DoxyCode}

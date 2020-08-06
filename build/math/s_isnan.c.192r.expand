@@ -1,0 +1,85 @@
+
+;; Function __isnan (*__GI___isnan, funcdef_no=77, decl_uid=2021, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 15.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:DF 94 [ x ])
+        (reg:DF 21 xmm0 [ x ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:25 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (reg:DI 95 [ hx ])
+                (asm_operands:DI ("movq %1, %0") ("=rm") 0 [
+                        (reg/v:DF 94 [ x ])
+                    ]
+                     [
+                        (asm_input:DF ("x") ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:27)
+                    ]
+                     [] ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:27))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:27 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/v:DI 87 [ hx ])
+        (reg:DI 95 [ hx ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:27 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 98)
+        (const_int 9223372036854775807 [0x7fffffffffffffff])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:DI 97 [ hx ])
+                (and:DI (reg/v:DI 87 [ hx ])
+                    (reg:DI 98)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 100)
+        (const_int 9218868437227405312 [0x7ff0000000000000])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:DI 99 [ D.5358 ])
+                (minus:DI (reg:DI 100)
+                    (reg:DI 97 [ hx ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 12 11 13 2 (parallel [
+            (set (reg:DI 101 [ D.5358 ])
+                (lshiftrt:DI (reg:DI 99 [ D.5358 ])
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:SI 96 [ D.5359 ])
+        (subreg:SI (reg:DI 101 [ D.5358 ]) 0)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 14 13 18 2 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 96 [ D.5359 ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:30 -1
+     (nil))
+(insn 18 14 19 2 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:31 -1
+     (nil))
+(insn 19 18 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/ieee754/dbl-64/wordsize-64/s_isnan.c:31 -1
+     (nil))

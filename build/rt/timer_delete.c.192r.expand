@@ -1,0 +1,389 @@
+
+;; Function __timer_delete_new (__timer_delete_new, funcdef_no=33, decl_uid=2820, cgraph_uid=33, symbol_order=34)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+Edge 4->14 redirected to 17
+Edge 8->11 redirected to 18
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 69.
+Merging block 18 into block 17...
+Merged blocks 17 and 18.
+Merged 17 and 18 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 101 [ timerid ])
+        (reg:DI 5 di [ timerid ])) ../sysdeps/unix/sysv/linux/timer_delete.c:33 -1
+     (nil))
+(note 3 2 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 3 11 2 (set (reg:SI 102)
+        (mem:SI (plus:DI (reg/v/f:DI 101 [ timerid ])
+                (const_int 4 [0x4])) [2 MEM[(struct timer *)timerid_8(D)].ktimerid+0 S4 A32])) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 11 10 12 2 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg:SI 102))) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:SI 104)
+        (const_int 226 [0xe2])) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg:DI 103 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 104)
+                        (reg/v:DI 5 di [ _a1 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/timer_delete.c:38)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/timer_delete.c:38)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/timer_delete.c:38))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 14 13 15 2 (set (reg/v:DI 92 [ resultvar ])
+        (reg:DI 103 [ resultvar ])) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 92 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 23)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (set (reg:DI 105)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2ac6e69ed7e0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [7  S8 A8])) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:SI 106)
+                (neg:SI (subreg:SI (reg/v:DI 92 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 20 19 7 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 105)) [2 errno+0 S4 A32])
+        (reg:SI 106)) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil))
+(insn 7 20 21 4 (set (reg:SI 89 [ D.7034 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/timer_delete.c:71 -1
+     (nil))
+(jump_insn 21 7 22 4 (set (pc)
+        (label_ref 66)) ../sysdeps/unix/sysv/linux/timer_delete.c:38 -1
+     (nil)
+ -> 66)
+(barrier 22 21 23)
+(code_label 23 22 24 5 2 "" [1 uses])
+(note 24 23 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (reg:SI 107)
+        (subreg:SI (reg/v:DI 92 [ resultvar ]) 0)) ../sysdeps/unix/sysv/linux/timer_delete.c:40 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 107)
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/timer_delete.c:40 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 78)
+            (pc))) ../sysdeps/unix/sysv/linux/timer_delete.c:40 612 {*jcc_1}
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 78)
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (reg/v/f:DI 101 [ timerid ]) [2 MEM[(struct timer *)timerid_8(D)].sigev_notify+0 S4 A64])
+            (const_int 2 [0x2]))) ../sysdeps/unix/sysv/linux/timer_delete.c:42 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) ../sysdeps/unix/sysv/linux/timer_delete.c:42 -1
+     (int_list:REG_BR_PROB 8629 (nil))
+ -> 62)
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 7 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__active_timer_sigev_thread_lock") [flags 0x42]  <var_decl 0x2ac6e69edab0 __active_timer_sigev_thread_lock>)) ../sysdeps/unix/sysv/linux/timer_delete.c:45 -1
+     (nil))
+(call_insn 33 32 34 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2ac6e695c1b0 pthread_mutex_lock>) [0 pthread_mutex_lock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/timer_delete.c:45 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2ac6e695c1b0 pthread_mutex_lock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 34 33 35 7 (set (reg/v/f:DI 88 [ prevp ])
+        (mem/f/c:DI (symbol_ref:DI ("__active_timer_sigev_thread") [flags 0x42]  <var_decl 0x2ac6e69eda20 __active_timer_sigev_thread>) [3 __active_timer_sigev_thread+0 S8 A64])) ../sysdeps/unix/sysv/linux/timer_delete.c:46 -1
+     (nil))
+(insn 35 34 36 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 101 [ timerid ])
+            (reg/v/f:DI 88 [ prevp ]))) ../sysdeps/unix/sysv/linux/timer_delete.c:46 -1
+     (nil))
+(jump_insn 36 35 37 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 50)
+            (pc))) ../sysdeps/unix/sysv/linux/timer_delete.c:46 -1
+     (int_list:REG_BR_PROB 8500 (nil))
+ -> 50)
+(note 37 36 38 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 8 (set (reg/f:DI 108)
+        (mem/f:DI (plus:DI (reg/v/f:DI 101 [ timerid ])
+                (const_int 80 [0x50])) [3 MEM[(struct timer *)timerid_8(D)].next+0 S8 A64])) ../sysdeps/unix/sysv/linux/timer_delete.c:47 -1
+     (nil))
+(insn 39 38 40 8 (set (mem/f/c:DI (symbol_ref:DI ("__active_timer_sigev_thread") [flags 0x42]  <var_decl 0x2ac6e69eda20 __active_timer_sigev_thread>) [3 __active_timer_sigev_thread+0 S8 A64])
+        (reg/f:DI 108)) ../sysdeps/unix/sysv/linux/timer_delete.c:47 -1
+     (nil))
+(jump_insn 40 39 41 8 (set (pc)
+        (label_ref 58)) -1
+     (nil)
+ -> 58)
+(barrier 41 40 55)
+(code_label 55 41 42 9 8 "" [1 uses])
+(note 42 55 43 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 101 [ timerid ])
+            (reg/v/f:DI 87 [ prevp ]))) ../sysdeps/unix/sysv/linux/timer_delete.c:52 -1
+     (nil))
+(jump_insn 44 43 45 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 82)
+            (pc))) ../sysdeps/unix/sysv/linux/timer_delete.c:52 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 82)
+(note 45 44 46 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 10 (set (reg/f:DI 99 [ D.7036 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 101 [ timerid ])
+                (const_int 80 [0x50])) [3 MEM[(struct timer *)timerid_8(D)].next+0 S8 A64])) ../sysdeps/unix/sysv/linux/timer_delete.c:54 -1
+     (nil))
+(insn 47 46 48 10 (set (mem/f:DI (plus:DI (reg/v/f:DI 88 [ prevp ])
+                (const_int 80 [0x50])) [3 prevp_2->next+0 S8 A64])
+        (reg/f:DI 99 [ D.7036 ])) ../sysdeps/unix/sysv/linux/timer_delete.c:54 -1
+     (nil))
+(jump_insn 48 47 49 10 (set (pc)
+        (label_ref 58)) ../sysdeps/unix/sysv/linux/timer_delete.c:55 -1
+     (nil)
+ -> 58)
+(barrier 49 48 50)
+(code_label 50 49 51 11 5 "" [1 uses])
+(note 51 50 79 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 79 51 80 11 (set (pc)
+        (label_ref 52)) -1
+     (nil)
+ -> 52)
+(barrier 80 79 82)
+(code_label 82 80 81 12 10 "" [1 uses])
+(note 81 82 4 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 4 81 52 12 (set (reg/v/f:DI 88 [ prevp ])
+        (reg/v/f:DI 87 [ prevp ])) -1
+     (nil))
+(code_label 52 4 53 13 7 "" [1 uses])
+(note 53 52 54 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 56 13 (set (reg/v/f:DI 87 [ prevp ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 88 [ prevp ])
+                (const_int 80 [0x50])) [3 prevp_2->next+0 S8 A64])) ../sysdeps/unix/sysv/linux/timer_delete.c:51 -1
+     (nil))
+(insn 56 54 57 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ prevp ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/timer_delete.c:51 -1
+     (nil))
+(jump_insn 57 56 58 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 55)
+            (pc))) ../sysdeps/unix/sysv/linux/timer_delete.c:51 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 55)
+(code_label 58 57 59 14 6 "" [2 uses])
+(note 59 58 60 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 14 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__active_timer_sigev_thread_lock") [flags 0x42]  <var_decl 0x2ac6e69edab0 __active_timer_sigev_thread_lock>)) ../sysdeps/unix/sysv/linux/timer_delete.c:60 -1
+     (nil))
+(call_insn 61 60 62 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2ac6e695c360 pthread_mutex_unlock>) [0 pthread_mutex_unlock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/timer_delete.c:60 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2ac6e695c360 pthread_mutex_unlock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(code_label 62 61 63 15 4 "" [1 uses])
+(note 63 62 64 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 15 (set (reg:DI 5 di)
+        (reg/v/f:DI 101 [ timerid ])) ../sysdeps/unix/sysv/linux/timer_delete.c:64 -1
+     (nil))
+(call_insn 65 64 5 15 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2ac6e6614e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/timer_delete.c:64 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2ac6e6614e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 5 65 75 15 (set (reg:SI 89 [ D.7034 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/timer_delete.c:66 -1
+     (nil))
+(jump_insn 75 5 76 15 (set (pc)
+        (label_ref 66)) ../sysdeps/unix/sysv/linux/timer_delete.c:66 -1
+     (nil)
+ -> 66)
+(barrier 76 75 78)
+(code_label 78 76 77 16 9 "" [1 uses])
+(note 77 78 6 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 6 77 66 16 (set (reg:SI 89 [ D.7034 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/timer_delete.c:71 -1
+     (nil))
+(code_label 66 6 67 17 3 "" [2 uses])
+(note 67 66 68 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 72 17 (set (reg:SI 100 [ <retval> ])
+        (reg:SI 89 [ D.7034 ])) -1
+     (nil))
+(insn 72 68 73 17 (set (reg/i:SI 0 ax)
+        (reg:SI 100 [ <retval> ])) ../sysdeps/unix/sysv/linux/timer_delete.c:72 -1
+     (nil))
+(insn 73 72 0 17 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/timer_delete.c:72 -1
+     (nil))
+
+;; Function __timer_delete_old (__timer_delete_old, funcdef_no=34, decl_uid=2836, cgraph_uid=34, symbol_order=36)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 21.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 90 [ timerid ])
+        (reg:SI 5 di [ timerid ])) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:33 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg/f:DI 91)
+        (symbol_ref:DI ("__compat_timer_list") [flags 0x42]  <var_decl 0x2ac6e6792120 __compat_timer_list>)) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:34 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 92)
+        (sign_extend:DI (reg/v:SI 90 [ timerid ]))) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:34 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 93)
+        (mem/f:DI (plus:DI (mult:DI (reg:DI 92)
+                    (const_int 8 [0x8]))
+                (reg/f:DI 91)) [3 __compat_timer_list S8 A64])) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:34 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (reg:DI 93)) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:34 -1
+     (nil))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__timer_delete_new") [flags 0x1]  <function_decl 0x2ac6e6790948 __timer_delete_new>) [0 __timer_delete_new S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:34 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__timer_delete_new") [flags 0x1]  <function_decl 0x2ac6e6790948 __timer_delete_new>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg/v:SI 88 [ res ])
+        (reg:SI 0 ax)) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:34 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 88 [ res ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:36 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:36 -1
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 18)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg/f:DI 94)
+        (symbol_ref:DI ("__compat_timer_list") [flags 0x42]  <var_decl 0x2ac6e6792120 __compat_timer_list>)) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:39 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 95)
+        (sign_extend:DI (reg/v:SI 90 [ timerid ]))) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:39 -1
+     (nil))
+(insn 17 16 18 4 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 95)
+                    (const_int 8 [0x8]))
+                (reg/f:DI 94)) [3 __compat_timer_list S8 A64])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:39 -1
+     (nil))
+(code_label 18 17 19 5 19 "" [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 24 5 (set (reg:SI 89 [ <retval> ])
+        (reg/v:SI 88 [ res ])) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:41 -1
+     (nil))
+(insn 24 20 25 5 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:42 -1
+     (nil))
+(insn 25 24 0 5 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/x86_64/timer_delete.c:42 -1
+     (nil))

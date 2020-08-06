@@ -1,0 +1,92 @@
+
+;; Function fegetexceptflag (fegetexceptflag, funcdef_no=3, decl_uid=1882, cgraph_uid=3, symbol_order=3)
+
+Partition 1: size 4 align 4
+	mxscr
+Partition 0: size 2 align 2
+	temp
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 14.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 95 [ flagp ])
+        (reg:DI 5 di [ flagp ])) ../sysdeps/x86_64/fpu/fgetexcptflg.c:23 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 96 [ excepts ])
+        (reg:SI 4 si [ excepts ])) ../sysdeps/x86_64/fpu/fgetexcptflg.c:23 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (parallel [
+            (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -6 [0xfffffffffffffffa])) [2 temp+0 S2 A16])
+                (asm_operands:HI ("fnstsw %0
+stmxcsr %1") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fgetexcptflg.c:28))
+            (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -4 [0xfffffffffffffffc])) [1 mxscr+0 S4 A32])
+                (asm_operands:SI ("fnstsw %0
+stmxcsr %1") ("=m") 1 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fgetexcptflg.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fgetexcptflg.c:28 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 97)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 mxscr+0 S4 A32])) ../sysdeps/x86_64/fpu/fgetexcptflg.c:31 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:HI 98 [ D.1974 ])
+                (ior:HI (subreg:HI (reg:SI 97) 0)
+                    (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -6 [0xfffffffffffffffa])) [2 temp+0 S2 A16])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fgetexcptflg.c:31 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:HI 99 [ D.1974 ])
+                (and:HI (reg:HI 98 [ D.1974 ])
+                    (const_int 61 [0x3d])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fgetexcptflg.c:31 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:HI 100)
+                (and:HI (reg:HI 99 [ D.1974 ])
+                    (subreg:HI (reg/v:SI 96 [ excepts ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fgetexcptflg.c:31 -1
+     (nil))
+(insn 12 11 13 2 (set (mem:HI (reg/v/f:DI 95 [ flagp ]) [2 *flagp_11(D)+0 S2 A16])
+        (reg:HI 100)) ../sysdeps/x86_64/fpu/fgetexcptflg.c:31 -1
+     (nil))
+(insn 13 12 17 2 (set (reg:SI 94 [ <retval> ])
+        (const_int 0 [0])) ../sysdeps/x86_64/fpu/fgetexcptflg.c:34 -1
+     (nil))
+(insn 17 13 18 2 (set (reg/i:SI 0 ax)
+        (reg:SI 94 [ <retval> ])) ../sysdeps/x86_64/fpu/fgetexcptflg.c:35 -1
+     (nil))
+(insn 18 17 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/x86_64/fpu/fgetexcptflg.c:35 -1
+     (nil))

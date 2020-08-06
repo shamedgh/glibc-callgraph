@@ -1,0 +1,493 @@
+
+;; Function __mcount_internal (__mcount_internal, funcdef_no=32, decl_uid=8069, cgraph_uid=32, symbol_order=36)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+Edge 13->10 redirected to 20
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->19 redirected to 20
+Redirecting jump 104 from 19 to 20.
+Merging block 19 into block 18...
+Merged blocks 18 and 19.
+Merged 18 and 19 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v:DI 128 [ frompc ])
+        (reg:DI 5 di [ frompc ])) mcount.c:60 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 129 [ selfpc ])
+        (reg:DI 4 si [ selfpc ])) mcount.c:60 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:DI 131)
+        (const_int 0 [0])) mcount.c:72 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 132)
+        (const_int 1 [0x1])) mcount.c:72 -1
+     (nil))
+(insn 10 9 11 2 (parallel [
+            (set (reg:DI 130)
+                (unspec_volatile:DI [
+                        (mem/v:DI (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>) [-1  S8 A64])
+                        (reg:DI 131)
+                        (reg:DI 132)
+                        (const_int 32773 [0x8005])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:DI (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) mcount.c:72 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:QI 87 [ D.8153 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) mcount.c:72 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 87 [ D.8153 ])
+            (const_int 0 [0]))) mcount.c:72 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 112)
+            (pc))) mcount.c:72 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9999 (nil))
+ -> 112)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg/f:DI 133)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:81 -1
+     (nil))
+(insn 16 15 17 4 (parallel [
+            (set (reg/v:DI 89 [ frompc ])
+                (minus:DI (reg/v:DI 128 [ frompc ])
+                    (mem/c:DI (plus:DI (reg/f:DI 133)
+                            (const_int 64 [0x40])) [2 _gmonparam.lowpc+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:81 -1
+     (nil))
+(insn 17 16 18 4 (set (reg/f:DI 134)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:82 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 89 [ frompc ])
+            (mem/c:DI (plus:DI (reg/f:DI 134)
+                    (const_int 80 [0x50])) [2 _gmonparam.textsize+0 S8 A64]))) mcount.c:82 -1
+     (nil))
+(jump_insn 19 18 20 4 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 100)
+            (pc))) mcount.c:82 -1
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 100)
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 5 (set (reg/f:DI 135)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:97 -1
+     (nil))
+(insn 22 21 23 5 (set (reg/f:DI 136)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:93 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 137)
+        (mem/c:DI (plus:DI (reg/f:DI 136)
+                (const_int 96 [0x60])) [2 _gmonparam.log_hashfraction+0 S8 A64])) mcount.c:97 -1
+     (nil))
+(insn 24 23 25 5 (set (reg:QI 138)
+        (subreg:QI (reg:DI 137) 0)) mcount.c:97 -1
+     (nil))
+(insn 25 24 26 5 (parallel [
+            (set (reg:DI 139 [ D.8154 ])
+                (lshiftrt:DI (reg/v:DI 89 [ frompc ])
+                    (reg:QI 138)))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:97 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:DI 140 [ D.8154 ])
+        (sign_extend:DI (subreg:SI (reg:DI 139 [ D.8154 ]) 0))) mcount.c:97 -1
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:DI 141 [ D.8154 ])
+                (ashift:DI (reg:DI 140 [ D.8154 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:97 -1
+     (nil))
+(insn 28 27 29 5 (set (reg/f:DI 142)
+        (mem/f/c:DI (plus:DI (reg/f:DI 135)
+                (const_int 24 [0x18])) [3 _gmonparam.froms+0 S8 A64])) mcount.c:97 -1
+     (nil))
+(insn 29 28 30 5 (parallel [
+            (set (reg/v/f:DI 98 [ frompcindex ])
+                (plus:DI (reg:DI 141 [ D.8154 ])
+                    (reg/f:DI 142)))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:97 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 135)
+                    (const_int 24 [0x18])) [3 _gmonparam.froms+0 S8 A64])
+            (reg:DI 141 [ D.8154 ]))
+        (nil)))
+(insn 30 29 31 5 (set (reg/v:DI 99 [ toindex ])
+        (mem:DI (reg/v/f:DI 98 [ frompcindex ]) [2 *frompcindex_19+0 S8 A64])) mcount.c:98 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 99 [ toindex ])
+            (const_int 0 [0]))) mcount.c:99 -1
+     (nil))
+(jump_insn 32 31 33 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) mcount.c:99 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 51)
+(note 33 32 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 6 (set (reg/f:DI 143)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:103 -1
+     (nil))
+(insn 35 34 36 6 (set (reg/f:DI 100 [ D.8158 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 143)
+                (const_int 40 [0x28])) [3 _gmonparam.tos+0 S8 A64])) mcount.c:103 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:DI 144)
+        (mem:DI (plus:DI (reg/f:DI 100 [ D.8158 ])
+                (const_int 16 [0x10])) [2 _21->link+0 S8 A64])) mcount.c:103 -1
+     (nil))
+(insn 37 36 38 6 (parallel [
+            (set (reg:DI 102 [ D.8154 ])
+                (plus:DI (reg:DI 144)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:103 -1
+     (expr_list:REG_EQUAL (plus:DI (mem:DI (plus:DI (reg/f:DI 100 [ D.8158 ])
+                    (const_int 16 [0x10])) [2 _21->link+0 S8 A64])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 38 37 39 6 (set (mem:DI (plus:DI (reg/f:DI 100 [ D.8158 ])
+                (const_int 16 [0x10])) [2 _21->link+0 S8 A64])
+        (reg:DI 102 [ D.8154 ])) mcount.c:103 -1
+     (nil))
+(insn 39 38 40 6 (set (reg/f:DI 145)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:104 -1
+     (nil))
+(insn 40 39 41 6 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 102 [ D.8154 ])
+            (mem/c:DI (plus:DI (reg/f:DI 145)
+                    (const_int 56 [0x38])) [2 _gmonparam.tolimit+0 S8 A64]))) mcount.c:104 -1
+     (nil))
+(jump_insn 41 40 42 6 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 106)
+            (pc))) mcount.c:104 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 106)
+(note 42 41 43 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 7 (set (mem:DI (reg/v/f:DI 98 [ frompcindex ]) [2 *frompcindex_19+0 S8 A64])
+        (reg:DI 102 [ D.8154 ])) mcount.c:108 -1
+     (nil))
+(insn 44 43 45 7 (parallel [
+            (set (reg:DI 146 [ D.8154 ])
+                (mult:DI (reg:DI 102 [ D.8154 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:109 -1
+     (nil))
+(insn 45 44 46 7 (parallel [
+            (set (reg/v/f:DI 106 [ top ])
+                (plus:DI (reg/f:DI 100 [ D.8158 ])
+                    (reg:DI 146 [ D.8154 ])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:109 -1
+     (nil))
+(insn 46 45 47 7 (set (mem:DI (reg/v/f:DI 106 [ top ]) [2 top_30->selfpc+0 S8 A64])
+        (reg/v:DI 129 [ selfpc ])) mcount.c:110 -1
+     (nil))
+(insn 47 46 48 7 (set (mem:DI (plus:DI (reg/v/f:DI 106 [ top ])
+                (const_int 8 [0x8])) [2 top_30->count+0 S8 A64])
+        (const_int 1 [0x1])) mcount.c:111 -1
+     (nil))
+(insn 48 47 49 7 (set (mem:DI (plus:DI (reg/v/f:DI 106 [ top ])
+                (const_int 16 [0x10])) [2 top_30->link+0 S8 A64])
+        (const_int 0 [0])) mcount.c:112 -1
+     (nil))
+(jump_insn 49 48 50 7 (set (pc)
+        (label_ref 100)) mcount.c:113 -1
+     (nil)
+ -> 100)
+(barrier 50 49 51)
+(code_label 51 50 52 8 4 "" [1 uses])
+(note 52 51 53 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 8 (set (reg/f:DI 147)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:115 -1
+     (nil))
+(insn 54 53 55 8 (set (reg/f:DI 107 [ D.8158 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 147)
+                (const_int 40 [0x28])) [3 _gmonparam.tos+0 S8 A64])) mcount.c:115 -1
+     (nil))
+(insn 55 54 56 8 (parallel [
+            (set (reg:DI 148 [ D.8154 ])
+                (mult:DI (reg/v:DI 99 [ toindex ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:115 -1
+     (nil))
+(insn 56 55 57 8 (parallel [
+            (set (reg/v/f:DI 109 [ prevtop ])
+                (plus:DI (reg/f:DI 107 [ D.8158 ])
+                    (reg:DI 148 [ D.8154 ])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:115 -1
+     (nil))
+(insn 57 56 58 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 129 [ selfpc ])
+            (mem:DI (reg/v/f:DI 109 [ prevtop ]) [2 prevtop_37->selfpc+0 S8 A64]))) mcount.c:116 -1
+     (nil))
+(jump_insn 58 57 59 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 63)
+            (pc))) mcount.c:116 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 63)
+(note 59 58 60 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 9 (parallel [
+            (set (mem:DI (plus:DI (reg/v/f:DI 109 [ prevtop ])
+                        (const_int 8 [0x8])) [2 prevtop_37->count+0 S8 A64])
+                (plus:DI (mem:DI (plus:DI (reg/v/f:DI 109 [ prevtop ])
+                            (const_int 8 [0x8])) [2 prevtop_37->count+0 S8 A64])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:120 -1
+     (nil))
+(jump_insn 61 60 62 9 (set (pc)
+        (label_ref 100)) mcount.c:121 -1
+     (nil)
+ -> 100)
+(barrier 62 61 63)
+(code_label 63 62 64 10 6 "" [1 uses])
+(note 64 63 114 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 114 64 115 10 (set (pc)
+        (label_ref 90)) -1
+     (nil)
+ -> 90)
+(barrier 115 114 117)
+(code_label 117 115 116 11 9 "" [1 uses])
+(note 116 117 5 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 5 116 90 11 (set (reg/v/f:DI 109 [ prevtop ])
+        (reg/v/f:DI 115 [ prevtop ])) -1
+     (nil))
+(code_label 90 5 65 12 8 "" [1 uses])
+(note 65 90 66 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 66 65 67 12 (set (reg:DI 113 [ D.8154 ])
+        (mem:DI (plus:DI (reg/v/f:DI 109 [ prevtop ])
+                (const_int 16 [0x10])) [2 prevtop_1->link+0 S8 A64])) mcount.c:130 -1
+     (nil))
+(insn 67 66 68 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 113 [ D.8154 ])
+            (const_int 0 [0]))) mcount.c:130 -1
+     (nil))
+(jump_insn 68 67 69 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 86)
+            (pc))) mcount.c:130 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 86)
+(note 69 68 70 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 13 (set (reg:DI 149)
+        (mem:DI (plus:DI (reg/f:DI 107 [ D.8158 ])
+                (const_int 16 [0x10])) [2 _35->link+0 S8 A64])) mcount.c:137 -1
+     (nil))
+(insn 71 70 72 13 (parallel [
+            (set (reg:DI 122 [ D.8154 ])
+                (plus:DI (reg:DI 149)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:137 -1
+     (expr_list:REG_EQUAL (plus:DI (mem:DI (plus:DI (reg/f:DI 107 [ D.8158 ])
+                    (const_int 16 [0x10])) [2 _35->link+0 S8 A64])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 72 71 73 13 (set (mem:DI (plus:DI (reg/f:DI 107 [ D.8158 ])
+                (const_int 16 [0x10])) [2 _35->link+0 S8 A64])
+        (reg:DI 122 [ D.8154 ])) mcount.c:137 -1
+     (nil))
+(insn 73 72 74 13 (set (reg/f:DI 150)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:138 -1
+     (nil))
+(insn 74 73 75 13 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 122 [ D.8154 ])
+            (mem/c:DI (plus:DI (reg/f:DI 150)
+                    (const_int 56 [0x38])) [2 _gmonparam.tolimit+0 S8 A64]))) mcount.c:138 -1
+     (nil))
+(jump_insn 75 74 76 13 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 106)
+            (pc))) mcount.c:138 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 106)
+(note 76 75 77 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 77 76 78 14 (parallel [
+            (set (reg:DI 151 [ D.8154 ])
+                (mult:DI (reg:DI 122 [ D.8154 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:141 -1
+     (nil))
+(insn 78 77 79 14 (parallel [
+            (set (reg/v/f:DI 126 [ top ])
+                (plus:DI (reg/f:DI 107 [ D.8158 ])
+                    (reg:DI 151 [ D.8154 ])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:141 -1
+     (nil))
+(insn 79 78 80 14 (set (mem:DI (reg/v/f:DI 126 [ top ]) [2 top_60->selfpc+0 S8 A64])
+        (reg/v:DI 129 [ selfpc ])) mcount.c:142 -1
+     (nil))
+(insn 80 79 81 14 (set (mem:DI (plus:DI (reg/v/f:DI 126 [ top ])
+                (const_int 8 [0x8])) [2 top_60->count+0 S8 A64])
+        (const_int 1 [0x1])) mcount.c:143 -1
+     (nil))
+(insn 81 80 82 14 (set (reg:DI 127 [ D.8154 ])
+        (mem:DI (reg/v/f:DI 98 [ frompcindex ]) [2 *frompcindex_19+0 S8 A64])) mcount.c:144 -1
+     (nil))
+(insn 82 81 83 14 (set (mem:DI (plus:DI (reg/v/f:DI 126 [ top ])
+                (const_int 16 [0x10])) [2 top_60->link+0 S8 A64])
+        (reg:DI 127 [ D.8154 ])) mcount.c:144 -1
+     (nil))
+(insn 83 82 84 14 (set (mem:DI (reg/v/f:DI 98 [ frompcindex ]) [2 *frompcindex_19+0 S8 A64])
+        (reg:DI 122 [ D.8154 ])) mcount.c:145 -1
+     (nil))
+(jump_insn 84 83 85 14 (set (pc)
+        (label_ref 100)) mcount.c:146 -1
+     (nil)
+ -> 100)
+(barrier 85 84 86)
+(code_label 86 85 87 15 7 "" [1 uses])
+(note 87 86 88 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 88 87 89 15 (parallel [
+            (set (reg:DI 152 [ D.8154 ])
+                (mult:DI (reg:DI 113 [ D.8154 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:152 -1
+     (nil))
+(insn 89 88 91 15 (parallel [
+            (set (reg/v/f:DI 115 [ prevtop ])
+                (plus:DI (reg/f:DI 107 [ D.8158 ])
+                    (reg:DI 152 [ D.8154 ])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:152 -1
+     (nil))
+(insn 91 89 92 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 129 [ selfpc ])
+            (mem:DI (reg/v/f:DI 115 [ prevtop ]) [2 prevtop_44->selfpc+0 S8 A64]))) mcount.c:153 -1
+     (nil))
+(jump_insn 92 91 93 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 117)
+            (pc))) mcount.c:153 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 117)
+(note 93 92 94 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 94 93 95 16 (parallel [
+            (set (mem:DI (plus:DI (reg/v/f:DI 115 [ prevtop ])
+                        (const_int 8 [0x8])) [2 prevtop_44->count+0 S8 A64])
+                (plus:DI (mem:DI (plus:DI (reg/v/f:DI 115 [ prevtop ])
+                            (const_int 8 [0x8])) [2 prevtop_44->count+0 S8 A64])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) mcount.c:159 -1
+     (nil))
+(insn 95 94 96 16 (set (reg:DI 119 [ D.8154 ])
+        (mem:DI (plus:DI (reg/v/f:DI 115 [ prevtop ])
+                (const_int 16 [0x10])) [2 prevtop_44->link+0 S8 A64])) mcount.c:161 -1
+     (nil))
+(insn 96 95 97 16 (set (mem:DI (plus:DI (reg/v/f:DI 109 [ prevtop ])
+                (const_int 16 [0x10])) [2 prevtop_1->link+0 S8 A64])
+        (reg:DI 119 [ D.8154 ])) mcount.c:161 -1
+     (nil))
+(insn 97 96 98 16 (set (reg:DI 120 [ D.8154 ])
+        (mem:DI (reg/v/f:DI 98 [ frompcindex ]) [2 *frompcindex_19+0 S8 A64])) mcount.c:162 -1
+     (nil))
+(insn 98 97 99 16 (set (mem:DI (plus:DI (reg/v/f:DI 115 [ prevtop ])
+                (const_int 16 [0x10])) [2 prevtop_44->link+0 S8 A64])
+        (reg:DI 120 [ D.8154 ])) mcount.c:162 -1
+     (nil))
+(insn 99 98 100 16 (set (mem:DI (reg/v/f:DI 98 [ frompcindex ]) [2 *frompcindex_19+0 S8 A64])
+        (reg:DI 113 [ D.8154 ])) mcount.c:163 -1
+     (nil))
+(code_label 100 99 101 17 3 ("done") [4 uses])
+(note 101 100 102 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 17 (set (reg/f:DI 153)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:169 -1
+     (nil))
+(insn 103 102 104 17 (set (mem/c:DI (reg/f:DI 153) [2 _gmonparam.state+0 S8 A64])
+        (const_int 0 [0])) mcount.c:169 -1
+     (nil))
+(jump_insn 104 103 105 17 (set (pc)
+        (label_ref:DI 112)) mcount.c:170 654 {jump}
+     (nil)
+ -> 112)
+(barrier 105 104 106)
+(code_label 106 105 107 18 5 "" [2 uses])
+(note 107 106 108 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 108 107 109 18 (set (reg/f:DI 154)
+        (symbol_ref:DI ("_gmonparam") [flags 0x42]  <var_decl 0x2b480680c480 _gmonparam>)) mcount.c:172 -1
+     (nil))
+(insn 109 108 112 18 (set (mem/c:DI (reg/f:DI 154) [2 _gmonparam.state+0 S8 A64])
+        (const_int 2 [0x2])) mcount.c:172 -1
+     (nil))
+(code_label 112 109 113 20 1 "" [2 uses])
+(note 113 112 0 20 [bb 20] NOTE_INSN_BASIC_BLOCK)

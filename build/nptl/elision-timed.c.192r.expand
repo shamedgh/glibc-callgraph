@@ -1,0 +1,524 @@
+
+;; Function __lll_timedlock_elision (__lll_timedlock_elision, funcdef_no=46, decl_uid=6916, cgraph_uid=46, symbol_order=47)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 4->5 to 20 failed.
+Edge 13->5 redirected to 20
+Edge 15->5 redirected to 20
+Forwarding edge 17->18 to 20 failed.
+Redirecting jump 80 from 5 to 20.
+Removing jump 99.
+Merging block 22 into block 21...
+Merged blocks 21 and 22.
+Merged 21 and 22 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 20 failed.
+Deleted label in block 5.
+Forwarding edge 17->18 to 20 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 2 0 9 NOTE_INSN_DELETED)
+(note 9 2 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 3 9 4 2 (set (reg/v/f:DI 112 [ futex ])
+        (reg:DI 5 di [ futex ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:46 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 113 [ adapt_count ])
+        (reg:DI 4 si [ adapt_count ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:46 -1
+     (nil))
+(insn 5 4 6 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [4 t+0 S8 A64])
+        (reg:DI 1 dx [ t ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:46 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:SI 114 [ private ])
+        (reg:SI 2 cx [ private ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:46 -1
+     (nil))
+(note 7 6 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 7 12 2 (set (reg:HI 90 [ D.7654 ])
+        (mem:HI (reg/v/f:DI 113 [ adapt_count ]) [1 *adapt_count_8(D)+0 S2 A16])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:47 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:HI 90 [ D.7654 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:47 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 83)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:47 -1
+     (int_list:REG_BR_PROB 7300 (nil))
+ -> 83)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg/f:DI 115)
+        (symbol_ref:DI ("__elision_aconf") [flags 0x40]  <var_decl 0x2b409ee8e480 __elision_aconf>)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v:SI 89 [ try_xbegin ])
+        (mem/c:SI (plus:DI (reg/f:DI 115)
+                (const_int 8 [0x8])) [3 __elision_aconf.retry_try_xbegin+0 S4 A32])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 89 [ try_xbegin ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (int_list:REG_BR_PROB 9700 (nil))
+ -> 22)
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 20 19 21 5 (set (pc)
+        (label_ref 87)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (nil)
+ -> 87)
+(barrier 21 20 22)
+(code_label 22 21 23 6 3 "" [1 uses])
+(note 23 22 77 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(code_label 77 23 24 7 10 "" [1 uses])
+(note 24 77 25 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 7 (set (reg:SI 117)
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/x86/hle.h:53 -1
+     (nil))
+(insn 26 25 27 7 (parallel [
+            (set (reg:SI 116 [ ret ])
+                (asm_operands/v:SI (".byte 0xc7,0xf8 ; .long 0") ("=a") 0 [
+                        (reg:SI 117)
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86/hle.h:53)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86/hle.h:53))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/x86/hle.h:53 -1
+     (nil))
+(insn 27 26 28 7 (set (reg/v:SI 110 [ ret ])
+        (reg:SI 116 [ ret ])) ../sysdeps/unix/sysv/linux/x86/hle.h:53 -1
+     (nil))
+(insn 28 27 29 7 (set (reg/v:SI 91 [ status ])
+        (reg/v:SI 110 [ ret ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:56 -1
+     (nil))
+(insn 29 28 30 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 91 [ status ])
+            (const_int -1 [0xffffffffffffffff]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:56 -1
+     (nil))
+(jump_insn 30 29 31 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:56 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 39)
+(note 31 30 32 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 8 (set (reg:SI 88 [ D.7653 ])
+        (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:58 -1
+     (nil))
+(insn 33 32 34 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ D.7653 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:58 -1
+     (nil))
+(jump_insn 34 33 35 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 96)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:58 -1
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 96)
+(note 35 34 36 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 9 (parallel [
+            (asm_operands/v (".byte 0xc6,0xf8,%P0") ("") 0 [
+                    (const_int 255 [0xff])
+                ]
+                 [
+                    (asm_input:SI ("i") ../sysdeps/unix/sysv/linux/x86/hle.h:64)
+                ]
+                 [] ../sysdeps/unix/sysv/linux/x86/hle.h:64)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/x86/hle.h:64 -1
+     (nil))
+(jump_insn 37 36 38 9 (set (pc)
+        (label_ref 74)) ../sysdeps/unix/sysv/linux/x86/hle.h:64 -1
+     (nil)
+ -> 74)
+(barrier 38 37 39)
+(code_label 39 38 40 10 5 "" [1 uses])
+(note 40 39 41 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 10 (parallel [
+            (set (reg:SI 118 [ D.7655 ])
+                (and:SI (reg/v:SI 91 [ status ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:67 -1
+     (nil))
+(insn 42 41 43 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 118 [ D.7655 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:67 -1
+     (nil))
+(jump_insn 43 42 44 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 74)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:67 -1
+     (int_list:REG_BR_PROB 9587 (nil))
+ -> 74)
+(note 44 43 45 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 11 (parallel [
+            (set (reg:SI 119 [ D.7655 ])
+                (and:SI (reg/v:SI 91 [ status ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:69 -1
+     (nil))
+(insn 46 45 47 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 119 [ D.7655 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:69 -1
+     (nil))
+(jump_insn 47 46 48 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 63)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:69 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 63)
+(note 48 47 49 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 12 (parallel [
+            (set (reg:SI 120 [ D.7655 ])
+                (lshiftrt:SI (reg/v:SI 91 [ status ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:70 -1
+     (nil))
+(insn 50 49 51 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 120 [ D.7655 ])
+            (const_int 255 [0xff]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:70 -1
+     (nil))
+(jump_insn 51 50 52 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 63)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:70 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 63)
+(note 52 51 53 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 13 (set (reg/f:DI 121)
+        (symbol_ref:DI ("__elision_aconf") [flags 0x40]  <var_decl 0x2b409ee8e480 __elision_aconf>)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:74 -1
+     (nil))
+(insn 54 53 56 13 (set (reg:SI 97 [ D.7653 ])
+        (mem/c:SI (reg/f:DI 121) [3 __elision_aconf.skip_lock_busy+0 S4 A32])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:74 -1
+     (nil))
+(insn 56 54 57 13 (set (reg:SI 122 [ D.7653 ])
+        (sign_extend:SI (mem:HI (reg/v/f:DI 113 [ adapt_count ]) [1 *adapt_count_8(D)+0 S2 A16]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:74 -1
+     (nil))
+(insn 57 56 58 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 122 [ D.7653 ])
+            (reg:SI 97 [ D.7653 ]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:74 -1
+     (nil))
+(jump_insn 58 57 59 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 87)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:74 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 87)
+(note 59 58 60 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 14 (set (mem:HI (reg/v/f:DI 113 [ adapt_count ]) [1 *adapt_count_8(D)+0 S2 A16])
+        (subreg:HI (reg:SI 97 [ D.7653 ]) 0)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:75 -1
+     (nil))
+(jump_insn 61 60 62 14 (set (pc)
+        (label_ref 87)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:75 -1
+     (nil)
+ -> 87)
+(barrier 62 61 63)
+(code_label 63 62 64 15 8 "" [2 uses])
+(note 64 63 65 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 15 (set (reg/f:DI 123)
+        (symbol_ref:DI ("__elision_aconf") [flags 0x40]  <var_decl 0x2b409ee8e480 __elision_aconf>)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:80 -1
+     (nil))
+(insn 66 65 67 15 (set (reg:SI 101 [ D.7653 ])
+        (mem/c:SI (plus:DI (reg/f:DI 123)
+                (const_int 4 [0x4])) [3 __elision_aconf.skip_lock_internal_abort+0 S4 A32])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:80 -1
+     (nil))
+(insn 67 66 68 15 (set (reg:SI 124 [ D.7653 ])
+        (sign_extend:SI (mem:HI (reg/v/f:DI 113 [ adapt_count ]) [1 *adapt_count_8(D)+0 S2 A16]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:80 -1
+     (nil))
+(insn 68 67 69 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 124 [ D.7653 ])
+            (reg:SI 101 [ D.7653 ]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:80 -1
+     (nil))
+(jump_insn 69 68 70 15 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 87)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:80 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 87)
+(note 70 69 71 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 71 70 72 16 (set (mem:HI (reg/v/f:DI 113 [ adapt_count ]) [1 *adapt_count_8(D)+0 S2 A16])
+        (subreg:HI (reg:SI 101 [ D.7653 ]) 0)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:81 -1
+     (nil))
+(jump_insn 72 71 73 16 (set (pc)
+        (label_ref 87)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:81 -1
+     (nil)
+ -> 87)
+(barrier 73 72 74)
+(code_label 74 73 75 17 7 "" [2 uses])
+(note 75 74 76 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 78 17 (parallel [
+            (set (reg/v:SI 89 [ try_xbegin ])
+                (plus:SI (reg/v:SI 89 [ try_xbegin ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:54 -1
+     (nil))
+(insn 78 76 79 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 89 [ try_xbegin ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (nil))
+(jump_insn 79 78 82 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 77)
+            (pc))) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:52 -1
+     (int_list:REG_BR_PROB 9700 (nil))
+ -> 77)
+(note 82 79 80 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 80 82 81 18 (set (pc)
+        (label_ref:DI 87)) 654 {jump}
+     (nil)
+ -> 87)
+(barrier 81 80 83)
+(code_label 83 81 84 19 2 "" [1 uses])
+(note 84 83 85 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 86 19 (parallel [
+            (set (reg:HI 125)
+                (plus:HI (reg:HI 90 [ D.7654 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:90 -1
+     (nil))
+(insn 86 85 87 19 (set (mem:HI (reg/v/f:DI 113 [ adapt_count ]) [1 *adapt_count_8(D)+0 S2 A16])
+        (reg:HI 125)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:90 -1
+     (nil))
+(code_label 87 86 88 20 4 "" [6 uses])
+(note 88 87 89 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 89 88 90 20 (set (reg:SI 130)
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 90 89 91 20 (set (reg:SI 131)
+        (const_int 1 [0x1])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 91 90 92 20 (parallel [
+            (set (reg:SI 126 [ result ])
+                (asm_operands/v:SI ("lock;cmpxchgl %1, %4
+	jz 24f
+1:	lea %4, %%rdi
+0:	mov %8, %%rdx
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_timedlock_wait
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 0 [
+                        (reg:SI 130)
+                        (reg:SI 131)
+                        (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])
+                        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [4 t+0 S8 A64])
+                        (reg/v:SI 114 [ private ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("1") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:DI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("2") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94))
+            (set (reg:SI 127 [ ignore1 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %1, %4
+	jz 24f
+1:	lea %4, %%rdi
+0:	mov %8, %%rdx
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_timedlock_wait
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=D") 1 [
+                        (reg:SI 130)
+                        (reg:SI 131)
+                        (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])
+                        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [4 t+0 S8 A64])
+                        (reg/v:SI 114 [ private ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("1") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:DI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("2") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94))
+            (set (reg:SI 128 [ ignore2 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %1, %4
+	jz 24f
+1:	lea %4, %%rdi
+0:	mov %8, %%rdx
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_timedlock_wait
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 2 [
+                        (reg:SI 130)
+                        (reg:SI 131)
+                        (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])
+                        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [4 t+0 S8 A64])
+                        (reg/v:SI 114 [ private ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("1") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:DI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("2") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94))
+            (set (reg:SI 129 [ ignore3 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %1, %4
+	jz 24f
+1:	lea %4, %%rdi
+0:	mov %8, %%rdx
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_timedlock_wait
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&d") 3 [
+                        (reg:SI 130)
+                        (reg:SI 131)
+                        (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])
+                        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [4 t+0 S8 A64])
+                        (reg/v:SI 114 [ private ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("1") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:DI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("2") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94))
+            (set (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])
+                (asm_operands/v:SI ("lock;cmpxchgl %1, %4
+	jz 24f
+1:	lea %4, %%rdi
+0:	mov %8, %%rdx
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_timedlock_wait
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 4 [
+                        (reg:SI 130)
+                        (reg:SI 131)
+                        (mem:SI (reg/v/f:DI 112 [ futex ]) [3 *futex_26(D)+0 S4 A32])
+                        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [4 t+0 S8 A64])
+                        (reg/v:SI 114 [ private ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("1") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:DI ("m") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                        (asm_input:SI ("2") ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 39 r10))
+            (clobber (reg:QI 2 cx))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 92 91 93 20 (set (reg/v:SI 106 [ result ])
+        (reg:SI 126 [ result ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 93 92 94 20 (set (reg/v:SI 107 [ ignore1 ])
+        (reg:SI 127 [ ignore1 ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 94 93 95 20 (set (reg/v:SI 108 [ ignore2 ])
+        (reg:SI 128 [ ignore2 ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 95 94 8 20 (set (reg/v:SI 109 [ ignore3 ])
+        (reg:SI 129 [ ignore3 ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(insn 8 95 96 20 (set (reg:SI 88 [ D.7653 ])
+        (reg/v:SI 106 [ result ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:94 -1
+     (nil))
+(code_label 96 8 97 21 6 "" [1 uses])
+(note 97 96 98 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 98 97 102 21 (set (reg:SI 111 [ <retval> ])
+        (reg:SI 88 [ D.7653 ])) -1
+     (nil))
+(insn 102 98 103 21 (set (reg/i:SI 0 ax)
+        (reg:SI 111 [ <retval> ])) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:95 -1
+     (nil))
+(insn 103 102 0 21 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/x86/elision-lock.c:95 -1
+     (nil))

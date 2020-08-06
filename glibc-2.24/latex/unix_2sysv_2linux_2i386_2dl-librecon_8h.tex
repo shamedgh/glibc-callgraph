@@ -1,0 +1,74 @@
+\hypertarget{unix_2sysv_2linux_2i386_2dl-librecon_8h}{}\doxysection{sysdeps/unix/sysv/linux/i386/dl-\/librecon.h File Reference}
+\label{unix_2sysv_2linux_2i386_2dl-librecon_8h}\index{sysdeps/unix/sysv/linux/i386/dl-\/librecon.h@{sysdeps/unix/sysv/linux/i386/dl-\/librecon.h}}
+{\ttfamily \#include $<$sysdeps/unix/sysv/linux/dl-\/librecon.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2i386_2dl-librecon_8h_aa977cf74c6d2b9f9dd574cfb7e6342f0}{D\+I\+S\+T\+I\+N\+G\+U\+I\+S\+H\+\_\+\+L\+I\+B\+\_\+\+V\+E\+R\+S\+I\+O\+NS}}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2i386_2dl-librecon_8h_a38759f67101fd6947734b31a082c6f88}{E\+X\+T\+R\+A\+\_\+\+L\+D\+\_\+\+E\+N\+V\+V\+A\+RS}}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2i386_2dl-librecon_8h_a468e3c1553ec78798f20de38cbc48369}{E\+X\+T\+R\+A\+\_\+\+U\+N\+S\+E\+C\+U\+R\+E\+\_\+\+E\+N\+V\+V\+A\+RS}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2i386_2dl-librecon_8h_aa977cf74c6d2b9f9dd574cfb7e6342f0}\label{unix_2sysv_2linux_2i386_2dl-librecon_8h_aa977cf74c6d2b9f9dd574cfb7e6342f0}} 
+\index{dl-\/librecon.h@{dl-\/librecon.h}!DISTINGUISH\_LIB\_VERSIONS@{DISTINGUISH\_LIB\_VERSIONS}}
+\index{DISTINGUISH\_LIB\_VERSIONS@{DISTINGUISH\_LIB\_VERSIONS}!dl-\/librecon.h@{dl-\/librecon.h}}
+\doxysubsubsection{\texorpdfstring{DISTINGUISH\_LIB\_VERSIONS}{DISTINGUISH\_LIB\_VERSIONS}}
+{\footnotesize\ttfamily \#define D\+I\+S\+T\+I\+N\+G\+U\+I\+S\+H\+\_\+\+L\+I\+B\+\_\+\+V\+E\+R\+S\+I\+O\+NS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* We have to find out whether the binary is linked against         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     libc 5 or glibc.  We do this by looking at all the DT\_NEEDED         \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{     entries.  If one is libc.so.5 this is a libc 5 linked binary.  */}    \(\backslash\)}
+\DoxyCodeLine{      if (main\_map-\/>l\_info[\mbox{\hyperlink{elf_2elf_8h_a4451778c7253623b413bb160d47ee1e6}{DT\_NEEDED}}])                       \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* We have dependencies.  */}                        \(\backslash\)}
+\DoxyCodeLine{      const \mbox{\hyperlink{elf_2link_8h_af16b73934307a73193748f160d39ad24}{ElfW}}(Dyn) *\mbox{\hyperlink{tst-strtod-underflow_8c_ad8bf07a4dd0f6a74fa20362914e2472d}{d}};                            \(\backslash\)}
+\DoxyCodeLine{      const \textcolor{keywordtype}{char} *strtab;                             \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{      strtab = (\textcolor{keyword}{const} \textcolor{keywordtype}{char} *) \mbox{\hyperlink{generic_2ldsodefs_8h_a0e8cd7f5c52bfa200391028a98a427ba}{D\_PTR}} (main\_map, l\_info[\mbox{\hyperlink{elf_2elf_8h_afba78bdbf28e311e5f3e478f07905aed}{DT\_STRTAB}}]);          \mbox{\hyperlink{bindtextdom_8c_aa263a6ddc6864c5ff04912fc68073ee6}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{bindtextdom_8c_aa263a6ddc6864c5ff04912fc68073ee6}{                                          \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{bindtextdom_8c_aa263a6ddc6864c5ff04912fc68073ee6}{      for}} (d = main\_map-\/>l\_ld; \mbox{\hyperlink{tst-strtod-underflow_8c_ad8bf07a4dd0f6a74fa20362914e2472d}{d}}-\/>d\_tag != \mbox{\hyperlink{elf_2elf_8h_adeef14c6d411e415343fd616c16d1568}{DT\_NULL}}; ++d)            \(\backslash\)}
+\DoxyCodeLine{        if (\mbox{\hyperlink{tst-strtod-underflow_8c_ad8bf07a4dd0f6a74fa20362914e2472d}{d}}-\/>d\_tag == \mbox{\hyperlink{elf_2elf_8h_a4451778c7253623b413bb160d47ee1e6}{DT\_NEEDED}}                       \(\backslash\)}
+\DoxyCodeLine{        \&\& \mbox{\hyperlink{string_2string_8h_a72c32a7b6e6ec46536ac21b02c9dc018}{strcmp}} (strtab + \mbox{\hyperlink{tst-strtod-underflow_8c_ad8bf07a4dd0f6a74fa20362914e2472d}{d}}-\/>d\_un.d\_val, \textcolor{stringliteral}{"libc.so.5"}) == 0)          \(\backslash\)}
+\DoxyCodeLine{          break;                                  \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* We print a `5' or `6' depending on the outcome.  */}          \(\backslash\)}
+\DoxyCodeLine{      \_dl\_printf (\mbox{\hyperlink{tst-strtod-underflow_8c_ad8bf07a4dd0f6a74fa20362914e2472d}{d}}-\/>d\_tag != \mbox{\hyperlink{elf_2elf_8h_adeef14c6d411e415343fd616c16d1568}{DT\_NULL}} ? \textcolor{stringliteral}{"5\(\backslash\)n"} : \textcolor{stringliteral}{"6\(\backslash\)n"});           \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2i386_2dl-librecon_8h_a38759f67101fd6947734b31a082c6f88}\label{unix_2sysv_2linux_2i386_2dl-librecon_8h_a38759f67101fd6947734b31a082c6f88}} 
+\index{dl-\/librecon.h@{dl-\/librecon.h}!EXTRA\_LD\_ENVVARS@{EXTRA\_LD\_ENVVARS}}
+\index{EXTRA\_LD\_ENVVARS@{EXTRA\_LD\_ENVVARS}!dl-\/librecon.h@{dl-\/librecon.h}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_LD\_ENVVARS}{EXTRA\_LD\_ENVVARS}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+L\+D\+\_\+\+E\+N\+V\+V\+A\+RS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{case} 15:                                      \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{string_2string_8h_a70784afa913af03702739fab2e82aeac}{memcmp}} (envline, \textcolor{stringliteral}{"LIBRARY\_VERSION"}, 15) == 0)               \(\backslash\)}
+\DoxyCodeLine{      GLRO(dl\_correct\_cache\_id) = envline[16] == \textcolor{charliteral}{'5'} ? 2 : 3;             \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2i386_2dl-librecon_8h_a468e3c1553ec78798f20de38cbc48369}\label{unix_2sysv_2linux_2i386_2dl-librecon_8h_a468e3c1553ec78798f20de38cbc48369}} 
+\index{dl-\/librecon.h@{dl-\/librecon.h}!EXTRA\_UNSECURE\_ENVVARS@{EXTRA\_UNSECURE\_ENVVARS}}
+\index{EXTRA\_UNSECURE\_ENVVARS@{EXTRA\_UNSECURE\_ENVVARS}!dl-\/librecon.h@{dl-\/librecon.h}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_UNSECURE\_ENVVARS}{EXTRA\_UNSECURE\_ENVVARS}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+U\+N\+S\+E\+C\+U\+R\+E\+\_\+\+E\+N\+V\+V\+A\+RS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{stringliteral}{"LD\_AOUT\_LIBRARY\_PATH\(\backslash\)0"}                              \(\backslash\)}
+\DoxyCodeLine{  \textcolor{stringliteral}{"LD\_AOUT\_PRELOAD\(\backslash\)0"}}
+
+\end{DoxyCode}

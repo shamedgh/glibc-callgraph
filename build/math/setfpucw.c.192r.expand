@@ -1,0 +1,90 @@
+
+;; Function __setfpucw (__setfpucw, funcdef_no=3, decl_uid=2980, cgraph_uid=3, symbol_order=6)
+
+Partition 0: size 2 align 2
+	cw
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg:SI 95)
+        (reg:SI 5 di [ set ])) setfpucw.c:24 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:HI 94 [ set ])
+        (subreg:HI (reg:SI 95) 0)) setfpucw.c:24 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (parallel [
+            (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -2 [0xfffffffffffffffe])) [1 cw+0 S2 A16])
+                (asm_operands/v:HI ("fnstcw %0") ("=m") 0 []
+                     []
+                     [] setfpucw.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) setfpucw.c:28 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:HI 97)
+        (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -2 [0xfffffffffffffffe])) [1 cw+0 S2 A16])) setfpucw.c:33 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:HI 96 [ D.2997 ])
+                (and:HI (reg:HI 97)
+                    (const_int -3904 [0xfffffffffffff0c0])))
+            (clobber (reg:CC 17 flags))
+        ]) setfpucw.c:33 -1
+     (expr_list:REG_EQUAL (and:HI (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -2 [0xfffffffffffffffe])) [1 cw+0 S2 A16])
+            (const_int -3904 [0xfffffffffffff0c0]))
+        (nil)))
+(insn 10 9 11 2 (parallel [
+            (set (reg:HI 98 [ D.2998 ])
+                (and:HI (reg/v:HI 94 [ set ])
+                    (const_int 3903 [0xf3f])))
+            (clobber (reg:CC 17 flags))
+        ]) setfpucw.c:33 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:HI 99)
+                (ior:HI (reg:HI 96 [ D.2997 ])
+                    (reg:HI 98 [ D.2998 ])))
+            (clobber (reg:CC 17 flags))
+        ]) setfpucw.c:33 -1
+     (nil))
+(insn 12 11 13 2 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -2 [0xfffffffffffffffe])) [1 cw+0 S2 A16])
+        (reg:HI 99)) setfpucw.c:33 -1
+     (nil))
+(insn 13 12 0 2 (parallel [
+            (asm_operands/v ("fldcw %0") ("") 0 [
+                    (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -2 [0xfffffffffffffffe])) [1 cw+0 S2 A16])
+                ]
+                 [
+                    (asm_input:HI ("m") setfpucw.c:35)
+                ]
+                 [] setfpucw.c:35)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) setfpucw.c:35 -1
+     (nil))

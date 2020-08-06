@@ -1,0 +1,221 @@
+
+;; Function __pthread_attr_getstacksize (__pthread_attr_getstacksize, funcdef_no=42, decl_uid=7406, cgraph_uid=42, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 25.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 93 [ attr ])
+        (reg:DI 5 di [ attr ])) pthread_attr_getstacksize.c:25 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 94 [ stacksize ])
+        (reg:DI 4 si [ stacksize ])) pthread_attr_getstacksize.c:25 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg/v:DI 87 [ size ])
+        (mem:DI (plus:DI (reg/v/f:DI 93 [ attr ])
+                (const_int 32 [0x20])) [4 MEM[(struct pthread_attr *)attr_3(D)].stacksize+0 S8 A64])) pthread_attr_getstacksize.c:31 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 87 [ size ])
+            (const_int 0 [0]))) pthread_attr_getstacksize.c:35 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) pthread_attr_getstacksize.c:35 -1
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 21)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:SI 98)
+        (const_int 1 [0x1])) pthread_attr_getstacksize.c:37 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:SI 99)
+        (const_int 0 [0])) pthread_attr_getstacksize.c:37 -1
+     (nil))
+(insn 13 12 14 4 (parallel [
+            (set (reg:SI 95 [ ignore1 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("m") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("3") pthread_attr_getstacksize.c:37)
+                    ]
+                     [] pthread_attr_getstacksize.c:37))
+            (set (reg:SI 96 [ ignore2 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("m") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("3") pthread_attr_getstacksize.c:37)
+                    ]
+                     [] pthread_attr_getstacksize.c:37))
+            (set (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("m") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("3") pthread_attr_getstacksize.c:37)
+                    ]
+                     [] pthread_attr_getstacksize.c:37))
+            (set (reg:SI 97 [ ignore3 ])
+                (asm_operands/v:SI ("lock;cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 98)
+                        (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                        (reg:SI 99)
+                    ]
+                     [
+                        (asm_input:SI ("0") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("m") pthread_attr_getstacksize.c:37)
+                        (asm_input:SI ("3") pthread_attr_getstacksize.c:37)
+                    ]
+                     [] pthread_attr_getstacksize.c:37))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) pthread_attr_getstacksize.c:37 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/v:SI 88 [ ignore1 ])
+        (reg:SI 95 [ ignore1 ])) pthread_attr_getstacksize.c:37 -1
+     (nil))
+(insn 15 14 16 4 (set (reg/v:SI 89 [ ignore2 ])
+        (reg:SI 96 [ ignore2 ])) pthread_attr_getstacksize.c:37 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v:SI 90 [ ignore3 ])
+        (reg:SI 97 [ ignore3 ])) pthread_attr_getstacksize.c:37 -1
+     (nil))
+(insn 17 16 18 4 (set (reg/f:DI 100)
+        (symbol_ref:DI ("__default_pthread_attr") [flags 0x40]  <var_decl 0x2b535ea20ea0 __default_pthread_attr>)) pthread_attr_getstacksize.c:38 -1
+     (nil))
+(insn 18 17 19 4 (set (reg/v:DI 87 [ size ])
+        (mem/c:DI (plus:DI (reg/f:DI 100)
+                (const_int 32 [0x20])) [4 __default_pthread_attr.stacksize+0 S8 A64])) pthread_attr_getstacksize.c:38 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                (asm_operands/v:SI ("lock;decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") pthread_attr_getstacksize.c:39)
+                    ]
+                     [] pthread_attr_getstacksize.c:39))
+            (set (reg:SI 101 [ ignore ])
+                (asm_operands/v:SI ("lock;decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("__default_pthread_attr_lock") [flags 0x40]  <var_decl 0x2b535ea20f30 __default_pthread_attr_lock>) [3 __default_pthread_attr_lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") pthread_attr_getstacksize.c:39)
+                    ]
+                     [] pthread_attr_getstacksize.c:39))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) pthread_attr_getstacksize.c:39 -1
+     (nil))
+(insn 20 19 21 4 (set (reg/v:SI 91 [ ignore ])
+        (reg:SI 101 [ ignore ])) pthread_attr_getstacksize.c:39 -1
+     (nil))
+(code_label 21 20 22 5 2 "" [1 uses])
+(note 22 21 23 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 5 (set (mem:DI (reg/v/f:DI 94 [ stacksize ]) [4 *stacksize_13(D)+0 S8 A64])
+        (reg/v:DI 87 [ size ])) pthread_attr_getstacksize.c:41 -1
+     (nil))
+(insn 24 23 28 5 (set (reg:SI 92 [ <retval> ])
+        (const_int 0 [0])) pthread_attr_getstacksize.c:43 -1
+     (nil))
+(insn 28 24 29 5 (set (reg/i:SI 0 ax)
+        (reg:SI 92 [ <retval> ])) pthread_attr_getstacksize.c:44 -1
+     (nil))
+(insn 29 28 0 5 (use (reg/i:SI 0 ax)) pthread_attr_getstacksize.c:44 -1
+     (nil))

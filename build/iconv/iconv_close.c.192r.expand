@@ -1,0 +1,110 @@
+
+;; Function iconv_close (iconv_close, funcdef_no=41, decl_uid=7079, cgraph_uid=41, symbol_order=49)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 26.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 92 [ cd ])
+        (reg:DI 5 di [ cd ])) iconv_close.c:28 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ cd ])
+            (const_int -1 [0xffffffffffffffff]))) iconv_close.c:29 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) iconv_close.c:29 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 14)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg:DI 93)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b8db782c900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [2  S8 A8])) iconv_close.c:31 -1
+     (nil))
+(insn 11 10 4 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 93)) [1 __libc_errno+0 S4 A32])
+        (const_int 9 [0x9])) iconv_close.c:31 -1
+     (nil))
+(insn 4 11 12 4 (set (reg:SI 87 [ D.8450 ])
+        (const_int -1 [0xffffffffffffffff])) iconv_close.c:32 -1
+     (nil))
+(jump_insn 12 4 13 4 (set (pc)
+        (label_ref 23)) iconv_close.c:32 -1
+     (nil)
+ -> 23)
+(barrier 13 12 14)
+(code_label 14 13 15 5 2 "" [1 uses])
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ cd ])) iconv_close.c:35 -1
+     (nil))
+(call_insn 17 16 18 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__gconv_close") [flags 0x41]  <function_decl 0x2b8db7912798 __gconv_close>) [0 __gconv_close S1 A8])
+            (const_int 0 [0]))) iconv_close.c:35 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__gconv_close") [flags 0x41]  <function_decl 0x2b8db7912798 __gconv_close>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 18 17 19 5 (set (reg:SI 90 [ D.8450 ])
+        (reg:SI 0 ax)) iconv_close.c:35 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.8450 ])
+            (const_int 0 [0]))) iconv_close.c:35 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:QI 95)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) iconv_close.c:35 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:SI 94 [ D.8451 ])
+        (zero_extend:SI (reg:QI 95))) iconv_close.c:35 -1
+     (nil))
+(insn 22 21 23 5 (parallel [
+            (set (reg:SI 87 [ D.8450 ])
+                (neg:SI (reg:SI 94 [ D.8451 ])))
+            (clobber (reg:CC 17 flags))
+        ]) iconv_close.c:35 -1
+     (nil))
+(code_label 23 22 24 6 3 "" [1 uses])
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 29 6 (set (reg:SI 91 [ <retval> ])
+        (reg:SI 87 [ D.8450 ])) -1
+     (nil))
+(insn 29 25 30 6 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) iconv_close.c:36 -1
+     (nil))
+(insn 30 29 0 6 (use (reg/i:SI 0 ax)) iconv_close.c:36 -1
+     (nil))

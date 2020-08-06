@@ -1,0 +1,179 @@
+
+;; Function pthread_key_delete (pthread_key_delete, funcdef_no=42, decl_uid=5541, cgraph_uid=42, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 38.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v:SI 97 [ key ])
+        (reg:SI 5 di [ key ])) pthread_key_delete.c:26 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 97 [ key ])
+            (const_int 1023 [0x3ff]))) pthread_key_delete.c:29 -1
+     (nil))
+(jump_insn 9 8 21 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 13)
+            (pc))) pthread_key_delete.c:29 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 13)
+(code_label 21 9 10 4 4 "" [2 uses])
+(note 10 21 4 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 4 10 11 4 (set (reg/v:SI 87 [ result ])
+        (const_int 22 [0x16])) pthread_key_delete.c:27 -1
+     (nil))
+(jump_insn 11 4 12 4 (set (pc)
+        (label_ref 35)) -1
+     (nil)
+ -> 35)
+(barrier 12 11 13)
+(code_label 13 12 14 5 2 "" [1 uses])
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg/f:DI 98)
+        (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2af7b55042d0 __pthread_keys>)) pthread_key_delete.c:31 -1
+     (nil))
+(insn 16 15 17 5 (set (reg:DI 99)
+        (zero_extend:DI (reg/v:SI 97 [ key ]))) pthread_key_delete.c:31 -1
+     (nil))
+(insn 17 16 18 5 (parallel [
+            (set (reg:DI 100)
+                (ashift:DI (reg:DI 99)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_delete.c:31 -1
+     (nil))
+(insn 18 17 19 5 (parallel [
+            (set (reg/f:DI 101)
+                (plus:DI (reg/f:DI 98)
+                    (reg:DI 100)))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_delete.c:31 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 89 [ D.7576 ])
+        (mem:DI (reg/f:DI 101) [2 __pthread_keys[key_4(D)].seq+0 S8 A64])) pthread_key_delete.c:31 -1
+     (nil))
+(insn 20 19 22 5 (set (reg/v:SI 90 [ seq ])
+        (subreg:SI (reg:DI 89 [ D.7576 ]) 0)) pthread_key_delete.c:31 -1
+     (nil))
+(insn 22 20 23 5 (parallel [
+            (set (reg:SI 102 [ D.7577 ])
+                (and:SI (reg/v:SI 90 [ seq ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_delete.c:33 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 102 [ D.7577 ])
+            (const_int 0 [0]))) pthread_key_delete.c:33 -1
+     (nil))
+(jump_insn 24 23 25 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) pthread_key_delete.c:33 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 21)
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 6 (set (reg:DI 103)
+        (zero_extend:DI (reg/v:SI 97 [ key ]))) pthread_key_delete.c:34 -1
+     (nil))
+(insn 27 26 28 6 (parallel [
+            (set (reg:DI 104)
+                (ashift:DI (reg:DI 103)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_delete.c:34 -1
+     (nil))
+(insn 28 27 29 6 (set (reg:DI 105 [ D.7576 ])
+        (zero_extend:DI (subreg:SI (reg:DI 89 [ D.7576 ]) 0))) pthread_key_delete.c:34 -1
+     (nil))
+(insn 29 28 30 6 (parallel [
+            (set (reg:SI 106 [ D.7577 ])
+                (plus:SI (reg/v:SI 90 [ seq ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_key_delete.c:34 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:DI 107 [ D.7576 ])
+        (zero_extend:DI (reg:SI 106 [ D.7577 ]))) pthread_key_delete.c:34 -1
+     (nil))
+(insn 31 30 32 6 (parallel [
+            (set (reg:DI 108)
+                (unspec_volatile:DI [
+                        (mem/v:DI (plus:DI (reg:DI 104)
+                                (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2af7b55042d0 __pthread_keys>)) [-1  S8 A64])
+                        (reg:DI 105 [ D.7576 ])
+                        (reg:DI 107 [ D.7576 ])
+                        (const_int 32773 [0x8005])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:DI (plus:DI (reg:DI 104)
+                        (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2af7b55042d0 __pthread_keys>)) [-1  S8 A64])
+                (unspec_volatile:DI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) pthread_key_delete.c:34 -1
+     (nil))
+(insn 32 31 33 6 (set (reg:QI 95 [ D.7579 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) pthread_key_delete.c:34 -1
+     (nil))
+(insn 33 32 34 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 95 [ D.7579 ])
+            (const_int 0 [0]))) pthread_key_delete.c:34 -1
+     (nil))
+(jump_insn 34 33 44 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) pthread_key_delete.c:34 -1
+     (int_list:REG_BR_PROB 9999 (nil))
+ -> 21)
+(note 44 34 5 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 5 44 35 7 (set (reg/v:SI 87 [ result ])
+        (const_int 0 [0])) pthread_key_delete.c:37 -1
+     (nil))
+(code_label 35 5 36 8 3 "" [1 uses])
+(note 36 35 37 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 41 8 (set (reg:SI 96 [ <retval> ])
+        (reg/v:SI 87 [ result ])) pthread_key_delete.c:40 -1
+     (nil))
+(insn 41 37 42 8 (set (reg/i:SI 0 ax)
+        (reg:SI 96 [ <retval> ])) pthread_key_delete.c:41 -1
+     (nil))
+(insn 42 41 0 8 (use (reg/i:SI 0 ax)) pthread_key_delete.c:41 -1
+     (nil))

@@ -1,0 +1,120 @@
+\hypertarget{nptl_2pthread__mutex__lock_8c}{}\doxysection{nptl/pthread\+\_\+mutex\+\_\+lock.c File Reference}
+\label{nptl_2pthread__mutex__lock_8c}\index{nptl/pthread\_mutex\_lock.c@{nptl/pthread\_mutex\_lock.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$not-\/cancel.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}pthread\+P.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$atomic.\+h$>$}\newline
+{\ttfamily \#include $<$lowlevellock.\+h$>$}\newline
+{\ttfamily \#include $<$stap-\/probe.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a5a992d69065845f7c7d8a00ce83d173d}{lll\+\_\+lock\+\_\+elision}}(\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}},  try\+\_\+lock,  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}})
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a5bc5c8489ad90b8a35a7eae704a84792}{lll\+\_\+trylock\+\_\+elision}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}{lll\+\_\+trylock}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_ad01393935c01252989abf9c2e017d476}{L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK}}(\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afef967015ea632e69db1cad31d8045b4}{lll\+\_\+lock}} ((\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/$>$\+\_\+\+\_\+data.\+\_\+\+\_\+lock, \mbox{\hyperlink{nptl_2pthreadP_8h_a689680c0e552db5e156ecef1ec5541df}{P\+T\+H\+R\+E\+A\+D\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+S\+H\+A\+R\+ED}} (\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}}))
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a5b8d77e7ff7420fc539e3094897e5792}{L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+R\+Y\+L\+O\+CK}}(\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}{lll\+\_\+trylock}} ((\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/$>$\+\_\+\+\_\+data.\+\_\+\+\_\+lock)
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a060af1e4d41859c13b4091773a0bbc0d}{L\+L\+L\+\_\+\+R\+O\+B\+U\+S\+T\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK}}(\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}},  \mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}})
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a6a07d66a82f768e8a9379b1c94fd3c22}{L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+C\+K\+\_\+\+E\+L\+I\+S\+I\+ON}}(\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a96337128a8b19f12afed68854a42fc13}{L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+R\+Y\+L\+O\+C\+K\+\_\+\+E\+L\+I\+S\+I\+ON}}(\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})
+\item 
+\#define \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a1aee5f32b9d74bf3cc69f2b5a113f444}{F\+O\+R\+C\+E\+\_\+\+E\+L\+I\+S\+I\+ON}}(\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}},  \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_aee22bc3ba52103074c5faeea1304af29}{\+\_\+\+\_\+pthread\+\_\+mutex\+\_\+lock}} (\mbox{\hyperlink{unionpthread__mutex__t}{pthread\+\_\+mutex\+\_\+t}} $\ast$\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a1aee5f32b9d74bf3cc69f2b5a113f444}\label{nptl_2pthread__mutex__lock_8c_a1aee5f32b9d74bf3cc69f2b5a113f444}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!FORCE\_ELISION@{FORCE\_ELISION}}
+\index{FORCE\_ELISION@{FORCE\_ELISION}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{FORCE\_ELISION}{FORCE\_ELISION}}
+{\footnotesize\ttfamily \#define F\+O\+R\+C\+E\+\_\+\+E\+L\+I\+S\+I\+ON(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}},  }\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a5a992d69065845f7c7d8a00ce83d173d}\label{nptl_2pthread__mutex__lock_8c_a5a992d69065845f7c7d8a00ce83d173d}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!lll\_lock\_elision@{lll\_lock\_elision}}
+\index{lll\_lock\_elision@{lll\_lock\_elision}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{lll\_lock\_elision}{lll\_lock\_elision}}
+{\footnotesize\ttfamily \#define lll\+\_\+lock\+\_\+elision(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-cond18_8c_a0abaf4b5d42c4e5d19190035fade3599}{lock}},  }\item[{}]{try\+\_\+lock,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a5458e3a003b8e379dce10cfc20fbd9c9}{private}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \(\backslash\)}
+\DoxyCodeLine{      lll\_lock (\mbox{\hyperlink{structpthread_a9550b32ce2b2eae4ac0e2befcdb88568}{lock}}, \textcolor{keyword}{private}); 0; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_ad01393935c01252989abf9c2e017d476}\label{nptl_2pthread__mutex__lock_8c_ad01393935c01252989abf9c2e017d476}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!LLL\_MUTEX\_LOCK@{LLL\_MUTEX\_LOCK}}
+\index{LLL\_MUTEX\_LOCK@{LLL\_MUTEX\_LOCK}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{LLL\_MUTEX\_LOCK}{LLL\_MUTEX\_LOCK}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_afef967015ea632e69db1cad31d8045b4}{lll\+\_\+lock}} ((\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/$>$\+\_\+\+\_\+data.\+\_\+\+\_\+lock, \mbox{\hyperlink{nptl_2pthreadP_8h_a689680c0e552db5e156ecef1ec5541df}{P\+T\+H\+R\+E\+A\+D\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+S\+H\+A\+R\+ED}} (\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}}))}
+
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a6a07d66a82f768e8a9379b1c94fd3c22}\label{nptl_2pthread__mutex__lock_8c_a6a07d66a82f768e8a9379b1c94fd3c22}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!LLL\_MUTEX\_LOCK\_ELISION@{LLL\_MUTEX\_LOCK\_ELISION}}
+\index{LLL\_MUTEX\_LOCK\_ELISION@{LLL\_MUTEX\_LOCK\_ELISION}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{LLL\_MUTEX\_LOCK\_ELISION}{LLL\_MUTEX\_LOCK\_ELISION}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+C\+K\+\_\+\+E\+L\+I\+S\+I\+ON(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a5a992d69065845f7c7d8a00ce83d173d}{lll\_lock\_elision}} ((\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/>\_\_data.\_\_lock, (\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/>\_\_data.\_\_elision, \(\backslash\)}
+\DoxyCodeLine{           \mbox{\hyperlink{nptl_2pthreadP_8h_a689680c0e552db5e156ecef1ec5541df}{PTHREAD\_MUTEX\_PSHARED}} (\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a5b8d77e7ff7420fc539e3094897e5792}\label{nptl_2pthread__mutex__lock_8c_a5b8d77e7ff7420fc539e3094897e5792}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!LLL\_MUTEX\_TRYLOCK@{LLL\_MUTEX\_TRYLOCK}}
+\index{LLL\_MUTEX\_TRYLOCK@{LLL\_MUTEX\_TRYLOCK}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{LLL\_MUTEX\_TRYLOCK}{LLL\_MUTEX\_TRYLOCK}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+R\+Y\+L\+O\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}{lll\+\_\+trylock}} ((\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/$>$\+\_\+\+\_\+data.\+\_\+\+\_\+lock)}
+
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a96337128a8b19f12afed68854a42fc13}\label{nptl_2pthread__mutex__lock_8c_a96337128a8b19f12afed68854a42fc13}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!LLL\_MUTEX\_TRYLOCK\_ELISION@{LLL\_MUTEX\_TRYLOCK\_ELISION}}
+\index{LLL\_MUTEX\_TRYLOCK\_ELISION@{LLL\_MUTEX\_TRYLOCK\_ELISION}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{LLL\_MUTEX\_TRYLOCK\_ELISION}{LLL\_MUTEX\_TRYLOCK\_ELISION}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+R\+Y\+L\+O\+C\+K\+\_\+\+E\+L\+I\+S\+I\+ON(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{nptl_2pthread__mutex__lock_8c_a5bc5c8489ad90b8a35a7eae704a84792}{lll\_trylock\_elision}}((\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/>\_\_data.\_\_lock, (\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/>\_\_data.\_\_elision, \(\backslash\)}
+\DoxyCodeLine{           \mbox{\hyperlink{nptl_2pthreadP_8h_a689680c0e552db5e156ecef1ec5541df}{PTHREAD\_MUTEX\_PSHARED}} (\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a060af1e4d41859c13b4091773a0bbc0d}\label{nptl_2pthread__mutex__lock_8c_a060af1e4d41859c13b4091773a0bbc0d}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!LLL\_ROBUST\_MUTEX\_LOCK@{LLL\_ROBUST\_MUTEX\_LOCK}}
+\index{LLL\_ROBUST\_MUTEX\_LOCK@{LLL\_ROBUST\_MUTEX\_LOCK}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{LLL\_ROBUST\_MUTEX\_LOCK}{LLL\_ROBUST\_MUTEX\_LOCK}}
+{\footnotesize\ttfamily \#define L\+L\+L\+\_\+\+R\+O\+B\+U\+S\+T\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{nptl_2lowlevellock_8h_ae79b92eb12efb22a2452ef272c2751dd}{lll\_robust\_lock}} ((\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}})-\/>\_\_data.\_\_lock, \textcolor{keywordtype}{id}, \(\backslash\)}
+\DoxyCodeLine{           \mbox{\hyperlink{nptl_2pthreadP_8h_a2bac5314cf489feed441fc5da45a0858}{PTHREAD\_ROBUST\_MUTEX\_PSHARED}} (\mbox{\hyperlink{tst-cond-except_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_a5bc5c8489ad90b8a35a7eae704a84792}\label{nptl_2pthread__mutex__lock_8c_a5bc5c8489ad90b8a35a7eae704a84792}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!lll\_trylock\_elision@{lll\_trylock\_elision}}
+\index{lll\_trylock\_elision@{lll\_trylock\_elision}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{lll\_trylock\_elision}{lll\_trylock\_elision}}
+{\footnotesize\ttfamily \#define lll\+\_\+trylock\+\_\+elision(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}} }\end{DoxyParamCaption})~\mbox{\hyperlink{unix_2sysv_2linux_2x86__64_2lowlevellock_8h_aa76f0c2b9704a7bd361ae730fe5e6dd6}{lll\+\_\+trylock}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nptl_2pthread__mutex__lock_8c_aee22bc3ba52103074c5faeea1304af29}\label{nptl_2pthread__mutex__lock_8c_aee22bc3ba52103074c5faeea1304af29}} 
+\index{pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}!\_\_pthread\_mutex\_lock@{\_\_pthread\_mutex\_lock}}
+\index{\_\_pthread\_mutex\_lock@{\_\_pthread\_mutex\_lock}!pthread\_mutex\_lock.c@{pthread\_mutex\_lock.c}}
+\doxysubsubsection{\texorpdfstring{\_\_pthread\_mutex\_lock()}{\_\_pthread\_mutex\_lock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+pthread\+\_\+mutex\+\_\+lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionpthread__mutex__t}{pthread\+\_\+mutex\+\_\+t}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+

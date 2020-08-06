@@ -1,0 +1,212 @@
+\hypertarget{locarchive_8c}{}\doxysection{locale/programs/locarchive.c File Reference}
+\label{locarchive_8c}\index{locale/programs/locarchive.c@{locale/programs/locarchive.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdio\+\_\+ext.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/shm.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/mmap.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../crypt/md5.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../localeinfo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../locarchive.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}localedef.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}locfile.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hashval.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}categories.\+def\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../intl/explodename.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../intl/l10nflist.\+c\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structoldlocrecent}{oldlocrecent}}
+\item 
+struct \mbox{\hyperlink{structnameent}{nameent}}
+\item 
+struct \mbox{\hyperlink{structdataent}{dataent}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a9559d7e1b8126f6605f9efb1bbda6278}{compute\+\_\+hashval}}~static archive\+\_\+hashval
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a938a79bf2f2495064af780f9c332c998}{hashval\+\_\+t}}~\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a12aada5b93897287ebbf3bc619985604}{A\+R\+C\+H\+I\+V\+E\+\_\+\+N\+A\+ME}}~C\+O\+M\+P\+L\+O\+C\+A\+L\+E\+D\+IR \char`\"{}/locale-\/archive\char`\"{}
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = category\+\_\+name,
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_aab12b6a48356efe3ca888cd67f0c5739}{I\+N\+I\+T\+I\+A\+L\+\_\+\+N\+U\+M\+\_\+\+N\+A\+M\+ES}}~900
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_ab9c49c65da382165e4d19b6be6661632}{I\+N\+I\+T\+I\+A\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+S\+T\+R\+I\+N\+GS}}~7500
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_aca1d61b9edbd971f0b0f9c0db28c9726}{I\+N\+I\+T\+I\+A\+L\+\_\+\+N\+U\+M\+\_\+\+L\+O\+C\+R\+EC}}~420
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a7adf17c8ca9a46a95f8c99daf53a488a}{I\+N\+I\+T\+I\+A\+L\+\_\+\+N\+U\+M\+\_\+\+S\+U\+MS}}~2000
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a27c6d427ccedb75d483ea42ec201a14a}{G\+ET}}(F\+I\+E\+LD)~maybe\+\_\+swap\+\_\+uint32 (F\+I\+E\+LD)
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a8cca99e54e5c2d2e6a6c65666e7224e9}{S\+ET}}(F\+I\+E\+LD,  \mbox{\hyperlink{tst-iconv6_8c_a3ca94216bf6ad110e40534456f5b5415}{V\+A\+L\+UE}})~((F\+I\+E\+LD) = maybe\+\_\+swap\+\_\+uint32 (\mbox{\hyperlink{tst-iconv6_8c_a3ca94216bf6ad110e40534456f5b5415}{V\+A\+L\+UE}}))
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a2548773a922db2488588c193e668cd26}{I\+NC}}(F\+I\+E\+LD,  I\+N\+C\+R\+E\+M\+E\+NT)~\mbox{\hyperlink{tst-setuid1_8c_ae3a6b7e1199f276d75597e986e42c1a3ab44c8101cc294c074709ec1b14211792}{S\+ET}} (F\+I\+E\+LD, \mbox{\hyperlink{rpc__util_8h_a982a66f513611f7f83ebfa4b4ecf1df9}{G\+ET}} (F\+I\+E\+LD) + (I\+N\+C\+R\+E\+M\+E\+NT))
+\item 
+\#define \mbox{\hyperlink{locarchive_8c_a475ed34504c96cc5a9e333e6595a51db}{R\+E\+S\+E\+R\+V\+E\+\_\+\+M\+M\+A\+P\+\_\+\+S\+I\+ZE}}~512 $\ast$ 1024 $\ast$ 1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{locarchive_8c_a705a243f812a4c6d01706c62c42bee75}{open\+\_\+archive}} (struct \mbox{\hyperlink{structlocarhandle}{locarhandle}} $\ast$ah, \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} readonly)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{locarchive_8c_ace8137ef05f764d796ab6bdf620beb1f}{close\+\_\+archive}} (struct \mbox{\hyperlink{structlocarhandle}{locarhandle}} $\ast$ah)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{locarchive_8c_aeb6aaef661944397982b82d15da75b27}{add\+\_\+locale\+\_\+to\+\_\+archive}} (struct \mbox{\hyperlink{structlocarhandle}{locarhandle}} $\ast$ah, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{structlocale__data__t}{locale\+\_\+data\+\_\+t}} \mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}}, \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} replace)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{locarchive_8c_a7520ac82a181bb60273b5d848e929247}{add\+\_\+locales\+\_\+to\+\_\+archive}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{structnlist}{nlist}}, char $\ast$\mbox{\hyperlink{structlist}{list}}\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} replace)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{locarchive_8c_ad1f0b40839f9a84a9d1fa841d323d90b}{delete\+\_\+locales\+\_\+from\+\_\+archive}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{structnlist}{nlist}}, char $\ast$\mbox{\hyperlink{structlist}{list}}\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{locarchive_8c_aa76aabb38f6ddfca17437121561275a8}{show\+\_\+archive\+\_\+content}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{bug-ungetwc2_8c_ae96bbe3347b319ee7bdbd1f2e2ba9f5b}{fname}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{localedef_8h_a0b2caeb4b6f130be43e5a2f0267dd453}{verbose}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{locarchive_8c_ac7ff122dbb107a2b6018becebe1639c8}{output\+\_\+prefix}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{locarchive_8c_a12aada5b93897287ebbf3bc619985604}\label{locarchive_8c_a12aada5b93897287ebbf3bc619985604}} 
+\index{locarchive.c@{locarchive.c}!ARCHIVE\_NAME@{ARCHIVE\_NAME}}
+\index{ARCHIVE\_NAME@{ARCHIVE\_NAME}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{ARCHIVE\_NAME}{ARCHIVE\_NAME}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+I\+V\+E\+\_\+\+N\+A\+ME~C\+O\+M\+P\+L\+O\+C\+A\+L\+E\+D\+IR \char`\"{}/locale-\/archive\char`\"{}}
+
+\mbox{\Hypertarget{locarchive_8c_a9559d7e1b8126f6605f9efb1bbda6278}\label{locarchive_8c_a9559d7e1b8126f6605f9efb1bbda6278}} 
+\index{locarchive.c@{locarchive.c}!compute\_hashval@{compute\_hashval}}
+\index{compute\_hashval@{compute\_hashval}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{compute\_hashval}{compute\_hashval}}
+{\footnotesize\ttfamily \#define compute\+\_\+hashval~static archive\+\_\+hashval}
+
+\mbox{\Hypertarget{locarchive_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{locarchive_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{locarchive.c@{locarchive.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = category\+\_\+name,}
+
+\mbox{\Hypertarget{locarchive_8c_a27c6d427ccedb75d483ea42ec201a14a}\label{locarchive_8c_a27c6d427ccedb75d483ea42ec201a14a}} 
+\index{locarchive.c@{locarchive.c}!GET@{GET}}
+\index{GET@{GET}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{GET}{GET}}
+{\footnotesize\ttfamily \#define G\+ET(\begin{DoxyParamCaption}\item[{}]{F\+I\+E\+LD }\end{DoxyParamCaption})~maybe\+\_\+swap\+\_\+uint32 (F\+I\+E\+LD)}
+
+\mbox{\Hypertarget{locarchive_8c_a938a79bf2f2495064af780f9c332c998}\label{locarchive_8c_a938a79bf2f2495064af780f9c332c998}} 
+\index{locarchive.c@{locarchive.c}!hashval\_t@{hashval\_t}}
+\index{hashval\_t@{hashval\_t}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{hashval\_t}{hashval\_t}}
+{\footnotesize\ttfamily \#define hashval\+\_\+t~\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}}
+
+\mbox{\Hypertarget{locarchive_8c_a2548773a922db2488588c193e668cd26}\label{locarchive_8c_a2548773a922db2488588c193e668cd26}} 
+\index{locarchive.c@{locarchive.c}!INC@{INC}}
+\index{INC@{INC}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{INC}{INC}}
+{\footnotesize\ttfamily \#define I\+NC(\begin{DoxyParamCaption}\item[{}]{F\+I\+E\+LD,  }\item[{}]{I\+N\+C\+R\+E\+M\+E\+NT }\end{DoxyParamCaption})~\mbox{\hyperlink{tst-setuid1_8c_ae3a6b7e1199f276d75597e986e42c1a3ab44c8101cc294c074709ec1b14211792}{S\+ET}} (F\+I\+E\+LD, \mbox{\hyperlink{rpc__util_8h_a982a66f513611f7f83ebfa4b4ecf1df9}{G\+ET}} (F\+I\+E\+LD) + (I\+N\+C\+R\+E\+M\+E\+NT))}
+
+\mbox{\Hypertarget{locarchive_8c_aca1d61b9edbd971f0b0f9c0db28c9726}\label{locarchive_8c_aca1d61b9edbd971f0b0f9c0db28c9726}} 
+\index{locarchive.c@{locarchive.c}!INITIAL\_NUM\_LOCREC@{INITIAL\_NUM\_LOCREC}}
+\index{INITIAL\_NUM\_LOCREC@{INITIAL\_NUM\_LOCREC}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_NUM\_LOCREC}{INITIAL\_NUM\_LOCREC}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+I\+A\+L\+\_\+\+N\+U\+M\+\_\+\+L\+O\+C\+R\+EC~420}
+
+\mbox{\Hypertarget{locarchive_8c_aab12b6a48356efe3ca888cd67f0c5739}\label{locarchive_8c_aab12b6a48356efe3ca888cd67f0c5739}} 
+\index{locarchive.c@{locarchive.c}!INITIAL\_NUM\_NAMES@{INITIAL\_NUM\_NAMES}}
+\index{INITIAL\_NUM\_NAMES@{INITIAL\_NUM\_NAMES}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_NUM\_NAMES}{INITIAL\_NUM\_NAMES}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+I\+A\+L\+\_\+\+N\+U\+M\+\_\+\+N\+A\+M\+ES~900}
+
+\mbox{\Hypertarget{locarchive_8c_a7adf17c8ca9a46a95f8c99daf53a488a}\label{locarchive_8c_a7adf17c8ca9a46a95f8c99daf53a488a}} 
+\index{locarchive.c@{locarchive.c}!INITIAL\_NUM\_SUMS@{INITIAL\_NUM\_SUMS}}
+\index{INITIAL\_NUM\_SUMS@{INITIAL\_NUM\_SUMS}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_NUM\_SUMS}{INITIAL\_NUM\_SUMS}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+I\+A\+L\+\_\+\+N\+U\+M\+\_\+\+S\+U\+MS~2000}
+
+\mbox{\Hypertarget{locarchive_8c_ab9c49c65da382165e4d19b6be6661632}\label{locarchive_8c_ab9c49c65da382165e4d19b6be6661632}} 
+\index{locarchive.c@{locarchive.c}!INITIAL\_SIZE\_STRINGS@{INITIAL\_SIZE\_STRINGS}}
+\index{INITIAL\_SIZE\_STRINGS@{INITIAL\_SIZE\_STRINGS}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_SIZE\_STRINGS}{INITIAL\_SIZE\_STRINGS}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+I\+A\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+S\+T\+R\+I\+N\+GS~7500}
+
+\mbox{\Hypertarget{locarchive_8c_a475ed34504c96cc5a9e333e6595a51db}\label{locarchive_8c_a475ed34504c96cc5a9e333e6595a51db}} 
+\index{locarchive.c@{locarchive.c}!RESERVE\_MMAP\_SIZE@{RESERVE\_MMAP\_SIZE}}
+\index{RESERVE\_MMAP\_SIZE@{RESERVE\_MMAP\_SIZE}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{RESERVE\_MMAP\_SIZE}{RESERVE\_MMAP\_SIZE}}
+{\footnotesize\ttfamily \#define R\+E\+S\+E\+R\+V\+E\+\_\+\+M\+M\+A\+P\+\_\+\+S\+I\+ZE~512 $\ast$ 1024 $\ast$ 1024}
+
+\mbox{\Hypertarget{locarchive_8c_a8cca99e54e5c2d2e6a6c65666e7224e9}\label{locarchive_8c_a8cca99e54e5c2d2e6a6c65666e7224e9}} 
+\index{locarchive.c@{locarchive.c}!SET@{SET}}
+\index{SET@{SET}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{SET}{SET}}
+{\footnotesize\ttfamily \#define S\+ET(\begin{DoxyParamCaption}\item[{}]{F\+I\+E\+LD,  }\item[{}]{\mbox{\hyperlink{tst-iconv6_8c_a3ca94216bf6ad110e40534456f5b5415}{V\+A\+L\+UE}} }\end{DoxyParamCaption})~((F\+I\+E\+LD) = maybe\+\_\+swap\+\_\+uint32 (\mbox{\hyperlink{tst-iconv6_8c_a3ca94216bf6ad110e40534456f5b5415}{V\+A\+L\+UE}}))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{locarchive_8c_aeb6aaef661944397982b82d15da75b27}\label{locarchive_8c_aeb6aaef661944397982b82d15da75b27}} 
+\index{locarchive.c@{locarchive.c}!add\_locale\_to\_archive@{add\_locale\_to\_archive}}
+\index{add\_locale\_to\_archive@{add\_locale\_to\_archive}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{add\_locale\_to\_archive()}{add\_locale\_to\_archive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} add\+\_\+locale\+\_\+to\+\_\+archive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlocarhandle}{locarhandle}} $\ast$}]{ah,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{\mbox{\hyperlink{structlocale__data__t}{locale\+\_\+data\+\_\+t}}}]{data,  }\item[{\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}}}]{replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{locarchive_8c_a7520ac82a181bb60273b5d848e929247}\label{locarchive_8c_a7520ac82a181bb60273b5d848e929247}} 
+\index{locarchive.c@{locarchive.c}!add\_locales\_to\_archive@{add\_locales\_to\_archive}}
+\index{add\_locales\_to\_archive@{add\_locales\_to\_archive}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{add\_locales\_to\_archive()}{add\_locales\_to\_archive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} add\+\_\+locales\+\_\+to\+\_\+archive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{nlist,  }\item[{char $\ast$}]{list\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}}}]{replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{locarchive_8c_ace8137ef05f764d796ab6bdf620beb1f}\label{locarchive_8c_ace8137ef05f764d796ab6bdf620beb1f}} 
+\index{locarchive.c@{locarchive.c}!close\_archive@{close\_archive}}
+\index{close\_archive@{close\_archive}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{close\_archive()}{close\_archive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} close\+\_\+archive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlocarhandle}{locarhandle}} $\ast$}]{ah }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{locarchive_8c_ad1f0b40839f9a84a9d1fa841d323d90b}\label{locarchive_8c_ad1f0b40839f9a84a9d1fa841d323d90b}} 
+\index{locarchive.c@{locarchive.c}!delete\_locales\_from\_archive@{delete\_locales\_from\_archive}}
+\index{delete\_locales\_from\_archive@{delete\_locales\_from\_archive}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{delete\_locales\_from\_archive()}{delete\_locales\_from\_archive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} delete\+\_\+locales\+\_\+from\+\_\+archive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{nlist,  }\item[{char $\ast$}]{list\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{locarchive_8c_a705a243f812a4c6d01706c62c42bee75}\label{locarchive_8c_a705a243f812a4c6d01706c62c42bee75}} 
+\index{locarchive.c@{locarchive.c}!open\_archive@{open\_archive}}
+\index{open\_archive@{open\_archive}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{open\_archive()}{open\_archive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} open\+\_\+archive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlocarhandle}{locarhandle}} $\ast$}]{ah,  }\item[{\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}}}]{readonly }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{locarchive_8c_aa76aabb38f6ddfca17437121561275a8}\label{locarchive_8c_aa76aabb38f6ddfca17437121561275a8}} 
+\index{locarchive.c@{locarchive.c}!show\_archive\_content@{show\_archive\_content}}
+\index{show\_archive\_content@{show\_archive\_content}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{show\_archive\_content()}{show\_archive\_content()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} show\+\_\+archive\+\_\+content (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{fname,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{verbose }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{locarchive_8c_ac7ff122dbb107a2b6018becebe1639c8}\label{locarchive_8c_ac7ff122dbb107a2b6018becebe1639c8}} 
+\index{locarchive.c@{locarchive.c}!output\_prefix@{output\_prefix}}
+\index{output\_prefix@{output\_prefix}!locarchive.c@{locarchive.c}}
+\doxysubsubsection{\texorpdfstring{output\_prefix}{output\_prefix}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ output\+\_\+prefix}
+

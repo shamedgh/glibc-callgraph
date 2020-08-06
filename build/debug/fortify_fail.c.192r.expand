@@ -1,0 +1,100 @@
+
+;; Function __fortify_fail (*__GI___fortify_fail, funcdef_no=35, decl_uid=2712, cgraph_uid=35, symbol_order=38) (executed once)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+Edge 3->5 redirected to 8
+deleting block 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 90 [ msg ])
+        (reg:DI 5 di [ msg ])) fortify_fail.c:27 -1
+     (nil))
+(note 3 2 22 2 NOTE_INSN_FUNCTION_BEG)
+(code_label 22 3 8 4 3 "" [1 uses])
+(note 8 22 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (set (reg/f:DI 91)
+        (mem/f/c:DI (symbol_ref:DI ("__libc_argv") [flags 0x42]  <var_decl 0x2aad1efa5630 __libc_argv>) [1 __libc_argv+0 S8 A64])) fortify_fail.c:31 -1
+     (nil))
+(insn 10 9 11 4 (set (reg/f:DI 89 [ D.4391 ])
+        (mem/f:DI (reg/f:DI 91) [1 *_4+0 S8 A64])) fortify_fail.c:31 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ D.4391 ])
+            (const_int 0 [0]))) fortify_fail.c:30 -1
+     (nil))
+(jump_insn 12 11 13 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 30)
+            (pc))) fortify_fail.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 30)
+(note 13 12 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 13 27 5 (set (reg/f:DI 87 [ D.4389 ])
+        (reg/f:DI 89 [ D.4391 ])) fortify_fail.c:30 -1
+     (nil))
+(jump_insn 27 4 28 5 (set (pc)
+        (label_ref 14)) -1
+     (nil)
+ -> 14)
+(barrier 28 27 30)
+(code_label 30 28 29 6 4 "" [1 uses])
+(note 29 30 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 29 14 6 (set (reg/f:DI 87 [ D.4389 ])
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x2aad1efa5c60 *.LC0>)) fortify_fail.c:30 -1
+     (nil))
+(code_label 14 5 15 7 2 "" [1 uses])
+(note 15 14 16 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 7 (set (reg:DI 2 cx)
+        (reg/f:DI 87 [ D.4389 ])) fortify_fail.c:30 -1
+     (nil))
+(insn 17 16 18 7 (set (reg:DI 1 dx)
+        (reg/v/f:DI 90 [ msg ])) fortify_fail.c:30 -1
+     (nil))
+(insn 18 17 19 7 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2aad1efa5cf0 *.LC1>)) fortify_fail.c:30 -1
+     (nil))
+(insn 19 18 20 7 (set (reg:SI 5 di)
+        (const_int 2 [0x2])) fortify_fail.c:30 -1
+     (nil))
+(insn 20 19 21 7 (set (reg:QI 0 ax)
+        (const_int 0 [0])) fortify_fail.c:30 -1
+     (nil))
+(call_insn 21 20 23 7 (call (mem:QI (symbol_ref:DI ("__libc_message") [flags 0x41]  <function_decl 0x2aad1eec8360 __libc_message>) [0 __libc_message S1 A8])
+        (const_int 0 [0])) fortify_fail.c:30 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__libc_message") [flags 0x41]  <function_decl 0x2aad1eec8360 __libc_message>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+(jump_insn 23 21 24 7 (set (pc)
+        (label_ref 22)) fortify_fail.c:31 -1
+     (nil)
+ -> 22)
+(barrier 24 23 0)

@@ -1,0 +1,608 @@
+\hypertarget{gen-auto-libm-tests_8c}{}\doxysection{math/gen-\/auto-\/libm-\/tests.c File Reference}
+\label{gen-auto-libm-tests_8c}\index{math/gen-\/auto-\/libm-\/tests.c@{math/gen-\/auto-\/libm-\/tests.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$gmp.\+h$>$}\newline
+{\ttfamily \#include $<$mpfr.\+h$>$}\newline
+{\ttfamily \#include $<$mpc.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfp__format__desc}{fp\+\_\+format\+\_\+desc}}
+\item 
+struct \mbox{\hyperlink{structrounding__mode__desc}{rounding\+\_\+mode\+\_\+desc}}
+\item 
+struct \mbox{\hyperlink{structgeneric__value}{generic\+\_\+value}}
+\item 
+struct \mbox{\hyperlink{structinput__flag}{input\+\_\+flag}}
+\item 
+struct \mbox{\hyperlink{structinput__test}{input\+\_\+test}}
+\item 
+struct \mbox{\hyperlink{structfunc__calc__desc}{func\+\_\+calc\+\_\+desc}}
+\item 
+struct \mbox{\hyperlink{structtest__function}{test\+\_\+function}}
+\item 
+struct \mbox{\hyperlink{structspecial__real__input}{special\+\_\+real\+\_\+input}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a4163b4a4e9d8f2949741962dca6c5944}{A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE}}(\mbox{\hyperlink{structA}{A}})~(sizeof (\mbox{\hyperlink{structA}{A}}) / sizeof ((\mbox{\hyperlink{structA}{A}})\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a97e045fd72b3b3b59947e3d4bd771eeb}{M\+A\+X\+\_\+\+N\+A\+R\+GS}}~4
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_aca69ff479750bf7f189939ee2b612ffb}{M\+A\+X\+\_\+\+N\+R\+ET}}~2
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a394a39b9dbf4f3b39d8768e395178dc5}{A\+R\+G\+S1}}(T1)~1, \{ T1 \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}{A\+R\+G\+S2}}(T1,  \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}})~2, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a684858962cb9e3eb73d522f4c9a232df}{A\+R\+G\+S3}}(T1,  \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}},  T3)~3, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}}, T3 \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a508bc33deef1d42824722e61ae5e0723}{A\+R\+G\+S4}}(T1,  \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}},  T3,  T4)~4, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}}, T3, T4 \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}{R\+E\+T1}}(T1)~1, \{ T1 \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_af1d50560dfa838900c7d33abb91629e3}{R\+E\+T2}}(T1,  \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}})~2, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{C\+A\+LC}}(\mbox{\hyperlink{s__frintf_8c_a5a392548f2df67370cb15d2a5d75cd7b}{T\+Y\+PE}},  FN)~\{ \mbox{\hyperlink{s__frintf_8c_a5a392548f2df67370cb15d2a5d75cd7b}{T\+Y\+PE}}, \{ .\mbox{\hyperlink{s__frintf_8c_a5a392548f2df67370cb15d2a5d75cd7b}{T\+Y\+PE}} = FN \} \}
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}{F\+U\+NC}}(N\+A\+ME,  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2makecontext_8c_a8adf3210313babaf6e8d9792549bee63}{A\+R\+GS}},  R\+ET,  E\+X\+A\+CT,  C\+O\+M\+P\+L\+E\+X\+\_\+\+FN,  E\+X\+A\+C\+T\+\_\+\+A\+R\+GS,  \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{C\+A\+LC}})
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_abdc5aca3b4cbf6d206e8409e7f82c121}{F\+U\+N\+C\+\_\+mpfr\+\_\+f\+\_\+f}}(N\+A\+ME,  M\+P\+F\+R\+\_\+\+F\+U\+NC,  E\+X\+A\+CT)
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a4d8b01011c7a7dd051187813c5e62a5b}{F\+U\+N\+C\+\_\+mpfr\+\_\+ff\+\_\+f}}(N\+A\+ME,  M\+P\+F\+R\+\_\+\+F\+U\+NC,  E\+X\+A\+CT)
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a0ef434a6801b310964aba58587e9cdab}{F\+U\+N\+C\+\_\+mpfr\+\_\+if\+\_\+f}}(N\+A\+ME,  M\+P\+F\+R\+\_\+\+F\+U\+NC,  E\+X\+A\+CT)
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_a32115e79f7fd7992871af5909210ec4d}{F\+U\+N\+C\+\_\+mpc\+\_\+c\+\_\+f}}(N\+A\+ME,  M\+P\+F\+R\+\_\+\+F\+U\+NC,  E\+X\+A\+CT)
+\item 
+\#define \mbox{\hyperlink{gen-auto-libm-tests_8c_af5e584788d9798681303286de370a0c0}{F\+U\+N\+C\+\_\+mpc\+\_\+c\+\_\+c}}(N\+A\+ME,  M\+P\+F\+R\+\_\+\+F\+U\+NC,  E\+X\+A\+CT)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944f}{fp\+\_\+format}} \{ \newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fac147ced80713ef8d7218c015beb0ba5b}{fp\+\_\+flt\+\_\+32}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fae3c642e86a24c7443c88fda985bcad04}{fp\+\_\+dbl\+\_\+64}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa5aa0ff2b38fabfd331241471ce503f85}{fp\+\_\+ldbl\+\_\+96\+\_\+intel}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fae7e53fc9d8348f67e5c1125339b60a4f}{fp\+\_\+ldbl\+\_\+96\+\_\+m68k}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa32bda758a44b73e7a361dc5fde0c6635}{fp\+\_\+ldbl\+\_\+128}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa452f20716d7eeecdfd7142fdb6fa897b}{fp\+\_\+ldbl\+\_\+128ibm}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa729e10324fb5401d372495d107c9a37c}{fp\+\_\+num\+\_\+formats}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa354bb3e3ed7e3466fc5b04a53a941294}{fp\+\_\+first\+\_\+format}} = 0
+ \}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7b}{rounding\+\_\+mode}} \{ \newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7babeea429e10ca5868fac03ec7e3648966}{rm\+\_\+downward}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba3cda186a1d7313c5d780d3d2710ec2e4}{rm\+\_\+tonearest}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba00b8cb6d5539555576605ecf870765a6}{rm\+\_\+towardzero}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba77e157d115d3c4c36bde96b74774730b}{rm\+\_\+upward}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7baa037a112e5ac77c794039bd2ffd2ddbd}{rm\+\_\+num\+\_\+modes}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7bac88aa0a29e7af31d1e2a6b479c55d464}{rm\+\_\+first\+\_\+mode}} = 0
+ \}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321}{fp\+\_\+exception}} \{ \newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321ad1c6008ad4038dafcac37edb0f887d39}{exc\+\_\+divbyzero}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a74fd08c5061a409d70f84ef6e37b0327}{exc\+\_\+inexact}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321af0419a790be7c3637000b3380aba0b7a}{exc\+\_\+invalid}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a94ddf2b5ea5ec2c72e60fe58685f179d}{exc\+\_\+overflow}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a900dd9918b439c95ecef1e4ca80f9d2a}{exc\+\_\+underflow}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a2ea3b346aec963d26049f989be32ee8e}{exc\+\_\+num\+\_\+exceptions}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321aaf92e06750ef8dac339c5ab2ead37fff}{exc\+\_\+first\+\_\+exception}} = 0
+ \}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503}{arg\+\_\+ret\+\_\+type}} \{ \newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a6522adcb75711cd719eb7d1ddf9d7840}{type\+\_\+none}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\+\_\+fp}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503ab14e860e833d1d6c5681f31a3748db0d}{type\+\_\+int}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a8ad460b7759834cff491b45078c65ab2}{type\+\_\+long}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a15906afbd6975ace07b1e3994a8f8c02}{type\+\_\+long\+\_\+long}}
+ \}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399}{generic\+\_\+value\+\_\+type}} \{ \mbox{\hyperlink{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399a169d3202ca006e7369cd7d8d36427cda}{gtype\+\_\+none}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399a4da2ada621232972caf4b07d09cc3380}{gtype\+\_\+fp}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399ae628ff587a465893304c3f0c6eec0185}{gtype\+\_\+int}}
+ \}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecc}{input\+\_\+flag\+\_\+type}} \{ \newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6b5446d95394005031b4f1cd46700b53}{flag\+\_\+no\+\_\+test\+\_\+inline}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabe10403bbac3ba0f2bff64604d1b9c3b}{flag\+\_\+ignore\+\_\+zero\+\_\+inf\+\_\+sign}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccae9466f8bf6bbedda3facd357a2e519ee}{flag\+\_\+xfail}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6b6c379f1cbe7c0cfee689be89151a3a}{flag\+\_\+xfail\+\_\+rounding}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca661553278c8f441607967463a96e8471}{flag\+\_\+spurious\+\_\+divbyzero}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaffc8a79b4b69cf796dbfcf594dbcc6b7}{flag\+\_\+spurious\+\_\+inexact}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaca92d694bb95e3d0090be3d1aadba8cc}{flag\+\_\+spurious\+\_\+invalid}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccae46b18f040ba61b66445b6beee3b1a73}{flag\+\_\+spurious\+\_\+overflow}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca8ffd6f3061c9a6567e2abe4bbc487d3c}{flag\+\_\+spurious\+\_\+underflow}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca66a9bf0f3887bc54c8036bf32df97452}{flag\+\_\+spurious\+\_\+errno}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaf6e07e91e2e39cfa1e68c66031550b65}{flag\+\_\+missing\+\_\+divbyzero}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca51ce4b23dcadb604e6fd2030e4c2f5ae}{flag\+\_\+missing\+\_\+inexact}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabb6a1dfb7e57ac22118999474912d93b}{flag\+\_\+missing\+\_\+invalid}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaf615b9e26e479fb85309cb160e87d036}{flag\+\_\+missing\+\_\+overflow}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6bd4bd7479e2ebc542356a2cd305c518}{flag\+\_\+missing\+\_\+underflow}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabc6783473fe3cf2c40557f1a58d8d9bd}{flag\+\_\+missing\+\_\+errno}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccab9c65c24d0d817171211d1d2923c06fb}{num\+\_\+input\+\_\+flag\+\_\+types}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccad8811260596fa1153ee0f806fdd27190}{flag\+\_\+first\+\_\+flag}} = 0, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca3288d7f63e2828eb1728c62b61ee789e}{flag\+\_\+spurious\+\_\+first}} = flag\+\_\+spurious\+\_\+divbyzero, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca309380515983c7d8078179592f6b34cc}{flag\+\_\+missing\+\_\+first}} = flag\+\_\+missing\+\_\+divbyzero
+ \}
+\item 
+enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9}{func\+\_\+calc\+\_\+method}} \{ \newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a89f1febeb1086bf9d8f269b959a0b0c9}{mpfr\+\_\+f\+\_\+f}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a7ceede6bc99ac3397d59067911c4915f}{mpfr\+\_\+ff\+\_\+f}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a3145574da490d59f666afb3093814024}{mpfr\+\_\+fff\+\_\+f}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9aa4bdf461dcd702f74c360abe285f4379}{mpfr\+\_\+f\+\_\+f1}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a467188959aacd8b2f76d495be8677ff2}{mpfr\+\_\+if\+\_\+f}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9ae668b83258f9cac0edaf14837e075bb0}{mpfr\+\_\+f\+\_\+11}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a5a75b8e0309c7eedc81f6a58b23746d8}{mpc\+\_\+c\+\_\+f}}, 
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a21340f8d840dff35d589198202ae5fd7}{mpc\+\_\+c\+\_\+c}}, 
+\newline
+\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a4d8c04df4e73050ec9dfd84b92269369}{mpc\+\_\+cc\+\_\+c}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{gen-auto-libm-tests_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a369266c24eacffb87046522897a570d5}\label{gen-auto-libm-tests_8c_a369266c24eacffb87046522897a570d5}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a394a39b9dbf4f3b39d8768e395178dc5}\label{gen-auto-libm-tests_8c_a394a39b9dbf4f3b39d8768e395178dc5}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!ARGS1@{ARGS1}}
+\index{ARGS1@{ARGS1}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{ARGS1}{ARGS1}}
+{\footnotesize\ttfamily \#define A\+R\+G\+S1(\begin{DoxyParamCaption}\item[{}]{T1 }\end{DoxyParamCaption})~1, \{ T1 \}}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}\label{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!ARGS2@{ARGS2}}
+\index{ARGS2@{ARGS2}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{ARGS2}{ARGS2}}
+{\footnotesize\ttfamily \#define A\+R\+G\+S2(\begin{DoxyParamCaption}\item[{}]{T1,  }\item[{}]{\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} }\end{DoxyParamCaption})~2, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} \}}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a684858962cb9e3eb73d522f4c9a232df}\label{gen-auto-libm-tests_8c_a684858962cb9e3eb73d522f4c9a232df}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!ARGS3@{ARGS3}}
+\index{ARGS3@{ARGS3}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{ARGS3}{ARGS3}}
+{\footnotesize\ttfamily \#define A\+R\+G\+S3(\begin{DoxyParamCaption}\item[{}]{T1,  }\item[{}]{\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}},  }\item[{}]{T3 }\end{DoxyParamCaption})~3, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}}, T3 \}}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a508bc33deef1d42824722e61ae5e0723}\label{gen-auto-libm-tests_8c_a508bc33deef1d42824722e61ae5e0723}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!ARGS4@{ARGS4}}
+\index{ARGS4@{ARGS4}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{ARGS4}{ARGS4}}
+{\footnotesize\ttfamily \#define A\+R\+G\+S4(\begin{DoxyParamCaption}\item[{}]{T1,  }\item[{}]{\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}},  }\item[{}]{T3,  }\item[{}]{T4 }\end{DoxyParamCaption})~4, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}}, T3, T4 \}}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a4163b4a4e9d8f2949741962dca6c5944}\label{gen-auto-libm-tests_8c_a4163b4a4e9d8f2949741962dca6c5944}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!ARRAY\_SIZE@{ARRAY\_SIZE}}
+\index{ARRAY\_SIZE@{ARRAY\_SIZE}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{ARRAY\_SIZE}{ARRAY\_SIZE}}
+{\footnotesize\ttfamily \#define A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structA}{A}} }\end{DoxyParamCaption})~(sizeof (\mbox{\hyperlink{structA}{A}}) / sizeof ((\mbox{\hyperlink{structA}{A}})\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}\label{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!CALC@{CALC}}
+\index{CALC@{CALC}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{CALC}{CALC}}
+{\footnotesize\ttfamily \#define C\+A\+LC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{s__frintf_8c_a5a392548f2df67370cb15d2a5d75cd7b}{T\+Y\+PE}},  }\item[{}]{FN }\end{DoxyParamCaption})~\{ \mbox{\hyperlink{s__frintf_8c_a5a392548f2df67370cb15d2a5d75cd7b}{T\+Y\+PE}}, \{ .\mbox{\hyperlink{s__frintf_8c_a5a392548f2df67370cb15d2a5d75cd7b}{T\+Y\+PE}} = FN \} \}}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}\label{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!FUNC@{FUNC}}
+\index{FUNC@{FUNC}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{FUNC}{FUNC}}
+{\footnotesize\ttfamily \#define F\+U\+NC(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2makecontext_8c_a8adf3210313babaf6e8d9792549bee63}{A\+R\+GS}},  }\item[{}]{R\+ET,  }\item[{}]{E\+X\+A\+CT,  }\item[{}]{C\+O\+M\+P\+L\+E\+X\+\_\+\+FN,  }\item[{}]{E\+X\+A\+C\+T\+\_\+\+A\+R\+GS,  }\item[{}]{\mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{C\+A\+LC}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    NAME, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2hppa_2makecontext_8c_a8adf3210313babaf6e8d9792549bee63}{ARGS}}, RET, EXACT, COMPLEX\_FN, EXACT\_ARGS, \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{CALC}}, 0, 0, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}    \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_af5e584788d9798681303286de370a0c0}\label{gen-auto-libm-tests_8c_af5e584788d9798681303286de370a0c0}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!FUNC\_mpc\_c\_c@{FUNC\_mpc\_c\_c}}
+\index{FUNC\_mpc\_c\_c@{FUNC\_mpc\_c\_c}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{FUNC\_mpc\_c\_c}{FUNC\_mpc\_c\_c}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+\_\+mpc\+\_\+c\+\_\+c(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{M\+P\+F\+R\+\_\+\+F\+U\+NC,  }\item[{}]{E\+X\+A\+CT }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}{FUNC}} (NAME, \mbox{\hyperlink{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}{ARGS2}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), \mbox{\hyperlink{gen-auto-libm-tests_8c_af1d50560dfa838900c7d33abb91629e3}{RET2}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), EXACT, \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keyword}{true}, \textcolor{keyword}{false}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{CALC}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a21340f8d840dff35d589198202ae5fd7}{mpc\_c\_c}}, MPFR\_FUNC))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a32115e79f7fd7992871af5909210ec4d}\label{gen-auto-libm-tests_8c_a32115e79f7fd7992871af5909210ec4d}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!FUNC\_mpc\_c\_f@{FUNC\_mpc\_c\_f}}
+\index{FUNC\_mpc\_c\_f@{FUNC\_mpc\_c\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{FUNC\_mpc\_c\_f}{FUNC\_mpc\_c\_f}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+\_\+mpc\+\_\+c\+\_\+f(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{M\+P\+F\+R\+\_\+\+F\+U\+NC,  }\item[{}]{E\+X\+A\+CT }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}{FUNC}} (NAME, \mbox{\hyperlink{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}{ARGS2}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), \mbox{\hyperlink{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}{RET1}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), EXACT, \textcolor{keyword}{true},    \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keyword}{false}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{CALC}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a5a75b8e0309c7eedc81f6a58b23746d8}{mpc\_c\_f}}, MPFR\_FUNC))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_abdc5aca3b4cbf6d206e8409e7f82c121}\label{gen-auto-libm-tests_8c_abdc5aca3b4cbf6d206e8409e7f82c121}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!FUNC\_mpfr\_f\_f@{FUNC\_mpfr\_f\_f}}
+\index{FUNC\_mpfr\_f\_f@{FUNC\_mpfr\_f\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{FUNC\_mpfr\_f\_f}{FUNC\_mpfr\_f\_f}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+\_\+mpfr\+\_\+f\+\_\+f(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{M\+P\+F\+R\+\_\+\+F\+U\+NC,  }\item[{}]{E\+X\+A\+CT }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}{FUNC}} (NAME, \mbox{\hyperlink{gen-auto-libm-tests_8c_a394a39b9dbf4f3b39d8768e395178dc5}{ARGS1}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), \mbox{\hyperlink{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}{RET1}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), EXACT, \textcolor{keyword}{false}, \textcolor{keyword}{false},    \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{CALC}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a89f1febeb1086bf9d8f269b959a0b0c9}{mpfr\_f\_f}}, MPFR\_FUNC))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a4d8b01011c7a7dd051187813c5e62a5b}\label{gen-auto-libm-tests_8c_a4d8b01011c7a7dd051187813c5e62a5b}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!FUNC\_mpfr\_ff\_f@{FUNC\_mpfr\_ff\_f}}
+\index{FUNC\_mpfr\_ff\_f@{FUNC\_mpfr\_ff\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{FUNC\_mpfr\_ff\_f}{FUNC\_mpfr\_ff\_f}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+\_\+mpfr\+\_\+ff\+\_\+f(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{M\+P\+F\+R\+\_\+\+F\+U\+NC,  }\item[{}]{E\+X\+A\+CT }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}{FUNC}} (NAME, \mbox{\hyperlink{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}{ARGS2}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), \mbox{\hyperlink{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}{RET1}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), EXACT, \textcolor{keyword}{false},   \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keyword}{false}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{CALC}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a7ceede6bc99ac3397d59067911c4915f}{mpfr\_ff\_f}}, MPFR\_FUNC))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0ef434a6801b310964aba58587e9cdab}\label{gen-auto-libm-tests_8c_a0ef434a6801b310964aba58587e9cdab}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!FUNC\_mpfr\_if\_f@{FUNC\_mpfr\_if\_f}}
+\index{FUNC\_mpfr\_if\_f@{FUNC\_mpfr\_if\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{FUNC\_mpfr\_if\_f}{FUNC\_mpfr\_if\_f}}
+{\footnotesize\ttfamily \#define F\+U\+N\+C\+\_\+mpfr\+\_\+if\+\_\+f(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{M\+P\+F\+R\+\_\+\+F\+U\+NC,  }\item[{}]{E\+X\+A\+CT }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gen-auto-libm-tests_8c_a21787d9fa99f610b5dbb8e6ce7ad3eed}{FUNC}} (NAME, \mbox{\hyperlink{gen-auto-libm-tests_8c_a3a608025fcfe4d2ca13144097f6fc748}{ARGS2}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503ab14e860e833d1d6c5681f31a3748db0d}{type\_int}}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), \mbox{\hyperlink{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}{RET1}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}{type\_fp}}), EXACT, \textcolor{keyword}{false}, \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keyword}{false}, \mbox{\hyperlink{gen-auto-libm-tests_8c_a77a5cd28363bddb6c33a5328b99c9e07}{CALC}} (\mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a467188959aacd8b2f76d495be8677ff2}{mpfr\_if\_f}}, MPFR\_FUNC))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a97e045fd72b3b3b59947e3d4bd771eeb}\label{gen-auto-libm-tests_8c_a97e045fd72b3b3b59947e3d4bd771eeb}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!MAX\_NARGS@{MAX\_NARGS}}
+\index{MAX\_NARGS@{MAX\_NARGS}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NARGS}{MAX\_NARGS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+A\+R\+GS~4}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_aca69ff479750bf7f189939ee2b612ffb}\label{gen-auto-libm-tests_8c_aca69ff479750bf7f189939ee2b612ffb}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!MAX\_NRET@{MAX\_NRET}}
+\index{MAX\_NRET@{MAX\_NRET}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NRET}{MAX\_NRET}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+R\+ET~2}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}\label{gen-auto-libm-tests_8c_a1f936d17d15243c84c1ee2ecb755f449}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!RET1@{RET1}}
+\index{RET1@{RET1}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{RET1}{RET1}}
+{\footnotesize\ttfamily \#define R\+E\+T1(\begin{DoxyParamCaption}\item[{}]{T1 }\end{DoxyParamCaption})~1, \{ T1 \}}
+
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_af1d50560dfa838900c7d33abb91629e3}\label{gen-auto-libm-tests_8c_af1d50560dfa838900c7d33abb91629e3}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!RET2@{RET2}}
+\index{RET2@{RET2}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{RET2}{RET2}}
+{\footnotesize\ttfamily \#define R\+E\+T2(\begin{DoxyParamCaption}\item[{}]{T1,  }\item[{}]{\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} }\end{DoxyParamCaption})~2, \{ T1, \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} \}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503}\label{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!arg\_ret\_type@{arg\_ret\_type}}
+\index{arg\_ret\_type@{arg\_ret\_type}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{arg\_ret\_type}{arg\_ret\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503}{arg\+\_\+ret\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{type\_none@{type\_none}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!type\_none@{type\_none}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a6522adcb75711cd719eb7d1ddf9d7840}\label{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a6522adcb75711cd719eb7d1ddf9d7840}} 
+type\+\_\+none&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{type\_fp@{type\_fp}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!type\_fp@{type\_fp}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}\label{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a643a8e7d1118fd82e033c1cca6dc818e}} 
+type\+\_\+fp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{type\_int@{type\_int}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!type\_int@{type\_int}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503ab14e860e833d1d6c5681f31a3748db0d}\label{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503ab14e860e833d1d6c5681f31a3748db0d}} 
+type\+\_\+int&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{type\_long@{type\_long}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!type\_long@{type\_long}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a8ad460b7759834cff491b45078c65ab2}\label{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a8ad460b7759834cff491b45078c65ab2}} 
+type\+\_\+long&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{type\_long\_long@{type\_long\_long}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!type\_long\_long@{type\_long\_long}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a15906afbd6975ace07b1e3994a8f8c02}\label{gen-auto-libm-tests_8c_a552ec4c27b935ed7de51f902065d5503a15906afbd6975ace07b1e3994a8f8c02}} 
+type\+\_\+long\+\_\+long&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_exception@{fp\_exception}}
+\index{fp\_exception@{fp\_exception}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{fp\_exception}{fp\_exception}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321}{fp\+\_\+exception}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_divbyzero@{exc\_divbyzero}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_divbyzero@{exc\_divbyzero}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321ad1c6008ad4038dafcac37edb0f887d39}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321ad1c6008ad4038dafcac37edb0f887d39}} 
+exc\+\_\+divbyzero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_inexact@{exc\_inexact}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_inexact@{exc\_inexact}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a74fd08c5061a409d70f84ef6e37b0327}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a74fd08c5061a409d70f84ef6e37b0327}} 
+exc\+\_\+inexact&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_invalid@{exc\_invalid}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_invalid@{exc\_invalid}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321af0419a790be7c3637000b3380aba0b7a}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321af0419a790be7c3637000b3380aba0b7a}} 
+exc\+\_\+invalid&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_overflow@{exc\_overflow}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_overflow@{exc\_overflow}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a94ddf2b5ea5ec2c72e60fe58685f179d}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a94ddf2b5ea5ec2c72e60fe58685f179d}} 
+exc\+\_\+overflow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_underflow@{exc\_underflow}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_underflow@{exc\_underflow}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a900dd9918b439c95ecef1e4ca80f9d2a}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a900dd9918b439c95ecef1e4ca80f9d2a}} 
+exc\+\_\+underflow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_num\_exceptions@{exc\_num\_exceptions}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_num\_exceptions@{exc\_num\_exceptions}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a2ea3b346aec963d26049f989be32ee8e}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321a2ea3b346aec963d26049f989be32ee8e}} 
+exc\+\_\+num\+\_\+exceptions&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{exc\_first\_exception@{exc\_first\_exception}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!exc\_first\_exception@{exc\_first\_exception}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321aaf92e06750ef8dac339c5ab2ead37fff}\label{gen-auto-libm-tests_8c_a5c2ba0ddbd2002ab0d4516586cd79321aaf92e06750ef8dac339c5ab2ead37fff}} 
+exc\+\_\+first\+\_\+exception&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944f}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944f}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_format@{fp\_format}}
+\index{fp\_format@{fp\_format}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{fp\_format}{fp\_format}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944f}{fp\+\_\+format}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_flt\_32@{fp\_flt\_32}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_flt\_32@{fp\_flt\_32}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fac147ced80713ef8d7218c015beb0ba5b}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fac147ced80713ef8d7218c015beb0ba5b}} 
+fp\+\_\+flt\+\_\+32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_dbl\_64@{fp\_dbl\_64}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_dbl\_64@{fp\_dbl\_64}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fae3c642e86a24c7443c88fda985bcad04}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fae3c642e86a24c7443c88fda985bcad04}} 
+fp\+\_\+dbl\+\_\+64&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_ldbl\_96\_intel@{fp\_ldbl\_96\_intel}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_ldbl\_96\_intel@{fp\_ldbl\_96\_intel}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa5aa0ff2b38fabfd331241471ce503f85}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa5aa0ff2b38fabfd331241471ce503f85}} 
+fp\+\_\+ldbl\+\_\+96\+\_\+intel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_ldbl\_96\_m68k@{fp\_ldbl\_96\_m68k}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_ldbl\_96\_m68k@{fp\_ldbl\_96\_m68k}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fae7e53fc9d8348f67e5c1125339b60a4f}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fae7e53fc9d8348f67e5c1125339b60a4f}} 
+fp\+\_\+ldbl\+\_\+96\+\_\+m68k&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_ldbl\_128@{fp\_ldbl\_128}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_ldbl\_128@{fp\_ldbl\_128}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa32bda758a44b73e7a361dc5fde0c6635}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa32bda758a44b73e7a361dc5fde0c6635}} 
+fp\+\_\+ldbl\+\_\+128&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_ldbl\_128ibm@{fp\_ldbl\_128ibm}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_ldbl\_128ibm@{fp\_ldbl\_128ibm}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa452f20716d7eeecdfd7142fdb6fa897b}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa452f20716d7eeecdfd7142fdb6fa897b}} 
+fp\+\_\+ldbl\+\_\+128ibm&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_num\_formats@{fp\_num\_formats}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_num\_formats@{fp\_num\_formats}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa729e10324fb5401d372495d107c9a37c}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa729e10324fb5401d372495d107c9a37c}} 
+fp\+\_\+num\+\_\+formats&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fp\_first\_format@{fp\_first\_format}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!fp\_first\_format@{fp\_first\_format}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa354bb3e3ed7e3466fc5b04a53a941294}\label{gen-auto-libm-tests_8c_a83f99b5fb9355f7f071be07b5dcf944fa354bb3e3ed7e3466fc5b04a53a941294}} 
+fp\+\_\+first\+\_\+format&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!func\_calc\_method@{func\_calc\_method}}
+\index{func\_calc\_method@{func\_calc\_method}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{func\_calc\_method}{func\_calc\_method}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9}{func\+\_\+calc\+\_\+method}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpfr\_f\_f@{mpfr\_f\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpfr\_f\_f@{mpfr\_f\_f}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a89f1febeb1086bf9d8f269b959a0b0c9}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a89f1febeb1086bf9d8f269b959a0b0c9}} 
+mpfr\+\_\+f\+\_\+f&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpfr\_ff\_f@{mpfr\_ff\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpfr\_ff\_f@{mpfr\_ff\_f}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a7ceede6bc99ac3397d59067911c4915f}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a7ceede6bc99ac3397d59067911c4915f}} 
+mpfr\+\_\+ff\+\_\+f&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpfr\_fff\_f@{mpfr\_fff\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpfr\_fff\_f@{mpfr\_fff\_f}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a3145574da490d59f666afb3093814024}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a3145574da490d59f666afb3093814024}} 
+mpfr\+\_\+fff\+\_\+f&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpfr\_f\_f1@{mpfr\_f\_f1}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpfr\_f\_f1@{mpfr\_f\_f1}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9aa4bdf461dcd702f74c360abe285f4379}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9aa4bdf461dcd702f74c360abe285f4379}} 
+mpfr\+\_\+f\+\_\+f1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpfr\_if\_f@{mpfr\_if\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpfr\_if\_f@{mpfr\_if\_f}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a467188959aacd8b2f76d495be8677ff2}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a467188959aacd8b2f76d495be8677ff2}} 
+mpfr\+\_\+if\+\_\+f&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpfr\_f\_11@{mpfr\_f\_11}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpfr\_f\_11@{mpfr\_f\_11}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9ae668b83258f9cac0edaf14837e075bb0}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9ae668b83258f9cac0edaf14837e075bb0}} 
+mpfr\+\_\+f\+\_\+11&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpc\_c\_f@{mpc\_c\_f}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpc\_c\_f@{mpc\_c\_f}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a5a75b8e0309c7eedc81f6a58b23746d8}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a5a75b8e0309c7eedc81f6a58b23746d8}} 
+mpc\+\_\+c\+\_\+f&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpc\_c\_c@{mpc\_c\_c}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpc\_c\_c@{mpc\_c\_c}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a21340f8d840dff35d589198202ae5fd7}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a21340f8d840dff35d589198202ae5fd7}} 
+mpc\+\_\+c\+\_\+c&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{mpc\_cc\_c@{mpc\_cc\_c}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!mpc\_cc\_c@{mpc\_cc\_c}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a4d8c04df4e73050ec9dfd84b92269369}\label{gen-auto-libm-tests_8c_a6e7ba24c7c7ad2b2f6aa6482d10671d9a4d8c04df4e73050ec9dfd84b92269369}} 
+mpc\+\_\+cc\+\_\+c&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399}\label{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!generic\_value\_type@{generic\_value\_type}}
+\index{generic\_value\_type@{generic\_value\_type}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{generic\_value\_type}{generic\_value\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399}{generic\+\_\+value\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{gtype\_none@{gtype\_none}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!gtype\_none@{gtype\_none}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399a169d3202ca006e7369cd7d8d36427cda}\label{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399a169d3202ca006e7369cd7d8d36427cda}} 
+gtype\+\_\+none&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{gtype\_fp@{gtype\_fp}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!gtype\_fp@{gtype\_fp}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399a4da2ada621232972caf4b07d09cc3380}\label{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399a4da2ada621232972caf4b07d09cc3380}} 
+gtype\+\_\+fp&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{gtype\_int@{gtype\_int}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!gtype\_int@{gtype\_int}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399ae628ff587a465893304c3f0c6eec0185}\label{gen-auto-libm-tests_8c_adf4f9665190d28aa75e9dd39deae2399ae628ff587a465893304c3f0c6eec0185}} 
+gtype\+\_\+int&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecc}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecc}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!input\_flag\_type@{input\_flag\_type}}
+\index{input\_flag\_type@{input\_flag\_type}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{input\_flag\_type}{input\_flag\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecc}{input\+\_\+flag\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_no\_test\_inline@{flag\_no\_test\_inline}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_no\_test\_inline@{flag\_no\_test\_inline}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6b5446d95394005031b4f1cd46700b53}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6b5446d95394005031b4f1cd46700b53}} 
+flag\+\_\+no\+\_\+test\+\_\+inline&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_ignore\_zero\_inf\_sign@{flag\_ignore\_zero\_inf\_sign}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_ignore\_zero\_inf\_sign@{flag\_ignore\_zero\_inf\_sign}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabe10403bbac3ba0f2bff64604d1b9c3b}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabe10403bbac3ba0f2bff64604d1b9c3b}} 
+flag\+\_\+ignore\+\_\+zero\+\_\+inf\+\_\+sign&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_xfail@{flag\_xfail}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_xfail@{flag\_xfail}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccae9466f8bf6bbedda3facd357a2e519ee}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccae9466f8bf6bbedda3facd357a2e519ee}} 
+flag\+\_\+xfail&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_xfail\_rounding@{flag\_xfail\_rounding}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_xfail\_rounding@{flag\_xfail\_rounding}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6b6c379f1cbe7c0cfee689be89151a3a}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6b6c379f1cbe7c0cfee689be89151a3a}} 
+flag\+\_\+xfail\+\_\+rounding&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_divbyzero@{flag\_spurious\_divbyzero}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_divbyzero@{flag\_spurious\_divbyzero}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca661553278c8f441607967463a96e8471}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca661553278c8f441607967463a96e8471}} 
+flag\+\_\+spurious\+\_\+divbyzero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_inexact@{flag\_spurious\_inexact}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_inexact@{flag\_spurious\_inexact}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaffc8a79b4b69cf796dbfcf594dbcc6b7}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaffc8a79b4b69cf796dbfcf594dbcc6b7}} 
+flag\+\_\+spurious\+\_\+inexact&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_invalid@{flag\_spurious\_invalid}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_invalid@{flag\_spurious\_invalid}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaca92d694bb95e3d0090be3d1aadba8cc}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaca92d694bb95e3d0090be3d1aadba8cc}} 
+flag\+\_\+spurious\+\_\+invalid&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_overflow@{flag\_spurious\_overflow}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_overflow@{flag\_spurious\_overflow}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccae46b18f040ba61b66445b6beee3b1a73}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccae46b18f040ba61b66445b6beee3b1a73}} 
+flag\+\_\+spurious\+\_\+overflow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_underflow@{flag\_spurious\_underflow}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_underflow@{flag\_spurious\_underflow}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca8ffd6f3061c9a6567e2abe4bbc487d3c}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca8ffd6f3061c9a6567e2abe4bbc487d3c}} 
+flag\+\_\+spurious\+\_\+underflow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_errno@{flag\_spurious\_errno}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_errno@{flag\_spurious\_errno}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca66a9bf0f3887bc54c8036bf32df97452}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca66a9bf0f3887bc54c8036bf32df97452}} 
+flag\+\_\+spurious\+\_\+errno&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_divbyzero@{flag\_missing\_divbyzero}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_divbyzero@{flag\_missing\_divbyzero}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaf6e07e91e2e39cfa1e68c66031550b65}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaf6e07e91e2e39cfa1e68c66031550b65}} 
+flag\+\_\+missing\+\_\+divbyzero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_inexact@{flag\_missing\_inexact}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_inexact@{flag\_missing\_inexact}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca51ce4b23dcadb604e6fd2030e4c2f5ae}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca51ce4b23dcadb604e6fd2030e4c2f5ae}} 
+flag\+\_\+missing\+\_\+inexact&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_invalid@{flag\_missing\_invalid}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_invalid@{flag\_missing\_invalid}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabb6a1dfb7e57ac22118999474912d93b}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabb6a1dfb7e57ac22118999474912d93b}} 
+flag\+\_\+missing\+\_\+invalid&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_overflow@{flag\_missing\_overflow}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_overflow@{flag\_missing\_overflow}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaf615b9e26e479fb85309cb160e87d036}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccaf615b9e26e479fb85309cb160e87d036}} 
+flag\+\_\+missing\+\_\+overflow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_underflow@{flag\_missing\_underflow}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_underflow@{flag\_missing\_underflow}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6bd4bd7479e2ebc542356a2cd305c518}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca6bd4bd7479e2ebc542356a2cd305c518}} 
+flag\+\_\+missing\+\_\+underflow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_errno@{flag\_missing\_errno}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_errno@{flag\_missing\_errno}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabc6783473fe3cf2c40557f1a58d8d9bd}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccabc6783473fe3cf2c40557f1a58d8d9bd}} 
+flag\+\_\+missing\+\_\+errno&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{num\_input\_flag\_types@{num\_input\_flag\_types}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!num\_input\_flag\_types@{num\_input\_flag\_types}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccab9c65c24d0d817171211d1d2923c06fb}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccab9c65c24d0d817171211d1d2923c06fb}} 
+num\+\_\+input\+\_\+flag\+\_\+types&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_first\_flag@{flag\_first\_flag}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_first\_flag@{flag\_first\_flag}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccad8811260596fa1153ee0f806fdd27190}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594eccad8811260596fa1153ee0f806fdd27190}} 
+flag\+\_\+first\+\_\+flag&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_spurious\_first@{flag\_spurious\_first}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_spurious\_first@{flag\_spurious\_first}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca3288d7f63e2828eb1728c62b61ee789e}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca3288d7f63e2828eb1728c62b61ee789e}} 
+flag\+\_\+spurious\+\_\+first&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{flag\_missing\_first@{flag\_missing\_first}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!flag\_missing\_first@{flag\_missing\_first}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca309380515983c7d8078179592f6b34cc}\label{gen-auto-libm-tests_8c_a0b9c35d6aa432d3f4cb41e0a13594ecca309380515983c7d8078179592f6b34cc}} 
+flag\+\_\+missing\+\_\+first&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7b}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7b}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rounding\_mode@{rounding\_mode}}
+\index{rounding\_mode@{rounding\_mode}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{rounding\_mode}{rounding\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7b}{rounding\+\_\+mode}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rm\_downward@{rm\_downward}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rm\_downward@{rm\_downward}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7babeea429e10ca5868fac03ec7e3648966}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7babeea429e10ca5868fac03ec7e3648966}} 
+rm\+\_\+downward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rm\_tonearest@{rm\_tonearest}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rm\_tonearest@{rm\_tonearest}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba3cda186a1d7313c5d780d3d2710ec2e4}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba3cda186a1d7313c5d780d3d2710ec2e4}} 
+rm\+\_\+tonearest&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rm\_towardzero@{rm\_towardzero}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rm\_towardzero@{rm\_towardzero}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba00b8cb6d5539555576605ecf870765a6}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba00b8cb6d5539555576605ecf870765a6}} 
+rm\+\_\+towardzero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rm\_upward@{rm\_upward}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rm\_upward@{rm\_upward}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba77e157d115d3c4c36bde96b74774730b}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7ba77e157d115d3c4c36bde96b74774730b}} 
+rm\+\_\+upward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rm\_num\_modes@{rm\_num\_modes}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rm\_num\_modes@{rm\_num\_modes}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7baa037a112e5ac77c794039bd2ffd2ddbd}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7baa037a112e5ac77c794039bd2ffd2ddbd}} 
+rm\+\_\+num\+\_\+modes&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rm\_first\_mode@{rm\_first\_mode}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!rm\_first\_mode@{rm\_first\_mode}}}\mbox{\Hypertarget{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7bac88aa0a29e7af31d1e2a6b479c55d464}\label{gen-auto-libm-tests_8c_ac54391f3e34f6077c576edde0021bd7bac88aa0a29e7af31d1e2a6b479c55d464}} 
+rm\+\_\+first\+\_\+mode&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gen-auto-libm-tests_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{gen-auto-libm-tests_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}!main@{main}}
+\index{main@{main}!gen-\/auto-\/libm-\/tests.c@{gen-\/auto-\/libm-\/tests.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+

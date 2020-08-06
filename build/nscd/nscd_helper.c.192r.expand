@@ -1,0 +1,4932 @@
+
+;; Function wait_on_socket (wait_on_socket, funcdef_no=49, decl_uid=11390, cgraph_uid=49, symbol_order=54)
+
+Partition 1: size 16 align 16
+	now
+Partition 0: size 8 align 16
+	fds
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 6->9 redirected to 10
+Edge 7->9 redirected to 10
+deleting block 9
+Removing jump 74.
+Merging block 11 into block 10...
+Merged blocks 10 and 11.
+Merged 10 and 11 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 106 [ sock ])
+        (reg:SI 5 di [ sock ])) nscd_helper.c:52 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 107 [ usectmo ])
+        (reg:DI 4 si [ usectmo ])) nscd_helper.c:52 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 fds[0].fd+0 S4 A128])
+        (reg/v:SI 106 [ sock ])) nscd_helper.c:54 -1
+     (nil))
+(insn 8 7 9 2 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [3 fds[0].events+0 S2 A32])
+        (const_int 25 [0x19])) nscd_helper.c:55 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:DI 108)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:56 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:SI 1 dx)
+        (subreg:SI (reg/v:DI 107 [ usectmo ]) 0)) nscd_helper.c:56 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) nscd_helper.c:56 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg:DI 108)) nscd_helper.c:56 -1
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___poll") [flags 0x43]  <function_decl 0x2adb4e042360 __poll>) [0 __poll S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:56 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___poll") [flags 0x43]  <function_decl 0x2adb4e042360 __poll>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 14 13 15 2 (set (reg/v:SI 87 [ n ])
+        (reg:SI 0 ax)) nscd_helper.c:56 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 87 [ n ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:57 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 71)
+            (pc))) nscd_helper.c:57 -1
+     (int_list:REG_BR_PROB 6218 (nil))
+ -> 71)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (set (reg:DI 109)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:57 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 109)) [2 __libc_errno+0 S4 A32])
+            (const_int 4 [0x4]))) nscd_helper.c:57 -1
+     (nil))
+(jump_insn 20 19 21 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 71)
+            (pc))) nscd_helper.c:57 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 71)
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:63 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 4 si)
+        (const_int 0 [0])) nscd_helper.c:63 -1
+     (nil))
+(insn 24 23 25 5 (set (reg:DI 5 di)
+        (reg:DI 110)) nscd_helper.c:63 -1
+     (nil))
+(call_insn 25 24 26 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___gettimeofday") [flags 0x43]  <function_decl 0x2adb4defd438 __gettimeofday>) [0 __gettimeofday S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:63 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___gettimeofday") [flags 0x43]  <function_decl 0x2adb4defd438 __gettimeofday>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 26 25 27 5 (set (reg:DI 112)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [5 now.tv_sec+0 S8 A128])) nscd_helper.c:64 -1
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:DI 111 [ D.12035 ])
+                (mult:DI (reg:DI 112)
+                    (const_int 1000 [0x3e8])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (nil))
+(insn 28 27 29 5 (parallel [
+            (set (reg:DI 113 [ D.12035 ])
+                (plus:DI (reg:DI 111 [ D.12035 ])
+                    (reg/v:DI 107 [ usectmo ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (nil))
+(insn 29 28 30 5 (set (reg:DI 115)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [5 now.tv_usec+0 S8 A64])) nscd_helper.c:64 -1
+     (nil))
+(insn 30 29 31 5 (parallel [
+            (set (reg:DI 114 [ D.12035 ])
+                (plus:DI (reg:DI 115)
+                    (const_int 500 [0x1f4])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [5 now.tv_usec+0 S8 A64])
+            (const_int 500 [0x1f4]))
+        (nil)))
+(insn 31 30 32 5 (set (reg:DI 118)
+        (const_int 2361183241434822607 [0x20c49ba5e353f7cf])) nscd_helper.c:64 -1
+     (nil))
+(insn 32 31 33 5 (parallel [
+            (set (reg:DI 117)
+                (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 114 [ D.12035 ]))
+                            (sign_extend:TI (reg:DI 118)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (nil))
+(insn 33 32 34 5 (parallel [
+            (set (reg:DI 119)
+                (ashiftrt:DI (reg:DI 117)
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (nil))
+(insn 34 33 35 5 (parallel [
+            (set (reg:DI 120)
+                (ashiftrt:DI (reg:DI 114 [ D.12035 ])
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (nil))
+(insn 35 34 36 5 (parallel [
+            (set (reg:DI 116 [ D.12035 ])
+                (minus:DI (reg:DI 119)
+                    (reg:DI 120)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 114 [ D.12035 ])
+            (const_int 1000 [0x3e8]))
+        (nil)))
+(insn 36 35 66 5 (parallel [
+            (set (reg/v:DI 96 [ end ])
+                (plus:DI (reg:DI 113 [ D.12035 ])
+                    (reg:DI 116 [ D.12035 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:64 -1
+     (nil))
+(code_label 66 36 37 6 4 "" [1 uses])
+(note 37 66 38 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 6 (parallel [
+            (set (reg:DI 121)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:68 -1
+     (nil))
+(insn 39 38 40 6 (set (reg:SI 1 dx)
+        (subreg:SI (reg/v:DI 107 [ usectmo ]) 0)) nscd_helper.c:68 -1
+     (nil))
+(insn 40 39 41 6 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) nscd_helper.c:68 -1
+     (nil))
+(insn 41 40 42 6 (set (reg:DI 5 di)
+        (reg:DI 121)) nscd_helper.c:68 -1
+     (nil))
+(call_insn 42 41 43 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___poll") [flags 0x43]  <function_decl 0x2adb4e042360 __poll>) [0 __poll S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:68 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___poll") [flags 0x43]  <function_decl 0x2adb4e042360 __poll>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 43 42 44 6 (set (reg/v:SI 87 [ n ])
+        (reg:SI 0 ax)) nscd_helper.c:68 -1
+     (nil))
+(insn 44 43 45 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 87 [ n ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:69 -1
+     (nil))
+(jump_insn 45 44 46 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) nscd_helper.c:69 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 71)
+(note 46 45 47 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 7 (set (reg:DI 122)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:69 -1
+     (nil))
+(insn 48 47 49 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 122)) [2 __libc_errno+0 S4 A32])
+            (const_int 4 [0x4]))) nscd_helper.c:69 -1
+     (nil))
+(jump_insn 49 48 50 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) nscd_helper.c:69 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 71)
+(note 50 49 51 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 52 8 (parallel [
+            (set (reg:DI 123)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:73 -1
+     (nil))
+(insn 52 51 53 8 (set (reg:DI 4 si)
+        (const_int 0 [0])) nscd_helper.c:73 -1
+     (nil))
+(insn 53 52 54 8 (set (reg:DI 5 di)
+        (reg:DI 123)) nscd_helper.c:73 -1
+     (nil))
+(call_insn 54 53 55 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___gettimeofday") [flags 0x43]  <function_decl 0x2adb4defd438 __gettimeofday>) [0 __gettimeofday S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:73 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___gettimeofday") [flags 0x43]  <function_decl 0x2adb4defd438 __gettimeofday>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 55 54 56 8 (set (reg:DI 125)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [5 now.tv_usec+0 S8 A64])) nscd_helper.c:74 -1
+     (nil))
+(insn 56 55 57 8 (parallel [
+            (set (reg:DI 124 [ D.12035 ])
+                (plus:DI (reg:DI 125)
+                    (const_int 500 [0x1f4])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [5 now.tv_usec+0 S8 A64])
+            (const_int 500 [0x1f4]))
+        (nil)))
+(insn 57 56 58 8 (set (reg:DI 128)
+        (const_int 2361183241434822607 [0x20c49ba5e353f7cf])) nscd_helper.c:74 -1
+     (nil))
+(insn 58 57 59 8 (parallel [
+            (set (reg:DI 127)
+                (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 124 [ D.12035 ]))
+                            (sign_extend:TI (reg:DI 128)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (nil))
+(insn 59 58 60 8 (parallel [
+            (set (reg:DI 129)
+                (ashiftrt:DI (reg:DI 127)
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (nil))
+(insn 60 59 61 8 (parallel [
+            (set (reg:DI 130)
+                (ashiftrt:DI (reg:DI 124 [ D.12035 ])
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (nil))
+(insn 61 60 62 8 (parallel [
+            (set (reg:DI 126 [ D.12035 ])
+                (minus:DI (reg:DI 129)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 124 [ D.12035 ])
+            (const_int 1000 [0x3e8]))
+        (nil)))
+(insn 62 61 63 8 (set (reg:DI 132)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [5 now.tv_sec+0 S8 A128])) nscd_helper.c:74 -1
+     (nil))
+(insn 63 62 64 8 (parallel [
+            (set (reg:DI 131 [ D.12035 ])
+                (mult:DI (reg:DI 132)
+                    (const_int 1000 [0x3e8])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (nil))
+(insn 64 63 65 8 (parallel [
+            (set (reg:DI 133 [ D.12035 ])
+                (plus:DI (reg:DI 126 [ D.12035 ])
+                    (reg:DI 131 [ D.12035 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (nil))
+(insn 65 64 67 8 (parallel [
+            (set (reg/v:DI 107 [ usectmo ])
+                (minus:DI (reg/v:DI 96 [ end ])
+                    (reg:DI 133 [ D.12035 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:74 -1
+     (nil))
+(jump_insn 67 65 68 8 (set (pc)
+        (label_ref 66)) nscd_helper.c:75 -1
+     (nil)
+ -> 66)
+(barrier 68 67 71)
+(code_label 71 68 72 10 2 "" [4 uses])
+(note 72 71 73 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 73 72 77 10 (set (reg:SI 105 [ <retval> ])
+        (reg/v:SI 87 [ n ])) nscd_helper.c:78 -1
+     (nil))
+(insn 77 73 78 10 (set (reg/i:SI 0 ax)
+        (reg:SI 105 [ <retval> ])) nscd_helper.c:79 -1
+     (nil))
+(insn 78 77 0 10 (use (reg/i:SI 0 ax)) nscd_helper.c:79 -1
+     (nil))
+
+;; Function open_socket (open_socket, funcdef_no=52, decl_uid=11444, cgraph_uid=52, symbol_order=57)
+
+Partition 0: size 110 align 16
+	sun
+Partition 2: size 16 align 16
+	now
+Partition 1: size 16 align 16
+	tvend
+Partition 3: size 8 align 16
+	fds
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+Edge 2->18 redirected to 26
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 9->10 to 24 failed.
+Edge 12->18 redirected to 19
+Edge 16->18 redirected to 19
+Forwarding edge 22->23 to 19 failed.
+Redirecting jump 165 from 18 to 19.
+Forwarding edge 24->25 to 12 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 24 failed.
+deleting block 18
+Forwarding edge 22->23 to 19 failed.
+Forwarding edge 24->25 to 12 failed.
+
+
+try_optimize_cfg iteration 3
+
+Forwarding edge 9->10 to 24 failed.
+Forwarding edge 22->23 to 19 failed.
+Forwarding edge 24->25 to 12 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 12 NOTE_INSN_DELETED)
+(note 12 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 12 3 2 (set (reg/v:SI 119 [ type ])
+        (reg:SI 5 di [ type ])) nscd_helper.c:166 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 120 [ key ])
+        (reg:DI 4 si [ key ])) nscd_helper.c:166 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 121 [ keylen ])
+        (reg:DI 1 dx [ keylen ])) nscd_helper.c:166 -1
+     (nil))
+(note 5 4 14 2 NOTE_INSN_FUNCTION_BEG)
+(insn 14 5 15 2 (set (reg:SI 1 dx)
+        (const_int 0 [0])) nscd_helper.c:169 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:SI 4 si)
+        (const_int 526337 [0x80801])) nscd_helper.c:169 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) nscd_helper.c:169 -1
+     (nil))
+(call_insn 17 16 18 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___socket") [flags 0x43]  <function_decl 0x2adb4df58510 __socket>) [0 __socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:169 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___socket") [flags 0x43]  <function_decl 0x2adb4df58510 __socket>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 18 17 19 2 (set (reg/v:SI 90 [ sock ])
+        (reg:SI 0 ax)) nscd_helper.c:169 -1
+     (nil))
+(insn 19 18 20 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 90 [ sock ])
+            (const_int 0 [0]))) nscd_helper.c:170 -1
+     (nil))
+(jump_insn 20 19 21 2 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 183)
+            (pc))) nscd_helper.c:170 612 {*jcc_1}
+     (int_list:REG_BR_PROB 364 (nil))
+ -> 183)
+(note 21 20 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 4 (parallel [
+            (set (reg/v:DI 91 [ real_sizeof_reqdata ])
+                (plus:DI (reg/v:DI 121 [ keylen ])
+                    (const_int 12 [0xc])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:173 -1
+     (nil))
+(insn 23 22 24 4 (parallel [
+            (set (reg:DI 122)
+                (plus:DI (reg/v:DI 91 [ real_sizeof_reqdata ])
+                    (const_int 15 [0xf])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 24 23 25 4 (parallel [
+            (set (reg:DI 123)
+                (plus:DI (reg:DI 86 virtual-preferred-stack-boundary)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 25 24 26 4 (parallel [
+            (set (reg:DI 124)
+                (plus:DI (reg:DI 122)
+                    (reg:DI 123)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 26 25 27 4 (parallel [
+            (set (reg:DI 126)
+                (udiv:DI (reg:DI 124)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (set (reg:DI 127)
+                (umod:DI (reg:DI 124)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 27 26 28 4 (parallel [
+            (set (reg:DI 128)
+                (mult:DI (reg:DI 126)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 28 27 29 4 (parallel [
+            (set (reg/f:DI 7 sp)
+                (minus:DI (reg/f:DI 7 sp)
+                    (reg:DI 128)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 29 28 30 4 (set (reg:DI 129)
+        (reg/f:DI 83 virtual-stack-dynamic)) nscd_helper.c:178 -1
+     (nil))
+(insn 30 29 31 4 (parallel [
+            (set (reg:DI 130)
+                (plus:DI (reg:DI 129)
+                    (const_int 15 [0xf])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 31 30 32 4 (parallel [
+            (set (reg:DI 131)
+                (lshiftrt:DI (reg:DI 130)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg:DI 130)
+            (const_int 16 [0x10]))
+        (nil)))
+(insn 32 31 33 4 (parallel [
+            (set (reg/f:DI 132)
+                (ashift:DI (reg:DI 131)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:178 -1
+     (nil))
+(insn 33 32 34 4 (set (reg/v/f:DI 92 [ reqdata ])
+        (reg/f:DI 132)) nscd_helper.c:178 -1
+     (nil))
+(insn 34 33 35 4 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -112 [0xffffffffffffff90])) [3 sun.sun_family+0 S2 A128])
+        (const_int 1 [0x1])) nscd_helper.c:181 -1
+     (nil))
+(insn 35 34 36 4 (parallel [
+            (set (reg:DI 133)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -112 [0xffffffffffffff90])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:182 -1
+     (nil))
+(insn 36 35 37 4 (parallel [
+            (set (reg:DI 134)
+                (plus:DI (reg:DI 133)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:182 -1
+     (nil))
+(insn 37 36 38 4 (set (reg:DI 135)
+        (const_int 7959393464555238959 [0x6e75722f7261762f])) nscd_helper.c:182 -1
+     (nil))
+(insn 38 37 39 4 (set (mem/c:DI (reg:DI 134) [0 MEM[(void *)&sun + 2B]+0 S8 A16])
+        (reg:DI 135)) nscd_helper.c:182 -1
+     (nil))
+(insn 39 38 40 4 (set (reg:DI 136)
+        (const_int 8030814668743470639 [0x6f732f6463736e2f])) nscd_helper.c:182 -1
+     (nil))
+(insn 40 39 41 4 (set (mem/c:DI (plus:DI (reg:DI 134)
+                (const_int 8 [0x8])) [0 MEM[(void *)&sun + 2B]+8 S8 A16])
+        (reg:DI 136)) nscd_helper.c:182 -1
+     (nil))
+(insn 41 40 42 4 (set (mem/c:SI (plus:DI (reg:DI 134)
+                (const_int 16 [0x10])) [0 MEM[(void *)&sun + 2B]+16 S4 A16])
+        (const_int 1952803683 [0x74656b63])) nscd_helper.c:182 -1
+     (nil))
+(insn 42 41 43 4 (set (mem/c:QI (plus:DI (reg:DI 134)
+                (const_int 20 [0x14])) [0 MEM[(void *)&sun + 2B]+20 S1 A16])
+        (const_int 0 [0])) nscd_helper.c:182 -1
+     (nil))
+(insn 43 42 44 4 (parallel [
+            (set (reg:DI 137)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -112 [0xffffffffffffff90])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:183 -1
+     (nil))
+(insn 44 43 45 4 (set (reg:DI 117 [ D.11830 ])
+        (reg:DI 137)) nscd_helper.c:183 -1
+     (nil))
+(insn 45 44 46 4 (set (reg:SI 1 dx)
+        (const_int 110 [0x6e])) nscd_helper.c:183 -1
+     (nil))
+(insn 46 45 47 4 (set (reg:DI 4 si)
+        (reg:DI 117 [ D.11830 ])) nscd_helper.c:183 -1
+     (nil))
+(insn 47 46 48 4 (set (reg:SI 5 di)
+        (reg/v:SI 90 [ sock ])) nscd_helper.c:183 -1
+     (nil))
+(call_insn 48 47 49 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___connect") [flags 0x43]  <function_decl 0x2adb4df5e000 __connect>) [0 __connect S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:183 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___connect") [flags 0x43]  <function_decl 0x2adb4df5e000 __connect>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 49 48 50 4 (set (reg:SI 93 [ D.12040 ])
+        (reg:SI 0 ax)) nscd_helper.c:183 -1
+     (nil))
+(insn 50 49 51 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 93 [ D.12040 ])
+            (const_int 0 [0]))) nscd_helper.c:183 -1
+     (nil))
+(jump_insn 51 50 52 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) nscd_helper.c:183 -1
+     (int_list:REG_BR_PROB 5248 (nil))
+ -> 56)
+(note 52 51 53 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 5 (set (reg:DI 138)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:184 -1
+     (nil))
+(insn 54 53 55 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 138)) [2 __libc_errno+0 S4 A32])
+            (const_int 115 [0x73]))) nscd_helper.c:184 -1
+     (nil))
+(jump_insn 55 54 56 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 149)
+            (pc))) nscd_helper.c:184 -1
+     (int_list:REG_BR_PROB 968 (nil))
+ -> 149)
+(code_label 56 55 57 6 11 "" [1 uses])
+(note 57 56 58 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 6 (set (mem:SI (reg/v/f:DI 92 [ reqdata ]) [2 reqdata_16->req.version+0 S4 A128])
+        (const_int 2 [0x2])) nscd_helper.c:187 -1
+     (nil))
+(insn 59 58 60 6 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ reqdata ])
+                (const_int 4 [0x4])) [8 reqdata_16->req.type+0 S4 A32])
+        (reg/v:SI 119 [ type ])) nscd_helper.c:188 -1
+     (nil))
+(insn 60 59 61 6 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ reqdata ])
+                (const_int 8 [0x8])) [2 reqdata_16->req.key_len+0 S4 A64])
+        (subreg:SI (reg/v:DI 121 [ keylen ]) 0)) nscd_helper.c:189 -1
+     (nil))
+(insn 61 60 62 6 (parallel [
+            (set (reg:DI 139)
+                (plus:DI (reg/v/f:DI 92 [ reqdata ])
+                    (const_int 12 [0xc])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:191 -1
+     (nil))
+(insn 62 61 63 6 (set (reg:DI 140)
+        (reg:DI 139)) nscd_helper.c:191 -1
+     (nil))
+(insn 63 62 64 6 (set (reg:DI 141)
+        (reg/v/f:DI 120 [ key ])) nscd_helper.c:191 -1
+     (nil))
+(insn 64 63 65 6 (set (reg:DI 142)
+        (reg/v:DI 121 [ keylen ])) nscd_helper.c:191 -1
+     (nil))
+(insn 65 64 66 6 (set (reg:DI 1 dx)
+        (reg:DI 142)) nscd_helper.c:191 -1
+     (nil))
+(insn 66 65 67 6 (set (reg:DI 4 si)
+        (reg:DI 141)) nscd_helper.c:191 -1
+     (nil))
+(insn 67 66 68 6 (set (reg:DI 5 di)
+        (reg:DI 140)) nscd_helper.c:191 -1
+     (nil))
+(call_insn 68 67 69 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2adb4de1a870 memcpy>) [0 memcpy S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:191 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2adb4de1a870 memcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 69 68 70 6 (set (reg:DI 143)
+        (reg:DI 0 ax)) nscd_helper.c:191 -1
+     (nil))
+(insn 70 69 71 6 (set (reg:DI 144)
+        (reg:DI 143)) nscd_helper.c:191 -1
+     (nil))
+(insn 71 70 72 6 (parallel [
+            (set (mem/c:TI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -144 [0xffffffffffffff70])) [4 tvend+0 S16 A128])
+                (asm_operands:TI ("") ("=m") 0 []
+                     []
+                     [] nscd_helper.c:196))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:196 -1
+     (nil))
+(insn 72 71 7 6 (set (reg:DI 116 [ D.12042 ])
+        (reg/v:DI 91 [ real_sizeof_reqdata ])) -1
+     (nil))
+(insn 7 72 73 6 (set (reg/v:QI 87 [ first_try ])
+        (const_int 1 [0x1])) nscd_helper.c:193 -1
+     (nil))
+(jump_insn 73 7 74 6 (set (pc)
+        (label_ref 76)) -1
+     (nil)
+ -> 76)
+(barrier 74 73 89)
+(code_label 89 74 75 7 15 "" [2 uses])
+(note 75 89 76 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(code_label 76 75 77 8 13 "" [1 uses])
+(note 77 76 78 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 78 77 79 8 (set (reg:SI 2 cx)
+        (const_int 16384 [0x4000])) nscd_helper.c:202 -1
+     (nil))
+(insn 79 78 80 8 (set (reg:DI 1 dx)
+        (reg/v:DI 91 [ real_sizeof_reqdata ])) nscd_helper.c:202 -1
+     (nil))
+(insn 80 79 81 8 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ reqdata ])) nscd_helper.c:202 -1
+     (nil))
+(insn 81 80 82 8 (set (reg:SI 5 di)
+        (reg/v:SI 90 [ sock ])) nscd_helper.c:202 -1
+     (nil))
+(call_insn 82 81 83 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___send") [flags 0x43]  <function_decl 0x2adb4df58af8 __send>) [0 __send S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:202 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___send") [flags 0x43]  <function_decl 0x2adb4df58af8 __send>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+(insn 83 82 84 8 (set (reg/v:DI 97 [ wres ])
+        (reg:DI 0 ax)) nscd_helper.c:202 -1
+     (nil))
+(insn 84 83 85 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 97 [ wres ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:202 -1
+     (nil))
+(jump_insn 85 84 86 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 160)
+            (pc))) nscd_helper.c:202 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 160)
+(note 86 85 87 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 9 (set (reg:DI 145)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:202 -1
+     (nil))
+(insn 88 87 90 9 (set (reg:SI 98 [ D.12040 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 145)) [2 __libc_errno+0 S4 A32])) nscd_helper.c:202 -1
+     (nil))
+(insn 90 88 91 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 98 [ D.12040 ])
+            (const_int 4 [0x4]))) nscd_helper.c:202 -1
+     (nil))
+(jump_insn 91 90 94 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 89)
+            (pc))) nscd_helper.c:202 -1
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 89)
+(note 94 91 92 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 92 94 93 10 (set (pc)
+        (label_ref 168)) -1
+     (nil)
+ -> 168)
+(barrier 93 92 162)
+(code_label 162 93 95 11 20 "" [2 uses])
+(note 95 162 10 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 10 95 96 11 (set (reg:SI 89 [ D.12040 ])
+        (reg/v:SI 90 [ sock ])) nscd_helper.c:207 -1
+     (nil))
+(jump_insn 96 10 97 11 (set (pc)
+        (label_ref 155)) nscd_helper.c:207 -1
+     (nil)
+ -> 155)
+(barrier 97 96 172)
+(code_label 172 97 98 12 21 "" [1 uses])
+(note 98 172 99 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 99 98 100 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 98 [ D.12040 ])
+            (const_int 11 [0xb]))) nscd_helper.c:209 -1
+     (nil))
+(jump_insn 100 99 101 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 149)
+            (pc))) nscd_helper.c:209 612 {*jcc_1}
+     (int_list:REG_BR_PROB 225 (nil))
+ -> 149)
+(note 101 100 102 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 13 (parallel [
+            (set (reg:DI 146)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:216 -1
+     (nil))
+(insn 103 102 104 13 (set (reg:DI 4 si)
+        (const_int 0 [0])) nscd_helper.c:216 -1
+     (nil))
+(insn 104 103 105 13 (set (reg:DI 5 di)
+        (reg:DI 146)) nscd_helper.c:216 -1
+     (nil))
+(call_insn 105 104 106 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___gettimeofday") [flags 0x43]  <function_decl 0x2adb4defd438 __gettimeofday>) [0 __gettimeofday S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:216 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___gettimeofday") [flags 0x43]  <function_decl 0x2adb4defd438 __gettimeofday>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 106 105 107 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 87 [ first_try ])
+            (const_int 0 [0]))) nscd_helper.c:217 -1
+     (nil))
+(jump_insn 107 106 108 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 119)
+            (pc))) nscd_helper.c:217 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 119)
+(note 108 107 109 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 109 108 110 14 (set (reg:DI 147)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -120 [0xffffffffffffff88])) [5 now.tv_usec+0 S8 A64])) nscd_helper.c:219 -1
+     (nil))
+(insn 110 109 114 14 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -136 [0xffffffffffffff78])) [5 tvend.tv_usec+0 S8 A64])
+        (reg:DI 147)) nscd_helper.c:219 -1
+     (nil))
+(insn 114 110 115 14 (set (reg:DI 151)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -128 [0xffffffffffffff80])) [5 now.tv_sec+0 S8 A128])) nscd_helper.c:220 -1
+     (nil))
+(insn 115 114 116 14 (parallel [
+            (set (reg:DI 150 [ D.12042 ])
+                (plus:DI (reg:DI 151)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:220 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -128 [0xffffffffffffff80])) [5 now.tv_sec+0 S8 A128])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 116 115 8 14 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -144 [0xffffffffffffff70])) [5 tvend.tv_sec+0 S8 A128])
+        (reg:DI 150 [ D.12042 ])) nscd_helper.c:220 -1
+     (nil))
+(insn 8 116 117 14 (set (reg/v:SI 88 [ to ])
+        (const_int 5000 [0x1388])) nscd_helper.c:221 -1
+     (nil))
+(jump_insn 117 8 118 14 (set (pc)
+        (label_ref 132)) -1
+     (nil)
+ -> 132)
+(barrier 118 117 119)
+(code_label 119 118 120 15 18 "" [1 uses])
+(note 120 119 121 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 121 120 122 15 (set (reg:DI 153)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -144 [0xffffffffffffff70])) [5 tvend.tv_sec+0 S8 A128])) nscd_helper.c:225 -1
+     (nil))
+(insn 122 121 123 15 (parallel [
+            (set (reg:DI 152 [ D.12042 ])
+                (minus:DI (reg:DI 153)
+                    (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -128 [0xffffffffffffff80])) [5 now.tv_sec+0 S8 A128])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (expr_list:REG_EQUAL (minus:DI (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -144 [0xffffffffffffff70])) [5 tvend.tv_sec+0 S8 A128])
+            (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -128 [0xffffffffffffff80])) [5 now.tv_sec+0 S8 A128]))
+        (nil)))
+(insn 123 122 124 15 (parallel [
+            (set (reg:SI 154 [ D.12043 ])
+                (mult:SI (subreg:SI (reg:DI 152 [ D.12042 ]) 0)
+                    (const_int 1000 [0x3e8])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (nil))
+(insn 124 123 125 15 (set (reg:DI 156)
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -136 [0xffffffffffffff78])) [5 tvend.tv_usec+0 S8 A64])) nscd_helper.c:225 -1
+     (nil))
+(insn 125 124 126 15 (parallel [
+            (set (reg:DI 155 [ D.12042 ])
+                (minus:DI (reg:DI 156)
+                    (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -120 [0xffffffffffffff88])) [5 now.tv_usec+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (expr_list:REG_EQUAL (minus:DI (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -136 [0xffffffffffffff78])) [5 tvend.tv_usec+0 S8 A64])
+            (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -120 [0xffffffffffffff88])) [5 now.tv_usec+0 S8 A64]))
+        (nil)))
+(insn 126 125 127 15 (set (reg:DI 159)
+        (const_int 2361183241434822607 [0x20c49ba5e353f7cf])) nscd_helper.c:225 -1
+     (nil))
+(insn 127 126 128 15 (parallel [
+            (set (reg:DI 158)
+                (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 155 [ D.12042 ]))
+                            (sign_extend:TI (reg:DI 159)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (nil))
+(insn 128 127 129 15 (parallel [
+            (set (reg:DI 160)
+                (ashiftrt:DI (reg:DI 158)
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (nil))
+(insn 129 128 130 15 (parallel [
+            (set (reg:DI 161)
+                (ashiftrt:DI (reg:DI 155 [ D.12042 ])
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (nil))
+(insn 130 129 131 15 (parallel [
+            (set (reg:DI 157 [ D.12042 ])
+                (minus:DI (reg:DI 160)
+                    (reg:DI 161)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 155 [ D.12042 ])
+            (const_int 1000 [0x3e8]))
+        (nil)))
+(insn 131 130 132 15 (parallel [
+            (set (reg/v:SI 88 [ to ])
+                (plus:SI (reg:SI 154 [ D.12043 ])
+                    (subreg:SI (reg:DI 157 [ D.12042 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:225 -1
+     (nil))
+(code_label 132 131 133 16 19 "" [1 uses])
+(note 133 132 134 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 134 133 135 16 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -160 [0xffffffffffffff60])) [2 fds[0].fd+0 S4 A128])
+        (reg/v:SI 90 [ sock ])) nscd_helper.c:229 -1
+     (nil))
+(insn 135 134 136 16 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -156 [0xffffffffffffff64])) [3 fds[0].events+0 S2 A32])
+        (const_int 28 [0x1c])) nscd_helper.c:230 -1
+     (nil))
+(insn 136 135 137 16 (parallel [
+            (set (reg:DI 162)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:231 -1
+     (nil))
+(insn 137 136 138 16 (set (reg:SI 1 dx)
+        (reg/v:SI 88 [ to ])) nscd_helper.c:231 -1
+     (nil))
+(insn 138 137 139 16 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) nscd_helper.c:231 -1
+     (nil))
+(insn 139 138 140 16 (set (reg:DI 5 di)
+        (reg:DI 162)) nscd_helper.c:231 -1
+     (nil))
+(call_insn 140 139 141 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___poll") [flags 0x43]  <function_decl 0x2adb4e042360 __poll>) [0 __poll S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:231 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___poll") [flags 0x43]  <function_decl 0x2adb4e042360 __poll>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 141 140 142 16 (set (reg:SI 113 [ D.12040 ])
+        (reg:SI 0 ax)) nscd_helper.c:231 -1
+     (nil))
+(insn 142 141 143 16 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 113 [ D.12040 ])
+            (const_int 0 [0]))) nscd_helper.c:231 -1
+     (nil))
+(jump_insn 143 142 144 16 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 149)
+            (pc))) nscd_helper.c:231 612 {*jcc_1}
+     (int_list:REG_BR_PROB 225 (nil))
+ -> 149)
+(note 144 143 6 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 6 144 145 17 (set (reg/v:QI 87 [ first_try ])
+        (const_int 0 [0])) nscd_helper.c:236 -1
+     (nil))
+(jump_insn 145 6 146 17 (set (pc)
+        (label_ref 89)) nscd_helper.c:236 -1
+     (nil)
+ -> 89)
+(barrier 146 145 149)
+(code_label 149 146 150 19 12 ("out") [4 uses])
+(note 150 149 151 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 151 150 152 19 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 90 [ sock ]))) nscd_helper.c:239 -1
+     (nil))
+(insn 152 151 153 19 (set (reg:SI 164)
+        (const_int 3 [0x3])) nscd_helper.c:239 -1
+     (nil))
+(insn 153 152 154 19 (parallel [
+            (set (reg:DI 163 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 164)
+                        (reg/v:DI 5 di [ _a1 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:239)
+                        (asm_input:DI ("r") nscd_helper.c:239)
+                    ]
+                     [] nscd_helper.c:239))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) nscd_helper.c:239 -1
+     (nil))
+(insn 154 153 11 19 (set (reg/v:DI 115 [ resultvar ])
+        (reg:DI 163 [ resultvar ])) nscd_helper.c:239 -1
+     (nil))
+(insn 11 154 180 19 (set (reg:SI 89 [ D.12040 ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:241 -1
+     (nil))
+(jump_insn 180 11 181 19 (set (pc)
+        (label_ref 155)) nscd_helper.c:241 -1
+     (nil)
+ -> 155)
+(barrier 181 180 183)
+(code_label 183 181 182 20 22 "" [1 uses])
+(note 182 183 9 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 9 182 155 20 (set (reg:SI 89 [ D.12040 ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:171 -1
+     (nil))
+(code_label 155 9 156 21 10 "" [2 uses])
+(note 156 155 157 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 157 156 158 21 (set (reg:SI 118 [ <retval> ])
+        (reg:SI 89 [ D.12040 ])) -1
+     (nil))
+(jump_insn 158 157 159 21 (set (pc)
+        (label_ref 176)) -1
+     (nil)
+ -> 176)
+(barrier 159 158 160)
+(code_label 160 159 161 22 14 "" [1 uses])
+(note 161 160 163 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 163 161 164 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 97 [ wres ])
+            (reg:DI 116 [ D.12042 ]))) nscd_helper.c:205 -1
+     (nil))
+(jump_insn 164 163 167 22 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 162)
+            (pc))) nscd_helper.c:205 -1
+     (int_list:REG_BR_PROB 9972 (nil))
+ -> 162)
+(note 167 164 165 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 165 167 166 23 (set (pc)
+        (label_ref:DI 149)) nscd_helper.c:205 654 {jump}
+     (nil)
+ -> 149)
+(barrier 166 165 168)
+(code_label 168 166 169 24 16 "" [1 uses])
+(note 169 168 170 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 170 169 171 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 116 [ D.12042 ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:205 -1
+     (nil))
+(jump_insn 171 170 175 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 162)
+            (pc))) nscd_helper.c:205 -1
+     (int_list:REG_BR_PROB 5529 (nil))
+ -> 162)
+(note 175 171 173 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 173 175 174 25 (set (pc)
+        (label_ref 172)) nscd_helper.c:205 -1
+     (nil)
+ -> 172)
+(barrier 174 173 176)
+(code_label 176 174 179 26 9 "" [1 uses])
+(note 179 176 177 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 177 179 178 26 (set (reg/i:SI 0 ax)
+        (reg:SI 118 [ <retval> ])) nscd_helper.c:242 -1
+     (nil))
+(insn 178 177 0 26 (use (reg/i:SI 0 ax)) nscd_helper.c:242 -1
+     (nil))
+
+;; Function __readall (__readall, funcdef_no=50, decl_uid=11372, cgraph_uid=50, symbol_order=55)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 6->7 to 11 failed.
+Forwarding edge 12->13 to 18 failed.
+Forwarding edge 14->15 to 17 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 6->7 to 11 failed.
+Forwarding edge 12->13 to 18 failed.
+Forwarding edge 14->15 to 17 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 95 [ fd ])
+        (reg:SI 5 di [ fd ])) nscd_helper.c:84 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 96 [ buf ])
+        (reg:DI 4 si [ buf ])) nscd_helper.c:84 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 97 [ len ])
+        (reg:DI 1 dx [ len ])) nscd_helper.c:84 -1
+     (nil))
+(note 5 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 5 10 2 (set (reg/v:DI 90 [ len ])
+        (reg/v:DI 97 [ len ])) nscd_helper.c:85 -1
+     (nil))
+(jump_insn 10 6 11 2 (set (pc)
+        (label_ref 13)) nscd_helper.c:85 -1
+     (nil)
+ -> 13)
+(barrier 11 10 25)
+(code_label 25 11 12 4 40 "" [3 uses])
+(note 12 25 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(code_label 13 12 14 5 38 "" [1 uses])
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg:DI 1 dx)
+        (reg/v:DI 90 [ len ])) nscd_helper.c:90 -1
+     (nil))
+(insn 16 15 17 5 (set (reg:DI 4 si)
+        (reg/v/f:DI 96 [ buf ])) nscd_helper.c:90 -1
+     (nil))
+(insn 17 16 18 5 (set (reg:SI 5 di)
+        (reg/v:SI 95 [ fd ])) nscd_helper.c:90 -1
+     (nil))
+(call_insn 18 17 19 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___read") [flags 0x43]  <function_decl 0x2adb4e02dca8 __read>) [0 __read S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:90 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___read") [flags 0x43]  <function_decl 0x2adb4e02dca8 __read>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 19 18 20 5 (set (reg/v:DI 89 [ ret ])
+        (reg:DI 0 ax)) nscd_helper.c:90 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 89 [ ret ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:90 -1
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) nscd_helper.c:90 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 31)
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (set (reg:DI 98)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:90 -1
+     (nil))
+(insn 24 23 26 6 (set (reg:SI 88 [ D.12053 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 98)) [2 __libc_errno+0 S4 A32])) nscd_helper.c:90 -1
+     (nil))
+(insn 26 24 27 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ D.12053 ])
+            (const_int 4 [0x4]))) nscd_helper.c:90 -1
+     (nil))
+(jump_insn 27 26 30 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) nscd_helper.c:90 -1
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 25)
+(note 30 27 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 28 30 29 7 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 29 28 31)
+(code_label 31 29 32 8 39 "" [1 uses])
+(note 32 31 33 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 8 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:DI 89 [ ret ])
+            (const_int 0 [0]))) nscd_helper.c:91 -1
+     (nil))
+(jump_insn 34 33 35 8 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 55)
+            (pc))) nscd_helper.c:91 -1
+     (int_list:REG_BR_PROB 9344 (nil))
+ -> 55)
+(note 35 34 36 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 89 [ ret ])
+            (const_int 0 [0]))) nscd_helper.c:93 -1
+     (nil))
+(jump_insn 37 36 38 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) nscd_helper.c:93 -1
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 69)
+(note 38 37 39 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 10 (set (reg:DI 99)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) -1
+     (nil))
+(insn 40 39 41 10 (set (reg:SI 88 [ D.12053 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 99)) [2 __libc_errno+0 S4 A32])) -1
+     (nil))
+(code_label 41 40 42 11 41 "" [1 uses])
+(note 42 41 43 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ D.12053 ])
+            (const_int 11 [0xb]))) nscd_helper.c:93 -1
+     (nil))
+(jump_insn 44 43 45 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 75)
+            (pc))) nscd_helper.c:93 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 75)
+(note 45 44 46 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 12 (set (reg:DI 4 si)
+        (const_int 200 [0xc8])) nscd_helper.c:95 -1
+     (nil))
+(insn 47 46 48 12 (set (reg:SI 5 di)
+        (reg/v:SI 95 [ fd ])) nscd_helper.c:95 -1
+     (nil))
+(call_insn 48 47 49 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>) [0 wait_on_socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:95 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 49 48 50 12 (set (reg:SI 92 [ D.12053 ])
+        (reg:SI 0 ax)) nscd_helper.c:95 -1
+     (nil))
+(insn 50 49 51 12 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 92 [ D.12053 ])
+            (const_int 0 [0]))) nscd_helper.c:95 -1
+     (nil))
+(jump_insn 51 50 54 12 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) nscd_helper.c:95 -1
+     (int_list:REG_BR_PROB 9775 (nil))
+ -> 25)
+(note 54 51 52 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 52 54 53 13 (set (pc)
+        (label_ref 75)) -1
+     (nil)
+ -> 75)
+(barrier 53 52 55)
+(code_label 55 53 56 14 42 "" [1 uses])
+(note 56 55 57 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 57 56 58 14 (set (reg:DI 91 [ D.12054 ])
+        (reg/v:DI 89 [ ret ])) nscd_helper.c:100 -1
+     (nil))
+(insn 58 57 59 14 (parallel [
+            (set (reg/v/f:DI 96 [ buf ])
+                (plus:DI (reg/v/f:DI 96 [ buf ])
+                    (reg:DI 91 [ D.12054 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:100 -1
+     (nil))
+(insn 59 58 60 14 (parallel [
+            (set (reg/v:DI 90 [ len ])
+                (minus:DI (reg/v:DI 90 [ len ])
+                    (reg:DI 91 [ D.12054 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:101 -1
+     (nil))
+(insn 60 59 61 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 90 [ len ])
+            (const_int 0 [0]))) nscd_helper.c:103 -1
+     (nil))
+(jump_insn 61 60 64 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) nscd_helper.c:103 -1
+     (int_list:REG_BR_PROB 9775 (nil))
+ -> 25)
+(note 64 61 62 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 62 64 63 15 (set (pc)
+        (label_ref 69)) -1
+     (nil)
+ -> 69)
+(barrier 63 62 72)
+(code_label 72 63 65 16 45 "" [2 uses])
+(note 65 72 66 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 66 65 67 16 (set (reg:DI 94 [ <retval> ])
+        (reg:DI 87 [ D.12052 ])) nscd_helper.c:104 -1
+     (nil))
+(jump_insn 67 66 68 16 (set (pc)
+        (label_ref 79)) nscd_helper.c:104 -1
+     (nil)
+ -> 79)
+(barrier 68 67 69)
+(code_label 69 68 70 17 43 "" [2 uses])
+(note 70 69 71 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 71 70 73 17 (parallel [
+            (set (reg:DI 87 [ D.12052 ])
+                (minus:DI (reg/v:DI 97 [ len ])
+                    (reg/v:DI 90 [ len ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:104 -1
+     (nil))
+(jump_insn 73 71 74 17 (set (pc)
+        (label_ref 72)) -1
+     (nil)
+ -> 72)
+(barrier 74 73 75)
+(code_label 75 74 76 18 44 "" [2 uses])
+(note 76 75 7 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 7 76 77 18 (set (reg:DI 87 [ D.12052 ])
+        (reg/v:DI 89 [ ret ])) nscd_helper.c:85 -1
+     (nil))
+(jump_insn 77 7 78 18 (set (pc)
+        (label_ref 72)) -1
+     (nil)
+ -> 72)
+(barrier 78 77 79)
+(code_label 79 78 82 19 37 "" [1 uses])
+(note 82 79 80 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 80 82 81 19 (set (reg/i:DI 0 ax)
+        (reg:DI 94 [ <retval> ])) nscd_helper.c:105 -1
+     (nil))
+(insn 81 80 0 19 (use (reg/i:DI 0 ax)) nscd_helper.c:105 -1
+     (nil))
+
+;; Function __readvall (__readvall, funcdef_no=51, decl_uid=11376, cgraph_uid=51, symbol_order=56)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+
+;; Generating RTL for gimple basic block 21
+
+;; Generating RTL for gimple basic block 22
+
+;; Generating RTL for gimple basic block 23
+
+;; Generating RTL for gimple basic block 24
+
+;; Generating RTL for gimple basic block 25
+
+;; Generating RTL for gimple basic block 26
+
+;; Generating RTL for gimple basic block 27
+
+;; Generating RTL for gimple basic block 28
+
+;; Generating RTL for gimple basic block 29
+
+;; Generating RTL for gimple basic block 30
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 5->6 to 10 failed.
+Forwarding edge 23->24 to 28 failed.
+Edge 26->35 redirected to 33
+Forwarding edge 29->30 to 36 failed.
+Forwarding edge 31->32 to 33 failed.
+Removing jump 184.
+deleting block 35
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 10 failed.
+Forwarding edge 23->24 to 28 failed.
+Forwarding edge 29->30 to 36 failed.
+Forwarding edge 31->32 to 33 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 23 0 32 NOTE_INSN_DELETED)
+(note 32 23 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 24 32 25 2 (set (reg/v:SI 140 [ fd ])
+        (reg:SI 5 di [ fd ])) nscd_helper.c:110 -1
+     (nil))
+(insn 25 24 26 2 (set (reg/v/f:DI 141 [ iov ])
+        (reg:DI 4 si [ iov ])) nscd_helper.c:110 -1
+     (nil))
+(insn 26 25 27 2 (set (reg/v:SI 142 [ iovcnt ])
+        (reg:SI 1 dx [ iovcnt ])) nscd_helper.c:110 -1
+     (nil))
+(note 27 26 45 2 NOTE_INSN_FUNCTION_BEG)
+(code_label 45 27 34 4 59 "" [1 uses])
+(note 34 45 35 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 4 (set (reg:SI 1 dx)
+        (reg/v:SI 142 [ iovcnt ])) nscd_helper.c:111 -1
+     (nil))
+(insn 36 35 37 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 141 [ iov ])) nscd_helper.c:111 -1
+     (nil))
+(insn 37 36 38 4 (set (reg:SI 5 di)
+        (reg/v:SI 140 [ fd ])) nscd_helper.c:111 -1
+     (nil))
+(call_insn 38 37 39 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__readv") [flags 0x41]  <function_decl 0x2adb4df34a20 __readv>) [0 __readv S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:111 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__readv") [flags 0x41]  <function_decl 0x2adb4df34a20 __readv>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 39 38 40 4 (set (reg/v:DI 109 [ ret ])
+        (reg:DI 0 ax)) nscd_helper.c:111 -1
+     (nil))
+(insn 40 39 41 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 109 [ ret ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:111 -1
+     (nil))
+(jump_insn 41 40 42 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) nscd_helper.c:111 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 51)
+(note 42 41 43 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 5 (set (reg:DI 143)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:111 -1
+     (nil))
+(insn 44 43 46 5 (set (reg:SI 116 [ D.12070 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 143)) [2 __libc_errno+0 S4 A32])) nscd_helper.c:111 -1
+     (nil))
+(insn 46 44 47 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 116 [ D.12070 ])
+            (const_int 4 [0x4]))) nscd_helper.c:111 -1
+     (nil))
+(jump_insn 47 46 50 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 45)
+            (pc))) nscd_helper.c:111 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 45)
+(note 50 47 48 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 48 50 49 6 (set (pc)
+        (label_ref 61)) -1
+     (nil)
+ -> 61)
+(barrier 49 48 51)
+(code_label 51 49 52 7 58 "" [1 uses])
+(note 52 51 53 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 7 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:DI 109 [ ret ])
+            (const_int 0 [0]))) nscd_helper.c:112 -1
+     (nil))
+(jump_insn 54 53 55 7 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 65)
+            (pc))) nscd_helper.c:112 -1
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 65)
+(note 55 54 56 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 109 [ ret ])
+            (const_int 0 [0]))) nscd_helper.c:114 -1
+     (nil))
+(jump_insn 57 56 58 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 191)
+            (pc))) nscd_helper.c:114 -1
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 191)
+(note 58 57 59 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 9 (set (reg:DI 144)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) -1
+     (nil))
+(insn 60 59 61 9 (set (reg:SI 116 [ D.12070 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 144)) [2 __libc_errno+0 S4 A32])) -1
+     (nil))
+(code_label 61 60 62 10 60 "" [1 uses])
+(note 62 61 63 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 64 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 116 [ D.12070 ])
+            (const_int 11 [0xb]))) nscd_helper.c:114 -1
+     (nil))
+(jump_insn 64 63 209 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 191)
+            (pc))) nscd_helper.c:114 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 191)
+(note 209 64 28 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 28 209 65 11 (set (reg/v:DI 109 [ ret ])
+        (const_int 0 [0])) nscd_helper.c:120 -1
+     (nil))
+(code_label 65 28 66 12 61 "" [1 uses])
+(note 66 65 67 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 12 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 142 [ iovcnt ])
+            (const_int 0 [0]))) nscd_helper.c:124 -1
+     (nil))
+(jump_insn 68 67 69 12 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 191)
+            (pc))) nscd_helper.c:124 -1
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 191)
+(note 69 68 70 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 13 (parallel [
+            (set (reg:DI 125 [ ivtmp.59 ])
+                (plus:DI (reg/v/f:DI 141 [ iov ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 71 70 72 13 (parallel [
+            (set (reg:SI 145 [ D.12068 ])
+                (plus:SI (reg/v:SI 142 [ iovcnt ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 72 71 73 13 (set (reg:DI 146 [ D.12067 ])
+        (zero_extend:DI (reg:SI 145 [ D.12068 ]))) -1
+     (nil))
+(insn 73 72 74 13 (parallel [
+            (set (reg:DI 147 [ D.12067 ])
+                (ashift:DI (reg:DI 146 [ D.12067 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 74 73 75 13 (parallel [
+            (set (reg:DI 148 [ D.12073 ])
+                (plus:DI (reg:DI 147 [ D.12067 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 75 74 29 13 (parallel [
+            (set (reg:DI 119 [ D.12067 ])
+                (plus:DI (reg/v/f:DI 141 [ iov ])
+                    (reg:DI 148 [ D.12073 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 29 75 83 13 (set (reg/v:DI 121 [ total ])
+        (const_int 0 [0])) nscd_helper.c:124 -1
+     (nil))
+(code_label 83 29 76 14 63 "" [1 uses])
+(note 76 83 79 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 79 76 80 14 (set (reg:DI 151)
+        (mem:DI (reg:DI 125 [ ivtmp.59 ]) [5 MEM[base: _15, offset: 0B]+0 S8 A64])) nscd_helper.c:125 -1
+     (nil))
+(insn 80 79 81 14 (parallel [
+            (set (reg:DI 150)
+                (plus:DI (reg/v:DI 121 [ total ])
+                    (reg:DI 151)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:125 -1
+     (expr_list:REG_EQUAL (plus:DI (reg/v:DI 121 [ total ])
+            (mem:DI (reg:DI 125 [ ivtmp.59 ]) [5 MEM[base: _15, offset: 0B]+0 S8 A64]))
+        (nil)))
+(insn 81 80 82 14 (set (reg/v:DI 121 [ total ])
+        (reg:DI 150)) nscd_helper.c:125 -1
+     (nil))
+(insn 82 81 84 14 (parallel [
+            (set (reg:DI 125 [ ivtmp.59 ])
+                (plus:DI (reg:DI 125 [ ivtmp.59 ])
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 84 82 85 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 119 [ D.12067 ])
+            (reg:DI 125 [ ivtmp.59 ]))) nscd_helper.c:124 -1
+     (nil))
+(jump_insn 85 84 86 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 83)
+            (pc))) nscd_helper.c:124 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 83)
+(note 86 85 87 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 15 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 121 [ total ])
+            (reg/v:DI 109 [ ret ]))) nscd_helper.c:127 -1
+     (nil))
+(jump_insn 88 87 89 15 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 191)
+            (pc))) nscd_helper.c:127 -1
+     (int_list:REG_BR_PROB 5716 (nil))
+ -> 191)
+(note 89 88 90 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 90 89 91 16 (set (reg:DI 152)
+        (reg/f:DI 7 sp)) nscd_helper.c:128 -1
+     (nil))
+(insn 91 90 92 16 (set (reg/f:DI 123 [ D.12069 ])
+        (reg:DI 152)) nscd_helper.c:128 -1
+     (nil))
+(insn 92 91 93 16 (set (reg:DI 153 [ D.12073 ])
+        (sign_extend:DI (reg/v:SI 142 [ iovcnt ]))) nscd_helper.c:129 -1
+     (nil))
+(insn 93 92 94 16 (parallel [
+            (set (reg:DI 126 [ D.12073 ])
+                (ashift:DI (reg:DI 153 [ D.12073 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 94 93 95 16 (parallel [
+            (set (reg:DI 154)
+                (plus:DI (reg:DI 126 [ D.12073 ])
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 95 94 96 16 (parallel [
+            (set (reg:DI 155)
+                (plus:DI (reg:DI 86 virtual-preferred-stack-boundary)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 96 95 97 16 (parallel [
+            (set (reg:DI 156)
+                (plus:DI (reg:DI 154)
+                    (reg:DI 155)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 97 96 98 16 (parallel [
+            (set (reg:DI 158)
+                (udiv:DI (reg:DI 156)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (set (reg:DI 159)
+                (umod:DI (reg:DI 156)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 98 97 99 16 (parallel [
+            (set (reg:DI 160)
+                (mult:DI (reg:DI 158)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 99 98 100 16 (parallel [
+            (set (reg/f:DI 7 sp)
+                (minus:DI (reg/f:DI 7 sp)
+                    (reg:DI 160)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 100 99 101 16 (set (reg:DI 161)
+        (reg/f:DI 83 virtual-stack-dynamic)) nscd_helper.c:129 -1
+     (nil))
+(insn 101 100 102 16 (parallel [
+            (set (reg:DI 162)
+                (plus:DI (reg:DI 161)
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 102 101 103 16 (parallel [
+            (set (reg:DI 163)
+                (lshiftrt:DI (reg:DI 162)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg:DI 162)
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 103 102 104 16 (parallel [
+            (set (reg/f:DI 164)
+                (ashift:DI (reg:DI 163)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:129 -1
+     (nil))
+(insn 104 103 105 16 (set (reg/f:DI 127 [ iov_buf.10 ])
+        (reg/f:DI 164)) nscd_helper.c:129 -1
+     (nil))
+(insn 105 104 106 16 (set (reg:DI 165)
+        (reg/f:DI 127 [ iov_buf.10 ])) nscd_helper.c:132 -1
+     (nil))
+(insn 106 105 107 16 (set (reg:DI 166)
+        (reg/v/f:DI 141 [ iov ])) nscd_helper.c:132 -1
+     (nil))
+(insn 107 106 108 16 (set (reg:DI 167)
+        (reg:DI 126 [ D.12073 ])) nscd_helper.c:132 -1
+     (nil))
+(insn 108 107 109 16 (set (reg:DI 1 dx)
+        (reg:DI 167)) nscd_helper.c:132 -1
+     (nil))
+(insn 109 108 110 16 (set (reg:DI 4 si)
+        (reg:DI 166)) nscd_helper.c:132 -1
+     (nil))
+(insn 110 109 111 16 (set (reg:DI 5 di)
+        (reg:DI 165)) nscd_helper.c:132 -1
+     (nil))
+(call_insn 111 110 112 16 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2adb4de1a870 memcpy>) [0 memcpy S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:132 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memcpy") [flags 0x41]  <function_decl 0x2adb4de1a870 memcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 112 111 113 16 (set (reg:DI 168)
+        (reg:DI 0 ax)) nscd_helper.c:132 -1
+     (nil))
+(insn 113 112 114 16 (set (reg:DI 169)
+        (reg:DI 168)) nscd_helper.c:132 -1
+     (nil))
+(insn 114 113 30 16 (set (reg/v/f:DI 111 [ iovp ])
+        (reg:DI 169)) nscd_helper.c:132 -1
+     (nil))
+(insn 30 114 115 16 (set (reg/v:DI 114 [ ret ])
+        (reg/v:DI 109 [ ret ])) nscd_helper.c:130 -1
+     (nil))
+(jump_insn 115 30 116 16 (set (pc)
+        (label_ref 122)) nscd_helper.c:132 -1
+     (nil)
+ -> 122)
+(barrier 116 115 126)
+(code_label 126 116 117 17 65 "" [1 uses])
+(note 117 126 118 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 118 117 119 17 (parallel [
+            (set (reg/v:DI 114 [ ret ])
+                (minus:DI (reg:DI 129 [ D.12072 ])
+                    (reg:DI 128 [ D.12072 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:137 -1
+     (nil))
+(insn 119 118 120 17 (parallel [
+            (set (reg/v:SI 142 [ iovcnt ])
+                (plus:SI (reg/v:SI 142 [ iovcnt ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:138 -1
+     (nil))
+(insn 120 119 181 17 (parallel [
+            (set (reg/v/f:DI 111 [ iovp ])
+                (plus:DI (reg/v/f:DI 111 [ iovp ])
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:139 -1
+     (nil))
+(code_label 181 120 121 18 73 "" [1 uses])
+(note 121 181 122 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(code_label 122 121 123 19 64 "" [1 uses])
+(note 123 122 124 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 124 123 125 19 (set (reg:DI 128 [ D.12072 ])
+        (mem:DI (plus:DI (reg/v/f:DI 111 [ iovp ])
+                (const_int 8 [0x8])) [5 iovp_10->iov_len+0 S8 A64])) nscd_helper.c:135 -1
+     (nil))
+(insn 125 124 127 19 (set (reg:DI 129 [ D.12072 ])
+        (reg/v:DI 114 [ ret ])) nscd_helper.c:135 -1
+     (nil))
+(insn 127 125 128 19 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 128 [ D.12072 ])
+            (reg:DI 129 [ D.12072 ]))) nscd_helper.c:135 -1
+     (nil))
+(jump_insn 128 127 129 19 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 126)
+            (pc))) nscd_helper.c:135 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 126)
+(note 129 128 130 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 130 129 131 20 (parallel [
+            (set (mem/f:DI (reg/v/f:DI 111 [ iovp ]) [10 iovp_10->iov_base+0 S8 A64])
+                (plus:DI (mem/f:DI (reg/v/f:DI 111 [ iovp ]) [10 iovp_10->iov_base+0 S8 A64])
+                    (reg:DI 129 [ D.12072 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:141 -1
+     (nil))
+(insn 131 130 132 20 (parallel [
+            (set (reg:DI 170)
+                (minus:DI (reg:DI 128 [ D.12072 ])
+                    (reg:DI 129 [ D.12072 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:142 -1
+     (nil))
+(insn 132 131 133 20 (set (mem:DI (plus:DI (reg/v/f:DI 111 [ iovp ])
+                (const_int 8 [0x8])) [5 iovp_10->iov_len+0 S8 A64])
+        (reg:DI 170)) nscd_helper.c:142 -1
+     (nil))
+(jump_insn 133 132 134 20 (set (pc)
+        (label_ref 136)) nscd_helper.c:142 -1
+     (nil)
+ -> 136)
+(barrier 134 133 148)
+(code_label 148 134 135 21 68 "" [2 uses])
+(note 135 148 136 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(code_label 136 135 137 22 66 "" [1 uses])
+(note 137 136 138 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 138 137 139 22 (set (reg:SI 1 dx)
+        (reg/v:SI 142 [ iovcnt ])) nscd_helper.c:144 -1
+     (nil))
+(insn 139 138 140 22 (set (reg:DI 4 si)
+        (reg/v/f:DI 111 [ iovp ])) nscd_helper.c:144 -1
+     (nil))
+(insn 140 139 141 22 (set (reg:SI 5 di)
+        (reg/v:SI 140 [ fd ])) nscd_helper.c:144 -1
+     (nil))
+(call_insn 141 140 142 22 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__readv") [flags 0x41]  <function_decl 0x2adb4df34a20 __readv>) [0 __readv S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:144 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__readv") [flags 0x41]  <function_decl 0x2adb4df34a20 __readv>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 142 141 143 22 (set (reg/v:DI 114 [ ret ])
+        (reg:DI 0 ax)) nscd_helper.c:144 -1
+     (nil))
+(insn 143 142 144 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 114 [ ret ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:144 -1
+     (nil))
+(jump_insn 144 143 145 22 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 154)
+            (pc))) nscd_helper.c:144 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 154)
+(note 145 144 146 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 146 145 147 23 (set (reg:DI 171)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:144 -1
+     (nil))
+(insn 147 146 149 23 (set (reg:SI 118 [ D.12070 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 171)) [2 __libc_errno+0 S4 A32])) nscd_helper.c:144 -1
+     (nil))
+(insn 149 147 150 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 118 [ D.12070 ])
+            (const_int 4 [0x4]))) nscd_helper.c:144 -1
+     (nil))
+(jump_insn 150 149 153 23 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 148)
+            (pc))) nscd_helper.c:144 -1
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 148)
+(note 153 150 151 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 151 153 152 24 (set (pc)
+        (label_ref 164)) -1
+     (nil)
+ -> 164)
+(barrier 152 151 154)
+(code_label 154 152 155 25 67 "" [1 uses])
+(note 155 154 156 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 156 155 157 25 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:DI 114 [ ret ])
+            (const_int 0 [0]))) nscd_helper.c:145 -1
+     (nil))
+(jump_insn 157 156 158 25 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 178)
+            (pc))) nscd_helper.c:145 -1
+     (int_list:REG_BR_PROB 288 (nil))
+ -> 178)
+(note 158 157 159 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 159 158 160 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 114 [ ret ])
+            (const_int 0 [0]))) nscd_helper.c:147 -1
+     (nil))
+(jump_insn 160 159 161 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 198)
+            (pc))) nscd_helper.c:147 612 {*jcc_1}
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 198)
+(note 161 160 162 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 162 161 163 27 (set (reg:DI 172)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) -1
+     (nil))
+(insn 163 162 164 27 (set (reg:SI 118 [ D.12070 ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 172)) [2 __libc_errno+0 S4 A32])) -1
+     (nil))
+(code_label 164 163 165 28 69 "" [1 uses])
+(note 165 164 166 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 166 165 167 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 118 [ D.12070 ])
+            (const_int 11 [0xb]))) nscd_helper.c:147 -1
+     (nil))
+(jump_insn 167 166 168 28 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 201)
+            (pc))) nscd_helper.c:147 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 201)
+(note 168 167 169 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 169 168 170 29 (set (reg:DI 4 si)
+        (const_int 200 [0xc8])) nscd_helper.c:149 -1
+     (nil))
+(insn 170 169 171 29 (set (reg:SI 5 di)
+        (reg/v:SI 140 [ fd ])) nscd_helper.c:149 -1
+     (nil))
+(call_insn 171 170 172 29 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>) [0 wait_on_socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:149 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 172 171 173 29 (set (reg:SI 135 [ D.12070 ])
+        (reg:SI 0 ax)) nscd_helper.c:149 -1
+     (nil))
+(insn 173 172 174 29 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 135 [ D.12070 ])
+            (const_int 0 [0]))) nscd_helper.c:149 -1
+     (nil))
+(jump_insn 174 173 177 29 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 148)
+            (pc))) nscd_helper.c:149 -1
+     (int_list:REG_BR_PROB 9775 (nil))
+ -> 148)
+(note 177 174 175 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 175 177 176 30 (set (pc)
+        (label_ref 201)) -1
+     (nil)
+ -> 201)
+(barrier 176 175 178)
+(code_label 178 176 179 31 70 "" [1 uses])
+(note 179 178 180 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 180 179 182 31 (parallel [
+            (set (reg/v:DI 109 [ ret ])
+                (plus:DI (reg/v:DI 109 [ ret ])
+                    (reg/v:DI 114 [ ret ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:154 -1
+     (nil))
+(insn 182 180 183 31 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 121 [ total ])
+            (reg/v:DI 109 [ ret ]))) nscd_helper.c:156 -1
+     (nil))
+(jump_insn 183 182 186 31 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 181)
+            (pc))) nscd_helper.c:156 -1
+     (int_list:REG_BR_PROB 9775 (nil))
+ -> 181)
+(note 186 183 198 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(code_label 198 186 187 33 74 "" [2 uses])
+(note 187 198 188 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 188 187 189 33 (clobber (mem:BLK (scratch) [0  A8])) -1
+     (nil))
+(insn 189 188 190 33 (clobber (mem:BLK (reg/f:DI 7 sp) [0  A8])) -1
+     (nil))
+(insn 190 189 191 33 (set (reg/f:DI 7 sp)
+        (reg/f:DI 123 [ D.12069 ])) -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(code_label 191 190 192 34 62 "" [4 uses])
+(note 192 191 193 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 193 192 194 34 (set (reg:DI 139 [ <retval> ])
+        (reg/v:DI 109 [ ret ])) -1
+     (nil))
+(jump_insn 194 193 195 34 (set (pc)
+        (label_ref 205)) -1
+     (nil)
+ -> 205)
+(barrier 195 194 201)
+(code_label 201 195 202 36 72 "" [2 uses])
+(note 202 201 31 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 31 202 203 36 (set (reg/v:DI 109 [ ret ])
+        (reg/v:DI 114 [ ret ])) nscd_helper.c:130 -1
+     (nil))
+(jump_insn 203 31 204 36 (set (pc)
+        (label_ref 198)) -1
+     (nil)
+ -> 198)
+(barrier 204 203 205)
+(code_label 205 204 208 37 57 "" [1 uses])
+(note 208 205 206 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 206 208 207 37 (set (reg/i:DI 0 ax)
+        (reg:DI 139 [ <retval> ])) nscd_helper.c:161 -1
+     (nil))
+(insn 207 206 0 37 (use (reg/i:DI 0 ax)) nscd_helper.c:161 -1
+     (nil))
+
+;; Function __nscd_unmap (__nscd_unmap, funcdef_no=53, decl_uid=11357, cgraph_uid=53, symbol_order=58)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+deleting block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 90 [ mapped ])
+        (reg:DI 5 di [ mapped ])) nscd_helper.c:247 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 90 [ mapped ])
+                    (const_int 24 [0x18])) [2 mapped_2(D)->counter+0 S4 A64])
+            (const_int 0 [0]))) nscd_helper.c:248 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) nscd_helper.c:248 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 15)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (set (reg:DI 2 cx)
+        (symbol_ref:DI ("__PRETTY_FUNCTION__.11474") [flags 0x2]  <var_decl 0x2adb4e27f870 __PRETTY_FUNCTION__>)) nscd_helper.c:248 -1
+     (nil))
+(insn 10 9 11 4 (set (reg:SI 1 dx)
+        (const_int 248 [0xf8])) nscd_helper.c:248 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x2adb4e3b2870 *.LC4>)) nscd_helper.c:248 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2adb4e3b2900 *.LC5>)) nscd_helper.c:248 -1
+     (nil))
+(call_insn 13 12 14 4 (call (mem:QI (symbol_ref:DI ("*__GI___assert_fail") [flags 0x43]  <function_decl 0x2adb4dc50e58 __assert_fail>) [0 __assert_fail S1 A8])
+        (const_int 0 [0])) nscd_helper.c:248 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___assert_fail") [flags 0x43]  <function_decl 0x2adb4dc50e58 __assert_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(barrier 14 13 15)
+(code_label 15 14 16 5 96 "" [1 uses])
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:DI 91)
+        (mem:DI (plus:DI (reg/v/f:DI 90 [ mapped ])
+                (const_int 16 [0x10])) [5 mapped_2(D)->mapsize+0 S8 A64])) nscd_helper.c:249 -1
+     (nil))
+(insn 18 17 19 5 (set (reg:DI 4 si)
+        (reg:DI 91)) nscd_helper.c:249 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (mem/f:DI (reg/v/f:DI 90 [ mapped ]) [10 mapped_2(D)->head+0 S8 A64])) nscd_helper.c:249 -1
+     (nil))
+(call_insn 20 19 21 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__munmap") [flags 0x41]  <function_decl 0x2adb4e03bbd0 __munmap>) [0 __munmap S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:249 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__munmap") [flags 0x41]  <function_decl 0x2adb4e03bbd0 __munmap>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 21 20 22 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 90 [ mapped ])) nscd_helper.c:250 -1
+     (nil))
+(call_insn/j 22 21 23 5 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2adb4dba1e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) nscd_helper.c:250 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2adb4dba1e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 23 22 0)
+
+;; Function __nscd_get_mapping (__nscd_get_mapping, funcdef_no=54, decl_uid=11350, cgraph_uid=54, symbol_order=59)
+
+Partition 4: size 144 align 16
+	st
+Partition 3: size 56 align 16
+	msg
+Partition 1: size 32 align 16
+	iov
+Partition 2: size 24 align 16
+	buf
+Partition 0: size 8 align 8
+	mapsize
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+
+;; Generating RTL for gimple basic block 21
+
+;; Generating RTL for gimple basic block 22
+
+;; Generating RTL for gimple basic block 23
+
+;; Generating RTL for gimple basic block 24
+
+;; Generating RTL for gimple basic block 25
+
+;; Generating RTL for gimple basic block 26
+
+;; Generating RTL for gimple basic block 27
+
+;; Generating RTL for gimple basic block 28
+
+;; Generating RTL for gimple basic block 29
+
+;; Generating RTL for gimple basic block 30
+
+;; Generating RTL for gimple basic block 31
+
+;; Generating RTL for gimple basic block 32
+
+;; Generating RTL for gimple basic block 33
+
+;; Generating RTL for gimple basic block 34
+
+;; Generating RTL for gimple basic block 35
+
+;; Generating RTL for gimple basic block 36
+
+;; Generating RTL for gimple basic block 37
+
+;; Generating RTL for gimple basic block 38
+
+;; Generating RTL for gimple basic block 39
+Edge 2->34 redirected to 44
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 14->15 to 20 failed.
+Forwarding edge 37->38 to 41 failed.
+Edge 39->38 redirected to 41
+Forwarding edge 42->43 to 16 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 14->15 to 20 failed.
+Forwarding edge 37->38 to 41 failed.
+Deleted label in block 38.
+Forwarding edge 42->43 to 16 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v:SI 135 [ type ])
+        (reg:SI 5 di [ type ])) nscd_helper.c:259 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 136 [ key ])
+        (reg:DI 4 si [ key ])) nscd_helper.c:259 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 137 [ mappedp ])
+        (reg:DI 1 dx [ mappedp ])) nscd_helper.c:259 -1
+     (nil))
+(note 5 4 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 5 14 2 (set (reg/f:DI 88 [ D.12092 ])
+        (const_int 0 [0])) nscd_helper.c:259 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 136 [ key ])) nscd_helper.c:262 -1
+     (nil))
+(call_insn/i 15 14 16 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_strlen") [flags 0x43]  <function_decl 0x2adb4db85948 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:262 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_strlen") [flags 0x43]  <function_decl 0x2adb4db85948 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 16 15 17 2 (set (reg:DI 139)
+        (reg:DI 0 ax)) nscd_helper.c:262 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 140)
+        (reg:DI 139)) nscd_helper.c:262 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 89 [ D.12093 ])
+        (reg:DI 140)) nscd_helper.c:262 -1
+     (nil))
+(insn 19 18 20 2 (parallel [
+            (set (reg/v:DI 90 [ keylen ])
+                (plus:DI (reg:DI 89 [ D.12093 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:262 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:DI 141)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:263 -1
+     (nil))
+(insn 21 20 22 2 (set (reg/v:SI 91 [ saved_errno ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 141)) [2 __libc_errno+0 S4 A32])) nscd_helper.c:263 -1
+     (nil))
+(insn 22 21 23 2 (parallel [
+            (set (reg:DI 142)
+                (plus:DI (reg:DI 86 virtual-preferred-stack-boundary)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:266 -1
+     (nil))
+(insn 23 22 24 2 (parallel [
+            (set (reg:DI 143)
+                (plus:DI (reg/v:DI 90 [ keylen ])
+                    (reg:DI 142)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:266 -1
+     (nil))
+(insn 24 23 25 2 (parallel [
+            (set (reg:DI 145)
+                (udiv:DI (reg:DI 143)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (set (reg:DI 146)
+                (umod:DI (reg:DI 143)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:266 -1
+     (nil))
+(insn 25 24 26 2 (parallel [
+            (set (reg:DI 147)
+                (mult:DI (reg:DI 145)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:266 -1
+     (nil))
+(insn 26 25 27 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (minus:DI (reg/f:DI 7 sp)
+                    (reg:DI 147)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:266 -1
+     (nil))
+(insn 27 26 28 2 (set (reg:DI 148)
+        (reg/f:DI 83 virtual-stack-dynamic)) nscd_helper.c:266 -1
+     (nil))
+(insn 28 27 29 2 (parallel [
+            (set (reg/f:DI 149)
+                (plus:DI (reg:DI 148)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:266 -1
+     (nil))
+(insn 29 28 30 2 (set (reg/f:DI 92 [ resdata.16 ])
+        (reg/f:DI 149)) nscd_helper.c:266 -1
+     (nil))
+(insn 30 29 31 2 (set (reg:DI 1 dx)
+        (reg/v:DI 90 [ keylen ])) nscd_helper.c:269 -1
+     (nil))
+(insn 31 30 32 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 136 [ key ])) nscd_helper.c:269 -1
+     (nil))
+(insn 32 31 33 2 (set (reg:SI 5 di)
+        (reg/v:SI 135 [ type ])) nscd_helper.c:269 -1
+     (nil))
+(call_insn 33 32 34 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("open_socket") [flags 0x3]  <function_decl 0x2adb4e26fca8 open_socket>) [0 open_socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:269 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("open_socket") [flags 0x3]  <function_decl 0x2adb4e26fca8 open_socket>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 34 33 35 2 (set (reg/v:SI 93 [ sock ])
+        (reg:SI 0 ax)) nscd_helper.c:269 -1
+     (nil))
+(insn 35 34 36 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 93 [ sock ])
+            (const_int 0 [0]))) nscd_helper.c:270 -1
+     (nil))
+(jump_insn 36 35 37 2 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 280)
+            (pc))) nscd_helper.c:270 612 {*jcc_1}
+     (int_list:REG_BR_PROB 4752 (nil))
+ -> 280)
+(note 37 36 38 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -240 [0xffffffffffffff10])) [10 iov[0].iov_base+0 S8 A128])
+        (reg/f:DI 92 [ resdata.16 ])) nscd_helper.c:277 -1
+     (nil))
+(insn 39 38 40 4 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -232 [0xffffffffffffff18])) [5 iov[0].iov_len+0 S8 A64])
+        (reg/v:DI 90 [ keylen ])) nscd_helper.c:278 -1
+     (nil))
+(insn 40 39 41 4 (parallel [
+            (set (reg:DI 150)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -280 [0xfffffffffffffee8])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:279 -1
+     (nil))
+(insn 41 40 42 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -224 [0xffffffffffffff20])) [10 iov[1].iov_base+0 S8 A128])
+        (reg:DI 150)) nscd_helper.c:279 -1
+     (nil))
+(insn 42 41 43 4 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -216 [0xffffffffffffff28])) [5 iov[1].iov_len+0 S8 A64])
+        (const_int 8 [0x8])) nscd_helper.c:280 -1
+     (nil))
+(insn 43 42 44 4 (parallel [
+            (set (reg/f:DI 151)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -208 [0xffffffffffffff30])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:287 -1
+     (nil))
+(insn 44 43 45 4 (set (reg:DI 152)
+        (const_int 0 [0])) nscd_helper.c:287 -1
+     (nil))
+(insn 45 44 46 4 (set (reg:DI 153)
+        (const_int 7 [0x7])) nscd_helper.c:287 -1
+     (nil))
+(insn 46 45 47 4 (parallel [
+            (set (reg:DI 153)
+                (const_int 0 [0]))
+            (set (reg/f:DI 151)
+                (plus:DI (ashift:DI (reg:DI 153)
+                        (const_int 3 [0x3]))
+                    (reg/f:DI 151)))
+            (set (mem/c:BLK (reg/f:DI 151) [13 msg+0 S56 A128])
+                (const_int 0 [0]))
+            (use (reg:DI 152))
+            (use (reg:DI 153))
+        ]) nscd_helper.c:287 -1
+     (nil))
+(insn 47 46 48 4 (parallel [
+            (set (reg:DI 154)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -240 [0xffffffffffffff10])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:287 -1
+     (nil))
+(insn 48 47 49 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -192 [0xffffffffffffff40])) [10 msg.msg_iov+0 S8 A128])
+        (reg:DI 154)) nscd_helper.c:287 -1
+     (nil))
+(insn 49 48 50 4 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -184 [0xffffffffffffff48])) [5 msg.msg_iovlen+0 S8 A64])
+        (const_int 2 [0x2])) nscd_helper.c:287 -1
+     (nil))
+(insn 50 49 51 4 (parallel [
+            (set (reg:DI 155)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -272 [0xfffffffffffffef0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:287 -1
+     (nil))
+(insn 51 50 52 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -176 [0xffffffffffffff50])) [10 msg.msg_control+0 S8 A128])
+        (reg:DI 155)) nscd_helper.c:287 -1
+     (nil))
+(insn 52 51 53 4 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -264 [0xfffffffffffffef8])) [2 MEM[(struct cmsghdr *)&buf].cmsg_level+0 S4 A64])
+        (const_int 1 [0x1])) nscd_helper.c:292 -1
+     (nil))
+(insn 53 52 54 4 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -260 [0xfffffffffffffefc])) [2 MEM[(struct cmsghdr *)&buf].cmsg_type+0 S4 A32])
+        (const_int 1 [0x1])) nscd_helper.c:293 -1
+     (nil))
+(insn 54 53 55 4 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -272 [0xfffffffffffffef0])) [5 MEM[(struct cmsghdr *)&buf].cmsg_len+0 S8 A128])
+        (const_int 20 [0x14])) nscd_helper.c:294 -1
+     (nil))
+(insn 55 54 56 4 (parallel [
+            (set (reg:DI 156)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -272 [0xfffffffffffffef0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:298 -1
+     (nil))
+(insn 56 55 57 4 (parallel [
+            (set (reg:DI 157)
+                (plus:DI (reg:DI 156)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:298 -1
+     (nil))
+(insn 57 56 58 4 (set (reg:DI 158 [ D.12100 ])
+        (reg:DI 157)) nscd_helper.c:298 -1
+     (nil))
+(insn 58 57 59 4 (set (mem/c:SI (reg:DI 158 [ D.12100 ]) [0 MEM[(void *)&buf + 16B]+0 S4 A128])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:298 -1
+     (nil))
+(insn 59 58 60 4 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [5 msg.msg_controllen+0 S8 A64])
+        (const_int 20 [0x14])) nscd_helper.c:300 -1
+     (nil))
+(insn 60 59 61 4 (set (reg:DI 4 si)
+        (const_int 5000 [0x1388])) nscd_helper.c:302 -1
+     (nil))
+(insn 61 60 62 4 (set (reg:SI 5 di)
+        (reg/v:SI 93 [ sock ])) nscd_helper.c:302 -1
+     (nil))
+(call_insn 62 61 63 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>) [0 wait_on_socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:302 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 63 62 64 4 (set (reg:SI 95 [ D.12094 ])
+        (reg:SI 0 ax)) nscd_helper.c:302 -1
+     (nil))
+(insn 64 63 65 4 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 95 [ D.12094 ])
+            (const_int 0 [0]))) nscd_helper.c:302 -1
+     (nil))
+(jump_insn 65 64 85 4 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) nscd_helper.c:302 -1
+     (int_list:REG_BR_PROB 7300 (nil))
+ -> 69)
+(code_label 85 65 66 5 104 "" [3 uses])
+(note 66 85 9 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 9 66 67 5 (set (reg/v/f:DI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:260 -1
+     (nil))
+(jump_insn 67 9 68 5 (set (pc)
+        (label_ref 232)) -1
+     (nil)
+ -> 232)
+(barrier 68 67 69)
+(code_label 69 68 70 6 101 "" [2 uses])
+(note 70 69 71 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 71 70 72 6 (parallel [
+            (set (reg:DI 159)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -208 [0xffffffffffffff30])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:308 -1
+     (nil))
+(insn 72 71 73 6 (set (reg:SI 1 dx)
+        (const_int 1073741824 [0x40000000])) nscd_helper.c:308 -1
+     (nil))
+(insn 73 72 74 6 (set (reg:DI 4 si)
+        (reg:DI 159)) nscd_helper.c:308 -1
+     (nil))
+(insn 74 73 75 6 (set (reg:SI 5 di)
+        (reg/v:SI 93 [ sock ])) nscd_helper.c:308 -1
+     (nil))
+(call_insn 75 74 76 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__recvmsg") [flags 0x43]  <function_decl 0x2adb4df5eca8 __recvmsg>) [0 __recvmsg S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:308 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__recvmsg") [flags 0x43]  <function_decl 0x2adb4df5eca8 __recvmsg>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 76 75 77 6 (set (reg/v:DI 96 [ n ])
+        (reg:DI 0 ax)) nscd_helper.c:308 -1
+     (nil))
+(insn 77 76 78 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 96 [ n ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:308 -1
+     (nil))
+(jump_insn 78 77 79 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 83)
+            (pc))) nscd_helper.c:308 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 83)
+(note 79 78 80 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 80 79 81 7 (set (reg:DI 160)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:308 -1
+     (nil))
+(insn 81 80 82 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 160)) [2 __libc_errno+0 S4 A32])
+            (const_int 4 [0x4]))) nscd_helper.c:308 -1
+     (nil))
+(jump_insn 82 81 83 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) nscd_helper.c:308 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 69)
+(code_label 83 82 84 8 103 "" [1 uses])
+(note 84 83 86 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 86 84 87 8 (set (reg:CC 17 flags)
+        (compare:CC (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -168 [0xffffffffffffff58])) [5 msg.msg_controllen+0 S8 A64])
+            (const_int 15 [0xf]))) nscd_helper.c:310 -1
+     (nil))
+(jump_insn 87 86 88 8 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) nscd_helper.c:310 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 85)
+(note 88 87 89 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 89 88 90 9 (set (reg/f:DI 99 [ D.12092 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -176 [0xffffffffffffff50])) [10 msg.msg_control+0 S8 A128])) nscd_helper.c:310 -1
+     (nil))
+(insn 90 89 91 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 99 [ D.12092 ])
+            (const_int 0 [0]))) nscd_helper.c:310 -1
+     (nil))
+(jump_insn 91 90 92 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) nscd_helper.c:310 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 85)
+(note 92 91 93 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 93 92 94 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:DI (reg/f:DI 99 [ D.12092 ]) [5 MEM[(struct cmsghdr *)_51].cmsg_len+0 S8 A64])
+            (const_int 20 [0x14]))) nscd_helper.c:310 -1
+     (nil))
+(jump_insn 94 93 95 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) nscd_helper.c:310 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 85)
+(note 95 94 96 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 96 95 97 11 (set (reg/v:SI 101 [ mapfd ])
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -256 [0xffffffffffffff00])) [2 MEM[(int *)&buf + 16B]+0 S4 A128])) nscd_helper.c:316 -1
+     (nil))
+(insn 97 96 98 11 (set (reg:DI 102 [ D.12093 ])
+        (reg/v:DI 96 [ n ])) nscd_helper.c:318 -1
+     (nil))
+(insn 98 97 99 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 90 [ keylen ])
+            (reg:DI 102 [ D.12093 ]))) nscd_helper.c:318 -1
+     (nil))
+(jump_insn 99 98 100 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 261)
+            (pc))) nscd_helper.c:318 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 261)
+(note 100 99 101 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 101 100 102 12 (parallel [
+            (set (reg:DI 161 [ D.12093 ])
+                (plus:DI (reg:DI 89 [ D.12093 ])
+                    (const_int 9 [0x9])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:318 -1
+     (nil))
+(insn 102 101 103 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 102 [ D.12093 ])
+            (reg:DI 161 [ D.12093 ]))) nscd_helper.c:318 -1
+     (nil))
+(jump_insn 103 102 113 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 107)
+            (pc))) nscd_helper.c:318 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 107)
+(code_label 113 103 104 13 108 "" [3 uses])
+(note 104 113 6 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 6 104 105 13 (set (reg/v/f:DI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:260 -1
+     (nil))
+(jump_insn 105 6 106 13 (set (pc)
+        (label_ref 228)) -1
+     (nil)
+ -> 228)
+(barrier 106 105 107)
+(code_label 107 106 108 14 106 "" [1 uses])
+(note 108 107 109 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 109 108 110 14 (set (reg:DI 4 si)
+        (reg/v/f:DI 136 [ key ])) nscd_helper.c:321 -1
+     (nil))
+(insn 110 109 111 14 (set (reg:DI 5 di)
+        (reg/f:DI 92 [ resdata.16 ])) nscd_helper.c:321 -1
+     (nil))
+(call_insn/i 111 110 112 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_strcmp") [flags 0x41]  <function_decl 0x2adb4db85000 __builtin_strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:321 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_strcmp") [flags 0x41]  <function_decl 0x2adb4db85000 __builtin_strcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 112 111 114 14 (set (reg:SI 105 [ D.12094 ])
+        (reg:SI 0 ax)) nscd_helper.c:321 -1
+     (nil))
+(insn 114 112 115 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 105 [ D.12094 ])
+            (const_int 0 [0]))) nscd_helper.c:321 -1
+     (nil))
+(jump_insn 115 114 118 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 113)
+            (pc))) nscd_helper.c:321 -1
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 113)
+(note 118 115 116 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 116 118 117 15 (set (pc)
+        (label_ref 140)) -1
+     (nil)
+ -> 140)
+(barrier 117 116 269)
+(code_label 269 117 119 16 120 "" [1 uses])
+(note 119 269 120 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 120 119 121 16 (parallel [
+            (set (reg:DI 162)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -144 [0xffffffffffffff70])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:327 -1
+     (nil))
+(insn 121 120 122 16 (set (reg:DI 1 dx)
+        (reg:DI 162)) nscd_helper.c:327 -1
+     (nil))
+(insn 122 121 123 16 (set (reg:SI 4 si)
+        (reg/v:SI 101 [ mapfd ])) nscd_helper.c:327 -1
+     (nil))
+(insn 123 122 124 16 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) nscd_helper.c:327 -1
+     (nil))
+(call_insn 124 123 125 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___fxstat64") [flags 0x43]  <function_decl 0x2adb4dd5c5e8 __fxstat64>) [0 __fxstat64 S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:327 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___fxstat64") [flags 0x43]  <function_decl 0x2adb4dd5c5e8 __fxstat64>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 125 124 126 16 (set (reg:SI 107 [ D.12094 ])
+        (reg:SI 0 ax)) nscd_helper.c:327 -1
+     (nil))
+(insn 126 125 127 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 107 [ D.12094 ])
+            (const_int 0 [0]))) nscd_helper.c:327 -1
+     (nil))
+(jump_insn 127 126 128 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 136)
+            (pc))) nscd_helper.c:327 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 136)
+(note 128 127 129 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 129 128 130 17 (set (reg:DI 112 [ D.12093 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -96 [0xffffffffffffffa0])) [5 st.st_size+0 S8 A128])) nscd_helper.c:328 -1
+     (nil))
+(insn 130 129 131 17 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 112 [ D.12093 ])
+            (const_int 119 [0x77]))) nscd_helper.c:328 -1
+     (nil))
+(jump_insn 131 130 132 17 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 136)
+            (pc))) nscd_helper.c:328 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 136)
+(note 132 131 133 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 134 18 (set (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -280 [0xfffffffffffffee8])) [5 mapsize+0 S8 A64])
+        (reg:DI 112 [ D.12093 ])) nscd_helper.c:332 -1
+     (nil))
+(jump_insn 134 133 135 18 (set (pc)
+        (label_ref 143)) -1
+     (nil)
+ -> 143)
+(barrier 135 134 136)
+(code_label 136 135 137 19 110 "" [2 uses])
+(note 137 136 8 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 8 137 138 19 (set (reg/v/f:DI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:260 -1
+     (nil))
+(jump_insn 138 8 139 19 (set (pc)
+        (label_ref 228)) -1
+     (nil)
+ -> 228)
+(barrier 139 138 140)
+(code_label 140 139 141 20 109 "" [1 uses])
+(note 141 140 142 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 142 141 143 20 (set (reg:DI 112 [ D.12093 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -280 [0xfffffffffffffee8])) [5 mapsize+0 S8 A64])) -1
+     (nil))
+(code_label 143 142 144 21 111 "" [1 uses])
+(note 144 143 145 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 145 144 146 21 (set (reg:DI 38 r9)
+        (const_int 0 [0])) nscd_helper.c:336 -1
+     (nil))
+(insn 146 145 147 21 (set (reg:SI 37 r8)
+        (reg/v:SI 101 [ mapfd ])) nscd_helper.c:336 -1
+     (nil))
+(insn 147 146 148 21 (set (reg:SI 2 cx)
+        (const_int 1 [0x1])) nscd_helper.c:336 -1
+     (nil))
+(insn 148 147 149 21 (set (reg:SI 1 dx)
+        (const_int 1 [0x1])) nscd_helper.c:336 -1
+     (nil))
+(insn 149 148 150 21 (set (reg:DI 4 si)
+        (reg:DI 112 [ D.12093 ])) nscd_helper.c:336 -1
+     (nil))
+(insn 150 149 151 21 (set (reg:DI 5 di)
+        (const_int 0 [0])) nscd_helper.c:336 -1
+     (nil))
+(call_insn 151 150 152 21 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__mmap") [flags 0x41]  <function_decl 0x2adb4e03ba20 __mmap>) [0 __mmap S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:336 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__mmap") [flags 0x41]  <function_decl 0x2adb4e03ba20 __mmap>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 37 r8))
+                        (expr_list:DI (use (reg:DI 38 r9))
+                            (nil))))))))
+(insn 152 151 153 21 (set (reg/v/f:DI 109 [ head ])
+        (reg:DI 0 ax)) nscd_helper.c:336 -1
+     (nil))
+(insn 153 152 154 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 109 [ head ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:337 -1
+     (nil))
+(jump_insn 154 153 155 21 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 113)
+            (pc))) nscd_helper.c:337 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 113)
+(note 155 154 156 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 156 155 157 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (reg/v/f:DI 109 [ head ]) [2 head_91->version+0 S4 A64])
+            (const_int 2 [0x2]))) nscd_helper.c:342 -1
+     (nil))
+(jump_insn 157 156 164 22 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 162)
+            (pc))) nscd_helper.c:342 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 162)
+(code_label 164 157 158 23 114 "" [2 uses])
+(note 158 164 159 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 159 158 160 23 (set (reg:DI 126 [ D.12093 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -280 [0xfffffffffffffee8])) [5 mapsize+0 S8 A64])) -1
+     (nil))
+(jump_insn 160 159 161 23 (set (pc)
+        (label_ref 190)) -1
+     (nil)
+ -> 190)
+(barrier 161 160 162)
+(code_label 162 161 163 24 112 "" [1 uses])
+(note 163 162 165 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 165 163 166 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 109 [ head ])
+                    (const_int 4 [0x4])) [2 head_91->header_size+0 S4 A32])
+            (const_int 120 [0x78]))) nscd_helper.c:343 -1
+     (nil))
+(jump_insn 166 165 167 24 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 164)
+            (pc))) nscd_helper.c:343 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 164)
+(note 167 166 168 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 168 167 169 25 (set (reg:SI 104 [ D.12094 ])
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ head ])
+                (const_int 40 [0x28])) [2 head_91->module+0 S4 A64])) nscd_helper.c:346 -1
+     (nil))
+(insn 169 168 170 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 104 [ D.12094 ])
+            (const_int 0 [0]))) nscd_helper.c:346 -1
+     (nil))
+(jump_insn 170 169 171 25 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 164)
+            (pc))) nscd_helper.c:346 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 164)
+(note 171 170 172 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 172 171 173 26 (set (reg:SI 113 [ D.12094 ])
+        (mem/v:SI (plus:DI (reg/v/f:DI 109 [ head ])
+                (const_int 12 [0xc])) [2 head_91->nscd_certainly_running+0 S4 A32])) nscd_helper.c:349 -1
+     (nil))
+(insn 173 172 174 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 113 [ D.12094 ])
+            (const_int 0 [0]))) nscd_helper.c:349 -1
+     (nil))
+(jump_insn 174 173 175 26 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 197)
+            (pc))) nscd_helper.c:349 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 197)
+(note 175 174 176 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 176 175 177 27 (set (reg:DI 114 [ D.12093 ])
+        (mem/v:DI (plus:DI (reg/v/f:DI 109 [ head ])
+                (const_int 16 [0x10])) [5 head_91->timestamp+0 S8 A64])) nscd_helper.c:350 -1
+     (nil))
+(insn 177 176 178 27 (set (reg:DI 5 di)
+        (const_int 0 [0])) nscd_helper.c:351 -1
+     (nil))
+(call_insn 178 177 179 27 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_time") [flags 0x43]  <function_decl 0x2adb4de94798 time>) [0 time S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:351 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_time") [flags 0x43]  <function_decl 0x2adb4de94798 time>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 179 178 180 27 (set (reg:DI 116 [ D.12095 ])
+        (reg:DI 0 ax)) nscd_helper.c:351 -1
+     (nil))
+(insn 180 179 181 27 (parallel [
+            (set (reg:DI 163 [ D.12093 ])
+                (plus:DI (reg:DI 114 [ D.12093 ])
+                    (const_int 300 [0x12c])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:349 -1
+     (nil))
+(insn 181 180 182 27 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 163 [ D.12093 ])
+            (reg:DI 116 [ D.12095 ]))) nscd_helper.c:349 -1
+     (nil))
+(jump_insn 182 181 183 27 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 187)
+            (pc))) nscd_helper.c:349 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 187)
+(note 183 182 184 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 184 183 185 28 (set (reg:SI 104 [ D.12094 ])
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ head ])
+                (const_int 40 [0x28])) [2 head_91->module+0 S4 A64])) -1
+     (nil))
+(jump_insn 185 184 186 28 (set (pc)
+        (label_ref 197)) -1
+     (nil)
+ -> 197)
+(barrier 186 185 187)
+(code_label 187 186 188 29 116 "" [1 uses])
+(note 188 187 189 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 189 188 190 29 (set (reg:DI 126 [ D.12093 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -280 [0xfffffffffffffee8])) [5 mapsize+0 S8 A64])) -1
+     (nil))
+(code_label 190 189 191 30 113 ("out_unmap") [3 uses])
+(note 191 190 192 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 192 191 193 30 (set (reg:DI 4 si)
+        (reg:DI 126 [ D.12093 ])) nscd_helper.c:354 -1
+     (nil))
+(insn 193 192 194 30 (set (reg:DI 5 di)
+        (reg/v/f:DI 109 [ head ])) nscd_helper.c:354 -1
+     (nil))
+(call_insn 194 193 7 30 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__munmap") [flags 0x41]  <function_decl 0x2adb4e03bbd0 __munmap>) [0 __munmap S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:354 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__munmap") [flags 0x41]  <function_decl 0x2adb4e03bbd0 __munmap>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 7 194 195 30 (set (reg/v/f:DI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:260 -1
+     (nil))
+(jump_insn 195 7 196 30 (set (pc)
+        (label_ref 228)) nscd_helper.c:355 -1
+     (nil)
+ -> 228)
+(barrier 196 195 197)
+(code_label 197 196 198 31 115 "" [2 uses])
+(note 198 197 199 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 199 198 200 31 (set (reg:DI 164 [ D.12093 ])
+        (sign_extend:DI (reg:SI 104 [ D.12094 ]))) nscd_helper.c:358 -1
+     (nil))
+(insn 200 199 201 31 (parallel [
+            (set (reg:DI 165 [ D.12093 ])
+                (plus:DI (reg:DI 164 [ D.12093 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:358 -1
+     (nil))
+(insn 201 200 202 31 (parallel [
+            (set (reg:DI 166 [ D.12093 ])
+                (ashift:DI (reg:DI 165 [ D.12093 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:358 -1
+     (nil))
+(insn 202 201 203 31 (parallel [
+            (set (reg:DI 167 [ D.12093 ])
+                (plus:DI (reg:DI 166 [ D.12093 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:358 -1
+     (nil))
+(insn 203 202 204 31 (parallel [
+            (set (reg:DI 122 [ D.12093 ])
+                (and:DI (reg:DI 167 [ D.12093 ])
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:358 -1
+     (nil))
+(insn 204 203 205 31 (set (reg:SI 168)
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ head ])
+                (const_int 44 [0x2c])) [2 head_91->data_size+0 S4 A32])) nscd_helper.c:360 -1
+     (nil))
+(insn 205 204 206 31 (set (reg:DI 124 [ D.12093 ])
+        (sign_extend:DI (reg:SI 168))) nscd_helper.c:360 -1
+     (nil))
+(insn 206 205 207 31 (parallel [
+            (set (reg:DI 169 [ D.12093 ])
+                (plus:DI (reg:DI 124 [ D.12093 ])
+                    (const_int 120 [0x78])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:358 -1
+     (nil))
+(insn 207 206 208 31 (parallel [
+            (set (reg/v:DI 125 [ size ])
+                (plus:DI (reg:DI 169 [ D.12093 ])
+                    (reg:DI 122 [ D.12093 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:358 -1
+     (nil))
+(insn 208 207 209 31 (set (reg:DI 126 [ D.12093 ])
+        (mem/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -280 [0xfffffffffffffee8])) [5 mapsize+0 S8 A64])) nscd_helper.c:362 -1
+     (nil))
+(insn 209 208 210 31 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 125 [ size ])
+            (reg:DI 126 [ D.12093 ]))) nscd_helper.c:362 -1
+     (nil))
+(jump_insn 210 209 211 31 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) nscd_helper.c:362 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 190)
+(note 211 210 212 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 212 211 213 32 (set (reg:DI 5 di)
+        (const_int 40 [0x28])) nscd_helper.c:366 -1
+     (nil))
+(call_insn 213 212 214 32 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2adb4dbab360 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:366 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2adb4dbab360 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 214 213 215 32 (set (reg/f:DI 170)
+        (reg:DI 0 ax)) nscd_helper.c:366 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 170)
+        (nil)))
+(insn 215 214 216 32 (set (reg/v/f:DI 87 [ result ])
+        (reg/f:DI 170)) nscd_helper.c:366 -1
+     (nil))
+(insn 216 215 217 32 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ result ])
+            (const_int 0 [0]))) nscd_helper.c:367 -1
+     (nil))
+(jump_insn 217 216 218 32 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) nscd_helper.c:367 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 190)
+(note 218 217 219 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 219 218 220 33 (set (mem/f:DI (reg/v/f:DI 87 [ result ]) [10 result_134->head+0 S8 A64])
+        (reg/v/f:DI 109 [ head ])) nscd_helper.c:371 -1
+     (nil))
+(insn 220 219 221 33 (set (reg:SI 172)
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ head ])
+                (const_int 4 [0x4])) [2 head_91->header_size+0 S4 A32])) nscd_helper.c:372 -1
+     (nil))
+(insn 221 220 222 33 (set (reg:DI 171 [ D.12096 ])
+        (sign_extend:DI (reg:SI 172))) nscd_helper.c:372 -1
+     (nil))
+(insn 222 221 223 33 (parallel [
+            (set (reg:DI 173 [ D.12096 ])
+                (plus:DI (reg:DI 171 [ D.12096 ])
+                    (reg:DI 122 [ D.12093 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:372 -1
+     (nil))
+(insn 223 222 224 33 (parallel [
+            (set (reg:DI 174)
+                (plus:DI (reg/v/f:DI 109 [ head ])
+                    (reg:DI 173 [ D.12096 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:372 -1
+     (nil))
+(insn 224 223 225 33 (set (mem/f:DI (plus:DI (reg/v/f:DI 87 [ result ])
+                (const_int 8 [0x8])) [10 result_134->data+0 S8 A64])
+        (reg:DI 174)) nscd_helper.c:372 -1
+     (nil))
+(insn 225 224 226 33 (set (mem:DI (plus:DI (reg/v/f:DI 87 [ result ])
+                (const_int 16 [0x10])) [5 result_134->mapsize+0 S8 A64])
+        (reg/v:DI 125 [ size ])) nscd_helper.c:374 -1
+     (nil))
+(insn 226 225 227 33 (set (mem:DI (plus:DI (reg/v/f:DI 87 [ result ])
+                (const_int 32 [0x20])) [5 result_134->datasize+0 S8 A64])
+        (reg:DI 124 [ D.12093 ])) nscd_helper.c:375 -1
+     (nil))
+(insn 227 226 228 33 (set (mem:SI (plus:DI (reg/v/f:DI 87 [ result ])
+                (const_int 24 [0x18])) [2 result_134->counter+0 S4 A64])
+        (const_int 1 [0x1])) nscd_helper.c:377 -1
+     (nil))
+(code_label 228 227 229 34 107 ("out_close") [3 uses])
+(note 229 228 230 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 230 229 231 34 (set (reg:SI 5 di)
+        (reg/v:SI 101 [ mapfd ])) nscd_helper.c:383 -1
+     (nil))
+(call_insn 231 230 232 34 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2adb4e02d948 __close>) [0 __close S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:383 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2adb4e02d948 __close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(code_label 232 231 233 35 102 ("out_close2") [1 uses])
+(note 233 232 234 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 234 233 235 35 (set (reg:SI 5 di)
+        (reg/v:SI 93 [ sock ])) nscd_helper.c:385 -1
+     (nil))
+(call_insn 235 234 277 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2adb4e02d948 __close>) [0 __close S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:385 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___close") [flags 0x43]  <function_decl 0x2adb4e02d948 __close>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(jump_insn 277 235 278 35 (set (pc)
+        (label_ref 236)) -1
+     (nil)
+ -> 236)
+(barrier 278 277 280)
+(code_label 280 278 279 36 121 "" [1 uses])
+(note 279 280 10 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 10 279 236 36 (set (reg/v/f:DI 87 [ result ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:260 -1
+     (nil))
+(code_label 236 10 237 37 100 ("out") [1 uses])
+(note 237 236 238 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 238 237 239 37 (set (reg:DI 175)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:387 -1
+     (nil))
+(insn 239 238 240 37 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 175)) [2 __libc_errno+0 S4 A32])
+        (reg/v:SI 91 [ saved_errno ])) nscd_helper.c:387 -1
+     (nil))
+(insn 240 239 241 37 (set (reg/v/f:DI 131 [ oldval ])
+        (mem/f:DI (reg/v/f:DI 137 [ mappedp ]) [10 *mappedp_149(D)+0 S8 A64])) nscd_helper.c:390 -1
+     (nil))
+(insn 241 240 242 37 (set (mem/f:DI (reg/v/f:DI 137 [ mappedp ]) [10 *mappedp_149(D)+0 S8 A64])
+        (reg/v/f:DI 87 [ result ])) nscd_helper.c:391 -1
+     (nil))
+(insn 242 241 243 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 131 [ oldval ])
+            (const_int 0 [0]))) nscd_helper.c:393 -1
+     (nil))
+(jump_insn 243 242 244 37 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 247)
+            (pc))) nscd_helper.c:393 -1
+     (int_list:REG_BR_PROB 7835 (nil))
+ -> 247)
+(note 244 243 245 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 245 244 246 38 (set (pc)
+        (label_ref 256)) -1
+     (nil)
+ -> 256)
+(barrier 246 245 247)
+(code_label 247 246 248 39 117 "" [1 uses])
+(note 248 247 249 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+(insn 249 248 251 39 (parallel [
+            (set (reg:SI 133 [ D.12099 ])
+                (unspec_volatile:SI [
+                        (mem/v:SI (plus:DI (reg/v/f:DI 131 [ oldval ])
+                                (const_int 24 [0x18])) [-1  S4 A32])
+                        (const_int 32773 [0x8005])
+                    ] UNSPECV_XCHG))
+            (set (mem/v:SI (plus:DI (reg/v/f:DI 131 [ oldval ])
+                        (const_int 24 [0x18])) [-1  S4 A32])
+                (plus:SI (mem/v:SI (plus:DI (reg/v/f:DI 131 [ oldval ])
+                            (const_int 24 [0x18])) [-1  S4 A32])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:393 -1
+     (nil))
+(insn 251 249 252 39 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 133 [ D.12099 ])
+            (const_int 1 [0x1]))) nscd_helper.c:393 -1
+     (nil))
+(jump_insn 252 251 253 39 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 256)
+            (pc))) nscd_helper.c:393 612 {*jcc_1}
+     (int_list:REG_BR_PROB 8010 (nil))
+ -> 256)
+(note 253 252 254 40 [bb 40] NOTE_INSN_BASIC_BLOCK)
+(insn 254 253 255 40 (set (reg:DI 5 di)
+        (reg/v/f:DI 131 [ oldval ])) nscd_helper.c:394 -1
+     (nil))
+(call_insn 255 254 256 40 (call (mem:QI (symbol_ref:DI ("__nscd_unmap") [flags 0x1]  <function_decl 0x2adb4e26f000 __nscd_unmap>) [0 __nscd_unmap S1 A8])
+        (const_int 0 [0])) nscd_helper.c:394 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__nscd_unmap") [flags 0x1]  <function_decl 0x2adb4e26f000 __nscd_unmap>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(code_label 256 255 257 41 118 "" [2 uses])
+(note 257 256 258 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+(insn 258 257 259 41 (set (reg:DI 134 [ <retval> ])
+        (reg/v/f:DI 87 [ result ])) nscd_helper.c:396 -1
+     (nil))
+(jump_insn 259 258 260 41 (set (pc)
+        (label_ref 273)) nscd_helper.c:396 -1
+     (nil)
+ -> 273)
+(barrier 260 259 261)
+(code_label 261 260 262 42 105 "" [1 uses])
+(note 262 261 263 42 [bb 42] NOTE_INSN_BASIC_BLOCK)
+(insn 263 262 264 42 (set (reg:DI 4 si)
+        (reg/v/f:DI 136 [ key ])) nscd_helper.c:321 -1
+     (nil))
+(insn 264 263 265 42 (set (reg:DI 5 di)
+        (reg/f:DI 92 [ resdata.16 ])) nscd_helper.c:321 -1
+     (nil))
+(call_insn/i 265 264 266 42 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_strcmp") [flags 0x41]  <function_decl 0x2adb4db85000 __builtin_strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:321 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_strcmp") [flags 0x41]  <function_decl 0x2adb4db85000 __builtin_strcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 266 265 267 42 (set (reg:SI 106 [ D.12094 ])
+        (reg:SI 0 ax)) nscd_helper.c:321 -1
+     (nil))
+(insn 267 266 268 42 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 106 [ D.12094 ])
+            (const_int 0 [0]))) nscd_helper.c:321 -1
+     (nil))
+(jump_insn 268 267 272 42 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 113)
+            (pc))) nscd_helper.c:321 -1
+     (int_list:REG_BR_PROB 9010 (nil))
+ -> 113)
+(note 272 268 270 43 [bb 43] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 270 272 271 43 (set (pc)
+        (label_ref 269)) nscd_helper.c:321 -1
+     (nil)
+ -> 269)
+(barrier 271 270 273)
+(code_label 273 271 276 44 99 "" [1 uses])
+(note 276 273 274 44 [bb 44] NOTE_INSN_BASIC_BLOCK)
+(insn 274 276 275 44 (set (reg/i:DI 0 ax)
+        (reg:DI 134 [ <retval> ])) nscd_helper.c:397 -1
+     (nil))
+(insn 275 274 0 44 (use (reg/i:DI 0 ax)) nscd_helper.c:397 -1
+     (nil))
+
+;; Function __nscd_get_map_ref (__nscd_get_map_ref, funcdef_no=55, decl_uid=11355, cgraph_uid=55, symbol_order=60)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 8->9 to 24 failed.
+Forwarding edge 11->12 to 18 failed.
+Forwarding edge 16->17 to 20 failed.
+Forwarding edge 24->25 to 18 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 8->9 to 24 failed.
+Forwarding edge 11->12 to 18 failed.
+Forwarding edge 16->17 to 20 failed.
+Forwarding edge 24->25 to 18 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 5 0 15 NOTE_INSN_DELETED)
+(note 15 5 6 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 6 15 7 2 (set (reg/v:SI 110 [ type ])
+        (reg:SI 5 di [ type ])) nscd_helper.c:402 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/v/f:DI 111 [ name ])
+        (reg:DI 4 si [ name ])) nscd_helper.c:402 -1
+     (nil))
+(insn 8 7 9 2 (set (reg/v/f:DI 112 [ mapptr ])
+        (reg:DI 1 dx [ mapptr ])) nscd_helper.c:402 -1
+     (nil))
+(insn 9 8 10 2 (set (reg/v/f:DI 113 [ gc_cyclep ])
+        (reg:DI 2 cx [ gc_cyclep ])) nscd_helper.c:402 -1
+     (nil))
+(note 10 9 17 2 NOTE_INSN_FUNCTION_BEG)
+(insn 17 10 18 2 (set (reg/v/f:DI 94 [ cur ])
+        (mem/v/f:DI (plus:DI (reg/v/f:DI 112 [ mapptr ])
+                (const_int 8 [0x8])) [10 mapptr_10(D)->mapped+0 S8 A64])) nscd_helper.c:403 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ cur ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:404 -1
+     (nil))
+(jump_insn 19 18 20 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) nscd_helper.c:404 -1
+     (int_list:REG_BR_PROB 2164 (nil))
+ -> 24)
+(note 20 19 21 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 11 4 (set (reg/f:DI 107 [ D.12125 ])
+        (reg/v/f:DI 112 [ mapptr ])) -1
+     (nil))
+(insn 11 21 22 4 (set (reg:SI 93 [ D.12119 ])
+        (const_int 6 [0x6])) nscd_helper.c:404 -1
+     (nil))
+(jump_insn 22 11 23 4 (set (pc)
+        (label_ref 34)) -1
+     (nil)
+ -> 34)
+(barrier 23 22 24)
+(code_label 24 23 25 5 148 "" [2 uses])
+(note 25 24 13 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 13 25 26 5 (set (reg/f:DI 92 [ D.12118 ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:404 -1
+     (nil))
+(jump_insn 26 13 27 5 (set (pc)
+        (label_ref 106)) -1
+     (nil)
+ -> 106)
+(barrier 27 26 40)
+(code_label 40 27 28 6 151 "" [1 uses])
+(note 28 40 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (parallel [
+            (set (reg:SI 93 [ D.12119 ])
+                (plus:SI (reg:SI 93 [ D.12119 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 30 29 31 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ D.12119 ])
+            (const_int 0 [0]))) nscd-client.h:378 -1
+     (nil))
+(jump_insn 31 30 32 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) nscd-client.h:378 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 24)
+(note 32 31 33 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 7 (asm_input/v ("rep; nop") nscd-client.h:381) nscd-client.h:381 -1
+     (nil))
+(code_label 34 33 35 8 149 "" [1 uses])
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 8 (set (reg:SI 115)
+        (const_int 0 [0])) nscd-client.h:374 -1
+     (nil))
+(insn 37 36 38 8 (set (reg:SI 116)
+        (const_int 1 [0x1])) nscd-client.h:374 -1
+     (nil))
+(insn 38 37 39 8 (parallel [
+            (set (reg:SI 108 [ D.12126 ])
+                (unspec_volatile:SI [
+                        (mem/v:SI (reg/f:DI 107 [ D.12125 ]) [-1  S4 A32])
+                        (reg:SI 115)
+                        (reg:SI 116)
+                        (const_int 32773 [0x8005])
+                    ] UNSPECV_CMPXCHG))
+            (set (mem/v:SI (reg/f:DI 107 [ D.12125 ]) [-1  S4 A32])
+                (unspec_volatile:SI [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+            (set (reg:CCZ 17 flags)
+                (unspec_volatile:CCZ [
+                        (const_int 0 [0])
+                    ] UNSPECV_CMPXCHG))
+        ]) nscd-client.h:374 -1
+     (nil))
+(insn 39 38 41 8 (set (reg:QI 114)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) nscd-client.h:374 -1
+     (nil))
+(insn 41 39 42 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 108 [ D.12126 ])
+            (const_int 0 [0]))) nscd-client.h:374 -1
+     (nil))
+(jump_insn 42 41 45 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 40)
+            (pc))) nscd-client.h:374 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 40)
+(note 45 42 43 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 43 45 44 9 (set (pc)
+        (label_ref 111)) nscd-client.h:374 -1
+     (nil)
+ -> 111)
+(barrier 44 43 114)
+(code_label 114 44 46 10 160 "" [1 uses])
+(note 46 114 47 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 91 [ cur ])
+            (const_int 0 [0]))) nscd_helper.c:415 -1
+     (nil))
+(jump_insn 48 47 72 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 61)
+            (pc))) nscd_helper.c:415 -1
+     (int_list:REG_BR_PROB 9328 (nil))
+ -> 61)
+(code_label 72 48 49 11 157 "" [2 uses])
+(note 49 72 50 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 11 (parallel [
+            (set (reg:DI 117 [ D.12124 ])
+                (plus:DI (reg/v/f:DI 112 [ mapptr ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:420 -1
+     (nil))
+(insn 51 50 52 11 (set (reg:DI 1 dx)
+        (reg:DI 117 [ D.12124 ])) nscd_helper.c:419 -1
+     (nil))
+(insn 52 51 53 11 (set (reg:DI 4 si)
+        (reg/v/f:DI 111 [ name ])) nscd_helper.c:419 -1
+     (nil))
+(insn 53 52 54 11 (set (reg:SI 5 di)
+        (reg/v:SI 110 [ type ])) nscd_helper.c:419 -1
+     (nil))
+(call_insn 54 53 55 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__nscd_get_mapping") [flags 0x3]  <function_decl 0x2adb4e24ed80 __nscd_get_mapping>) [0 __nscd_get_mapping S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:419 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__nscd_get_mapping") [flags 0x3]  <function_decl 0x2adb4e24ed80 __nscd_get_mapping>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 55 54 56 11 (set (reg/v/f:DI 91 [ cur ])
+        (reg:DI 0 ax)) nscd_helper.c:419 -1
+     (nil))
+(insn 56 55 57 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 91 [ cur ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:422 -1
+     (nil))
+(jump_insn 57 56 60 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 91)
+            (pc))) nscd_helper.c:422 -1
+     (int_list:REG_BR_PROB 8337 (nil))
+ -> 91)
+(note 60 57 58 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 58 60 59 12 (set (pc)
+        (label_ref 87)) -1
+     (nil)
+ -> 87)
+(barrier 59 58 61)
+(code_label 61 59 62 13 153 "" [1 uses])
+(note 62 61 63 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 64 13 (set (reg/f:DI 95 [ D.12120 ])
+        (mem/f:DI (reg/v/f:DI 91 [ cur ]) [10 cur_14->head+0 S8 A64])) nscd_helper.c:416 -1
+     (nil))
+(insn 64 63 65 13 (set (reg:SI 96 [ D.12121 ])
+        (mem/v:SI (plus:DI (reg/f:DI 95 [ D.12120 ])
+                (const_int 12 [0xc])) [2 _18->nscd_certainly_running+0 S4 A32])) nscd_helper.c:416 -1
+     (nil))
+(insn 65 64 66 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 96 [ D.12121 ])
+            (const_int 0 [0]))) nscd_helper.c:416 -1
+     (nil))
+(jump_insn 66 65 67 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 78)
+            (pc))) nscd_helper.c:416 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 78)
+(note 67 66 68 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 14 (set (reg:DI 97 [ D.12122 ])
+        (mem/v:DI (plus:DI (reg/f:DI 95 [ D.12120 ])
+                (const_int 16 [0x10])) [5 _18->timestamp+0 S8 A64])) nscd_helper.c:417 -1
+     (nil))
+(insn 69 68 70 14 (set (reg:DI 5 di)
+        (const_int 0 [0])) nscd_helper.c:417 -1
+     (nil))
+(call_insn 70 69 71 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_time") [flags 0x43]  <function_decl 0x2adb4de94798 time>) [0 time S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:417 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_time") [flags 0x43]  <function_decl 0x2adb4de94798 time>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 71 70 73 14 (set (reg:DI 99 [ D.12123 ])
+        (reg:DI 0 ax)) nscd_helper.c:417 -1
+     (nil))
+(insn 73 71 74 14 (parallel [
+            (set (reg:DI 118 [ D.12122 ])
+                (plus:DI (reg:DI 97 [ D.12122 ])
+                    (const_int 300 [0x12c])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:417 -1
+     (nil))
+(insn 74 73 75 14 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 118 [ D.12122 ])
+            (reg:DI 99 [ D.12123 ]))) nscd_helper.c:417 -1
+     (nil))
+(jump_insn 75 74 76 14 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) nscd_helper.c:417 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 72)
+(note 76 75 77 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 77 76 78 15 (set (reg/f:DI 95 [ D.12120 ])
+        (mem/f:DI (reg/v/f:DI 91 [ cur ]) [10 cur_14->head+0 S8 A64])) -1
+     (nil))
+(code_label 78 77 79 16 156 "" [1 uses])
+(note 79 78 80 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 80 79 81 16 (set (reg:SI 120)
+        (mem:SI (plus:DI (reg/f:DI 95 [ D.12120 ])
+                (const_int 44 [0x2c])) [2 _57->data_size+0 S4 A32])) nscd_helper.c:418 -1
+     (nil))
+(insn 81 80 82 16 (set (reg:DI 119 [ D.12122 ])
+        (sign_extend:DI (reg:SI 120))) nscd_helper.c:418 -1
+     (nil))
+(insn 82 81 83 16 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 119 [ D.12122 ])
+            (mem:DI (plus:DI (reg/v/f:DI 91 [ cur ])
+                    (const_int 32 [0x20])) [5 cur_14->datasize+0 S8 A64]))) nscd_helper.c:418 -1
+     (nil))
+(jump_insn 83 82 86 16 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) nscd_helper.c:418 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 72)
+(note 86 83 84 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 84 86 85 17 (set (pc)
+        (label_ref 94)) -1
+     (nil)
+ -> 94)
+(barrier 85 84 87)
+(code_label 87 85 88 18 155 "" [3 uses])
+(note 88 87 12 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 12 88 89 18 (set (reg/v/f:DI 91 [ cur ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:404 -1
+     (nil))
+(jump_insn 89 12 90 18 (set (pc)
+        (label_ref 103)) -1
+     (nil)
+ -> 103)
+(barrier 90 89 91)
+(code_label 91 90 92 19 154 "" [1 uses])
+(note 92 91 93 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 93 92 94 19 (set (reg/f:DI 95 [ D.12120 ])
+        (mem/f:DI (reg/v/f:DI 91 [ cur ]) [10 cur_33->head+0 S8 A64])) -1
+     (nil))
+(code_label 94 93 95 20 158 "" [1 uses])
+(note 95 94 96 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 96 95 97 20 (set (reg:SI 105 [ D.12121 ])
+        (mem/v:SI (plus:DI (reg/f:DI 95 [ D.12120 ])
+                (const_int 8 [0x8])) [2 _56->gc_cycle+0 S4 A64])) nscd_helper.c:424 -1
+     (nil))
+(insn 97 96 98 20 (set (mem:SI (reg/v/f:DI 113 [ gc_cyclep ]) [2 *gc_cyclep_39(D)+0 S4 A32])
+        (reg:SI 105 [ D.12121 ])) nscd_helper.c:424 -1
+     (nil))
+(insn 98 97 99 20 (parallel [
+            (set (reg:SI 121 [ D.12121 ])
+                (and:SI (reg:SI 105 [ D.12121 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:424 -1
+     (nil))
+(insn 99 98 100 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 121 [ D.12121 ])
+            (const_int 0 [0]))) nscd_helper.c:424 -1
+     (nil))
+(jump_insn 100 99 101 20 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 87)
+            (pc))) nscd_helper.c:424 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 87)
+(note 101 100 102 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 21 (parallel [
+            (set (mem:SI (plus:DI (reg/v/f:DI 91 [ cur ])
+                        (const_int 24 [0x18])) [2 cur_49->counter+0 S4 A64])
+                (asm_operands/v:SI ("lock;incl %0") ("=m") 0 [
+                        (mem:SI (plus:DI (reg/v/f:DI 91 [ cur ])
+                                (const_int 24 [0x18])) [2 cur_49->counter+0 S4 A64])
+                        (const_int 24 [0x18])
+                    ]
+                     [
+                        (asm_input:SI ("m") nscd_helper.c:428)
+                        (asm_input:DI ("i") nscd_helper.c:428)
+                    ]
+                     [] nscd_helper.c:428))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:428 -1
+     (nil))
+(code_label 103 102 104 22 159 "" [1 uses])
+(note 104 103 105 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 105 104 14 22 (set (mem/v:SI (reg/v/f:DI 112 [ mapptr ]) [2 mapptr_10(D)->lock+0 S4 A64])
+        (const_int 0 [0])) nscd_helper.c:432 -1
+     (nil))
+(insn 14 105 106 22 (set (reg/f:DI 92 [ D.12118 ])
+        (reg/v/f:DI 91 [ cur ])) nscd_helper.c:434 -1
+     (nil))
+(code_label 106 14 107 23 150 "" [1 uses])
+(note 107 106 108 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 108 107 109 23 (set (reg:DI 109 [ <retval> ])
+        (reg/f:DI 92 [ D.12118 ])) -1
+     (nil))
+(jump_insn 109 108 110 23 (set (pc)
+        (label_ref 120)) -1
+     (nil)
+ -> 120)
+(barrier 110 109 111)
+(code_label 111 110 112 24 152 "" [1 uses])
+(note 112 111 113 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 113 112 115 24 (set (reg/v/f:DI 91 [ cur ])
+        (mem/v/f:DI (plus:DI (reg/v/f:DI 112 [ mapptr ])
+                (const_int 8 [0x8])) [10 mapptr_10(D)->mapped+0 S8 A64])) nscd_helper.c:410 -1
+     (nil))
+(insn 115 113 116 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 91 [ cur ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:412 -1
+     (nil))
+(jump_insn 116 115 119 24 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 114)
+            (pc))) nscd_helper.c:412 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 114)
+(note 119 116 117 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 117 119 118 25 (set (pc)
+        (label_ref 87)) -1
+     (nil)
+ -> 87)
+(barrier 118 117 120)
+(code_label 120 118 123 26 147 "" [1 uses])
+(note 123 120 121 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 121 123 122 26 (set (reg/i:DI 0 ax)
+        (reg:DI 109 [ <retval> ])) nscd_helper.c:435 -1
+     (nil))
+(insn 122 121 0 26 (use (reg/i:DI 0 ax)) nscd_helper.c:435 -1
+     (nil))
+
+;; Function __nscd_cache_search (__nscd_cache_search, funcdef_no=56, decl_uid=11368, cgraph_uid=56, symbol_order=61)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+Edge 2->20 redirected to 24
+Edge 3->20 redirected to 25
+Edge 12->20 redirected to 26
+Edge 13->20 redirected to 27
+Edge 14->20 redirected to 28
+Edge 16->20 redirected to 29
+Edge 18->20 redirected to 30
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 134.
+Merging block 30 into block 29...
+Merged blocks 29 and 30.
+Merged 29 and 30 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 17 NOTE_INSN_DELETED)
+(note 17 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 17 3 2 (set (reg/v:SI 133 [ type ])
+        (reg:SI 5 di [ type ])) nscd_helper.c:453 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 134 [ key ])
+        (reg:DI 4 si [ key ])) nscd_helper.c:453 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 135 [ keylen ])
+        (reg:DI 1 dx [ keylen ])) nscd_helper.c:453 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 136 [ mapped ])
+        (reg:DI 2 cx [ mapped ])) nscd_helper.c:453 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:DI 137 [ datalen ])
+        (reg:DI 37 r8 [ datalen ])) nscd_helper.c:453 -1
+     (nil))
+(note 7 6 19 2 NOTE_INSN_FUNCTION_BEG)
+(insn 19 7 20 2 (set (reg:DI 4 si)
+        (reg/v:DI 135 [ keylen ])) nscd_helper.c:454 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 134 [ key ])) nscd_helper.c:454 -1
+     (nil))
+(call_insn 21 20 22 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__nis_hash") [flags 0x41]  <function_decl 0x2adb4e225af8 __nis_hash>) [0 __nis_hash S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:454 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__nis_hash") [flags 0x41]  <function_decl 0x2adb4e225af8 __nis_hash>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 22 21 23 2 (set (reg:SI 90 [ D.12136 ])
+        (reg:SI 0 ax)) nscd_helper.c:454 -1
+     (nil))
+(insn 23 22 24 2 (set (reg/f:DI 91 [ D.12137 ])
+        (mem/f:DI (reg/v/f:DI 136 [ mapped ]) [10 mapped_12(D)->head+0 S8 A64])) nscd_helper.c:454 -1
+     (nil))
+(insn 24 23 25 2 (set (reg/v:DI 96 [ datasize ])
+        (mem:DI (plus:DI (reg/v/f:DI 136 [ mapped ])
+                (const_int 32 [0x20])) [5 mapped_12(D)->datasize+0 S8 A64])) nscd_helper.c:455 -1
+     (nil))
+(insn 25 24 26 2 (parallel [
+            (set (reg:SI 141)
+                (udiv:SI (reg:SI 90 [ D.12136 ])
+                    (mem:SI (plus:DI (reg/f:DI 91 [ D.12137 ])
+                            (const_int 40 [0x28])) [2 _13->module+0 S4 A64])))
+            (set (reg:SI 140 [ D.12136 ])
+                (umod:SI (reg:SI 90 [ D.12136 ])
+                    (mem:SI (plus:DI (reg/f:DI 91 [ D.12137 ])
+                            (const_int 40 [0x28])) [2 _13->module+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:457 -1
+     (nil))
+(insn 26 25 27 2 (set (reg:DI 142 [ hash ])
+        (zero_extend:DI (reg:SI 140 [ D.12136 ]))) nscd_helper.c:457 -1
+     (nil))
+(insn 27 26 28 2 (parallel [
+            (set (reg:DI 143)
+                (plus:DI (reg:DI 142 [ hash ])
+                    (const_int 28 [0x1c])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:457 -1
+     (nil))
+(insn 28 27 29 2 (set (reg:SI 144)
+        (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 143)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 91 [ D.12137 ]))
+                (const_int 8 [0x8])) [2 _13->array S4 A32])) nscd_helper.c:458 -1
+     (nil))
+(insn 29 28 30 2 (parallel [
+            (set (reg:SI 138 [ work ])
+                (asm_operands:SI ("") ("=r") 0 [
+                        (reg:SI 144)
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:458)
+                    ]
+                     [] nscd_helper.c:458))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:458 -1
+     (nil))
+(insn 30 29 31 2 (set (reg/v:SI 87 [ work ])
+        (reg:SI 138 [ work ])) nscd_helper.c:458 -1
+     (nil))
+(insn 31 30 32 2 (set (reg:DI 146)
+        (const_int -3689348814741910323 [0xcccccccccccccccd])) nscd_helper.c:460 -1
+     (nil))
+(insn 32 31 33 2 (parallel [
+            (set (reg:DI 145)
+                (truncate:DI (lshiftrt:TI (mult:TI (zero_extend:TI (reg/v:DI 96 [ datasize ]))
+                            (zero_extend:TI (reg:DI 146)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:460 -1
+     (nil))
+(insn 33 32 34 2 (parallel [
+            (set (reg/v:DI 105 [ loop_cnt ])
+                (lshiftrt:DI (reg:DI 145)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:460 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg/v:DI 96 [ datasize ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 34 33 35 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 87 [ work ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:464 -1
+     (nil))
+(jump_insn 35 34 36 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 144)
+            (pc))) nscd_helper.c:464 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 144)
+(note 36 35 37 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 4 (set (reg:DI 98 [ D.12134 ])
+        (zero_extend:DI (reg/v:SI 87 [ work ]))) nscd_helper.c:464 -1
+     (nil))
+(insn 38 37 39 4 (parallel [
+            (set (reg:DI 147 [ D.12134 ])
+                (plus:DI (reg:DI 98 [ D.12134 ])
+                    (const_int 28 [0x1c])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:464 -1
+     (nil))
+(insn 39 38 40 4 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 147 [ D.12134 ]))) nscd_helper.c:464 -1
+     (nil))
+(jump_insn 40 39 41 4 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 148)
+            (pc))) nscd_helper.c:464 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 148)
+(note 41 40 42 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 8 5 (set (reg/f:DI 131 [ D.12142 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 136 [ mapped ])
+                (const_int 8 [0x8])) [10 mapped_12(D)->data+0 S8 A64])) -1
+     (nil))
+(insn 8 42 127 5 (set (reg/v:SI 110 [ tick ])
+        (const_int 0 [0])) nscd_helper.c:464 -1
+     (nil))
+(code_label 127 8 43 6 177 "" [1 uses])
+(note 43 127 44 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 6 (parallel [
+            (set (reg/v/f:DI 100 [ here ])
+                (plus:DI (reg/f:DI 131 [ D.12142 ])
+                    (reg:DI 98 [ D.12134 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:466 -1
+     (nil))
+(insn 45 44 46 6 (set (reg:SI 148 [ D.12136 ])
+        (zero_extend:SI (mem/j:QI (reg/v/f:DI 100 [ here ]) [18 here_25->type+0 S1 A64]))) nscd_helper.c:480 -1
+     (nil))
+(insn 46 45 47 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 148 [ D.12136 ])
+            (reg/v:SI 133 [ type ]))) nscd_helper.c:480 -1
+     (nil))
+(jump_insn 47 46 48 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:480 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 95)
+(note 48 47 49 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 7 (set (reg:SI 150)
+        (mem:SI (plus:DI (reg/v/f:DI 100 [ here ])
+                (const_int 4 [0x4])) [2 here_25->len+0 S4 A32])) nscd_helper.c:481 -1
+     (nil))
+(insn 50 49 51 7 (set (reg:DI 149 [ D.12134 ])
+        (sign_extend:DI (reg:SI 150))) nscd_helper.c:481 -1
+     (nil))
+(insn 51 50 52 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 135 [ keylen ])
+            (reg:DI 149 [ D.12134 ]))) nscd_helper.c:481 -1
+     (nil))
+(jump_insn 52 51 53 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:481 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 95)
+(note 53 52 54 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 8 (set (reg:SI 152)
+        (mem:SI (plus:DI (reg/v/f:DI 100 [ here ])
+                (const_int 8 [0x8])) [2 here_25->key+0 S4 A64])) nscd_helper.c:482 -1
+     (nil))
+(insn 55 54 56 8 (parallel [
+            (set (reg:SI 151 [ here_key ])
+                (asm_operands:SI ("") ("=r") 0 [
+                        (reg:SI 152)
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:482)
+                    ]
+                     [] nscd_helper.c:482))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:482 -1
+     (nil))
+(insn 56 55 57 8 (set (reg/v:SI 114 [ here_key ])
+        (reg:SI 151 [ here_key ])) nscd_helper.c:482 -1
+     (nil))
+(insn 57 56 58 8 (set (reg:DI 115 [ D.12134 ])
+        (zero_extend:DI (reg/v:SI 114 [ here_key ]))) nscd_helper.c:482 -1
+     (nil))
+(insn 58 57 59 8 (parallel [
+            (set (reg:DI 153 [ D.12134 ])
+                (plus:DI (reg/v:DI 135 [ keylen ])
+                    (reg:DI 115 [ D.12134 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:482 -1
+     (nil))
+(insn 59 58 60 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 153 [ D.12134 ]))) nscd_helper.c:482 -1
+     (nil))
+(jump_insn 60 59 61 8 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:482 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 95)
+(note 61 60 62 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 9 (parallel [
+            (set (reg:DI 154 [ D.12141 ])
+                (plus:DI (reg/f:DI 131 [ D.12142 ])
+                    (reg:DI 115 [ D.12134 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:483 -1
+     (nil))
+(insn 63 62 64 9 (set (reg:DI 1 dx)
+        (reg/v:DI 135 [ keylen ])) nscd_helper.c:483 -1
+     (nil))
+(insn 64 63 65 9 (set (reg:DI 4 si)
+        (reg:DI 154 [ D.12141 ])) nscd_helper.c:483 -1
+     (nil))
+(insn 65 64 66 9 (set (reg:DI 5 di)
+        (reg/v/f:DI 134 [ key ])) nscd_helper.c:483 -1
+     (nil))
+(call_insn/i 66 65 67 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_memcmp") [flags 0x43]  <function_decl 0x2adb4db80ca8 memcmp>) [0 __builtin_memcmp S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:483 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_memcmp") [flags 0x43]  <function_decl 0x2adb4db80ca8 memcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 67 66 68 9 (set (reg:SI 155)
+        (reg:SI 0 ax)) nscd_helper.c:483 -1
+     (nil))
+(insn 68 67 69 9 (set (reg:SI 156)
+        (reg:SI 155)) nscd_helper.c:483 -1
+     (nil))
+(insn 69 68 70 9 (set (reg:SI 118 [ D.12138 ])
+        (reg:SI 156)) nscd_helper.c:483 -1
+     (nil))
+(insn 70 69 71 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 118 [ D.12138 ])
+            (const_int 0 [0]))) nscd_helper.c:483 -1
+     (nil))
+(jump_insn 71 70 72 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:483 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 95)
+(note 72 71 73 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 73 72 74 10 (set (reg:SI 158)
+        (mem:SI (plus:DI (reg/v/f:DI 100 [ here ])
+                (const_int 20 [0x14])) [2 here_25->packet+0 S4 A32])) nscd_helper.c:484 -1
+     (nil))
+(insn 74 73 75 10 (parallel [
+            (set (reg:SI 157 [ here_packet ])
+                (asm_operands:SI ("") ("=r") 0 [
+                        (reg:SI 158)
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:484)
+                    ]
+                     [] nscd_helper.c:484))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:484 -1
+     (nil))
+(insn 75 74 76 10 (set (reg/v:SI 120 [ here_packet ])
+        (reg:SI 157 [ here_packet ])) nscd_helper.c:484 -1
+     (nil))
+(insn 76 75 77 10 (set (reg:DI 121 [ D.12134 ])
+        (zero_extend:DI (reg/v:SI 120 [ here_packet ]))) nscd_helper.c:485 -1
+     (nil))
+(insn 77 76 78 10 (parallel [
+            (set (reg:DI 159 [ D.12134 ])
+                (plus:DI (reg:DI 121 [ D.12134 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:484 -1
+     (nil))
+(insn 78 77 79 10 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 159 [ D.12134 ]))) nscd_helper.c:484 -1
+     (nil))
+(jump_insn 79 78 80 10 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:484 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 95)
+(note 80 79 81 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 11 (parallel [
+            (set (reg/v/f:DI 123 [ dh ])
+                (plus:DI (reg/f:DI 131 [ D.12142 ])
+                    (reg:DI 121 [ D.12134 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:488 -1
+     (nil))
+(insn 82 81 83 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 123 [ dh ])
+                    (const_int 18 [0x12])) [0 dh_50->usable+0 S1 A16])
+            (const_int 0 [0]))) nscd_helper.c:498 -1
+     (nil))
+(jump_insn 83 82 84 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:498 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 95)
+(note 84 83 85 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 86 12 (set (reg:SI 161)
+        (mem:SI (reg/v/f:DI 123 [ dh ]) [2 dh_50->allocsize+0 S4 A64])) nscd_helper.c:499 -1
+     (nil))
+(insn 86 85 87 12 (parallel [
+            (set (reg:SI 160 [ D.12136 ])
+                (plus:SI (reg/v:SI 120 [ here_packet ])
+                    (reg:SI 161)))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:499 -1
+     (expr_list:REG_EQUAL (plus:SI (reg/v:SI 120 [ here_packet ])
+            (mem:SI (reg/v/f:DI 123 [ dh ]) [2 dh_50->allocsize+0 S4 A64]))
+        (nil)))
+(insn 87 86 88 12 (set (reg:DI 162 [ D.12134 ])
+        (zero_extend:DI (reg:SI 160 [ D.12136 ]))) nscd_helper.c:499 -1
+     (nil))
+(insn 88 87 89 12 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 162 [ D.12134 ]))) nscd_helper.c:499 -1
+     (nil))
+(jump_insn 89 88 90 12 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) nscd_helper.c:499 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 95)
+(note 90 89 91 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 91 90 92 13 (parallel [
+            (set (reg:DI 163 [ D.12134 ])
+                (plus:DI (reg/v:DI 137 [ datalen ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:500 -1
+     (nil))
+(insn 92 91 93 13 (parallel [
+            (set (reg:DI 164 [ D.12134 ])
+                (plus:DI (reg:DI 163 [ D.12134 ])
+                    (reg:DI 121 [ D.12134 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:500 -1
+     (nil))
+(insn 93 92 94 13 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 164 [ D.12134 ]))) nscd_helper.c:500 -1
+     (nil))
+(jump_insn 94 93 95 13 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 152)
+            (pc))) nscd_helper.c:500 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 152)
+(code_label 95 94 96 14 175 "" [7 uses])
+(note 96 95 97 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 97 96 98 14 (set (reg:SI 166)
+        (mem:SI (plus:DI (reg/v/f:DI 100 [ here ])
+                (const_int 16 [0x10])) [2 here_25->next+0 S4 A64])) nscd_helper.c:505 -1
+     (nil))
+(insn 98 97 99 14 (parallel [
+            (set (reg:SI 165 [ work ])
+                (asm_operands:SI ("") ("=r") 0 [
+                        (reg:SI 166)
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:505)
+                    ]
+                     [] nscd_helper.c:505))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:505 -1
+     (nil))
+(insn 99 98 100 14 (set (reg/v:SI 104 [ work ])
+        (reg:SI 165 [ work ])) nscd_helper.c:505 -1
+     (nil))
+(insn 100 99 101 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ work ])
+            (reg/v:SI 87 [ work ]))) nscd_helper.c:508 -1
+     (nil))
+(jump_insn 101 100 102 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 156)
+            (pc))) nscd_helper.c:508 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 156)
+(note 102 101 103 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 103 102 104 15 (parallel [
+            (set (reg/v:DI 105 [ loop_cnt ])
+                (plus:DI (reg/v:DI 105 [ loop_cnt ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:508 -1
+     (nil))
+(insn 104 103 105 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 105 [ loop_cnt ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:508 -1
+     (nil))
+(jump_insn 105 104 106 15 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 160)
+            (pc))) nscd_helper.c:508 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 160)
+(note 106 105 107 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 110 [ tick ])
+            (const_int 0 [0]))) nscd_helper.c:510 -1
+     (nil))
+(jump_insn 108 107 109 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 119)
+            (pc))) nscd_helper.c:510 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 119)
+(note 109 108 110 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 110 109 111 17 (set (reg:DI 106 [ D.12140 ])
+        (zero_extend:DI (reg/v:SI 87 [ work ]))) nscd_helper.c:513 -1
+     (nil))
+(insn 111 110 112 17 (parallel [
+            (set (reg/v/f:DI 107 [ trailelem ])
+                (plus:DI (reg/f:DI 131 [ D.12142 ])
+                    (reg:DI 106 [ D.12140 ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:513 -1
+     (nil))
+(insn 112 111 113 17 (parallel [
+            (set (reg:DI 167 [ D.12134 ])
+                (plus:DI (reg:DI 106 [ D.12140 ])
+                    (const_int 28 [0x1c])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:521 -1
+     (nil))
+(insn 113 112 114 17 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 167 [ D.12134 ]))) nscd_helper.c:521 -1
+     (nil))
+(jump_insn 114 113 115 17 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 164)
+            (pc))) nscd_helper.c:521 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 164)
+(note 115 114 116 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 116 115 117 18 (set (reg:SI 169)
+        (mem:SI (plus:DI (reg/v/f:DI 107 [ trailelem ])
+                (const_int 16 [0x10])) [2 trailelem_33->next+0 S4 A64])) nscd_helper.c:524 -1
+     (nil))
+(insn 117 116 118 18 (parallel [
+            (set (reg:SI 168 [ work ])
+                (asm_operands:SI ("") ("=r") 0 [
+                        (reg:SI 169)
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:524)
+                    ]
+                     [] nscd_helper.c:524))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) nscd_helper.c:524 -1
+     (nil))
+(insn 118 117 119 18 (set (reg/v:SI 87 [ work ])
+        (reg:SI 168 [ work ])) nscd_helper.c:524 -1
+     (nil))
+(code_label 119 118 120 19 176 "" [1 uses])
+(note 120 119 121 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 121 120 122 19 (set (reg:SI 170)
+        (const_int 1 [0x1])) nscd_helper.c:526 -1
+     (nil))
+(insn 122 121 123 19 (parallel [
+            (set (reg/v:SI 110 [ tick ])
+                (minus:SI (reg:SI 170)
+                    (reg/v:SI 110 [ tick ])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:526 -1
+     (nil))
+(insn 123 122 124 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ work ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:464 -1
+     (nil))
+(jump_insn 124 123 125 19 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 168)
+            (pc))) nscd_helper.c:464 612 {*jcc_1}
+     (int_list:REG_BR_PROB 200 (nil))
+ -> 168)
+(note 125 124 126 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 126 125 128 20 (set (reg:DI 98 [ D.12134 ])
+        (zero_extend:DI (reg/v:SI 104 [ work ]))) nscd_helper.c:464 -1
+     (nil))
+(insn 128 126 129 20 (parallel [
+            (set (reg:DI 171 [ D.12134 ])
+                (plus:DI (reg:DI 98 [ D.12134 ])
+                    (const_int 28 [0x1c])))
+            (clobber (reg:CC 17 flags))
+        ]) nscd_helper.c:464 -1
+     (nil))
+(insn 129 128 130 20 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ datasize ])
+            (reg:DI 171 [ D.12134 ]))) nscd_helper.c:464 -1
+     (nil))
+(jump_insn 130 129 140 20 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 127)
+            (pc))) nscd_helper.c:464 -1
+     (int_list:REG_BR_PROB 9800 (nil))
+ -> 127)
+(note 140 130 12 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 12 140 141 21 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(jump_insn 141 12 142 21 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 142 141 144)
+(code_label 144 142 143 22 178 "" [1 uses])
+(note 143 144 11 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 11 143 145 22 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(jump_insn 145 11 146 22 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 146 145 148)
+(code_label 148 146 147 23 179 "" [1 uses])
+(note 147 148 10 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 10 147 149 23 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(jump_insn 149 10 150 23 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 150 149 152)
+(code_label 152 150 151 24 180 "" [1 uses])
+(note 151 152 9 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 9 151 153 24 (set (reg/f:DI 89 [ D.12135 ])
+        (reg/v/f:DI 123 [ dh ])) nscd_helper.c:488 -1
+     (nil))
+(jump_insn 153 9 154 24 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 154 153 156)
+(code_label 156 154 155 25 181 "" [1 uses])
+(note 155 156 16 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 16 155 157 25 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(jump_insn 157 16 158 25 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 158 157 160)
+(code_label 160 158 159 26 182 "" [1 uses])
+(note 159 160 15 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 15 159 161 26 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(jump_insn 161 15 162 26 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 162 161 164)
+(code_label 164 162 163 27 183 "" [1 uses])
+(note 163 164 14 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 14 163 165 27 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(jump_insn 165 14 166 27 (set (pc)
+        (label_ref 131)) -1
+     (nil)
+ -> 131)
+(barrier 166 165 168)
+(code_label 168 166 167 28 184 "" [1 uses])
+(note 167 168 13 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 13 167 131 28 (set (reg/f:DI 89 [ D.12135 ])
+        (const_int 0 [0])) nscd_helper.c:529 -1
+     (nil))
+(code_label 131 13 132 29 174 "" [7 uses])
+(note 132 131 133 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 137 29 (set (reg:DI 132 [ <retval> ])
+        (reg/f:DI 89 [ D.12135 ])) -1
+     (nil))
+(insn 137 133 138 29 (set (reg/i:DI 0 ax)
+        (reg:DI 132 [ <retval> ])) nscd_helper.c:530 -1
+     (nil))
+(insn 138 137 0 29 (use (reg/i:DI 0 ax)) nscd_helper.c:530 -1
+     (nil))
+
+;; Function __nscd_open_socket (__nscd_open_socket, funcdef_no=57, decl_uid=11346, cgraph_uid=57, symbol_order=62)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+Edge 2->10 redirected to 14
+Edge 8->10 redirected to 15
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 9->10 to 6 failed.
+Removing jump 67.
+Merging block 15 into block 14...
+Merged blocks 14 and 15.
+Merged 14 and 15 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 6 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 97 [ key ])
+        (reg:DI 5 di [ key ])) nscd_helper.c:537 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 98 [ keylen ])
+        (reg:DI 4 si [ keylen ])) nscd_helper.c:537 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 99 [ type ])
+        (reg:SI 1 dx [ type ])) nscd_helper.c:537 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 100 [ response ])
+        (reg:DI 2 cx [ response ])) nscd_helper.c:537 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:DI 101 [ responselen ])
+        (reg:DI 37 r8 [ responselen ])) nscd_helper.c:537 -1
+     (nil))
+(note 7 6 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 7 14 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 98 [ keylen ])
+            (const_int 1024 [0x400]))) nscd_helper.c:541 -1
+     (nil))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) nscd_helper.c:541 612 {*jcc_1}
+     (int_list:REG_BR_PROB 926 (nil))
+ -> 76)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:DI 102)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:544 -1
+     (nil))
+(insn 17 16 18 4 (set (reg/v:SI 88 [ saved_errno ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 102)) [2 __libc_errno+0 S4 A32])) nscd_helper.c:544 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:DI 1 dx)
+        (reg/v:DI 98 [ keylen ])) nscd_helper.c:546 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 97 [ key ])) nscd_helper.c:546 -1
+     (nil))
+(insn 20 19 21 4 (set (reg:SI 5 di)
+        (reg/v:SI 99 [ type ])) nscd_helper.c:546 -1
+     (nil))
+(call_insn 21 20 22 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("open_socket") [flags 0x3]  <function_decl 0x2adb4e26fca8 open_socket>) [0 open_socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:546 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("open_socket") [flags 0x3]  <function_decl 0x2adb4e26fca8 open_socket>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 22 21 23 4 (set (reg/v:SI 89 [ sock ])
+        (reg:SI 0 ax)) nscd_helper.c:546 -1
+     (nil))
+(insn 23 22 24 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 89 [ sock ])
+            (const_int 0 [0]))) nscd_helper.c:547 -1
+     (nil))
+(jump_insn 24 23 25 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 60)
+            (pc))) nscd_helper.c:547 -1
+     (int_list:REG_BR_PROB 364 (nil))
+ -> 60)
+(note 25 24 26 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 5 (set (reg:DI 4 si)
+        (const_int 5000 [0x1388])) nscd_helper.c:550 -1
+     (nil))
+(insn 27 26 28 5 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ sock ])) nscd_helper.c:550 -1
+     (nil))
+(call_insn 28 27 29 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>) [0 wait_on_socket S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:550 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wait_on_socket") [flags 0x3]  <function_decl 0x2adb4e26f798 wait_on_socket>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 29 28 30 5 (set (reg:SI 90 [ D.12150 ])
+        (reg:SI 0 ax)) nscd_helper.c:550 -1
+     (nil))
+(insn 30 29 31 5 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 90 [ D.12150 ])
+            (const_int 0 [0]))) nscd_helper.c:550 -1
+     (nil))
+(jump_insn 31 30 56 5 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) nscd_helper.c:550 -1
+     (int_list:REG_BR_PROB 9848 (nil))
+ -> 39)
+(code_label 56 31 32 6 195 "" [1 uses])
+(note 32 56 33 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 6 (set (reg/v:DI 5 di [ _a1 ])
+        (sign_extend:DI (reg/v:SI 89 [ sock ]))) nscd_helper.c:558 -1
+     (nil))
+(insn 34 33 35 6 (set (reg:SI 104)
+        (const_int 3 [0x3])) nscd_helper.c:558 -1
+     (nil))
+(insn 35 34 36 6 (parallel [
+            (set (reg:DI 103 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 104)
+                        (reg/v:DI 5 di [ _a1 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") nscd_helper.c:558)
+                        (asm_input:DI ("r") nscd_helper.c:558)
+                    ]
+                     [] nscd_helper.c:558))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) nscd_helper.c:558 -1
+     (nil))
+(insn 36 35 37 6 (set (reg/v:DI 95 [ resultvar ])
+        (reg:DI 103 [ resultvar ])) nscd_helper.c:558 -1
+     (nil))
+(jump_insn 37 36 38 6 (set (pc)
+        (label_ref 60)) nscd_helper.c:558 -1
+     (nil)
+ -> 60)
+(barrier 38 37 39)
+(code_label 39 38 40 7 193 "" [2 uses])
+(note 40 39 41 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 7 (set (reg:DI 1 dx)
+        (reg/v:DI 101 [ responselen ])) nscd_helper.c:552 -1
+     (nil))
+(insn 42 41 43 7 (set (reg:DI 4 si)
+        (reg/v/f:DI 100 [ response ])) nscd_helper.c:552 -1
+     (nil))
+(insn 43 42 44 7 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ sock ])) nscd_helper.c:552 -1
+     (nil))
+(call_insn 44 43 45 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___read") [flags 0x43]  <function_decl 0x2adb4e02dca8 __read>) [0 __read S1 A8])
+            (const_int 0 [0]))) nscd_helper.c:552 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___read") [flags 0x43]  <function_decl 0x2adb4e02dca8 __read>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 45 44 46 7 (set (reg/v:DI 91 [ nbytes ])
+        (reg:DI 0 ax)) nscd_helper.c:552 -1
+     (nil))
+(insn 46 45 47 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 91 [ nbytes ])
+            (const_int -1 [0xffffffffffffffff]))) nscd_helper.c:552 -1
+     (nil))
+(jump_insn 47 46 48 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) nscd_helper.c:552 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 52)
+(note 48 47 49 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 8 (set (reg:DI 105)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:552 -1
+     (nil))
+(insn 50 49 51 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 105)) [2 __libc_errno+0 S4 A32])
+            (const_int 4 [0x4]))) nscd_helper.c:552 -1
+     (nil))
+(jump_insn 51 50 52 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) nscd_helper.c:552 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 39)
+(code_label 52 51 53 9 194 "" [1 uses])
+(note 53 52 54 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 101 [ responselen ])
+            (reg/v:DI 91 [ nbytes ]))) nscd_helper.c:554 -1
+     (nil))
+(jump_insn 55 54 59 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) nscd_helper.c:554 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9032 (nil))
+ -> 80)
+(note 59 55 57 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 57 59 58 10 (set (pc)
+        (label_ref 56)) -1
+     (nil)
+ -> 56)
+(barrier 58 57 60)
+(code_label 60 58 61 11 192 "" [2 uses])
+(note 61 60 62 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 11 (set (reg:DI 106)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2adb4df7a900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [31  S8 A8])) nscd_helper.c:561 -1
+     (nil))
+(insn 63 62 10 11 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 106)) [2 __libc_errno+0 S4 A32])
+        (reg/v:SI 88 [ saved_errno ])) nscd_helper.c:561 -1
+     (nil))
+(insn 10 63 73 11 (set (reg:SI 87 [ D.12150 ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:563 -1
+     (nil))
+(jump_insn 73 10 74 11 (set (pc)
+        (label_ref 64)) nscd_helper.c:563 -1
+     (nil)
+ -> 64)
+(barrier 74 73 76)
+(code_label 76 74 75 12 196 "" [1 uses])
+(note 75 76 8 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 8 75 77 12 (set (reg:SI 87 [ D.12150 ])
+        (const_int -1 [0xffffffffffffffff])) nscd_helper.c:542 -1
+     (nil))
+(jump_insn 77 8 78 12 (set (pc)
+        (label_ref 64)) -1
+     (nil)
+ -> 64)
+(barrier 78 77 80)
+(code_label 80 78 79 13 197 "" [1 uses])
+(note 79 80 9 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 9 79 64 13 (set (reg:SI 87 [ D.12150 ])
+        (reg/v:SI 89 [ sock ])) -1
+     (nil))
+(code_label 64 9 65 14 191 "" [2 uses])
+(note 65 64 66 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 66 65 70 14 (set (reg:SI 96 [ <retval> ])
+        (reg:SI 87 [ D.12150 ])) -1
+     (nil))
+(insn 70 66 71 14 (set (reg/i:SI 0 ax)
+        (reg:SI 96 [ <retval> ])) nscd_helper.c:564 -1
+     (nil))
+(insn 71 70 0 14 (use (reg/i:SI 0 ax)) nscd_helper.c:564 -1
+     (nil))

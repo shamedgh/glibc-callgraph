@@ -1,0 +1,96 @@
+
+;; Function __ppoll_chk (__ppoll_chk, funcdef_no=0, decl_uid=1919, cgraph_uid=0, symbol_order=3)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+deleting block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 90 [ fds ])
+        (reg:DI 5 di [ fds ])) ppoll_chk.c:24 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 91 [ nfds ])
+        (reg:DI 4 si [ nfds ])) ppoll_chk.c:24 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 92 [ timeout ])
+        (reg:DI 1 dx [ timeout ])) ppoll_chk.c:24 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 93 [ ss ])
+        (reg:DI 2 cx [ ss ])) ppoll_chk.c:24 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:DI 94 [ fdslen ])
+        (reg:DI 37 r8 [ fdslen ])) ppoll_chk.c:24 -1
+     (nil))
+(note 7 6 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 7 11 2 (parallel [
+            (set (reg:DI 95 [ D.1931 ])
+                (lshiftrt:DI (reg/v:DI 94 [ fdslen ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ppoll_chk.c:25 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 95 [ D.1931 ])
+            (reg/v:DI 91 [ nfds ]))) ppoll_chk.c:25 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 16)
+            (pc))) ppoll_chk.c:25 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 16)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn 14 13 15 4 (call (mem:QI (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b250c000a20 __chk_fail>) [0 __chk_fail S1 A8])
+        (const_int 0 [0])) ppoll_chk.c:26 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b250c000a20 __chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 15 14 16)
+(code_label 16 15 17 5 2 "" [1 uses])
+(note 17 16 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 5 (set (reg:DI 2 cx)
+        (reg/v/f:DI 93 [ ss ])) ppoll_chk.c:28 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 1 dx)
+        (reg/v/f:DI 92 [ timeout ])) ppoll_chk.c:28 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:DI 4 si)
+        (reg/v:DI 91 [ nfds ])) ppoll_chk.c:28 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 90 [ fds ])) ppoll_chk.c:28 -1
+     (nil))
+(call_insn/j 22 21 23 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_ppoll") [flags 0x43]  <function_decl 0x2b250c000bd0 ppoll>) [0 ppoll S1 A8])
+            (const_int 0 [0]))) ppoll_chk.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_ppoll") [flags 0x43]  <function_decl 0x2b250c000bd0 ppoll>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(barrier 23 22 0)

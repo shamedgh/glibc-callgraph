@@ -1,0 +1,218 @@
+\hypertarget{iconvconfig_8c}{}\doxysection{iconv/iconvconfig.c File Reference}
+\label{iconvconfig_8c}\index{iconv/iconvconfig.c@{iconv/iconvconfig.c}}
+{\ttfamily \#include $<$argp.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$mcheck.\+h$>$}\newline
+{\ttfamily \#include $<$search.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdio\+\_\+ext.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/cdefs.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}iconvconfig.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../version.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../intl/hash-\/string.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$gconv\+\_\+builtin.\+h$>$}\newline
+{\ttfamily \#include $<$programs/xmalloc.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmodule}{module}}
+\item 
+struct \mbox{\hyperlink{structalias}{alias}}
+\item 
+struct \mbox{\hyperlink{structname}{name}}
+\item 
+struct \mbox{\hyperlink{structname__info}{name\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structname__info_1_1other__conv__list}{name\+\_\+info\+::other\+\_\+conv\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structname__info_1_1other__conv__list_1_1other__conv}{name\+\_\+info\+::other\+\_\+conv\+\_\+list\+::other\+\_\+conv}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_aca8570fb706c81df371b7f9bc454ae03}{P\+A\+C\+K\+A\+GE}}~\mbox{\hyperlink{SYS__libc_8c_adc1580228bc28505838b0ac8e6f5e05e}{\+\_\+libc\+\_\+intl\+\_\+domainname}}
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_a74cd825274ed7048fa2df3e1c5f5b051}{O\+P\+T\+\_\+\+P\+R\+E\+F\+IX}}~300
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_ae1b3455da588dc2f929ff8ef65c35d42}{O\+P\+T\+\_\+\+N\+O\+S\+T\+D\+L\+IB}}~301
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_aa7207e96ce825dee080c34686c21de2f}{B\+U\+I\+L\+T\+I\+N\+\_\+\+A\+L\+I\+AS}}(\mbox{\hyperlink{structalias}{alias}},  real)~\{ .\mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} = \mbox{\hyperlink{structalias}{alias}}, .\mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} = real \},
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_a5198a1a22034237b7b521563b541c22c}{B\+U\+I\+L\+T\+I\+N\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}(From,  To,  Cost,  Name,  Fct,  Btowc\+Fct,  MinF,  MaxF,  MinT,  MaxT)
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_aa871894947bbacb2cc2ca9f4bbaddd70}{nbuiltin\+\_\+alias}}~(sizeof (builtin\+\_\+alias) / sizeof (builtin\+\_\+alias\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_aa7207e96ce825dee080c34686c21de2f}{B\+U\+I\+L\+T\+I\+N\+\_\+\+A\+L\+I\+AS}}(\mbox{\hyperlink{structalias}{alias}},  real)
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_a5198a1a22034237b7b521563b541c22c}{B\+U\+I\+L\+T\+I\+N\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}(From,  To,  Cost,  Name,  Fct,  Btowc\+Fct,  MinF,  MaxF,  MinT,  MaxT)~\{ .\mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} = From, .\mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} = To, .\mbox{\hyperlink{structmodule}{module}} = Name, .\mbox{\hyperlink{iconvconfig_8c_a66700f11d42fee2413e58dbf49c43ee1}{cost}} = Cost \},
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_a555611794b58f275a43dc10cc3d4ea86}{nbuiltin\+\_\+trans}}~(sizeof (builtin\+\_\+trans) / sizeof (builtin\+\_\+trans\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{iconvconfig_8c_abd89a410e8cb8cb4c37c102e4fde1bec}{M\+O\+D\+U\+L\+E\+\_\+\+E\+XT}}~\char`\"{}.so\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$ \mbox{\hyperlink{iconvconfig_8c_a76cfea5b390ec97b235819b6311c304b}{strtabinit}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{iconvconfig_8c_a743edce3424db8027c0312017a0a2934}{strtabfree}} (struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$st)
+\item 
+struct \mbox{\hyperlink{structStrent}{Strent}} $\ast$ \mbox{\hyperlink{iconvconfig_8c_a835ce534f9ea04c83831b9a87f4a52a8}{strtabadd}} (struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$st, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{iconvconfig_8c_a2e8bb1402f03d57fa89869006e96693c}{strtabfinalize}} (struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$st, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})
+\item 
+\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{iconvconfig_8c_ac6dca57acd00db43b69d8115fb0eb950}{strtaboffset}} (struct \mbox{\hyperlink{structStrent}{Strent}} $\ast$se)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{iconvconfig_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ \mbox{\hyperlink{iconvconfig_8c_acde468a0825fa258e397e0885b11ce08}{argp\+\_\+program\+\_\+version\+\_\+hook}} )(\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$, struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$) = print\+\_\+version
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{iconvconfig_8c_aa7207e96ce825dee080c34686c21de2f}\label{iconvconfig_8c_aa7207e96ce825dee080c34686c21de2f}} 
+\index{iconvconfig.c@{iconvconfig.c}!BUILTIN\_ALIAS@{BUILTIN\_ALIAS}}
+\index{BUILTIN\_ALIAS@{BUILTIN\_ALIAS}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{BUILTIN\_ALIAS}{BUILTIN\_ALIAS}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define B\+U\+I\+L\+T\+I\+N\+\_\+\+A\+L\+I\+AS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structalias}{alias}},  }\item[{}]{real }\end{DoxyParamCaption})~\{ .\mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} = \mbox{\hyperlink{structalias}{alias}}, .\mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} = real \},}
+
+\mbox{\Hypertarget{iconvconfig_8c_aa7207e96ce825dee080c34686c21de2f}\label{iconvconfig_8c_aa7207e96ce825dee080c34686c21de2f}} 
+\index{iconvconfig.c@{iconvconfig.c}!BUILTIN\_ALIAS@{BUILTIN\_ALIAS}}
+\index{BUILTIN\_ALIAS@{BUILTIN\_ALIAS}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{BUILTIN\_ALIAS}{BUILTIN\_ALIAS}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define B\+U\+I\+L\+T\+I\+N\+\_\+\+A\+L\+I\+AS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structalias}{alias}},  }\item[{}]{real }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_a5198a1a22034237b7b521563b541c22c}\label{iconvconfig_8c_a5198a1a22034237b7b521563b541c22c}} 
+\index{iconvconfig.c@{iconvconfig.c}!BUILTIN\_TRANSFORMATION@{BUILTIN\_TRANSFORMATION}}
+\index{BUILTIN\_TRANSFORMATION@{BUILTIN\_TRANSFORMATION}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{BUILTIN\_TRANSFORMATION}{BUILTIN\_TRANSFORMATION}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define B\+U\+I\+L\+T\+I\+N\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON(\begin{DoxyParamCaption}\item[{}]{From,  }\item[{}]{To,  }\item[{}]{Cost,  }\item[{}]{Name,  }\item[{}]{Fct,  }\item[{}]{Btowc\+Fct,  }\item[{}]{MinF,  }\item[{}]{MaxF,  }\item[{}]{MinT,  }\item[{}]{MaxT }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_a5198a1a22034237b7b521563b541c22c}\label{iconvconfig_8c_a5198a1a22034237b7b521563b541c22c}} 
+\index{iconvconfig.c@{iconvconfig.c}!BUILTIN\_TRANSFORMATION@{BUILTIN\_TRANSFORMATION}}
+\index{BUILTIN\_TRANSFORMATION@{BUILTIN\_TRANSFORMATION}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{BUILTIN\_TRANSFORMATION}{BUILTIN\_TRANSFORMATION}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define B\+U\+I\+L\+T\+I\+N\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON(\begin{DoxyParamCaption}\item[{}]{From,  }\item[{}]{To,  }\item[{}]{Cost,  }\item[{}]{Name,  }\item[{}]{Fct,  }\item[{}]{Btowc\+Fct,  }\item[{}]{MinF,  }\item[{}]{MaxF,  }\item[{}]{MinT,  }\item[{}]{MaxT }\end{DoxyParamCaption})~\{ .\mbox{\hyperlink{big5hkscs_8c_a90c58c32e2a10d84faa3953b5b79f96c}{from}} = From, .\mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} = To, .\mbox{\hyperlink{structmodule}{module}} = Name, .\mbox{\hyperlink{iconvconfig_8c_a66700f11d42fee2413e58dbf49c43ee1}{cost}} = Cost \},}
+
+\mbox{\Hypertarget{iconvconfig_8c_abd89a410e8cb8cb4c37c102e4fde1bec}\label{iconvconfig_8c_abd89a410e8cb8cb4c37c102e4fde1bec}} 
+\index{iconvconfig.c@{iconvconfig.c}!MODULE\_EXT@{MODULE\_EXT}}
+\index{MODULE\_EXT@{MODULE\_EXT}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{MODULE\_EXT}{MODULE\_EXT}}
+{\footnotesize\ttfamily \#define M\+O\+D\+U\+L\+E\+\_\+\+E\+XT~\char`\"{}.so\char`\"{}}
+
+\mbox{\Hypertarget{iconvconfig_8c_aa871894947bbacb2cc2ca9f4bbaddd70}\label{iconvconfig_8c_aa871894947bbacb2cc2ca9f4bbaddd70}} 
+\index{iconvconfig.c@{iconvconfig.c}!nbuiltin\_alias@{nbuiltin\_alias}}
+\index{nbuiltin\_alias@{nbuiltin\_alias}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{nbuiltin\_alias}{nbuiltin\_alias}}
+{\footnotesize\ttfamily \#define nbuiltin\+\_\+alias~(sizeof (builtin\+\_\+alias) / sizeof (builtin\+\_\+alias\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{iconvconfig_8c_a555611794b58f275a43dc10cc3d4ea86}\label{iconvconfig_8c_a555611794b58f275a43dc10cc3d4ea86}} 
+\index{iconvconfig.c@{iconvconfig.c}!nbuiltin\_trans@{nbuiltin\_trans}}
+\index{nbuiltin\_trans@{nbuiltin\_trans}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{nbuiltin\_trans}{nbuiltin\_trans}}
+{\footnotesize\ttfamily \#define nbuiltin\+\_\+trans~(sizeof (builtin\+\_\+trans) / sizeof (builtin\+\_\+trans\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{iconvconfig_8c_ae1b3455da588dc2f929ff8ef65c35d42}\label{iconvconfig_8c_ae1b3455da588dc2f929ff8ef65c35d42}} 
+\index{iconvconfig.c@{iconvconfig.c}!OPT\_NOSTDLIB@{OPT\_NOSTDLIB}}
+\index{OPT\_NOSTDLIB@{OPT\_NOSTDLIB}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_NOSTDLIB}{OPT\_NOSTDLIB}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+N\+O\+S\+T\+D\+L\+IB~301}
+
+\mbox{\Hypertarget{iconvconfig_8c_a74cd825274ed7048fa2df3e1c5f5b051}\label{iconvconfig_8c_a74cd825274ed7048fa2df3e1c5f5b051}} 
+\index{iconvconfig.c@{iconvconfig.c}!OPT\_PREFIX@{OPT\_PREFIX}}
+\index{OPT\_PREFIX@{OPT\_PREFIX}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_PREFIX}{OPT\_PREFIX}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+P\+R\+E\+F\+IX~300}
+
+\mbox{\Hypertarget{iconvconfig_8c_aca8570fb706c81df371b7f9bc454ae03}\label{iconvconfig_8c_aca8570fb706c81df371b7f9bc454ae03}} 
+\index{iconvconfig.c@{iconvconfig.c}!PACKAGE@{PACKAGE}}
+\index{PACKAGE@{PACKAGE}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{PACKAGE}{PACKAGE}}
+{\footnotesize\ttfamily \#define P\+A\+C\+K\+A\+GE~\mbox{\hyperlink{SYS__libc_8c_adc1580228bc28505838b0ac8e6f5e05e}{\+\_\+libc\+\_\+intl\+\_\+domainname}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{iconvconfig_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{iconvconfig_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{iconvconfig.c@{iconvconfig.c}!main@{main}}
+\index{main@{main}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_a835ce534f9ea04c83831b9a87f4a52a8}\label{iconvconfig_8c_a835ce534f9ea04c83831b9a87f4a52a8}} 
+\index{iconvconfig.c@{iconvconfig.c}!strtabadd@{strtabadd}}
+\index{strtabadd@{strtabadd}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{strtabadd()}{strtabadd()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structStrent}{Strent}} $\ast$ strtabadd (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$}]{st,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_a2e8bb1402f03d57fa89869006e96693c}\label{iconvconfig_8c_a2e8bb1402f03d57fa89869006e96693c}} 
+\index{iconvconfig.c@{iconvconfig.c}!strtabfinalize@{strtabfinalize}}
+\index{strtabfinalize@{strtabfinalize}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{strtabfinalize()}{strtabfinalize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ strtabfinalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$}]{st,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_a743edce3424db8027c0312017a0a2934}\label{iconvconfig_8c_a743edce3424db8027c0312017a0a2934}} 
+\index{iconvconfig.c@{iconvconfig.c}!strtabfree@{strtabfree}}
+\index{strtabfree@{strtabfree}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{strtabfree()}{strtabfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} strtabfree (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$}]{st }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_a76cfea5b390ec97b235819b6311c304b}\label{iconvconfig_8c_a76cfea5b390ec97b235819b6311c304b}} 
+\index{iconvconfig.c@{iconvconfig.c}!strtabinit@{strtabinit}}
+\index{strtabinit@{strtabinit}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{strtabinit()}{strtabinit()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structStrtab}{Strtab}} $\ast$ strtabinit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iconvconfig_8c_ac6dca57acd00db43b69d8115fb0eb950}\label{iconvconfig_8c_ac6dca57acd00db43b69d8115fb0eb950}} 
+\index{iconvconfig.c@{iconvconfig.c}!strtaboffset@{strtaboffset}}
+\index{strtaboffset@{strtaboffset}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{strtaboffset()}{strtaboffset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} strtaboffset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structStrent}{Strent}} $\ast$}]{se }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{iconvconfig_8c_acde468a0825fa258e397e0885b11ce08}\label{iconvconfig_8c_acde468a0825fa258e397e0885b11ce08}} 
+\index{iconvconfig.c@{iconvconfig.c}!argp\_program\_version\_hook@{argp\_program\_version\_hook}}
+\index{argp\_program\_version\_hook@{argp\_program\_version\_hook}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{argp\_program\_version\_hook}{argp\_program\_version\_hook}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ argp\+\_\+program\+\_\+version\+\_\+hook) (\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$, struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$) = print\+\_\+version}
+
+\mbox{\Hypertarget{iconvconfig_8c_a66700f11d42fee2413e58dbf49c43ee1}\label{iconvconfig_8c_a66700f11d42fee2413e58dbf49c43ee1}} 
+\index{iconvconfig.c@{iconvconfig.c}!cost@{cost}}
+\index{cost@{cost}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{cost}{cost}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} cost}
+
+\mbox{\Hypertarget{iconvconfig_8c_af9f143e62cdad4afb8a53a21b8b8fcfd}\label{iconvconfig_8c_af9f143e62cdad4afb8a53a21b8b8fcfd}} 
+\index{iconvconfig.c@{iconvconfig.c}!from@{from}}
+\index{from@{from}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{from}{from}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ from}
+
+\mbox{\Hypertarget{iconvconfig_8c_a885ecdfcb963f1d1a7ba3144e9b6c8f8}\label{iconvconfig_8c_a885ecdfcb963f1d1a7ba3144e9b6c8f8}} 
+\index{iconvconfig.c@{iconvconfig.c}!module@{module}}
+\index{module@{module}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{module}{module}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ \mbox{\hyperlink{structmodule}{module}}}
+
+\mbox{\Hypertarget{iconvconfig_8c_a5d467a63df9ff99d33d6749038f6f421}\label{iconvconfig_8c_a5d467a63df9ff99d33d6749038f6f421}} 
+\index{iconvconfig.c@{iconvconfig.c}!to@{to}}
+\index{to@{to}!iconvconfig.c@{iconvconfig.c}}
+\doxysubsubsection{\texorpdfstring{to}{to}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ to}
+

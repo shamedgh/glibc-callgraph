@@ -1,0 +1,246 @@
+\hypertarget{hurdsig_8c}{}\doxysection{hurd/hurdsig.c File Reference}
+\label{hurdsig_8c}\index{hurd/hurdsig.c@{hurd/hurdsig.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$cthreads.\+h$>$}\newline
+{\ttfamily \#include $<$mach.\+h$>$}\newline
+{\ttfamily \#include $<$mach/thread\+\_\+switch.\+h$>$}\newline
+{\ttfamily \#include $<$hurd.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/id.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/signal.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hurdfault.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hurdmalloc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../locale/localeinfo.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$hurd/fd.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/crash.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/resource.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/paths.\+h$>$}\newline
+{\ttfamily \#include $<$setjmp.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$thread\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/msg\+\_\+server.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/msg\+\_\+reply.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/interrupt.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/sigpreempt.\+h$>$}\newline
+{\ttfamily \#include $<$intr-\/msg.\+h$>$}\newline
+{\ttfamily \#include $<$mach/task\+\_\+special\+\_\+ports.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hurdsig_8c_a02303fc97d0655e8bd4fdad35ef3f433}{T\+H\+R\+E\+A\+D\+\_\+\+A\+B\+O\+R\+T\+ED}}~1
+\item 
+\#define \mbox{\hyperlink{hurdsig_8c_a8996990342c6337d4500d05a4f868669}{S\+T\+O\+P\+S\+I\+GS}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{hurdsig_8c_a90a492cf2f4dd420f2a4757975adb23c}{\+\_\+hurdsig\+\_\+getenv}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$)
+\item 
+struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}} $\ast$ \mbox{\hyperlink{hurdsig_8c_abe673e243df4ccd00559a71db7c56c09}{\+\_\+hurd\+\_\+thread\+\_\+sigstate}} (\mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} thread)
+\item 
+mach\+\_\+port\+\_\+t \mbox{\hyperlink{hurdsig_8c_a4e8a02ff02cfd7f9150ae15b95f769e4}{\+\_\+hurdsig\+\_\+abort\+\_\+rpcs}} (struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}} $\ast$ss, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} signo, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} sigthread, struct \mbox{\hyperlink{structmachine__thread__all__state}{machine\+\_\+thread\+\_\+all\+\_\+state}} $\ast$\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$state\+\_\+change, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$reply)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}))
+\item 
+\mbox{\hyperlink{hurdsig_8c_a8d0585640ffd2db7d1e3d738e3a6ed92}{weak\+\_\+alias}} (\mbox{\hyperlink{hurdsig_8c_adfdb1ae3286af57132d3be21cd7e47bd}{\+\_\+hurdsig\+\_\+preemptors}}, \+\_\+hurdsig\+\_\+preempters)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdsig_8c_ac3a595dde9239964a9174624e88d0775}{\+\_\+\+S\+\_\+msg\+\_\+sig\+\_\+post}} (mach\+\_\+port\+\_\+t me, mach\+\_\+port\+\_\+t \mbox{\hyperlink{sysdeps_2mach_2hurd_2mig-reply_8c_a158570a10fa768c3d59b5d82367015e4}{reply\+\_\+port}}, mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t reply\+\_\+port\+\_\+type, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} signo, natural\+\_\+t sigcode, mach\+\_\+port\+\_\+t refport)
+\item 
+kern\+\_\+return\+\_\+t \mbox{\hyperlink{hurdsig_8c_ae1359228cf78c99494a82fc9e3784e7a}{\+\_\+\+S\+\_\+msg\+\_\+sig\+\_\+post\+\_\+untraced}} (mach\+\_\+port\+\_\+t me, mach\+\_\+port\+\_\+t \mbox{\hyperlink{sysdeps_2mach_2hurd_2mig-reply_8c_a158570a10fa768c3d59b5d82367015e4}{reply\+\_\+port}}, mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t reply\+\_\+port\+\_\+type, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} signo, natural\+\_\+t sigcode, mach\+\_\+port\+\_\+t refport)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{hurdsig_8c_adea739210c69e06a74657f3fd5473795}{\+\_\+\+\_\+mig\+\_\+init}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{hurdsig_8c_acf008803f6d02decc083335fcff571d6}{\+\_\+hurdsig\+\_\+init}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$intarray, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} intarraysize)
+\item 
+\mbox{\hyperlink{hurdsig_8c_a6d40da90dce0b21856981813e3156c0b}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+reauth\+\_\+hook, reauth\+\_\+proc)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} \mbox{\hyperlink{hurdsig_8c_aad8096de9a5ec2fefe127451ae006fd5}{\+\_\+hurd\+\_\+siglock}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{hurdsig_8c_a18f1ca020fb073822baa6e58c38d9ccd}{\+\_\+hurd\+\_\+stopped}}
+\item 
+mach\+\_\+port\+\_\+t \mbox{\hyperlink{hurdsig_8c_acdf8e1cc2016cb2ad54d3282e289769b}{\+\_\+hurd\+\_\+msgport}}
+\item 
+\mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} \mbox{\hyperlink{hurdsig_8c_ab9bab93ffbfa49703f6eb21d057450cc}{\+\_\+hurd\+\_\+msgport\+\_\+thread}}
+\item 
+\mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} \mbox{\hyperlink{hurdsig_8c_a62a26b9258ef87b5c3a180cbbc490040}{\+\_\+hurd\+\_\+sigthread}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{hurdsig_8c_a71acec1c374940e52a88b66b607e9b6e}{\+\_\+\+\_\+hurd\+\_\+sigthread\+\_\+stack\+\_\+base}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{hurdsig_8c_ab0dd99db4ac7a172d6a51ad5b55597cd}{\+\_\+\+\_\+hurd\+\_\+sigthread\+\_\+stack\+\_\+end}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$ \mbox{\hyperlink{hurdsig_8c_a7f104303ed77cc943d9e028e6c9a229b}{\+\_\+\+\_\+hurd\+\_\+sigthread\+\_\+variables}}
+\item 
+struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}} $\ast$ \mbox{\hyperlink{hurdsig_8c_a9bd160c6d48910b088c370e49d901df4}{\+\_\+hurd\+\_\+sigstates}}
+\item 
+mach\+\_\+msg\+\_\+timeout\+\_\+t \mbox{\hyperlink{hurdsig_8c_ad47bec80bb0fca18b1acad0e5b587a41}{\+\_\+hurd\+\_\+interrupted\+\_\+rpc\+\_\+timeout}} = 3000
+\item 
+mach\+\_\+msg\+\_\+timeout\+\_\+t \mbox{\hyperlink{hurdsig_8c_a22990afc70188e7696fd6bf229661e0b}{\+\_\+hurdsig\+\_\+interrupt\+\_\+timeout}} = 1000
+\item 
+struct \mbox{\hyperlink{structhurd__signal__preemptor}{hurd\+\_\+signal\+\_\+preemptor}} $\ast$ \mbox{\hyperlink{hurdsig_8c_adfdb1ae3286af57132d3be21cd7e47bd}{\+\_\+hurdsig\+\_\+preemptors}} = 0
+\item 
+\mbox{\hyperlink{misc_2sys_2select_8h_a134f0411d52ec19a05b55b4ba2f87c3c}{sigset\+\_\+t}} \mbox{\hyperlink{hurdsig_8c_a5711ca7d65ebef645899bb783f737811}{\+\_\+hurdsig\+\_\+preempted\+\_\+set}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hurdsig_8c_a8996990342c6337d4500d05a4f868669}\label{hurdsig_8c_a8996990342c6337d4500d05a4f868669}} 
+\index{hurdsig.c@{hurdsig.c}!STOPSIGS@{STOPSIGS}}
+\index{STOPSIGS@{STOPSIGS}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{STOPSIGS}{STOPSIGS}}
+{\footnotesize\ttfamily \#define S\+T\+O\+P\+S\+I\+GS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(sigmask (SIGTTIN) | sigmask (SIGTTOU) | \(\backslash\)}
+\DoxyCodeLine{          sigmask (SIGSTOP) | sigmask (SIGTSTP))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hurdsig_8c_a02303fc97d0655e8bd4fdad35ef3f433}\label{hurdsig_8c_a02303fc97d0655e8bd4fdad35ef3f433}} 
+\index{hurdsig.c@{hurdsig.c}!THREAD\_ABORTED@{THREAD\_ABORTED}}
+\index{THREAD\_ABORTED@{THREAD\_ABORTED}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{THREAD\_ABORTED}{THREAD\_ABORTED}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+A\+B\+O\+R\+T\+ED~1}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hurdsig_8c_adea739210c69e06a74657f3fd5473795}\label{hurdsig_8c_adea739210c69e06a74657f3fd5473795}} 
+\index{hurdsig.c@{hurdsig.c}!\_\_mig\_init@{\_\_mig\_init}}
+\index{\_\_mig\_init@{\_\_mig\_init}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_\_mig\_init()}{\_\_mig\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+\+\_\+mig\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_abe673e243df4ccd00559a71db7c56c09}\label{hurdsig_8c_abe673e243df4ccd00559a71db7c56c09}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_thread\_sigstate@{\_hurd\_thread\_sigstate}}
+\index{\_hurd\_thread\_sigstate@{\_hurd\_thread\_sigstate}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_thread\_sigstate()}{\_hurd\_thread\_sigstate()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}}$\ast$ \+\_\+hurd\+\_\+thread\+\_\+sigstate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}}}]{thread }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_a4e8a02ff02cfd7f9150ae15b95f769e4}\label{hurdsig_8c_a4e8a02ff02cfd7f9150ae15b95f769e4}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurdsig\_abort\_rpcs@{\_hurdsig\_abort\_rpcs}}
+\index{\_hurdsig\_abort\_rpcs@{\_hurdsig\_abort\_rpcs}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_abort\_rpcs()}{\_hurdsig\_abort\_rpcs()}}
+{\footnotesize\ttfamily mach\+\_\+port\+\_\+t \+\_\+hurdsig\+\_\+abort\+\_\+rpcs (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}} $\ast$}]{ss,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{signo,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{sigthread,  }\item[{struct \mbox{\hyperlink{structmachine__thread__all__state}{machine\+\_\+thread\+\_\+all\+\_\+state}} $\ast$}]{state,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{state\+\_\+change,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$)(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})}]{reply }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_a90a492cf2f4dd420f2a4757975adb23c}\label{hurdsig_8c_a90a492cf2f4dd420f2a4757975adb23c}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurdsig\_getenv@{\_hurdsig\_getenv}}
+\index{\_hurdsig\_getenv@{\_hurdsig\_getenv}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_getenv()}{\_hurdsig\_getenv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \+\_\+hurdsig\+\_\+getenv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{variable }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_acf008803f6d02decc083335fcff571d6}\label{hurdsig_8c_acf008803f6d02decc083335fcff571d6}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurdsig\_init@{\_hurdsig\_init}}
+\index{\_hurdsig\_init@{\_hurdsig\_init}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_init()}{\_hurdsig\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+hurdsig\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{intarray,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{intarraysize }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_ac3a595dde9239964a9174624e88d0775}\label{hurdsig_8c_ac3a595dde9239964a9174624e88d0775}} 
+\index{hurdsig.c@{hurdsig.c}!\_S\_msg\_sig\_post@{\_S\_msg\_sig\_post}}
+\index{\_S\_msg\_sig\_post@{\_S\_msg\_sig\_post}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_sig\_post()}{\_S\_msg\_sig\_post()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+sig\+\_\+post (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{me,  }\item[{mach\+\_\+port\+\_\+t}]{reply\+\_\+port,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t}]{reply\+\_\+port\+\_\+type,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{signo,  }\item[{natural\+\_\+t}]{sigcode,  }\item[{mach\+\_\+port\+\_\+t}]{refport }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_ae1359228cf78c99494a82fc9e3784e7a}\label{hurdsig_8c_ae1359228cf78c99494a82fc9e3784e7a}} 
+\index{hurdsig.c@{hurdsig.c}!\_S\_msg\_sig\_post\_untraced@{\_S\_msg\_sig\_post\_untraced}}
+\index{\_S\_msg\_sig\_post\_untraced@{\_S\_msg\_sig\_post\_untraced}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_S\_msg\_sig\_post\_untraced()}{\_S\_msg\_sig\_post\_untraced()}}
+{\footnotesize\ttfamily kern\+\_\+return\+\_\+t \+\_\+\+S\+\_\+msg\+\_\+sig\+\_\+post\+\_\+untraced (\begin{DoxyParamCaption}\item[{mach\+\_\+port\+\_\+t}]{me,  }\item[{mach\+\_\+port\+\_\+t}]{reply\+\_\+port,  }\item[{mach\+\_\+msg\+\_\+type\+\_\+name\+\_\+t}]{reply\+\_\+port\+\_\+type,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{signo,  }\item[{natural\+\_\+t}]{sigcode,  }\item[{mach\+\_\+port\+\_\+t}]{refport }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_a6d40da90dce0b21856981813e3156c0b}\label{hurdsig_8c_a6d40da90dce0b21856981813e3156c0b}} 
+\index{hurdsig.c@{hurdsig.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+reauth\+\_\+hook}]{,  }\item[{reauth\+\_\+proc}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hurdsig_8c_a8d0585640ffd2db7d1e3d738e3a6ed92}\label{hurdsig_8c_a8d0585640ffd2db7d1e3d738e3a6ed92}} 
+\index{hurdsig.c@{hurdsig.c}!weak\_alias@{weak\_alias}}
+\index{weak\_alias@{weak\_alias}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{weak\_alias()}{weak\_alias()}}
+{\footnotesize\ttfamily weak\+\_\+alias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hurdsig_8c_adfdb1ae3286af57132d3be21cd7e47bd}{\+\_\+hurdsig\+\_\+preemptors}}}]{,  }\item[{\+\_\+hurdsig\+\_\+preempters}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{hurdsig_8c_a71acec1c374940e52a88b66b607e9b6e}\label{hurdsig_8c_a71acec1c374940e52a88b66b607e9b6e}} 
+\index{hurdsig.c@{hurdsig.c}!\_\_hurd\_sigthread\_stack\_base@{\_\_hurd\_sigthread\_stack\_base}}
+\index{\_\_hurd\_sigthread\_stack\_base@{\_\_hurd\_sigthread\_stack\_base}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_\_hurd\_sigthread\_stack\_base}{\_\_hurd\_sigthread\_stack\_base}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+hurd\+\_\+sigthread\+\_\+stack\+\_\+base}
+
+\mbox{\Hypertarget{hurdsig_8c_ab0dd99db4ac7a172d6a51ad5b55597cd}\label{hurdsig_8c_ab0dd99db4ac7a172d6a51ad5b55597cd}} 
+\index{hurdsig.c@{hurdsig.c}!\_\_hurd\_sigthread\_stack\_end@{\_\_hurd\_sigthread\_stack\_end}}
+\index{\_\_hurd\_sigthread\_stack\_end@{\_\_hurd\_sigthread\_stack\_end}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_\_hurd\_sigthread\_stack\_end}{\_\_hurd\_sigthread\_stack\_end}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+hurd\+\_\+sigthread\+\_\+stack\+\_\+end}
+
+\mbox{\Hypertarget{hurdsig_8c_a7f104303ed77cc943d9e028e6c9a229b}\label{hurdsig_8c_a7f104303ed77cc943d9e028e6c9a229b}} 
+\index{hurdsig.c@{hurdsig.c}!\_\_hurd\_sigthread\_variables@{\_\_hurd\_sigthread\_variables}}
+\index{\_\_hurd\_sigthread\_variables@{\_\_hurd\_sigthread\_variables}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_\_hurd\_sigthread\_variables}{\_\_hurd\_sigthread\_variables}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}$\ast$ \+\_\+\+\_\+hurd\+\_\+sigthread\+\_\+variables}
+
+\mbox{\Hypertarget{hurdsig_8c_ad47bec80bb0fca18b1acad0e5b587a41}\label{hurdsig_8c_ad47bec80bb0fca18b1acad0e5b587a41}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_interrupted\_rpc\_timeout@{\_hurd\_interrupted\_rpc\_timeout}}
+\index{\_hurd\_interrupted\_rpc\_timeout@{\_hurd\_interrupted\_rpc\_timeout}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_interrupted\_rpc\_timeout}{\_hurd\_interrupted\_rpc\_timeout}}
+{\footnotesize\ttfamily mach\+\_\+msg\+\_\+timeout\+\_\+t \+\_\+hurd\+\_\+interrupted\+\_\+rpc\+\_\+timeout = 3000}
+
+\mbox{\Hypertarget{hurdsig_8c_acdf8e1cc2016cb2ad54d3282e289769b}\label{hurdsig_8c_acdf8e1cc2016cb2ad54d3282e289769b}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_msgport@{\_hurd\_msgport}}
+\index{\_hurd\_msgport@{\_hurd\_msgport}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_msgport}{\_hurd\_msgport}}
+{\footnotesize\ttfamily mach\+\_\+port\+\_\+t \+\_\+hurd\+\_\+msgport}
+
+\mbox{\Hypertarget{hurdsig_8c_ab9bab93ffbfa49703f6eb21d057450cc}\label{hurdsig_8c_ab9bab93ffbfa49703f6eb21d057450cc}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_msgport\_thread@{\_hurd\_msgport\_thread}}
+\index{\_hurd\_msgport\_thread@{\_hurd\_msgport\_thread}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_msgport\_thread}{\_hurd\_msgport\_thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} \+\_\+hurd\+\_\+msgport\+\_\+thread}
+
+\mbox{\Hypertarget{hurdsig_8c_aad8096de9a5ec2fefe127451ae006fd5}\label{hurdsig_8c_aad8096de9a5ec2fefe127451ae006fd5}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_siglock@{\_hurd\_siglock}}
+\index{\_hurd\_siglock@{\_hurd\_siglock}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_siglock}{\_hurd\_siglock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} \+\_\+hurd\+\_\+siglock}
+
+\mbox{\Hypertarget{hurdsig_8c_a9bd160c6d48910b088c370e49d901df4}\label{hurdsig_8c_a9bd160c6d48910b088c370e49d901df4}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_sigstates@{\_hurd\_sigstates}}
+\index{\_hurd\_sigstates@{\_hurd\_sigstates}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_sigstates}{\_hurd\_sigstates}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}}$\ast$ \+\_\+hurd\+\_\+sigstates}
+
+\mbox{\Hypertarget{hurdsig_8c_a62a26b9258ef87b5c3a180cbbc490040}\label{hurdsig_8c_a62a26b9258ef87b5c3a180cbbc490040}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_sigthread@{\_hurd\_sigthread}}
+\index{\_hurd\_sigthread@{\_hurd\_sigthread}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_sigthread}{\_hurd\_sigthread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread__db_8h_aa406fd87cfd69d7c0a93b6a241978712}{thread\+\_\+t}} \+\_\+hurd\+\_\+sigthread}
+
+\mbox{\Hypertarget{hurdsig_8c_a18f1ca020fb073822baa6e58c38d9ccd}\label{hurdsig_8c_a18f1ca020fb073822baa6e58c38d9ccd}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurd\_stopped@{\_hurd\_stopped}}
+\index{\_hurd\_stopped@{\_hurd\_stopped}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_stopped}{\_hurd\_stopped}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+hurd\+\_\+stopped}
+
+\mbox{\Hypertarget{hurdsig_8c_a22990afc70188e7696fd6bf229661e0b}\label{hurdsig_8c_a22990afc70188e7696fd6bf229661e0b}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurdsig\_interrupt\_timeout@{\_hurdsig\_interrupt\_timeout}}
+\index{\_hurdsig\_interrupt\_timeout@{\_hurdsig\_interrupt\_timeout}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_interrupt\_timeout}{\_hurdsig\_interrupt\_timeout}}
+{\footnotesize\ttfamily mach\+\_\+msg\+\_\+timeout\+\_\+t \+\_\+hurdsig\+\_\+interrupt\+\_\+timeout = 1000}
+
+\mbox{\Hypertarget{hurdsig_8c_a5711ca7d65ebef645899bb783f737811}\label{hurdsig_8c_a5711ca7d65ebef645899bb783f737811}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurdsig\_preempted\_set@{\_hurdsig\_preempted\_set}}
+\index{\_hurdsig\_preempted\_set@{\_hurdsig\_preempted\_set}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_preempted\_set}{\_hurdsig\_preempted\_set}}
+{\footnotesize\ttfamily \mbox{\hyperlink{misc_2sys_2select_8h_a134f0411d52ec19a05b55b4ba2f87c3c}{sigset\+\_\+t}} \+\_\+hurdsig\+\_\+preempted\+\_\+set}
+
+\mbox{\Hypertarget{hurdsig_8c_adfdb1ae3286af57132d3be21cd7e47bd}\label{hurdsig_8c_adfdb1ae3286af57132d3be21cd7e47bd}} 
+\index{hurdsig.c@{hurdsig.c}!\_hurdsig\_preemptors@{\_hurdsig\_preemptors}}
+\index{\_hurdsig\_preemptors@{\_hurdsig\_preemptors}!hurdsig.c@{hurdsig.c}}
+\doxysubsubsection{\texorpdfstring{\_hurdsig\_preemptors}{\_hurdsig\_preemptors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhurd__signal__preemptor}{hurd\+\_\+signal\+\_\+preemptor}}$\ast$ \+\_\+hurdsig\+\_\+preemptors = 0}
+

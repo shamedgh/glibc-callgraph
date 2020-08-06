@@ -1,0 +1,309 @@
+
+;; Function __getutid_r (__getutid_r, funcdef_no=33, decl_uid=7482, cgraph_uid=33, symbol_order=37)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 40.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 99 [ id ])
+        (reg:DI 5 di [ id ])) getutid_r.c:34 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 100 [ buffer ])
+        (reg:DI 4 si [ buffer ])) getutid_r.c:34 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 101 [ result ])
+        (reg:DI 1 dx [ result ])) getutid_r.c:34 -1
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:HI 103)
+        (mem:HI (reg/v/f:DI 99 [ id ]) [2 id_4(D)->ut_type+0 S2 A32])) getutid_r.c:42 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg:HI 102 [ D.7563 ])
+                (plus:HI (reg:HI 103)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) getutid_r.c:42 -1
+     (expr_list:REG_EQUAL (plus:HI (mem:HI (reg/v/f:DI 99 [ id ]) [2 id_4(D)->ut_type+0 S2 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 12 11 13 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:HI 102 [ D.7563 ])
+            (const_int 7 [0x7]))) getutid_r.c:42 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) getutid_r.c:42 -1
+     (int_list:REG_BR_PROB 9032 (nil))
+ -> 20)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg:DI 104)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b6d729e5000 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [8  S8 A8])) getutid_r.c:45 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 104)) [3 __libc_errno+0 S4 A32])
+        (const_int 22 [0x16])) getutid_r.c:45 -1
+     (nil))
+(insn 17 16 6 4 (set (mem/f:DI (reg/v/f:DI 101 [ result ]) [6 *result_12(D)+0 S8 A64])
+        (const_int 0 [0])) getutid_r.c:46 -1
+     (nil))
+(insn 6 17 18 4 (set (reg:SI 87 [ D.7559 ])
+        (const_int -1 [0xffffffffffffffff])) getutid_r.c:47 -1
+     (nil))
+(jump_insn 18 6 19 4 (set (pc)
+        (label_ref 37)) getutid_r.c:47 -1
+     (nil)
+ -> 37)
+(barrier 19 18 20)
+(code_label 20 19 21 5 2 "" [1 uses])
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:SI 108)
+        (const_int 1 [0x1])) getutid_r.c:50 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:SI 109)
+        (const_int 0 [0])) getutid_r.c:50 -1
+     (nil))
+(insn 24 23 25 5 (parallel [
+            (set (reg:SI 105 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 108)
+                        (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                        (reg:SI 109)
+                    ]
+                     [
+                        (asm_input:SI ("0") getutid_r.c:50)
+                        (asm_input:SI ("m") getutid_r.c:50)
+                        (asm_input:SI ("3") getutid_r.c:50)
+                    ]
+                     [] getutid_r.c:50))
+            (set (reg:SI 106 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 108)
+                        (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                        (reg:SI 109)
+                    ]
+                     [
+                        (asm_input:SI ("0") getutid_r.c:50)
+                        (asm_input:SI ("m") getutid_r.c:50)
+                        (asm_input:SI ("3") getutid_r.c:50)
+                    ]
+                     [] getutid_r.c:50))
+            (set (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 108)
+                        (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                        (reg:SI 109)
+                    ]
+                     [
+                        (asm_input:SI ("0") getutid_r.c:50)
+                        (asm_input:SI ("m") getutid_r.c:50)
+                        (asm_input:SI ("3") getutid_r.c:50)
+                    ]
+                     [] getutid_r.c:50))
+            (set (reg:SI 107 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 108)
+                        (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                        (reg:SI 109)
+                    ]
+                     [
+                        (asm_input:SI ("0") getutid_r.c:50)
+                        (asm_input:SI ("m") getutid_r.c:50)
+                        (asm_input:SI ("3") getutid_r.c:50)
+                    ]
+                     [] getutid_r.c:50))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) getutid_r.c:50 -1
+     (nil))
+(insn 25 24 26 5 (set (reg/v:SI 89 [ ignore1 ])
+        (reg:SI 105 [ ignore1 ])) getutid_r.c:50 -1
+     (nil))
+(insn 26 25 27 5 (set (reg/v:SI 90 [ ignore2 ])
+        (reg:SI 106 [ ignore2 ])) getutid_r.c:50 -1
+     (nil))
+(insn 27 26 28 5 (set (reg/v:SI 91 [ ignore3 ])
+        (reg:SI 107 [ ignore3 ])) getutid_r.c:50 -1
+     (nil))
+(insn 28 27 29 5 (set (reg/f:DI 110)
+        (mem/f/c:DI (symbol_ref:DI ("__libc_utmp_jump_table") [flags 0x42]  <var_decl 0x2b6d729e51b0 __libc_utmp_jump_table>) [6 __libc_utmp_jump_table+0 S8 A64])) getutid_r.c:52 -1
+     (nil))
+(insn 29 28 30 5 (set (reg/f:DI 111)
+        (mem/f:DI (plus:DI (reg/f:DI 110)
+                (const_int 16 [0x10])) [6 _18->getutid_r+0 S8 A64])) getutid_r.c:52 -1
+     (nil))
+(insn 30 29 31 5 (set (reg:DI 1 dx)
+        (reg/v/f:DI 101 [ result ])) getutid_r.c:52 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:DI 4 si)
+        (reg/v/f:DI 100 [ buffer ])) getutid_r.c:52 -1
+     (nil))
+(insn 32 31 33 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ id ])) getutid_r.c:52 -1
+     (nil))
+(call_insn 33 32 34 5 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/f:DI 111) [0 *_19 S1 A8])
+            (const_int 0 [0]))) getutid_r.c:52 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 34 33 35 5 (set (reg/v:SI 94 [ retval ])
+        (reg:SI 0 ax)) getutid_r.c:52 -1
+     (nil))
+(insn 35 34 36 5 (parallel [
+            (set (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") getutid_r.c:54)
+                    ]
+                     [] getutid_r.c:54))
+            (set (reg:SI 112 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem/c:SI (symbol_ref:DI ("__libc_utmp_lock") [flags 0x42]  <var_decl 0x2b6d729e52d0 __libc_utmp_lock>) [3 __libc_utmp_lock+0 S4 A32])
+                    ]
+                     [
+                        (asm_input:SI ("m") getutid_r.c:54)
+                    ]
+                     [] getutid_r.c:54))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) getutid_r.c:54 -1
+     (nil))
+(insn 36 35 7 5 (set (reg/v:SI 95 [ ignore ])
+        (reg:SI 112 [ ignore ])) getutid_r.c:54 -1
+     (nil))
+(insn 7 36 37 5 (set (reg:SI 87 [ D.7559 ])
+        (reg/v:SI 94 [ retval ])) getutid_r.c:56 -1
+     (nil))
+(code_label 37 7 38 6 3 "" [1 uses])
+(note 38 37 39 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 43 6 (set (reg:SI 98 [ <retval> ])
+        (reg:SI 87 [ D.7559 ])) -1
+     (nil))
+(insn 43 39 44 6 (set (reg/i:SI 0 ax)
+        (reg:SI 98 [ <retval> ])) getutid_r.c:61 -1
+     (nil))
+(insn 44 43 0 6 (use (reg/i:SI 0 ax)) getutid_r.c:61 -1
+     (nil))

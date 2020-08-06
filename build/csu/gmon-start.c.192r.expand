@@ -1,0 +1,91 @@
+
+;; Function __gmon_start__ (__gmon_start__, funcdef_no=23, decl_uid=4477, cgraph_uid=23, symbol_order=27)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+deleting block 5
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("called.4481") [flags 0x2]  <var_decl 0x2b205be81090 called>) [1 called+0 S4 A32])
+            (const_int 0 [0]))) gmon-start.c:81 -1
+     (nil))
+(jump_insn 6 5 7 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 20)
+            (pc))) gmon-start.c:81 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 20)
+(note 7 6 8 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 8 7 9 4 (set (mem/c:SI (symbol_ref:DI ("called.4481") [flags 0x2]  <var_decl 0x2b205be81090 called>) [1 called+0 S4 A32])
+        (const_int 1 [0x1])) gmon-start.c:84 -1
+     (nil))
+(insn 9 8 10 4 (set (reg:DI 90)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("etext") [flags 0x40]  <var_decl 0x2b205be81000 etext>)
+                    ] UNSPEC_GOTPCREL)) [2  S8 A8])) gmon-start.c:87 -1
+     (nil))
+(insn 10 9 11 4 (set (reg:DI 4 si)
+        (reg:DI 90)) gmon-start.c:87 -1
+     (expr_list:REG_EQUAL (symbol_ref:DI ("etext") [flags 0x40]  <var_decl 0x2b205be81000 etext>)
+        (nil)))
+(insn 11 10 12 4 (set (reg:DI 91)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_start") [flags 0x40]  <var_decl 0x2b205bd25900 _start>)
+                    ] UNSPEC_GOTPCREL)) [2  S8 A8])) gmon-start.c:87 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (reg:DI 91)) gmon-start.c:87 -1
+     (expr_list:REG_EQUAL (symbol_ref:DI ("_start") [flags 0x40]  <var_decl 0x2b205bd25900 _start>)
+        (nil)))
+(call_insn 13 12 14 4 (call (mem:QI (symbol_ref:DI ("__monstartup") [flags 0x41]  <function_decl 0x2b205bce5e58 __monstartup>) [0 __monstartup S1 A8])
+        (const_int 0 [0])) gmon-start.c:87 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__monstartup") [flags 0x41]  <function_decl 0x2b205bce5e58 __monstartup>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg:DI 92)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_mcleanup") [flags 0x41]  <function_decl 0x2b205bd030d8 _mcleanup>)
+                    ] UNSPEC_GOTPCREL)) [2  S8 A8])) gmon-start.c:91 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:DI 5 di)
+        (reg:DI 92)) gmon-start.c:91 -1
+     (expr_list:REG_EQUAL (symbol_ref:DI ("_mcleanup") [flags 0x41]  <function_decl 0x2b205bd030d8 _mcleanup>)
+        (nil)))
+(call_insn/j 16 15 17 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("atexit") [flags 0x41]  <function_decl 0x2b205bda16c0 atexit>) [0 atexit S1 A8])
+            (const_int 0 [0]))) gmon-start.c:91 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("atexit") [flags 0x41]  <function_decl 0x2b205bda16c0 atexit>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 17 16 20)
+(code_label 20 17 21 6 1 "" [1 uses])
+(note 21 20 0 6 [bb 6] NOTE_INSN_BASIC_BLOCK)

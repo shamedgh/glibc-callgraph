@@ -1,0 +1,61 @@
+
+;; Function __sched_cpualloc (__sched_cpualloc, funcdef_no=23, decl_uid=1918, cgraph_uid=23, symbol_order=26)
+
+
+;; Generating RTL for gimple basic block 2
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:DI 92 [ count ])
+        (reg:DI 5 di [ count ])) sched_cpualloc.c:24 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (reg:DI 93 [ D.3576 ])
+                (plus:DI (reg/v:DI 92 [ count ])
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) sched_cpualloc.c:25 -1
+     (nil))
+(insn 7 6 8 2 (parallel [
+            (set (reg:DI 94 [ D.3576 ])
+                (lshiftrt:DI (reg:DI 93 [ D.3576 ])
+                    (const_int 6 [0x6])))
+            (clobber (reg:CC 17 flags))
+        ]) sched_cpualloc.c:25 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:DI 95 [ D.3576 ])
+                (ashift:DI (reg:DI 94 [ D.3576 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) sched_cpualloc.c:25 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (reg:DI 95 [ D.3576 ])) sched_cpualloc.c:25 -1
+     (nil))
+(call_insn/j 10 9 11 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b1fee7b0360 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) sched_cpualloc.c:25 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b1fee7b0360 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 11 10 0)

@@ -1,0 +1,835 @@
+\hypertarget{nscd_8h}{}\doxysection{nscd/nscd.h File Reference}
+\label{nscd_8h}\index{nscd/nscd.h@{nscd/nscd.h}}
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nscd-\/client.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$programs/xmalloc.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtraced__file}{traced\+\_\+file}}
+\item 
+struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a79f3a13fc0fdf9e9449af2de3e2a51d7}{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+E\+L\+O\+A\+D\+\_\+\+L\+I\+M\+IT}}~5
+\item 
+\#define \mbox{\hyperlink{nscd_8h_af4b27c328a263a85eca16613ebad5ca6}{R\+E\+S\+T\+A\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}~(60 $\ast$ 60)
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a0c14a94c44e1879aba3f44ac1c3c5b4c}{N\+S\+C\+D\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+S\+I\+ZE}}~1024 $\ast$ 1024 $\ast$ (sizeof (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$) / 4)
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a95fa6589bbe489f14b6fad736a485385}{M\+A\+X\+\_\+\+S\+T\+A\+C\+K\+\_\+\+U\+SE}}~((8 $\ast$ \mbox{\hyperlink{nscd_8h_a0c14a94c44e1879aba3f44ac1c3c5b4c}{N\+S\+C\+D\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+S\+I\+ZE}}) / 10)
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a52d4811337c820bcfe2963c9414c5f60}{T\+R\+A\+C\+E\+D\+\_\+\+F\+I\+LE}}~0
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a8a3737998623fc2eee43106948114f13}{T\+R\+A\+C\+E\+D\+\_\+\+D\+IR}}~1
+\item 
+\#define \mbox{\hyperlink{nscd_8h_ae688d728e1acdfe5988c7db45d6f0166}{P\+A\+T\+H\+\_\+\+M\+AX}}~1024
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a407b33e48007561ed32d40758deb3790}{define\+\_\+traced\+\_\+file}}(\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  filename)
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a94cd812b61ac387928b92c4260a032c3}{\+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+DB}}~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/\mbox{\hyperlink{structpasswd}{passwd}}\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a3d604f452622436d70968f390a86620d}{\+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+G\+R\+O\+U\+P\+\_\+\+DB}}~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/\mbox{\hyperlink{structgroup}{group}}\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a64dfea9eb070381a0664209c211f9d0a}{\+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+H\+O\+S\+T\+S\+\_\+\+DB}}~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/hosts\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_ae74ac1232f4c376f9b85f89d1042fa19}{\+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+S\+E\+R\+V\+I\+C\+E\+S\+\_\+\+DB}}~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/services\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a000850c33f70cb3e34bb43ca3e2bb905}{\+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+N\+E\+T\+G\+R\+O\+U\+P\+\_\+\+DB}}~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/netgroup\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a41b5c203c524d83fd42a338870433a87}{\+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+X\+Y\+Z\+\_\+\+D\+B\+\_\+\+T\+MP}}~\char`\"{}/var/run/nscd/db\+X\+X\+X\+X\+XX\char`\"{}
+\item 
+\#define \mbox{\hyperlink{nscd_8h_afabbc83e475b3a8af423e531ac640acd}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+G\+N\+\_\+\+L\+OG}}~3
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a7b2ccd4066e12ad8fe334a6bb2672439}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+GN}}~(1 $<$$<$ \mbox{\hyperlink{nscd_8h_afabbc83e475b3a8af423e531ac640acd}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+G\+N\+\_\+\+L\+OG}})
+\item 
+\#define \mbox{\hyperlink{nscd_8h_ab02dd8166ec77f6ceffb5368972c79e8}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+G\+N\+\_\+\+M1}}~(\mbox{\hyperlink{nscd_8h_a7b2ccd4066e12ad8fe334a6bb2672439}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+GN}} -\/ 1)
+\item 
+\#define \mbox{\hyperlink{nscd_8h_abfda0c9ba0f1bf5b56a9d289bae45e04}{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+\_\+\+D\+B\+\_\+\+S\+I\+ZE}}~(32 $\ast$ 1024 $\ast$ 1024)
+\item 
+\#define \mbox{\hyperlink{nscd_8h_a7dcd2872be517ed371944a5a89d63355}{D\+E\+F\+A\+U\+L\+T\+\_\+\+D\+A\+T\+A\+S\+I\+Z\+E\+\_\+\+P\+E\+R\+\_\+\+B\+U\+C\+K\+ET}}~1024
+\item 
+\#define \mbox{\hyperlink{nscd_8h_adf74c7791ba0044e25451259c7b43a68}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+U\+G\+G\+E\+S\+T\+E\+D\+\_\+\+M\+O\+D\+U\+LE}}~211
+\item 
+\#define \mbox{\hyperlink{nscd_8h_afabe75784eea6b05e6452f66f9104578}{C\+A\+C\+H\+E\+\_\+\+P\+R\+U\+N\+E\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}~15
+\item 
+\#define \mbox{\hyperlink{nscd_8h_aff1e10ec28066ce460592e14f285d8dd}{T\+E\+M\+P\+\_\+\+F\+A\+I\+L\+U\+R\+E\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+V\+AL}}(\mbox{\hyperlink{structexpression}{expression}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0face}{dbtype}} \{ \newline
+\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea36eeaea10144c9bca8228ae932b90c0f}{pwddb}}, 
+\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0faceab21b5f211bafe64f0e312e00042f69e9}{grpdb}}, 
+\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea352fe275db98c7160e5553a975e0f037}{hstdb}}, 
+\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facead04dbab4d08a69d76f0ba1e426595057}{servdb}}, 
+\newline
+\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea3afe6f8d6d153857cf8b2d11249b6ecc}{netgrdb}}, 
+\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_aa24ec3141e4d91081bc3b26ec8645a27}{termination\+\_\+handler}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} signum) \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\+\_\+\+\_\+noreturn\+\_\+\+\_\+))
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a7f15435f185e33f9d85b1df150d47861}{nscd\+\_\+open\+\_\+socket}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a8f935a43a2809ee367d0a439913697da}{notify\+\_\+parent}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} child\+\_\+ret)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_af25a8300abc39df0d94c053ea98b02dc}{do\+\_\+exit}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} child\+\_\+ret, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} errnum, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strptime_8c_a6bd2bb5fcc7628a640958994a22f997c}{format}},...)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_aebae1e668e766333cf3711ce54085269}{nscd\+\_\+init}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a732445741d7bdce10ae6f76f94dfc541}{register\+\_\+traced\+\_\+file}} (\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} dbidx, struct \mbox{\hyperlink{structtraced__file}{traced\+\_\+file}} $\ast$finfo)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_aa166e587ce5633209ea1f49402a32605}{close\+\_\+sockets}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a5f961bae6569ecc62d01c5caa065e8b8}{start\+\_\+threads}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\+\_\+\+\_\+noreturn\+\_\+\+\_\+))
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_afc60e90977ee635666dda23ea0ab79db}{nscd\+\_\+parse\+\_\+file}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{bug-ungetwc2_8c_ae96bbe3347b319ee7bdbd1f2e2ba9f5b}{fname}}, struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} \mbox{\hyperlink{connections_8c_a419f835ddbf18a35e6ed4357ff91dce8}{dbs}}\mbox{[}\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}\mbox{]})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a385993fcb124d5951d3eed0927f753e1}{send\+\_\+stats}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} \mbox{\hyperlink{connections_8c_a419f835ddbf18a35e6ed4357ff91dce8}{dbs}}\mbox{[}\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}\mbox{]})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a20992e98e340c120868ec0591164c016}{receive\+\_\+print\+\_\+stats}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}) \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\+\_\+\+\_\+noreturn\+\_\+\+\_\+))
+\item 
+struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$ \mbox{\hyperlink{nscd_8h_afd0cdabd019233b891f0cc1ba3cccc7b}{cache\+\_\+search}} (\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$table, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} owner)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a9b2f1dcdc5b20321c89dce7586f5ddef}{cache\+\_\+add}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$packet, \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} \mbox{\hyperlink{malloc_8c_afcdd80de1d2482a30e49ef0389f36c63}{first}}, struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$table, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} owner, \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} prune\+\_\+wakeup)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_aa35fe4a604ac840dea63ecd7972d5b92}{prune\+\_\+cache}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$table, \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} now, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a5fe441aff91f8d53c5764f13021ec477}{addpwbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a9de2f04f8864d0a28ec7043721212a8d}{addpwbyuid}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a8a59356f4564eb833f34875150063b95}{readdpwbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a9459e658e0339727425f35510eb4c863}{readdpwbyuid}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_ab5f868bfb9c727364f7bb9d863eb010a}{addgrbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a06e54afe3f62c7121282e81351402a2f}{addgrbygid}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_aacdaaa2d46b241048668306271851d79}{readdgrbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a676c21bec5da9b835584002469616e7f}{readdgrbygid}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_ad911334b44e78d39b20d01285882a9eb}{addhstbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a0d1913b25b26ac8d1a377fae007d2b9b}{addhstbyaddr}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a9921a53e8d89b44a93518e879daf9a52}{addhstbynamev6}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_ac869c4c810332a662cecda8ed79f58b5}{addhstbyaddrv6}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a52d6c59fc256a34413bb96f33782fded}{readdhstbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_aef880b57e33202d609b35de947a4dfbc}{readdhstbyaddr}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a18f5d4347e7ec3be600a3c630765f15b}{readdhstbynamev6}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a0b59f1b39f482c69d097b82837c71468}{readdhstbyaddrv6}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_aeada183289834b112dc3a4b4b1705a70}{addhstai}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a516be62aad8c41716dca7e2aaa4cd307}{readdhstai}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_abac22456d6d8920f6fac0c451b58881b}{addinitgroups}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_abea8285ed7a3bd562083e441e54679fd}{readdinitgroups}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_aa97123a14feba050eb10afedfe941241}{addservbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a4e434778ee0b88c1b928e88101481f20}{readdservbyname}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_aa000996a40ba1ed20664df105e57fda3}{addservbyport}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a574d095171eee2abbbf3a638ca43a152}{readdservbyport}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a43624c9e4daf94ad8baeccb9cf8511aa}{addinnetgr}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_adf4b3c62929118aa5e15006a45249e21}{readdinnetgr}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_ac257651fe764c3f6f50949748fdaf724}{addgetnetgrent}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}, \mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$req, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$key, \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{files-pwd_8c_a35194724d9ad8cd22fd76f1f9a1ac310}{uid}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a7ee751ba1087da85e66ce61fe2019680}{readdgetnetgrent}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$he, struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$dh)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{nscd_8h_af4920f0102b38977967b51e4899eef09}{mempool\+\_\+alloc}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} data\+\_\+alloc)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nscd_8h_a28e5e868f12f51fde88d3f4f5ae79a49}{gc}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a1322c680796d454dac9853fc4d345270}{setup\+\_\+thread}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} \mbox{\hyperlink{connections_8c_a419f835ddbf18a35e6ed4357ff91dce8}{dbs}} \mbox{[}\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}\mbox{]} \mbox{\hyperlink{nscd_8h_aec515a7f82061a75fe4058d16d15af34}{attribute\+\_\+hidden}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{nscd_8h_af1a7effe6e476a13d1e8f3117e5e7a84}{dbnames}} \mbox{[}\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{nscd_8h_a4f0f0f491ae1ed96049d4b5b92da83d3}{serv2str}} \mbox{[}\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ecad5c65533bbab037550cc6085a2d0abc2}{L\+A\+S\+T\+R\+EQ}}\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} \mbox{\hyperlink{nscd_8h_afdeb69c1e59cd3bc538515046e15e114}{pwd\+\_\+iov\+\_\+disabled}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} \mbox{\hyperlink{nscd_8h_af1714bec0b8a34372eac46965d1b021b}{grp\+\_\+iov\+\_\+disabled}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} \mbox{\hyperlink{nscd_8h_a7fa3a08b5cc1b316c3158fb4927a3990}{hst\+\_\+iov\+\_\+disabled}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} \mbox{\hyperlink{nscd_8h_a889b61b842698055d17a47ef4fb90266}{serv\+\_\+iov\+\_\+disabled}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} \mbox{\hyperlink{nscd_8h_ae2d8142f7d7c698e2bf5b6fad8107b39}{netgroup\+\_\+iov\+\_\+disabled}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a2b6a46c4274b223ea03fb4a7b80f4a5a}{nthreads}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a28ef8b53853d71f65092d76de3704e27}{max\+\_\+nthreads}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_ae599f7dc7f8671cdf24ac722c6f4c26a}{inotify\+\_\+fd}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{nscd_8h_a078af377a0e997344ac2f01c35f181db}{server\+\_\+user}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{nscd_8h_a3af1b3e5e6da172bebc5592eb57935e1}{stat\+\_\+user}}
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{nscd_8h_aaacfaac6016f1ece5b564361bc530d05}{stat\+\_\+uid}}
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_ad20e89e0c86aa812dc3a8e2fb7b5777b}{start\+\_\+time}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a8bfc114485215570cb69a7184a2f7c27}{client\+\_\+queued}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{nscd_8h_aacd6a88c66afa368b5a5530576155800}{block\+\_\+align}}
+\item 
+unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_ae3dcba409639dfd1cdf82dc206cdb3cb}{reload\+\_\+count}}
+\item 
+\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{nscd_8h_aab1f32594b4a761fe402f29824ae3a94}{pagesize\+\_\+m1}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nscd_8h_a238fdb20babc729d11c1b5a11f4787b6}{paranoia}}
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a12f3b86e75216ad35ff0d88fcb2d77c3}{restart\+\_\+time}}
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{nscd_8h_a2f3faf0ae01120b3b59bb6ecccaab73b}{restart\+\_\+interval}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{nscd_8h_a38a133c240497650a863dc16374bff58}{oldcwd}}
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} \mbox{\hyperlink{nscd_8h_afd4bfe8311516e5062b82b5712331103}{old\+\_\+uid}}
+\item 
+\mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} \mbox{\hyperlink{nscd_8h_a9e9296057f1552fc1f20c3cd6803d253}{old\+\_\+gid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nscd_8h_a3d604f452622436d70968f390a86620d}\label{nscd_8h_a3d604f452622436d70968f390a86620d}} 
+\index{nscd.h@{nscd.h}!\_PATH\_NSCD\_GROUP\_DB@{\_PATH\_NSCD\_GROUP\_DB}}
+\index{\_PATH\_NSCD\_GROUP\_DB@{\_PATH\_NSCD\_GROUP\_DB}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{\_PATH\_NSCD\_GROUP\_DB}{\_PATH\_NSCD\_GROUP\_DB}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+G\+R\+O\+U\+P\+\_\+\+DB~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/\mbox{\hyperlink{structgroup}{group}}\char`\"{}}
+
+\mbox{\Hypertarget{nscd_8h_a64dfea9eb070381a0664209c211f9d0a}\label{nscd_8h_a64dfea9eb070381a0664209c211f9d0a}} 
+\index{nscd.h@{nscd.h}!\_PATH\_NSCD\_HOSTS\_DB@{\_PATH\_NSCD\_HOSTS\_DB}}
+\index{\_PATH\_NSCD\_HOSTS\_DB@{\_PATH\_NSCD\_HOSTS\_DB}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{\_PATH\_NSCD\_HOSTS\_DB}{\_PATH\_NSCD\_HOSTS\_DB}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+H\+O\+S\+T\+S\+\_\+\+DB~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/hosts\char`\"{}}
+
+\mbox{\Hypertarget{nscd_8h_a000850c33f70cb3e34bb43ca3e2bb905}\label{nscd_8h_a000850c33f70cb3e34bb43ca3e2bb905}} 
+\index{nscd.h@{nscd.h}!\_PATH\_NSCD\_NETGROUP\_DB@{\_PATH\_NSCD\_NETGROUP\_DB}}
+\index{\_PATH\_NSCD\_NETGROUP\_DB@{\_PATH\_NSCD\_NETGROUP\_DB}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{\_PATH\_NSCD\_NETGROUP\_DB}{\_PATH\_NSCD\_NETGROUP\_DB}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+N\+E\+T\+G\+R\+O\+U\+P\+\_\+\+DB~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/netgroup\char`\"{}}
+
+\mbox{\Hypertarget{nscd_8h_a94cd812b61ac387928b92c4260a032c3}\label{nscd_8h_a94cd812b61ac387928b92c4260a032c3}} 
+\index{nscd.h@{nscd.h}!\_PATH\_NSCD\_PASSWD\_DB@{\_PATH\_NSCD\_PASSWD\_DB}}
+\index{\_PATH\_NSCD\_PASSWD\_DB@{\_PATH\_NSCD\_PASSWD\_DB}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{\_PATH\_NSCD\_PASSWD\_DB}{\_PATH\_NSCD\_PASSWD\_DB}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+DB~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/\mbox{\hyperlink{structpasswd}{passwd}}\char`\"{}}
+
+\mbox{\Hypertarget{nscd_8h_ae74ac1232f4c376f9b85f89d1042fa19}\label{nscd_8h_ae74ac1232f4c376f9b85f89d1042fa19}} 
+\index{nscd.h@{nscd.h}!\_PATH\_NSCD\_SERVICES\_DB@{\_PATH\_NSCD\_SERVICES\_DB}}
+\index{\_PATH\_NSCD\_SERVICES\_DB@{\_PATH\_NSCD\_SERVICES\_DB}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{\_PATH\_NSCD\_SERVICES\_DB}{\_PATH\_NSCD\_SERVICES\_DB}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+S\+E\+R\+V\+I\+C\+E\+S\+\_\+\+DB~\char`\"{}/var/\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}/nscd/services\char`\"{}}
+
+\mbox{\Hypertarget{nscd_8h_a41b5c203c524d83fd42a338870433a87}\label{nscd_8h_a41b5c203c524d83fd42a338870433a87}} 
+\index{nscd.h@{nscd.h}!\_PATH\_NSCD\_XYZ\_DB\_TMP@{\_PATH\_NSCD\_XYZ\_DB\_TMP}}
+\index{\_PATH\_NSCD\_XYZ\_DB\_TMP@{\_PATH\_NSCD\_XYZ\_DB\_TMP}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{\_PATH\_NSCD\_XYZ\_DB\_TMP}{\_PATH\_NSCD\_XYZ\_DB\_TMP}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+A\+T\+H\+\_\+\+N\+S\+C\+D\+\_\+\+X\+Y\+Z\+\_\+\+D\+B\+\_\+\+T\+MP~\char`\"{}/var/run/nscd/db\+X\+X\+X\+X\+XX\char`\"{}}
+
+\mbox{\Hypertarget{nscd_8h_a7b2ccd4066e12ad8fe334a6bb2672439}\label{nscd_8h_a7b2ccd4066e12ad8fe334a6bb2672439}} 
+\index{nscd.h@{nscd.h}!BLOCK\_ALIGN@{BLOCK\_ALIGN}}
+\index{BLOCK\_ALIGN@{BLOCK\_ALIGN}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{BLOCK\_ALIGN}{BLOCK\_ALIGN}}
+{\footnotesize\ttfamily \#define B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+GN~(1 $<$$<$ \mbox{\hyperlink{nscd_8h_afabbc83e475b3a8af423e531ac640acd}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+G\+N\+\_\+\+L\+OG}})}
+
+\mbox{\Hypertarget{nscd_8h_afabbc83e475b3a8af423e531ac640acd}\label{nscd_8h_afabbc83e475b3a8af423e531ac640acd}} 
+\index{nscd.h@{nscd.h}!BLOCK\_ALIGN\_LOG@{BLOCK\_ALIGN\_LOG}}
+\index{BLOCK\_ALIGN\_LOG@{BLOCK\_ALIGN\_LOG}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{BLOCK\_ALIGN\_LOG}{BLOCK\_ALIGN\_LOG}}
+{\footnotesize\ttfamily \#define B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+G\+N\+\_\+\+L\+OG~3}
+
+\mbox{\Hypertarget{nscd_8h_ab02dd8166ec77f6ceffb5368972c79e8}\label{nscd_8h_ab02dd8166ec77f6ceffb5368972c79e8}} 
+\index{nscd.h@{nscd.h}!BLOCK\_ALIGN\_M1@{BLOCK\_ALIGN\_M1}}
+\index{BLOCK\_ALIGN\_M1@{BLOCK\_ALIGN\_M1}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{BLOCK\_ALIGN\_M1}{BLOCK\_ALIGN\_M1}}
+{\footnotesize\ttfamily \#define B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+G\+N\+\_\+\+M1~(\mbox{\hyperlink{nscd_8h_a7b2ccd4066e12ad8fe334a6bb2672439}{B\+L\+O\+C\+K\+\_\+\+A\+L\+I\+GN}} -\/ 1)}
+
+\mbox{\Hypertarget{nscd_8h_afabe75784eea6b05e6452f66f9104578}\label{nscd_8h_afabe75784eea6b05e6452f66f9104578}} 
+\index{nscd.h@{nscd.h}!CACHE\_PRUNE\_INTERVAL@{CACHE\_PRUNE\_INTERVAL}}
+\index{CACHE\_PRUNE\_INTERVAL@{CACHE\_PRUNE\_INTERVAL}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{CACHE\_PRUNE\_INTERVAL}{CACHE\_PRUNE\_INTERVAL}}
+{\footnotesize\ttfamily \#define C\+A\+C\+H\+E\+\_\+\+P\+R\+U\+N\+E\+\_\+\+I\+N\+T\+E\+R\+V\+AL~15}
+
+\mbox{\Hypertarget{nscd_8h_a7dcd2872be517ed371944a5a89d63355}\label{nscd_8h_a7dcd2872be517ed371944a5a89d63355}} 
+\index{nscd.h@{nscd.h}!DEFAULT\_DATASIZE\_PER\_BUCKET@{DEFAULT\_DATASIZE\_PER\_BUCKET}}
+\index{DEFAULT\_DATASIZE\_PER\_BUCKET@{DEFAULT\_DATASIZE\_PER\_BUCKET}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_DATASIZE\_PER\_BUCKET}{DEFAULT\_DATASIZE\_PER\_BUCKET}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+D\+A\+T\+A\+S\+I\+Z\+E\+\_\+\+P\+E\+R\+\_\+\+B\+U\+C\+K\+ET~1024}
+
+\mbox{\Hypertarget{nscd_8h_abfda0c9ba0f1bf5b56a9d289bae45e04}\label{nscd_8h_abfda0c9ba0f1bf5b56a9d289bae45e04}} 
+\index{nscd.h@{nscd.h}!DEFAULT\_MAX\_DB\_SIZE@{DEFAULT\_MAX\_DB\_SIZE}}
+\index{DEFAULT\_MAX\_DB\_SIZE@{DEFAULT\_MAX\_DB\_SIZE}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MAX\_DB\_SIZE}{DEFAULT\_MAX\_DB\_SIZE}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+\_\+\+D\+B\+\_\+\+S\+I\+ZE~(32 $\ast$ 1024 $\ast$ 1024)}
+
+\mbox{\Hypertarget{nscd_8h_a79f3a13fc0fdf9e9449af2de3e2a51d7}\label{nscd_8h_a79f3a13fc0fdf9e9449af2de3e2a51d7}} 
+\index{nscd.h@{nscd.h}!DEFAULT\_RELOAD\_LIMIT@{DEFAULT\_RELOAD\_LIMIT}}
+\index{DEFAULT\_RELOAD\_LIMIT@{DEFAULT\_RELOAD\_LIMIT}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_RELOAD\_LIMIT}{DEFAULT\_RELOAD\_LIMIT}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+E\+L\+O\+A\+D\+\_\+\+L\+I\+M\+IT~5}
+
+\mbox{\Hypertarget{nscd_8h_adf74c7791ba0044e25451259c7b43a68}\label{nscd_8h_adf74c7791ba0044e25451259c7b43a68}} 
+\index{nscd.h@{nscd.h}!DEFAULT\_SUGGESTED\_MODULE@{DEFAULT\_SUGGESTED\_MODULE}}
+\index{DEFAULT\_SUGGESTED\_MODULE@{DEFAULT\_SUGGESTED\_MODULE}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_SUGGESTED\_MODULE}{DEFAULT\_SUGGESTED\_MODULE}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+U\+G\+G\+E\+S\+T\+E\+D\+\_\+\+M\+O\+D\+U\+LE~211}
+
+\mbox{\Hypertarget{nscd_8h_a407b33e48007561ed32d40758deb3790}\label{nscd_8h_a407b33e48007561ed32d40758deb3790}} 
+\index{nscd.h@{nscd.h}!define\_traced\_file@{define\_traced\_file}}
+\index{define\_traced\_file@{define\_traced\_file}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{define\_traced\_file}{define\_traced\_file}}
+{\footnotesize\ttfamily \#define define\+\_\+traced\+\_\+file(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sparc_2lowlevellock_8h_a55e754d36a16b243351f9499b4d6dcf2}{id}},  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keyword}{union                            }\(\backslash\)}
+\DoxyCodeLine{\{                               \(\backslash\)}
+\DoxyCodeLine{  struct \mbox{\hyperlink{structtraced__file}{traced\_file}} \mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}};                   \(\backslash\)}
+\DoxyCodeLine{  char \mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}[\textcolor{keyword}{sizeof} (\textcolor{keyword}{struct }\mbox{\hyperlink{structtraced__file}{traced\_file}}) + sizeof (filename)];  \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordtype}{id}\#\#\_traced\_file;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nscd_8h_a95fa6589bbe489f14b6fad736a485385}\label{nscd_8h_a95fa6589bbe489f14b6fad736a485385}} 
+\index{nscd.h@{nscd.h}!MAX\_STACK\_USE@{MAX\_STACK\_USE}}
+\index{MAX\_STACK\_USE@{MAX\_STACK\_USE}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_STACK\_USE}{MAX\_STACK\_USE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+T\+A\+C\+K\+\_\+\+U\+SE~((8 $\ast$ \mbox{\hyperlink{nscd_8h_a0c14a94c44e1879aba3f44ac1c3c5b4c}{N\+S\+C\+D\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+S\+I\+ZE}}) / 10)}
+
+\mbox{\Hypertarget{nscd_8h_a0c14a94c44e1879aba3f44ac1c3c5b4c}\label{nscd_8h_a0c14a94c44e1879aba3f44ac1c3c5b4c}} 
+\index{nscd.h@{nscd.h}!NSCD\_THREAD\_STACKSIZE@{NSCD\_THREAD\_STACKSIZE}}
+\index{NSCD\_THREAD\_STACKSIZE@{NSCD\_THREAD\_STACKSIZE}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{NSCD\_THREAD\_STACKSIZE}{NSCD\_THREAD\_STACKSIZE}}
+{\footnotesize\ttfamily \#define N\+S\+C\+D\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+S\+I\+ZE~1024 $\ast$ 1024 $\ast$ (sizeof (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$) / 4)}
+
+\mbox{\Hypertarget{nscd_8h_ae688d728e1acdfe5988c7db45d6f0166}\label{nscd_8h_ae688d728e1acdfe5988c7db45d6f0166}} 
+\index{nscd.h@{nscd.h}!PATH\_MAX@{PATH\_MAX}}
+\index{PATH\_MAX@{PATH\_MAX}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{PATH\_MAX}{PATH\_MAX}}
+{\footnotesize\ttfamily \#define P\+A\+T\+H\+\_\+\+M\+AX~1024}
+
+\mbox{\Hypertarget{nscd_8h_af4b27c328a263a85eca16613ebad5ca6}\label{nscd_8h_af4b27c328a263a85eca16613ebad5ca6}} 
+\index{nscd.h@{nscd.h}!RESTART\_INTERVAL@{RESTART\_INTERVAL}}
+\index{RESTART\_INTERVAL@{RESTART\_INTERVAL}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{RESTART\_INTERVAL}{RESTART\_INTERVAL}}
+{\footnotesize\ttfamily \#define R\+E\+S\+T\+A\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL~(60 $\ast$ 60)}
+
+\mbox{\Hypertarget{nscd_8h_aff1e10ec28066ce460592e14f285d8dd}\label{nscd_8h_aff1e10ec28066ce460592e14f285d8dd}} 
+\index{nscd.h@{nscd.h}!TEMP\_FAILURE\_RETRY\_VAL@{TEMP\_FAILURE\_RETRY\_VAL}}
+\index{TEMP\_FAILURE\_RETRY\_VAL@{TEMP\_FAILURE\_RETRY\_VAL}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_FAILURE\_RETRY\_VAL}{TEMP\_FAILURE\_RETRY\_VAL}}
+{\footnotesize\ttfamily \#define T\+E\+M\+P\+\_\+\+F\+A\+I\+L\+U\+R\+E\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+V\+AL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structexpression}{expression}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{misc_2sys_2cdefs_8h_a586c6a171eb0104d519dc0eda5284ef7}{\_\_extension\_\_}}                               \(\backslash\)}
+\DoxyCodeLine{    (\{ \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} \mbox{\hyperlink{include_2netdb_8h_a9c7bd89e89758d84e310d7f405a7395a}{\_\_result}};                             \(\backslash\)}
+\DoxyCodeLine{       do \mbox{\hyperlink{include_2netdb_8h_a9c7bd89e89758d84e310d7f405a7395a}{\_\_result}} = (\textcolor{keywordtype}{long} \mbox{\hyperlink{include_2resolv_8h_a58d4a4300447d88d10ea95d5c9efb66b}{int}}) (\mbox{\hyperlink{structexpression}{expression}});                    \(\backslash\)}
+\DoxyCodeLine{       while (\mbox{\hyperlink{include_2netdb_8h_a9c7bd89e89758d84e310d7f405a7395a}{\_\_result}} == EINTR);                         \(\backslash\)}
+\DoxyCodeLine{       \_\_result; \}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nscd_8h_a8a3737998623fc2eee43106948114f13}\label{nscd_8h_a8a3737998623fc2eee43106948114f13}} 
+\index{nscd.h@{nscd.h}!TRACED\_DIR@{TRACED\_DIR}}
+\index{TRACED\_DIR@{TRACED\_DIR}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{TRACED\_DIR}{TRACED\_DIR}}
+{\footnotesize\ttfamily \#define T\+R\+A\+C\+E\+D\+\_\+\+D\+IR~1}
+
+\mbox{\Hypertarget{nscd_8h_a52d4811337c820bcfe2963c9414c5f60}\label{nscd_8h_a52d4811337c820bcfe2963c9414c5f60}} 
+\index{nscd.h@{nscd.h}!TRACED\_FILE@{TRACED\_FILE}}
+\index{TRACED\_FILE@{TRACED\_FILE}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{TRACED\_FILE}{TRACED\_FILE}}
+{\footnotesize\ttfamily \#define T\+R\+A\+C\+E\+D\+\_\+\+F\+I\+LE~0}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0face}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0face}} 
+\index{nscd.h@{nscd.h}!dbtype@{dbtype}}
+\index{dbtype@{dbtype}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{dbtype}{dbtype}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0face}{dbtype}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{pwddb@{pwddb}!nscd.h@{nscd.h}}\index{nscd.h@{nscd.h}!pwddb@{pwddb}}}\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0facea36eeaea10144c9bca8228ae932b90c0f}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0facea36eeaea10144c9bca8228ae932b90c0f}} 
+pwddb&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{grpdb@{grpdb}!nscd.h@{nscd.h}}\index{nscd.h@{nscd.h}!grpdb@{grpdb}}}\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0faceab21b5f211bafe64f0e312e00042f69e9}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0faceab21b5f211bafe64f0e312e00042f69e9}} 
+grpdb&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{hstdb@{hstdb}!nscd.h@{nscd.h}}\index{nscd.h@{nscd.h}!hstdb@{hstdb}}}\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0facea352fe275db98c7160e5553a975e0f037}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0facea352fe275db98c7160e5553a975e0f037}} 
+hstdb&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{servdb@{servdb}!nscd.h@{nscd.h}}\index{nscd.h@{nscd.h}!servdb@{servdb}}}\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0facead04dbab4d08a69d76f0ba1e426595057}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0facead04dbab4d08a69d76f0ba1e426595057}} 
+servdb&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{netgrdb@{netgrdb}!nscd.h@{nscd.h}}\index{nscd.h@{nscd.h}!netgrdb@{netgrdb}}}\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0facea3afe6f8d6d153857cf8b2d11249b6ecc}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0facea3afe6f8d6d153857cf8b2d11249b6ecc}} 
+netgrdb&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{lastdb@{lastdb}!nscd.h@{nscd.h}}\index{nscd.h@{nscd.h}!lastdb@{lastdb}}}\mbox{\Hypertarget{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}\label{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}} 
+lastdb&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nscd_8h_ac257651fe764c3f6f50949748fdaf724}\label{nscd_8h_ac257651fe764c3f6f50949748fdaf724}} 
+\index{nscd.h@{nscd.h}!addgetnetgrent@{addgetnetgrent}}
+\index{addgetnetgrent@{addgetnetgrent}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addgetnetgrent()}{addgetnetgrent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addgetnetgrent (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a06e54afe3f62c7121282e81351402a2f}\label{nscd_8h_a06e54afe3f62c7121282e81351402a2f}} 
+\index{nscd.h@{nscd.h}!addgrbygid@{addgrbygid}}
+\index{addgrbygid@{addgrbygid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addgrbygid()}{addgrbygid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addgrbygid (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_ab5f868bfb9c727364f7bb9d863eb010a}\label{nscd_8h_ab5f868bfb9c727364f7bb9d863eb010a}} 
+\index{nscd.h@{nscd.h}!addgrbyname@{addgrbyname}}
+\index{addgrbyname@{addgrbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addgrbyname()}{addgrbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addgrbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aeada183289834b112dc3a4b4b1705a70}\label{nscd_8h_aeada183289834b112dc3a4b4b1705a70}} 
+\index{nscd.h@{nscd.h}!addhstai@{addhstai}}
+\index{addhstai@{addhstai}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addhstai()}{addhstai()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addhstai (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a0d1913b25b26ac8d1a377fae007d2b9b}\label{nscd_8h_a0d1913b25b26ac8d1a377fae007d2b9b}} 
+\index{nscd.h@{nscd.h}!addhstbyaddr@{addhstbyaddr}}
+\index{addhstbyaddr@{addhstbyaddr}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addhstbyaddr()}{addhstbyaddr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addhstbyaddr (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_ac869c4c810332a662cecda8ed79f58b5}\label{nscd_8h_ac869c4c810332a662cecda8ed79f58b5}} 
+\index{nscd.h@{nscd.h}!addhstbyaddrv6@{addhstbyaddrv6}}
+\index{addhstbyaddrv6@{addhstbyaddrv6}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addhstbyaddrv6()}{addhstbyaddrv6()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addhstbyaddrv6 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_ad911334b44e78d39b20d01285882a9eb}\label{nscd_8h_ad911334b44e78d39b20d01285882a9eb}} 
+\index{nscd.h@{nscd.h}!addhstbyname@{addhstbyname}}
+\index{addhstbyname@{addhstbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addhstbyname()}{addhstbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addhstbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a9921a53e8d89b44a93518e879daf9a52}\label{nscd_8h_a9921a53e8d89b44a93518e879daf9a52}} 
+\index{nscd.h@{nscd.h}!addhstbynamev6@{addhstbynamev6}}
+\index{addhstbynamev6@{addhstbynamev6}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addhstbynamev6()}{addhstbynamev6()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addhstbynamev6 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_abac22456d6d8920f6fac0c451b58881b}\label{nscd_8h_abac22456d6d8920f6fac0c451b58881b}} 
+\index{nscd.h@{nscd.h}!addinitgroups@{addinitgroups}}
+\index{addinitgroups@{addinitgroups}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addinitgroups()}{addinitgroups()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addinitgroups (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a43624c9e4daf94ad8baeccb9cf8511aa}\label{nscd_8h_a43624c9e4daf94ad8baeccb9cf8511aa}} 
+\index{nscd.h@{nscd.h}!addinnetgr@{addinnetgr}}
+\index{addinnetgr@{addinnetgr}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addinnetgr()}{addinnetgr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addinnetgr (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a5fe441aff91f8d53c5764f13021ec477}\label{nscd_8h_a5fe441aff91f8d53c5764f13021ec477}} 
+\index{nscd.h@{nscd.h}!addpwbyname@{addpwbyname}}
+\index{addpwbyname@{addpwbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addpwbyname()}{addpwbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addpwbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a9de2f04f8864d0a28ec7043721212a8d}\label{nscd_8h_a9de2f04f8864d0a28ec7043721212a8d}} 
+\index{nscd.h@{nscd.h}!addpwbyuid@{addpwbyuid}}
+\index{addpwbyuid@{addpwbyuid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addpwbyuid()}{addpwbyuid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addpwbyuid (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aa97123a14feba050eb10afedfe941241}\label{nscd_8h_aa97123a14feba050eb10afedfe941241}} 
+\index{nscd.h@{nscd.h}!addservbyname@{addservbyname}}
+\index{addservbyname@{addservbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addservbyname()}{addservbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addservbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aa000996a40ba1ed20664df105e57fda3}\label{nscd_8h_aa000996a40ba1ed20664df105e57fda3}} 
+\index{nscd.h@{nscd.h}!addservbyport@{addservbyport}}
+\index{addservbyport@{addservbyport}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{addservbyport()}{addservbyport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} addservbyport (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{\mbox{\hyperlink{structrequest__header}{request\+\_\+header}} $\ast$}]{req,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{uid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a9b2f1dcdc5b20321c89dce7586f5ddef}\label{nscd_8h_a9b2f1dcdc5b20321c89dce7586f5ddef}} 
+\index{nscd.h@{nscd.h}!cache\_add@{cache\_add}}
+\index{cache\_add@{cache\_add}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{cache\_add()}{cache\_add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} cache\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{type,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{packet,  }\item[{\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}}}]{first,  }\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{table,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{owner,  }\item[{\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}}}]{prune\+\_\+wakeup }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_afd0cdabd019233b891f0cc1ba3cccc7b}\label{nscd_8h_afd0cdabd019233b891f0cc1ba3cccc7b}} 
+\index{nscd.h@{nscd.h}!cache\_search@{cache\_search}}
+\index{cache\_search@{cache\_search}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{cache\_search()}{cache\_search()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structdatahead}{datahead}}$\ast$ cache\+\_\+search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ec}{request\+\_\+type}}}]{,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{key,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len,  }\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{table,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}}}]{owner }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aa166e587ce5633209ea1f49402a32605}\label{nscd_8h_aa166e587ce5633209ea1f49402a32605}} 
+\index{nscd.h@{nscd.h}!close\_sockets@{close\_sockets}}
+\index{close\_sockets@{close\_sockets}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{close\_sockets()}{close\_sockets()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} close\+\_\+sockets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_af25a8300abc39df0d94c053ea98b02dc}\label{nscd_8h_af25a8300abc39df0d94c053ea98b02dc}} 
+\index{nscd.h@{nscd.h}!do\_exit@{do\_exit}}
+\index{do\_exit@{do\_exit}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{do\_exit()}{do\_exit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} do\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{child\+\_\+ret,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{errnum,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a28e5e868f12f51fde88d3f4f5ae79a49}\label{nscd_8h_a28e5e868f12f51fde88d3f4f5ae79a49}} 
+\index{nscd.h@{nscd.h}!gc@{gc}}
+\index{gc@{gc}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{gc()}{gc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} gc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_af4920f0102b38977967b51e4899eef09}\label{nscd_8h_af4920f0102b38977967b51e4899eef09}} 
+\index{nscd.h@{nscd.h}!mempool\_alloc@{mempool\_alloc}}
+\index{mempool\_alloc@{mempool\_alloc}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{mempool\_alloc()}{mempool\_alloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ mempool\+\_\+alloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{data\+\_\+alloc }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a8f935a43a2809ee367d0a439913697da}\label{nscd_8h_a8f935a43a2809ee367d0a439913697da}} 
+\index{nscd.h@{nscd.h}!notify\_parent@{notify\_parent}}
+\index{notify\_parent@{notify\_parent}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{notify\_parent()}{notify\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} notify\+\_\+parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{child\+\_\+ret }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aebae1e668e766333cf3711ce54085269}\label{nscd_8h_aebae1e668e766333cf3711ce54085269}} 
+\index{nscd.h@{nscd.h}!nscd\_init@{nscd\_init}}
+\index{nscd\_init@{nscd\_init}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{nscd\_init()}{nscd\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} nscd\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a7f15435f185e33f9d85b1df150d47861}\label{nscd_8h_a7f15435f185e33f9d85b1df150d47861}} 
+\index{nscd.h@{nscd.h}!nscd\_open\_socket@{nscd\_open\_socket}}
+\index{nscd\_open\_socket@{nscd\_open\_socket}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{nscd\_open\_socket()}{nscd\_open\_socket()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} nscd\+\_\+open\+\_\+socket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_afc60e90977ee635666dda23ea0ab79db}\label{nscd_8h_afc60e90977ee635666dda23ea0ab79db}} 
+\index{nscd.h@{nscd.h}!nscd\_parse\_file@{nscd\_parse\_file}}
+\index{nscd\_parse\_file@{nscd\_parse\_file}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{nscd\_parse\_file()}{nscd\_parse\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} nscd\+\_\+parse\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{fname,  }\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}}}]{dbs\mbox{[}lastdb\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aa35fe4a604ac840dea63ecd7972d5b92}\label{nscd_8h_aa35fe4a604ac840dea63ecd7972d5b92}} 
+\index{nscd.h@{nscd.h}!prune\_cache@{prune\_cache}}
+\index{prune\_cache@{prune\_cache}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{prune\_cache()}{prune\_cache()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} prune\+\_\+cache (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{table,  }\item[{\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}}}]{now,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a7ee751ba1087da85e66ce61fe2019680}\label{nscd_8h_a7ee751ba1087da85e66ce61fe2019680}} 
+\index{nscd.h@{nscd.h}!readdgetnetgrent@{readdgetnetgrent}}
+\index{readdgetnetgrent@{readdgetnetgrent}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdgetnetgrent()}{readdgetnetgrent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdgetnetgrent (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a676c21bec5da9b835584002469616e7f}\label{nscd_8h_a676c21bec5da9b835584002469616e7f}} 
+\index{nscd.h@{nscd.h}!readdgrbygid@{readdgrbygid}}
+\index{readdgrbygid@{readdgrbygid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdgrbygid()}{readdgrbygid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdgrbygid (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aacdaaa2d46b241048668306271851d79}\label{nscd_8h_aacdaaa2d46b241048668306271851d79}} 
+\index{nscd.h@{nscd.h}!readdgrbyname@{readdgrbyname}}
+\index{readdgrbyname@{readdgrbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdgrbyname()}{readdgrbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdgrbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a516be62aad8c41716dca7e2aaa4cd307}\label{nscd_8h_a516be62aad8c41716dca7e2aaa4cd307}} 
+\index{nscd.h@{nscd.h}!readdhstai@{readdhstai}}
+\index{readdhstai@{readdhstai}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdhstai()}{readdhstai()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdhstai (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aef880b57e33202d609b35de947a4dfbc}\label{nscd_8h_aef880b57e33202d609b35de947a4dfbc}} 
+\index{nscd.h@{nscd.h}!readdhstbyaddr@{readdhstbyaddr}}
+\index{readdhstbyaddr@{readdhstbyaddr}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdhstbyaddr()}{readdhstbyaddr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdhstbyaddr (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a0b59f1b39f482c69d097b82837c71468}\label{nscd_8h_a0b59f1b39f482c69d097b82837c71468}} 
+\index{nscd.h@{nscd.h}!readdhstbyaddrv6@{readdhstbyaddrv6}}
+\index{readdhstbyaddrv6@{readdhstbyaddrv6}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdhstbyaddrv6()}{readdhstbyaddrv6()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdhstbyaddrv6 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a52d6c59fc256a34413bb96f33782fded}\label{nscd_8h_a52d6c59fc256a34413bb96f33782fded}} 
+\index{nscd.h@{nscd.h}!readdhstbyname@{readdhstbyname}}
+\index{readdhstbyname@{readdhstbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdhstbyname()}{readdhstbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdhstbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a18f5d4347e7ec3be600a3c630765f15b}\label{nscd_8h_a18f5d4347e7ec3be600a3c630765f15b}} 
+\index{nscd.h@{nscd.h}!readdhstbynamev6@{readdhstbynamev6}}
+\index{readdhstbynamev6@{readdhstbynamev6}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdhstbynamev6()}{readdhstbynamev6()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdhstbynamev6 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_abea8285ed7a3bd562083e441e54679fd}\label{nscd_8h_abea8285ed7a3bd562083e441e54679fd}} 
+\index{nscd.h@{nscd.h}!readdinitgroups@{readdinitgroups}}
+\index{readdinitgroups@{readdinitgroups}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdinitgroups()}{readdinitgroups()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdinitgroups (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_adf4b3c62929118aa5e15006a45249e21}\label{nscd_8h_adf4b3c62929118aa5e15006a45249e21}} 
+\index{nscd.h@{nscd.h}!readdinnetgr@{readdinnetgr}}
+\index{readdinnetgr@{readdinnetgr}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdinnetgr()}{readdinnetgr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdinnetgr (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a8a59356f4564eb833f34875150063b95}\label{nscd_8h_a8a59356f4564eb833f34875150063b95}} 
+\index{nscd.h@{nscd.h}!readdpwbyname@{readdpwbyname}}
+\index{readdpwbyname@{readdpwbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdpwbyname()}{readdpwbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdpwbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a9459e658e0339727425f35510eb4c863}\label{nscd_8h_a9459e658e0339727425f35510eb4c863}} 
+\index{nscd.h@{nscd.h}!readdpwbyuid@{readdpwbyuid}}
+\index{readdpwbyuid@{readdpwbyuid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdpwbyuid()}{readdpwbyuid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdpwbyuid (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a4e434778ee0b88c1b928e88101481f20}\label{nscd_8h_a4e434778ee0b88c1b928e88101481f20}} 
+\index{nscd.h@{nscd.h}!readdservbyname@{readdservbyname}}
+\index{readdservbyname@{readdservbyname}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdservbyname()}{readdservbyname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdservbyname (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a574d095171eee2abbbf3a638ca43a152}\label{nscd_8h_a574d095171eee2abbbf3a638ca43a152}} 
+\index{nscd.h@{nscd.h}!readdservbyport@{readdservbyport}}
+\index{readdservbyport@{readdservbyport}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{readdservbyport()}{readdservbyport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} readdservbyport (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{struct \mbox{\hyperlink{structhashentry}{hashentry}} $\ast$}]{he,  }\item[{struct \mbox{\hyperlink{structdatahead}{datahead}} $\ast$}]{dh }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a20992e98e340c120868ec0591164c016}\label{nscd_8h_a20992e98e340c120868ec0591164c016}} 
+\index{nscd.h@{nscd.h}!receive\_print\_stats@{receive\_print\_stats}}
+\index{receive\_print\_stats@{receive\_print\_stats}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{receive\_print\_stats()}{receive\_print\_stats()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} receive\+\_\+print\+\_\+stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a732445741d7bdce10ae6f76f94dfc541}\label{nscd_8h_a732445741d7bdce10ae6f76f94dfc541}} 
+\index{nscd.h@{nscd.h}!register\_traced\_file@{register\_traced\_file}}
+\index{register\_traced\_file@{register\_traced\_file}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{register\_traced\_file()}{register\_traced\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} register\+\_\+traced\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{dbidx,  }\item[{struct \mbox{\hyperlink{structtraced__file}{traced\+\_\+file}} $\ast$}]{finfo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a385993fcb124d5951d3eed0927f753e1}\label{nscd_8h_a385993fcb124d5951d3eed0927f753e1}} 
+\index{nscd.h@{nscd.h}!send\_stats@{send\_stats}}
+\index{send\_stats@{send\_stats}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{send\_stats()}{send\_stats()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} send\+\_\+stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{fd,  }\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}}}]{dbs\mbox{[}lastdb\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a1322c680796d454dac9853fc4d345270}\label{nscd_8h_a1322c680796d454dac9853fc4d345270}} 
+\index{nscd.h@{nscd.h}!setup\_thread@{setup\_thread}}
+\index{setup\_thread@{setup\_thread}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{setup\_thread()}{setup\_thread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} setup\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_a5f961bae6569ecc62d01c5caa065e8b8}\label{nscd_8h_a5f961bae6569ecc62d01c5caa065e8b8}} 
+\index{nscd.h@{nscd.h}!start\_threads@{start\_threads}}
+\index{start\_threads@{start\_threads}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{start\_threads()}{start\_threads()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} start\+\_\+threads (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nscd_8h_aa24ec3141e4d91081bc3b26ec8645a27}\label{nscd_8h_aa24ec3141e4d91081bc3b26ec8645a27}} 
+\index{nscd.h@{nscd.h}!termination\_handler@{termination\_handler}}
+\index{termination\_handler@{termination\_handler}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{termination\_handler()}{termination\_handler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} termination\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{signum }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{nscd_8h_aec515a7f82061a75fe4058d16d15af34}\label{nscd_8h_aec515a7f82061a75fe4058d16d15af34}} 
+\index{nscd.h@{nscd.h}!attribute\_hidden@{attribute\_hidden}}
+\index{attribute\_hidden@{attribute\_hidden}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{attribute\_hidden}{attribute\_hidden}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} \mbox{\hyperlink{connections_8c_a419f835ddbf18a35e6ed4357ff91dce8}{dbs}} \mbox{[}\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}\mbox{]} attribute\+\_\+hidden}
+
+\mbox{\Hypertarget{nscd_8h_aacd6a88c66afa368b5a5530576155800}\label{nscd_8h_aacd6a88c66afa368b5a5530576155800}} 
+\index{nscd.h@{nscd.h}!block\_align@{block\_align}}
+\index{block\_align@{block\_align}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{block\_align}{block\_align}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} block\+\_\+align}
+
+\mbox{\Hypertarget{nscd_8h_a8bfc114485215570cb69a7184a2f7c27}\label{nscd_8h_a8bfc114485215570cb69a7184a2f7c27}} 
+\index{nscd.h@{nscd.h}!client\_queued@{client\_queued}}
+\index{client\_queued@{client\_queued}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{client\_queued}{client\_queued}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} client\+\_\+queued}
+
+\mbox{\Hypertarget{nscd_8h_af1a7effe6e476a13d1e8f3117e5e7a84}\label{nscd_8h_af1a7effe6e476a13d1e8f3117e5e7a84}} 
+\index{nscd.h@{nscd.h}!dbnames@{dbnames}}
+\index{dbnames@{dbnames}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{dbnames}{dbnames}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} dbnames\mbox{[}\mbox{\hyperlink{nscd_8h_a84f62defc8d5576ccdd1721606e0facea934b8dd926cac87a247f4c9f08a9479c}{lastdb}}\mbox{]}}
+
+\mbox{\Hypertarget{nscd_8h_af1714bec0b8a34372eac46965d1b021b}\label{nscd_8h_af1714bec0b8a34372eac46965d1b021b}} 
+\index{nscd.h@{nscd.h}!grp\_iov\_disabled@{grp\_iov\_disabled}}
+\index{grp\_iov\_disabled@{grp\_iov\_disabled}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{grp\_iov\_disabled}{grp\_iov\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} grp\+\_\+iov\+\_\+disabled}
+
+\mbox{\Hypertarget{nscd_8h_a7fa3a08b5cc1b316c3158fb4927a3990}\label{nscd_8h_a7fa3a08b5cc1b316c3158fb4927a3990}} 
+\index{nscd.h@{nscd.h}!hst\_iov\_disabled@{hst\_iov\_disabled}}
+\index{hst\_iov\_disabled@{hst\_iov\_disabled}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{hst\_iov\_disabled}{hst\_iov\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} hst\+\_\+iov\+\_\+disabled}
+
+\mbox{\Hypertarget{nscd_8h_ae599f7dc7f8671cdf24ac722c6f4c26a}\label{nscd_8h_ae599f7dc7f8671cdf24ac722c6f4c26a}} 
+\index{nscd.h@{nscd.h}!inotify\_fd@{inotify\_fd}}
+\index{inotify\_fd@{inotify\_fd}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{inotify\_fd}{inotify\_fd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} inotify\+\_\+fd}
+
+\mbox{\Hypertarget{nscd_8h_a28ef8b53853d71f65092d76de3704e27}\label{nscd_8h_a28ef8b53853d71f65092d76de3704e27}} 
+\index{nscd.h@{nscd.h}!max\_nthreads@{max\_nthreads}}
+\index{max\_nthreads@{max\_nthreads}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{max\_nthreads}{max\_nthreads}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} max\+\_\+nthreads}
+
+\mbox{\Hypertarget{nscd_8h_ae2d8142f7d7c698e2bf5b6fad8107b39}\label{nscd_8h_ae2d8142f7d7c698e2bf5b6fad8107b39}} 
+\index{nscd.h@{nscd.h}!netgroup\_iov\_disabled@{netgroup\_iov\_disabled}}
+\index{netgroup\_iov\_disabled@{netgroup\_iov\_disabled}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{netgroup\_iov\_disabled}{netgroup\_iov\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} netgroup\+\_\+iov\+\_\+disabled}
+
+\mbox{\Hypertarget{nscd_8h_a2b6a46c4274b223ea03fb4a7b80f4a5a}\label{nscd_8h_a2b6a46c4274b223ea03fb4a7b80f4a5a}} 
+\index{nscd.h@{nscd.h}!nthreads@{nthreads}}
+\index{nthreads@{nthreads}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{nthreads}{nthreads}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} nthreads}
+
+\mbox{\Hypertarget{nscd_8h_a9e9296057f1552fc1f20c3cd6803d253}\label{nscd_8h_a9e9296057f1552fc1f20c3cd6803d253}} 
+\index{nscd.h@{nscd.h}!old\_gid@{old\_gid}}
+\index{old\_gid@{old\_gid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{old\_gid}{old\_gid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a9520fe38856d436aa8c5850ff21839ec}{gid\+\_\+t}} old\+\_\+gid}
+
+\mbox{\Hypertarget{nscd_8h_afd4bfe8311516e5062b82b5712331103}\label{nscd_8h_afd4bfe8311516e5062b82b5712331103}} 
+\index{nscd.h@{nscd.h}!old\_uid@{old\_uid}}
+\index{old\_uid@{old\_uid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{old\_uid}{old\_uid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} old\+\_\+uid}
+
+\mbox{\Hypertarget{nscd_8h_a38a133c240497650a863dc16374bff58}\label{nscd_8h_a38a133c240497650a863dc16374bff58}} 
+\index{nscd.h@{nscd.h}!oldcwd@{oldcwd}}
+\index{oldcwd@{oldcwd}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{oldcwd}{oldcwd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ oldcwd}
+
+\mbox{\Hypertarget{nscd_8h_aab1f32594b4a761fe402f29824ae3a94}\label{nscd_8h_aab1f32594b4a761fe402f29824ae3a94}} 
+\index{nscd.h@{nscd.h}!pagesize\_m1@{pagesize\_m1}}
+\index{pagesize\_m1@{pagesize\_m1}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{pagesize\_m1}{pagesize\_m1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} pagesize\+\_\+m1}
+
+\mbox{\Hypertarget{nscd_8h_a238fdb20babc729d11c1b5a11f4787b6}\label{nscd_8h_a238fdb20babc729d11c1b5a11f4787b6}} 
+\index{nscd.h@{nscd.h}!paranoia@{paranoia}}
+\index{paranoia@{paranoia}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{paranoia}{paranoia}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} paranoia}
+
+\mbox{\Hypertarget{nscd_8h_afdeb69c1e59cd3bc538515046e15e114}\label{nscd_8h_afdeb69c1e59cd3bc538515046e15e114}} 
+\index{nscd.h@{nscd.h}!pwd\_iov\_disabled@{pwd\_iov\_disabled}}
+\index{pwd\_iov\_disabled@{pwd\_iov\_disabled}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{pwd\_iov\_disabled}{pwd\_iov\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} pwd\+\_\+iov\+\_\+disabled}
+
+\mbox{\Hypertarget{nscd_8h_ae3dcba409639dfd1cdf82dc206cdb3cb}\label{nscd_8h_ae3dcba409639dfd1cdf82dc206cdb3cb}} 
+\index{nscd.h@{nscd.h}!reload\_count@{reload\_count}}
+\index{reload\_count@{reload\_count}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{reload\_count}{reload\_count}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} reload\+\_\+count}
+
+\mbox{\Hypertarget{nscd_8h_a2f3faf0ae01120b3b59bb6ecccaab73b}\label{nscd_8h_a2f3faf0ae01120b3b59bb6ecccaab73b}} 
+\index{nscd.h@{nscd.h}!restart\_interval@{restart\_interval}}
+\index{restart\_interval@{restart\_interval}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{restart\_interval}{restart\_interval}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} restart\+\_\+interval}
+
+\mbox{\Hypertarget{nscd_8h_a12f3b86e75216ad35ff0d88fcb2d77c3}\label{nscd_8h_a12f3b86e75216ad35ff0d88fcb2d77c3}} 
+\index{nscd.h@{nscd.h}!restart\_time@{restart\_time}}
+\index{restart\_time@{restart\_time}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{restart\_time}{restart\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} restart\+\_\+time}
+
+\mbox{\Hypertarget{nscd_8h_a4f0f0f491ae1ed96049d4b5b92da83d3}\label{nscd_8h_a4f0f0f491ae1ed96049d4b5b92da83d3}} 
+\index{nscd.h@{nscd.h}!serv2str@{serv2str}}
+\index{serv2str@{serv2str}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{serv2str}{serv2str}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} serv2str\mbox{[}\mbox{\hyperlink{nscd-client_8h_adeac0c2c8171a49ced17f4d4a542a4ecad5c65533bbab037550cc6085a2d0abc2}{L\+A\+S\+T\+R\+EQ}}\mbox{]}}
+
+\mbox{\Hypertarget{nscd_8h_a889b61b842698055d17a47ef4fb90266}\label{nscd_8h_a889b61b842698055d17a47ef4fb90266}} 
+\index{nscd.h@{nscd.h}!serv\_iov\_disabled@{serv\_iov\_disabled}}
+\index{serv\_iov\_disabled@{serv\_iov\_disabled}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{serv\_iov\_disabled}{serv\_iov\_disabled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structiovec}{iovec}} serv\+\_\+iov\+\_\+disabled}
+
+\mbox{\Hypertarget{nscd_8h_a078af377a0e997344ac2f01c35f181db}\label{nscd_8h_a078af377a0e997344ac2f01c35f181db}} 
+\index{nscd.h@{nscd.h}!server\_user@{server\_user}}
+\index{server\_user@{server\_user}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{server\_user}{server\_user}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ server\+\_\+user}
+
+\mbox{\Hypertarget{nscd_8h_ad20e89e0c86aa812dc3a8e2fb7b5777b}\label{nscd_8h_ad20e89e0c86aa812dc3a8e2fb7b5777b}} 
+\index{nscd.h@{nscd.h}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} start\+\_\+time}
+
+\mbox{\Hypertarget{nscd_8h_aaacfaac6016f1ece5b564361bc530d05}\label{nscd_8h_aaacfaac6016f1ece5b564361bc530d05}} 
+\index{nscd.h@{nscd.h}!stat\_uid@{stat\_uid}}
+\index{stat\_uid@{stat\_uid}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{stat\_uid}{stat\_uid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2sys_2types_8h_a1844226d778badcda0a21b28310830ea}{uid\+\_\+t}} stat\+\_\+uid}
+
+\mbox{\Hypertarget{nscd_8h_a3af1b3e5e6da172bebc5592eb57935e1}\label{nscd_8h_a3af1b3e5e6da172bebc5592eb57935e1}} 
+\index{nscd.h@{nscd.h}!stat\_user@{stat\_user}}
+\index{stat\_user@{stat\_user}!nscd.h@{nscd.h}}
+\doxysubsubsection{\texorpdfstring{stat\_user}{stat\_user}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ stat\+\_\+user}
+

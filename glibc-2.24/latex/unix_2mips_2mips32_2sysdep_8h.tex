@@ -1,0 +1,35 @@
+\hypertarget{unix_2mips_2mips32_2sysdep_8h}{}\doxysection{sysdeps/unix/mips/mips32/sysdep.h File Reference}
+\label{unix_2mips_2mips32_2sysdep_8h}\index{sysdeps/unix/mips/mips32/sysdep.h@{sysdeps/unix/mips/mips32/sysdep.h}}
+{\ttfamily \#include $<$sysdeps/unix/mips/sysdep.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unix_2mips_2mips32_2sysdep_8h_ac576be53043c2bf7b160c117264ab95f}{P\+S\+E\+U\+DO}}(\mbox{\hyperlink{structname}{name}},  syscall\+\_\+name,  args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unix_2mips_2mips32_2sysdep_8h_ac576be53043c2bf7b160c117264ab95f}\label{unix_2mips_2mips32_2sysdep_8h_ac576be53043c2bf7b160c117264ab95f}} 
+\index{sysdep.h@{sysdep.h}!PSEUDO@{PSEUDO}}
+\index{PSEUDO@{PSEUDO}!sysdep.h@{sysdep.h}}
+\doxysubsubsection{\texorpdfstring{PSEUDO}{PSEUDO}}
+{\footnotesize\ttfamily \#define P\+S\+E\+U\+DO(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}},  }\item[{}]{syscall\+\_\+name,  }\item[{}]{args }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.set noreorder;                               \(\backslash\)}
+\DoxyCodeLine{  .set nomips16;                                  \(\backslash\)}
+\DoxyCodeLine{  .align 2;                                   \(\backslash\)}
+\DoxyCodeLine{  cfi\_startproc;                                  \(\backslash\)}
+\DoxyCodeLine{  99: j \mbox{\hyperlink{unix_2sysv_2linux_2i386_2sysdep_8h_a18c38b699523c086c05efbc4e9747232}{\_\_syscall\_error}};                           \(\backslash\)}
+\DoxyCodeLine{  nop;                                        \(\backslash\)}
+\DoxyCodeLine{  cfi\_endproc;                                    \(\backslash\)}
+\DoxyCodeLine{  ENTRY(\mbox{\hyperlink{structname}{name}})                                     \(\backslash\)}
+\DoxyCodeLine{  .set noreorder;                                 \(\backslash\)}
+\DoxyCodeLine{  li \mbox{\hyperlink{mips_2sys_2regdef_8h_a2b3f75463b42545c79b95790e5bc0329}{v0}}, \mbox{\hyperlink{unix_2sysdep_8h_ae246df3f3e01a7ebea73a36c12a58386}{SYS\_ify}}(syscall\_name);                              \(\backslash\)}
+\DoxyCodeLine{  syscall;                                    \(\backslash\)}
+\DoxyCodeLine{  .set reorder;                                   \(\backslash\)}
+\DoxyCodeLine{  bne \mbox{\hyperlink{mips_2sys_2regdef_8h_a2ef3c16c90bcffd5105806b0180c9a96}{a3}}, \mbox{\hyperlink{mips_2sys_2regdef_8h_a361b1d0588e13a7b5994f24b40138ec0}{zero}}, 99\mbox{\hyperlink{tst-gettext6_8c_aec69b301eafb52fab26201b36b665524}{b}};                               \(\backslash\)}
+\DoxyCodeLine{L(syse1):}
+
+\end{DoxyCode}

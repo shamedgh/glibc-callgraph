@@ -1,0 +1,159 @@
+\hypertarget{ruserpass_8c}{}\doxysection{inet/ruserpass.c File Reference}
+\label{ruserpass_8c}\index{inet/ruserpass.c@{inet/ruserpass.c}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$err.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdio\+\_\+ext.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bfseries toktab}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a3da44afeba217135a680a7477b5e3ce3}{D\+E\+F\+A\+U\+LT}}~1
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a2cc44bf853cfd679b56807b198735596}{L\+O\+G\+IN}}~2
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_ae6b9caf9583b8870872fb9fdf622128a}{P\+A\+S\+S\+WD}}~3
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a02776ef75ad1c9019695dfeabfada630}{A\+C\+C\+O\+U\+NT}}~4
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a5dd63f47542c7331a36d9acd737ccec5}{M\+A\+C\+D\+EF}}~5
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}~10
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a2c86c8bb56303a4af74ca6fb633804b7}{M\+A\+C\+H\+I\+NE}}~11
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_ae3c251de24e9dff7cac0eaf47b524f0b}{T\+O\+K\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+DX}}~0
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a1ef7eb45033b4fabfd51fd73b73d3d2c}{T\+O\+K\+\_\+\+L\+O\+G\+I\+N\+\_\+\+I\+DX}}~(\mbox{\hyperlink{ruserpass_8c_ae3c251de24e9dff7cac0eaf47b524f0b}{T\+O\+K\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}default\char`\"{})
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a79f5e3fa06d7a4b6c96baf55ab2d01b9}{T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+I\+DX}}~(\mbox{\hyperlink{ruserpass_8c_a1ef7eb45033b4fabfd51fd73b73d3d2c}{T\+O\+K\+\_\+\+L\+O\+G\+I\+N\+\_\+\+I\+DX}} + sizeof \char`\"{}login\char`\"{})
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a3dd8d1290188f79cb94b12107eab522e}{T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+I\+DX}}~(\mbox{\hyperlink{ruserpass_8c_a79f5e3fa06d7a4b6c96baf55ab2d01b9}{T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+I\+DX}} + sizeof \char`\"{}password\char`\"{})
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a873e356da1e44fa9922a1c8b31e44388}{T\+O\+K\+\_\+\+A\+C\+C\+O\+U\+N\+T\+\_\+\+I\+DX}}~(\mbox{\hyperlink{ruserpass_8c_a3dd8d1290188f79cb94b12107eab522e}{T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+I\+DX}} + sizeof \char`\"{}passwd\char`\"{})
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a1cb0c693f35b0250d351a08bdd73f8f3}{T\+O\+K\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+DX}}~(\mbox{\hyperlink{ruserpass_8c_a873e356da1e44fa9922a1c8b31e44388}{T\+O\+K\+\_\+\+A\+C\+C\+O\+U\+N\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}account\char`\"{})
+\item 
+\#define \mbox{\hyperlink{ruserpass_8c_a76fceafeec83f8e42c20895735f62957}{T\+O\+K\+\_\+\+M\+A\+C\+D\+E\+F\+\_\+\+I\+DX}}~(\mbox{\hyperlink{ruserpass_8c_a1cb0c693f35b0250d351a08bdd73f8f3}{T\+O\+K\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}machine\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{ruserpass_8c_ad7d47448f208acd92bd419333b7a174d}{ruserpass}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$host, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$$\ast$aname, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$$\ast$apass)
+\item 
+\mbox{\hyperlink{ruserpass_8c_a9fb0088ffbe6bbe7fb576c758c4c10ad}{libc\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{ruserpass_8c_ad7d47448f208acd92bd419333b7a174d}{ruserpass}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ruserpass_8c_a02776ef75ad1c9019695dfeabfada630}\label{ruserpass_8c_a02776ef75ad1c9019695dfeabfada630}} 
+\index{ruserpass.c@{ruserpass.c}!ACCOUNT@{ACCOUNT}}
+\index{ACCOUNT@{ACCOUNT}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{ACCOUNT}{ACCOUNT}}
+{\footnotesize\ttfamily \#define A\+C\+C\+O\+U\+NT~4}
+
+\mbox{\Hypertarget{ruserpass_8c_a3da44afeba217135a680a7477b5e3ce3}\label{ruserpass_8c_a3da44afeba217135a680a7477b5e3ce3}} 
+\index{ruserpass.c@{ruserpass.c}!DEFAULT@{DEFAULT}}
+\index{DEFAULT@{DEFAULT}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT}{DEFAULT}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+LT~1}
+
+\mbox{\Hypertarget{ruserpass_8c_a77ceac8d6af195fe72f95f6afd87c45e}\label{ruserpass_8c_a77ceac8d6af195fe72f95f6afd87c45e}} 
+\index{ruserpass.c@{ruserpass.c}!ID@{ID}}
+\index{ID@{ID}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \#define ID~10}
+
+\mbox{\Hypertarget{ruserpass_8c_a2cc44bf853cfd679b56807b198735596}\label{ruserpass_8c_a2cc44bf853cfd679b56807b198735596}} 
+\index{ruserpass.c@{ruserpass.c}!LOGIN@{LOGIN}}
+\index{LOGIN@{LOGIN}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{LOGIN}{LOGIN}}
+{\footnotesize\ttfamily \#define L\+O\+G\+IN~2}
+
+\mbox{\Hypertarget{ruserpass_8c_a5dd63f47542c7331a36d9acd737ccec5}\label{ruserpass_8c_a5dd63f47542c7331a36d9acd737ccec5}} 
+\index{ruserpass.c@{ruserpass.c}!MACDEF@{MACDEF}}
+\index{MACDEF@{MACDEF}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{MACDEF}{MACDEF}}
+{\footnotesize\ttfamily \#define M\+A\+C\+D\+EF~5}
+
+\mbox{\Hypertarget{ruserpass_8c_a2c86c8bb56303a4af74ca6fb633804b7}\label{ruserpass_8c_a2c86c8bb56303a4af74ca6fb633804b7}} 
+\index{ruserpass.c@{ruserpass.c}!MACHINE@{MACHINE}}
+\index{MACHINE@{MACHINE}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{MACHINE}{MACHINE}}
+{\footnotesize\ttfamily \#define M\+A\+C\+H\+I\+NE~11}
+
+\mbox{\Hypertarget{ruserpass_8c_ae6b9caf9583b8870872fb9fdf622128a}\label{ruserpass_8c_ae6b9caf9583b8870872fb9fdf622128a}} 
+\index{ruserpass.c@{ruserpass.c}!PASSWD@{PASSWD}}
+\index{PASSWD@{PASSWD}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{PASSWD}{PASSWD}}
+{\footnotesize\ttfamily \#define P\+A\+S\+S\+WD~3}
+
+\mbox{\Hypertarget{ruserpass_8c_a873e356da1e44fa9922a1c8b31e44388}\label{ruserpass_8c_a873e356da1e44fa9922a1c8b31e44388}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_ACCOUNT\_IDX@{TOK\_ACCOUNT\_IDX}}
+\index{TOK\_ACCOUNT\_IDX@{TOK\_ACCOUNT\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_ACCOUNT\_IDX}{TOK\_ACCOUNT\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+A\+C\+C\+O\+U\+N\+T\+\_\+\+I\+DX~(\mbox{\hyperlink{ruserpass_8c_a3dd8d1290188f79cb94b12107eab522e}{T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+I\+DX}} + sizeof \char`\"{}passwd\char`\"{})}
+
+\mbox{\Hypertarget{ruserpass_8c_ae3c251de24e9dff7cac0eaf47b524f0b}\label{ruserpass_8c_ae3c251de24e9dff7cac0eaf47b524f0b}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_DEFAULT\_IDX@{TOK\_DEFAULT\_IDX}}
+\index{TOK\_DEFAULT\_IDX@{TOK\_DEFAULT\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_DEFAULT\_IDX}{TOK\_DEFAULT\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+DX~0}
+
+\mbox{\Hypertarget{ruserpass_8c_a1ef7eb45033b4fabfd51fd73b73d3d2c}\label{ruserpass_8c_a1ef7eb45033b4fabfd51fd73b73d3d2c}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_LOGIN\_IDX@{TOK\_LOGIN\_IDX}}
+\index{TOK\_LOGIN\_IDX@{TOK\_LOGIN\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_LOGIN\_IDX}{TOK\_LOGIN\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+L\+O\+G\+I\+N\+\_\+\+I\+DX~(\mbox{\hyperlink{ruserpass_8c_ae3c251de24e9dff7cac0eaf47b524f0b}{T\+O\+K\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}default\char`\"{})}
+
+\mbox{\Hypertarget{ruserpass_8c_a76fceafeec83f8e42c20895735f62957}\label{ruserpass_8c_a76fceafeec83f8e42c20895735f62957}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_MACDEF\_IDX@{TOK\_MACDEF\_IDX}}
+\index{TOK\_MACDEF\_IDX@{TOK\_MACDEF\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_MACDEF\_IDX}{TOK\_MACDEF\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+M\+A\+C\+D\+E\+F\+\_\+\+I\+DX~(\mbox{\hyperlink{ruserpass_8c_a1cb0c693f35b0250d351a08bdd73f8f3}{T\+O\+K\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+DX}} + sizeof \char`\"{}machine\char`\"{})}
+
+\mbox{\Hypertarget{ruserpass_8c_a1cb0c693f35b0250d351a08bdd73f8f3}\label{ruserpass_8c_a1cb0c693f35b0250d351a08bdd73f8f3}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_MACHINE\_IDX@{TOK\_MACHINE\_IDX}}
+\index{TOK\_MACHINE\_IDX@{TOK\_MACHINE\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_MACHINE\_IDX}{TOK\_MACHINE\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+DX~(\mbox{\hyperlink{ruserpass_8c_a873e356da1e44fa9922a1c8b31e44388}{T\+O\+K\+\_\+\+A\+C\+C\+O\+U\+N\+T\+\_\+\+I\+DX}} + sizeof \char`\"{}account\char`\"{})}
+
+\mbox{\Hypertarget{ruserpass_8c_a3dd8d1290188f79cb94b12107eab522e}\label{ruserpass_8c_a3dd8d1290188f79cb94b12107eab522e}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_PASSWD\_IDX@{TOK\_PASSWD\_IDX}}
+\index{TOK\_PASSWD\_IDX@{TOK\_PASSWD\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_PASSWD\_IDX}{TOK\_PASSWD\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+I\+DX~(\mbox{\hyperlink{ruserpass_8c_a79f5e3fa06d7a4b6c96baf55ab2d01b9}{T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+I\+DX}} + sizeof \char`\"{}password\char`\"{})}
+
+\mbox{\Hypertarget{ruserpass_8c_a79f5e3fa06d7a4b6c96baf55ab2d01b9}\label{ruserpass_8c_a79f5e3fa06d7a4b6c96baf55ab2d01b9}} 
+\index{ruserpass.c@{ruserpass.c}!TOK\_PASSWORD\_IDX@{TOK\_PASSWORD\_IDX}}
+\index{TOK\_PASSWORD\_IDX@{TOK\_PASSWORD\_IDX}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{TOK\_PASSWORD\_IDX}{TOK\_PASSWORD\_IDX}}
+{\footnotesize\ttfamily \#define T\+O\+K\+\_\+\+P\+A\+S\+S\+W\+O\+R\+D\+\_\+\+I\+DX~(\mbox{\hyperlink{ruserpass_8c_a1ef7eb45033b4fabfd51fd73b73d3d2c}{T\+O\+K\+\_\+\+L\+O\+G\+I\+N\+\_\+\+I\+DX}} + sizeof \char`\"{}login\char`\"{})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ruserpass_8c_a9fb0088ffbe6bbe7fb576c758c4c10ad}\label{ruserpass_8c_a9fb0088ffbe6bbe7fb576c758c4c10ad}} 
+\index{ruserpass.c@{ruserpass.c}!libc\_hidden\_def@{libc\_hidden\_def}}
+\index{libc\_hidden\_def@{libc\_hidden\_def}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_def()}{libc\_hidden\_def()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ruserpass_8c_ad7d47448f208acd92bd419333b7a174d}{ruserpass}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ruserpass_8c_ad7d47448f208acd92bd419333b7a174d}\label{ruserpass_8c_ad7d47448f208acd92bd419333b7a174d}} 
+\index{ruserpass.c@{ruserpass.c}!ruserpass@{ruserpass}}
+\index{ruserpass@{ruserpass}!ruserpass.c@{ruserpass.c}}
+\doxysubsubsection{\texorpdfstring{ruserpass()}{ruserpass()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} ruserpass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{host,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$$\ast$}]{aname,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$$\ast$}]{apass }\end{DoxyParamCaption})}
+

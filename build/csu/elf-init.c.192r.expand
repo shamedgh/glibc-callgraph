@@ -1,0 +1,178 @@
+
+;; Function __libc_csu_init (__libc_csu_init, funcdef_no=0, decl_uid=1864, cgraph_uid=0, symbol_order=0)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 8
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 2->4 to 8 failed.
+Forwarding edge 2->4 to 8 failed.
+Forwarding edge 6->7 to 8 failed.
+Removing jump 55.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 2->4 to 8 failed.
+Deleted label in block 4.
+Forwarding edge 6->7 to 8 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 23 0 29 NOTE_INSN_DELETED)
+(note 29 23 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 24 29 25 2 (set (reg/v:SI 117 [ argc ])
+        (reg:SI 5 di [ argc ])) elf-init.c:68 -1
+     (nil))
+(insn 25 24 26 2 (set (reg/v/f:DI 118 [ argv ])
+        (reg:DI 4 si [ argv ])) elf-init.c:68 -1
+     (nil))
+(insn 26 25 27 2 (set (reg/v/f:DI 119 [ envp ])
+        (reg:DI 1 dx [ envp ])) elf-init.c:68 -1
+     (nil))
+(note 27 26 31 2 NOTE_INSN_FUNCTION_BEG)
+(call_insn 31 27 32 2 (call (mem:QI (symbol_ref:DI ("_init") [flags 0x41]  <function_decl 0x2aac7a2cca20 _init>) [0 _init S1 A8])
+        (const_int 0 [0])) elf-init.c:83 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_init") [flags 0x41]  <function_decl 0x2aac7a2cca20 _init>)
+        (nil))
+    (nil))
+(insn 32 31 33 2 (set (reg:DI 121)
+        (symbol_ref:DI ("__init_array_end") [flags 0x42]  <var_decl 0x2aac7a2eb990 __init_array_end>)) elf-init.c:87 -1
+     (nil))
+(insn 33 32 34 2 (set (reg:DI 122)
+        (symbol_ref:DI ("__init_array_start") [flags 0x42]  <var_decl 0x2aac7a2eb900 __init_array_start>)) elf-init.c:87 -1
+     (nil))
+(insn 34 33 35 2 (parallel [
+            (set (reg:DI 120 [ D.1894 ])
+                (minus:DI (reg:DI 121)
+                    (reg:DI 122)))
+            (clobber (reg:CC 17 flags))
+        ]) elf-init.c:87 -1
+     (nil))
+(insn 35 34 36 2 (parallel [
+            (set (reg:DI 123 [ D.1894 ])
+                (ashiftrt:DI (reg:DI 120 [ D.1894 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) elf-init.c:87 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 120 [ D.1894 ])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 36 35 37 2 (set (reg:DI 116 [ D.1896 ])
+        (reg:DI 123 [ D.1894 ])) elf-init.c:87 -1
+     (nil))
+(insn 37 36 38 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 116 [ D.1896 ])
+            (const_int 0 [0]))) elf-init.c:87 -1
+     (nil))
+(jump_insn 38 37 39 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 61)
+            (pc))) elf-init.c:87 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 61)
+(note 39 38 40 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 40 39 41 4 (set (pc)
+        (label_ref 58)) elf-init.c:89 -1
+     (nil)
+ -> 58)
+(barrier 41 40 61)
+(code_label 61 41 60 5 4 "" [1 uses])
+(note 60 61 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 60 42 5 (set (reg/v:DI 115 [ i ])
+        (const_int 0 [0])) elf-init.c:87 -1
+     (nil))
+(code_label 42 28 43 6 2 "" [1 uses])
+(note 43 42 44 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 6 (parallel [
+            (set (reg:DI 124 [ D.1893 ])
+                (ashift:DI (reg/v:DI 115 [ i ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) elf-init.c:88 -1
+     (nil))
+(insn 45 44 46 6 (set (reg/f:DI 125)
+        (symbol_ref:DI ("__init_array_start") [flags 0x42]  <var_decl 0x2aac7a2eb900 __init_array_start>)) elf-init.c:88 -1
+     (nil))
+(insn 46 45 47 6 (set (reg/f:DI 126)
+        (mem/f:DI (plus:DI (reg/f:DI 125)
+                (reg:DI 124 [ D.1893 ])) [1 MEM[symbol: __init_array_start, index: _1, offset: 0B]+0 S8 A64])) elf-init.c:88 -1
+     (nil))
+(insn 47 46 48 6 (set (reg:DI 1 dx)
+        (reg/v/f:DI 119 [ envp ])) elf-init.c:88 -1
+     (nil))
+(insn 48 47 49 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 118 [ argv ])) elf-init.c:88 -1
+     (nil))
+(insn 49 48 50 6 (set (reg:SI 5 di)
+        (reg/v:SI 117 [ argc ])) elf-init.c:88 -1
+     (nil))
+(call_insn 50 49 51 6 (call (mem:QI (reg/f:DI 126) [0 *_10 S1 A8])
+        (const_int 0 [0])) elf-init.c:88 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 51 50 52 6 (parallel [
+            (set (reg/v:DI 115 [ i ])
+                (plus:DI (reg/v:DI 115 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) elf-init.c:87 -1
+     (nil))
+(insn 52 51 53 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 115 [ i ])
+            (reg:DI 116 [ D.1896 ]))) elf-init.c:87 -1
+     (nil))
+(jump_insn 53 52 57 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) elf-init.c:87 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 42)
+(note 57 53 58 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(code_label 58 57 59 8 1 "" [1 uses])
+(note 59 58 0 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+
+;; Function __libc_csu_fini (__libc_csu_fini, funcdef_no=1, decl_uid=1872, cgraph_uid=1, symbol_order=1)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 0 2 NOTE_INSN_FUNCTION_BEG)

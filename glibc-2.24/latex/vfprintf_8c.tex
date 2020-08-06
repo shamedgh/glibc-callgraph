@@ -1,0 +1,448 @@
+\hypertarget{vfprintf_8c}{}\doxysection{stdio-\/common/vfprintf.c File Reference}
+\label{vfprintf_8c}\index{stdio-\/common/vfprintf.c@{stdio-\/common/vfprintf.c}}
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$printf.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$\+\_\+itoa.\+h$>$}\newline
+{\ttfamily \#include $<$locale/localeinfo.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$scratch\+\_\+buffer.\+h$>$}\newline
+{\ttfamily \#include $<$libio\+P.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}\+\_\+i18n\+\_\+number.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}printf-\/parse.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$\+\_\+itowa.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhelper__file}{helper\+\_\+file}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a3e8cefeee58f762ff50bcef35fa12eec}{F\+I\+LE}}~\mbox{\hyperlink{struct__IO__FILE}{\+\_\+\+I\+O\+\_\+\+F\+I\+LE}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}{va\+\_\+list}}~\mbox{\hyperlink{libio_2libio_8h_a64db8a37cd6c5bff17c37b512c161f50}{\+\_\+\+I\+O\+\_\+va\+\_\+list}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a72a591cf0a96cf23c63df5c78712dabe}{B\+U\+F\+S\+IZ}}~\mbox{\hyperlink{libio_2libio_8h_a8019bfdc5dbe3cdf72ff458575c36545}{\+\_\+\+I\+O\+\_\+\+B\+U\+F\+S\+IZ}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_ac028b3dc504c69b57956a74f8242a1bb}{A\+R\+G\+C\+H\+E\+CK}}(\mbox{\hyperlink{structS}{S}},  Format)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_ac7a3459d174d01e1b2f265fd60ce2892}{U\+N\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+P}}(\mbox{\hyperlink{structS}{S}})~((\mbox{\hyperlink{structS}{S}})-\/$>$\mbox{\hyperlink{libio_2libio_8h_a8663c7503326ff9866aa5c44cf7ae539}{\+\_\+\+I\+O\+\_\+file\+\_\+flags}} \& \mbox{\hyperlink{libio_2libio_8h_aecd47314dd69a1e4fc63ada7eff1175b}{\+\_\+\+I\+O\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}})
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_af31660ef26952eb9ae6ce8a9a7350fd9}{done\+\_\+add}}(\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a8fdc4bb69d2ce8fe042b88eae7160e6e}{vfprintf}}~\+\_\+\+I\+O\+\_\+vfprintf\+\_\+internal
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a9ea0f4a7e303689f687a679107d81da9}{C\+H\+A\+R\+\_\+T}}~char
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_ad60a5d1bae658721148545fac7e81789}{U\+C\+H\+A\+R\+\_\+T}}~unsigned char
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a5a470664c6885f184aaea4368db99d5b}{I\+N\+T\+\_\+T}}~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_ad5a8487dc9e2e8571531abcf57c0d11b}{L\+\_\+}}(Str)~Str
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_adbe3550007af420334b04c2aeb8b9ad4}{I\+S\+D\+I\+G\+IT}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~((unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}) ((\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) -\/ \textquotesingle{}0\textquotesingle{}) $<$ 10)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_afe4117f84e65956ecdd82b9c1d4d7b15}{S\+T\+R\+\_\+\+L\+EN}}(Str)~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strlen_8c_aa383452fe445bfae989358c9d7d96f4f}{strlen}} (Str)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a43ae07b37006303a27291eee2d6ae0ea}{P\+UT}}(\mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}},  \mbox{\hyperlink{structS}{S}},  \mbox{\hyperlink{test-libmvec-alias-mod_8c_a0240ac851181b84ac374872dc5434ee4}{N}})~\mbox{\hyperlink{libioP_8h_a3867810795ce0fdbcfa1e53ccd628c06}{\+\_\+\+I\+O\+\_\+sputn}} ((\mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}}), (\mbox{\hyperlink{structS}{S}}), (\mbox{\hyperlink{test-libmvec-alias-mod_8c_a0240ac851181b84ac374872dc5434ee4}{N}}))
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_af865683adb0b5f4275004696e2cbc832}{P\+AD}}(Padchar)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a4bcd17fcbcdadf4cde717a7fc9665778}{P\+U\+TC}}(\mbox{\hyperlink{psiginfo-define_8h_ae7afc18d0b19eba994db47b01743d816}{C}},  \mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}})~\mbox{\hyperlink{libio_2libio_8h_a029c0b1357b79e82aa09e791cd90d924}{\+\_\+\+I\+O\+\_\+putc\+\_\+unlocked}} (\mbox{\hyperlink{psiginfo-define_8h_ae7afc18d0b19eba994db47b01743d816}{C}}, \mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}})
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a24359de1e3903d232de74d77c3817ec4}{O\+R\+I\+E\+NT}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a83d4c3d6714ec42351dc2394239e6e04}{outchar}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a5efb11c3fd32677d2e7cda5f906d8a98}{outstring}}(String,  Len)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_af4dcc4f5198d97e51d1659ff2dbf0de1}{is\+\_\+longlong}}~0
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a60f95260fa4461db6181d6cfaf7e47d1}{is\+\_\+long\+\_\+num}}~0
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a0df398b341c5d5c86239b49b0084aa42}{N\+O\+T\+\_\+\+I\+N\+\_\+\+J\+U\+M\+P\+\_\+\+R\+A\+N\+GE}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~((\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) $<$ \mbox{\hyperlink{tst-wcstol-locale_8c_ad1997c2d1f5f6063b9c9f8df3c33a781}{L\+\_\+}}(\textquotesingle{} \textquotesingle{}) $\vert$$\vert$ (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) $>$ \mbox{\hyperlink{tst-wcstol-locale_8c_ad1997c2d1f5f6063b9c9f8df3c33a781}{L\+\_\+}}(\textquotesingle{}\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}\textquotesingle{}))
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_ac719ddea5c520dac55f930d5751878e6}{C\+H\+A\+R\+\_\+\+C\+L\+A\+SS}}(\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}})~(jump\+\_\+table\mbox{[}(\mbox{\hyperlink{vfprintf_8c_a5a470664c6885f184aaea4368db99d5b}{I\+N\+T\+\_\+T}}) (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) -\/ \mbox{\hyperlink{tst-wcstol-locale_8c_ad1997c2d1f5f6063b9c9f8df3c33a781}{L\+\_\+}}(\textquotesingle{} \textquotesingle{})\mbox{]})
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_aae1d7117f668ee1c1abe04dcae7c621f}{L\+A\+B\+EL}}(Name)~do\+\_\+\#\#Name
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a7a3691a803799b5675cf7ea6ed19b92b}{J\+U\+M\+P\+\_\+\+T\+A\+B\+L\+E\+\_\+\+T\+Y\+PE}}~\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a0d1ba9e6048b88f1c86ced54bbd2171a}{R\+EF}}(Name)~\&\&do\+\_\+\#\#Name
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a9be12893a774c489d77c27995b5b2d9b}{J\+U\+MP}}(Ch\+Expr,  table)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_af8fb7c5731a863c99b756a5973f6624d}{S\+T\+E\+P0\+\_\+3\+\_\+\+T\+A\+B\+LE}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_ad0bca95a457523794ff15d189eb559f1}{S\+T\+E\+P4\+\_\+\+T\+A\+B\+LE}}
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a56d63d99f2fc930dc07d50bce5ff6d11}{process\+\_\+arg}}(fspec)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a88311813f8681fc30fd113e03ef46e64}{process\+\_\+string\+\_\+arg}}(fspec)
+\item 
+\#define \mbox{\hyperlink{vfprintf_8c_a97faca558e201228c23888aa4f45d720}{T}}(tag,  mem,  \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{vfprintf_8c_ad133984e191610ed137485229922c199}{T\+H\+O\+U\+S\+A\+N\+D\+S\+\_\+\+S\+E\+P\+\_\+T}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{vfprintf_8c_a3f4a95405348aa63ef907e692901011faa7130536b594a24112fb85c6d823290c}{W\+O\+R\+K\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}} = 1000
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{vfprintf_8c_a0c0056c899b48444729698b8fa3b4191}{ldbl\+\_\+strong\+\_\+alias}} (\+\_\+\+I\+O\+\_\+vfprintf\+\_\+internal, \mbox{\hyperlink{nldbl-vfprintf_8c_ad14d0931482dbcb8f1ea5aa0774db4f0}{vfprintf}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{vfprintf_8c_ac028b3dc504c69b57956a74f8242a1bb}\label{vfprintf_8c_ac028b3dc504c69b57956a74f8242a1bb}} 
+\index{vfprintf.c@{vfprintf.c}!ARGCHECK@{ARGCHECK}}
+\index{ARGCHECK@{ARGCHECK}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{ARGCHECK}{ARGCHECK}}
+{\footnotesize\ttfamily \#define A\+R\+G\+C\+H\+E\+CK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structS}{S}},  }\item[{}]{Format }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* Check file argument for consistence.  */}                 \(\backslash\)}
+\DoxyCodeLine{      CHECK\_FILE (\mbox{\hyperlink{structS}{S}}, -\/1);                            \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{structS}{S}}-\/>\_flags \& \mbox{\hyperlink{libio_2libio_8h_abc2ba113ed4797f33f61a6f8e0dd9fe3}{\_IO\_NO\_WRITES}})                        \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      S-\/>\_flags |= \mbox{\hyperlink{libio_2libio_8h_a1357ee693d9e41c447a1ff3821872abd}{\_IO\_ERR\_SEEN}};                          \(\backslash\)}
+\DoxyCodeLine{      \_\_set\_errno (EBADF);                            \(\backslash\)}
+\DoxyCodeLine{      return -\/1;                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      if (Format == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      MAYBE\_SET\_EINVAL;                           \(\backslash\)}
+\DoxyCodeLine{      return -\/1;                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_a72a591cf0a96cf23c63df5c78712dabe}\label{vfprintf_8c_a72a591cf0a96cf23c63df5c78712dabe}} 
+\index{vfprintf.c@{vfprintf.c}!BUFSIZ@{BUFSIZ}}
+\index{BUFSIZ@{BUFSIZ}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{BUFSIZ}{BUFSIZ}}
+{\footnotesize\ttfamily \#define B\+U\+F\+S\+IZ~\mbox{\hyperlink{libio_2libio_8h_a8019bfdc5dbe3cdf72ff458575c36545}{\+\_\+\+I\+O\+\_\+\+B\+U\+F\+S\+IZ}}}
+
+\mbox{\Hypertarget{vfprintf_8c_ac719ddea5c520dac55f930d5751878e6}\label{vfprintf_8c_ac719ddea5c520dac55f930d5751878e6}} 
+\index{vfprintf.c@{vfprintf.c}!CHAR\_CLASS@{CHAR\_CLASS}}
+\index{CHAR\_CLASS@{CHAR\_CLASS}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{CHAR\_CLASS}{CHAR\_CLASS}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+\+C\+L\+A\+SS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~(jump\+\_\+table\mbox{[}(\mbox{\hyperlink{vfprintf_8c_a5a470664c6885f184aaea4368db99d5b}{I\+N\+T\+\_\+T}}) (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) -\/ \mbox{\hyperlink{tst-wcstol-locale_8c_ad1997c2d1f5f6063b9c9f8df3c33a781}{L\+\_\+}}(\textquotesingle{} \textquotesingle{})\mbox{]})}
+
+\mbox{\Hypertarget{vfprintf_8c_a9ea0f4a7e303689f687a679107d81da9}\label{vfprintf_8c_a9ea0f4a7e303689f687a679107d81da9}} 
+\index{vfprintf.c@{vfprintf.c}!CHAR\_T@{CHAR\_T}}
+\index{CHAR\_T@{CHAR\_T}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{CHAR\_T}{CHAR\_T}}
+{\footnotesize\ttfamily \#define C\+H\+A\+R\+\_\+T~char}
+
+\mbox{\Hypertarget{vfprintf_8c_af31660ef26952eb9ae6ce8a9a7350fd9}\label{vfprintf_8c_af31660ef26952eb9ae6ce8a9a7350fd9}} 
+\index{vfprintf.c@{vfprintf.c}!done\_add@{done\_add}}
+\index{done\_add@{done\_add}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{done\_add}{done\_add}}
+{\footnotesize\ttfamily \#define done\+\_\+add(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    unsigned \textcolor{keywordtype}{int} \_val = \mbox{\hyperlink{jisx0213_8h_ac9c27479cf7677bea26d3c59ce2a2dc3}{val}};                           \(\backslash\)}
+\DoxyCodeLine{    assert ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} < (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}) \mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{INT\_MAX}});             \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (\mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{INT\_MAX}} -\/ \mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} < \_val))                  \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    done = -\/1;                                \(\backslash\)}
+\DoxyCodeLine{     \_\_set\_errno (\mbox{\hyperlink{private_8h_a888552a5e3c78b5883904cf5d55244ab}{EOVERFLOW}});                        \(\backslash\)}
+\DoxyCodeLine{    goto all\_done;                                \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{    done += \_val;                                 \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_a3e8cefeee58f762ff50bcef35fa12eec}\label{vfprintf_8c_a3e8cefeee58f762ff50bcef35fa12eec}} 
+\index{vfprintf.c@{vfprintf.c}!FILE@{FILE}}
+\index{FILE@{FILE}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{FILE}{FILE}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}}~\mbox{\hyperlink{struct__IO__FILE}{\+\_\+\+I\+O\+\_\+\+F\+I\+LE}}}
+
+\mbox{\Hypertarget{vfprintf_8c_a5a470664c6885f184aaea4368db99d5b}\label{vfprintf_8c_a5a470664c6885f184aaea4368db99d5b}} 
+\index{vfprintf.c@{vfprintf.c}!INT\_T@{INT\_T}}
+\index{INT\_T@{INT\_T}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{INT\_T}{INT\_T}}
+{\footnotesize\ttfamily \#define I\+N\+T\+\_\+T~\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}
+
+\mbox{\Hypertarget{vfprintf_8c_a60f95260fa4461db6181d6cfaf7e47d1}\label{vfprintf_8c_a60f95260fa4461db6181d6cfaf7e47d1}} 
+\index{vfprintf.c@{vfprintf.c}!is\_long\_num@{is\_long\_num}}
+\index{is\_long\_num@{is\_long\_num}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{is\_long\_num}{is\_long\_num}}
+{\footnotesize\ttfamily \#define is\+\_\+long\+\_\+num~0}
+
+\mbox{\Hypertarget{vfprintf_8c_af4dcc4f5198d97e51d1659ff2dbf0de1}\label{vfprintf_8c_af4dcc4f5198d97e51d1659ff2dbf0de1}} 
+\index{vfprintf.c@{vfprintf.c}!is\_longlong@{is\_longlong}}
+\index{is\_longlong@{is\_longlong}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{is\_longlong}{is\_longlong}}
+{\footnotesize\ttfamily \#define is\+\_\+longlong~0}
+
+\mbox{\Hypertarget{vfprintf_8c_adbe3550007af420334b04c2aeb8b9ad4}\label{vfprintf_8c_adbe3550007af420334b04c2aeb8b9ad4}} 
+\index{vfprintf.c@{vfprintf.c}!ISDIGIT@{ISDIGIT}}
+\index{ISDIGIT@{ISDIGIT}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{ISDIGIT}{ISDIGIT}}
+{\footnotesize\ttfamily \#define I\+S\+D\+I\+G\+IT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~((unsigned \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}) ((\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) -\/ \textquotesingle{}0\textquotesingle{}) $<$ 10)}
+
+\mbox{\Hypertarget{vfprintf_8c_a9be12893a774c489d77c27995b5b2d9b}\label{vfprintf_8c_a9be12893a774c489d77c27995b5b2d9b}} 
+\index{vfprintf.c@{vfprintf.c}!JUMP@{JUMP}}
+\index{JUMP@{JUMP}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{JUMP}{JUMP}}
+{\footnotesize\ttfamily \#define J\+U\+MP(\begin{DoxyParamCaption}\item[{}]{Ch\+Expr,  }\item[{}]{table }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                    \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      const \textcolor{keywordtype}{void} *\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}};                             \(\backslash\)}
+\DoxyCodeLine{      spec = (ChExpr);                            \(\backslash\)}
+\DoxyCodeLine{      ptr = \mbox{\hyperlink{vfprintf_8c_a0df398b341c5d5c86239b49b0084aa42}{NOT\_IN\_JUMP\_RANGE}} (spec) ? \mbox{\hyperlink{vfprintf_8c_a0d1ba9e6048b88f1c86ced54bbd2171a}{REF}} (form\_unknown)             \(\backslash\)}
+\DoxyCodeLine{        : table[\mbox{\hyperlink{vfprintf_8c_ac719ddea5c520dac55f930d5751878e6}{CHAR\_CLASS}} (spec)];                         \(\backslash\)}
+\DoxyCodeLine{      goto *\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}};                               \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_a7a3691a803799b5675cf7ea6ed19b92b}\label{vfprintf_8c_a7a3691a803799b5675cf7ea6ed19b92b}} 
+\index{vfprintf.c@{vfprintf.c}!JUMP\_TABLE\_TYPE@{JUMP\_TABLE\_TYPE}}
+\index{JUMP\_TABLE\_TYPE@{JUMP\_TABLE\_TYPE}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{JUMP\_TABLE\_TYPE}{JUMP\_TABLE\_TYPE}}
+{\footnotesize\ttfamily \#define J\+U\+M\+P\+\_\+\+T\+A\+B\+L\+E\+\_\+\+T\+Y\+PE~\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}}}
+
+\mbox{\Hypertarget{vfprintf_8c_ad5a8487dc9e2e8571531abcf57c0d11b}\label{vfprintf_8c_ad5a8487dc9e2e8571531abcf57c0d11b}} 
+\index{vfprintf.c@{vfprintf.c}!L\_@{L\_}}
+\index{L\_@{L\_}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{L\_}{L\_}}
+{\footnotesize\ttfamily \#define L\+\_\+(\begin{DoxyParamCaption}\item[{}]{Str }\end{DoxyParamCaption})~Str}
+
+\mbox{\Hypertarget{vfprintf_8c_aae1d7117f668ee1c1abe04dcae7c621f}\label{vfprintf_8c_aae1d7117f668ee1c1abe04dcae7c621f}} 
+\index{vfprintf.c@{vfprintf.c}!LABEL@{LABEL}}
+\index{LABEL@{LABEL}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{LABEL}{LABEL}}
+{\footnotesize\ttfamily \#define L\+A\+B\+EL(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})~do\+\_\+\#\#Name}
+
+\mbox{\Hypertarget{vfprintf_8c_a0df398b341c5d5c86239b49b0084aa42}\label{vfprintf_8c_a0df398b341c5d5c86239b49b0084aa42}} 
+\index{vfprintf.c@{vfprintf.c}!NOT\_IN\_JUMP\_RANGE@{NOT\_IN\_JUMP\_RANGE}}
+\index{NOT\_IN\_JUMP\_RANGE@{NOT\_IN\_JUMP\_RANGE}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{NOT\_IN\_JUMP\_RANGE}{NOT\_IN\_JUMP\_RANGE}}
+{\footnotesize\ttfamily \#define N\+O\+T\+\_\+\+I\+N\+\_\+\+J\+U\+M\+P\+\_\+\+R\+A\+N\+GE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) $<$ \mbox{\hyperlink{tst-wcstol-locale_8c_ad1997c2d1f5f6063b9c9f8df3c33a781}{L\+\_\+}}(\textquotesingle{} \textquotesingle{}) $\vert$$\vert$ (\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}) $>$ \mbox{\hyperlink{tst-wcstol-locale_8c_ad1997c2d1f5f6063b9c9f8df3c33a781}{L\+\_\+}}(\textquotesingle{}\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}\textquotesingle{}))}
+
+\mbox{\Hypertarget{vfprintf_8c_a24359de1e3903d232de74d77c3817ec4}\label{vfprintf_8c_a24359de1e3903d232de74d77c3817ec4}} 
+\index{vfprintf.c@{vfprintf.c}!ORIENT@{ORIENT}}
+\index{ORIENT@{ORIENT}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{ORIENT}{ORIENT}}
+{\footnotesize\ttfamily \#define O\+R\+I\+E\+NT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{libioP_8h_a6c41b0a43c57d6b3d1b467c8e96147cf}{\_IO\_vtable\_offset}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}) == 0 \&\& \mbox{\hyperlink{iofwide_8c_a7d63878dc0686d799588d3dd1d010f92}{\_IO\_fwide}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, -\/1) != -\/1)\(\backslash\)}
+\DoxyCodeLine{              return -\/1}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_a83d4c3d6714ec42351dc2394239e6e04}\label{vfprintf_8c_a83d4c3d6714ec42351dc2394239e6e04}} 
+\index{vfprintf.c@{vfprintf.c}!outchar@{outchar}}
+\index{outchar@{outchar}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{outchar}{outchar}}
+{\footnotesize\ttfamily \#define outchar(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{crypt_2sha512-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      const \mbox{\hyperlink{vfprintf_8c_a5a470664c6885f184aaea4368db99d5b}{INT\_T}} outc = (\mbox{\hyperlink{crypt_2sha256-block_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}});                             \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{vfprintf_8c_a4bcd17fcbcdadf4cde717a7fc9665778}{PUTC}} (outc, \mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}) == \mbox{\hyperlink{libio_2libio_8h_a59adc4c82490d23754cd39c2fb99b0da}{EOF}} || \mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} == \mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{INT\_MAX}})                \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      done = -\/1;                                  \(\backslash\)}
+\DoxyCodeLine{      goto all\_done;                              \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      ++\mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}};                                     \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_a5efb11c3fd32677d2e7cda5f906d8a98}\label{vfprintf_8c_a5efb11c3fd32677d2e7cda5f906d8a98}} 
+\index{vfprintf.c@{vfprintf.c}!outstring@{outstring}}
+\index{outstring@{outstring}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{outstring}{outstring}}
+{\footnotesize\ttfamily \#define outstring(\begin{DoxyParamCaption}\item[{}]{String,  }\item[{}]{Len }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      assert ((\textcolor{keywordtype}{size\_t}) \mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} <= (\textcolor{keywordtype}{size\_t}) \mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{INT\_MAX}});                  \(\backslash\)}
+\DoxyCodeLine{      if ((\textcolor{keywordtype}{size\_t}) \mbox{\hyperlink{vfprintf_8c_a43ae07b37006303a27291eee2d6ae0ea}{PUT}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, (String), (Len)) != (\textcolor{keywordtype}{size\_t}) (Len))            \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      done = -\/1;                                  \(\backslash\)}
+\DoxyCodeLine{      goto all\_done;                              \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (\mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{INT\_MAX}} -\/ \mbox{\hyperlink{pthread_2aio__misc_8h_a64066ecf5b68986b979ee4e41964b017a9041c40ebd1ff09fe453b594ad748199}{done}} < (Len)))               \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    done = -\/1;                                \(\backslash\)}
+\DoxyCodeLine{     \_\_set\_errno (\mbox{\hyperlink{private_8h_a888552a5e3c78b5883904cf5d55244ab}{EOVERFLOW}});                        \(\backslash\)}
+\DoxyCodeLine{    goto all\_done;                                \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{      done += (Len);                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                         \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_af865683adb0b5f4275004696e2cbc832}\label{vfprintf_8c_af865683adb0b5f4275004696e2cbc832}} 
+\index{vfprintf.c@{vfprintf.c}!PAD@{PAD}}
+\index{PAD@{PAD}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{PAD}{PAD}}
+{\footnotesize\ttfamily \#define P\+AD(\begin{DoxyParamCaption}\item[{}]{Padchar }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    if (width > 0)                                \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    \_IO\_ssize\_t written = \mbox{\hyperlink{iopadn_8c_af4832e8e971e1b587422bddf2db6bf70}{\_IO\_padn}} (\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}, (Padchar), width);            \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{misc_2sys_2cdefs_8h_aca260d0df151817006bf2a8a03d7f1dd}{\_\_glibc\_unlikely}} (written != width))                  \(\backslash\)}
+\DoxyCodeLine{      \{                                   \(\backslash\)}
+\DoxyCodeLine{        done = -\/1;                                \(\backslash\)}
+\DoxyCodeLine{        goto all\_done;                            \(\backslash\)}
+\DoxyCodeLine{      \}                                   \(\backslash\)}
+\DoxyCodeLine{    done\_add (written);                           \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_a56d63d99f2fc930dc07d50bce5ff6d11}\label{vfprintf_8c_a56d63d99f2fc930dc07d50bce5ff6d11}} 
+\index{vfprintf.c@{vfprintf.c}!process\_arg@{process\_arg}}
+\index{process\_arg@{process\_arg}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{process\_arg}{process\_arg}}
+{\footnotesize\ttfamily \#define process\+\_\+arg(\begin{DoxyParamCaption}\item[{}]{fspec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{vfprintf_8c_a88311813f8681fc30fd113e03ef46e64}\label{vfprintf_8c_a88311813f8681fc30fd113e03ef46e64}} 
+\index{vfprintf.c@{vfprintf.c}!process\_string\_arg@{process\_string\_arg}}
+\index{process\_string\_arg@{process\_string\_arg}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{process\_string\_arg}{process\_string\_arg}}
+{\footnotesize\ttfamily \#define process\+\_\+string\+\_\+arg(\begin{DoxyParamCaption}\item[{}]{fspec }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{vfprintf_8c_a43ae07b37006303a27291eee2d6ae0ea}\label{vfprintf_8c_a43ae07b37006303a27291eee2d6ae0ea}} 
+\index{vfprintf.c@{vfprintf.c}!PUT@{PUT}}
+\index{PUT@{PUT}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{PUT}{PUT}}
+{\footnotesize\ttfamily \#define P\+UT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}},  }\item[{}]{\mbox{\hyperlink{structS}{S}},  }\item[{}]{\mbox{\hyperlink{test-libmvec-alias-mod_8c_a0240ac851181b84ac374872dc5434ee4}{N}} }\end{DoxyParamCaption})~\mbox{\hyperlink{libioP_8h_a3867810795ce0fdbcfa1e53ccd628c06}{\+\_\+\+I\+O\+\_\+sputn}} ((\mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}}), (\mbox{\hyperlink{structS}{S}}), (\mbox{\hyperlink{test-libmvec-alias-mod_8c_a0240ac851181b84ac374872dc5434ee4}{N}}))}
+
+\mbox{\Hypertarget{vfprintf_8c_a4bcd17fcbcdadf4cde717a7fc9665778}\label{vfprintf_8c_a4bcd17fcbcdadf4cde717a7fc9665778}} 
+\index{vfprintf.c@{vfprintf.c}!PUTC@{PUTC}}
+\index{PUTC@{PUTC}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{PUTC}{PUTC}}
+{\footnotesize\ttfamily \#define P\+U\+TC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{psiginfo-define_8h_ae7afc18d0b19eba994db47b01743d816}{C}},  }\item[{}]{\mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}} }\end{DoxyParamCaption})~\mbox{\hyperlink{libio_2libio_8h_a029c0b1357b79e82aa09e791cd90d924}{\+\_\+\+I\+O\+\_\+putc\+\_\+unlocked}} (\mbox{\hyperlink{psiginfo-define_8h_ae7afc18d0b19eba994db47b01743d816}{C}}, \mbox{\hyperlink{stdlib_2strtol__l_8c_a2ec9e0c82a2cc5b0eb0bc8158cc7d64c}{F}})}
+
+\mbox{\Hypertarget{vfprintf_8c_a0d1ba9e6048b88f1c86ced54bbd2171a}\label{vfprintf_8c_a0d1ba9e6048b88f1c86ced54bbd2171a}} 
+\index{vfprintf.c@{vfprintf.c}!REF@{REF}}
+\index{REF@{REF}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{REF}{REF}}
+{\footnotesize\ttfamily \#define R\+EF(\begin{DoxyParamCaption}\item[{}]{Name }\end{DoxyParamCaption})~\&\&do\+\_\+\#\#Name}
+
+\mbox{\Hypertarget{vfprintf_8c_af8fb7c5731a863c99b756a5973f6624d}\label{vfprintf_8c_af8fb7c5731a863c99b756a5973f6624d}} 
+\index{vfprintf.c@{vfprintf.c}!STEP0\_3\_TABLE@{STEP0\_3\_TABLE}}
+\index{STEP0\_3\_TABLE@{STEP0\_3\_TABLE}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{STEP0\_3\_TABLE}{STEP0\_3\_TABLE}}
+{\footnotesize\ttfamily \#define S\+T\+E\+P0\+\_\+3\+\_\+\+T\+A\+B\+LE}
+
+\mbox{\Hypertarget{vfprintf_8c_ad0bca95a457523794ff15d189eb559f1}\label{vfprintf_8c_ad0bca95a457523794ff15d189eb559f1}} 
+\index{vfprintf.c@{vfprintf.c}!STEP4\_TABLE@{STEP4\_TABLE}}
+\index{STEP4\_TABLE@{STEP4\_TABLE}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{STEP4\_TABLE}{STEP4\_TABLE}}
+{\footnotesize\ttfamily \#define S\+T\+E\+P4\+\_\+\+T\+A\+B\+LE}
+
+\mbox{\Hypertarget{vfprintf_8c_afe4117f84e65956ecdd82b9c1d4d7b15}\label{vfprintf_8c_afe4117f84e65956ecdd82b9c1d4d7b15}} 
+\index{vfprintf.c@{vfprintf.c}!STR\_LEN@{STR\_LEN}}
+\index{STR\_LEN@{STR\_LEN}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{STR\_LEN}{STR\_LEN}}
+{\footnotesize\ttfamily \#define S\+T\+R\+\_\+\+L\+EN(\begin{DoxyParamCaption}\item[{}]{Str }\end{DoxyParamCaption})~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strlen_8c_aa383452fe445bfae989358c9d7d96f4f}{strlen}} (Str)}
+
+\mbox{\Hypertarget{vfprintf_8c_a97faca558e201228c23888aa4f45d720}\label{vfprintf_8c_a97faca558e201228c23888aa4f45d720}} 
+\index{vfprintf.c@{vfprintf.c}!T@{T}}
+\index{T@{T}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{T}{T}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{structT}{T}}(\begin{DoxyParamCaption}\item[{}]{tag,  }\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{case} tag:                   \(\backslash\)}
+\DoxyCodeLine{      args\_value[\mbox{\hyperlink{bug-ftw1_8c_a9cfbb269728dc4185236d28be58d9eab}{cnt}}].mem = va\_arg (*ap\_savep, \mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}); \(\backslash\)}
+\DoxyCodeLine{      break}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{vfprintf_8c_ad60a5d1bae658721148545fac7e81789}\label{vfprintf_8c_ad60a5d1bae658721148545fac7e81789}} 
+\index{vfprintf.c@{vfprintf.c}!UCHAR\_T@{UCHAR\_T}}
+\index{UCHAR\_T@{UCHAR\_T}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{UCHAR\_T}{UCHAR\_T}}
+{\footnotesize\ttfamily \#define U\+C\+H\+A\+R\+\_\+T~unsigned char}
+
+\mbox{\Hypertarget{vfprintf_8c_ac7a3459d174d01e1b2f265fd60ce2892}\label{vfprintf_8c_ac7a3459d174d01e1b2f265fd60ce2892}} 
+\index{vfprintf.c@{vfprintf.c}!UNBUFFERED\_P@{UNBUFFERED\_P}}
+\index{UNBUFFERED\_P@{UNBUFFERED\_P}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{UNBUFFERED\_P}{UNBUFFERED\_P}}
+{\footnotesize\ttfamily \#define U\+N\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+P(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structS}{S}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{structS}{S}})-\/$>$\mbox{\hyperlink{libio_2libio_8h_a8663c7503326ff9866aa5c44cf7ae539}{\+\_\+\+I\+O\+\_\+file\+\_\+flags}} \& \mbox{\hyperlink{libio_2libio_8h_aecd47314dd69a1e4fc63ada7eff1175b}{\+\_\+\+I\+O\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}})}
+
+\mbox{\Hypertarget{vfprintf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}\label{vfprintf_8c_a6e6fde95f2a221e9bcd58fa102bd90ff}} 
+\index{vfprintf.c@{vfprintf.c}!va\_list@{va\_list}}
+\index{va\_list@{va\_list}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{va\_list}{va\_list}}
+{\footnotesize\ttfamily \#define va\+\_\+list~\mbox{\hyperlink{libio_2libio_8h_a64db8a37cd6c5bff17c37b512c161f50}{\+\_\+\+I\+O\+\_\+va\+\_\+list}}}
+
+\mbox{\Hypertarget{vfprintf_8c_a8fdc4bb69d2ce8fe042b88eae7160e6e}\label{vfprintf_8c_a8fdc4bb69d2ce8fe042b88eae7160e6e}} 
+\index{vfprintf.c@{vfprintf.c}!vfprintf@{vfprintf}}
+\index{vfprintf@{vfprintf}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{vfprintf}{vfprintf}}
+{\footnotesize\ttfamily \#define vfprintf~\+\_\+\+I\+O\+\_\+vfprintf\+\_\+internal}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{vfprintf_8c_ad133984e191610ed137485229922c199}\label{vfprintf_8c_ad133984e191610ed137485229922c199}} 
+\index{vfprintf.c@{vfprintf.c}!THOUSANDS\_SEP\_T@{THOUSANDS\_SEP\_T}}
+\index{THOUSANDS\_SEP\_T@{THOUSANDS\_SEP\_T}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{THOUSANDS\_SEP\_T}{THOUSANDS\_SEP\_T}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ \mbox{\hyperlink{vfprintf_8c_ad133984e191610ed137485229922c199}{T\+H\+O\+U\+S\+A\+N\+D\+S\+\_\+\+S\+E\+P\+\_\+T}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{vfprintf_8c_a3f4a95405348aa63ef907e692901011f}\label{vfprintf_8c_a3f4a95405348aa63ef907e692901011f}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WORK\_BUFFER\_SIZE@{WORK\_BUFFER\_SIZE}!vfprintf.c@{vfprintf.c}}\index{vfprintf.c@{vfprintf.c}!WORK\_BUFFER\_SIZE@{WORK\_BUFFER\_SIZE}}}\mbox{\Hypertarget{vfprintf_8c_a3f4a95405348aa63ef907e692901011faa7130536b594a24112fb85c6d823290c}\label{vfprintf_8c_a3f4a95405348aa63ef907e692901011faa7130536b594a24112fb85c6d823290c}} 
+W\+O\+R\+K\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{vfprintf_8c_a0c0056c899b48444729698b8fa3b4191}\label{vfprintf_8c_a0c0056c899b48444729698b8fa3b4191}} 
+\index{vfprintf.c@{vfprintf.c}!ldbl\_strong\_alias@{ldbl\_strong\_alias}}
+\index{ldbl\_strong\_alias@{ldbl\_strong\_alias}!vfprintf.c@{vfprintf.c}}
+\doxysubsubsection{\texorpdfstring{ldbl\_strong\_alias()}{ldbl\_strong\_alias()}}
+{\footnotesize\ttfamily ldbl\+\_\+strong\+\_\+alias (\begin{DoxyParamCaption}\item[{\+\_\+\+I\+O\+\_\+vfprintf\+\_\+internal}]{,  }\item[{\mbox{\hyperlink{nldbl-vfprintf_8c_ad14d0931482dbcb8f1ea5aa0774db4f0}{vfprintf}}}]{ }\end{DoxyParamCaption})}
+

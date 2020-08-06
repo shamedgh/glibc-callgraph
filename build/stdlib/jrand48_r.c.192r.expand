@@ -1,0 +1,104 @@
+
+;; Function __jrand48_r (__jrand48_r, funcdef_no=23, decl_uid=3196, cgraph_uid=23, symbol_order=26)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 23.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 93 [ xsubi ])
+        (reg:DI 5 di [ xsubi ])) jrand48_r.c:24 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 94 [ buffer ])
+        (reg:DI 4 si [ buffer ])) jrand48_r.c:24 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 95 [ result ])
+        (reg:DI 1 dx [ result ])) jrand48_r.c:24 -1
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 94 [ buffer ])) jrand48_r.c:26 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ xsubi ])) jrand48_r.c:26 -1
+     (nil))
+(call_insn 12 11 13 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__drand48_iterate") [flags 0x41]  <function_decl 0x2ae04f3c3d80 __drand48_iterate>) [0 __drand48_iterate S1 A8])
+            (const_int 0 [0]))) jrand48_r.c:26 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__drand48_iterate") [flags 0x41]  <function_decl 0x2ae04f3c3d80 __drand48_iterate>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 13 12 14 2 (set (reg:SI 88 [ D.3490 ])
+        (reg:SI 0 ax)) jrand48_r.c:26 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 88 [ D.3490 ])
+            (const_int 0 [0]))) jrand48_r.c:26 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 32)
+            (pc))) jrand48_r.c:26 612 {*jcc_1}
+     (int_list:REG_BR_PROB 152 (nil))
+ -> 32)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:SI 97)
+        (mem:SI (plus:DI (reg/v/f:DI 93 [ xsubi ])
+                (const_int 2 [0x2])) [1 MEM[(short unsigned int *)xsubi_4(D) + 2B]+0 S4 A16])) jrand48_r.c:30 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:DI 96)
+        (sign_extend:DI (reg:SI 97))) jrand48_r.c:30 -1
+     (nil))
+(insn 19 18 7 4 (set (mem:DI (reg/v/f:DI 95 [ result ]) [2 *result_15(D)+0 S8 A64])
+        (reg:DI 96)) jrand48_r.c:30 -1
+     (nil))
+(insn 7 19 29 4 (set (reg:SI 87 [ D.3490 ])
+        (const_int 0 [0])) jrand48_r.c:32 -1
+     (nil))
+(jump_insn 29 7 30 4 (set (pc)
+        (label_ref 20)) jrand48_r.c:32 -1
+     (nil)
+ -> 20)
+(barrier 30 29 32)
+(code_label 32 30 31 5 3 "" [1 uses])
+(note 31 32 6 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 6 31 20 5 (set (reg:SI 87 [ D.3490 ])
+        (const_int -1 [0xffffffffffffffff])) jrand48_r.c:27 -1
+     (nil))
+(code_label 20 6 21 6 2 "" [1 uses])
+(note 21 20 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 26 6 (set (reg:SI 92 [ <retval> ])
+        (reg:SI 87 [ D.3490 ])) -1
+     (nil))
+(insn 26 22 27 6 (set (reg/i:SI 0 ax)
+        (reg:SI 92 [ <retval> ])) jrand48_r.c:33 -1
+     (nil))
+(insn 27 26 0 6 (use (reg/i:SI 0 ax)) jrand48_r.c:33 -1
+     (nil))

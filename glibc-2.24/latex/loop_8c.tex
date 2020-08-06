@@ -1,0 +1,191 @@
+\hypertarget{loop_8c}{}\doxysection{iconv/loop.c File Reference}
+\label{loop_8c}\index{iconv/loop.c@{iconv/loop.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$endian.\+h$>$}\newline
+{\ttfamily \#include $<$gconv.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}loop.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{loop_8c_a2898830827f947f003d187388f7e6c72}{\+\_\+\+\_\+need\+\_\+size\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{loop_8c_a396f2c9d0a894281a414acb987f15f0d}{get16}}(\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}})~$\ast$((\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_adf4d876453337156dde61095e1f20223}{uint16\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}}))
+\item 
+\#define \mbox{\hyperlink{loop_8c_a01429018f8b0832fb6ff6ed6610825b8}{get32}}(\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}})~$\ast$((\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}}))
+\item 
+\#define \mbox{\hyperlink{loop_8c_a0a6ef65c890086aa20addfb02f57e1a2}{put16}}(\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}},  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})~$\ast$((\mbox{\hyperlink{stdint_8h_adf4d876453337156dde61095e1f20223}{uint16\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}})) = (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})
+\item 
+\#define \mbox{\hyperlink{loop_8c_aaa1160bd894fd7c9b36e5823836ee9d6}{put32}}(\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}},  \mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})~$\ast$((\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}})) = (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})
+\item 
+\#define \mbox{\hyperlink{loop_8c_a17e4f560079ca23ae9d7bb96c5be5d7b}{F\+C\+T\+N\+A\+M\+E2}}(\mbox{\hyperlink{structname}{name}})~\mbox{\hyperlink{structname}{name}}
+\item 
+\#define \mbox{\hyperlink{loop_8c_ae1e84a5e8048c2a0dee88d0818e476bd}{F\+C\+T\+N\+A\+ME}}(\mbox{\hyperlink{structname}{name}})~\mbox{\hyperlink{loop_8c_a17e4f560079ca23ae9d7bb96c5be5d7b}{F\+C\+T\+N\+A\+M\+E2}}(\mbox{\hyperlink{structname}{name}})
+\item 
+\#define \mbox{\hyperlink{loop_8c_a051b60ccf2d72cfcb0410ddd64688f5f}{M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}~\mbox{\hyperlink{utf8-utf32-z9_8c_a9357385566ada052148b5f9bb2477a95}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}
+\item 
+\#define \mbox{\hyperlink{loop_8c_a704b92593b29c8df88c709f2113054e8}{M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}~\mbox{\hyperlink{utf8-utf32-z9_8c_ae99129fd6a9cb8fe714e8f4a39593b99}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}
+\item 
+\#define \mbox{\hyperlink{loop_8c_aac1a63e55f398ea132ae542c21de847b}{L\+O\+O\+P\+F\+CT}}~loop
+\item 
+\#define \mbox{\hyperlink{loop_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}{E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+D\+E\+C\+LS}}
+\item 
+\#define \mbox{\hyperlink{loop_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}{U\+P\+D\+A\+T\+E\+\_\+\+P\+A\+R\+A\+MS}}~do \{ \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\item 
+\#define \mbox{\hyperlink{loop_8c_a6ffb5e19734b8d5c7302c3728565dd87}{R\+E\+I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS}}~do \{ \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\item 
+\#define \mbox{\hyperlink{loop_8c_aef359b2a28177ca3266768c46f9b1fde}{ignore\+\_\+errors\+\_\+p}}()~(irreversible != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}} \&\& (\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{iconv_2gconv_8h_ac205be2172292384dd687b5471a87edda0cfaef02cbf4f672a54ab2a64b1dc797}{\+\_\+\+\_\+\+G\+C\+O\+N\+V\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+E\+R\+R\+O\+RS}}))
+\item 
+\#define \mbox{\hyperlink{loop_8c_a91d50037cd90d225e16413cff4b59fd6}{S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+E\+R\+R\+\_\+\+H\+A\+N\+D\+L\+ER}}(Incr)
+\item 
+\#define \mbox{\hyperlink{loop_8c_a1cb5c8b303fc07ba03e82479e441fbd8}{S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+E\+R\+R\+\_\+\+H\+A\+N\+D\+L\+ER}}(Incr)
+\item 
+\#define \mbox{\hyperlink{loop_8c_a586af31fa21e41e9fa08594ca9a2b99d}{U\+N\+I\+C\+O\+D\+E\+\_\+\+T\+A\+G\+\_\+\+H\+A\+N\+D\+L\+ER}}(Character,  Incr)
+\item 
+\#define \mbox{\hyperlink{loop_8c_a6de6ec0abc943f7650e176b54cda4e98}{D\+E\+F\+I\+N\+E\+\_\+\+U\+N\+A\+L\+I\+G\+N\+ED}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{loop_8c_a2898830827f947f003d187388f7e6c72}\label{loop_8c_a2898830827f947f003d187388f7e6c72}} 
+\index{loop.c@{loop.c}!\_\_need\_size\_t@{\_\_need\_size\_t}}
+\index{\_\_need\_size\_t@{\_\_need\_size\_t}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{\_\_need\_size\_t}{\_\_need\_size\_t}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+need\+\_\+size\+\_\+t}
+
+\mbox{\Hypertarget{loop_8c_a6de6ec0abc943f7650e176b54cda4e98}\label{loop_8c_a6de6ec0abc943f7650e176b54cda4e98}} 
+\index{loop.c@{loop.c}!DEFINE\_UNALIGNED@{DEFINE\_UNALIGNED}}
+\index{DEFINE\_UNALIGNED@{DEFINE\_UNALIGNED}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_UNALIGNED}{DEFINE\_UNALIGNED}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+U\+N\+A\+L\+I\+G\+N\+ED}
+
+\mbox{\Hypertarget{loop_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}\label{loop_8c_a2fc24b74fbffce5f5a8b6b7b0cbbea05}} 
+\index{loop.c@{loop.c}!EXTRA\_LOOP\_DECLS@{EXTRA\_LOOP\_DECLS}}
+\index{EXTRA\_LOOP\_DECLS@{EXTRA\_LOOP\_DECLS}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_LOOP\_DECLS}{EXTRA\_LOOP\_DECLS}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+L\+O\+O\+P\+\_\+\+D\+E\+C\+LS}
+
+\mbox{\Hypertarget{loop_8c_ae1e84a5e8048c2a0dee88d0818e476bd}\label{loop_8c_ae1e84a5e8048c2a0dee88d0818e476bd}} 
+\index{loop.c@{loop.c}!FCTNAME@{FCTNAME}}
+\index{FCTNAME@{FCTNAME}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{FCTNAME}{FCTNAME}}
+{\footnotesize\ttfamily \#define F\+C\+T\+N\+A\+ME(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\mbox{\hyperlink{loop_8c_a17e4f560079ca23ae9d7bb96c5be5d7b}{F\+C\+T\+N\+A\+M\+E2}}(\mbox{\hyperlink{structname}{name}})}
+
+\mbox{\Hypertarget{loop_8c_a17e4f560079ca23ae9d7bb96c5be5d7b}\label{loop_8c_a17e4f560079ca23ae9d7bb96c5be5d7b}} 
+\index{loop.c@{loop.c}!FCTNAME2@{FCTNAME2}}
+\index{FCTNAME2@{FCTNAME2}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{FCTNAME2}{FCTNAME2}}
+{\footnotesize\ttfamily \#define F\+C\+T\+N\+A\+M\+E2(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\mbox{\hyperlink{structname}{name}}}
+
+\mbox{\Hypertarget{loop_8c_a396f2c9d0a894281a414acb987f15f0d}\label{loop_8c_a396f2c9d0a894281a414acb987f15f0d}} 
+\index{loop.c@{loop.c}!get16@{get16}}
+\index{get16@{get16}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{get16}{get16}}
+{\footnotesize\ttfamily \#define get16(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}} }\end{DoxyParamCaption})~$\ast$((\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_adf4d876453337156dde61095e1f20223}{uint16\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}}))}
+
+\mbox{\Hypertarget{loop_8c_a01429018f8b0832fb6ff6ed6610825b8}\label{loop_8c_a01429018f8b0832fb6ff6ed6610825b8}} 
+\index{loop.c@{loop.c}!get32@{get32}}
+\index{get32@{get32}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{get32}{get32}}
+{\footnotesize\ttfamily \#define get32(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}} }\end{DoxyParamCaption})~$\ast$((\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}}))}
+
+\mbox{\Hypertarget{loop_8c_aef359b2a28177ca3266768c46f9b1fde}\label{loop_8c_aef359b2a28177ca3266768c46f9b1fde}} 
+\index{loop.c@{loop.c}!ignore\_errors\_p@{ignore\_errors\_p}}
+\index{ignore\_errors\_p@{ignore\_errors\_p}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{ignore\_errors\_p}{ignore\_errors\_p}}
+{\footnotesize\ttfamily \#define ignore\+\_\+errors\+\_\+p(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(irreversible != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}} \&\& (\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} \& \mbox{\hyperlink{iconv_2gconv_8h_ac205be2172292384dd687b5471a87edda0cfaef02cbf4f672a54ab2a64b1dc797}{\+\_\+\+\_\+\+G\+C\+O\+N\+V\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+E\+R\+R\+O\+RS}}))}
+
+\mbox{\Hypertarget{loop_8c_aac1a63e55f398ea132ae542c21de847b}\label{loop_8c_aac1a63e55f398ea132ae542c21de847b}} 
+\index{loop.c@{loop.c}!LOOPFCT@{LOOPFCT}}
+\index{LOOPFCT@{LOOPFCT}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{LOOPFCT}{LOOPFCT}}
+{\footnotesize\ttfamily \#define L\+O\+O\+P\+F\+CT~loop}
+
+\mbox{\Hypertarget{loop_8c_a051b60ccf2d72cfcb0410ddd64688f5f}\label{loop_8c_a051b60ccf2d72cfcb0410ddd64688f5f}} 
+\index{loop.c@{loop.c}!MAX\_NEEDED\_INPUT@{MAX\_NEEDED\_INPUT}}
+\index{MAX\_NEEDED\_INPUT@{MAX\_NEEDED\_INPUT}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEEDED\_INPUT}{MAX\_NEEDED\_INPUT}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT~\mbox{\hyperlink{utf8-utf32-z9_8c_a9357385566ada052148b5f9bb2477a95}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+I\+N\+P\+UT}}}
+
+\mbox{\Hypertarget{loop_8c_a704b92593b29c8df88c709f2113054e8}\label{loop_8c_a704b92593b29c8df88c709f2113054e8}} 
+\index{loop.c@{loop.c}!MAX\_NEEDED\_OUTPUT@{MAX\_NEEDED\_OUTPUT}}
+\index{MAX\_NEEDED\_OUTPUT@{MAX\_NEEDED\_OUTPUT}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NEEDED\_OUTPUT}{MAX\_NEEDED\_OUTPUT}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT~\mbox{\hyperlink{utf8-utf32-z9_8c_ae99129fd6a9cb8fe714e8f4a39593b99}{M\+I\+N\+\_\+\+N\+E\+E\+D\+E\+D\+\_\+\+O\+U\+T\+P\+UT}}}
+
+\mbox{\Hypertarget{loop_8c_a0a6ef65c890086aa20addfb02f57e1a2}\label{loop_8c_a0a6ef65c890086aa20addfb02f57e1a2}} 
+\index{loop.c@{loop.c}!put16@{put16}}
+\index{put16@{put16}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{put16}{put16}}
+{\footnotesize\ttfamily \#define put16(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}},  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})~$\ast$((\mbox{\hyperlink{stdint_8h_adf4d876453337156dde61095e1f20223}{uint16\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}})) = (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})}
+
+\mbox{\Hypertarget{loop_8c_aaa1160bd894fd7c9b36e5823836ee9d6}\label{loop_8c_aaa1160bd894fd7c9b36e5823836ee9d6}} 
+\index{loop.c@{loop.c}!put32@{put32}}
+\index{put32@{put32}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{put32}{put32}}
+{\footnotesize\ttfamily \#define put32(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}},  }\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})~$\ast$((\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$) (\mbox{\hyperlink{nodelmod3_8c_ace329ab525bc61f059bd9ddc876efe10}{addr}})) = (\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})}
+
+\mbox{\Hypertarget{loop_8c_a6ffb5e19734b8d5c7302c3728565dd87}\label{loop_8c_a6ffb5e19734b8d5c7302c3728565dd87}} 
+\index{loop.c@{loop.c}!REINIT\_PARAMS@{REINIT\_PARAMS}}
+\index{REINIT\_PARAMS@{REINIT\_PARAMS}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{REINIT\_PARAMS}{REINIT\_PARAMS}}
+{\footnotesize\ttfamily \#define R\+E\+I\+N\+I\+T\+\_\+\+P\+A\+R\+A\+MS~do \{ \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{loop_8c_a91d50037cd90d225e16413cff4b59fd6}\label{loop_8c_a91d50037cd90d225e16413cff4b59fd6}} 
+\index{loop.c@{loop.c}!STANDARD\_FROM\_LOOP\_ERR\_HANDLER@{STANDARD\_FROM\_LOOP\_ERR\_HANDLER}}
+\index{STANDARD\_FROM\_LOOP\_ERR\_HANDLER@{STANDARD\_FROM\_LOOP\_ERR\_HANDLER}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_FROM\_LOOP\_ERR\_HANDLER}{STANDARD\_FROM\_LOOP\_ERR\_HANDLER}}
+{\footnotesize\ttfamily \#define S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+F\+R\+O\+M\+\_\+\+L\+O\+O\+P\+\_\+\+E\+R\+R\+\_\+\+H\+A\+N\+D\+L\+ER(\begin{DoxyParamCaption}\item[{}]{Incr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    result = \mbox{\hyperlink{iconv_2gconv_8h_a394b3903fbf00ba2b6243f60689a5a5fa2b84b764b297ffa4b81ab31f20b9d036}{\_\_GCONV\_ILLEGAL\_INPUT}};                          \mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{                                          \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{do-rel_8h_a52dc1e52313bafbcfe7c44c90b63125d}{    if}} (! \mbox{\hyperlink{loop_8c_aef359b2a28177ca3266768c46f9b1fde}{ignore\_errors\_p}} ())                            \(\backslash\)}
+\DoxyCodeLine{      break;                                      \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* We ignore the invalid input byte sequence.  */}                 \(\backslash\)}
+\DoxyCodeLine{    inptr += (Incr);                                  \(\backslash\)}
+\DoxyCodeLine{    ++*irreversible;                                  \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* But we keep result == \_\_GCONV\_ILLEGAL\_INPUT, because of the constraint \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{       that "iconv -\/c" must give the same exitcode as "iconv".  */}        \(\backslash\)}
+\DoxyCodeLine{    continue;                                     \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{loop_8c_a1cb5c8b303fc07ba03e82479e441fbd8}\label{loop_8c_a1cb5c8b303fc07ba03e82479e441fbd8}} 
+\index{loop.c@{loop.c}!STANDARD\_TO\_LOOP\_ERR\_HANDLER@{STANDARD\_TO\_LOOP\_ERR\_HANDLER}}
+\index{STANDARD\_TO\_LOOP\_ERR\_HANDLER@{STANDARD\_TO\_LOOP\_ERR\_HANDLER}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_TO\_LOOP\_ERR\_HANDLER}{STANDARD\_TO\_LOOP\_ERR\_HANDLER}}
+{\footnotesize\ttfamily \#define S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+T\+O\+\_\+\+L\+O\+O\+P\+\_\+\+E\+R\+R\+\_\+\+H\+A\+N\+D\+L\+ER(\begin{DoxyParamCaption}\item[{}]{Incr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{loop_8c_a586af31fa21e41e9fa08594ca9a2b99d}\label{loop_8c_a586af31fa21e41e9fa08594ca9a2b99d}} 
+\index{loop.c@{loop.c}!UNICODE\_TAG\_HANDLER@{UNICODE\_TAG\_HANDLER}}
+\index{UNICODE\_TAG\_HANDLER@{UNICODE\_TAG\_HANDLER}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{UNICODE\_TAG\_HANDLER}{UNICODE\_TAG\_HANDLER}}
+{\footnotesize\ttfamily \#define U\+N\+I\+C\+O\+D\+E\+\_\+\+T\+A\+G\+\_\+\+H\+A\+N\+D\+L\+ER(\begin{DoxyParamCaption}\item[{}]{Character,  }\item[{}]{Incr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* TAG characters are those in the range U+E0000..U+E007F.  */}        \(\backslash\)}
+\DoxyCodeLine{    if (((Character) >> 7) == (0xe0000 >> 7))                     \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    inptr += Incr;                                \(\backslash\)}
+\DoxyCodeLine{    continue;                                 \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{loop_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}\label{loop_8c_aaf90ce2cc84bc18d19b48e028fc21b0d}} 
+\index{loop.c@{loop.c}!UPDATE\_PARAMS@{UPDATE\_PARAMS}}
+\index{UPDATE\_PARAMS@{UPDATE\_PARAMS}!loop.c@{loop.c}}
+\doxysubsubsection{\texorpdfstring{UPDATE\_PARAMS}{UPDATE\_PARAMS}}
+{\footnotesize\ttfamily \#define U\+P\+D\+A\+T\+E\+\_\+\+P\+A\+R\+A\+MS~do \{ \} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+

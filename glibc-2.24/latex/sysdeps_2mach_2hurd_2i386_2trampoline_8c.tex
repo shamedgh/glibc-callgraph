@@ -1,0 +1,64 @@
+\hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c}{}\doxysection{sysdeps/mach/hurd/i386/trampoline.c File Reference}
+\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c}\index{sysdeps/mach/hurd/i386/trampoline.c@{sysdeps/mach/hurd/i386/trampoline.c}}
+{\ttfamily \#include $<$hurd/signal.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/userlink.\+h$>$}\newline
+{\ttfamily \#include $<$thread\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$mach/machine/eflags.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hurdfault.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$intr-\/msg.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsigcontext}{sigcontext}} $\ast$ \mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2trampoline_8c_ae8cb7f8b8d28ef6eca2366d7fda594ca}{\+\_\+hurd\+\_\+setup\+\_\+sighandler}} (struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}} $\ast$ss, \mbox{\hyperlink{signal_2signal_8h_a653b059658537bd6f785748c320d0328}{\+\_\+\+\_\+sighandler\+\_\+t}} \mbox{\hyperlink{tst-tls3mod_8c_a3c2348f39cf58c5c0f48742b32b15d83}{handler}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} signo, struct \mbox{\hyperlink{structhurd__signal__detail}{hurd\+\_\+signal\+\_\+detail}} $\ast$detail, volatile \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} rpc\+\_\+wait, struct \mbox{\hyperlink{structmachine__thread__all__state}{machine\+\_\+thread\+\_\+all\+\_\+state}} $\ast$\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a3720ffae7364955b60868806b865e33e}{asm}} (\char`\"{}rpc\+\_\+wait\+\_\+trampoline\+:\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a4ba2f9a6867950c1bab5fc4fa02e9eab}{asm}} (\char`\"{}movl \$-\/25, \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{eax\textbackslash{}n}}\char`\"{} \char`\"{}lcall \$7, \$0\textbackslash{}\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{} \char`\"{}movl \%eax, (\%ecx)\textbackslash{}\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{} \char`\"{}movl \%ebx, \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{esp\textbackslash{}n}}\char`\"{})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a397b8bfd0fe045b421261f20292cb886}{asm}} (\char`\"{}trampoline\+:\textbackslash{}n\char`\"{})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a6684aebf8ae6d7ceeec06b58bf90e088}{asm}} (\char`\"{}call $\ast$\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{edx\textbackslash{}n}}\char`\"{} \char`\"{}addl \$12, \%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{esp\textbackslash{}n}}\char`\"{} \char`\"{}\mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}{ret}}\char`\"{})
+\item 
+\mbox{\hyperlink{sysdeps_2mach_2hurd_2i386_2trampoline_8c_ad411311aba0d5d9f34ec9ea4871d0a80}{asm}} (\char`\"{}firewall\+:\textbackslash{}n\char`\"{} \char`\"{}hlt\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c_ae8cb7f8b8d28ef6eca2366d7fda594ca}\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c_ae8cb7f8b8d28ef6eca2366d7fda594ca}} 
+\index{trampoline.c@{trampoline.c}!\_hurd\_setup\_sighandler@{\_hurd\_setup\_sighandler}}
+\index{\_hurd\_setup\_sighandler@{\_hurd\_setup\_sighandler}!trampoline.c@{trampoline.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_setup\_sighandler()}{\_hurd\_setup\_sighandler()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsigcontext}{sigcontext}}$\ast$ \+\_\+hurd\+\_\+setup\+\_\+sighandler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhurd__sigstate}{hurd\+\_\+sigstate}} $\ast$}]{ss,  }\item[{\mbox{\hyperlink{signal_2signal_8h_a653b059658537bd6f785748c320d0328}{\+\_\+\+\_\+sighandler\+\_\+t}}}]{handler,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{signo,  }\item[{struct \mbox{\hyperlink{structhurd__signal__detail}{hurd\+\_\+signal\+\_\+detail}} $\ast$}]{detail,  }\item[{volatile \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{rpc\+\_\+wait,  }\item[{struct \mbox{\hyperlink{structmachine__thread__all__state}{machine\+\_\+thread\+\_\+all\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a6684aebf8ae6d7ceeec06b58bf90e088}\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a6684aebf8ae6d7ceeec06b58bf90e088}} 
+\index{trampoline.c@{trampoline.c}!asm@{asm}}
+\index{asm@{asm}!trampoline.c@{trampoline.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}\item[{\char`\"{}call $\ast$\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{edx\textbackslash{}n}}\char`\"{} \char`\"{}addl}]{\$12,  }\item[{\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{esp\textbackslash{}n}}\char`\"{} \char`\"{}\mbox{\hyperlink{unix_2sysv_2linux_2dl-osinfo_8h_aa68bcaa5572d0dd55570d55fc800b5cd}{ret}}\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c_ad411311aba0d5d9f34ec9ea4871d0a80}\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c_ad411311aba0d5d9f34ec9ea4871d0a80}} 
+\index{trampoline.c@{trampoline.c}!asm@{asm}}
+\index{asm@{asm}!trampoline.c@{trampoline.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}\item[{\char`\"{}firewall\+:\textbackslash{}n\char`\"{} \char`\"{}hlt\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a4ba2f9a6867950c1bab5fc4fa02e9eab}\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a4ba2f9a6867950c1bab5fc4fa02e9eab}} 
+\index{trampoline.c@{trampoline.c}!asm@{asm}}
+\index{asm@{asm}!trampoline.c@{trampoline.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}\item[{\char`\"{}movl \$-\/}]{25,  }\item[{\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{eax\textbackslash{}n}}\char`\"{} \char`\"{}lcall}]{\$7,  }\item[{}]{\$0\textbackslash{}n\char`\"{} \char`\"{}movl \%,  }\item[{(\%ecx)\textbackslash{}\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{} \char`\"{}movl \%}]{ebx,  }\item[{\%\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{esp\textbackslash{}n}}\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a3720ffae7364955b60868806b865e33e}\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a3720ffae7364955b60868806b865e33e}} 
+\index{trampoline.c@{trampoline.c}!asm@{asm}}
+\index{asm@{asm}!trampoline.c@{trampoline.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}\item[{\char`\"{}rpc\+\_\+wait\+\_\+trampoline\+:\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a397b8bfd0fe045b421261f20292cb886}\label{sysdeps_2mach_2hurd_2i386_2trampoline_8c_a397b8bfd0fe045b421261f20292cb886}} 
+\index{trampoline.c@{trampoline.c}!asm@{asm}}
+\index{asm@{asm}!trampoline.c@{trampoline.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}\item[{\char`\"{}trampoline\+:\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+

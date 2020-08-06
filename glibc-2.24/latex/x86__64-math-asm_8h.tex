@@ -1,0 +1,91 @@
+\hypertarget{x86__64-math-asm_8h}{}\doxysection{sysdeps/x86\+\_\+64/fpu/x86\+\_\+64-\/math-\/asm.h File Reference}
+\label{x86__64-math-asm_8h}\index{sysdeps/x86\_64/fpu/x86\_64-\/math-\/asm.h@{sysdeps/x86\_64/fpu/x86\_64-\/math-\/asm.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{x86__64-math-asm_8h_a743400bdeeadf2dc6daa4fd413587bff}{D\+E\+F\+I\+N\+E\+\_\+\+L\+D\+B\+L\+\_\+\+M\+IN}}
+\item 
+\#define \mbox{\hyperlink{x86__64-math-asm_8h_ab475d3368e3035f215c6fcbf94667b6f}{L\+D\+B\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+O\+R\+C\+E\+\_\+\+U\+F\+L\+O\+W\+\_\+\+N\+O\+N\+N\+E\+G\+\_\+\+N\+AN}}
+\item 
+\#define \mbox{\hyperlink{x86__64-math-asm_8h_affb5f349d78fe3c9494eeae2b181b32d}{L\+D\+B\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+O\+R\+C\+E\+\_\+\+U\+F\+L\+O\+W\+\_\+\+N\+O\+N\+N\+AN}}
+\item 
+\#define \mbox{\hyperlink{x86__64-math-asm_8h_adc753356cfc9f13fdcc8e18f8eb09094}{L\+D\+B\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+O\+R\+C\+E\+\_\+\+U\+F\+L\+O\+W\+\_\+\+N\+O\+N\+N\+EG}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{x86__64-math-asm_8h_a743400bdeeadf2dc6daa4fd413587bff}\label{x86__64-math-asm_8h_a743400bdeeadf2dc6daa4fd413587bff}} 
+\index{x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}!DEFINE\_LDBL\_MIN@{DEFINE\_LDBL\_MIN}}
+\index{DEFINE\_LDBL\_MIN@{DEFINE\_LDBL\_MIN}!x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_LDBL\_MIN}{DEFINE\_LDBL\_MIN}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+L\+D\+B\+L\+\_\+\+M\+IN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.section .rodata.cst16,\textcolor{stringliteral}{"aM"},@progbits,16;   \(\backslash\)}
+\DoxyCodeLine{    .p2align 4;                 \(\backslash\)}
+\DoxyCodeLine{    .type ldbl\_min,@\mbox{\hyperlink{structobject}{object}};               \(\backslash\)}
+\DoxyCodeLine{ldbl\_min:                       \(\backslash\)}
+\DoxyCodeLine{    .byte 0, 0, 0, 0, 0, 0, 0, 0x80, 0x1, 0;    \(\backslash\)}
+\DoxyCodeLine{    .byte 0, 0, 0, 0, 0, 0;             \(\backslash\)}
+\DoxyCodeLine{    .size ldbl\_min, .-\/ldbl\_min;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{x86__64-math-asm_8h_affb5f349d78fe3c9494eeae2b181b32d}\label{x86__64-math-asm_8h_affb5f349d78fe3c9494eeae2b181b32d}} 
+\index{x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}!LDBL\_CHECK\_FORCE\_UFLOW\_NONNAN@{LDBL\_CHECK\_FORCE\_UFLOW\_NONNAN}}
+\index{LDBL\_CHECK\_FORCE\_UFLOW\_NONNAN@{LDBL\_CHECK\_FORCE\_UFLOW\_NONNAN}!x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}}
+\doxysubsubsection{\texorpdfstring{LDBL\_CHECK\_FORCE\_UFLOW\_NONNAN}{LDBL\_CHECK\_FORCE\_UFLOW\_NONNAN}}
+{\footnotesize\ttfamily \#define L\+D\+B\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+O\+R\+C\+E\+\_\+\+U\+F\+L\+O\+W\+\_\+\+N\+O\+N\+N\+AN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fldt    MO(ldbl\_min);           \(\backslash\)}
+\DoxyCodeLine{    fld \%st(1);             \(\backslash\)}
+\DoxyCodeLine{    fabs;                   \(\backslash\)}
+\DoxyCodeLine{    fcomip  \%st(1), \%st(0);         \(\backslash\)}
+\DoxyCodeLine{    fstp    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    jnc 6464\mbox{\hyperlink{tst-cond16_8c_a3efb0e1a16208deecbd84c15401f7cf8}{f}};             \(\backslash\)}
+\DoxyCodeLine{    fld \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    fmul    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    fstp    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{6464:}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{x86__64-math-asm_8h_adc753356cfc9f13fdcc8e18f8eb09094}\label{x86__64-math-asm_8h_adc753356cfc9f13fdcc8e18f8eb09094}} 
+\index{x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}!LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG@{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG}}
+\index{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG@{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG}!x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}}
+\doxysubsubsection{\texorpdfstring{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG}{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG}}
+{\footnotesize\ttfamily \#define L\+D\+B\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+O\+R\+C\+E\+\_\+\+U\+F\+L\+O\+W\+\_\+\+N\+O\+N\+N\+EG}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fldt    MO(ldbl\_min);           \(\backslash\)}
+\DoxyCodeLine{    fld \%st(1);             \(\backslash\)}
+\DoxyCodeLine{    fcomip  \%st(1), \%st(0);         \(\backslash\)}
+\DoxyCodeLine{    fstp    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    jnc 6464\mbox{\hyperlink{tst-cond16_8c_a3efb0e1a16208deecbd84c15401f7cf8}{f}};             \(\backslash\)}
+\DoxyCodeLine{    fld \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    fmul    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    fstp    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{6464:}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{x86__64-math-asm_8h_ab475d3368e3035f215c6fcbf94667b6f}\label{x86__64-math-asm_8h_ab475d3368e3035f215c6fcbf94667b6f}} 
+\index{x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}!LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG\_NAN@{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG\_NAN}}
+\index{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG\_NAN@{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG\_NAN}!x86\_64-\/math-\/asm.h@{x86\_64-\/math-\/asm.h}}
+\doxysubsubsection{\texorpdfstring{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG\_NAN}{LDBL\_CHECK\_FORCE\_UFLOW\_NONNEG\_NAN}}
+{\footnotesize\ttfamily \#define L\+D\+B\+L\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+O\+R\+C\+E\+\_\+\+U\+F\+L\+O\+W\+\_\+\+N\+O\+N\+N\+E\+G\+\_\+\+N\+AN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fldt    MO(ldbl\_min);           \(\backslash\)}
+\DoxyCodeLine{    fld \%st(1);             \(\backslash\)}
+\DoxyCodeLine{    fucomip \%st(1), \%st(0);         \(\backslash\)}
+\DoxyCodeLine{    fstp    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    jnc 6464\mbox{\hyperlink{tst-cond16_8c_a3efb0e1a16208deecbd84c15401f7cf8}{f}};             \(\backslash\)}
+\DoxyCodeLine{    fld \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    fmul    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{    fstp    \%st(0);             \(\backslash\)}
+\DoxyCodeLine{6464:}
+
+\end{DoxyCode}

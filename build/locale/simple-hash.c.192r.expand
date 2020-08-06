@@ -1,0 +1,3188 @@
+
+;; Function lookup.isra.0 (lookup.isra.0, funcdef_no=54, decl_uid=5074, cgraph_uid=0, symbol_order=62)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 88.
+Merging block 16 into block 15...
+Merged blocks 15 and 16.
+Merged 15 and 16 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg:DI 106 [ ISRA.4 ])
+        (reg:DI 5 di [ ISRA.4 ])) programs/simple-hash.c:224 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/f:DI 107 [ ISRA.5 ])
+        (reg:DI 4 si [ ISRA.5 ])) programs/simple-hash.c:224 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 108 [ key ])
+        (reg:DI 1 dx [ key ])) programs/simple-hash.c:224 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:DI 109 [ keylen ])
+        (reg:DI 2 cx [ keylen ])) programs/simple-hash.c:224 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v:DI 110 [ hval ])
+        (reg:DI 37 r8 [ hval ])) programs/simple-hash.c:224 -1
+     (nil))
+(note 7 6 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 7 11 2 (parallel [
+            (set (reg:DI 113)
+                (udiv:DI (reg/v:DI 110 [ hval ])
+                    (reg:DI 106 [ ISRA.4 ])))
+            (set (reg:DI 112 [ D.5128 ])
+                (umod:DI (reg/v:DI 110 [ hval ])
+                    (reg:DI 106 [ ISRA.4 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:232 -1
+     (nil))
+(insn 11 10 12 2 (parallel [
+            (set (reg/v:DI 97 [ idx ])
+                (plus:DI (reg:DI 112 [ D.5128 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:232 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 114)
+        (reg/v:DI 97 [ idx ])) programs/simple-hash.c:236 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg:DI 115)
+                (ashift:DI (reg:DI 114)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:236 -1
+     (nil))
+(insn 14 13 15 2 (parallel [
+            (set (reg:DI 116 [ D.5128 ])
+                (plus:DI (reg:DI 115)
+                    (reg/v:DI 97 [ idx ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:236 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 97 [ idx ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 15 14 16 2 (parallel [
+            (set (reg:DI 117)
+                (ashift:DI (reg:DI 116 [ D.5128 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:236 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 116 [ D.5128 ])
+        (reg:DI 117)) programs/simple-hash.c:236 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 97 [ idx ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 17 16 18 2 (parallel [
+            (set (reg/f:DI 89 [ D.5129 ])
+                (plus:DI (reg/f:DI 107 [ ISRA.5 ])
+                    (reg:DI 116 [ D.5128 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:236 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 90 [ D.5128 ])
+        (mem:DI (reg/f:DI 89 [ D.5129 ]) [2 _8->used+0 S8 A64])) programs/simple-hash.c:236 -1
+     (nil))
+(insn 19 18 20 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 90 [ D.5128 ])
+            (const_int 0 [0]))) programs/simple-hash.c:236 -1
+     (nil))
+(jump_insn 20 19 21 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) programs/simple-hash.c:236 -1
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 85)
+(note 21 20 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 110 [ hval ])
+            (reg:DI 90 [ D.5128 ]))) programs/simple-hash.c:238 -1
+     (nil))
+(jump_insn 23 22 24 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) programs/simple-hash.c:238 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 39)
+(note 24 23 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (reg:DI 91 [ D.5128 ])
+        (mem:DI (plus:DI (reg/f:DI 89 [ D.5129 ])
+                (const_int 16 [0x10])) [2 _8->keylen+0 S8 A64])) programs/simple-hash.c:238 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 91 [ D.5128 ])
+            (reg/v:DI 109 [ keylen ]))) programs/simple-hash.c:238 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) programs/simple-hash.c:238 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 39)
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:DI 118)
+        (mem/f:DI (plus:DI (reg/f:DI 89 [ D.5129 ])
+                (const_int 8 [0x8])) [3 _8->key+0 S8 A64])) programs/simple-hash.c:239 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:DI 1 dx)
+        (reg:DI 91 [ D.5128 ])) programs/simple-hash.c:239 -1
+     (nil))
+(insn 31 30 32 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 108 [ key ])) programs/simple-hash.c:239 -1
+     (nil))
+(insn 32 31 33 6 (set (reg:DI 5 di)
+        (reg:DI 118)) programs/simple-hash.c:239 -1
+     (nil))
+(call_insn/i 33 32 34 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memcmp") [flags 0x41]  <function_decl 0x2af13f847ca8 memcmp>) [0 __builtin_memcmp S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:239 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memcmp") [flags 0x41]  <function_decl 0x2af13f847ca8 memcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 34 33 35 6 (set (reg:SI 119)
+        (reg:SI 0 ax)) programs/simple-hash.c:239 -1
+     (nil))
+(insn 35 34 36 6 (set (reg:SI 120)
+        (reg:SI 119)) programs/simple-hash.c:239 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:SI 93 [ D.5131 ])
+        (reg:SI 120)) programs/simple-hash.c:239 -1
+     (nil))
+(insn 37 36 38 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ D.5131 ])
+            (const_int 0 [0]))) programs/simple-hash.c:239 -1
+     (nil))
+(jump_insn 38 37 39 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) programs/simple-hash.c:239 -1
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 85)
+(code_label 39 38 40 7 3 "" [2 uses])
+(note 40 39 41 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 7 (parallel [
+            (set (reg:DI 121 [ D.5128 ])
+                (plus:DI (reg:DI 106 [ ISRA.4 ])
+                    (const_int -2 [0xfffffffffffffffe])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:243 -1
+     (nil))
+(insn 42 41 43 7 (parallel [
+            (set (reg:DI 124)
+                (udiv:DI (reg/v:DI 110 [ hval ])
+                    (reg:DI 121 [ D.5128 ])))
+            (set (reg:DI 123 [ D.5128 ])
+                (umod:DI (reg/v:DI 110 [ hval ])
+                    (reg:DI 121 [ D.5128 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:243 -1
+     (nil))
+(insn 43 42 82 7 (parallel [
+            (set (reg/v:DI 96 [ hash ])
+                (plus:DI (reg:DI 123 [ D.5128 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:243 -1
+     (nil))
+(code_label 82 43 44 8 7 "" [1 uses])
+(note 44 82 45 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 96 [ hash ])
+            (reg/v:DI 97 [ idx ]))) programs/simple-hash.c:247 -1
+     (nil))
+(jump_insn 46 45 47 8 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) programs/simple-hash.c:247 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 52)
+(note 47 46 48 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 9 (parallel [
+            (set (reg:DI 125 [ D.5128 ])
+                (minus:DI (reg:DI 106 [ ISRA.4 ])
+                    (reg/v:DI 96 [ hash ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:248 -1
+     (nil))
+(insn 49 48 50 9 (parallel [
+            (set (reg/v:DI 97 [ idx ])
+                (plus:DI (reg/v:DI 97 [ idx ])
+                    (reg:DI 125 [ D.5128 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:248 -1
+     (nil))
+(jump_insn 50 49 51 9 (set (pc)
+        (label_ref 55)) programs/simple-hash.c:248 -1
+     (nil)
+ -> 55)
+(barrier 51 50 52)
+(code_label 52 51 53 10 4 "" [1 uses])
+(note 53 52 54 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 10 (parallel [
+            (set (reg/v:DI 97 [ idx ])
+                (minus:DI (reg/v:DI 97 [ idx ])
+                    (reg/v:DI 96 [ hash ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:250 -1
+     (nil))
+(code_label 55 54 56 11 5 "" [1 uses])
+(note 56 55 57 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 57 56 58 11 (set (reg:DI 126)
+        (reg/v:DI 97 [ idx ])) programs/simple-hash.c:253 -1
+     (nil))
+(insn 58 57 59 11 (parallel [
+            (set (reg:DI 127)
+                (ashift:DI (reg:DI 126)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:253 -1
+     (nil))
+(insn 59 58 60 11 (parallel [
+            (set (reg:DI 128 [ D.5128 ])
+                (plus:DI (reg:DI 127)
+                    (reg/v:DI 97 [ idx ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:253 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 97 [ idx ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 60 59 61 11 (parallel [
+            (set (reg:DI 129)
+                (ashift:DI (reg:DI 128 [ D.5128 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:253 -1
+     (nil))
+(insn 61 60 62 11 (set (reg:DI 128 [ D.5128 ])
+        (reg:DI 129)) programs/simple-hash.c:253 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 97 [ idx ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 62 61 63 11 (parallel [
+            (set (reg/f:DI 99 [ D.5129 ])
+                (plus:DI (reg/f:DI 107 [ ISRA.5 ])
+                    (reg:DI 128 [ D.5128 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:253 -1
+     (nil))
+(insn 63 62 64 11 (set (reg:DI 100 [ D.5128 ])
+        (mem:DI (reg/f:DI 99 [ D.5129 ]) [2 _24->used+0 S8 A64])) programs/simple-hash.c:253 -1
+     (nil))
+(insn 64 63 65 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 110 [ hval ])
+            (reg:DI 100 [ D.5128 ]))) programs/simple-hash.c:253 -1
+     (nil))
+(jump_insn 65 64 66 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) programs/simple-hash.c:253 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 80)
+(note 66 65 67 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 109 [ keylen ])
+            (mem:DI (plus:DI (reg/f:DI 99 [ D.5129 ])
+                    (const_int 16 [0x10])) [2 _24->keylen+0 S8 A64]))) programs/simple-hash.c:253 -1
+     (nil))
+(jump_insn 68 67 69 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) programs/simple-hash.c:253 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 80)
+(note 69 68 70 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 13 (set (reg:DI 130)
+        (mem/f:DI (plus:DI (reg/f:DI 99 [ D.5129 ])
+                (const_int 8 [0x8])) [3 _24->key+0 S8 A64])) programs/simple-hash.c:254 -1
+     (nil))
+(insn 71 70 72 13 (set (reg:DI 1 dx)
+        (reg/v:DI 109 [ keylen ])) programs/simple-hash.c:254 -1
+     (nil))
+(insn 72 71 73 13 (set (reg:DI 4 si)
+        (reg/v/f:DI 108 [ key ])) programs/simple-hash.c:254 -1
+     (nil))
+(insn 73 72 74 13 (set (reg:DI 5 di)
+        (reg:DI 130)) programs/simple-hash.c:254 -1
+     (nil))
+(call_insn/i 74 73 75 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memcmp") [flags 0x41]  <function_decl 0x2af13f847ca8 memcmp>) [0 __builtin_memcmp S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:254 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memcmp") [flags 0x41]  <function_decl 0x2af13f847ca8 memcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 75 74 76 13 (set (reg:SI 131)
+        (reg:SI 0 ax)) programs/simple-hash.c:254 -1
+     (nil))
+(insn 76 75 77 13 (set (reg:SI 132)
+        (reg:SI 131)) programs/simple-hash.c:254 -1
+     (nil))
+(insn 77 76 78 13 (set (reg:SI 103 [ D.5131 ])
+        (reg:SI 132)) programs/simple-hash.c:254 -1
+     (nil))
+(insn 78 77 79 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 103 [ D.5131 ])
+            (const_int 0 [0]))) programs/simple-hash.c:254 -1
+     (nil))
+(jump_insn 79 78 80 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) programs/simple-hash.c:254 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 85)
+(code_label 80 79 81 14 6 "" [2 uses])
+(note 81 80 83 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 83 81 84 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 100 [ D.5128 ])
+            (const_int 0 [0]))) programs/simple-hash.c:257 -1
+     (nil))
+(jump_insn 84 83 85 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 82)
+            (pc))) programs/simple-hash.c:257 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 82)
+(code_label 85 84 86 15 2 "" [3 uses])
+(note 86 85 87 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 91 15 (set (reg:DI 105 [ <retval> ])
+        (reg/v:DI 97 [ idx ])) -1
+     (nil))
+(insn 91 87 92 15 (set (reg/i:DI 0 ax)
+        (reg:DI 105 [ <retval> ])) programs/simple-hash.c:260 -1
+     (nil))
+(insn 92 91 0 15 (use (reg/i:DI 0 ax)) programs/simple-hash.c:260 -1
+     (nil))
+
+;; Function insert_entry_2 (insert_entry_2, funcdef_no=47, decl_uid=4800, cgraph_uid=47, symbol_order=47)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+Edge 8->13 redirected to 25
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 6->24 redirected to 25
+Forwarding edge 13->14 to 8 failed.
+Forwarding edge 22->23 to 18 failed.
+deleting block 24
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 13->14 to 8 failed.
+Forwarding edge 22->23 to 18 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 13 0 26 NOTE_INSN_DELETED)
+(note 26 13 14 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 14 26 15 2 (set (reg/v/f:DI 130 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:119 -1
+     (nil))
+(insn 15 14 16 2 (set (reg/v/f:DI 131 [ key ])
+        (reg:DI 4 si [ key ])) programs/simple-hash.c:119 -1
+     (nil))
+(insn 16 15 17 2 (set (reg/v:DI 132 [ keylen ])
+        (reg:DI 1 dx [ keylen ])) programs/simple-hash.c:119 -1
+     (nil))
+(insn 17 16 18 2 (set (reg/v:DI 133 [ hval ])
+        (reg:DI 2 cx [ hval ])) programs/simple-hash.c:119 -1
+     (nil))
+(insn 18 17 19 2 (set (reg/v:DI 134 [ idx ])
+        (reg:DI 37 r8 [ idx ])) programs/simple-hash.c:119 -1
+     (nil))
+(insn 19 18 20 2 (set (reg/v/f:DI 135 [ data ])
+        (reg:DI 38 r9 [ data ])) programs/simple-hash.c:119 -1
+     (nil))
+(note 20 19 28 2 NOTE_INSN_FUNCTION_BEG)
+(insn 28 20 29 2 (set (reg/v/f:DI 99 [ table ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 24 [0x18])) [3 htab_7(D)->table+0 S8 A64])) programs/simple-hash.c:120 -1
+     (nil))
+(insn 29 28 30 2 (set (reg:DI 136)
+        (reg/v:DI 134 [ idx ])) programs/simple-hash.c:122 -1
+     (nil))
+(insn 30 29 31 2 (parallel [
+            (set (reg:DI 137)
+                (ashift:DI (reg:DI 136)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:122 -1
+     (nil))
+(insn 31 30 32 2 (parallel [
+            (set (reg:DI 138 [ D.5161 ])
+                (plus:DI (reg:DI 137)
+                    (reg/v:DI 134 [ idx ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:122 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 134 [ idx ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 32 31 33 2 (parallel [
+            (set (reg:DI 139)
+                (ashift:DI (reg:DI 138 [ D.5161 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:122 -1
+     (nil))
+(insn 33 32 34 2 (set (reg:DI 138 [ D.5161 ])
+        (reg:DI 139)) programs/simple-hash.c:122 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 134 [ idx ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 34 33 35 2 (parallel [
+            (set (reg/f:DI 101 [ D.5162 ])
+                (plus:DI (reg/v/f:DI 99 [ table ])
+                    (reg:DI 138 [ D.5161 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:122 -1
+     (nil))
+(insn 35 34 36 2 (set (mem:DI (reg/f:DI 101 [ D.5162 ]) [2 _11->used+0 S8 A64])
+        (reg/v:DI 133 [ hval ])) programs/simple-hash.c:122 -1
+     (nil))
+(insn 36 35 37 2 (set (mem/f:DI (plus:DI (reg/f:DI 101 [ D.5162 ])
+                (const_int 8 [0x8])) [3 _11->key+0 S8 A64])
+        (reg/v/f:DI 131 [ key ])) programs/simple-hash.c:123 -1
+     (nil))
+(insn 37 36 38 2 (set (mem:DI (plus:DI (reg/f:DI 101 [ D.5162 ])
+                (const_int 16 [0x10])) [2 _11->keylen+0 S8 A64])
+        (reg/v:DI 132 [ keylen ])) programs/simple-hash.c:124 -1
+     (nil))
+(insn 38 37 39 2 (set (mem/f:DI (plus:DI (reg/f:DI 101 [ D.5162 ])
+                (const_int 24 [0x18])) [3 _11->data+0 S8 A64])
+        (reg/v/f:DI 135 [ data ])) programs/simple-hash.c:125 -1
+     (nil))
+(insn 39 38 40 2 (set (reg/f:DI 102 [ D.5163 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 16 [0x10])) [3 htab_7(D)->first+0 S8 A64])) programs/simple-hash.c:128 -1
+     (nil))
+(insn 40 39 41 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 102 [ D.5163 ])
+            (const_int 0 [0]))) programs/simple-hash.c:128 -1
+     (nil))
+(jump_insn 41 40 42 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 47)
+            (pc))) programs/simple-hash.c:128 -1
+     (int_list:REG_BR_PROB 8500 (nil))
+ -> 47)
+(note 42 41 43 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 4 (set (mem/f:DI (plus:DI (reg/f:DI 101 [ D.5162 ])
+                (const_int 32 [0x20])) [3 _11->next+0 S8 A64])
+        (reg/f:DI 101 [ D.5162 ])) programs/simple-hash.c:130 -1
+     (nil))
+(insn 44 43 45 4 (set (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 16 [0x10])) [3 htab_7(D)->first+0 S8 A64])
+        (reg/f:DI 101 [ D.5162 ])) programs/simple-hash.c:131 -1
+     (nil))
+(jump_insn 45 44 46 4 (set (pc)
+        (label_ref 53)) -1
+     (nil)
+ -> 53)
+(barrier 46 45 47)
+(code_label 47 46 48 5 22 "" [1 uses])
+(note 48 47 49 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 5 (set (reg/f:DI 103 [ D.5164 ])
+        (mem/f:DI (plus:DI (reg/f:DI 102 [ D.5163 ])
+                (const_int 32 [0x20])) [3 MEM[(struct hash_entry *)_20].next+0 S8 A64])) programs/simple-hash.c:135 -1
+     (nil))
+(insn 50 49 51 5 (set (mem/f:DI (plus:DI (reg/f:DI 101 [ D.5162 ])
+                (const_int 32 [0x20])) [3 _11->next+0 S8 A64])
+        (reg/f:DI 103 [ D.5164 ])) programs/simple-hash.c:135 -1
+     (nil))
+(insn 51 50 52 5 (set (mem/f:DI (plus:DI (reg/f:DI 102 [ D.5163 ])
+                (const_int 32 [0x20])) [3 MEM[(struct hash_entry *)_20].next+0 S8 A64])
+        (reg/f:DI 101 [ D.5162 ])) programs/simple-hash.c:136 -1
+     (nil))
+(insn 52 51 53 5 (set (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 16 [0x10])) [3 htab_7(D)->first+0 S8 A64])
+        (reg/f:DI 101 [ D.5162 ])) programs/simple-hash.c:137 -1
+     (nil))
+(code_label 53 52 54 6 23 "" [1 uses])
+(note 54 53 55 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 56 6 (set (reg:DI 140)
+        (mem:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 8 [0x8])) [2 htab_7(D)->filled+0 S8 A64])) programs/simple-hash.c:140 -1
+     (nil))
+(insn 56 55 57 6 (parallel [
+            (set (reg:DI 105 [ D.5161 ])
+                (plus:DI (reg:DI 140)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:140 -1
+     (expr_list:REG_EQUAL (plus:DI (mem:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                    (const_int 8 [0x8])) [2 htab_7(D)->filled+0 S8 A64])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 57 56 58 6 (set (mem:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 8 [0x8])) [2 htab_7(D)->filled+0 S8 A64])
+        (reg:DI 105 [ D.5161 ])) programs/simple-hash.c:140 -1
+     (nil))
+(insn 58 57 59 6 (set (reg:DI 107 [ D.5161 ])
+        (mem:DI (reg/v/f:DI 130 [ htab ]) [2 htab_7(D)->size+0 S8 A64])) programs/simple-hash.c:141 -1
+     (nil))
+(insn 59 58 60 6 (set (reg:DI 141)
+        (reg:DI 105 [ D.5161 ])) programs/simple-hash.c:141 -1
+     (nil))
+(insn 60 59 61 6 (parallel [
+            (set (reg:DI 142)
+                (ashift:DI (reg:DI 141)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (nil))
+(insn 61 60 62 6 (parallel [
+            (set (reg:DI 143)
+                (plus:DI (reg:DI 142)
+                    (reg:DI 105 [ D.5161 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 105 [ D.5161 ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 62 61 63 6 (parallel [
+            (set (reg:DI 144)
+                (ashift:DI (reg:DI 143)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (nil))
+(insn 63 62 64 6 (parallel [
+            (set (reg:DI 145 [ D.5161 ])
+                (plus:DI (reg:DI 143)
+                    (reg:DI 144)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 105 [ D.5161 ])
+            (const_int 25 [0x19]))
+        (nil)))
+(insn 64 63 65 6 (parallel [
+            (set (reg:DI 146)
+                (ashift:DI (reg:DI 145 [ D.5161 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (nil))
+(insn 65 64 66 6 (set (reg:DI 145 [ D.5161 ])
+        (reg:DI 146)) programs/simple-hash.c:141 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 105 [ D.5161 ])
+            (const_int 100 [0x64]))
+        (nil)))
+(insn 66 65 67 6 (set (reg:DI 147)
+        (reg:DI 107 [ D.5161 ])) programs/simple-hash.c:141 -1
+     (nil))
+(insn 67 66 68 6 (parallel [
+            (set (reg:DI 148)
+                (ashift:DI (reg:DI 147)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (nil))
+(insn 68 67 69 6 (parallel [
+            (set (reg:DI 149)
+                (plus:DI (reg:DI 148)
+                    (reg:DI 107 [ D.5161 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 107 [ D.5161 ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 69 68 70 6 (parallel [
+            (set (reg:DI 150)
+                (ashift:DI (reg:DI 149)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (nil))
+(insn 70 69 71 6 (parallel [
+            (set (reg:DI 151 [ D.5161 ])
+                (minus:DI (reg:DI 150)
+                    (reg:DI 149)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:141 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 107 [ D.5161 ])
+            (const_int 75 [0x4b]))
+        (nil)))
+(insn 71 70 72 6 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 145 [ D.5161 ])
+            (reg:DI 151 [ D.5161 ]))) programs/simple-hash.c:141 -1
+     (nil))
+(jump_insn 72 71 73 6 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 172)
+            (pc))) programs/simple-hash.c:141 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 172)
+(note 73 72 74 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 74 73 75 7 (parallel [
+            (set (reg:DI 152 [ D.5161 ])
+                (ashift:DI (reg:DI 107 [ D.5161 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:267 -1
+     (nil))
+(insn 75 74 76 7 (parallel [
+            (set (reg/v:DI 110 [ seed ])
+                (ior:DI (reg:DI 152 [ D.5161 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:267 -1
+     (nil))
+(jump_insn 76 75 77 7 (set (pc)
+        (label_ref 80)) programs/simple-hash.c:267 -1
+     (nil)
+ -> 80)
+(barrier 77 76 85)
+(code_label 85 77 78 8 27 "" [3 uses])
+(note 78 85 79 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 79 78 80 8 (parallel [
+            (set (reg/v:DI 110 [ seed ])
+                (plus:DI (reg/v:DI 110 [ seed ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:270 -1
+     (nil))
+(code_label 80 79 81 9 25 "" [1 uses])
+(note 81 80 82 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 82 81 83 9 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 110 [ seed ])
+            (const_int 9 [0x9]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 83 82 84 9 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 175)
+            (pc))) programs/simple-hash.c:283 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 175)
+(note 84 83 86 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 86 84 87 10 (set (reg:DI 155)
+        (const_int -6148914691236517205 [0xaaaaaaaaaaaaaaab])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 87 86 88 10 (parallel [
+            (set (reg:DI 154)
+                (truncate:DI (lshiftrt:TI (mult:TI (zero_extend:TI (reg/v:DI 110 [ seed ]))
+                            (zero_extend:TI (reg:DI 155)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 88 87 89 10 (parallel [
+            (set (reg:DI 153)
+                (lshiftrt:DI (reg:DI 154)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg/v:DI 110 [ seed ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 89 88 90 10 (set (reg:DI 156)
+        (reg:DI 153)) programs/simple-hash.c:283 -1
+     (nil))
+(insn 90 89 91 10 (parallel [
+            (set (reg:DI 157)
+                (ashift:DI (reg:DI 156)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 91 90 92 10 (parallel [
+            (set (reg:DI 158)
+                (plus:DI (reg:DI 157)
+                    (reg:DI 153)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 153)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 92 91 93 10 (parallel [
+            (set (reg:DI 159 [ D.5161 ])
+                (minus:DI (reg/v:DI 110 [ seed ])
+                    (reg:DI 158)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 93 92 94 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 159 [ D.5161 ])
+            (const_int 0 [0]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 94 93 95 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 85)
+(note 95 94 21 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 21 95 22 11 (set (reg:DI 113 [ ivtmp.35 ])
+        (const_int 16 [0x10])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 22 21 23 11 (set (reg/v:DI 122 [ sq ])
+        (const_int 9 [0x9])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 23 22 103 11 (set (reg/v:DI 123 [ divn ])
+        (const_int 3 [0x3])) programs/simple-hash.c:283 -1
+     (nil))
+(code_label 103 23 96 12 28 "" [1 uses])
+(note 96 103 97 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 97 96 98 12 (parallel [
+            (set (reg/v:DI 122 [ sq ])
+                (plus:DI (reg/v:DI 122 [ sq ])
+                    (reg:DI 113 [ ivtmp.35 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:286 -1
+     (nil))
+(insn 98 97 99 12 (parallel [
+            (set (reg/v:DI 123 [ divn ])
+                (plus:DI (reg/v:DI 123 [ divn ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:287 -1
+     (nil))
+(insn 99 98 100 12 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 110 [ seed ])
+            (reg/v:DI 122 [ sq ]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 100 99 101 12 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 110)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 110)
+(note 101 100 102 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 104 13 (parallel [
+            (set (reg:DI 113 [ ivtmp.35 ])
+                (plus:DI (reg:DI 113 [ ivtmp.35 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 104 102 105 13 (parallel [
+            (set (reg:DI 162)
+                (udiv:DI (reg/v:DI 110 [ seed ])
+                    (reg/v:DI 123 [ divn ])))
+            (set (reg:DI 161 [ D.5161 ])
+                (umod:DI (reg/v:DI 110 [ seed ])
+                    (reg/v:DI 123 [ divn ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 105 104 106 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 161 [ D.5161 ])
+            (const_int 0 [0]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 106 105 109 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 103)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 103)
+(note 109 106 107 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 107 109 108 14 (set (pc)
+        (label_ref 85)) programs/simple-hash.c:283 -1
+     (nil)
+ -> 85)
+(barrier 108 107 175)
+(code_label 175 108 174 15 33 "" [1 uses])
+(note 174 175 24 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 24 174 110 15 (set (reg/v:DI 123 [ divn ])
+        (const_int 3 [0x3])) programs/simple-hash.c:280 -1
+     (nil))
+(code_label 110 24 111 16 26 "" [1 uses])
+(note 111 110 112 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 112 111 113 16 (parallel [
+            (set (reg:DI 165)
+                (udiv:DI (reg/v:DI 110 [ seed ])
+                    (reg/v:DI 123 [ divn ])))
+            (set (reg:DI 164 [ D.5161 ])
+                (umod:DI (reg/v:DI 110 [ seed ])
+                    (reg/v:DI 123 [ divn ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:269 -1
+     (nil))
+(insn 113 112 114 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 164 [ D.5161 ])
+            (const_int 0 [0]))) programs/simple-hash.c:269 -1
+     (nil))
+(jump_insn 114 113 115 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) programs/simple-hash.c:269 -1
+     (int_list:REG_BR_PROB 8241 (nil))
+ -> 85)
+(note 115 114 116 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 116 115 117 17 (set (mem:DI (reg/v/f:DI 130 [ htab ]) [2 htab_7(D)->size+0 S8 A64])
+        (reg/v:DI 110 [ seed ])) programs/simple-hash.c:148 -1
+     (nil))
+(insn 117 116 118 17 (set (mem:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 8 [0x8])) [2 htab_7(D)->filled+0 S8 A64])
+        (const_int 0 [0])) programs/simple-hash.c:149 -1
+     (nil))
+(insn 118 117 119 17 (set (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 16 [0x10])) [3 htab_7(D)->first+0 S8 A64])
+        (const_int 0 [0])) programs/simple-hash.c:150 -1
+     (nil))
+(insn 119 118 120 17 (parallel [
+            (set (reg:DI 166 [ D.5161 ])
+                (plus:DI (reg/v:DI 110 [ seed ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:151 -1
+     (nil))
+(insn 120 119 121 17 (set (reg:DI 4 si)
+        (const_int 40 [0x28])) programs/simple-hash.c:151 -1
+     (nil))
+(insn 121 120 122 17 (set (reg:DI 5 di)
+        (reg:DI 166 [ D.5161 ])) programs/simple-hash.c:151 -1
+     (nil))
+(call_insn 122 121 123 17 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("xcalloc") [flags 0x41]  <function_decl 0x2af13faff6c0 xcalloc>) [0 xcalloc S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:151 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("xcalloc") [flags 0x41]  <function_decl 0x2af13faff6c0 xcalloc>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 123 122 124 17 (set (reg/f:DI 167)
+        (reg:DI 0 ax)) programs/simple-hash.c:151 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 167)
+        (nil)))
+(insn 124 123 125 17 (set (reg/f:DI 112 [ D.5163 ])
+        (reg/f:DI 167)) programs/simple-hash.c:151 -1
+     (nil))
+(insn 125 124 126 17 (set (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 24 [0x18])) [3 htab_7(D)->table+0 S8 A64])
+        (reg/f:DI 112 [ D.5163 ])) programs/simple-hash.c:151 -1
+     (nil))
+(insn 126 125 127 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 107 [ D.5161 ])
+            (const_int 0 [0]))) programs/simple-hash.c:153 -1
+     (nil))
+(jump_insn 127 126 166 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 132)
+            (pc))) programs/simple-hash.c:153 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 132)
+(code_label 166 127 128 18 32 "" [1 uses])
+(note 128 166 129 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 129 128 130 18 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ table ])) programs/simple-hash.c:161 -1
+     (nil))
+(call_insn/j 130 129 131 18 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2af13f868e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) programs/simple-hash.c:161 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2af13f868e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 131 130 132)
+(code_label 132 131 133 19 29 "" [1 uses])
+(note 133 132 134 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 134 133 25 19 (parallel [
+            (set (reg:DI 129 [ ivtmp.23 ])
+                (plus:DI (reg/v/f:DI 99 [ table ])
+                    (const_int 40 [0x28])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 25 134 163 19 (set (reg/v:DI 119 [ idx ])
+        (const_int 1 [0x1])) programs/simple-hash.c:153 -1
+     (nil))
+(code_label 163 25 135 20 31 "" [1 uses])
+(note 135 163 136 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 136 135 137 20 (set (reg/f:DI 126 [ D.5163 ])
+        (reg:DI 129 [ ivtmp.23 ])) -1
+     (nil))
+(insn 137 136 138 20 (set (reg:DI 114 [ D.5161 ])
+        (mem:DI (reg/f:DI 126 [ D.5163 ]) [2 MEM[base: _65, offset: 0B]+0 S8 A64])) programs/simple-hash.c:154 -1
+     (nil))
+(insn 138 137 139 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 114 [ D.5161 ])
+            (const_int 0 [0]))) programs/simple-hash.c:154 -1
+     (nil))
+(jump_insn 139 138 140 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 159)
+            (pc))) programs/simple-hash.c:154 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 159)
+(note 140 139 141 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 141 140 142 21 (set (reg:DI 116 [ D.5161 ])
+        (mem:DI (plus:DI (reg/f:DI 126 [ D.5163 ])
+                (const_int 16 [0x10])) [2 MEM[base: _65, offset: 16B]+0 S8 A64])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 142 141 143 21 (set (reg/f:DI 117 [ D.5165 ])
+        (mem/f:DI (plus:DI (reg/f:DI 126 [ D.5163 ])
+                (const_int 8 [0x8])) [3 MEM[base: _65, offset: 8B]+0 S8 A64])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 143 142 144 21 (set (reg:DI 168)
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ htab ])
+                (const_int 24 [0x18])) [3 MEM[(void * *)htab_7(D) + 24B]+0 S8 A64])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 144 143 145 21 (set (reg:DI 37 r8)
+        (reg:DI 114 [ D.5161 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 145 144 146 21 (set (reg:DI 2 cx)
+        (reg:DI 116 [ D.5161 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 146 145 147 21 (set (reg:DI 1 dx)
+        (reg/f:DI 117 [ D.5165 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 147 146 148 21 (set (reg:DI 4 si)
+        (reg:DI 168)) programs/simple-hash.c:155 -1
+     (nil))
+(insn 148 147 149 21 (set (reg:DI 5 di)
+        (mem:DI (reg/v/f:DI 130 [ htab ]) [2 MEM[(long unsigned int *)htab_7(D)]+0 S8 A64])) programs/simple-hash.c:155 -1
+     (nil))
+(call_insn/c/i 149 148 150 21 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>) [0 lookup.isra.0 S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:155 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 150 149 151 21 (set (reg:DI 118 [ D.5161 ])
+        (reg:DI 0 ax)) programs/simple-hash.c:155 -1
+     (nil))
+(insn 151 150 152 21 (set (reg:DI 169)
+        (mem/f:DI (plus:DI (reg/f:DI 126 [ D.5163 ])
+                (const_int 24 [0x18])) [3 MEM[base: _65, offset: 24B]+0 S8 A64])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 152 151 153 21 (set (reg:DI 38 r9)
+        (reg:DI 169)) programs/simple-hash.c:155 -1
+     (nil))
+(insn 153 152 154 21 (set (reg:DI 37 r8)
+        (reg:DI 118 [ D.5161 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 154 153 155 21 (set (reg:DI 2 cx)
+        (reg:DI 114 [ D.5161 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 155 154 156 21 (set (reg:DI 1 dx)
+        (reg:DI 116 [ D.5161 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 156 155 157 21 (set (reg:DI 4 si)
+        (reg/f:DI 117 [ D.5165 ])) programs/simple-hash.c:155 -1
+     (nil))
+(insn 157 156 158 21 (set (reg:DI 5 di)
+        (reg/v/f:DI 130 [ htab ])) programs/simple-hash.c:155 -1
+     (nil))
+(call_insn 158 157 159 21 (call (mem:QI (symbol_ref:DI ("insert_entry_2") [flags 0x3]  <function_decl 0x2af13faff948 insert_entry_2>) [0 insert_entry_2 S1 A8])
+        (const_int 0 [0])) programs/simple-hash.c:155 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("insert_entry_2") [flags 0x3]  <function_decl 0x2af13faff948 insert_entry_2>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (expr_list:DI (use (reg:DI 38 r9))
+                            (nil))))))))
+(code_label 159 158 160 22 30 "" [1 uses])
+(note 160 159 161 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 161 160 162 22 (parallel [
+            (set (reg/v:DI 119 [ idx ])
+                (plus:DI (reg/v:DI 119 [ idx ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:153 -1
+     (nil))
+(insn 162 161 164 22 (parallel [
+            (set (reg:DI 129 [ ivtmp.23 ])
+                (plus:DI (reg:DI 129 [ ivtmp.23 ])
+                    (const_int 40 [0x28])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 164 162 165 22 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 107 [ D.5161 ])
+            (reg/v:DI 119 [ idx ]))) programs/simple-hash.c:153 -1
+     (nil))
+(jump_insn 165 164 169 22 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 163)
+            (pc))) programs/simple-hash.c:153 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 163)
+(note 169 165 167 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 167 169 168 23 (set (pc)
+        (label_ref 166)) -1
+     (nil)
+ -> 166)
+(barrier 168 167 172)
+(code_label 172 168 173 25 21 "" [1 uses])
+(note 173 172 0 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+
+;; Function compute_hashval (compute_hashval, funcdef_no=43, decl_uid=4765, cgraph_uid=43, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+Edge 5->7 redirected to 10
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 43.
+Merging block 10 into block 9...
+Merged blocks 9 and 10.
+Merged 9 and 10 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 13 0 19 NOTE_INSN_DELETED)
+(note 19 13 14 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 14 19 15 2 (set (reg/v/f:DI 109 [ key ])
+        (reg:DI 5 di [ key ])) ./hashval.h:27 -1
+     (nil))
+(insn 15 14 16 2 (set (reg/v:DI 110 [ keylen ])
+        (reg:DI 4 si [ keylen ])) ./hashval.h:27 -1
+     (nil))
+(note 16 15 21 2 NOTE_INSN_FUNCTION_BEG)
+(insn 21 16 22 2 (set (reg/v:SI 104 [ hval ])
+        (subreg:SI (reg/v:DI 110 [ keylen ]) 0)) ./hashval.h:36 -1
+     (nil))
+(insn 22 21 23 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 110 [ keylen ])
+            (const_int 0 [0]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 23 22 24 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 35)
+(note 24 23 25 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 4 (set (reg:DI 107 [ ivtmp.47 ])
+        (reg/v/f:DI 109 [ key ])) -1
+     (nil))
+(insn 26 25 32 4 (parallel [
+            (set (reg:DI 99 [ D.5173 ])
+                (plus:DI (reg/v/f:DI 109 [ key ])
+                    (reg/v:DI 110 [ keylen ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 32 26 27 5 53 "" [1 uses])
+(note 27 32 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (parallel [
+            (set (reg/v:SI 101 [ hval ])
+                (rotate:SI (reg/v:SI 104 [ hval ])
+                    (const_int 9 [0x9])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:39 -1
+     (nil))
+(insn 29 28 30 5 (set (reg:SI 111 [ D.5176 ])
+        (zero_extend:SI (mem:QI (reg:DI 107 [ ivtmp.47 ]) [0 MEM[base: _16, offset: 0B]+0 S1 A8]))) ./hashval.h:40 -1
+     (nil))
+(insn 30 29 31 5 (parallel [
+            (set (reg/v:SI 104 [ hval ])
+                (plus:SI (reg:SI 111 [ D.5176 ])
+                    (reg/v:SI 101 [ hval ])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:40 -1
+     (nil))
+(insn 31 30 33 5 (parallel [
+            (set (reg:DI 107 [ ivtmp.47 ])
+                (plus:DI (reg:DI 107 [ ivtmp.47 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 33 31 34 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 99 [ D.5173 ])
+            (reg:DI 107 [ ivtmp.47 ]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 34 33 35 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 32)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 32)
+(code_label 35 34 36 6 52 "" [1 uses])
+(note 36 35 37 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ hval ])
+            (const_int 0 [0]))) ./hashval.h:42 -1
+     (nil))
+(jump_insn 38 37 39 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 52)
+            (pc))) ./hashval.h:42 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 52)
+(note 39 38 17 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 17 39 49 7 (set (reg:SI 100 [ D.5174 ])
+        (reg/v:SI 104 [ hval ])) ./hashval.h:42 -1
+     (nil))
+(jump_insn 49 17 50 7 (set (pc)
+        (label_ref 40)) -1
+     (nil)
+ -> 40)
+(barrier 50 49 52)
+(code_label 52 50 51 8 55 "" [1 uses])
+(note 51 52 18 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 18 51 40 8 (set (reg:SI 100 [ D.5174 ])
+        (const_int -1 [0xffffffffffffffff])) ./hashval.h:42 -1
+     (nil))
+(code_label 40 18 41 9 54 "" [1 uses])
+(note 41 40 42 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 46 9 (set (reg:SI 108 [ <retval> ])
+        (reg:SI 100 [ D.5174 ])) ./hashval.h:42 -1
+     (nil))
+(insn 46 42 47 9 (set (reg/i:SI 0 ax)
+        (reg:SI 108 [ <retval> ])) ./hashval.h:43 -1
+     (nil))
+(insn 47 46 0 9 (use (reg/i:SI 0 ax)) ./hashval.h:43 -1
+     (nil))
+
+;; Function init_hash (init_hash, funcdef_no=44, decl_uid=4739, cgraph_uid=44, symbol_order=44)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+Edge 4->9 redirected to 16
+Edge 10->12 redirected to 17
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 9->10 to 4 failed.
+Removing jump 77.
+Merging block 17 into block 16...
+Merged blocks 16 and 17.
+Merged 16 and 17 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 4 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 99 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:70 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 100 [ init_size ])
+        (reg:DI 4 si [ init_size ])) programs/simple-hash.c:70 -1
+     (nil))
+(note 4 3 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 4 14 2 (parallel [
+            (set (reg/v:DI 91 [ init_size ])
+                (ior:DI (reg/v:DI 100 [ init_size ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:267 -1
+     (nil))
+(jump_insn 14 13 15 2 (set (pc)
+        (label_ref 18)) programs/simple-hash.c:267 -1
+     (nil)
+ -> 18)
+(barrier 15 14 23)
+(code_label 23 15 16 4 63 "" [3 uses])
+(note 16 23 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (parallel [
+            (set (reg/v:DI 91 [ init_size ])
+                (plus:DI (reg/v:DI 91 [ init_size ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:270 -1
+     (nil))
+(code_label 18 17 19 5 61 "" [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 91 [ init_size ])
+            (const_int 9 [0x9]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) programs/simple-hash.c:283 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 84)
+(note 22 21 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 22 25 6 (set (reg:DI 103)
+        (const_int -6148914691236517205 [0xaaaaaaaaaaaaaaab])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 25 24 26 6 (parallel [
+            (set (reg:DI 102)
+                (truncate:DI (lshiftrt:TI (mult:TI (zero_extend:TI (reg/v:DI 91 [ init_size ]))
+                            (zero_extend:TI (reg:DI 103)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 26 25 27 6 (parallel [
+            (set (reg:DI 101)
+                (lshiftrt:DI (reg:DI 102)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg/v:DI 91 [ init_size ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 27 26 28 6 (set (reg:DI 104)
+        (reg:DI 101)) programs/simple-hash.c:283 -1
+     (nil))
+(insn 28 27 29 6 (parallel [
+            (set (reg:DI 105)
+                (ashift:DI (reg:DI 104)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 29 28 30 6 (parallel [
+            (set (reg:DI 106)
+                (plus:DI (reg:DI 105)
+                    (reg:DI 101)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 101)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 30 29 31 6 (parallel [
+            (set (reg:DI 107 [ D.5196 ])
+                (minus:DI (reg/v:DI 91 [ init_size ])
+                    (reg:DI 106)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 31 30 32 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 107 [ D.5196 ])
+            (const_int 0 [0]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 32 31 33 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 23)
+(note 33 32 5 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 5 33 6 7 (set (reg:DI 92 [ ivtmp.55 ])
+        (const_int 16 [0x10])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 6 5 7 7 (set (reg/v:DI 93 [ sq ])
+        (const_int 9 [0x9])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 7 6 41 7 (set (reg/v:DI 94 [ divn ])
+        (const_int 3 [0x3])) programs/simple-hash.c:283 -1
+     (nil))
+(code_label 41 7 34 8 64 "" [1 uses])
+(note 34 41 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 8 (parallel [
+            (set (reg/v:DI 93 [ sq ])
+                (plus:DI (reg/v:DI 93 [ sq ])
+                    (reg:DI 92 [ ivtmp.55 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:286 -1
+     (nil))
+(insn 36 35 37 8 (parallel [
+            (set (reg/v:DI 94 [ divn ])
+                (plus:DI (reg/v:DI 94 [ divn ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:287 -1
+     (nil))
+(insn 37 36 38 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 91 [ init_size ])
+            (reg/v:DI 93 [ sq ]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 38 37 39 8 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 48)
+(note 39 38 40 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 42 9 (parallel [
+            (set (reg:DI 92 [ ivtmp.55 ])
+                (plus:DI (reg:DI 92 [ ivtmp.55 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 42 40 43 9 (parallel [
+            (set (reg:DI 110)
+                (udiv:DI (reg/v:DI 91 [ init_size ])
+                    (reg/v:DI 94 [ divn ])))
+            (set (reg:DI 109 [ D.5196 ])
+                (umod:DI (reg/v:DI 91 [ init_size ])
+                    (reg/v:DI 94 [ divn ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 43 42 44 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 109 [ D.5196 ])
+            (const_int 0 [0]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 44 43 47 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 41)
+(note 47 44 45 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 45 47 46 10 (set (pc)
+        (label_ref 23)) programs/simple-hash.c:283 -1
+     (nil)
+ -> 23)
+(barrier 46 45 84)
+(code_label 84 46 83 11 66 "" [1 uses])
+(note 83 84 8 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 8 83 48 11 (set (reg/v:DI 94 [ divn ])
+        (const_int 3 [0x3])) programs/simple-hash.c:280 -1
+     (nil))
+(code_label 48 8 49 12 62 "" [1 uses])
+(note 49 48 50 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 12 (parallel [
+            (set (reg:DI 113)
+                (udiv:DI (reg/v:DI 91 [ init_size ])
+                    (reg/v:DI 94 [ divn ])))
+            (set (reg:DI 112 [ D.5196 ])
+                (umod:DI (reg/v:DI 91 [ init_size ])
+                    (reg/v:DI 94 [ divn ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:269 -1
+     (nil))
+(insn 51 50 52 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 112 [ D.5196 ])
+            (const_int 0 [0]))) programs/simple-hash.c:269 -1
+     (nil))
+(jump_insn 52 51 53 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) programs/simple-hash.c:269 -1
+     (int_list:REG_BR_PROB 8241 (nil))
+ -> 23)
+(note 53 52 54 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 13 (set (mem:DI (reg/v/f:DI 99 [ htab ]) [2 htab_6(D)->size+0 S8 A64])
+        (reg/v:DI 91 [ init_size ])) programs/simple-hash.c:75 -1
+     (nil))
+(insn 55 54 56 13 (set (mem:DI (plus:DI (reg/v/f:DI 99 [ htab ])
+                (const_int 8 [0x8])) [2 htab_6(D)->filled+0 S8 A64])
+        (const_int 0 [0])) programs/simple-hash.c:76 -1
+     (nil))
+(insn 56 55 57 13 (set (mem/f:DI (plus:DI (reg/v/f:DI 99 [ htab ])
+                (const_int 16 [0x10])) [3 htab_6(D)->first+0 S8 A64])
+        (const_int 0 [0])) programs/simple-hash.c:77 -1
+     (nil))
+(insn 57 56 58 13 (parallel [
+            (set (reg:DI 114 [ D.5196 ])
+                (plus:DI (reg/v:DI 91 [ init_size ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:78 -1
+     (nil))
+(insn 58 57 59 13 (set (reg:DI 4 si)
+        (const_int 40 [0x28])) programs/simple-hash.c:78 -1
+     (nil))
+(insn 59 58 60 13 (set (reg:DI 5 di)
+        (reg:DI 114 [ D.5196 ])) programs/simple-hash.c:78 -1
+     (nil))
+(call_insn 60 59 61 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("xcalloc") [flags 0x41]  <function_decl 0x2af13faff6c0 xcalloc>) [0 xcalloc S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:78 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("xcalloc") [flags 0x41]  <function_decl 0x2af13faff6c0 xcalloc>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 61 60 62 13 (set (reg/f:DI 115)
+        (reg:DI 0 ax)) programs/simple-hash.c:78 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 115)
+        (nil)))
+(insn 62 61 63 13 (set (reg/f:DI 89 [ D.5197 ])
+        (reg/f:DI 115)) programs/simple-hash.c:78 -1
+     (nil))
+(insn 63 62 64 13 (set (mem/f:DI (plus:DI (reg/v/f:DI 99 [ htab ])
+                (const_int 24 [0x18])) [3 htab_6(D)->table+0 S8 A64])
+        (reg/f:DI 89 [ D.5197 ])) programs/simple-hash.c:78 -1
+     (nil))
+(insn 64 63 65 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ D.5197 ])
+            (const_int 0 [0]))) programs/simple-hash.c:79 -1
+     (nil))
+(jump_insn 65 64 66 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 88)
+            (pc))) programs/simple-hash.c:79 612 {*jcc_1}
+     (int_list:REG_BR_PROB 177 (nil))
+ -> 88)
+(note 66 65 67 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 14 (parallel [
+            (set (reg:DI 116 [ D.5198 ])
+                (plus:DI (reg/v/f:DI 99 [ htab ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:82 -1
+     (nil))
+(insn 68 67 69 14 (set (reg:DI 37 r8)
+        (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2af13f868e58 free>)) programs/simple-hash.c:82 -1
+     (nil))
+(insn 69 68 70 14 (set (reg:DI 2 cx)
+        (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2af13f872360 malloc>)) programs/simple-hash.c:82 -1
+     (nil))
+(insn 70 69 71 14 (set (reg:SI 1 dx)
+        (const_int 0 [0])) programs/simple-hash.c:82 -1
+     (nil))
+(insn 71 70 72 14 (set (reg:SI 4 si)
+        (const_int 0 [0])) programs/simple-hash.c:82 -1
+     (nil))
+(insn 72 71 73 14 (set (reg:DI 5 di)
+        (reg:DI 116 [ D.5198 ])) programs/simple-hash.c:82 -1
+     (nil))
+(call_insn 73 72 10 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_obstack_begin") [flags 0x41]  <function_decl 0x2af13fad8288 _obstack_begin>) [0 _obstack_begin S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:82 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_obstack_begin") [flags 0x41]  <function_decl 0x2af13fad8288 _obstack_begin>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 10 73 85 14 (set (reg:SI 87 [ D.5195 ])
+        (const_int 0 [0])) programs/simple-hash.c:84 -1
+     (nil))
+(jump_insn 85 10 86 14 (set (pc)
+        (label_ref 74)) programs/simple-hash.c:84 -1
+     (nil)
+ -> 74)
+(barrier 86 85 88)
+(code_label 88 86 87 15 67 "" [1 uses])
+(note 87 88 9 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 9 87 74 15 (set (reg:SI 87 [ D.5195 ])
+        (const_int -1 [0xffffffffffffffff])) programs/simple-hash.c:80 -1
+     (nil))
+(code_label 74 9 75 16 65 "" [1 uses])
+(note 75 74 76 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 80 16 (set (reg:SI 98 [ <retval> ])
+        (reg:SI 87 [ D.5195 ])) -1
+     (nil))
+(insn 80 76 81 16 (set (reg/i:SI 0 ax)
+        (reg:SI 98 [ <retval> ])) programs/simple-hash.c:85 -1
+     (nil))
+(insn 81 80 0 16 (use (reg/i:SI 0 ax)) programs/simple-hash.c:85 -1
+     (nil))
+
+;; Function delete_hash (delete_hash, funcdef_no=45, decl_uid=4741, cgraph_uid=45, symbol_order=45)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 14.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 90 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:90 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 91)
+        (mem/f:DI (plus:DI (reg/v/f:DI 90 [ htab ])
+                (const_int 24 [0x18])) [3 htab_2(D)->table+0 S8 A64])) programs/simple-hash.c:91 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg:DI 91)) programs/simple-hash.c:91 -1
+     (nil))
+(call_insn 8 7 9 2 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2af13f868e58 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) programs/simple-hash.c:91 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2af13f868e58 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 9 8 10 2 (parallel [
+            (set (reg:DI 92 [ __o ])
+                (plus:DI (reg/v/f:DI 90 [ htab ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:92 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 4 si)
+        (const_int 0 [0])) programs/simple-hash.c:92 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 92 [ __o ])) programs/simple-hash.c:92 -1
+     (nil))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("obstack_free") [flags 0x41]  <function_decl 0x2af13fad8af8 obstack_free>) [0 obstack_free S1 A8])
+        (const_int 0 [0])) programs/simple-hash.c:92 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("obstack_free") [flags 0x41]  <function_decl 0x2af13fad8af8 obstack_free>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 13 12 17 2 (set (reg:SI 89 [ <retval> ])
+        (const_int 0 [0])) programs/simple-hash.c:93 -1
+     (nil))
+(insn 17 13 18 2 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) programs/simple-hash.c:94 -1
+     (nil))
+(insn 18 17 0 2 (use (reg/i:SI 0 ax)) programs/simple-hash.c:94 -1
+     (nil))
+
+;; Function insert_entry (insert_entry, funcdef_no=46, decl_uid=4746, cgraph_uid=46, symbol_order=46)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+Edge 5->7 redirected to 18
+Edge 7->15 redirected to 19
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 119.
+Merging block 19 into block 18...
+Merged blocks 18 and 19.
+Merged 18 and 19 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 127 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:99 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 128 [ key ])
+        (reg:DI 4 si [ key ])) programs/simple-hash.c:99 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 129 [ keylen ])
+        (reg:DI 1 dx [ keylen ])) programs/simple-hash.c:99 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 130 [ data ])
+        (reg:DI 2 cx [ data ])) programs/simple-hash.c:99 -1
+     (nil))
+(note 6 5 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 6 14 2 (set (reg/v:SI 120 [ hval ])
+        (subreg:SI (reg/v:DI 129 [ keylen ]) 0)) ./hashval.h:36 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 129 [ keylen ])
+            (const_int 0 [0]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 27)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:DI 121 [ ivtmp.69 ])
+        (reg/v/f:DI 128 [ key ])) -1
+     (nil))
+(insn 18 17 24 4 (parallel [
+            (set (reg:DI 122 [ D.5217 ])
+                (plus:DI (reg/v/f:DI 128 [ key ])
+                    (reg/v:DI 129 [ keylen ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 24 18 19 5 83 "" [1 uses])
+(note 19 24 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (parallel [
+            (set (reg/v:SI 117 [ hval ])
+                (rotate:SI (reg/v:SI 120 [ hval ])
+                    (const_int 9 [0x9])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:39 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:SI 131 [ D.5216 ])
+        (zero_extend:SI (mem:QI (reg:DI 121 [ ivtmp.69 ]) [0 MEM[base: _64, offset: 0B]+0 S1 A8]))) ./hashval.h:40 -1
+     (nil))
+(insn 22 21 23 5 (parallel [
+            (set (reg/v:SI 120 [ hval ])
+                (plus:SI (reg:SI 131 [ D.5216 ])
+                    (reg/v:SI 117 [ hval ])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:40 -1
+     (nil))
+(insn 23 22 25 5 (parallel [
+            (set (reg:DI 121 [ ivtmp.69 ])
+                (plus:DI (reg:DI 121 [ ivtmp.69 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 25 23 26 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 122 [ D.5217 ])
+            (reg:DI 121 [ ivtmp.69 ]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 26 25 27 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 24)
+(code_label 27 26 28 6 82 "" [1 uses])
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 120 [ hval ])
+            (const_int 0 [0]))) ./hashval.h:42 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 128)
+            (pc))) ./hashval.h:42 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 128)
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 125 7 (set (reg:DI 123 [ D.5209 ])
+        (zero_extend:DI (reg/v:SI 120 [ hval ]))) -1
+     (nil))
+(jump_insn 125 32 126 7 (set (pc)
+        (label_ref 33)) -1
+     (nil)
+ -> 33)
+(barrier 126 125 128)
+(code_label 128 126 127 8 89 "" [1 uses])
+(note 127 128 7 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 7 127 33 8 (set (reg:DI 123 [ D.5209 ])
+        (const_int 4294967295 [0xffffffff])) ./hashval.h:42 -1
+     (nil))
+(code_label 33 7 34 9 84 "" [1 uses])
+(note 34 33 35 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 9 (set (reg/v/f:DI 88 [ table ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 24 [0x18])) [3 htab_11(D)->table+0 S8 A64])) programs/simple-hash.c:101 -1
+     (nil))
+(insn 36 35 37 9 (set (reg:DI 37 r8)
+        (reg:DI 123 [ D.5209 ])) programs/simple-hash.c:102 -1
+     (nil))
+(insn 37 36 38 9 (set (reg:DI 2 cx)
+        (reg/v:DI 129 [ keylen ])) programs/simple-hash.c:102 -1
+     (nil))
+(insn 38 37 39 9 (set (reg:DI 1 dx)
+        (reg/v/f:DI 128 [ key ])) programs/simple-hash.c:102 -1
+     (nil))
+(insn 39 38 40 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ table ])) programs/simple-hash.c:102 -1
+     (nil))
+(insn 40 39 41 9 (set (reg:DI 5 di)
+        (mem:DI (reg/v/f:DI 127 [ htab ]) [2 MEM[(long unsigned int *)htab_11(D)]+0 S8 A64])) programs/simple-hash.c:102 -1
+     (nil))
+(call_insn/c/i 41 40 42 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>) [0 lookup.isra.0 S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:102 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 42 41 43 9 (set (reg/v:DI 89 [ idx ])
+        (reg:DI 0 ax)) programs/simple-hash.c:102 -1
+     (nil))
+(insn 43 42 44 9 (set (reg:DI 133)
+        (reg/v:DI 89 [ idx ])) programs/simple-hash.c:104 -1
+     (nil))
+(insn 44 43 45 9 (parallel [
+            (set (reg:DI 134)
+                (ashift:DI (reg:DI 133)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:104 -1
+     (nil))
+(insn 45 44 46 9 (parallel [
+            (set (reg:DI 135)
+                (plus:DI (reg:DI 134)
+                    (reg/v:DI 89 [ idx ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:104 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 89 [ idx ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 46 45 47 9 (parallel [
+            (set (reg:DI 136)
+                (ashift:DI (reg:DI 135)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:104 -1
+     (nil))
+(insn 47 46 48 9 (set (reg:DI 135)
+        (reg:DI 136)) programs/simple-hash.c:104 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 89 [ idx ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 48 47 49 9 (set (reg:DI 132)
+        (reg:DI 135)) programs/simple-hash.c:104 -1
+     (nil))
+(insn 49 48 50 9 (parallel [
+            (set (reg/f:DI 137)
+                (plus:DI (reg/v/f:DI 88 [ table ])
+                    (reg:DI 132)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:104 -1
+     (nil))
+(insn 50 49 51 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:DI (reg/f:DI 137) [2 _16->used+0 S8 A64])
+            (const_int 0 [0]))) programs/simple-hash.c:104 -1
+     (nil))
+(jump_insn 51 50 52 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 132)
+            (pc))) programs/simple-hash.c:104 612 {*jcc_1}
+     (int_list:REG_BR_PROB 400 (nil))
+ -> 132)
+(note 52 51 53 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 10 (set (reg/v:SI 94 [ __len ])
+        (subreg:SI (reg/v:DI 129 [ keylen ]) 0)) programs/simple-hash.c:110 -1
+     (nil))
+(insn 54 53 55 10 (set (reg/f:DI 95 [ D.5211 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 55 54 56 10 (set (reg:DI 96 [ D.5212 ])
+        (sign_extend:DI (reg/v:SI 94 [ __len ]))) programs/simple-hash.c:110 -1
+     (nil))
+(insn 56 55 57 10 (parallel [
+            (set (reg:DI 138 [ D.5211 ])
+                (plus:DI (reg/f:DI 95 [ D.5211 ])
+                    (reg:DI 96 [ D.5212 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 57 56 58 10 (set (reg:CC 17 flags)
+        (compare:CC (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                    (const_int 64 [0x40])) [3 MEM[(struct obstack *)htab_11(D) + 32B].chunk_limit+0 S8 A64])
+            (reg:DI 138 [ D.5211 ]))) programs/simple-hash.c:110 -1
+     (nil))
+(jump_insn 58 57 59 10 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 65)
+            (pc))) programs/simple-hash.c:110 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 65)
+(note 59 58 60 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 11 (parallel [
+            (set (reg:DI 139 [ __o1 ])
+                (plus:DI (reg/v/f:DI 127 [ htab ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 61 60 62 11 (set (reg:SI 4 si)
+        (reg/v:SI 94 [ __len ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 62 61 63 11 (set (reg:DI 5 di)
+        (reg:DI 139 [ __o1 ])) programs/simple-hash.c:110 -1
+     (nil))
+(call_insn 63 62 64 11 (call (mem:QI (symbol_ref:DI ("_obstack_newchunk") [flags 0x41]  <function_decl 0x2af13fad8000 _obstack_newchunk>) [0 _obstack_newchunk S1 A8])
+        (const_int 0 [0])) programs/simple-hash.c:110 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_obstack_newchunk") [flags 0x41]  <function_decl 0x2af13fad8000 _obstack_newchunk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 64 63 65 11 (set (reg/f:DI 95 [ D.5211 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])) -1
+     (nil))
+(code_label 65 64 66 12 86 "" [1 uses])
+(note 66 65 67 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 12 (set (reg:DI 140)
+        (reg/f:DI 95 [ D.5211 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 68 67 69 12 (set (reg:DI 141)
+        (reg/v/f:DI 128 [ key ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 69 68 70 12 (set (reg:DI 142)
+        (reg:DI 96 [ D.5212 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 70 69 71 12 (set (reg:DI 1 dx)
+        (reg:DI 142)) programs/simple-hash.c:110 -1
+     (nil))
+(insn 71 70 72 12 (set (reg:DI 4 si)
+        (reg:DI 141)) programs/simple-hash.c:110 -1
+     (nil))
+(insn 72 71 73 12 (set (reg:DI 5 di)
+        (reg:DI 140)) programs/simple-hash.c:110 -1
+     (nil))
+(call_insn 73 72 74 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x2af13fb5e438 memcpy>) [0 memcpy S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:110 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x2af13fb5e438 memcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 74 73 75 12 (set (reg:DI 143)
+        (reg:DI 0 ax)) programs/simple-hash.c:110 -1
+     (nil))
+(insn 75 74 76 12 (set (reg:DI 144)
+        (reg:DI 143)) programs/simple-hash.c:110 -1
+     (nil))
+(insn 76 75 77 12 (set (reg/f:DI 145)
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 77 76 78 12 (parallel [
+            (set (reg/f:DI 100 [ D.5211 ])
+                (plus:DI (reg:DI 96 [ D.5212 ])
+                    (reg/f:DI 145)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                    (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])
+            (reg:DI 96 [ D.5212 ]))
+        (nil)))
+(insn 78 77 79 12 (set (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])
+        (reg/f:DI 100 [ D.5211 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 79 78 80 12 (set (reg/v/f:DI 101 [ __value ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 48 [0x30])) [3 MEM[(struct obstack *)htab_11(D) + 32B].object_base+0 S8 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 80 79 81 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 100 [ D.5211 ])
+            (reg/v/f:DI 101 [ __value ]))) programs/simple-hash.c:110 -1
+     (nil))
+(jump_insn 81 80 82 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 88)
+            (pc))) programs/simple-hash.c:110 -1
+     (int_list:REG_BR_PROB 8500 (nil))
+ -> 88)
+(note 82 81 85 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 85 82 86 13 (set (reg:QI 148)
+        (mem/j:QI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 112 [0x70])) [4 MEM[(struct obstack *)htab_11(D) + 32B].maybe_empty_object+0 S1 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 86 85 87 13 (parallel [
+            (set (reg:QI 149)
+                (ior:QI (reg:QI 148)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 87 86 88 13 (set (mem/j:QI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 112 [0x70])) [4 MEM[(struct obstack *)htab_11(D) + 32B].maybe_empty_object+0 S1 A64])
+        (reg:QI 149)) programs/simple-hash.c:110 -1
+     (nil))
+(code_label 88 87 89 14 87 "" [1 uses])
+(note 89 88 90 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 90 89 91 14 (set (reg:SI 103 [ D.5208 ])
+        (mem:SI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 80 [0x50])) [6 MEM[(struct obstack *)htab_11(D) + 32B].alignment_mask+0 S4 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 91 90 92 14 (set (reg:DI 150 [ D.5213 ])
+        (sign_extend:DI (reg:SI 103 [ D.5208 ]))) programs/simple-hash.c:110 -1
+     (nil))
+(insn 92 91 93 14 (parallel [
+            (set (reg:DI 151 [ D.5213 ])
+                (plus:DI (reg/f:DI 100 [ D.5211 ])
+                    (reg:DI 150 [ D.5213 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 93 92 94 14 (set (reg:SI 152 [ D.5208 ])
+        (not:SI (reg:SI 103 [ D.5208 ]))) programs/simple-hash.c:110 -1
+     (nil))
+(insn 94 93 95 14 (set (reg:DI 153 [ D.5213 ])
+        (sign_extend:DI (reg:SI 152 [ D.5208 ]))) programs/simple-hash.c:110 -1
+     (nil))
+(insn 95 94 96 14 (parallel [
+            (set (reg:DI 108 [ D.5213 ])
+                (and:DI (reg:DI 151 [ D.5213 ])
+                    (reg:DI 153 [ D.5213 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 96 95 97 14 (set (reg/f:DI 109 [ D.5211 ])
+        (reg:DI 108 [ D.5213 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 97 96 98 14 (set (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])
+        (reg/f:DI 109 [ D.5211 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 98 97 99 14 (set (reg:DI 111 [ D.5213 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 40 [0x28])) [3 MEM[(struct obstack *)htab_11(D) + 32B].chunk+0 S8 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 99 98 100 14 (set (reg/f:DI 113 [ D.5211 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 64 [0x40])) [3 MEM[(struct obstack *)htab_11(D) + 32B].chunk_limit+0 S8 A64])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 100 99 101 14 (parallel [
+            (set (reg:DI 154 [ D.5213 ])
+                (minus:DI (reg:DI 108 [ D.5213 ])
+                    (reg:DI 111 [ D.5213 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 101 100 102 14 (parallel [
+            (set (reg:DI 155 [ D.5213 ])
+                (minus:DI (reg/f:DI 113 [ D.5211 ])
+                    (reg:DI 111 [ D.5213 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:110 -1
+     (nil))
+(insn 102 101 103 14 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:DI 154 [ D.5213 ])
+            (reg:DI 155 [ D.5213 ]))) programs/simple-hash.c:110 -1
+     (nil))
+(jump_insn 103 102 104 14 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 106)
+            (pc))) programs/simple-hash.c:110 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 106)
+(note 104 103 105 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 105 104 8 15 (set (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 56 [0x38])) [3 MEM[(struct obstack *)htab_11(D) + 32B].next_free+0 S8 A64])
+        (reg/f:DI 113 [ D.5211 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 8 105 106 15 (set (reg/f:DI 109 [ D.5211 ])
+        (reg/f:DI 113 [ D.5211 ])) programs/simple-hash.c:110 -1
+     (nil))
+(code_label 106 8 107 16 88 "" [1 uses])
+(note 107 106 108 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 108 107 109 16 (set (mem/f:DI (plus:DI (reg/v/f:DI 127 [ htab ])
+                (const_int 48 [0x30])) [3 MEM[(struct obstack *)htab_11(D) + 32B].object_base+0 S8 A64])
+        (reg/f:DI 109 [ D.5211 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 109 108 110 16 (set (reg:DI 38 r9)
+        (reg/v/f:DI 130 [ data ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 110 109 111 16 (set (reg:DI 37 r8)
+        (reg/v:DI 89 [ idx ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 111 110 112 16 (set (reg:DI 2 cx)
+        (reg:DI 123 [ D.5209 ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 112 111 113 16 (set (reg:DI 1 dx)
+        (reg/v:DI 129 [ keylen ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 113 112 114 16 (set (reg:DI 4 si)
+        (reg/v/f:DI 101 [ __value ])) programs/simple-hash.c:110 -1
+     (nil))
+(insn 114 113 115 16 (set (reg:DI 5 di)
+        (reg/v/f:DI 127 [ htab ])) programs/simple-hash.c:110 -1
+     (nil))
+(call_insn 115 114 10 16 (call (mem:QI (symbol_ref:DI ("insert_entry_2") [flags 0x3]  <function_decl 0x2af13faff948 insert_entry_2>) [0 insert_entry_2 S1 A8])
+        (const_int 0 [0])) programs/simple-hash.c:110 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("insert_entry_2") [flags 0x3]  <function_decl 0x2af13faff948 insert_entry_2>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (expr_list:DI (use (reg:DI 38 r9))
+                            (nil))))))))
+(insn 10 115 129 16 (set (reg:SI 87 [ D.5208 ])
+        (const_int 0 [0])) programs/simple-hash.c:112 -1
+     (nil))
+(jump_insn 129 10 130 16 (set (pc)
+        (label_ref 116)) programs/simple-hash.c:112 -1
+     (nil)
+ -> 116)
+(barrier 130 129 132)
+(code_label 132 130 131 17 90 "" [1 uses])
+(note 131 132 9 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 9 131 116 17 (set (reg:SI 87 [ D.5208 ])
+        (const_int -1 [0xffffffffffffffff])) programs/simple-hash.c:106 -1
+     (nil))
+(code_label 116 9 117 18 85 "" [1 uses])
+(note 117 116 118 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 118 117 122 18 (set (reg:SI 126 [ <retval> ])
+        (reg:SI 87 [ D.5208 ])) -1
+     (nil))
+(insn 122 118 123 18 (set (reg/i:SI 0 ax)
+        (reg:SI 126 [ <retval> ])) programs/simple-hash.c:114 -1
+     (nil))
+(insn 123 122 0 18 (use (reg/i:SI 0 ax)) programs/simple-hash.c:114 -1
+     (nil))
+
+;; Function find_entry (find_entry, funcdef_no=48, decl_uid=4751, cgraph_uid=48, symbol_order=48)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 5->7 redirected to 12
+Edge 7->9 redirected to 13
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 56.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 10 NOTE_INSN_DELETED)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v/f:DI 105 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:169 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 106 [ key ])
+        (reg:DI 4 si [ key ])) programs/simple-hash.c:169 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 107 [ keylen ])
+        (reg:DI 1 dx [ keylen ])) programs/simple-hash.c:169 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 108 [ result ])
+        (reg:DI 2 cx [ result ])) programs/simple-hash.c:169 -1
+     (nil))
+(note 6 5 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 6 13 2 (set (reg/v/f:DI 88 [ table ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 105 [ htab ])
+                (const_int 24 [0x18])) [3 htab_4(D)->table+0 S8 A64])) programs/simple-hash.c:170 -1
+     (nil))
+(insn 13 12 14 2 (set (reg/v:SI 98 [ hval ])
+        (subreg:SI (reg/v:DI 107 [ keylen ]) 0)) ./hashval.h:36 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 107 [ keylen ])
+            (const_int 0 [0]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 27)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:DI 99 [ ivtmp.75 ])
+        (reg/v/f:DI 106 [ key ])) -1
+     (nil))
+(insn 18 17 24 4 (parallel [
+            (set (reg:DI 100 [ D.5236 ])
+                (plus:DI (reg/v/f:DI 106 [ key ])
+                    (reg/v:DI 107 [ keylen ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 24 18 19 5 101 "" [1 uses])
+(note 19 24 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (parallel [
+            (set (reg/v:SI 95 [ hval ])
+                (rotate:SI (reg/v:SI 98 [ hval ])
+                    (const_int 9 [0x9])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:39 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:SI 109 [ D.5235 ])
+        (zero_extend:SI (mem:QI (reg:DI 99 [ ivtmp.75 ]) [0 MEM[base: _30, offset: 0B]+0 S1 A8]))) ./hashval.h:40 -1
+     (nil))
+(insn 22 21 23 5 (parallel [
+            (set (reg/v:SI 98 [ hval ])
+                (plus:SI (reg:SI 109 [ D.5235 ])
+                    (reg/v:SI 95 [ hval ])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:40 -1
+     (nil))
+(insn 23 22 25 5 (parallel [
+            (set (reg:DI 99 [ ivtmp.75 ])
+                (plus:DI (reg:DI 99 [ ivtmp.75 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 25 23 26 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 100 [ D.5236 ])
+            (reg:DI 99 [ ivtmp.75 ]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 26 25 27 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 24)
+(code_label 27 26 28 6 100 "" [1 uses])
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 98 [ hval ])
+            (const_int 0 [0]))) ./hashval.h:42 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 65)
+            (pc))) ./hashval.h:42 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 65)
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 62 7 (set (reg:DI 103 [ D.5231 ])
+        (zero_extend:DI (reg/v:SI 98 [ hval ]))) -1
+     (nil))
+(jump_insn 62 32 63 7 (set (pc)
+        (label_ref 33)) -1
+     (nil)
+ -> 33)
+(barrier 63 62 65)
+(code_label 65 63 64 8 104 "" [1 uses])
+(note 64 65 7 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 7 64 33 8 (set (reg:DI 103 [ D.5231 ])
+        (const_int 4294967295 [0xffffffff])) ./hashval.h:42 -1
+     (nil))
+(code_label 33 7 34 9 102 "" [1 uses])
+(note 34 33 35 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 9 (set (reg:DI 37 r8)
+        (reg:DI 103 [ D.5231 ])) programs/simple-hash.c:171 -1
+     (nil))
+(insn 36 35 37 9 (set (reg:DI 2 cx)
+        (reg/v:DI 107 [ keylen ])) programs/simple-hash.c:171 -1
+     (nil))
+(insn 37 36 38 9 (set (reg:DI 1 dx)
+        (reg/v/f:DI 106 [ key ])) programs/simple-hash.c:171 -1
+     (nil))
+(insn 38 37 39 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ table ])) programs/simple-hash.c:171 -1
+     (nil))
+(insn 39 38 40 9 (set (reg:DI 5 di)
+        (mem:DI (reg/v/f:DI 105 [ htab ]) [2 MEM[(long unsigned int *)htab_4(D)]+0 S8 A64])) programs/simple-hash.c:171 -1
+     (nil))
+(call_insn/c/i 40 39 41 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>) [0 lookup.isra.0 S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:171 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 41 40 42 9 (set (reg/v:DI 89 [ idx ])
+        (reg:DI 0 ax)) programs/simple-hash.c:171 -1
+     (nil))
+(insn 42 41 43 9 (set (reg:DI 110)
+        (reg/v:DI 89 [ idx ])) programs/simple-hash.c:173 -1
+     (nil))
+(insn 43 42 44 9 (parallel [
+            (set (reg:DI 111)
+                (ashift:DI (reg:DI 110)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:173 -1
+     (nil))
+(insn 44 43 45 9 (parallel [
+            (set (reg:DI 112 [ D.5231 ])
+                (plus:DI (reg:DI 111)
+                    (reg/v:DI 89 [ idx ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:173 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 89 [ idx ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 45 44 46 9 (parallel [
+            (set (reg:DI 113)
+                (ashift:DI (reg:DI 112 [ D.5231 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:173 -1
+     (nil))
+(insn 46 45 47 9 (set (reg:DI 112 [ D.5231 ])
+        (reg:DI 113)) programs/simple-hash.c:173 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 89 [ idx ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 47 46 48 9 (parallel [
+            (set (reg/f:DI 91 [ D.5232 ])
+                (plus:DI (reg/v/f:DI 88 [ table ])
+                    (reg:DI 112 [ D.5231 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:173 -1
+     (nil))
+(insn 48 47 49 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:DI (reg/f:DI 91 [ D.5232 ]) [2 _13->used+0 S8 A64])
+            (const_int 0 [0]))) programs/simple-hash.c:173 -1
+     (nil))
+(jump_insn 49 48 50 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 69)
+            (pc))) programs/simple-hash.c:173 612 {*jcc_1}
+     (int_list:REG_BR_PROB 400 (nil))
+ -> 69)
+(note 50 49 51 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 52 10 (set (reg/f:DI 93 [ D.5233 ])
+        (mem/f:DI (plus:DI (reg/f:DI 91 [ D.5232 ])
+                (const_int 24 [0x18])) [3 _13->data+0 S8 A64])) programs/simple-hash.c:176 -1
+     (nil))
+(insn 52 51 9 10 (set (mem/f:DI (reg/v/f:DI 108 [ result ]) [3 *result_16(D)+0 S8 A64])
+        (reg/f:DI 93 [ D.5233 ])) programs/simple-hash.c:176 -1
+     (nil))
+(insn 9 52 66 10 (set (reg:SI 87 [ D.5230 ])
+        (const_int 0 [0])) programs/simple-hash.c:177 -1
+     (nil))
+(jump_insn 66 9 67 10 (set (pc)
+        (label_ref 53)) programs/simple-hash.c:177 -1
+     (nil)
+ -> 53)
+(barrier 67 66 69)
+(code_label 69 67 68 11 105 "" [1 uses])
+(note 68 69 8 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 8 68 53 11 (set (reg:SI 87 [ D.5230 ])
+        (const_int -1 [0xffffffffffffffff])) programs/simple-hash.c:174 -1
+     (nil))
+(code_label 53 8 54 12 103 "" [1 uses])
+(note 54 53 55 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 59 12 (set (reg:SI 104 [ <retval> ])
+        (reg:SI 87 [ D.5230 ])) -1
+     (nil))
+(insn 59 55 60 12 (set (reg/i:SI 0 ax)
+        (reg:SI 104 [ <retval> ])) programs/simple-hash.c:178 -1
+     (nil))
+(insn 60 59 0 12 (use (reg/i:SI 0 ax)) programs/simple-hash.c:178 -1
+     (nil))
+
+;; Function set_entry (set_entry, funcdef_no=49, decl_uid=4756, cgraph_uid=49, symbol_order=49)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+Edge 5->7 redirected to 12
+Edge 7->9 redirected to 13
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 55.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 10 NOTE_INSN_DELETED)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v/f:DI 104 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:183 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 105 [ key ])
+        (reg:DI 4 si [ key ])) programs/simple-hash.c:183 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 106 [ keylen ])
+        (reg:DI 1 dx [ keylen ])) programs/simple-hash.c:183 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 107 [ newval ])
+        (reg:DI 2 cx [ newval ])) programs/simple-hash.c:183 -1
+     (nil))
+(note 6 5 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 6 13 2 (set (reg/v/f:DI 88 [ table ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 104 [ htab ])
+                (const_int 24 [0x18])) [3 htab_4(D)->table+0 S8 A64])) programs/simple-hash.c:184 -1
+     (nil))
+(insn 13 12 14 2 (set (reg/v:SI 97 [ hval ])
+        (subreg:SI (reg/v:DI 106 [ keylen ]) 0)) ./hashval.h:36 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 106 [ keylen ])
+            (const_int 0 [0]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 900 (nil))
+ -> 27)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:DI 98 [ ivtmp.81 ])
+        (reg/v/f:DI 105 [ key ])) -1
+     (nil))
+(insn 18 17 24 4 (parallel [
+            (set (reg:DI 99 [ D.5249 ])
+                (plus:DI (reg/v/f:DI 105 [ key ])
+                    (reg/v:DI 106 [ keylen ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 24 18 19 5 113 "" [1 uses])
+(note 19 24 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (parallel [
+            (set (reg/v:SI 94 [ hval ])
+                (rotate:SI (reg/v:SI 97 [ hval ])
+                    (const_int 9 [0x9])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:39 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:SI 108 [ D.5248 ])
+        (zero_extend:SI (mem:QI (reg:DI 98 [ ivtmp.81 ]) [0 MEM[base: _29, offset: 0B]+0 S1 A8]))) ./hashval.h:40 -1
+     (nil))
+(insn 22 21 23 5 (parallel [
+            (set (reg/v:SI 97 [ hval ])
+                (plus:SI (reg:SI 108 [ D.5248 ])
+                    (reg/v:SI 94 [ hval ])))
+            (clobber (reg:CC 17 flags))
+        ]) ./hashval.h:40 -1
+     (nil))
+(insn 23 22 25 5 (parallel [
+            (set (reg:DI 98 [ ivtmp.81 ])
+                (plus:DI (reg:DI 98 [ ivtmp.81 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 25 23 26 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 99 [ D.5249 ])
+            (reg:DI 98 [ ivtmp.81 ]))) ./hashval.h:37 -1
+     (nil))
+(jump_insn 26 25 27 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) ./hashval.h:37 -1
+     (int_list:REG_BR_PROB 9100 (nil))
+ -> 24)
+(code_label 27 26 28 6 112 "" [1 uses])
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ hval ])
+            (const_int 0 [0]))) ./hashval.h:42 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 64)
+            (pc))) ./hashval.h:42 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 64)
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 61 7 (set (reg:DI 102 [ D.5245 ])
+        (zero_extend:DI (reg/v:SI 97 [ hval ]))) -1
+     (nil))
+(jump_insn 61 32 62 7 (set (pc)
+        (label_ref 33)) -1
+     (nil)
+ -> 33)
+(barrier 62 61 64)
+(code_label 64 62 63 8 116 "" [1 uses])
+(note 63 64 7 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 7 63 33 8 (set (reg:DI 102 [ D.5245 ])
+        (const_int 4294967295 [0xffffffff])) ./hashval.h:42 -1
+     (nil))
+(code_label 33 7 34 9 114 "" [1 uses])
+(note 34 33 35 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 9 (set (reg:DI 37 r8)
+        (reg:DI 102 [ D.5245 ])) programs/simple-hash.c:185 -1
+     (nil))
+(insn 36 35 37 9 (set (reg:DI 2 cx)
+        (reg/v:DI 106 [ keylen ])) programs/simple-hash.c:185 -1
+     (nil))
+(insn 37 36 38 9 (set (reg:DI 1 dx)
+        (reg/v/f:DI 105 [ key ])) programs/simple-hash.c:185 -1
+     (nil))
+(insn 38 37 39 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ table ])) programs/simple-hash.c:185 -1
+     (nil))
+(insn 39 38 40 9 (set (reg:DI 5 di)
+        (mem:DI (reg/v/f:DI 104 [ htab ]) [2 MEM[(long unsigned int *)htab_4(D)]+0 S8 A64])) programs/simple-hash.c:185 -1
+     (nil))
+(call_insn/c/i 40 39 41 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>) [0 lookup.isra.0 S1 A8])
+            (const_int 0 [0]))) programs/simple-hash.c:185 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("lookup.isra.0") [flags 0x3]  <function_decl 0x2af13fb2e948 lookup.isra.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 41 40 42 9 (set (reg/v:DI 89 [ idx ])
+        (reg:DI 0 ax)) programs/simple-hash.c:185 -1
+     (nil))
+(insn 42 41 43 9 (set (reg:DI 109)
+        (reg/v:DI 89 [ idx ])) programs/simple-hash.c:187 -1
+     (nil))
+(insn 43 42 44 9 (parallel [
+            (set (reg:DI 110)
+                (ashift:DI (reg:DI 109)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:187 -1
+     (nil))
+(insn 44 43 45 9 (parallel [
+            (set (reg:DI 111 [ D.5245 ])
+                (plus:DI (reg:DI 110)
+                    (reg/v:DI 89 [ idx ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:187 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 89 [ idx ])
+            (const_int 5 [0x5]))
+        (nil)))
+(insn 45 44 46 9 (parallel [
+            (set (reg:DI 112)
+                (ashift:DI (reg:DI 111 [ D.5245 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:187 -1
+     (nil))
+(insn 46 45 47 9 (set (reg:DI 111 [ D.5245 ])
+        (reg:DI 112)) programs/simple-hash.c:187 -1
+     (expr_list:REG_EQUAL (mult:DI (reg/v:DI 89 [ idx ])
+            (const_int 40 [0x28]))
+        (nil)))
+(insn 47 46 48 9 (parallel [
+            (set (reg/f:DI 91 [ D.5246 ])
+                (plus:DI (reg/v/f:DI 88 [ table ])
+                    (reg:DI 111 [ D.5245 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:187 -1
+     (nil))
+(insn 48 47 49 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:DI (reg/f:DI 91 [ D.5246 ]) [2 _13->used+0 S8 A64])
+            (const_int 0 [0]))) programs/simple-hash.c:187 -1
+     (nil))
+(jump_insn 49 48 50 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 68)
+            (pc))) programs/simple-hash.c:187 612 {*jcc_1}
+     (int_list:REG_BR_PROB 400 (nil))
+ -> 68)
+(note 50 49 51 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 9 10 (set (mem/f:DI (plus:DI (reg/f:DI 91 [ D.5246 ])
+                (const_int 24 [0x18])) [3 _13->data+0 S8 A64])
+        (reg/v/f:DI 107 [ newval ])) programs/simple-hash.c:190 -1
+     (nil))
+(insn 9 51 65 10 (set (reg:SI 87 [ D.5244 ])
+        (const_int 0 [0])) programs/simple-hash.c:191 -1
+     (nil))
+(jump_insn 65 9 66 10 (set (pc)
+        (label_ref 52)) programs/simple-hash.c:191 -1
+     (nil)
+ -> 52)
+(barrier 66 65 68)
+(code_label 68 66 67 11 117 "" [1 uses])
+(note 67 68 8 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 8 67 52 11 (set (reg:SI 87 [ D.5244 ])
+        (const_int -1 [0xffffffffffffffff])) programs/simple-hash.c:188 -1
+     (nil))
+(code_label 52 8 53 12 115 "" [1 uses])
+(note 53 52 54 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 58 12 (set (reg:SI 103 [ <retval> ])
+        (reg:SI 87 [ D.5244 ])) -1
+     (nil))
+(insn 58 54 59 12 (set (reg/i:SI 0 ax)
+        (reg:SI 103 [ <retval> ])) programs/simple-hash.c:192 -1
+     (nil))
+(insn 59 58 0 12 (use (reg/i:SI 0 ax)) programs/simple-hash.c:192 -1
+     (nil))
+
+;; Function iterate_table (iterate_table, funcdef_no=50, decl_uid=4762, cgraph_uid=50, symbol_order=50)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+Edge 3->8 redirected to 11
+Edge 5->8 redirected to 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 46.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 13 NOTE_INSN_DELETED)
+(note 13 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 13 3 2 (set (reg/v/f:DI 99 [ htab ])
+        (reg:DI 5 di [ htab ])) programs/simple-hash.c:198 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 100 [ ptr ])
+        (reg:DI 4 si [ ptr ])) programs/simple-hash.c:198 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 101 [ key ])
+        (reg:DI 1 dx [ key ])) programs/simple-hash.c:198 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 102 [ keylen ])
+        (reg:DI 2 cx [ keylen ])) programs/simple-hash.c:198 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/v/f:DI 103 [ data ])
+        (reg:DI 37 r8 [ data ])) programs/simple-hash.c:198 -1
+     (nil))
+(note 7 6 15 2 NOTE_INSN_FUNCTION_BEG)
+(insn 15 7 16 2 (set (reg/f:DI 88 [ D.5255 ])
+        (mem/f:DI (reg/v/f:DI 100 [ ptr ]) [3 *ptr_5(D)+0 S8 A64])) programs/simple-hash.c:199 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 88 [ D.5255 ])
+            (const_int 0 [0]))) programs/simple-hash.c:199 -1
+     (nil))
+(jump_insn 17 16 18 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) programs/simple-hash.c:199 -1
+     (int_list:REG_BR_PROB 8500 (nil))
+ -> 27)
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (set (reg/f:DI 89 [ D.5255 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 99 [ htab ])
+                (const_int 16 [0x10])) [3 htab_7(D)->first+0 S8 A64])) programs/simple-hash.c:201 -1
+     (nil))
+(insn 20 19 21 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ D.5255 ])
+            (const_int 0 [0]))) programs/simple-hash.c:201 -1
+     (nil))
+(jump_insn 21 20 22 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 55)
+            (pc))) programs/simple-hash.c:201 612 {*jcc_1}
+     (int_list:REG_BR_PROB 73 (nil))
+ -> 55)
+(note 22 21 23 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 5 (set (reg/f:DI 90 [ D.5256 ])
+        (mem/f:DI (plus:DI (reg/f:DI 89 [ D.5255 ])
+                (const_int 32 [0x20])) [3 MEM[(struct hash_entry *)_8].next+0 S8 A64])) programs/simple-hash.c:203 -1
+     (nil))
+(insn 24 23 8 5 (set (mem/f:DI (reg/v/f:DI 100 [ ptr ]) [3 *ptr_5(D)+0 S8 A64])
+        (reg/f:DI 90 [ D.5256 ])) programs/simple-hash.c:203 -1
+     (nil))
+(insn 8 24 25 5 (set (reg/f:DI 97 [ D.5255 ])
+        (reg/f:DI 90 [ D.5256 ])) -1
+     (nil))
+(jump_insn 25 8 26 5 (set (pc)
+        (label_ref 34)) -1
+     (nil)
+ -> 34)
+(barrier 26 25 27)
+(code_label 27 26 28 6 124 "" [1 uses])
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 88 [ D.5255 ])
+            (mem/f:DI (plus:DI (reg/v/f:DI 99 [ htab ])
+                    (const_int 16 [0x10])) [3 htab_7(D)->first+0 S8 A64]))) programs/simple-hash.c:207 -1
+     (nil))
+(jump_insn 30 29 31 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 59)
+            (pc))) programs/simple-hash.c:207 612 {*jcc_1}
+     (int_list:REG_BR_PROB 73 (nil))
+ -> 59)
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 7 (set (reg/f:DI 92 [ D.5256 ])
+        (mem/f:DI (plus:DI (reg/f:DI 88 [ D.5255 ])
+                (const_int 32 [0x20])) [3 MEM[(struct hash_entry *)_6].next+0 S8 A64])) programs/simple-hash.c:209 -1
+     (nil))
+(insn 33 32 9 7 (set (mem/f:DI (reg/v/f:DI 100 [ ptr ]) [3 *ptr_5(D)+0 S8 A64])
+        (reg/f:DI 92 [ D.5256 ])) programs/simple-hash.c:209 -1
+     (nil))
+(insn 9 33 34 7 (set (reg/f:DI 97 [ D.5255 ])
+        (reg/f:DI 92 [ D.5256 ])) programs/simple-hash.c:209 -1
+     (nil))
+(code_label 34 9 35 8 126 "" [1 uses])
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 8 (set (reg/f:DI 93 [ D.5257 ])
+        (mem/f:DI (plus:DI (reg/f:DI 97 [ D.5255 ])
+                (const_int 8 [0x8])) [3 MEM[(struct hash_entry *)_31].key+0 S8 A64])) programs/simple-hash.c:212 -1
+     (nil))
+(insn 37 36 38 8 (set (mem/f:DI (reg/v/f:DI 101 [ key ]) [3 *key_16(D)+0 S8 A64])
+        (reg/f:DI 93 [ D.5257 ])) programs/simple-hash.c:212 -1
+     (nil))
+(insn 38 37 39 8 (set (reg/f:DI 94 [ D.5255 ])
+        (mem/f:DI (reg/v/f:DI 100 [ ptr ]) [3 *ptr_5(D)+0 S8 A64])) programs/simple-hash.c:213 -1
+     (nil))
+(insn 39 38 40 8 (set (reg:DI 95 [ D.5258 ])
+        (mem:DI (plus:DI (reg/f:DI 94 [ D.5255 ])
+                (const_int 16 [0x10])) [2 MEM[(struct hash_entry *)_18].keylen+0 S8 A64])) programs/simple-hash.c:213 -1
+     (nil))
+(insn 40 39 41 8 (set (mem:DI (reg/v/f:DI 102 [ keylen ]) [2 *keylen_20(D)+0 S8 A64])
+        (reg:DI 95 [ D.5258 ])) programs/simple-hash.c:213 -1
+     (nil))
+(insn 41 40 42 8 (set (reg/f:DI 96 [ D.5255 ])
+        (mem/f:DI (plus:DI (reg/f:DI 94 [ D.5255 ])
+                (const_int 24 [0x18])) [3 MEM[(struct hash_entry *)_18].data+0 S8 A64])) programs/simple-hash.c:214 -1
+     (nil))
+(insn 42 41 11 8 (set (mem/f:DI (reg/v/f:DI 103 [ data ]) [3 *data_23(D)+0 S8 A64])
+        (reg/f:DI 96 [ D.5255 ])) programs/simple-hash.c:214 -1
+     (nil))
+(insn 11 42 52 8 (set (reg:SI 87 [ D.5254 ])
+        (const_int 0 [0])) programs/simple-hash.c:215 -1
+     (nil))
+(jump_insn 52 11 53 8 (set (pc)
+        (label_ref 43)) programs/simple-hash.c:215 -1
+     (nil)
+ -> 43)
+(barrier 53 52 55)
+(code_label 55 53 54 9 127 "" [1 uses])
+(note 54 55 12 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 12 54 56 9 (set (reg:SI 87 [ D.5254 ])
+        (const_int -1 [0xffffffffffffffff])) programs/simple-hash.c:202 -1
+     (nil))
+(jump_insn 56 12 57 9 (set (pc)
+        (label_ref 43)) -1
+     (nil)
+ -> 43)
+(barrier 57 56 59)
+(code_label 59 57 58 10 128 "" [1 uses])
+(note 58 59 10 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 10 58 43 10 (set (reg:SI 87 [ D.5254 ])
+        (const_int -1 [0xffffffffffffffff])) programs/simple-hash.c:202 -1
+     (nil))
+(code_label 43 10 44 11 125 "" [2 uses])
+(note 44 43 45 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 49 11 (set (reg:SI 98 [ <retval> ])
+        (reg:SI 87 [ D.5254 ])) -1
+     (nil))
+(insn 49 45 50 11 (set (reg/i:SI 0 ax)
+        (reg:SI 98 [ <retval> ])) programs/simple-hash.c:216 -1
+     (nil))
+(insn 50 49 0 11 (use (reg/i:SI 0 ax)) programs/simple-hash.c:216 -1
+     (nil))
+
+;; Function next_prime (next_prime, funcdef_no=52, decl_uid=4767, cgraph_uid=52, symbol_order=52)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+Edge 4->9 redirected to 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 9->10 to 4 failed.
+Removing jump 52.
+Merging block 14 into block 13...
+Merged blocks 13 and 14.
+Merged 13 and 14 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 4 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:DI 95 [ seed ])
+        (reg:DI 5 di [ seed ])) programs/simple-hash.c:265 -1
+     (nil))
+(note 3 2 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 3 11 2 (parallel [
+            (set (reg/v:DI 87 [ seed ])
+                (ior:DI (reg/v:DI 95 [ seed ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:267 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (label_ref 15)) programs/simple-hash.c:269 -1
+     (nil)
+ -> 15)
+(barrier 12 11 20)
+(code_label 20 12 13 4 134 "" [3 uses])
+(note 13 20 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (parallel [
+            (set (reg/v:DI 87 [ seed ])
+                (plus:DI (reg/v:DI 87 [ seed ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:270 -1
+     (nil))
+(code_label 15 14 16 5 132 "" [1 uses])
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 87 [ seed ])
+            (const_int 9 [0x9]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 18 17 19 5 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 59)
+            (pc))) programs/simple-hash.c:283 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 59)
+(note 19 18 21 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 21 19 22 6 (set (reg:DI 98)
+        (const_int -6148914691236517205 [0xaaaaaaaaaaaaaaab])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 97)
+                (truncate:DI (lshiftrt:TI (mult:TI (zero_extend:TI (reg/v:DI 87 [ seed ]))
+                            (zero_extend:TI (reg:DI 98)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 23 22 24 6 (parallel [
+            (set (reg:DI 96)
+                (lshiftrt:DI (reg:DI 97)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg/v:DI 87 [ seed ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 24 23 25 6 (set (reg:DI 99)
+        (reg:DI 96)) programs/simple-hash.c:283 -1
+     (nil))
+(insn 25 24 26 6 (parallel [
+            (set (reg:DI 100)
+                (ashift:DI (reg:DI 99)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 26 25 27 6 (parallel [
+            (set (reg:DI 101)
+                (plus:DI (reg:DI 100)
+                    (reg:DI 96)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 96)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 27 26 28 6 (parallel [
+            (set (reg:DI 102 [ D.5273 ])
+                (minus:DI (reg/v:DI 87 [ seed ])
+                    (reg:DI 101)))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 28 27 29 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 102 [ D.5273 ])
+            (const_int 0 [0]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 29 28 30 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 20)
+(note 30 29 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 30 5 7 (set (reg:DI 88 [ ivtmp.91 ])
+        (const_int 16 [0x10])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 5 4 6 7 (set (reg/v:DI 89 [ sq ])
+        (const_int 9 [0x9])) programs/simple-hash.c:283 -1
+     (nil))
+(insn 6 5 38 7 (set (reg/v:DI 90 [ divn ])
+        (const_int 3 [0x3])) programs/simple-hash.c:283 -1
+     (nil))
+(code_label 38 6 31 8 135 "" [1 uses])
+(note 31 38 32 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 8 (parallel [
+            (set (reg/v:DI 89 [ sq ])
+                (plus:DI (reg/v:DI 89 [ sq ])
+                    (reg:DI 88 [ ivtmp.91 ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:286 -1
+     (nil))
+(insn 33 32 34 8 (parallel [
+            (set (reg/v:DI 90 [ divn ])
+                (plus:DI (reg/v:DI 90 [ divn ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:287 -1
+     (nil))
+(insn 34 33 35 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 87 [ seed ])
+            (reg/v:DI 89 [ sq ]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 35 34 36 8 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 45)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 45)
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 39 9 (parallel [
+            (set (reg:DI 88 [ ivtmp.91 ])
+                (plus:DI (reg:DI 88 [ ivtmp.91 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 39 37 40 9 (parallel [
+            (set (reg:DI 105)
+                (udiv:DI (reg/v:DI 87 [ seed ])
+                    (reg/v:DI 90 [ divn ])))
+            (set (reg:DI 104 [ D.5273 ])
+                (umod:DI (reg/v:DI 87 [ seed ])
+                    (reg/v:DI 90 [ divn ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:283 -1
+     (nil))
+(insn 40 39 41 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 104 [ D.5273 ])
+            (const_int 0 [0]))) programs/simple-hash.c:283 -1
+     (nil))
+(jump_insn 41 40 44 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 38)
+            (pc))) programs/simple-hash.c:283 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 38)
+(note 44 41 42 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 42 44 43 10 (set (pc)
+        (label_ref 20)) programs/simple-hash.c:283 -1
+     (nil)
+ -> 20)
+(barrier 43 42 59)
+(code_label 59 43 58 11 136 "" [1 uses])
+(note 58 59 7 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 7 58 45 11 (set (reg/v:DI 90 [ divn ])
+        (const_int 3 [0x3])) programs/simple-hash.c:280 -1
+     (nil))
+(code_label 45 7 46 12 133 "" [1 uses])
+(note 46 45 47 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 12 (parallel [
+            (set (reg:DI 108)
+                (udiv:DI (reg/v:DI 87 [ seed ])
+                    (reg/v:DI 90 [ divn ])))
+            (set (reg:DI 107 [ D.5273 ])
+                (umod:DI (reg/v:DI 87 [ seed ])
+                    (reg/v:DI 90 [ divn ])))
+            (clobber (reg:CC 17 flags))
+        ]) programs/simple-hash.c:269 -1
+     (nil))
+(insn 48 47 49 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 107 [ D.5273 ])
+            (const_int 0 [0]))) programs/simple-hash.c:269 -1
+     (nil))
+(jump_insn 49 48 50 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) programs/simple-hash.c:269 -1
+     (int_list:REG_BR_PROB 8241 (nil))
+ -> 20)
+(note 50 49 51 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 55 13 (set (reg:DI 94 [ <retval> ])
+        (reg/v:DI 87 [ seed ])) programs/simple-hash.c:272 -1
+     (nil))
+(insn 55 51 56 13 (set (reg/i:DI 0 ax)
+        (reg:DI 94 [ <retval> ])) programs/simple-hash.c:273 -1
+     (nil))
+(insn 56 55 0 13 (use (reg/i:DI 0 ax)) programs/simple-hash.c:273 -1
+     (nil))

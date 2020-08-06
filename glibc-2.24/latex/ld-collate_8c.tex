@@ -1,0 +1,228 @@
+\hypertarget{ld-collate_8c}{}\doxysection{locale/programs/ld-\/collate.c File Reference}
+\label{ld-collate_8c}\index{locale/programs/ld-\/collate.c@{locale/programs/ld-\/collate.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}localedef.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}charmap.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}localeinfo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linereader.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}locfile.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}elem-\/hash.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}3level.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsection__list}{section\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structelement__list__t}{element\+\_\+list\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structsymbol__t}{symbol\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structname__list}{name\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structlocale__collate__t}{locale\+\_\+collate\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_afe107f8385341e11aef32eaac290b39a}{obstack\+\_\+chunk\+\_\+alloc}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ab7e36af3707843f77cc5b4e831c2fa6d}{malloc}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a10ffd65176663f1396a3607ebb41470c}{obstack\+\_\+chunk\+\_\+free}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a1b38a3c269cdbd2ad5cb6c9f9ad9dc5d}{E\+L\+E\+M\+E\+N\+T\+\_\+\+E\+L\+L\+I\+P\+S\+I\+S2}}~((struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$) 1)
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a4608f8c0a805cda340e700e40dd8c8b9}{E\+L\+E\+M\+E\+N\+T\+\_\+\+E\+L\+L\+I\+P\+S\+I\+S3}}~((struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$) 2)
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a5a4c127f7d14433aa4bc93ddf68e953f}{E\+L\+E\+M\+E\+N\+T\+\_\+\+E\+L\+L\+I\+P\+S\+I\+S4}}~((struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$) 3)
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}{T\+A\+B\+LE}}~wchead\+\_\+table
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}{E\+L\+E\+M\+E\+NT}}~struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}{D\+E\+F\+A\+U\+LT}}~\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a565fde10770e8a57ef907f3f4f991ea2}{I\+T\+E\+R\+A\+TE}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a5e3d07f921f06423e7eb81fdd642b130}{N\+O\+\_\+\+A\+D\+D\+\_\+\+L\+O\+C\+A\+LE}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}{T\+A\+B\+LE}}~collidx\+\_\+table
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}{E\+L\+E\+M\+E\+NT}}~\mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}{D\+E\+F\+A\+U\+LT}}~0
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}{T\+A\+B\+LE}}~collseq\+\_\+table
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}{E\+L\+E\+M\+E\+NT}}~\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}{D\+E\+F\+A\+U\+LT}}~$\sim$((\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}) 0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{ld-collate_8c_a08ed5da932cd8adaa0becb9f31d45a04}{collate\+\_\+finish}} (struct \mbox{\hyperlink{structlocaledef__t}{localedef\+\_\+t}} $\ast$\mbox{\hyperlink{tst-strptime_8c_a38008f9ebcd87acfca726e35504b2e8d}{locale}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structcharmap__t}{charmap\+\_\+t}} $\ast$charmap)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{ld-collate_8c_ac68ac4a4ce47076aa5705fc0233bfde3}{collate\+\_\+output}} (struct \mbox{\hyperlink{structlocaledef__t}{localedef\+\_\+t}} $\ast$\mbox{\hyperlink{tst-strptime_8c_a38008f9ebcd87acfca726e35504b2e8d}{locale}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structcharmap__t}{charmap\+\_\+t}} $\ast$charmap, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$output\+\_\+path)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{ld-collate_8c_ab2eb0f891cf40ce4785b43c30e1abc6a}{collate\+\_\+read}} (struct \mbox{\hyperlink{structlinereader}{linereader}} $\ast$ldfile, struct \mbox{\hyperlink{structlocaledef__t}{localedef\+\_\+t}} $\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structcharmap__t}{charmap\+\_\+t}} $\ast$charmap, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$repertoire\+\_\+name, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} ignore\+\_\+content)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}\label{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!DEFAULT@{DEFAULT}}
+\index{DEFAULT@{DEFAULT}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT}{DEFAULT}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+LT~\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{N\+U\+LL}}}
+
+\mbox{\Hypertarget{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}\label{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!DEFAULT@{DEFAULT}}
+\index{DEFAULT@{DEFAULT}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT}{DEFAULT}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+LT~0}
+
+\mbox{\Hypertarget{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}\label{ld-collate_8c_a3da44afeba217135a680a7477b5e3ce3}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!DEFAULT@{DEFAULT}}
+\index{DEFAULT@{DEFAULT}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT}{DEFAULT}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+LT~$\sim$((\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}) 0)}
+
+\mbox{\Hypertarget{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}\label{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ELEMENT@{ELEMENT}}
+\index{ELEMENT@{ELEMENT}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ELEMENT}{ELEMENT}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \#define E\+L\+E\+M\+E\+NT~struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$}
+
+\mbox{\Hypertarget{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}\label{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ELEMENT@{ELEMENT}}
+\index{ELEMENT@{ELEMENT}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ELEMENT}{ELEMENT}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \#define E\+L\+E\+M\+E\+NT~\mbox{\hyperlink{posix_2sys_2types_8h_a32f2e37ee053cf2ce8ca28d1f74630e5}{int32\+\_\+t}}}
+
+\mbox{\Hypertarget{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}\label{ld-collate_8c_aa5e9be47d76a4e1865914bcb7a2a7479}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ELEMENT@{ELEMENT}}
+\index{ELEMENT@{ELEMENT}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ELEMENT}{ELEMENT}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \#define E\+L\+E\+M\+E\+NT~\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}}
+
+\mbox{\Hypertarget{ld-collate_8c_a1b38a3c269cdbd2ad5cb6c9f9ad9dc5d}\label{ld-collate_8c_a1b38a3c269cdbd2ad5cb6c9f9ad9dc5d}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ELEMENT\_ELLIPSIS2@{ELEMENT\_ELLIPSIS2}}
+\index{ELEMENT\_ELLIPSIS2@{ELEMENT\_ELLIPSIS2}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ELEMENT\_ELLIPSIS2}{ELEMENT\_ELLIPSIS2}}
+{\footnotesize\ttfamily \#define E\+L\+E\+M\+E\+N\+T\+\_\+\+E\+L\+L\+I\+P\+S\+I\+S2~((struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$) 1)}
+
+\mbox{\Hypertarget{ld-collate_8c_a4608f8c0a805cda340e700e40dd8c8b9}\label{ld-collate_8c_a4608f8c0a805cda340e700e40dd8c8b9}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ELEMENT\_ELLIPSIS3@{ELEMENT\_ELLIPSIS3}}
+\index{ELEMENT\_ELLIPSIS3@{ELEMENT\_ELLIPSIS3}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ELEMENT\_ELLIPSIS3}{ELEMENT\_ELLIPSIS3}}
+{\footnotesize\ttfamily \#define E\+L\+E\+M\+E\+N\+T\+\_\+\+E\+L\+L\+I\+P\+S\+I\+S3~((struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$) 2)}
+
+\mbox{\Hypertarget{ld-collate_8c_a5a4c127f7d14433aa4bc93ddf68e953f}\label{ld-collate_8c_a5a4c127f7d14433aa4bc93ddf68e953f}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ELEMENT\_ELLIPSIS4@{ELEMENT\_ELLIPSIS4}}
+\index{ELEMENT\_ELLIPSIS4@{ELEMENT\_ELLIPSIS4}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ELEMENT\_ELLIPSIS4}{ELEMENT\_ELLIPSIS4}}
+{\footnotesize\ttfamily \#define E\+L\+E\+M\+E\+N\+T\+\_\+\+E\+L\+L\+I\+P\+S\+I\+S4~((struct \mbox{\hyperlink{structelement__t}{element\+\_\+t}} $\ast$) 3)}
+
+\mbox{\Hypertarget{ld-collate_8c_a565fde10770e8a57ef907f3f4f991ea2}\label{ld-collate_8c_a565fde10770e8a57ef907f3f4f991ea2}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!ITERATE@{ITERATE}}
+\index{ITERATE@{ITERATE}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{ITERATE}{ITERATE}}
+{\footnotesize\ttfamily \#define I\+T\+E\+R\+A\+TE}
+
+\mbox{\Hypertarget{ld-collate_8c_a5e3d07f921f06423e7eb81fdd642b130}\label{ld-collate_8c_a5e3d07f921f06423e7eb81fdd642b130}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!NO\_ADD\_LOCALE@{NO\_ADD\_LOCALE}}
+\index{NO\_ADD\_LOCALE@{NO\_ADD\_LOCALE}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{NO\_ADD\_LOCALE}{NO\_ADD\_LOCALE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+A\+D\+D\+\_\+\+L\+O\+C\+A\+LE}
+
+\mbox{\Hypertarget{ld-collate_8c_afe107f8385341e11aef32eaac290b39a}\label{ld-collate_8c_afe107f8385341e11aef32eaac290b39a}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!obstack\_chunk\_alloc@{obstack\_chunk\_alloc}}
+\index{obstack\_chunk\_alloc@{obstack\_chunk\_alloc}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_alloc}{obstack\_chunk\_alloc}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+alloc~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ab7e36af3707843f77cc5b4e831c2fa6d}{malloc}}}
+
+\mbox{\Hypertarget{ld-collate_8c_a10ffd65176663f1396a3607ebb41470c}\label{ld-collate_8c_a10ffd65176663f1396a3607ebb41470c}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!obstack\_chunk\_free@{obstack\_chunk\_free}}
+\index{obstack\_chunk\_free@{obstack\_chunk\_free}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_free}{obstack\_chunk\_free}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+free~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}}
+
+\mbox{\Hypertarget{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}\label{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!TABLE@{TABLE}}
+\index{TABLE@{TABLE}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{TABLE}{TABLE}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{structTABLE}{T\+A\+B\+LE}}~wchead\+\_\+table}
+
+\mbox{\Hypertarget{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}\label{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!TABLE@{TABLE}}
+\index{TABLE@{TABLE}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{TABLE}{TABLE}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{structTABLE}{T\+A\+B\+LE}}~collidx\+\_\+table}
+
+\mbox{\Hypertarget{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}\label{ld-collate_8c_acadaccd8321f8569f31a11bdad1829da}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!TABLE@{TABLE}}
+\index{TABLE@{TABLE}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{TABLE}{TABLE}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{structTABLE}{T\+A\+B\+LE}}~collseq\+\_\+table}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ld-collate_8c_a08ed5da932cd8adaa0becb9f31d45a04}\label{ld-collate_8c_a08ed5da932cd8adaa0becb9f31d45a04}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!collate\_finish@{collate\_finish}}
+\index{collate\_finish@{collate\_finish}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{collate\_finish()}{collate\_finish()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} collate\+\_\+finish (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlocaledef__t}{localedef\+\_\+t}} $\ast$}]{locale,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structcharmap__t}{charmap\+\_\+t}} $\ast$}]{charmap }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ld-collate_8c_ac68ac4a4ce47076aa5705fc0233bfde3}\label{ld-collate_8c_ac68ac4a4ce47076aa5705fc0233bfde3}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!collate\_output@{collate\_output}}
+\index{collate\_output@{collate\_output}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{collate\_output()}{collate\_output()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} collate\+\_\+output (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlocaledef__t}{localedef\+\_\+t}} $\ast$}]{locale,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structcharmap__t}{charmap\+\_\+t}} $\ast$}]{charmap,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{output\+\_\+path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ld-collate_8c_ab2eb0f891cf40ce4785b43c30e1abc6a}\label{ld-collate_8c_ab2eb0f891cf40ce4785b43c30e1abc6a}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!collate\_read@{collate\_read}}
+\index{collate\_read@{collate\_read}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{collate\_read()}{collate\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} collate\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlinereader}{linereader}} $\ast$}]{ldfile,  }\item[{struct \mbox{\hyperlink{structlocaledef__t}{localedef\+\_\+t}} $\ast$}]{result,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structcharmap__t}{charmap\+\_\+t}} $\ast$}]{charmap,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{repertoire\+\_\+name,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{ignore\+\_\+content }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{ld-collate_8c_a264333c4b11df297124299b3a019e3ec}\label{ld-collate_8c_a264333c4b11df297124299b3a019e3ec}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!collate@{collate}}
+\index{collate@{collate}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{collate}{collate}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structlocale__collate__t}{locale\+\_\+collate\+\_\+t}}$\ast$ collate}
+
+\mbox{\Hypertarget{ld-collate_8c_a4d7791b2fcc482a1e162d188debb998c}\label{ld-collate_8c_a4d7791b2fcc482a1e162d188debb998c}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!extrapool@{extrapool}}
+\index{extrapool@{extrapool}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{extrapool}{extrapool}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structobstack}{obstack}}$\ast$ extrapool}
+
+\mbox{\Hypertarget{ld-collate_8c_a0a841f76b930d9e5440f05d0f006a4ee}\label{ld-collate_8c_a0a841f76b930d9e5440f05d0f006a4ee}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!indpool@{indpool}}
+\index{indpool@{indpool}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{indpool}{indpool}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structobstack}{obstack}}$\ast$ indpool}
+
+\mbox{\Hypertarget{ld-collate_8c_ac2af9aa8f27bc2698e44350c0c979717}\label{ld-collate_8c_ac2af9aa8f27bc2698e44350c0c979717}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!tablewc@{tablewc}}
+\index{tablewc@{tablewc}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{tablewc}{tablewc}}
+{\footnotesize\ttfamily struct collidx\+\_\+table$\ast$ tablewc}
+
+\mbox{\Hypertarget{ld-collate_8c_ac52f1fbde4aecc48dccfc840fc873f62}\label{ld-collate_8c_ac52f1fbde4aecc48dccfc840fc873f62}} 
+\index{ld-\/collate.c@{ld-\/collate.c}!weightpool@{weightpool}}
+\index{weightpool@{weightpool}!ld-\/collate.c@{ld-\/collate.c}}
+\doxysubsubsection{\texorpdfstring{weightpool}{weightpool}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structobstack}{obstack}}$\ast$ weightpool}
+

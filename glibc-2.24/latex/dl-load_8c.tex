@@ -1,0 +1,200 @@
+\hypertarget{dl-load_8c}{}\doxysection{elf/dl-\/load.c File Reference}
+\label{dl-load_8c}\index{elf/dl-\/load.c@{elf/dl-\/load.c}}
+{\ttfamily \#include $<$elf.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+{\ttfamily \#include $<$bits/wordsize.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}dynamic-\/link.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$abi-\/tag.\+h$>$}\newline
+{\ttfamily \#include $<$stackinfo.\+h$>$}\newline
+{\ttfamily \#include $<$caller.\+h$>$}\newline
+{\ttfamily \#include $<$sysdep.\+h$>$}\newline
+{\ttfamily \#include $<$stap-\/probe.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/internal.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/dst.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/load.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/map-\/segments.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/unmap-\/segments.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/machine-\/reject-\/phdr.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/sysdep-\/open.\+h$>$}\newline
+{\ttfamily \#include $<$endian.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}trusted-\/dirs.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfilebuf}{filebuf}}
+\item 
+struct \mbox{\hyperlink{structadd__path__state}{add\+\_\+path\+\_\+state}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_ae1d6afd4bee8b5a1f52661d8e298b6a4}{byteorder}}~\mbox{\hyperlink{elf_2elf_8h_a06385c3e5f0a3b62fae7f5e224e10f89}{E\+L\+F\+D\+A\+T\+A2\+M\+SB}}
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a9e9c7019565ee800abaf5fef300b73db}{S\+T\+R\+I\+NG}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~\mbox{\hyperlink{misc_2sys_2cdefs_8h_a375c4dc9f0fb338999de81aab826f9d6}{\+\_\+\+\_\+\+S\+T\+R\+I\+NG}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a9f8f5b391b25bfc4829f5b87917de6f8}{F\+I\+L\+E\+B\+U\+F\+\_\+\+S\+I\+ZE}}~832
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a1ca230b094568d235bab954616940334}{nsystem\+\_\+dirs\+\_\+len}}~(sizeof (system\+\_\+dirs\+\_\+len) / sizeof (system\+\_\+dirs\+\_\+len\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a298ddbffafbe6cf941b92092edfb86a5}{M\+A\+P\+\_\+\+A\+N\+ON}}~0
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_ae48c569727d3943d8ea230946f1d0eae}{E\+L\+F32\+\_\+\+C\+L\+A\+SS}}~\mbox{\hyperlink{elf_2elf_8h_a5f84b1bf6e07374d6289eab3d8c57f1c}{E\+L\+F\+C\+L\+A\+S\+S32}}
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a904acc122bf270d1417af30b54d8c0e4}{E\+L\+F64\+\_\+\+C\+L\+A\+SS}}~\mbox{\hyperlink{elf_2elf_8h_a9ee66b59be5c78ea1f1eea8a36f2c291}{E\+L\+F\+C\+L\+A\+S\+S64}}
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a477295236573a3c108316bfcfe411eff}{V\+A\+L\+I\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+ER}}(\mbox{\hyperlink{structhdr}{hdr}},  \mbox{\hyperlink{libm__cpu__defs_8h_ae87cffe9d4bba63937ab959bda26aa0c}{exp}},  \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}})~(\mbox{\hyperlink{string_2string_8h_a70784afa913af03702739fab2e82aeac}{memcmp}} (\mbox{\hyperlink{structhdr}{hdr}}, \mbox{\hyperlink{libm__cpu__defs_8h_ae87cffe9d4bba63937ab959bda26aa0c}{exp}}, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}) == 0)
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a472f04a9af854631f03abf0ee5436805}{V\+A\+L\+I\+D\+\_\+\+E\+L\+F\+\_\+\+O\+S\+A\+BI}}(osabi)~(osabi == \mbox{\hyperlink{elf_2elf_8h_aa93c77a867b4d1b82fe15fbc4cb2fbfe}{E\+L\+F\+O\+S\+A\+B\+I\+\_\+\+S\+Y\+SV}})
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a346d55975498ab58715d7ec2aaae7f11}{V\+A\+L\+I\+D\+\_\+\+E\+L\+F\+\_\+\+A\+B\+I\+V\+E\+R\+S\+I\+ON}}(osabi,  ver)~(ver == 0)
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a78334328d3ed82dbba1604ac47f821b4}{R\+O\+U\+ND}}(\mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}})~(((\mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}) + sizeof (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) -\/ 1) \& -\/sizeof (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)))
+\item 
+\#define \mbox{\hyperlink{dl-load_8c_a247555bc1c9cf2d46e951a6b877f9460}{add\+\_\+path}}(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}},  sps,  \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}})~add\+\_\+path(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}, sps, 0) /$\ast$ X\+XX $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{dl-load_8c_a3f39332df261850e04dbe1bb027413bd}{\+\_\+dl\+\_\+dst\+\_\+count}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} is\+\_\+path)
+\item 
+char $\ast$ \mbox{\hyperlink{dl-load_8c_afce340991030b76ba0884895e4d451dc}{\+\_\+dl\+\_\+dst\+\_\+substitute}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$l, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, char $\ast$\mbox{\hyperlink{tst__funcs_8h_a7bc1e01a7af98f8a20929c93fdaa720c}{result}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} is\+\_\+path)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-load_8c_a99304edfa34c1a8daedde9e2bde66fd5}{\+\_\+dl\+\_\+init\+\_\+paths}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$llp)
+\item 
+struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-load_8c_a34d39135b44bb1a6159b1d17b89e5389}{\+\_\+dl\+\_\+map\+\_\+object}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$loader, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} trace\+\_\+mode, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}}, Lmid\+\_\+t nsid)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-load_8c_a944d8197b4bffbe4aa5e2f57f0fb2e7e}{\+\_\+dl\+\_\+rtld\+\_\+di\+\_\+serinfo}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$loader, Dl\+\_\+serinfo $\ast$\mbox{\hyperlink{csu_2libc-tls_8c_a2cbcf8cd64d473bb3c7efb96e3f6f81f}{si}}, \mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}} \mbox{\hyperlink{structcounting}{counting}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+stack\+\_\+prot \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}} \mbox{\hyperlink{dl-load_8c_a4a969704ea2a3d6e269d6d3f1967ea38}{attribute\+\_\+relro}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dl-load_8c_a247555bc1c9cf2d46e951a6b877f9460}\label{dl-load_8c_a247555bc1c9cf2d46e951a6b877f9460}} 
+\index{dl-\/load.c@{dl-\/load.c}!add\_path@{add\_path}}
+\index{add\_path@{add\_path}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{add\_path}{add\_path}}
+{\footnotesize\ttfamily \#define add\+\_\+path(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}},  }\item[{}]{sps,  }\item[{}]{\mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}} }\end{DoxyParamCaption})~add\+\_\+path(\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}}, sps, 0) /$\ast$ X\+XX $\ast$/}
+
+\mbox{\Hypertarget{dl-load_8c_ae1d6afd4bee8b5a1f52661d8e298b6a4}\label{dl-load_8c_ae1d6afd4bee8b5a1f52661d8e298b6a4}} 
+\index{dl-\/load.c@{dl-\/load.c}!byteorder@{byteorder}}
+\index{byteorder@{byteorder}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{byteorder}{byteorder}}
+{\footnotesize\ttfamily \#define byteorder~\mbox{\hyperlink{elf_2elf_8h_a06385c3e5f0a3b62fae7f5e224e10f89}{E\+L\+F\+D\+A\+T\+A2\+M\+SB}}}
+
+\mbox{\Hypertarget{dl-load_8c_ae48c569727d3943d8ea230946f1d0eae}\label{dl-load_8c_ae48c569727d3943d8ea230946f1d0eae}} 
+\index{dl-\/load.c@{dl-\/load.c}!ELF32\_CLASS@{ELF32\_CLASS}}
+\index{ELF32\_CLASS@{ELF32\_CLASS}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{ELF32\_CLASS}{ELF32\_CLASS}}
+{\footnotesize\ttfamily \#define E\+L\+F32\+\_\+\+C\+L\+A\+SS~\mbox{\hyperlink{elf_2elf_8h_a5f84b1bf6e07374d6289eab3d8c57f1c}{E\+L\+F\+C\+L\+A\+S\+S32}}}
+
+\mbox{\Hypertarget{dl-load_8c_a904acc122bf270d1417af30b54d8c0e4}\label{dl-load_8c_a904acc122bf270d1417af30b54d8c0e4}} 
+\index{dl-\/load.c@{dl-\/load.c}!ELF64\_CLASS@{ELF64\_CLASS}}
+\index{ELF64\_CLASS@{ELF64\_CLASS}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{ELF64\_CLASS}{ELF64\_CLASS}}
+{\footnotesize\ttfamily \#define E\+L\+F64\+\_\+\+C\+L\+A\+SS~\mbox{\hyperlink{elf_2elf_8h_a9ee66b59be5c78ea1f1eea8a36f2c291}{E\+L\+F\+C\+L\+A\+S\+S64}}}
+
+\mbox{\Hypertarget{dl-load_8c_a9f8f5b391b25bfc4829f5b87917de6f8}\label{dl-load_8c_a9f8f5b391b25bfc4829f5b87917de6f8}} 
+\index{dl-\/load.c@{dl-\/load.c}!FILEBUF\_SIZE@{FILEBUF\_SIZE}}
+\index{FILEBUF\_SIZE@{FILEBUF\_SIZE}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{FILEBUF\_SIZE}{FILEBUF\_SIZE}}
+{\footnotesize\ttfamily \#define F\+I\+L\+E\+B\+U\+F\+\_\+\+S\+I\+ZE~832}
+
+\mbox{\Hypertarget{dl-load_8c_a298ddbffafbe6cf941b92092edfb86a5}\label{dl-load_8c_a298ddbffafbe6cf941b92092edfb86a5}} 
+\index{dl-\/load.c@{dl-\/load.c}!MAP\_ANON@{MAP\_ANON}}
+\index{MAP\_ANON@{MAP\_ANON}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{MAP\_ANON}{MAP\_ANON}}
+{\footnotesize\ttfamily \#define M\+A\+P\+\_\+\+A\+N\+ON~0}
+
+\mbox{\Hypertarget{dl-load_8c_a1ca230b094568d235bab954616940334}\label{dl-load_8c_a1ca230b094568d235bab954616940334}} 
+\index{dl-\/load.c@{dl-\/load.c}!nsystem\_dirs\_len@{nsystem\_dirs\_len}}
+\index{nsystem\_dirs\_len@{nsystem\_dirs\_len}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{nsystem\_dirs\_len}{nsystem\_dirs\_len}}
+{\footnotesize\ttfamily \#define nsystem\+\_\+dirs\+\_\+len~(sizeof (system\+\_\+dirs\+\_\+len) / sizeof (system\+\_\+dirs\+\_\+len\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{dl-load_8c_a78334328d3ed82dbba1604ac47f821b4}\label{dl-load_8c_a78334328d3ed82dbba1604ac47f821b4}} 
+\index{dl-\/load.c@{dl-\/load.c}!ROUND@{ROUND}}
+\index{ROUND@{ROUND}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{ROUND}{ROUND}}
+{\footnotesize\ttfamily \#define R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}) + sizeof (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)) -\/ 1) \& -\/sizeof (\mbox{\hyperlink{tst-auditmod7b_8c_a83d0247619b25b0b3ded284ce17b8d50}{ElfW}}(Word)))}
+
+\mbox{\Hypertarget{dl-load_8c_a9e9c7019565ee800abaf5fef300b73db}\label{dl-load_8c_a9e9c7019565ee800abaf5fef300b73db}} 
+\index{dl-\/load.c@{dl-\/load.c}!STRING@{STRING}}
+\index{STRING@{STRING}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{STRING}{STRING}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+NG(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~\mbox{\hyperlink{misc_2sys_2cdefs_8h_a375c4dc9f0fb338999de81aab826f9d6}{\+\_\+\+\_\+\+S\+T\+R\+I\+NG}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})}
+
+\mbox{\Hypertarget{dl-load_8c_a346d55975498ab58715d7ec2aaae7f11}\label{dl-load_8c_a346d55975498ab58715d7ec2aaae7f11}} 
+\index{dl-\/load.c@{dl-\/load.c}!VALID\_ELF\_ABIVERSION@{VALID\_ELF\_ABIVERSION}}
+\index{VALID\_ELF\_ABIVERSION@{VALID\_ELF\_ABIVERSION}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{VALID\_ELF\_ABIVERSION}{VALID\_ELF\_ABIVERSION}}
+{\footnotesize\ttfamily \#define V\+A\+L\+I\+D\+\_\+\+E\+L\+F\+\_\+\+A\+B\+I\+V\+E\+R\+S\+I\+ON(\begin{DoxyParamCaption}\item[{}]{osabi,  }\item[{}]{ver }\end{DoxyParamCaption})~(ver == 0)}
+
+\mbox{\Hypertarget{dl-load_8c_a477295236573a3c108316bfcfe411eff}\label{dl-load_8c_a477295236573a3c108316bfcfe411eff}} 
+\index{dl-\/load.c@{dl-\/load.c}!VALID\_ELF\_HEADER@{VALID\_ELF\_HEADER}}
+\index{VALID\_ELF\_HEADER@{VALID\_ELF\_HEADER}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{VALID\_ELF\_HEADER}{VALID\_ELF\_HEADER}}
+{\footnotesize\ttfamily \#define V\+A\+L\+I\+D\+\_\+\+E\+L\+F\+\_\+\+H\+E\+A\+D\+ER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structhdr}{hdr}},  }\item[{}]{\mbox{\hyperlink{libm__cpu__defs_8h_ae87cffe9d4bba63937ab959bda26aa0c}{exp}},  }\item[{}]{\mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{string_2string_8h_a70784afa913af03702739fab2e82aeac}{memcmp}} (\mbox{\hyperlink{structhdr}{hdr}}, \mbox{\hyperlink{libm__cpu__defs_8h_ae87cffe9d4bba63937ab959bda26aa0c}{exp}}, \mbox{\hyperlink{sysdeps_2unix_2sysv_2linux_2getsourcefilter_8c_acdbf9b4fc85a6acfc5c108cb0f76c820}{size}}) == 0)}
+
+\mbox{\Hypertarget{dl-load_8c_a472f04a9af854631f03abf0ee5436805}\label{dl-load_8c_a472f04a9af854631f03abf0ee5436805}} 
+\index{dl-\/load.c@{dl-\/load.c}!VALID\_ELF\_OSABI@{VALID\_ELF\_OSABI}}
+\index{VALID\_ELF\_OSABI@{VALID\_ELF\_OSABI}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{VALID\_ELF\_OSABI}{VALID\_ELF\_OSABI}}
+{\footnotesize\ttfamily \#define V\+A\+L\+I\+D\+\_\+\+E\+L\+F\+\_\+\+O\+S\+A\+BI(\begin{DoxyParamCaption}\item[{}]{osabi }\end{DoxyParamCaption})~(osabi == \mbox{\hyperlink{elf_2elf_8h_aa93c77a867b4d1b82fe15fbc4cb2fbfe}{E\+L\+F\+O\+S\+A\+B\+I\+\_\+\+S\+Y\+SV}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dl-load_8c_a3f39332df261850e04dbe1bb027413bd}\label{dl-load_8c_a3f39332df261850e04dbe1bb027413bd}} 
+\index{dl-\/load.c@{dl-\/load.c}!\_dl\_dst\_count@{\_dl\_dst\_count}}
+\index{\_dl\_dst\_count@{\_dl\_dst\_count}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_dst\_count()}{\_dl\_dst\_count()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \+\_\+dl\+\_\+dst\+\_\+count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{is\+\_\+path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-load_8c_afce340991030b76ba0884895e4d451dc}\label{dl-load_8c_afce340991030b76ba0884895e4d451dc}} 
+\index{dl-\/load.c@{dl-\/load.c}!\_dl\_dst\_substitute@{\_dl\_dst\_substitute}}
+\index{\_dl\_dst\_substitute@{\_dl\_dst\_substitute}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_dst\_substitute()}{\_dl\_dst\_substitute()}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+dl\+\_\+dst\+\_\+substitute (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{l,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{char $\ast$}]{result,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{is\+\_\+path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-load_8c_a99304edfa34c1a8daedde9e2bde66fd5}\label{dl-load_8c_a99304edfa34c1a8daedde9e2bde66fd5}} 
+\index{dl-\/load.c@{dl-\/load.c}!\_dl\_init\_paths@{\_dl\_init\_paths}}
+\index{\_dl\_init\_paths@{\_dl\_init\_paths}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_init\_paths()}{\_dl\_init\_paths()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+init\+\_\+paths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{llp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-load_8c_a34d39135b44bb1a6159b1d17b89e5389}\label{dl-load_8c_a34d39135b44bb1a6159b1d17b89e5389}} 
+\index{dl-\/load.c@{dl-\/load.c}!\_dl\_map\_object@{\_dl\_map\_object}}
+\index{\_dl\_map\_object@{\_dl\_map\_object}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_map\_object()}{\_dl\_map\_object()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}}$\ast$ \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+map\+\_\+object (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{loader,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{type,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{trace\+\_\+mode,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{mode,  }\item[{Lmid\+\_\+t}]{nsid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-load_8c_a944d8197b4bffbe4aa5e2f57f0fb2e7e}\label{dl-load_8c_a944d8197b4bffbe4aa5e2f57f0fb2e7e}} 
+\index{dl-\/load.c@{dl-\/load.c}!\_dl\_rtld\_di\_serinfo@{\_dl\_rtld\_di\_serinfo}}
+\index{\_dl\_rtld\_di\_serinfo@{\_dl\_rtld\_di\_serinfo}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_rtld\_di\_serinfo()}{\_dl\_rtld\_di\_serinfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+rtld\+\_\+di\+\_\+serinfo (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{loader,  }\item[{Dl\+\_\+serinfo $\ast$}]{si,  }\item[{\mbox{\hyperlink{nacl-interfaces_8c_ab2b9a9cf4ee06dc72eec9717a5907967}{bool}}}]{counting }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{dl-load_8c_a4a969704ea2a3d6e269d6d3f1967ea38}\label{dl-load_8c_a4a969704ea2a3d6e269d6d3f1967ea38}} 
+\index{dl-\/load.c@{dl-\/load.c}!attribute\_relro@{attribute\_relro}}
+\index{attribute\_relro@{attribute\_relro}!dl-\/load.c@{dl-\/load.c}}
+\doxysubsubsection{\texorpdfstring{attribute\_relro}{attribute\_relro}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structr__search__path__struct}{r\+\_\+search\+\_\+path\+\_\+struct}} rtld\+\_\+search\+\_\+dirs attribute\+\_\+relro = 0}
+

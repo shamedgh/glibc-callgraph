@@ -1,0 +1,230 @@
+\hypertarget{sprof_8c}{}\doxysection{elf/sprof.c File Reference}
+\label{sprof_8c}\index{elf/sprof.c@{elf/sprof.c}}
+{\ttfamily \#include $<$argp.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$elf.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$obstack.\+h$>$}\newline
+{\ttfamily \#include $<$search.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+{\ttfamily \#include $<$sys/gmon.\+h$>$}\newline
+{\ttfamily \#include $<$sys/gmon\+\_\+out.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../version.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$endian.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhere__fromstruct}{here\+\_\+fromstruct}}
+\item 
+struct \mbox{\hyperlink{structhere__cg__arc__record}{here\+\_\+cg\+\_\+arc\+\_\+record}}
+\item 
+struct \mbox{\hyperlink{structarc__list}{arc\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structknown__symbol}{known\+\_\+symbol}}
+\item 
+struct \mbox{\hyperlink{structshobj}{shobj}}
+\item 
+struct \mbox{\hyperlink{structreal__gmon__hist__hdr}{real\+\_\+gmon\+\_\+hist\+\_\+hdr}}
+\item 
+struct \mbox{\hyperlink{structprofdata}{profdata}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sprof_8c_aca8570fb706c81df371b7f9bc454ae03}{P\+A\+C\+K\+A\+GE}}~\mbox{\hyperlink{SYS__libc_8c_adc1580228bc28505838b0ac8e6f5e05e}{\+\_\+libc\+\_\+intl\+\_\+domainname}}
+\item 
+\#define \mbox{\hyperlink{sprof_8c_ae1d6afd4bee8b5a1f52661d8e298b6a4}{byteorder}}~\mbox{\hyperlink{elf_2elf_8h_a06385c3e5f0a3b62fae7f5e224e10f89}{E\+L\+F\+D\+A\+T\+A2\+M\+SB}}
+\item 
+\#define \mbox{\hyperlink{sprof_8c_ac751cbd79e5ff64d23e0b0a4aa391524}{byteorder\+\_\+name}}~\char`\"{}big-\/endian\char`\"{}
+\item 
+\#define \mbox{\hyperlink{sprof_8c_ae688d728e1acdfe5988c7db45d6f0166}{P\+A\+T\+H\+\_\+\+M\+AX}}~1024
+\item 
+\#define \mbox{\hyperlink{sprof_8c_ab87622a94a525a2e082f8329830ed8bd}{O\+P\+T\+\_\+\+T\+E\+ST}}~1
+\item 
+\#define \mbox{\hyperlink{sprof_8c_a38bf464589f908b00b6a25e20b79c333}{S\+C\+A\+L\+E\+\_\+1\+\_\+\+T\+O\+\_\+1}}~0x10000L
+\item 
+\#define \mbox{\hyperlink{sprof_8c_afe107f8385341e11aef32eaac290b39a}{obstack\+\_\+chunk\+\_\+alloc}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ab7e36af3707843f77cc5b4e831c2fa6d}{malloc}}
+\item 
+\#define \mbox{\hyperlink{sprof_8c_a10ffd65176663f1396a3607ebb41470c}{obstack\+\_\+chunk\+\_\+free}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562ac157bdf0b85a40d2619cbc8bc1ae5fe2}{N\+O\+NE}} = 0, 
+\mbox{\hyperlink{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a3b0513308376baf0d0c15705f6c654d8}{F\+L\+A\+T\+\_\+\+M\+O\+DE}} = 1 $<$$<$ 0, 
+\mbox{\hyperlink{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a77e2a3f53003db23f67ee879e5caa6d7}{C\+A\+L\+L\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+O\+DE}} = 1 $<$$<$ 1, 
+\mbox{\hyperlink{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a2d9695616eceb7d5fa00e5236fdbcfc9}{C\+A\+L\+L\+\_\+\+P\+A\+I\+RS}} = 1 $<$$<$ 2, 
+\newline
+\mbox{\hyperlink{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a922bb852c903d318ee70b2d4045c7687}{D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+DE}} = F\+L\+A\+T\+\_\+\+M\+O\+DE $\vert$ C\+A\+L\+L\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+O\+DE
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sprof_8c_a42fb242b60052d9ce0a94323997f0b18}{\+\_\+\+\_\+profile\+\_\+frequency}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+struct \mbox{\hyperlink{structhere__cg__arc__record}{here\+\_\+cg\+\_\+arc\+\_\+record}} \mbox{\hyperlink{sprof_8c_a0cbebdcd480b4518a664edf0766593a6}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{sprof_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ \mbox{\hyperlink{sprof_8c_acde468a0825fa258e397e0885b11ce08}{argp\+\_\+program\+\_\+version\+\_\+hook}} )(\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$, struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$) = print\+\_\+version
+\item 
+\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{sprof_8c_ad57ae453df50c1bbe804cdc55995e6dc}{from\+\_\+pc}}
+\item 
+\mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} \mbox{\hyperlink{sprof_8c_a98bcaf9f44158652b5c009bbeb586724}{self\+\_\+pc}}
+\item 
+\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} \mbox{\hyperlink{sprof_8c_a86988a65e0d3ece7990c032c159786d6}{count}}
+\item 
+struct \mbox{\hyperlink{structarc__list}{arc\+\_\+list}} \mbox{\hyperlink{sprof_8c_aa36084f9c2936c7d08ab35aee74bee6d}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sprof_8c_ae1d6afd4bee8b5a1f52661d8e298b6a4}\label{sprof_8c_ae1d6afd4bee8b5a1f52661d8e298b6a4}} 
+\index{sprof.c@{sprof.c}!byteorder@{byteorder}}
+\index{byteorder@{byteorder}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{byteorder}{byteorder}}
+{\footnotesize\ttfamily \#define byteorder~\mbox{\hyperlink{elf_2elf_8h_a06385c3e5f0a3b62fae7f5e224e10f89}{E\+L\+F\+D\+A\+T\+A2\+M\+SB}}}
+
+\mbox{\Hypertarget{sprof_8c_ac751cbd79e5ff64d23e0b0a4aa391524}\label{sprof_8c_ac751cbd79e5ff64d23e0b0a4aa391524}} 
+\index{sprof.c@{sprof.c}!byteorder\_name@{byteorder\_name}}
+\index{byteorder\_name@{byteorder\_name}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{byteorder\_name}{byteorder\_name}}
+{\footnotesize\ttfamily \#define byteorder\+\_\+name~\char`\"{}big-\/endian\char`\"{}}
+
+\mbox{\Hypertarget{sprof_8c_afe107f8385341e11aef32eaac290b39a}\label{sprof_8c_afe107f8385341e11aef32eaac290b39a}} 
+\index{sprof.c@{sprof.c}!obstack\_chunk\_alloc@{obstack\_chunk\_alloc}}
+\index{obstack\_chunk\_alloc@{obstack\_chunk\_alloc}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_alloc}{obstack\_chunk\_alloc}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+alloc~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_ab7e36af3707843f77cc5b4e831c2fa6d}{malloc}}}
+
+\mbox{\Hypertarget{sprof_8c_a10ffd65176663f1396a3607ebb41470c}\label{sprof_8c_a10ffd65176663f1396a3607ebb41470c}} 
+\index{sprof.c@{sprof.c}!obstack\_chunk\_free@{obstack\_chunk\_free}}
+\index{obstack\_chunk\_free@{obstack\_chunk\_free}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_free}{obstack\_chunk\_free}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+free~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}}
+
+\mbox{\Hypertarget{sprof_8c_ab87622a94a525a2e082f8329830ed8bd}\label{sprof_8c_ab87622a94a525a2e082f8329830ed8bd}} 
+\index{sprof.c@{sprof.c}!OPT\_TEST@{OPT\_TEST}}
+\index{OPT\_TEST@{OPT\_TEST}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_TEST}{OPT\_TEST}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+T\+E\+ST~1}
+
+\mbox{\Hypertarget{sprof_8c_aca8570fb706c81df371b7f9bc454ae03}\label{sprof_8c_aca8570fb706c81df371b7f9bc454ae03}} 
+\index{sprof.c@{sprof.c}!PACKAGE@{PACKAGE}}
+\index{PACKAGE@{PACKAGE}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{PACKAGE}{PACKAGE}}
+{\footnotesize\ttfamily \#define P\+A\+C\+K\+A\+GE~\mbox{\hyperlink{SYS__libc_8c_adc1580228bc28505838b0ac8e6f5e05e}{\+\_\+libc\+\_\+intl\+\_\+domainname}}}
+
+\mbox{\Hypertarget{sprof_8c_ae688d728e1acdfe5988c7db45d6f0166}\label{sprof_8c_ae688d728e1acdfe5988c7db45d6f0166}} 
+\index{sprof.c@{sprof.c}!PATH\_MAX@{PATH\_MAX}}
+\index{PATH\_MAX@{PATH\_MAX}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{PATH\_MAX}{PATH\_MAX}}
+{\footnotesize\ttfamily \#define P\+A\+T\+H\+\_\+\+M\+AX~1024}
+
+\mbox{\Hypertarget{sprof_8c_a38bf464589f908b00b6a25e20b79c333}\label{sprof_8c_a38bf464589f908b00b6a25e20b79c333}} 
+\index{sprof.c@{sprof.c}!SCALE\_1\_TO\_1@{SCALE\_1\_TO\_1}}
+\index{SCALE\_1\_TO\_1@{SCALE\_1\_TO\_1}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{SCALE\_1\_TO\_1}{SCALE\_1\_TO\_1}}
+{\footnotesize\ttfamily \#define S\+C\+A\+L\+E\+\_\+1\+\_\+\+T\+O\+\_\+1~0x10000L}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562}\label{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!sprof.c@{sprof.c}}\index{sprof.c@{sprof.c}!NONE@{NONE}}}\mbox{\Hypertarget{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562ac157bdf0b85a40d2619cbc8bc1ae5fe2}\label{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562ac157bdf0b85a40d2619cbc8bc1ae5fe2}} 
+N\+O\+NE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAT\_MODE@{FLAT\_MODE}!sprof.c@{sprof.c}}\index{sprof.c@{sprof.c}!FLAT\_MODE@{FLAT\_MODE}}}\mbox{\Hypertarget{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a3b0513308376baf0d0c15705f6c654d8}\label{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a3b0513308376baf0d0c15705f6c654d8}} 
+F\+L\+A\+T\+\_\+\+M\+O\+DE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CALL\_GRAPH\_MODE@{CALL\_GRAPH\_MODE}!sprof.c@{sprof.c}}\index{sprof.c@{sprof.c}!CALL\_GRAPH\_MODE@{CALL\_GRAPH\_MODE}}}\mbox{\Hypertarget{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a77e2a3f53003db23f67ee879e5caa6d7}\label{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a77e2a3f53003db23f67ee879e5caa6d7}} 
+C\+A\+L\+L\+\_\+\+G\+R\+A\+P\+H\+\_\+\+M\+O\+DE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CALL\_PAIRS@{CALL\_PAIRS}!sprof.c@{sprof.c}}\index{sprof.c@{sprof.c}!CALL\_PAIRS@{CALL\_PAIRS}}}\mbox{\Hypertarget{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a2d9695616eceb7d5fa00e5236fdbcfc9}\label{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a2d9695616eceb7d5fa00e5236fdbcfc9}} 
+C\+A\+L\+L\+\_\+\+P\+A\+I\+RS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_MODE@{DEFAULT\_MODE}!sprof.c@{sprof.c}}\index{sprof.c@{sprof.c}!DEFAULT\_MODE@{DEFAULT\_MODE}}}\mbox{\Hypertarget{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a922bb852c903d318ee70b2d4045c7687}\label{sprof_8c_a1f9aebf1de3ebbf4283a4dcf73308562a922bb852c903d318ee70b2d4045c7687}} 
+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+O\+DE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sprof_8c_a0cbebdcd480b4518a664edf0766593a6}\label{sprof_8c_a0cbebdcd480b4518a664edf0766593a6}} 
+\index{sprof.c@{sprof.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhere__cg__arc__record}{here\+\_\+cg\+\_\+arc\+\_\+record}} \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} (\begin{DoxyParamCaption}\item[{(packed)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sprof_8c_a42fb242b60052d9ce0a94323997f0b18}\label{sprof_8c_a42fb242b60052d9ce0a94323997f0b18}} 
+\index{sprof.c@{sprof.c}!\_\_profile\_frequency@{\_\_profile\_frequency}}
+\index{\_\_profile\_frequency@{\_\_profile\_frequency}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{\_\_profile\_frequency()}{\_\_profile\_frequency()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+profile\+\_\+frequency (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sprof_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{sprof_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{sprof.c@{sprof.c}!main@{main}}
+\index{main@{main}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sprof_8c_aa36084f9c2936c7d08ab35aee74bee6d}\label{sprof_8c_aa36084f9c2936c7d08ab35aee74bee6d}} 
+\index{sprof.c@{sprof.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_}{\_\_attribute\_\_}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structarc__list}{arc\+\_\+list}}  \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}}
+
+\mbox{\Hypertarget{sprof_8c_acde468a0825fa258e397e0885b11ce08}\label{sprof_8c_acde468a0825fa258e397e0885b11ce08}} 
+\index{sprof.c@{sprof.c}!argp\_program\_version\_hook@{argp\_program\_version\_hook}}
+\index{argp\_program\_version\_hook@{argp\_program\_version\_hook}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{argp\_program\_version\_hook}{argp\_program\_version\_hook}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}($\ast$ argp\+\_\+program\+\_\+version\+\_\+hook) (\mbox{\hyperlink{libio_2stdio_8h_a4ff5a8904515feed0488e4ac9c901bfc}{F\+I\+LE}} $\ast$, struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$) = print\+\_\+version}
+
+\mbox{\Hypertarget{sprof_8c_a86988a65e0d3ece7990c032c159786d6}\label{sprof_8c_a86988a65e0d3ece7990c032c159786d6}} 
+\index{sprof.c@{sprof.c}!count@{count}}
+\index{count@{count}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} count}
+
+\mbox{\Hypertarget{sprof_8c_ad57ae453df50c1bbe804cdc55995e6dc}\label{sprof_8c_ad57ae453df50c1bbe804cdc55995e6dc}} 
+\index{sprof.c@{sprof.c}!from\_pc@{from\_pc}}
+\index{from\_pc@{from\_pc}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{from\_pc}{from\_pc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} from\+\_\+pc}
+
+\mbox{\Hypertarget{sprof_8c_a98bcaf9f44158652b5c009bbeb586724}\label{sprof_8c_a98bcaf9f44158652b5c009bbeb586724}} 
+\index{sprof.c@{sprof.c}!self\_pc@{self\_pc}}
+\index{self\_pc@{self\_pc}!sprof.c@{sprof.c}}
+\doxysubsubsection{\texorpdfstring{self\_pc}{self\_pc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a728e973c799f206f0151c8a3bd1e5699}{uintptr\+\_\+t}} self\+\_\+pc}
+

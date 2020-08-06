@@ -1,0 +1,91 @@
+
+;; Function des_setparity (*__GI_des_setparity, funcdef_no=0, decl_uid=1845, cgraph_uid=0, symbol_order=4)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 4->5 to 6 failed.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 32 0 35 NOTE_INSN_DELETED)
+(note 35 32 33 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 33 35 34 2 (set (reg/v/f:DI 123 [ p ])
+        (reg:DI 5 di [ p ])) des_soft.c:64 -1
+     (nil))
+(note 34 33 37 2 NOTE_INSN_FUNCTION_BEG)
+(insn 37 34 47 2 (parallel [
+            (set (reg/f:DI 122 [ D.1886 ])
+                (plus:DI (reg/v/f:DI 123 [ p ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 47 37 38 4 2 "" [1 uses])
+(note 38 47 39 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 4 (set (reg/f:DI 124)
+        (symbol_ref:DI ("partab") [flags 0x2]  <var_decl 0x2ad62f3bae10 partab>)) des_soft.c:69 -1
+     (nil))
+(insn 40 39 41 4 (set (reg:QI 126)
+        (mem:QI (reg/v/f:DI 123 [ p ]) [0 MEM[base: p_16, offset: 0B]+0 S1 A8])) des_soft.c:69 -1
+     (nil))
+(insn 41 40 42 4 (parallel [
+            (set (reg:QI 125 [ D.1884 ])
+                (and:QI (reg:QI 126)
+                    (const_int 127 [0x7f])))
+            (clobber (reg:CC 17 flags))
+        ]) des_soft.c:69 -1
+     (expr_list:REG_EQUAL (and:QI (mem:QI (reg/v/f:DI 123 [ p ]) [0 MEM[base: p_16, offset: 0B]+0 S1 A8])
+            (const_int 127 [0x7f]))
+        (nil)))
+(insn 42 41 43 4 (set (reg:SI 127 [ D.1885 ])
+        (sign_extend:SI (reg:QI 125 [ D.1884 ]))) des_soft.c:69 -1
+     (nil))
+(insn 43 42 44 4 (set (reg:DI 128)
+        (sign_extend:DI (reg:SI 127 [ D.1885 ]))) des_soft.c:69 -1
+     (nil))
+(insn 44 43 45 4 (set (reg:QI 129)
+        (mem/u/j:QI (plus:DI (reg/f:DI 124)
+                (reg:DI 128)) [0 partab S1 A8])) des_soft.c:69 -1
+     (nil))
+(insn 45 44 46 4 (set (mem:QI (reg/v/f:DI 123 [ p ]) [0 MEM[base: p_16, offset: 0B]+0 S1 A8])
+        (reg:QI 129)) des_soft.c:69 -1
+     (nil))
+(insn 46 45 48 4 (parallel [
+            (set (reg/v/f:DI 123 [ p ])
+                (plus:DI (reg/v/f:DI 123 [ p ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) des_soft.c:70 -1
+     (nil))
+(insn 48 46 49 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 123 [ p ])
+            (reg/f:DI 122 [ D.1886 ]))) des_soft.c:67 -1
+     (nil))
+(jump_insn 49 48 50 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 47)
+            (pc))) des_soft.c:67 -1
+     (int_list:REG_BR_PROB 8750 (nil))
+ -> 47)
+(note 50 49 0 5 [bb 5] NOTE_INSN_BASIC_BLOCK)

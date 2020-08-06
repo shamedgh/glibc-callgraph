@@ -1,0 +1,65 @@
+
+;; Function __pthread_cleanup_routine (__pthread_cleanup_routine, funcdef_no=3, decl_uid=2744, cgraph_uid=3, symbol_order=3)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+deleting block 5
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 90 [ f ])
+        (reg:DI 5 di [ f ])) cleanup_routine.c:24 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 90 [ f ])
+                    (const_int 16 [0x10])) [3 f_3(D)->__do_it+0 S4 A64])
+            (const_int 0 [0]))) cleanup_routine.c:25 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 16)
+            (pc))) cleanup_routine.c:25 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 16)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (set (reg:DI 91)
+        (mem/f:DI (plus:DI (reg/v/f:DI 90 [ f ])
+                (const_int 8 [0x8])) [2 f_3(D)->__cancel_arg+0 S8 A64])) cleanup_routine.c:26 -1
+     (nil))
+(insn 10 9 11 4 (set (reg/f:DI 92)
+        (mem/f:DI (reg/v/f:DI 90 [ f ]) [2 f_3(D)->__cancel_routine+0 S8 A64])) cleanup_routine.c:26 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:DI 5 di)
+        (reg:DI 91)) cleanup_routine.c:26 -1
+     (nil))
+(call_insn/j 12 11 13 4 (call (mem:QI (reg/f:DI 92) [0 *_5 S1 A8])
+        (const_int 0 [0])) cleanup_routine.c:26 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 13 12 16)
+(code_label 16 13 17 6 1 "" [1 uses])
+(note 17 16 0 6 [bb 6] NOTE_INSN_BASIC_BLOCK)

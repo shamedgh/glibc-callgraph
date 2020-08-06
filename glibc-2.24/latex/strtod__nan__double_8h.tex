@@ -1,0 +1,38 @@
+\hypertarget{strtod__nan__double_8h}{}\doxysection{stdlib/strtod\+\_\+nan\+\_\+double.h File Reference}
+\label{strtod__nan__double_8h}\index{stdlib/strtod\_nan\_double.h@{stdlib/strtod\_nan\_double.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{strtod__nan__double_8h_ae8690abbffa85934d64d545920e2b108}{F\+L\+O\+AT}}~double
+\item 
+\#define \mbox{\hyperlink{strtod__nan__double_8h_a8ba1cc370cb08e88c694cbea1db896e7}{S\+E\+T\+\_\+\+M\+A\+N\+T\+I\+S\+SA}}(flt,  mant)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{strtod__nan__double_8h_ae8690abbffa85934d64d545920e2b108}\label{strtod__nan__double_8h_ae8690abbffa85934d64d545920e2b108}} 
+\index{strtod\_nan\_double.h@{strtod\_nan\_double.h}!FLOAT@{FLOAT}}
+\index{FLOAT@{FLOAT}!strtod\_nan\_double.h@{strtod\_nan\_double.h}}
+\doxysubsubsection{\texorpdfstring{FLOAT}{FLOAT}}
+{\footnotesize\ttfamily \#define F\+L\+O\+AT~double}
+
+\mbox{\Hypertarget{strtod__nan__double_8h_a8ba1cc370cb08e88c694cbea1db896e7}\label{strtod__nan__double_8h_a8ba1cc370cb08e88c694cbea1db896e7}} 
+\index{strtod\_nan\_double.h@{strtod\_nan\_double.h}!SET\_MANTISSA@{SET\_MANTISSA}}
+\index{SET\_MANTISSA@{SET\_MANTISSA}!strtod\_nan\_double.h@{strtod\_nan\_double.h}}
+\doxysubsubsection{\texorpdfstring{SET\_MANTISSA}{SET\_MANTISSA}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+M\+A\+N\+T\+I\+S\+SA(\begin{DoxyParamCaption}\item[{}]{flt,  }\item[{}]{mant }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                          \(\backslash\)}
+\DoxyCodeLine{    \{                           \(\backslash\)}
+\DoxyCodeLine{      union \mbox{\hyperlink{unionieee754__double}{ieee754\_double}} \mbox{\hyperlink{ksc5601_8h_a5874b4c2ec2e28321eea4e4871d08222}{u}};                \(\backslash\)}
+\DoxyCodeLine{      u.d = (flt);                  \(\backslash\)}
+\DoxyCodeLine{      u.ieee\_nan.mantissa0 = (mant) >> 32;      \(\backslash\)}
+\DoxyCodeLine{      u.ieee\_nan.mantissa1 = (mant);            \(\backslash\)}
+\DoxyCodeLine{      if ((\mbox{\hyperlink{unionu}{u}}.ieee.mantissa0 | \mbox{\hyperlink{unionu}{u}}.ieee.mantissa1) != 0) \(\backslash\)}
+\DoxyCodeLine{    (flt) = \mbox{\hyperlink{unionu}{u}}.\mbox{\hyperlink{unionu_a41525034f5004a216bf6ab3a2ec1ea66}{d}};                  \(\backslash\)}
+\DoxyCodeLine{    \}                           \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}

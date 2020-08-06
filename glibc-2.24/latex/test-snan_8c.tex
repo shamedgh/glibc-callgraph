@@ -1,0 +1,66 @@
+\hypertarget{test-snan_8c}{}\doxysection{math/test-\/snan.c File Reference}
+\label{test-snan_8c}\index{math/test-\/snan.c@{math/test-\/snan.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+{\ttfamily \#include $<$fenv.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$setjmp.\+h$>$}\newline
+{\ttfamily \#include $<$math-\/tests.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test-snan_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{test-snan_8c_a972edd2c36a7ab2e9a3e6aa2938a90e3}{C\+H\+E\+CK}}(testname,  expr)
+\item 
+\#define \mbox{\hyperlink{test-snan_8c_aaf6c630923396be8cffd046aa606b22d}{T\+E\+S\+T\+\_\+\+F\+U\+NC}}(N\+A\+ME,  \mbox{\hyperlink{sysdeps_2ieee754_2ldbl-96_2strtold__l_8c_ae8690abbffa85934d64d545920e2b108}{F\+L\+O\+AT}},  \mbox{\hyperlink{wcsxfrm__l_8c_a54e38498e51683b1e6424fd523e0e9ed}{S\+U\+F\+F\+IX}})
+\item 
+\#define \mbox{\hyperlink{test-snan_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test-snan_8c_a369266c24eacffb87046522897a570d5}\label{test-snan_8c_a369266c24eacffb87046522897a570d5}} 
+\index{test-\/snan.c@{test-\/snan.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!test-\/snan.c@{test-\/snan.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE~1}
+
+\mbox{\Hypertarget{test-snan_8c_a972edd2c36a7ab2e9a3e6aa2938a90e3}\label{test-snan_8c_a972edd2c36a7ab2e9a3e6aa2938a90e3}} 
+\index{test-\/snan.c@{test-\/snan.c}!CHECK@{CHECK}}
+\index{CHECK@{CHECK}!test-\/snan.c@{test-\/snan.c}}
+\doxysubsubsection{\texorpdfstring{CHECK}{CHECK}}
+{\footnotesize\ttfamily \#define C\+H\+E\+CK(\begin{DoxyParamCaption}\item[{}]{testname,  }\item[{}]{expr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    feclearexcept (\mbox{\hyperlink{bits_2fenv_8h_a09e405b3782b934813075e48366dda9a}{FE\_ALL\_EXCEPT}});                       \(\backslash\)}
+\DoxyCodeLine{    feenableexcept (\mbox{\hyperlink{bits_2fenv_8h_a09e405b3782b934813075e48366dda9a}{FE\_ALL\_EXCEPT}});                          \(\backslash\)}
+\DoxyCodeLine{    if (sigsetjmp (sigfpe\_buf, 0))                        \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    printf (\textcolor{stringliteral}{"\%s raised SIGFPE\(\backslash\)n"}, testname);                  \(\backslash\)}
+\DoxyCodeLine{    ++\mbox{\hyperlink{errorlib_8h_a6cd688c2b15843680b39988557795f44}{errors}};                               \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (!(expr))                                 \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{        printf (\textcolor{stringliteral}{"Failure: \%s\(\backslash\)n"}, testname);                   \(\backslash\)}
+\DoxyCodeLine{        ++\mbox{\hyperlink{errorlib_8h_a6cd688c2b15843680b39988557795f44}{errors}};                               \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{test-snan_8c_aaf6c630923396be8cffd046aa606b22d}\label{test-snan_8c_aaf6c630923396be8cffd046aa606b22d}} 
+\index{test-\/snan.c@{test-\/snan.c}!TEST\_FUNC@{TEST\_FUNC}}
+\index{TEST\_FUNC@{TEST\_FUNC}!test-\/snan.c@{test-\/snan.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNC}{TEST\_FUNC}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+NC(\begin{DoxyParamCaption}\item[{}]{N\+A\+ME,  }\item[{}]{\mbox{\hyperlink{sysdeps_2ieee754_2ldbl-96_2strtold__l_8c_ae8690abbffa85934d64d545920e2b108}{F\+L\+O\+AT}},  }\item[{}]{\mbox{\hyperlink{wcsxfrm__l_8c_a54e38498e51683b1e6424fd523e0e9ed}{S\+U\+F\+F\+IX}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test-snan_8c_a6002ab22c656c4024eb89b538930bc32}\label{test-snan_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{test-\/snan.c@{test-\/snan.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!test-\/snan.c@{test-\/snan.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+

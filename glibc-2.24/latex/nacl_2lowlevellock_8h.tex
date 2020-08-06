@@ -1,0 +1,40 @@
+\hypertarget{nacl_2lowlevellock_8h}{}\doxysection{sysdeps/nacl/lowlevellock.h File Reference}
+\label{nacl_2lowlevellock_8h}\index{sysdeps/nacl/lowlevellock.h@{sysdeps/nacl/lowlevellock.h}}
+{\ttfamily \#include $<$sysdeps/nptl/lowlevellock.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nacl_2lowlevellock_8h_ae55891118442030eea921f9572a67be1}{N\+A\+C\+L\+\_\+\+E\+X\+I\+T\+I\+N\+G\+\_\+\+T\+ID}}~1
+\item 
+\#define \mbox{\hyperlink{nacl_2lowlevellock_8h_ae8d3409b1476c95938cc7edf02dbd8ec}{lll\+\_\+wait\+\_\+tid}}(\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nacl_2lowlevellock_8h_ae8d3409b1476c95938cc7edf02dbd8ec}\label{nacl_2lowlevellock_8h_ae8d3409b1476c95938cc7edf02dbd8ec}} 
+\index{lowlevellock.h@{lowlevellock.h}!lll\_wait\_tid@{lll\_wait\_tid}}
+\index{lll\_wait\_tid@{lll\_wait\_tid}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{lll\_wait\_tid}{lll\_wait\_tid}}
+{\footnotesize\ttfamily \#define lll\+\_\+wait\+\_\+tid(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                            \(\backslash\)}
+\DoxyCodeLine{    \_\_typeof (\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}) \_\_tid;                \(\backslash\)}
+\DoxyCodeLine{    volatile \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}) *\_\_tidp = \&(\mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}});     \(\backslash\)}
+\DoxyCodeLine{    while ((\_\_tid = \mbox{\hyperlink{atomic_8h_a51942c35164da59fb38d9dd43092f6be}{atomic\_load\_relaxed}} (\_\_tidp)) != 0) \(\backslash\)}
+\DoxyCodeLine{      \{                         \(\backslash\)}
+\DoxyCodeLine{    if (\_\_tid == \mbox{\hyperlink{nacl_2lowlevellock_8h_ae55891118442030eea921f9572a67be1}{NACL\_EXITING\_TID}})          \(\backslash\)}
+\DoxyCodeLine{      atomic\_spin\_nop ();               \mbox{\hyperlink{nacl_2lowlevellock-futex_8h_a75a84d45867dbc942f2e76027a1057ef}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{nacl_2lowlevellock-futex_8h_a75a84d45867dbc942f2e76027a1057ef}{    else                        \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{nacl_2lowlevellock-futex_8h_a75a84d45867dbc942f2e76027a1057ef}{      lll\_futex\_wait}} (\_\_tidp, \_\_tid, \mbox{\hyperlink{nacl_2lowlevellock-futex_8h_afab249e7f9dd828dc45d13b232097941}{LLL\_PRIVATE}});  \(\backslash\)}
+\DoxyCodeLine{      \}                         \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nacl_2lowlevellock_8h_ae55891118442030eea921f9572a67be1}\label{nacl_2lowlevellock_8h_ae55891118442030eea921f9572a67be1}} 
+\index{lowlevellock.h@{lowlevellock.h}!NACL\_EXITING\_TID@{NACL\_EXITING\_TID}}
+\index{NACL\_EXITING\_TID@{NACL\_EXITING\_TID}!lowlevellock.h@{lowlevellock.h}}
+\doxysubsubsection{\texorpdfstring{NACL\_EXITING\_TID}{NACL\_EXITING\_TID}}
+{\footnotesize\ttfamily \#define N\+A\+C\+L\+\_\+\+E\+X\+I\+T\+I\+N\+G\+\_\+\+T\+ID~1}
+

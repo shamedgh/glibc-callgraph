@@ -1,0 +1,122 @@
+\hypertarget{i386_2memcopy_8h}{}\doxysection{sysdeps/i386/memcopy.h File Reference}
+\label{i386_2memcopy_8h}\index{sysdeps/i386/memcopy.h@{sysdeps/i386/memcopy.h}}
+{\ttfamily \#include $<$sysdeps/generic/memcopy.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{i386_2memcopy_8h_a5ba4325e274dd195be8ab8ef88e6490d}{O\+P\+\_\+\+T\+\_\+\+T\+H\+R\+ES}}~8
+\item 
+\#define \mbox{\hyperlink{i386_2memcopy_8h_a2a5a4caa5aeab271c4b266c19f9a9dfc}{B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+F\+WD}}(dst\+\_\+bp,  src\+\_\+bp,  nbytes)
+\item 
+\#define \mbox{\hyperlink{i386_2memcopy_8h_a18f8f8e7bc9225733e12c5296f8d093e}{B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+B\+WD}}(dst\+\_\+ep,  src\+\_\+ep,  nbytes)
+\item 
+\#define \mbox{\hyperlink{i386_2memcopy_8h_ab87221a26abc4ed7bcd723443306d050}{W\+O\+R\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+F\+WD}}(dst\+\_\+bp,  src\+\_\+bp,  nbytes\+\_\+left,  nbytes)
+\item 
+\#define \mbox{\hyperlink{i386_2memcopy_8h_a1972899eeb70247c0fc0f7e294f5440f}{W\+O\+R\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+B\+WD}}(dst\+\_\+ep,  src\+\_\+ep,  nbytes\+\_\+left,  nbytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{i386_2memcopy_8h_a18f8f8e7bc9225733e12c5296f8d093e}\label{i386_2memcopy_8h_a18f8f8e7bc9225733e12c5296f8d093e}} 
+\index{memcopy.h@{memcopy.h}!BYTE\_COPY\_BWD@{BYTE\_COPY\_BWD}}
+\index{BYTE\_COPY\_BWD@{BYTE\_COPY\_BWD}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{BYTE\_COPY\_BWD}{BYTE\_COPY\_BWD}}
+{\footnotesize\ttfamily \#define B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+B\+WD(\begin{DoxyParamCaption}\item[{}]{dst\+\_\+ep,  }\item[{}]{src\+\_\+ep,  }\item[{}]{nbytes }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      int \_\_d0;                                   \(\backslash\)}
+\DoxyCodeLine{      asm \textcolor{keyword}{volatile}(\textcolor{comment}{/* Set the direction flag, so copying goes backwards.  */}  \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"std\(\backslash\)n"}                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{comment}{/* Copy bytes.  */}                         \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"rep\(\backslash\)n"}                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"movsb\(\backslash\)n"}                              \(\backslash\)}
+\DoxyCodeLine{           \textcolor{comment}{/* Clear the dir flag.  Convention says it should be 0. */} \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"cld"} :                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"=D"} (dst\_ep), \textcolor{stringliteral}{"=S"} (src\_ep), \textcolor{stringliteral}{"=c"} (\_\_d0) :            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"0"} (dst\_ep -\/ 1), \textcolor{stringliteral}{"1"} (src\_ep -\/ 1), \textcolor{stringliteral}{"2"} (nbytes) :         \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"memory"});                             \(\backslash\)}
+\DoxyCodeLine{      dst\_ep += 1;                                \(\backslash\)}
+\DoxyCodeLine{      src\_ep += 1;                                \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2memcopy_8h_a2a5a4caa5aeab271c4b266c19f9a9dfc}\label{i386_2memcopy_8h_a2a5a4caa5aeab271c4b266c19f9a9dfc}} 
+\index{memcopy.h@{memcopy.h}!BYTE\_COPY\_FWD@{BYTE\_COPY\_FWD}}
+\index{BYTE\_COPY\_FWD@{BYTE\_COPY\_FWD}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{BYTE\_COPY\_FWD}{BYTE\_COPY\_FWD}}
+{\footnotesize\ttfamily \#define B\+Y\+T\+E\+\_\+\+C\+O\+P\+Y\+\_\+\+F\+WD(\begin{DoxyParamCaption}\item[{}]{dst\+\_\+bp,  }\item[{}]{src\+\_\+bp,  }\item[{}]{nbytes }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    int \_\_d0;                                     \(\backslash\)}
+\DoxyCodeLine{    asm \textcolor{keyword}{volatile}(\textcolor{comment}{/* Clear the direction flag, so copying goes forward.  */}    \(\backslash\)}
+\DoxyCodeLine{         \textcolor{stringliteral}{"cld\(\backslash\)n"}                              \(\backslash\)}
+\DoxyCodeLine{         \textcolor{comment}{/* Copy bytes.  */}                       \(\backslash\)}
+\DoxyCodeLine{         \textcolor{stringliteral}{"rep\(\backslash\)n"}                              \(\backslash\)}
+\DoxyCodeLine{         \textcolor{stringliteral}{"movsb"} :                            \(\backslash\)}
+\DoxyCodeLine{         \textcolor{stringliteral}{"=D"} (dst\_bp), \textcolor{stringliteral}{"=S"} (src\_bp), \textcolor{stringliteral}{"=c"} (\_\_d0) :              \(\backslash\)}
+\DoxyCodeLine{         \textcolor{stringliteral}{"0"} (dst\_bp), \textcolor{stringliteral}{"1"} (src\_bp), \textcolor{stringliteral}{"2"} (nbytes) :           \(\backslash\)}
+\DoxyCodeLine{         \textcolor{stringliteral}{"memory"});                           \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2memcopy_8h_a5ba4325e274dd195be8ab8ef88e6490d}\label{i386_2memcopy_8h_a5ba4325e274dd195be8ab8ef88e6490d}} 
+\index{memcopy.h@{memcopy.h}!OP\_T\_THRES@{OP\_T\_THRES}}
+\index{OP\_T\_THRES@{OP\_T\_THRES}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{OP\_T\_THRES}{OP\_T\_THRES}}
+{\footnotesize\ttfamily \#define O\+P\+\_\+\+T\+\_\+\+T\+H\+R\+ES~8}
+
+\mbox{\Hypertarget{i386_2memcopy_8h_a1972899eeb70247c0fc0f7e294f5440f}\label{i386_2memcopy_8h_a1972899eeb70247c0fc0f7e294f5440f}} 
+\index{memcopy.h@{memcopy.h}!WORD\_COPY\_BWD@{WORD\_COPY\_BWD}}
+\index{WORD\_COPY\_BWD@{WORD\_COPY\_BWD}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{WORD\_COPY\_BWD}{WORD\_COPY\_BWD}}
+{\footnotesize\ttfamily \#define W\+O\+R\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+B\+WD(\begin{DoxyParamCaption}\item[{}]{dst\+\_\+ep,  }\item[{}]{src\+\_\+ep,  }\item[{}]{nbytes\+\_\+left,  }\item[{}]{nbytes }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      int \_\_d0;                                   \(\backslash\)}
+\DoxyCodeLine{      asm \textcolor{keyword}{volatile}(\textcolor{comment}{/* Set the direction flag, so copying goes backwards.  */}  \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"std\(\backslash\)n"}                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{comment}{/* Copy longwords.  */}                     \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"rep\(\backslash\)n"}                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"movsl\(\backslash\)n"}                              \(\backslash\)}
+\DoxyCodeLine{           \textcolor{comment}{/* Clear the dir flag.  Convention says it should be 0. */} \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"cld"} :                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"=D"} (dst\_ep), \textcolor{stringliteral}{"=S"} (src\_ep), \textcolor{stringliteral}{"=c"} (\_\_d0) :            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"0"} (dst\_ep -\/ 4), \textcolor{stringliteral}{"1"} (src\_ep -\/ 4), \textcolor{stringliteral}{"2"} ((nbytes) / 4) :   \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"memory"});                             \(\backslash\)}
+\DoxyCodeLine{      dst\_ep += 4;                                \(\backslash\)}
+\DoxyCodeLine{      src\_ep += 4;                                \(\backslash\)}
+\DoxyCodeLine{      (nbytes\_left) = (nbytes) \% 4;                       \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2memcopy_8h_ab87221a26abc4ed7bcd723443306d050}\label{i386_2memcopy_8h_ab87221a26abc4ed7bcd723443306d050}} 
+\index{memcopy.h@{memcopy.h}!WORD\_COPY\_FWD@{WORD\_COPY\_FWD}}
+\index{WORD\_COPY\_FWD@{WORD\_COPY\_FWD}!memcopy.h@{memcopy.h}}
+\doxysubsubsection{\texorpdfstring{WORD\_COPY\_FWD}{WORD\_COPY\_FWD}}
+{\footnotesize\ttfamily \#define W\+O\+R\+D\+\_\+\+C\+O\+P\+Y\+\_\+\+F\+WD(\begin{DoxyParamCaption}\item[{}]{dst\+\_\+bp,  }\item[{}]{src\+\_\+bp,  }\item[{}]{nbytes\+\_\+left,  }\item[{}]{nbytes }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                        \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      int \_\_d0;                                   \(\backslash\)}
+\DoxyCodeLine{      asm \textcolor{keyword}{volatile}(\textcolor{comment}{/* Clear the direction flag, so copying goes forward.  */}  \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"cld\(\backslash\)n"}                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{comment}{/* Copy longwords.  */}                     \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"rep\(\backslash\)n"}                            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"movsl"} :                              \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"=D"} (dst\_bp), \textcolor{stringliteral}{"=S"} (src\_bp), \textcolor{stringliteral}{"=c"} (\_\_d0) :            \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"0"} (dst\_bp), \textcolor{stringliteral}{"1"} (src\_bp), \textcolor{stringliteral}{"2"} ((nbytes) / 4) :       \(\backslash\)}
+\DoxyCodeLine{           \textcolor{stringliteral}{"memory"});                             \(\backslash\)}
+\DoxyCodeLine{      (nbytes\_left) = (nbytes) \% 4;                       \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

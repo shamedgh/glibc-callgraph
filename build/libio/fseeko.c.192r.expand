@@ -1,0 +1,591 @@
+
+;; Function fseeko (fseeko, funcdef_no=50, decl_uid=10058, cgraph_uid=50, symbol_order=55)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Forwarding edge 8->10 to 13 failed.
+Edge 11->10 redirected to 13
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 8->10 to 13 failed.
+Deleted label in block 10.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 115 [ fp ])
+        (reg:DI 5 di [ fp ])) fseeko.c:32 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 116 [ offset ])
+        (reg:DI 4 si [ offset ])) fseeko.c:32 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 117 [ whence ])
+        (reg:SI 1 dx [ whence ])) fseeko.c:32 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:SI 119)
+        (mem:SI (reg/v/f:DI 115 [ fp ]) [3 fp_5(D)->_flags+0 S4 A64])) fseeko.c:35 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:SI 118 [ D.10232 ])
+                (and:SI (reg:SI 119)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) fseeko.c:35 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 115 [ fp ]) [3 fp_5(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 10 9 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 118 [ D.10232 ])
+            (const_int 0 [0]))) fseeko.c:35 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 30)
+            (pc))) fseeko.c:35 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 30)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (parallel [
+            (set (reg:DI 120 [ __self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") fseeko.c:35)
+                    ]
+                     [] fseeko.c:35))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) fseeko.c:35 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/v/f:DI 90 [ __self ])
+        (reg:DI 120 [ __self ])) fseeko.c:35 -1
+     (nil))
+(insn 15 14 16 4 (set (reg/f:DI 95 [ D.10234 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 115 [ fp ])
+                (const_int 136 [0x88])) [1 fp_5(D)->_lock+0 S8 A64])) fseeko.c:35 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 90 [ __self ])
+            (mem/f:DI (plus:DI (reg/f:DI 95 [ D.10234 ])
+                    (const_int 8 [0x8])) [1 _9->owner+0 S8 A64]))) fseeko.c:35 -1
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) fseeko.c:35 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 27)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:SI 124)
+        (const_int 1 [0x1])) fseeko.c:35 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:SI 125)
+        (const_int 0 [0])) fseeko.c:35 -1
+     (nil))
+(insn 21 20 22 5 (parallel [
+            (set (reg:SI 121 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 124)
+                        (mem:SI (reg/f:DI 95 [ D.10234 ]) [3 _9->lock+0 S4 A64])
+                        (reg:SI 125)
+                    ]
+                     [
+                        (asm_input:SI ("0") fseeko.c:35)
+                        (asm_input:SI ("m") fseeko.c:35)
+                        (asm_input:SI ("3") fseeko.c:35)
+                    ]
+                     [] fseeko.c:35))
+            (set (reg:SI 122 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 124)
+                        (mem:SI (reg/f:DI 95 [ D.10234 ]) [3 _9->lock+0 S4 A64])
+                        (reg:SI 125)
+                    ]
+                     [
+                        (asm_input:SI ("0") fseeko.c:35)
+                        (asm_input:SI ("m") fseeko.c:35)
+                        (asm_input:SI ("3") fseeko.c:35)
+                    ]
+                     [] fseeko.c:35))
+            (set (mem:SI (reg/f:DI 95 [ D.10234 ]) [3 _9->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 124)
+                        (mem:SI (reg/f:DI 95 [ D.10234 ]) [3 _9->lock+0 S4 A64])
+                        (reg:SI 125)
+                    ]
+                     [
+                        (asm_input:SI ("0") fseeko.c:35)
+                        (asm_input:SI ("m") fseeko.c:35)
+                        (asm_input:SI ("3") fseeko.c:35)
+                    ]
+                     [] fseeko.c:35))
+            (set (reg:SI 123 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 124)
+                        (mem:SI (reg/f:DI 95 [ D.10234 ]) [3 _9->lock+0 S4 A64])
+                        (reg:SI 125)
+                    ]
+                     [
+                        (asm_input:SI ("0") fseeko.c:35)
+                        (asm_input:SI ("m") fseeko.c:35)
+                        (asm_input:SI ("3") fseeko.c:35)
+                    ]
+                     [] fseeko.c:35))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) fseeko.c:35 -1
+     (nil))
+(insn 22 21 23 5 (set (reg/v:SI 92 [ ignore1 ])
+        (reg:SI 121 [ ignore1 ])) fseeko.c:35 -1
+     (nil))
+(insn 23 22 24 5 (set (reg/v:SI 93 [ ignore2 ])
+        (reg:SI 122 [ ignore2 ])) fseeko.c:35 -1
+     (nil))
+(insn 24 23 25 5 (set (reg/v:SI 94 [ ignore3 ])
+        (reg:SI 123 [ ignore3 ])) fseeko.c:35 -1
+     (nil))
+(insn 25 24 26 5 (set (reg/f:DI 95 [ D.10234 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 115 [ fp ])
+                (const_int 136 [0x88])) [1 fp_5(D)->_lock+0 S8 A64])) fseeko.c:35 -1
+     (nil))
+(insn 26 25 27 5 (set (mem/f:DI (plus:DI (reg/f:DI 95 [ D.10234 ])
+                (const_int 8 [0x8])) [1 _15->owner+0 S8 A64])
+        (reg/v/f:DI 90 [ __self ])) fseeko.c:35 -1
+     (nil))
+(code_label 27 26 28 6 3 "" [1 uses])
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (parallel [
+            (set (mem:SI (plus:DI (reg/f:DI 95 [ D.10234 ])
+                        (const_int 4 [0x4])) [3 _51->cnt+0 S4 A32])
+                (plus:SI (mem:SI (plus:DI (reg/f:DI 95 [ D.10234 ])
+                            (const_int 4 [0x4])) [3 _51->cnt+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) fseeko.c:35 -1
+     (nil))
+(code_label 30 29 31 7 2 "" [1 uses])
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 7 (set (reg:SI 2 cx)
+        (const_int 3 [0x3])) fseeko.c:36 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:SI 1 dx)
+        (reg/v:SI 117 [ whence ])) fseeko.c:36 -1
+     (nil))
+(insn 34 33 35 7 (set (reg:DI 4 si)
+        (reg/v:DI 116 [ offset ])) fseeko.c:36 -1
+     (nil))
+(insn 35 34 36 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 115 [ fp ])) fseeko.c:36 -1
+     (nil))
+(call_insn 36 35 95 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_IO_seekoff_unlocked") [flags 0x43]  <function_decl 0x2b3fde2e5af8 _IO_seekoff_unlocked>) [0 _IO_seekoff_unlocked S1 A8])
+            (const_int 0 [0]))) fseeko.c:36 -1
+     (expr_list:REG_EH_REGION (const_int 1 [0x1])
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_IO_seekoff_unlocked") [flags 0x43]  <function_decl 0x2b3fde2e5af8 _IO_seekoff_unlocked>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+(note 95 36 37 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 37 95 39 8 (set (reg:DI 98 [ D.10235 ])
+        (reg:DI 0 ax)) fseeko.c:36 -1
+     (nil))
+(insn 39 37 40 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 98 [ D.10235 ])
+            (const_int -1 [0xffffffffffffffff]))) fseeko.c:36 -1
+     (nil))
+(insn 40 39 41 8 (set (reg:QI 127)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) fseeko.c:36 -1
+     (nil))
+(insn 41 40 42 8 (set (reg:SI 126 [ D.10236 ])
+        (zero_extend:SI (reg:QI 127))) fseeko.c:36 -1
+     (nil))
+(insn 42 41 43 8 (parallel [
+            (set (reg:SI 87 [ D.10232 ])
+                (neg:SI (reg:SI 126 [ D.10236 ])))
+            (clobber (reg:CC 17 flags))
+        ]) fseeko.c:36 -1
+     (nil))
+(insn 43 42 44 8 (set (reg:SI 129)
+        (mem:SI (reg/v/f:DI 115 [ fp ]) [3 fp_5(D)->_flags+0 S4 A64])) libioP.h:862 -1
+     (nil))
+(insn 44 43 45 8 (parallel [
+            (set (reg:SI 128 [ D.10232 ])
+                (and:SI (reg:SI 129)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:862 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 115 [ fp ]) [3 fp_5(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 45 44 46 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 128 [ D.10232 ])
+            (const_int 0 [0]))) libioP.h:862 -1
+     (nil))
+(jump_insn 46 45 47 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 50)
+            (pc))) libioP.h:862 -1
+     (int_list:REG_BR_PROB 3721 (nil))
+ -> 50)
+(note 47 46 48 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 48 47 49 10 (set (pc)
+        (label_ref 63)) libioP.h:862 -1
+     (nil)
+ -> 63)
+(barrier 49 48 50)
+(code_label 50 49 51 11 4 "" [1 uses])
+(note 51 50 52 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 11 (set (reg/f:DI 101 [ D.10234 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 115 [ fp ])
+                (const_int 136 [0x88])) [1 fp_5(D)->_lock+0 S8 A64])) libioP.h:863 -1
+     (nil))
+(insn 53 52 54 11 (set (reg:SI 130)
+        (mem:SI (plus:DI (reg/f:DI 101 [ D.10234 ])
+                (const_int 4 [0x4])) [3 _28->cnt+0 S4 A32])) libioP.h:863 -1
+     (nil))
+(insn 54 53 55 11 (parallel [
+            (set (reg:SI 103 [ D.10232 ])
+                (plus:SI (reg:SI 130)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:863 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 101 [ D.10234 ])
+                    (const_int 4 [0x4])) [3 _28->cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 55 54 57 11 (set (mem:SI (plus:DI (reg/f:DI 101 [ D.10234 ])
+                (const_int 4 [0x4])) [3 _28->cnt+0 S4 A32])
+        (reg:SI 103 [ D.10232 ])) libioP.h:863 -1
+     (nil))
+(insn 57 55 58 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 103 [ D.10232 ])
+            (const_int 0 [0]))) libioP.h:863 -1
+     (nil))
+(jump_insn 58 57 59 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 63)
+            (pc))) libioP.h:863 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 63)
+(note 59 58 60 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 12 (set (mem/f:DI (plus:DI (reg/f:DI 101 [ D.10234 ])
+                (const_int 8 [0x8])) [1 _28->owner+0 S8 A64])
+        (const_int 0 [0])) libioP.h:863 -1
+     (nil))
+(insn 61 60 62 12 (parallel [
+            (set (mem:SI (reg/f:DI 101 [ D.10234 ]) [3 _28->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem:SI (reg/f:DI 101 [ D.10234 ]) [3 _28->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (set (reg:SI 131 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem:SI (reg/f:DI 101 [ D.10234 ]) [3 _28->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) libioP.h:863 -1
+     (nil))
+(insn 62 61 63 12 (set (reg/v:SI 104 [ ignore ])
+        (reg:SI 131 [ ignore ])) libioP.h:863 -1
+     (nil))
+(code_label 63 62 64 13 5 "" [2 uses])
+(note 64 63 65 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 13 (set (reg:SI 114 [ <retval> ])
+        (reg:SI 87 [ D.10232 ])) fseeko.c:38 -1
+     (nil))
+(jump_insn 66 65 67 13 (set (pc)
+        (label_ref 91)) fseeko.c:38 -1
+     (nil)
+ -> 91)
+(barrier 67 66 96)
+(code_label/s 96 67 98 14 9 "" [1 uses])
+(note 98 96 97 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 97 98 68 14 (set (reg:DI 137)
+        (reg:DI 0 ax)) -1
+     (nil))
+(code_label 68 97 69 15 7 "" [0 uses])
+(note 69 68 70 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 15 (set (reg:SI 134)
+        (mem:SI (reg/v/f:DI 115 [ fp ]) [3 fp_5(D)->_flags+0 S4 A64])) libioP.h:862 -1
+     (nil))
+(insn 71 70 72 15 (parallel [
+            (set (reg:SI 133 [ D.10232 ])
+                (and:SI (reg:SI 134)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:862 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 115 [ fp ]) [3 fp_5(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 72 71 73 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 133 [ D.10232 ])
+            (const_int 0 [0]))) libioP.h:862 -1
+     (nil))
+(jump_insn 73 72 74 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) libioP.h:862 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 85)
+(note 74 73 75 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 16 (set (reg/f:DI 107 [ D.10234 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 115 [ fp ])
+                (const_int 136 [0x88])) [1 fp_5(D)->_lock+0 S8 A64])) libioP.h:863 -1
+     (nil))
+(insn 76 75 77 16 (set (reg:SI 135)
+        (mem:SI (plus:DI (reg/f:DI 107 [ D.10234 ])
+                (const_int 4 [0x4])) [3 _34->cnt+0 S4 A32])) libioP.h:863 -1
+     (nil))
+(insn 77 76 78 16 (parallel [
+            (set (reg:SI 109 [ D.10232 ])
+                (plus:SI (reg:SI 135)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:863 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 107 [ D.10234 ])
+                    (const_int 4 [0x4])) [3 _34->cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 78 77 79 16 (set (mem:SI (plus:DI (reg/f:DI 107 [ D.10234 ])
+                (const_int 4 [0x4])) [3 _34->cnt+0 S4 A32])
+        (reg:SI 109 [ D.10232 ])) libioP.h:863 -1
+     (nil))
+(insn 79 78 80 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 109 [ D.10232 ])
+            (const_int 0 [0]))) libioP.h:863 -1
+     (nil))
+(jump_insn 80 79 81 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) libioP.h:863 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 85)
+(note 81 80 82 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 82 81 83 17 (set (mem/f:DI (plus:DI (reg/f:DI 107 [ D.10234 ])
+                (const_int 8 [0x8])) [1 _34->owner+0 S8 A64])
+        (const_int 0 [0])) libioP.h:863 -1
+     (nil))
+(insn 83 82 84 17 (parallel [
+            (set (mem:SI (reg/f:DI 107 [ D.10234 ]) [3 _34->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem:SI (reg/f:DI 107 [ D.10234 ]) [3 _34->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (set (reg:SI 136 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem:SI (reg/f:DI 107 [ D.10234 ]) [3 _34->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) libioP.h:863 -1
+     (nil))
+(insn 84 83 85 17 (set (reg/v:SI 110 [ ignore ])
+        (reg:SI 136 [ ignore ])) libioP.h:863 -1
+     (nil))
+(code_label 85 84 86 18 8 "" [2 uses])
+(note 86 85 87 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 18 (set (reg/f:DI 111 [ D.10231 ])
+        (reg:DI 137)) -1
+     (nil))
+(insn 88 87 89 18 (set (reg:DI 5 di)
+        (reg/f:DI 111 [ D.10231 ])) -1
+     (nil))
+(call_insn 89 88 90 18 (call (mem:QI (symbol_ref:DI ("_Unwind_Resume") [flags 0x41]  <function_decl 0x2b3fdde15798 __builtin_unwind_resume>) [0 __builtin_unwind_resume S1 A8])
+        (const_int 0 [0])) -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_Unwind_Resume") [flags 0x41]  <function_decl 0x2b3fdde15798 __builtin_unwind_resume>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 90 89 91)
+(code_label 91 90 94 19 1 "" [1 uses])
+(note 94 91 92 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 92 94 93 19 (set (reg/i:SI 0 ax)
+        (reg:SI 114 [ <retval> ])) fseeko.c:39 -1
+     (nil))
+(insn 93 92 0 19 (use (reg/i:SI 0 ax)) fseeko.c:39 -1
+     (nil))

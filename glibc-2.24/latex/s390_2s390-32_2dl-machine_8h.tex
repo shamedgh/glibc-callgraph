@@ -1,0 +1,167 @@
+\hypertarget{s390_2s390-32_2dl-machine_8h}{}\doxysection{sysdeps/s390/s390-\/32/dl-\/machine.h File Reference}
+\label{s390_2s390-32_2dl-machine_8h}\index{sysdeps/s390/s390-\/32/dl-\/machine.h@{sysdeps/s390/s390-\/32/dl-\/machine.h}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$link.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/s390/dl-\/procinfo.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/irel.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME}}~\char`\"{}s390\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ac5c151760b1e71a8d019e5cc21237fc7}{E\+M\+\_\+\+S390\+\_\+\+O\+LD}}~0x\+A390
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a048fa8386e8001a4bd5b047a341da16f}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+U\+S\+E\+R\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK}}~0xf8000000\+UL
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}{R\+T\+L\+D\+\_\+\+S\+T\+A\+RT}}~\mbox{\hyperlink{sparc_2sparc64_2pthreaddef_8h_a2ebe43a55b36f4c3e5aa6da7dc65b58c}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} (\char`\"{}\textbackslash{}n\textbackslash{}.\+text\textbackslash{}n\textbackslash{}.\+align 4\textbackslash{}n\textbackslash{}.\+globl \+\_\+start\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}	basr  \%r13,0\textbackslash{}n\textbackslash{}0\+:      ahi   \%r13,.Llit-\/0b\textbackslash{}n\textbackslash{}	lr    \%r2,\%r15\textbackslash{}n\textbackslash{}	\# Alloc stack frame\textbackslash{}n\textbackslash{}	ahi   \%r15,-\/96\textbackslash{}n\textbackslash{}	\# Set the back chain to zero\textbackslash{}n\textbackslash{}	xc    0(4,\%r15),0(\%r15)\textbackslash{}n\textbackslash{}	\# Call \+\_\+dl\+\_\+start with \%r2 pointing to arg on stack\textbackslash{}n\textbackslash{}	l     \%r14,.\+Ladr1-\/.\+Llit(\%r13)\textbackslash{}n\textbackslash{}	bas   \%r14,0(\%r14,\%r13)   \# call \+\_\+dl\+\_\+start\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:\textbackslash{}n\textbackslash{}	\# Save the user entry point address in \%r8.\textbackslash{}n\textbackslash{}	lr    \%r8,\%r2\textbackslash{}n\textbackslash{}	\# Point \%r12 at the G\+O\+T.\textbackslash{}n\textbackslash{}	l     \%r12,.\+Ladr0-\/.\+Llit(\%r13)\textbackslash{}n\textbackslash{}	ar    \%r12,\%r13\textbackslash{}n\textbackslash{}	\# See if we were run as a command with the executable file\textbackslash{}n\textbackslash{}	\# name as an extra leading argument.\textbackslash{}n\textbackslash{}	l     \%r1,\+\_\+dl\+\_\+skip\+\_\+args@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	l     \%r1,0(\%r1)	\# load \+\_\+dl\+\_\+skip\+\_\+args\textbackslash{}n\textbackslash{}	ltr   \%r1,\%r1\textbackslash{}n\textbackslash{}	je    4f		\# Skip the arg adjustment if there were none.\textbackslash{}n\textbackslash{}	\# Get the original argument count.\textbackslash{}n\textbackslash{}	l     \%r0,96(\%r15)\textbackslash{}n\textbackslash{}	\# Subtract \+\_\+dl\+\_\+skip\+\_\+args from it.\textbackslash{}n\textbackslash{}	sr    \%r0,\%r1\textbackslash{}n\textbackslash{}	\# Store back the modified argument count.\textbackslash{}n\textbackslash{}	st    \%r0,96(\%r15)\textbackslash{}n\textbackslash{}	\# Copy argv and envp forward to account for skipped argv entries.\textbackslash{}n\textbackslash{}	\# We skipped at least one argument or we would not get here.\textbackslash{}n\textbackslash{}	la    \%r6,100(\%r15)	\# Destination pointer i.\+e. \&argv\mbox{[}0\mbox{]}\textbackslash{}n\textbackslash{}	lr    \%r5,\%r6\textbackslash{}n\textbackslash{}	lr    \%r0,\%r1\textbackslash{}n\textbackslash{}	sll   \%r0,2\textbackslash{}n		\# Number of skipped bytes.\textbackslash{}n\textbackslash{}	ar    \%r5,\%r0		\# Source pointer = Dest + Skipped args.\textbackslash{}n\textbackslash{}	\# argv copy loop\+:\textbackslash{}n\textbackslash{}1\+:	l     \%r7,0(\%r5)	\# Load a word from the source.\textbackslash{}n\textbackslash{}	st    \%r7,0(\%r6)	\# Store the word in the destination.\textbackslash{}n\textbackslash{}	ahi   \%r5,4\textbackslash{}n\textbackslash{}	ahi   \%r6,4\textbackslash{}n\textbackslash{}	ltr   \%r7,\%r7\textbackslash{}n\textbackslash{}	jne   1b		\# Stop after copying the N\+U\+L\+L.\textbackslash{}n\textbackslash{}	\# envp copy loop\+:\textbackslash{}n\textbackslash{}2\+:	l     \%r7,0(\%r5)	\# Load a word from the source.\textbackslash{}n\textbackslash{}	st    \%r7,0(\%r6)	\# Store the word in the destination.\textbackslash{}n\textbackslash{}	ahi   \%r5,4\textbackslash{}n\textbackslash{}	ahi   \%r6,4\textbackslash{}n\textbackslash{}	ltr   \%r7,\%r7\textbackslash{}n\textbackslash{}	jne   2b		\# Stop after copying the N\+U\+L\+L.\textbackslash{}n\textbackslash{}	\# Now we have to zero out the envp entries after N\+U\+L\+L to allow\textbackslash{}n\textbackslash{}	\# start.\+S to properly find auxv by skipping zeroes.\textbackslash{}n\textbackslash{}	\# zero out loop\+:\textbackslash{}n\textbackslash{}	lhi   \%r7,0\textbackslash{}n\textbackslash{}3\+:	st    \%r7,0(\%r6)	\# Store zero.\textbackslash{}n\textbackslash{}	ahi   \%r6,4		\# Advance dest pointer.\textbackslash{}n\textbackslash{}	ahi   \%r1,-\/1		\# Subtract one from the word count.\textbackslash{}n\textbackslash{}	ltr   \%r1,\%r1\textbackslash{}n\textbackslash{}	jne    3b		\# Keep copying if the word count is non-\/zero.\textbackslash{}n\textbackslash{}	\# Adjust \+\_\+dl\+\_\+argv\textbackslash{}n\textbackslash{}	la    \%r6,100(\%r15)\textbackslash{}n\textbackslash{}	l     \%r1,\+\_\+dl\+\_\+argv@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	st    \%r6,0(\%r1)\textbackslash{}n\textbackslash{}	\# The special initializer gets called with the stack just\textbackslash{}n\textbackslash{}	\# as the application\textquotesingle{}s entry point will see it; it can\textbackslash{}n\textbackslash{}	\# switch stacks if it moves these contents over.\textbackslash{}n\textbackslash{}\char`\"{} R\+T\+L\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+I\+N\+I\+T \char`\"{}\textbackslash{}n\textbackslash{}	\# Call the function to run the initializers.\textbackslash{}n\textbackslash{}	\# Load the parameters\+:\textbackslash{}n\textbackslash{}	\# (\%r2, \%r3, \%r4, \%r5) = (\+\_\+dl\+\_\+loaded, argc, argv, envp)\textbackslash{}n\textbackslash{}4\+:	l     \%r2,\+\_\+rtld\+\_\+local@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	l     \%r2,0(\%r2)\textbackslash{}n\textbackslash{}	l     \%r3,96(\%r15)\textbackslash{}n\textbackslash{}	la    \%r4,100(\%r15)\textbackslash{}n\textbackslash{}	lr    \%r5,\%r3\textbackslash{}n\textbackslash{}	sll   \%r5,2\textbackslash{}n\textbackslash{}	la    \%r5,104(\%r5,\%r15)\textbackslash{}n\textbackslash{}	l     \%r1,.\+Ladr4-\/.\+Llit(\%r13)\textbackslash{}n\textbackslash{}	bas   \%r14,0(\%r1,\%r13)\textbackslash{}n\textbackslash{}	\# Pass our finalizer function to the user in \%r14, as per E\+L\+F A\+B\+I.\textbackslash{}n\textbackslash{}	l     \%r14,\+\_\+dl\+\_\+fini@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	\# Free stack frame\textbackslash{}n\textbackslash{}	ahi   \%r15,96\textbackslash{}n\textbackslash{}	\# Jump to the user\textquotesingle{}s entry point (saved in \%r8).\textbackslash{}n\textbackslash{}	br    \%r8\textbackslash{}n\textbackslash{}.\+Llit\+:\textbackslash{}n\textbackslash{}.\+Ladr0\+: .\+long \+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+T\+A\+B\+L\+E\+\_\+-\/.\+Llit\textbackslash{}n\textbackslash{}.\+Ladr1\+: .\+long \+\_\+dl\+\_\+start-\/.\+Llit\textbackslash{}n\textbackslash{}.\+Ladr4\+: .\+long \+\_\+dl\+\_\+init@\+P\+L\+T-\/.\+Llit\textbackslash{}n\textbackslash{}\char`\"{});
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a3b4cbeb4e2c52e6037bfb1d089821d8a}{R\+T\+L\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+I\+N\+IT}}~/$\ast$ nothing $\ast$/
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}{elf\+\_\+machine\+\_\+type\+\_\+class}}(\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}~\mbox{\hyperlink{elf_2elf_8h_a613bd2ce40fe1e62372ed1ebe0ae7415}{R\+\_\+390\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL}}~1
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}{E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA}}~0
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}{D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+I\+N\+IT}}~dl\+\_\+platform\+\_\+init ()
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER}}~s390\+\_\+32\+\_\+gnu\+\_\+pltenter
+\item 
+\#define \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}{A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT}}~s390\+\_\+32\+\_\+gnu\+\_\+pltexit
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a04b9dbce209e5421d2c0b1667710a5ca}{\+\_\+dl\+\_\+runtime\+\_\+profile}} (\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\+\_\+\+Word}})
+\item 
+\mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}{if}} (l-\/$>$l\+\_\+info\mbox{[}\mbox{\hyperlink{elf_2elf_8h_ad7cbdc6f9aeb70f37aec7ae6c2311edc}{D\+T\+\_\+\+J\+M\+P\+R\+EL}}\mbox{]} \&\&\mbox{\hyperlink{x86__64_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}{lazy}}
+\item 
+static \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{s390_2s390-32_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}\label{s390_2s390-32_2dl-machine_8h_a54e9d9fc74089b396c28d9fc3dbf3430}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}}
+\index{ARCH\_LA\_PLTENTER@{ARCH\_LA\_PLTENTER}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTENTER}{ARCH\_LA\_PLTENTER}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+N\+T\+ER~s390\+\_\+32\+\_\+gnu\+\_\+pltenter}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}\label{s390_2s390-32_2dl-machine_8h_ac0adbdd53c30ad58322d9619d5430ee4}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}}
+\index{ARCH\_LA\_PLTEXIT@{ARCH\_LA\_PLTEXIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ARCH\_LA\_PLTEXIT}{ARCH\_LA\_PLTEXIT}}
+{\footnotesize\ttfamily \#define A\+R\+C\+H\+\_\+\+L\+A\+\_\+\+P\+L\+T\+E\+X\+IT~s390\+\_\+32\+\_\+gnu\+\_\+pltexit}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}\label{s390_2s390-32_2dl-machine_8h_a0260efcd09a88b2d94c4da1a50166d4b}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!DL\_PLATFORM\_INIT@{DL\_PLATFORM\_INIT}}
+\index{DL\_PLATFORM\_INIT@{DL\_PLATFORM\_INIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{DL\_PLATFORM\_INIT}{DL\_PLATFORM\_INIT}}
+{\footnotesize\ttfamily \#define D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+I\+N\+IT~dl\+\_\+platform\+\_\+init ()}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}\label{s390_2s390-32_2dl-machine_8h_ac24bb4a588050ea7e45affd5a458f7d3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}}
+\index{ELF\_MACHINE\_JMP\_SLOT@{ELF\_MACHINE\_JMP\_SLOT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_JMP\_SLOT}{ELF\_MACHINE\_JMP\_SLOT}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT~\mbox{\hyperlink{elf_2elf_8h_a613bd2ce40fe1e62372ed1ebe0ae7415}{R\+\_\+390\+\_\+\+J\+M\+P\+\_\+\+S\+L\+OT}}}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}\label{s390_2s390-32_2dl-machine_8h_ae944da2f9de159850d66cd5bf7018c72}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}}
+\index{ELF\_MACHINE\_NAME@{ELF\_MACHINE\_NAME}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NAME}{ELF\_MACHINE\_NAME}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+A\+ME~\char`\"{}s390\char`\"{}}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}\label{s390_2s390-32_2dl-machine_8h_a76d6eed16ebb236c4a7d217748d5162c}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}}
+\index{ELF\_MACHINE\_NO\_REL@{ELF\_MACHINE\_NO\_REL}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_REL}{ELF\_MACHINE\_NO\_REL}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+EL~1}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}\label{s390_2s390-32_2dl-machine_8h_a0fce9920691c4aa5efbc826e48af7483}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}}
+\index{ELF\_MACHINE\_NO\_RELA@{ELF\_MACHINE\_NO\_RELA}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_NO\_RELA}{ELF\_MACHINE\_NO\_RELA}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+N\+O\+\_\+\+R\+E\+LA~0}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}\label{s390_2s390-32_2dl-machine_8h_acc94dc627b6aab63d7af620442f35dc3}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!elf\_machine\_type\_class@{elf\_machine\_type\_class}}
+\index{elf\_machine\_type\_class@{elf\_machine\_type\_class}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{elf\_machine\_type\_class}{elf\_machine\_type\_class}}
+{\footnotesize\ttfamily \#define elf\+\_\+machine\+\_\+type\+\_\+class(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a613bd2ce40fe1e62372ed1ebe0ae7415}{R\_390\_JMP\_SLOT}} || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a042fc77de761a136e97109904018b94b}{R\_390\_TLS\_DTPMOD}}           \(\backslash\)}
+\DoxyCodeLine{     || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a8985e1adde1e24315a20e4a73b94753f}{R\_390\_TLS\_DTPOFF}} || (\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a4113ce6b333a129252d410219e53f561}{R\_390\_TLS\_TPOFF}})       \(\backslash\)}
+\DoxyCodeLine{    * \mbox{\hyperlink{generic_2ldsodefs_8h_ae76990eaa2473ebb2af4f8601b5ccb0a}{ELF\_RTYPE\_CLASS\_PLT}})                             \(\backslash\)}
+\DoxyCodeLine{   | (((\mbox{\hyperlink{inet6__option_8c_afbf1ff7a9c77bd4f7274fcb2854be3ae}{type}}) == \mbox{\hyperlink{elf_2elf_8h_a3b31729b00824ca025d9fbf1b0320ca9}{R\_390\_COPY}}) * \mbox{\hyperlink{generic_2ldsodefs_8h_a364a19b974b8cd186911f1a59041e7c1}{ELF\_RTYPE\_CLASS\_COPY}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a048fa8386e8001a4bd5b047a341da16f}\label{s390_2s390-32_2dl-machine_8h_a048fa8386e8001a4bd5b047a341da16f}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!ELF\_MACHINE\_USER\_ADDRESS\_MASK@{ELF\_MACHINE\_USER\_ADDRESS\_MASK}}
+\index{ELF\_MACHINE\_USER\_ADDRESS\_MASK@{ELF\_MACHINE\_USER\_ADDRESS\_MASK}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{ELF\_MACHINE\_USER\_ADDRESS\_MASK}{ELF\_MACHINE\_USER\_ADDRESS\_MASK}}
+{\footnotesize\ttfamily \#define E\+L\+F\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+U\+S\+E\+R\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK~0xf8000000\+UL}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ac5c151760b1e71a8d019e5cc21237fc7}\label{s390_2s390-32_2dl-machine_8h_ac5c151760b1e71a8d019e5cc21237fc7}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!EM\_S390\_OLD@{EM\_S390\_OLD}}
+\index{EM\_S390\_OLD@{EM\_S390\_OLD}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{EM\_S390\_OLD}{EM\_S390\_OLD}}
+{\footnotesize\ttfamily \#define E\+M\+\_\+\+S390\+\_\+\+O\+LD~0x\+A390}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}\label{s390_2s390-32_2dl-machine_8h_ab29f3ca73189d5c1618a4ae9e78770ec}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!RTLD\_START@{RTLD\_START}}
+\index{RTLD\_START@{RTLD\_START}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{RTLD\_START}{RTLD\_START}}
+{\footnotesize\ttfamily \#define R\+T\+L\+D\+\_\+\+S\+T\+A\+RT~\mbox{\hyperlink{sparc_2sparc64_2pthreaddef_8h_a2ebe43a55b36f4c3e5aa6da7dc65b58c}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} (\char`\"{}\textbackslash{}n\textbackslash{}.\+text\textbackslash{}n\textbackslash{}.\+align 4\textbackslash{}n\textbackslash{}.\+globl \+\_\+start\textbackslash{}n\textbackslash{}.\+globl \+\_\+dl\+\_\+start\+\_\+user\textbackslash{}n\textbackslash{}\+\_\+start\+:\textbackslash{}n\textbackslash{}	basr  \%r13,0\textbackslash{}n\textbackslash{}0\+:      ahi   \%r13,.Llit-\/0b\textbackslash{}n\textbackslash{}	lr    \%r2,\%r15\textbackslash{}n\textbackslash{}	\# Alloc stack frame\textbackslash{}n\textbackslash{}	ahi   \%r15,-\/96\textbackslash{}n\textbackslash{}	\# Set the back chain to zero\textbackslash{}n\textbackslash{}	xc    0(4,\%r15),0(\%r15)\textbackslash{}n\textbackslash{}	\# Call \+\_\+dl\+\_\+start with \%r2 pointing to arg on stack\textbackslash{}n\textbackslash{}	l     \%r14,.\+Ladr1-\/.\+Llit(\%r13)\textbackslash{}n\textbackslash{}	bas   \%r14,0(\%r14,\%r13)   \# call \+\_\+dl\+\_\+start\textbackslash{}n\textbackslash{}\+\_\+dl\+\_\+start\+\_\+user\+:\textbackslash{}n\textbackslash{}	\# Save the user entry point address in \%r8.\textbackslash{}n\textbackslash{}	lr    \%r8,\%r2\textbackslash{}n\textbackslash{}	\# Point \%r12 at the G\+O\+T.\textbackslash{}n\textbackslash{}	l     \%r12,.\+Ladr0-\/.\+Llit(\%r13)\textbackslash{}n\textbackslash{}	ar    \%r12,\%r13\textbackslash{}n\textbackslash{}	\# See if we were run as a command with the executable file\textbackslash{}n\textbackslash{}	\# name as an extra leading argument.\textbackslash{}n\textbackslash{}	l     \%r1,\+\_\+dl\+\_\+skip\+\_\+args@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	l     \%r1,0(\%r1)	\# load \+\_\+dl\+\_\+skip\+\_\+args\textbackslash{}n\textbackslash{}	ltr   \%r1,\%r1\textbackslash{}n\textbackslash{}	je    4f		\# Skip the arg adjustment if there were none.\textbackslash{}n\textbackslash{}	\# Get the original argument count.\textbackslash{}n\textbackslash{}	l     \%r0,96(\%r15)\textbackslash{}n\textbackslash{}	\# Subtract \+\_\+dl\+\_\+skip\+\_\+args from it.\textbackslash{}n\textbackslash{}	sr    \%r0,\%r1\textbackslash{}n\textbackslash{}	\# Store back the modified argument count.\textbackslash{}n\textbackslash{}	st    \%r0,96(\%r15)\textbackslash{}n\textbackslash{}	\# Copy argv and envp forward to account for skipped argv entries.\textbackslash{}n\textbackslash{}	\# We skipped at least one argument or we would not get here.\textbackslash{}n\textbackslash{}	la    \%r6,100(\%r15)	\# Destination pointer i.\+e. \&argv\mbox{[}0\mbox{]}\textbackslash{}n\textbackslash{}	lr    \%r5,\%r6\textbackslash{}n\textbackslash{}	lr    \%r0,\%r1\textbackslash{}n\textbackslash{}	sll   \%r0,2\textbackslash{}n		\# Number of skipped bytes.\textbackslash{}n\textbackslash{}	ar    \%r5,\%r0		\# Source pointer = Dest + Skipped args.\textbackslash{}n\textbackslash{}	\# argv copy loop\+:\textbackslash{}n\textbackslash{}1\+:	l     \%r7,0(\%r5)	\# Load a word from the source.\textbackslash{}n\textbackslash{}	st    \%r7,0(\%r6)	\# Store the word in the destination.\textbackslash{}n\textbackslash{}	ahi   \%r5,4\textbackslash{}n\textbackslash{}	ahi   \%r6,4\textbackslash{}n\textbackslash{}	ltr   \%r7,\%r7\textbackslash{}n\textbackslash{}	jne   1b		\# Stop after copying the N\+U\+L\+L.\textbackslash{}n\textbackslash{}	\# envp copy loop\+:\textbackslash{}n\textbackslash{}2\+:	l     \%r7,0(\%r5)	\# Load a word from the source.\textbackslash{}n\textbackslash{}	st    \%r7,0(\%r6)	\# Store the word in the destination.\textbackslash{}n\textbackslash{}	ahi   \%r5,4\textbackslash{}n\textbackslash{}	ahi   \%r6,4\textbackslash{}n\textbackslash{}	ltr   \%r7,\%r7\textbackslash{}n\textbackslash{}	jne   2b		\# Stop after copying the N\+U\+L\+L.\textbackslash{}n\textbackslash{}	\# Now we have to zero out the envp entries after N\+U\+L\+L to allow\textbackslash{}n\textbackslash{}	\# start.\+S to properly find auxv by skipping zeroes.\textbackslash{}n\textbackslash{}	\# zero out loop\+:\textbackslash{}n\textbackslash{}	lhi   \%r7,0\textbackslash{}n\textbackslash{}3\+:	st    \%r7,0(\%r6)	\# Store zero.\textbackslash{}n\textbackslash{}	ahi   \%r6,4		\# Advance dest pointer.\textbackslash{}n\textbackslash{}	ahi   \%r1,-\/1		\# Subtract one from the word count.\textbackslash{}n\textbackslash{}	ltr   \%r1,\%r1\textbackslash{}n\textbackslash{}	jne    3b		\# Keep copying if the word count is non-\/zero.\textbackslash{}n\textbackslash{}	\# Adjust \+\_\+dl\+\_\+argv\textbackslash{}n\textbackslash{}	la    \%r6,100(\%r15)\textbackslash{}n\textbackslash{}	l     \%r1,\+\_\+dl\+\_\+argv@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	st    \%r6,0(\%r1)\textbackslash{}n\textbackslash{}	\# The special initializer gets called with the stack just\textbackslash{}n\textbackslash{}	\# as the application\textquotesingle{}s entry point will see it; it can\textbackslash{}n\textbackslash{}	\# switch stacks if it moves these contents over.\textbackslash{}n\textbackslash{}\char`\"{} R\+T\+L\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+I\+N\+I\+T \char`\"{}\textbackslash{}n\textbackslash{}	\# Call the function to run the initializers.\textbackslash{}n\textbackslash{}	\# Load the parameters\+:\textbackslash{}n\textbackslash{}	\# (\%r2, \%r3, \%r4, \%r5) = (\+\_\+dl\+\_\+loaded, argc, argv, envp)\textbackslash{}n\textbackslash{}4\+:	l     \%r2,\+\_\+rtld\+\_\+local@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	l     \%r2,0(\%r2)\textbackslash{}n\textbackslash{}	l     \%r3,96(\%r15)\textbackslash{}n\textbackslash{}	la    \%r4,100(\%r15)\textbackslash{}n\textbackslash{}	lr    \%r5,\%r3\textbackslash{}n\textbackslash{}	sll   \%r5,2\textbackslash{}n\textbackslash{}	la    \%r5,104(\%r5,\%r15)\textbackslash{}n\textbackslash{}	l     \%r1,.\+Ladr4-\/.\+Llit(\%r13)\textbackslash{}n\textbackslash{}	bas   \%r14,0(\%r1,\%r13)\textbackslash{}n\textbackslash{}	\# Pass our finalizer function to the user in \%r14, as per E\+L\+F A\+B\+I.\textbackslash{}n\textbackslash{}	l     \%r14,\+\_\+dl\+\_\+fini@\+G\+O\+T(\%r12)\textbackslash{}n\textbackslash{}	\# Free stack frame\textbackslash{}n\textbackslash{}	ahi   \%r15,96\textbackslash{}n\textbackslash{}	\# Jump to the user\textquotesingle{}s entry point (saved in \%r8).\textbackslash{}n\textbackslash{}	br    \%r8\textbackslash{}n\textbackslash{}.\+Llit\+:\textbackslash{}n\textbackslash{}.\+Ladr0\+: .\+long \+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+T\+A\+B\+L\+E\+\_\+-\/.\+Llit\textbackslash{}n\textbackslash{}.\+Ladr1\+: .\+long \+\_\+dl\+\_\+start-\/.\+Llit\textbackslash{}n\textbackslash{}.\+Ladr4\+: .\+long \+\_\+dl\+\_\+init@\+P\+L\+T-\/.\+Llit\textbackslash{}n\textbackslash{}\char`\"{});}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a3b4cbeb4e2c52e6037bfb1d089821d8a}\label{s390_2s390-32_2dl-machine_8h_a3b4cbeb4e2c52e6037bfb1d089821d8a}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!RTLD\_START\_SPECIAL\_INIT@{RTLD\_START\_SPECIAL\_INIT}}
+\index{RTLD\_START\_SPECIAL\_INIT@{RTLD\_START\_SPECIAL\_INIT}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{RTLD\_START\_SPECIAL\_INIT}{RTLD\_START\_SPECIAL\_INIT}}
+{\footnotesize\ttfamily \#define R\+T\+L\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+I\+N\+IT~/$\ast$ nothing $\ast$/}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a04b9dbce209e5421d2c0b1667710a5ca}\label{s390_2s390-32_2dl-machine_8h_a04b9dbce209e5421d2c0b1667710a5ca}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!\_dl\_runtime\_profile@{\_dl\_runtime\_profile}}
+\index{\_dl\_runtime\_profile@{\_dl\_runtime\_profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_dl\_runtime\_profile()}{\_dl\_runtime\_profile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+runtime\+\_\+profile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\+\_\+\+Word}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}\label{s390_2s390-32_2dl-machine_8h_ac504b825f9b440b88ddcfdf398f8bc43}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!if@{if}}
+\index{if@{if}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}}
+{\footnotesize\ttfamily if (\begin{DoxyParamCaption}\item[{l-\/$>$l\+\_\+info \&\&}]{lazy\mbox{[}\+D\+T\+\_\+\+J\+M\+P\+R\+E\+L\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}\label{s390_2s390-32_2dl-machine_8h_ac26bd643a5ee838b46a7330aeb475990}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!lazy@{lazy}}
+\index{lazy@{lazy}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{lazy}{lazy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wchar-lookup_8h_a9717e7bbecb906637e86cef6da3d83c2}{return}} lazy}
+
+\mbox{\Hypertarget{s390_2s390-32_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}\label{s390_2s390-32_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}} 
+\index{dl-\/machine.h@{dl-\/machine.h}!profile@{profile}}
+\index{profile@{profile}!dl-\/machine.h@{dl-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{profile}{profile}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} profile}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{arm_2dl-machine_8h_a1496fe125ed93a7c4777a28f74d66618}{\_dl\_runtime\_resolve}} (\mbox{\hyperlink{elf_2elf_8h_af5924ece606c732e86f8263a19408e45}{Elf32\_Word}})}
+
+\end{DoxyCode}

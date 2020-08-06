@@ -1,0 +1,307 @@
+
+;; Function tcgetsid (tcgetsid, funcdef_no=32, decl_uid=7114, cgraph_uid=32, symbol_order=37)
+
+Partition 0: size 4 align 4
+	sid
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+Edge 4->7 redirected to 16
+Edge 10->13 redirected to 17
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 75 from 9 to 16.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 69.
+Merging block 17 into block 16...
+Merged blocks 16 and 17.
+Merged 16 and 17 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 96 [ fd ])
+        (reg:SI 5 di [ fd ])) tcgetsid.c:27 -1
+     (nil))
+(note 3 2 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 3 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("tiocgsid_does_not_work.8107") [flags 0x2]  <var_decl 0x2b017bb21630 tiocgsid_does_not_work>) [1 tiocgsid_does_not_work+0 S4 A32])
+            (const_int 0 [0]))) tcgetsid.c:33 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) tcgetsid.c:33 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 41)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg:DI 97)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b017bb21900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [2  S8 A8])) tcgetsid.c:35 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/v:SI 89 [ serrno ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 97)) [1 __libc_errno+0 S4 A32])) tcgetsid.c:35 -1
+     (nil))
+(insn 15 14 16 4 (parallel [
+            (set (reg:DI 98)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) tcgetsid.c:38 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 1 dx)
+        (reg:DI 98)) tcgetsid.c:38 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 4 si)
+        (const_int 21545 [0x5429])) tcgetsid.c:38 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:SI 5 di)
+        (reg/v:SI 96 [ fd ])) tcgetsid.c:38 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:QI 0 ax)
+        (const_int 0 [0])) tcgetsid.c:38 -1
+     (nil))
+(call_insn 20 19 21 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__ioctl") [flags 0x41]  <function_decl 0x2b017bb6cca8 __ioctl>) [0 __ioctl S1 A8])
+            (const_int 0 [0]))) tcgetsid.c:38 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ioctl") [flags 0x41]  <function_decl 0x2b017bb6cca8 __ioctl>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 21 20 22 4 (set (reg:SI 90 [ D.8137 ])
+        (reg:SI 0 ax)) tcgetsid.c:38 -1
+     (nil))
+(insn 22 21 23 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 90 [ D.8137 ])
+            (const_int 0 [0]))) tcgetsid.c:38 -1
+     (nil))
+(jump_insn 23 22 24 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 34)
+            (pc))) tcgetsid.c:38 -1
+     (int_list:REG_BR_PROB 7300 (nil))
+ -> 34)
+(note 24 23 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (reg:DI 99)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b017bb21900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [2  S8 A8])) tcgetsid.c:40 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 99)) [1 __libc_errno+0 S4 A32])
+            (const_int 22 [0x16]))) tcgetsid.c:40 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 78)
+            (pc))) tcgetsid.c:40 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6218 (nil))
+ -> 78)
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (mem/c:SI (symbol_ref:DI ("tiocgsid_does_not_work.8107") [flags 0x2]  <var_decl 0x2b017bb21630 tiocgsid_does_not_work>) [1 tiocgsid_does_not_work+0 S4 A32])
+        (const_int 1 [0x1])) tcgetsid.c:42 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:DI 100)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b017bb21900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [2  S8 A8])) tcgetsid.c:43 -1
+     (nil))
+(insn 31 30 32 6 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 100)) [1 __libc_errno+0 S4 A32])
+        (reg/v:SI 89 [ serrno ])) tcgetsid.c:43 -1
+     (nil))
+(jump_insn 32 31 33 6 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 33 32 34)
+(code_label 34 33 35 7 3 "" [1 uses])
+(note 35 34 36 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 75 7 (set (reg:SI 87 [ D.8136 ])
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [1 sid+0 S4 A32])) tcgetsid.c:49 -1
+     (nil))
+(jump_insn 75 36 76 7 (set (pc)
+        (label_ref:DI 66)) tcgetsid.c:49 654 {jump}
+     (nil)
+ -> 66)
+(barrier 76 75 78)
+(code_label 78 76 77 8 8 "" [1 uses])
+(note 77 78 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 77 39 8 (set (reg:SI 87 [ D.8136 ])
+        (const_int -1 [0xffffffffffffffff])) tcgetsid.c:46 -1
+     (nil))
+(jump_insn 39 4 40 8 (set (pc)
+        (label_ref 66)) tcgetsid.c:46 -1
+     (nil)
+ -> 66)
+(barrier 40 39 41)
+(code_label 41 40 42 10 2 "" [2 uses])
+(note 42 41 43 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 10 (set (reg:SI 5 di)
+        (reg/v:SI 96 [ fd ])) tcgetsid.c:53 -1
+     (nil))
+(call_insn 44 43 45 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_tcgetpgrp") [flags 0x43]  <function_decl 0x2b017bbb0360 tcgetpgrp>) [0 tcgetpgrp S1 A8])
+            (const_int 0 [0]))) tcgetsid.c:53 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_tcgetpgrp") [flags 0x43]  <function_decl 0x2b017bbb0360 tcgetpgrp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 45 44 46 10 (set (reg/v:SI 92 [ pgrp ])
+        (reg:SI 0 ax)) tcgetsid.c:53 -1
+     (nil))
+(insn 46 45 47 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ pgrp ])
+            (const_int -1 [0xffffffffffffffff]))) tcgetsid.c:54 -1
+     (nil))
+(jump_insn 47 46 59 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) tcgetsid.c:54 -1
+     (int_list:REG_BR_PROB 9618 (nil))
+ -> 51)
+(code_label 59 47 48 11 7 "" [1 uses])
+(note 48 59 5 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 5 48 49 11 (set (reg:SI 87 [ D.8136 ])
+        (const_int -1 [0xffffffffffffffff])) tcgetsid.c:55 -1
+     (nil))
+(jump_insn 49 5 50 11 (set (pc)
+        (label_ref 66)) -1
+     (nil)
+ -> 66)
+(barrier 50 49 51)
+(code_label 51 50 52 12 6 "" [1 uses])
+(note 52 51 53 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 12 (set (reg:SI 5 di)
+        (reg/v:SI 92 [ pgrp ])) tcgetsid.c:57 -1
+     (nil))
+(call_insn 54 53 55 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI_getsid") [flags 0x43]  <function_decl 0x2b017bba5798 getsid>) [0 getsid S1 A8])
+            (const_int 0 [0]))) tcgetsid.c:57 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI_getsid") [flags 0x43]  <function_decl 0x2b017bba5798 getsid>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 55 54 56 12 (set (reg/v:SI 93 [ sid ])
+        (reg:SI 0 ax)) tcgetsid.c:57 -1
+     (nil))
+(insn 56 55 57 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ sid ])
+            (const_int -1 [0xffffffffffffffff]))) tcgetsid.c:58 -1
+     (nil))
+(jump_insn 57 56 58 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 82)
+            (pc))) tcgetsid.c:58 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6218 (nil))
+ -> 82)
+(note 58 57 60 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 60 58 61 13 (set (reg:DI 101)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b017bb21900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [2  S8 A8])) tcgetsid.c:58 -1
+     (nil))
+(insn 61 60 62 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 101)) [1 __libc_errno+0 S4 A32])
+            (const_int 3 [0x3]))) tcgetsid.c:58 -1
+     (nil))
+(jump_insn 62 61 63 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 59)
+            (pc))) tcgetsid.c:58 -1
+     (int_list:REG_BR_PROB 6218 (nil))
+ -> 59)
+(note 63 62 64 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 14 (set (reg:DI 102)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b017bb21900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [2  S8 A8])) tcgetsid.c:59 -1
+     (nil))
+(insn 65 64 6 14 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 102)) [1 __libc_errno+0 S4 A32])
+        (const_int 25 [0x19])) tcgetsid.c:59 -1
+     (nil))
+(insn 6 65 79 14 (set (reg:SI 87 [ D.8136 ])
+        (const_int -1 [0xffffffffffffffff])) tcgetsid.c:59 -1
+     (nil))
+(jump_insn 79 6 80 14 (set (pc)
+        (label_ref 66)) -1
+     (nil)
+ -> 66)
+(barrier 80 79 82)
+(code_label 82 80 81 15 9 "" [1 uses])
+(note 81 82 7 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 7 81 66 15 (set (reg:SI 87 [ D.8136 ])
+        (reg/v:SI 93 [ sid ])) -1
+     (nil))
+(code_label 66 7 67 16 5 "" [4 uses])
+(note 67 66 68 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 72 16 (set (reg:SI 95 [ <retval> ])
+        (reg:SI 87 [ D.8136 ])) -1
+     (nil))
+(insn 72 68 73 16 (set (reg/i:SI 0 ax)
+        (reg:SI 95 [ <retval> ])) tcgetsid.c:62 -1
+     (nil))
+(insn 73 72 0 16 (use (reg/i:SI 0 ax)) tcgetsid.c:62 -1
+     (nil))

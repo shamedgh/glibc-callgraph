@@ -1,0 +1,182 @@
+
+;; Function __fesetround (*__GI___fesetround, funcdef_no=3, decl_uid=1930, cgraph_uid=3, symbol_order=3)
+
+Partition 1: size 4 align 4
+	mxcsr
+Partition 0: size 2 align 2
+	cw
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 27.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 99 [ round ])
+        (reg:SI 5 di [ round ])) ../sysdeps/x86_64/fpu/fesetround.c:23 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (parallel [
+            (set (reg:SI 87 [ D.1993 ])
+                (and:SI (reg/v:SI 99 [ round ])
+                    (const_int -3073 [0xfffffffffffff3ff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:27 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ D.1993 ])
+            (const_int 0 [0]))) ../sysdeps/x86_64/fpu/fesetround.c:27 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) ../sysdeps/x86_64/fpu/fesetround.c:27 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 36)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (parallel [
+            (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -6 [0xfffffffffffffffa])) [1 cw+0 S2 A16])
+                (asm_operands:HI ("fnstcw %0") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fesetround.c:32))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:32 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:HI 101)
+        (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -6 [0xfffffffffffffffa])) [1 cw+0 S2 A16])) ../sysdeps/x86_64/fpu/fesetround.c:34 -1
+     (nil))
+(insn 13 12 14 4 (parallel [
+            (set (reg:HI 100 [ D.1994 ])
+                (and:HI (reg:HI 101)
+                    (const_int -3073 [0xfffffffffffff3ff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:34 -1
+     (expr_list:REG_EQUAL (and:HI (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -6 [0xfffffffffffffffa])) [1 cw+0 S2 A16])
+            (const_int -3073 [0xfffffffffffff3ff]))
+        (nil)))
+(insn 14 13 15 4 (parallel [
+            (set (reg:HI 102)
+                (ior:HI (reg:HI 100 [ D.1994 ])
+                    (subreg:HI (reg/v:SI 99 [ round ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:34 -1
+     (nil))
+(insn 15 14 16 4 (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -6 [0xfffffffffffffffa])) [1 cw+0 S2 A16])
+        (reg:HI 102)) ../sysdeps/x86_64/fpu/fesetround.c:34 -1
+     (nil))
+(insn 16 15 17 4 (parallel [
+            (asm_operands/v ("fldcw %0") ("") 0 [
+                    (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -6 [0xfffffffffffffffa])) [1 cw+0 S2 A16])
+                ]
+                 [
+                    (asm_input:HI ("m") ../sysdeps/x86_64/fpu/fesetround.c:35)
+                ]
+                 [] ../sysdeps/x86_64/fpu/fesetround.c:35)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:35 -1
+     (nil))
+(insn 17 16 18 4 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -4 [0xfffffffffffffffc])) [2 mxcsr+0 S4 A32])
+                (asm_operands:SI ("stmxcsr %0") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fesetround.c:39))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:39 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:SI 104)
+        (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [2 mxcsr+0 S4 A32])) ../sysdeps/x86_64/fpu/fesetround.c:41 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:SI 103 [ D.1993 ])
+                (and:SI (reg:SI 104)
+                    (const_int -24577 [0xffffffffffff9fff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:41 -1
+     (expr_list:REG_EQUAL (and:SI (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [2 mxcsr+0 S4 A32])
+            (const_int -24577 [0xffffffffffff9fff]))
+        (nil)))
+(insn 20 19 21 4 (parallel [
+            (set (reg:SI 105 [ D.1993 ])
+                (ashift:SI (reg/v:SI 99 [ round ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:41 -1
+     (nil))
+(insn 21 20 22 4 (parallel [
+            (set (reg:SI 106)
+                (ior:SI (reg:SI 103 [ D.1993 ])
+                    (reg:SI 105 [ D.1993 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:41 -1
+     (nil))
+(insn 22 21 23 4 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [2 mxcsr+0 S4 A32])
+        (reg:SI 106)) ../sysdeps/x86_64/fpu/fesetround.c:41 -1
+     (nil))
+(insn 23 22 33 4 (parallel [
+            (asm_operands/v ("ldmxcsr %0") ("") 0 [
+                    (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                            (const_int -4 [0xfffffffffffffffc])) [2 mxcsr+0 S4 A32])
+                ]
+                 [
+                    (asm_input:SI ("m") ../sysdeps/x86_64/fpu/fesetround.c:42)
+                ]
+                 [] ../sysdeps/x86_64/fpu/fesetround.c:42)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fesetround.c:42 -1
+     (nil))
+(jump_insn 33 23 34 4 (set (pc)
+        (label_ref 24)) -1
+     (nil)
+ -> 24)
+(barrier 34 33 36)
+(code_label 36 34 35 5 3 "" [1 uses])
+(note 35 36 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 35 24 5 (set (reg:SI 87 [ D.1993 ])
+        (const_int 1 [0x1])) ../sysdeps/x86_64/fpu/fesetround.c:29 -1
+     (nil))
+(code_label 24 4 25 6 2 "" [1 uses])
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 30 6 (set (reg:SI 98 [ <retval> ])
+        (reg:SI 87 [ D.1993 ])) -1
+     (nil))
+(insn 30 26 31 6 (set (reg/i:SI 0 ax)
+        (reg:SI 98 [ <retval> ])) ../sysdeps/x86_64/fpu/fesetround.c:45 -1
+     (nil))
+(insn 31 30 0 6 (use (reg/i:SI 0 ax)) ../sysdeps/x86_64/fpu/fesetround.c:45 -1
+     (nil))

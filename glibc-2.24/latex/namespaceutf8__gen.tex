@@ -1,0 +1,169 @@
+\hypertarget{namespaceutf8__gen}{}\doxysection{utf8\+\_\+gen Namespace Reference}
+\label{namespaceutf8__gen}\index{utf8\_gen@{utf8\_gen}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceutf8__gen_a9eb50c66d8dcae69cf3a43644727619e}{process\+\_\+range}} (\mbox{\hyperlink{bug-regex13_8c_a37722a150250e2a5a98e5e0d11e53449}{start}}, end, outfile, \mbox{\hyperlink{structname}{name}})
+\item 
+def \mbox{\hyperlink{namespaceutf8__gen_a4834e3574f11568a388eabb9657d1140}{process\+\_\+charmap}} (flines, outfile)
+\item 
+def \mbox{\hyperlink{namespaceutf8__gen_a192785dc7facf988804eeeff2c4423b1}{convert\+\_\+to\+\_\+hex}} (code\+\_\+point)
+\item 
+def \mbox{\hyperlink{namespaceutf8__gen_a0744951ebe283b97dd36b06815951302}{write\+\_\+header\+\_\+charmap}} (outfile)
+\item 
+def \mbox{\hyperlink{namespaceutf8__gen_af7ee93da26d471c8646093ce43e0a224}{write\+\_\+header\+\_\+width}} (outfile)
+\item 
+def \mbox{\hyperlink{namespaceutf8__gen_a63ebd1b570800d6c27ca88c1c82a885d}{process\+\_\+width}} (outfile, ulines, elines)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \mbox{\hyperlink{namespaceutf8__gen_a6899e50b4758e9feaf8a780df854d1c3}{J\+A\+M\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}}
+\item 
+tuple \mbox{\hyperlink{namespaceutf8__gen_acfd96d7e4d0dbf80b05d7d741b27b760}{J\+A\+M\+O\+\_\+\+M\+E\+D\+I\+A\+L\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}}
+\item 
+tuple \mbox{\hyperlink{namespaceutf8__gen_a0db8c148bf0690ce6dcf5cf465a7a803}{J\+A\+M\+O\+\_\+\+F\+I\+N\+A\+L\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}}
+\item 
+\mbox{\hyperlink{namespaceutf8__gen_aec168ff716f2e1225d89b690d3f7dff9}{mode}}
+\item 
+\mbox{\hyperlink{namespaceutf8__gen_aa27b0915bbc4cc79400a74c627d4209e}{U\+N\+I\+C\+O\+D\+E\+\_\+\+D\+A\+T\+A\+\_\+\+L\+I\+N\+ES}} = U\+N\+I\+D\+A\+T\+A\+\_\+\+F\+I\+L\+E.\+readlines()
+\item 
+\mbox{\hyperlink{structlist}{list}} \mbox{\hyperlink{namespaceutf8__gen_af1efb160fc621b5420f75535e1827bbc}{E\+A\+S\+T\+\_\+\+A\+S\+I\+A\+N\+\_\+\+W\+I\+D\+T\+H\+\_\+\+L\+I\+N\+ES}} = \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceutf8__gen_a192785dc7facf988804eeeff2c4423b1}\label{namespaceutf8__gen_a192785dc7facf988804eeeff2c4423b1}} 
+\index{utf8\_gen@{utf8\_gen}!convert\_to\_hex@{convert\_to\_hex}}
+\index{convert\_to\_hex@{convert\_to\_hex}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{convert\_to\_hex()}{convert\_to\_hex()}}
+{\footnotesize\ttfamily def utf8\+\_\+gen.\+convert\+\_\+to\+\_\+hex (\begin{DoxyParamCaption}\item[{}]{code\+\_\+point }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Converts a code point to a hexadecimal UTF-8 representation
+like /x**/x**/x**.\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceutf8__gen_a4834e3574f11568a388eabb9657d1140}\label{namespaceutf8__gen_a4834e3574f11568a388eabb9657d1140}} 
+\index{utf8\_gen@{utf8\_gen}!process\_charmap@{process\_charmap}}
+\index{process\_charmap@{process\_charmap}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{process\_charmap()}{process\_charmap()}}
+{\footnotesize\ttfamily def utf8\+\_\+gen.\+process\+\_\+charmap (\begin{DoxyParamCaption}\item[{}]{flines,  }\item[{}]{outfile }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function takes an array which contains *all* lines of
+of UnicodeData.txt and write lines to outfile as used in the
+
+CHARMAP
+…
+END CHARMAP
+
+section of the UTF-8 file in glibc/localedata/charmaps/UTF-8.
+
+Samples for input lines:
+
+0010;<control>;Cc;0;BN;;;;;N;DATA LINK ESCAPE;;;;
+3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
+4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
+D800;<Non Private Use High Surrogate, First>;Cs;0;L;;;;;N;;;;;
+DB7F;<Non Private Use High Surrogate, Last>;Cs;0;L;;;;;N;;;;;
+100000;<Plane 16 Private Use, First>;Co;0;L;;;;;N;;;;;
+10FFFD;<Plane 16 Private Use, Last>;Co;0;L;;;;;N;;;;;
+
+Samples for output lines (Unicode-Value UTF-8-HEX Unicode-Char-Name):
+
+<U0010>     /x10 DATA LINK ESCAPE
+<U3400>..<U343F>     /xe3/x90/x80 <CJK Ideograph Extension A>
+%<UD800>     /xed/xa0/x80 <Non Private Use High Surrogate, First>
+%<UDB7F>     /xed/xad/xbf <Non Private Use High Surrogate, Last>
+<U0010FFC0>..<U0010FFFD>     /xf4/x8f/xbf/x80 <Plane 16 Private Use>\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceutf8__gen_a9eb50c66d8dcae69cf3a43644727619e}\label{namespaceutf8__gen_a9eb50c66d8dcae69cf3a43644727619e}} 
+\index{utf8\_gen@{utf8\_gen}!process\_range@{process\_range}}
+\index{process\_range@{process\_range}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{process\_range()}{process\_range()}}
+{\footnotesize\ttfamily def utf8\+\_\+gen.\+process\+\_\+range (\begin{DoxyParamCaption}\item[{}]{start,  }\item[{}]{end,  }\item[{}]{outfile,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Writes a range of code points into the CHARMAP section of the
+output file\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceutf8__gen_a63ebd1b570800d6c27ca88c1c82a885d}\label{namespaceutf8__gen_a63ebd1b570800d6c27ca88c1c82a885d}} 
+\index{utf8\_gen@{utf8\_gen}!process\_width@{process\_width}}
+\index{process\_width@{process\_width}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{process\_width()}{process\_width()}}
+{\footnotesize\ttfamily def utf8\+\_\+gen.\+process\+\_\+width (\begin{DoxyParamCaption}\item[{}]{outfile,  }\item[{}]{ulines,  }\item[{}]{elines }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}ulines are lines from UnicodeData.txt, elines are lines from
+EastAsianWidth.txt\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceutf8__gen_a0744951ebe283b97dd36b06815951302}\label{namespaceutf8__gen_a0744951ebe283b97dd36b06815951302}} 
+\index{utf8\_gen@{utf8\_gen}!write\_header\_charmap@{write\_header\_charmap}}
+\index{write\_header\_charmap@{write\_header\_charmap}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{write\_header\_charmap()}{write\_header\_charmap()}}
+{\footnotesize\ttfamily def utf8\+\_\+gen.\+write\+\_\+header\+\_\+charmap (\begin{DoxyParamCaption}\item[{}]{outfile }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write the header on top of the CHARMAP section to the output file\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceutf8__gen_af7ee93da26d471c8646093ce43e0a224}\label{namespaceutf8__gen_af7ee93da26d471c8646093ce43e0a224}} 
+\index{utf8\_gen@{utf8\_gen}!write\_header\_width@{write\_header\_width}}
+\index{write\_header\_width@{write\_header\_width}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{write\_header\_width()}{write\_header\_width()}}
+{\footnotesize\ttfamily def utf8\+\_\+gen.\+write\+\_\+header\+\_\+width (\begin{DoxyParamCaption}\item[{}]{outfile }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Writes the header on top of the WIDTH section to the output file\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceutf8__gen_af1efb160fc621b5420f75535e1827bbc}\label{namespaceutf8__gen_af1efb160fc621b5420f75535e1827bbc}} 
+\index{utf8\_gen@{utf8\_gen}!EAST\_ASIAN\_WIDTH\_LINES@{EAST\_ASIAN\_WIDTH\_LINES}}
+\index{EAST\_ASIAN\_WIDTH\_LINES@{EAST\_ASIAN\_WIDTH\_LINES}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{EAST\_ASIAN\_WIDTH\_LINES}{EAST\_ASIAN\_WIDTH\_LINES}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlist}{list}} utf8\+\_\+gen.\+E\+A\+S\+T\+\_\+\+A\+S\+I\+A\+N\+\_\+\+W\+I\+D\+T\+H\+\_\+\+L\+I\+N\+ES = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceutf8__gen_a0db8c148bf0690ce6dcf5cf465a7a803}\label{namespaceutf8__gen_a0db8c148bf0690ce6dcf5cf465a7a803}} 
+\index{utf8\_gen@{utf8\_gen}!JAMO\_FINAL\_SHORT\_NAME@{JAMO\_FINAL\_SHORT\_NAME}}
+\index{JAMO\_FINAL\_SHORT\_NAME@{JAMO\_FINAL\_SHORT\_NAME}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{JAMO\_FINAL\_SHORT\_NAME}{JAMO\_FINAL\_SHORT\_NAME}}
+{\footnotesize\ttfamily tuple utf8\+\_\+gen.\+J\+A\+M\+O\+\_\+\+F\+I\+N\+A\+L\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  (}
+\DoxyCodeLine{2     \textcolor{stringliteral}{''}, \textcolor{stringliteral}{'G'}, \textcolor{stringliteral}{'GG'}, \textcolor{stringliteral}{'GS'}, \textcolor{stringliteral}{'N'}, \textcolor{stringliteral}{'NI'}, \textcolor{stringliteral}{'NH'}, \textcolor{stringliteral}{'D'}, \textcolor{stringliteral}{'L'}, \textcolor{stringliteral}{'LG'}, \textcolor{stringliteral}{'LM'}, \textcolor{stringliteral}{'LB'}, \textcolor{stringliteral}{'LS'},}
+\DoxyCodeLine{3     \textcolor{stringliteral}{'LT'}, \textcolor{stringliteral}{'LP'}, \textcolor{stringliteral}{'LH'}, \textcolor{stringliteral}{'M'}, \textcolor{stringliteral}{'B'}, \textcolor{stringliteral}{'BS'}, \textcolor{stringliteral}{'S'}, \textcolor{stringliteral}{'SS'}, \textcolor{stringliteral}{'NG'}, \textcolor{stringliteral}{'J'}, \textcolor{stringliteral}{'C'}, \textcolor{stringliteral}{'K'}, \textcolor{stringliteral}{'T'},}
+\DoxyCodeLine{4     \textcolor{stringliteral}{'P'}, \textcolor{stringliteral}{'H'}}
+\DoxyCodeLine{5 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceutf8__gen_a6899e50b4758e9feaf8a780df854d1c3}\label{namespaceutf8__gen_a6899e50b4758e9feaf8a780df854d1c3}} 
+\index{utf8\_gen@{utf8\_gen}!JAMO\_INITIAL\_SHORT\_NAME@{JAMO\_INITIAL\_SHORT\_NAME}}
+\index{JAMO\_INITIAL\_SHORT\_NAME@{JAMO\_INITIAL\_SHORT\_NAME}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{JAMO\_INITIAL\_SHORT\_NAME}{JAMO\_INITIAL\_SHORT\_NAME}}
+{\footnotesize\ttfamily tuple utf8\+\_\+gen.\+J\+A\+M\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  (}
+\DoxyCodeLine{2     \textcolor{stringliteral}{'G'}, \textcolor{stringliteral}{'GG'}, \textcolor{stringliteral}{'N'}, \textcolor{stringliteral}{'D'}, \textcolor{stringliteral}{'DD'}, \textcolor{stringliteral}{'R'}, \textcolor{stringliteral}{'M'}, \textcolor{stringliteral}{'B'}, \textcolor{stringliteral}{'BB'}, \textcolor{stringliteral}{'S'}, \textcolor{stringliteral}{'SS'}, \textcolor{stringliteral}{''}, \textcolor{stringliteral}{'J'}, \textcolor{stringliteral}{'JJ'},}
+\DoxyCodeLine{3     \textcolor{stringliteral}{'C'}, \textcolor{stringliteral}{'K'}, \textcolor{stringliteral}{'T'}, \textcolor{stringliteral}{'P'}, \textcolor{stringliteral}{'H'}}
+\DoxyCodeLine{4 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceutf8__gen_acfd96d7e4d0dbf80b05d7d741b27b760}\label{namespaceutf8__gen_acfd96d7e4d0dbf80b05d7d741b27b760}} 
+\index{utf8\_gen@{utf8\_gen}!JAMO\_MEDIAL\_SHORT\_NAME@{JAMO\_MEDIAL\_SHORT\_NAME}}
+\index{JAMO\_MEDIAL\_SHORT\_NAME@{JAMO\_MEDIAL\_SHORT\_NAME}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{JAMO\_MEDIAL\_SHORT\_NAME}{JAMO\_MEDIAL\_SHORT\_NAME}}
+{\footnotesize\ttfamily tuple utf8\+\_\+gen.\+J\+A\+M\+O\+\_\+\+M\+E\+D\+I\+A\+L\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  (}
+\DoxyCodeLine{2     \textcolor{stringliteral}{'A'}, \textcolor{stringliteral}{'AE'}, \textcolor{stringliteral}{'YA'}, \textcolor{stringliteral}{'YAE'}, \textcolor{stringliteral}{'EO'}, \textcolor{stringliteral}{'E'}, \textcolor{stringliteral}{'YEO'}, \textcolor{stringliteral}{'YE'}, \textcolor{stringliteral}{'O'}, \textcolor{stringliteral}{'WA'}, \textcolor{stringliteral}{'WAE'}, \textcolor{stringliteral}{'OE'},}
+\DoxyCodeLine{3     \textcolor{stringliteral}{'YO'}, \textcolor{stringliteral}{'U'}, \textcolor{stringliteral}{'WEO'}, \textcolor{stringliteral}{'WE'}, \textcolor{stringliteral}{'WI'}, \textcolor{stringliteral}{'YU'}, \textcolor{stringliteral}{'EU'}, \textcolor{stringliteral}{'YI'}, \textcolor{stringliteral}{'I'}}
+\DoxyCodeLine{4 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceutf8__gen_aec168ff716f2e1225d89b690d3f7dff9}\label{namespaceutf8__gen_aec168ff716f2e1225d89b690d3f7dff9}} 
+\index{utf8\_gen@{utf8\_gen}!mode@{mode}}
+\index{mode@{mode}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily utf8\+\_\+gen.\+mode}
+
+\mbox{\Hypertarget{namespaceutf8__gen_aa27b0915bbc4cc79400a74c627d4209e}\label{namespaceutf8__gen_aa27b0915bbc4cc79400a74c627d4209e}} 
+\index{utf8\_gen@{utf8\_gen}!UNICODE\_DATA\_LINES@{UNICODE\_DATA\_LINES}}
+\index{UNICODE\_DATA\_LINES@{UNICODE\_DATA\_LINES}!utf8\_gen@{utf8\_gen}}
+\doxysubsubsection{\texorpdfstring{UNICODE\_DATA\_LINES}{UNICODE\_DATA\_LINES}}
+{\footnotesize\ttfamily utf8\+\_\+gen.\+U\+N\+I\+C\+O\+D\+E\+\_\+\+D\+A\+T\+A\+\_\+\+L\+I\+N\+ES = U\+N\+I\+D\+A\+T\+A\+\_\+\+F\+I\+L\+E.\+readlines()}
+

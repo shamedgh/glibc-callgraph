@@ -1,0 +1,183 @@
+\hypertarget{stratcliff_8c}{}\doxysection{string/stratcliff.c File Reference}
+\label{stratcliff_8c}\index{string/stratcliff.c@{string/stratcliff.c}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_ac9b4ffc25656ab9257370b6295304c05}{L}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}})~\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a35cd67ba7bb0db8105eb6267467535d7}{C\+H\+AR}}~char
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_ae11c3f805f2c8994cc1ea3d8a9ad764a}{M\+E\+M\+S\+ET}}~\mbox{\hyperlink{string_2string_8h_a9074138df04382ca8134ea39a3e07bfd}{memset}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a278cf415676752815cfb411cb0b32802}{S\+T\+R\+L\+EN}}~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strlen_8c_aa383452fe445bfae989358c9d7d96f4f}{strlen}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_ac66475755afc1257779c308d88b8a356}{S\+T\+R\+N\+L\+EN}}~strnlen
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a1acd15654d584ab951286e96248e5c9c}{S\+T\+R\+C\+HR}}~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strchr_8c_a12871ed234858ef0e363d2b8aa572fc1}{strchr}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a85ac7e863f79dd1f2f83bb8d1af043c3}{S\+T\+R\+R\+C\+HR}}~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strrchr_8c_a0c05a458deff028ef4d4e64059098db4}{strrchr}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_ac4a2548aa9c44fcd11a1d8c5273acbdb}{S\+T\+R\+C\+PY}}~\mbox{\hyperlink{string_2string_8h_ab0db7697e9242f0ce4e964676ca1ef36}{strcpy}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_adee17219fc51dc04d5e6a0cd79bd8c90}{S\+T\+R\+N\+C\+PY}}~\mbox{\hyperlink{string_2string_8h_a6e81a0aec09217ed82d75d694ab7dc8a}{strncpy}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_abf469337f4140cba4fdc4d0a0a83b010}{M\+E\+M\+C\+MP}}~\mbox{\hyperlink{string_2string_8h_a70784afa913af03702739fab2e82aeac}{memcmp}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a8b25cbd99b86099123c3af6dd65cec71}{S\+T\+P\+C\+PY}}~\mbox{\hyperlink{io_2ftw_8c_a0508a575f7624ef1bec311ac360e829e}{stpcpy}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a4568aa1c8b9878aae21011d9c14ce558}{S\+T\+P\+N\+C\+PY}}~stpncpy
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_afa49f5cbf45954321f45b92170a5fac2}{M\+E\+M\+C\+PY}}~\mbox{\hyperlink{string_2string_8h_a614b1baf4154b802cf728c27d5bbfca8}{memcpy}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a3ede4c118fd1c5c563c32b7f2e26a391}{M\+E\+M\+P\+C\+PY}}~\mbox{\hyperlink{io_2ftw_8c_a491ca73fed060bb349d9d92174235527}{mempcpy}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_aa89bf43fca321805cd780ab7e35d0ddd}{M\+E\+M\+C\+HR}}~\mbox{\hyperlink{string_2string_8h_aedd8a7ff5933d36bafd2238f579968dd}{memchr}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a1ffef5879101d778f17a377e0d8b0e00}{S\+T\+R\+C\+MP}}~\mbox{\hyperlink{string_2string_8h_a72c32a7b6e6ec46536ac21b02c9dc018}{strcmp}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a83ae0cfa84a083508398239ded7c284d}{S\+T\+R\+N\+C\+MP}}~\mbox{\hyperlink{string_2string_8h_a37f103846874e6909a65d685382a34fe}{strncmp}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a4689212d5a549893cabb9d7782eecfb6}{S\+T\+R\+I\+N\+G\+I\+FY}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})~\mbox{\hyperlink{stratcliff_8c_ad04412286d8b7705ebd7a741aca2c28e}{S\+T\+R\+I\+N\+G\+I\+F\+Y2}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_ad04412286d8b7705ebd7a741aca2c28e}{S\+T\+R\+I\+N\+G\+I\+F\+Y2}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})~\#\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}
+\item 
+\#define \mbox{\hyperlink{stratcliff_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{stratcliff_8c_a369266c24eacffb87046522897a570d5}\label{stratcliff_8c_a369266c24eacffb87046522897a570d5}} 
+\index{stratcliff.c@{stratcliff.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE~1}
+
+\mbox{\Hypertarget{stratcliff_8c_a35cd67ba7bb0db8105eb6267467535d7}\label{stratcliff_8c_a35cd67ba7bb0db8105eb6267467535d7}} 
+\index{stratcliff.c@{stratcliff.c}!CHAR@{CHAR}}
+\index{CHAR@{CHAR}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{CHAR}{CHAR}}
+{\footnotesize\ttfamily \#define C\+H\+AR~char}
+
+\mbox{\Hypertarget{stratcliff_8c_ac9b4ffc25656ab9257370b6295304c05}\label{stratcliff_8c_ac9b4ffc25656ab9257370b6295304c05}} 
+\index{stratcliff.c@{stratcliff.c}!L@{L}}
+\index{L@{L}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{L}{L}}
+{\footnotesize\ttfamily \#define L(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}} }\end{DoxyParamCaption})~\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}}
+
+\mbox{\Hypertarget{stratcliff_8c_aa89bf43fca321805cd780ab7e35d0ddd}\label{stratcliff_8c_aa89bf43fca321805cd780ab7e35d0ddd}} 
+\index{stratcliff.c@{stratcliff.c}!MEMCHR@{MEMCHR}}
+\index{MEMCHR@{MEMCHR}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{MEMCHR}{MEMCHR}}
+{\footnotesize\ttfamily \#define M\+E\+M\+C\+HR~\mbox{\hyperlink{string_2string_8h_aedd8a7ff5933d36bafd2238f579968dd}{memchr}}}
+
+\mbox{\Hypertarget{stratcliff_8c_abf469337f4140cba4fdc4d0a0a83b010}\label{stratcliff_8c_abf469337f4140cba4fdc4d0a0a83b010}} 
+\index{stratcliff.c@{stratcliff.c}!MEMCMP@{MEMCMP}}
+\index{MEMCMP@{MEMCMP}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{MEMCMP}{MEMCMP}}
+{\footnotesize\ttfamily \#define M\+E\+M\+C\+MP~\mbox{\hyperlink{string_2string_8h_a70784afa913af03702739fab2e82aeac}{memcmp}}}
+
+\mbox{\Hypertarget{stratcliff_8c_afa49f5cbf45954321f45b92170a5fac2}\label{stratcliff_8c_afa49f5cbf45954321f45b92170a5fac2}} 
+\index{stratcliff.c@{stratcliff.c}!MEMCPY@{MEMCPY}}
+\index{MEMCPY@{MEMCPY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{MEMCPY}{MEMCPY}}
+{\footnotesize\ttfamily \#define M\+E\+M\+C\+PY~\mbox{\hyperlink{string_2string_8h_a614b1baf4154b802cf728c27d5bbfca8}{memcpy}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a3ede4c118fd1c5c563c32b7f2e26a391}\label{stratcliff_8c_a3ede4c118fd1c5c563c32b7f2e26a391}} 
+\index{stratcliff.c@{stratcliff.c}!MEMPCPY@{MEMPCPY}}
+\index{MEMPCPY@{MEMPCPY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{MEMPCPY}{MEMPCPY}}
+{\footnotesize\ttfamily \#define M\+E\+M\+P\+C\+PY~\mbox{\hyperlink{io_2ftw_8c_a491ca73fed060bb349d9d92174235527}{mempcpy}}}
+
+\mbox{\Hypertarget{stratcliff_8c_ae11c3f805f2c8994cc1ea3d8a9ad764a}\label{stratcliff_8c_ae11c3f805f2c8994cc1ea3d8a9ad764a}} 
+\index{stratcliff.c@{stratcliff.c}!MEMSET@{MEMSET}}
+\index{MEMSET@{MEMSET}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{MEMSET}{MEMSET}}
+{\footnotesize\ttfamily \#define M\+E\+M\+S\+ET~\mbox{\hyperlink{string_2string_8h_a9074138df04382ca8134ea39a3e07bfd}{memset}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a8b25cbd99b86099123c3af6dd65cec71}\label{stratcliff_8c_a8b25cbd99b86099123c3af6dd65cec71}} 
+\index{stratcliff.c@{stratcliff.c}!STPCPY@{STPCPY}}
+\index{STPCPY@{STPCPY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STPCPY}{STPCPY}}
+{\footnotesize\ttfamily \#define S\+T\+P\+C\+PY~\mbox{\hyperlink{io_2ftw_8c_a0508a575f7624ef1bec311ac360e829e}{stpcpy}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a4568aa1c8b9878aae21011d9c14ce558}\label{stratcliff_8c_a4568aa1c8b9878aae21011d9c14ce558}} 
+\index{stratcliff.c@{stratcliff.c}!STPNCPY@{STPNCPY}}
+\index{STPNCPY@{STPNCPY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STPNCPY}{STPNCPY}}
+{\footnotesize\ttfamily \#define S\+T\+P\+N\+C\+PY~stpncpy}
+
+\mbox{\Hypertarget{stratcliff_8c_a1acd15654d584ab951286e96248e5c9c}\label{stratcliff_8c_a1acd15654d584ab951286e96248e5c9c}} 
+\index{stratcliff.c@{stratcliff.c}!STRCHR@{STRCHR}}
+\index{STRCHR@{STRCHR}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRCHR}{STRCHR}}
+{\footnotesize\ttfamily \#define S\+T\+R\+C\+HR~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strchr_8c_a12871ed234858ef0e363d2b8aa572fc1}{strchr}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a1ffef5879101d778f17a377e0d8b0e00}\label{stratcliff_8c_a1ffef5879101d778f17a377e0d8b0e00}} 
+\index{stratcliff.c@{stratcliff.c}!STRCMP@{STRCMP}}
+\index{STRCMP@{STRCMP}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRCMP}{STRCMP}}
+{\footnotesize\ttfamily \#define S\+T\+R\+C\+MP~\mbox{\hyperlink{string_2string_8h_a72c32a7b6e6ec46536ac21b02c9dc018}{strcmp}}}
+
+\mbox{\Hypertarget{stratcliff_8c_ac4a2548aa9c44fcd11a1d8c5273acbdb}\label{stratcliff_8c_ac4a2548aa9c44fcd11a1d8c5273acbdb}} 
+\index{stratcliff.c@{stratcliff.c}!STRCPY@{STRCPY}}
+\index{STRCPY@{STRCPY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRCPY}{STRCPY}}
+{\footnotesize\ttfamily \#define S\+T\+R\+C\+PY~\mbox{\hyperlink{string_2string_8h_ab0db7697e9242f0ce4e964676ca1ef36}{strcpy}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a4689212d5a549893cabb9d7782eecfb6}\label{stratcliff_8c_a4689212d5a549893cabb9d7782eecfb6}} 
+\index{stratcliff.c@{stratcliff.c}!STRINGIFY@{STRINGIFY}}
+\index{STRINGIFY@{STRINGIFY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRINGIFY}{STRINGIFY}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+I\+FY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} }\end{DoxyParamCaption})~\mbox{\hyperlink{stratcliff_8c_ad04412286d8b7705ebd7a741aca2c28e}{S\+T\+R\+I\+N\+G\+I\+F\+Y2}} (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}})}
+
+\mbox{\Hypertarget{stratcliff_8c_ad04412286d8b7705ebd7a741aca2c28e}\label{stratcliff_8c_ad04412286d8b7705ebd7a741aca2c28e}} 
+\index{stratcliff.c@{stratcliff.c}!STRINGIFY2@{STRINGIFY2}}
+\index{STRINGIFY2@{STRINGIFY2}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRINGIFY2}{STRINGIFY2}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+I\+F\+Y2(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}} }\end{DoxyParamCaption})~\#\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a278cf415676752815cfb411cb0b32802}\label{stratcliff_8c_a278cf415676752815cfb411cb0b32802}} 
+\index{stratcliff.c@{stratcliff.c}!STRLEN@{STRLEN}}
+\index{STRLEN@{STRLEN}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRLEN}{STRLEN}}
+{\footnotesize\ttfamily \#define S\+T\+R\+L\+EN~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strlen_8c_aa383452fe445bfae989358c9d7d96f4f}{strlen}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a83ae0cfa84a083508398239ded7c284d}\label{stratcliff_8c_a83ae0cfa84a083508398239ded7c284d}} 
+\index{stratcliff.c@{stratcliff.c}!STRNCMP@{STRNCMP}}
+\index{STRNCMP@{STRNCMP}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRNCMP}{STRNCMP}}
+{\footnotesize\ttfamily \#define S\+T\+R\+N\+C\+MP~\mbox{\hyperlink{string_2string_8h_a37f103846874e6909a65d685382a34fe}{strncmp}}}
+
+\mbox{\Hypertarget{stratcliff_8c_adee17219fc51dc04d5e6a0cd79bd8c90}\label{stratcliff_8c_adee17219fc51dc04d5e6a0cd79bd8c90}} 
+\index{stratcliff.c@{stratcliff.c}!STRNCPY@{STRNCPY}}
+\index{STRNCPY@{STRNCPY}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRNCPY}{STRNCPY}}
+{\footnotesize\ttfamily \#define S\+T\+R\+N\+C\+PY~\mbox{\hyperlink{string_2string_8h_a6e81a0aec09217ed82d75d694ab7dc8a}{strncpy}}}
+
+\mbox{\Hypertarget{stratcliff_8c_ac66475755afc1257779c308d88b8a356}\label{stratcliff_8c_ac66475755afc1257779c308d88b8a356}} 
+\index{stratcliff.c@{stratcliff.c}!STRNLEN@{STRNLEN}}
+\index{STRNLEN@{STRNLEN}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRNLEN}{STRNLEN}}
+{\footnotesize\ttfamily \#define S\+T\+R\+N\+L\+EN~strnlen}
+
+\mbox{\Hypertarget{stratcliff_8c_a85ac7e863f79dd1f2f83bb8d1af043c3}\label{stratcliff_8c_a85ac7e863f79dd1f2f83bb8d1af043c3}} 
+\index{stratcliff.c@{stratcliff.c}!STRRCHR@{STRRCHR}}
+\index{STRRCHR@{STRRCHR}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{STRRCHR}{STRRCHR}}
+{\footnotesize\ttfamily \#define S\+T\+R\+R\+C\+HR~\mbox{\hyperlink{sysdeps_2tile_2tilepro_2strrchr_8c_a0c05a458deff028ef4d4e64059098db4}{strrchr}}}
+
+\mbox{\Hypertarget{stratcliff_8c_a6002ab22c656c4024eb89b538930bc32}\label{stratcliff_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{stratcliff.c@{stratcliff.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!stratcliff.c@{stratcliff.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+

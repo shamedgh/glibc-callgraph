@@ -1,0 +1,105 @@
+\hypertarget{dtable_8c}{}\doxysection{hurd/dtable.c File Reference}
+\label{dtable_8c}\index{hurd/dtable.c@{hurd/dtable.c}}
+{\ttfamily \#include $<$hurd.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/term.\+h$>$}\newline
+{\ttfamily \#include $<$hurd/fd.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$cthreads.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}set-\/hooks.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hurdmalloc.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$hurd/signal.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dtable_8c_a2acdadbd31787b20f7d944913a8c73d6}{D\+E\+F\+I\+N\+E\+\_\+\+H\+O\+OK}} (\+\_\+hurd\+\_\+fd\+\_\+subinit,(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}))
+\item 
+\mbox{\hyperlink{dtable_8c_a0c5ba761f2e96401ec3702c17b0a232f}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+subinit, init\+\_\+dtable)
+\item 
+\mbox{\hyperlink{dtable_8c_ac30fd31b7d714a3c778587c72099d419}{data\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+locks, \mbox{\hyperlink{fd_8h_afe9cb552751705243fbfbb081aae83c3}{\+\_\+hurd\+\_\+dtable\+\_\+lock}})
+\item 
+\mbox{\hyperlink{dtable_8c_a71406808e22939021e6b988be107c504}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook, fork\+\_\+child\+\_\+dtable)
+\item 
+\mbox{\hyperlink{dtable_8c_a7d3e1b38b6364523992c542781bf6ded}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+pgrp\+\_\+changed\+\_\+hook, ctty\+\_\+new\+\_\+pgrp)
+\item 
+\mbox{\hyperlink{dtable_8c_a473425a9992ca92195bb309f61b50248}{text\+\_\+set\+\_\+element}} (\+\_\+hurd\+\_\+reauth\+\_\+hook, reauth\+\_\+dtable)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} \mbox{\hyperlink{dtable_8c_afe9cb552751705243fbfbb081aae83c3}{\+\_\+hurd\+\_\+dtable\+\_\+lock}} = M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER
+\item 
+struct \mbox{\hyperlink{structhurd__fd}{hurd\+\_\+fd}} $\ast$$\ast$ \mbox{\hyperlink{dtable_8c_a17ed818e3e5cf63be5f5ce1deccc5614}{\+\_\+hurd\+\_\+dtable}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{dtable_8c_acd87814eec925ba4d1c906067fd3a036}{\+\_\+hurd\+\_\+dtablesize}}
+\item 
+file\+\_\+t($\ast$ \mbox{\hyperlink{dtable_8c_a472916fe9f1bac72bede6f5ff9df2b46}{\+\_\+hurd\+\_\+getdport\+\_\+fn}} )(\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}) = get\+\_\+dtable\+\_\+port
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dtable_8c_ac30fd31b7d714a3c778587c72099d419}\label{dtable_8c_ac30fd31b7d714a3c778587c72099d419}} 
+\index{dtable.c@{dtable.c}!data\_set\_element@{data\_set\_element}}
+\index{data\_set\_element@{data\_set\_element}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{data\_set\_element()}{data\_set\_element()}}
+{\footnotesize\ttfamily data\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+locks}]{,  }\item[{\mbox{\hyperlink{fd_8h_afe9cb552751705243fbfbb081aae83c3}{\+\_\+hurd\+\_\+dtable\+\_\+lock}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dtable_8c_a2acdadbd31787b20f7d944913a8c73d6}\label{dtable_8c_a2acdadbd31787b20f7d944913a8c73d6}} 
+\index{dtable.c@{dtable.c}!DEFINE\_HOOK@{DEFINE\_HOOK}}
+\index{DEFINE\_HOOK@{DEFINE\_HOOK}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_HOOK()}{DEFINE\_HOOK()}}
+{\footnotesize\ttfamily D\+E\+F\+I\+N\+E\+\_\+\+H\+O\+OK (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fd\+\_\+subinit}]{,  }\item[{(\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dtable_8c_a71406808e22939021e6b988be107c504}\label{dtable_8c_a71406808e22939021e6b988be107c504}} 
+\index{dtable.c@{dtable.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+fork\+\_\+child\+\_\+hook}]{,  }\item[{fork\+\_\+child\+\_\+dtable}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dtable_8c_a7d3e1b38b6364523992c542781bf6ded}\label{dtable_8c_a7d3e1b38b6364523992c542781bf6ded}} 
+\index{dtable.c@{dtable.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+pgrp\+\_\+changed\+\_\+hook}]{,  }\item[{ctty\+\_\+new\+\_\+pgrp}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dtable_8c_a473425a9992ca92195bb309f61b50248}\label{dtable_8c_a473425a9992ca92195bb309f61b50248}} 
+\index{dtable.c@{dtable.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+reauth\+\_\+hook}]{,  }\item[{reauth\+\_\+dtable}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dtable_8c_a0c5ba761f2e96401ec3702c17b0a232f}\label{dtable_8c_a0c5ba761f2e96401ec3702c17b0a232f}} 
+\index{dtable.c@{dtable.c}!text\_set\_element@{text\_set\_element}}
+\index{text\_set\_element@{text\_set\_element}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{text\_set\_element()}{text\_set\_element()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily text\+\_\+set\+\_\+element (\begin{DoxyParamCaption}\item[{\+\_\+hurd\+\_\+subinit}]{,  }\item[{init\+\_\+dtable}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{dtable_8c_a17ed818e3e5cf63be5f5ce1deccc5614}\label{dtable_8c_a17ed818e3e5cf63be5f5ce1deccc5614}} 
+\index{dtable.c@{dtable.c}!\_hurd\_dtable@{\_hurd\_dtable}}
+\index{\_hurd\_dtable@{\_hurd\_dtable}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_dtable}{\_hurd\_dtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structhurd__fd}{hurd\+\_\+fd}}$\ast$$\ast$ \+\_\+hurd\+\_\+dtable}
+
+\mbox{\Hypertarget{dtable_8c_afe9cb552751705243fbfbb081aae83c3}\label{dtable_8c_afe9cb552751705243fbfbb081aae83c3}} 
+\index{dtable.c@{dtable.c}!\_hurd\_dtable\_lock@{\_hurd\_dtable\_lock}}
+\index{\_hurd\_dtable\_lock@{\_hurd\_dtable\_lock}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_dtable\_lock}{\_hurd\_dtable\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{tst-robust10_8c_a4acff8232e4aec9cd5c6dc200ac55ef3}{mutex}} \+\_\+hurd\+\_\+dtable\+\_\+lock = M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}
+
+\mbox{\Hypertarget{dtable_8c_acd87814eec925ba4d1c906067fd3a036}\label{dtable_8c_acd87814eec925ba4d1c906067fd3a036}} 
+\index{dtable.c@{dtable.c}!\_hurd\_dtablesize@{\_hurd\_dtablesize}}
+\index{\_hurd\_dtablesize@{\_hurd\_dtablesize}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_dtablesize}{\_hurd\_dtablesize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+hurd\+\_\+dtablesize}
+
+\mbox{\Hypertarget{dtable_8c_a472916fe9f1bac72bede6f5ff9df2b46}\label{dtable_8c_a472916fe9f1bac72bede6f5ff9df2b46}} 
+\index{dtable.c@{dtable.c}!\_hurd\_getdport\_fn@{\_hurd\_getdport\_fn}}
+\index{\_hurd\_getdport\_fn@{\_hurd\_getdport\_fn}!dtable.c@{dtable.c}}
+\doxysubsubsection{\texorpdfstring{\_hurd\_getdport\_fn}{\_hurd\_getdport\_fn}}
+{\footnotesize\ttfamily file\+\_\+t($\ast$ \+\_\+hurd\+\_\+getdport\+\_\+fn) (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-unlockedio_8c_a6f8059414f0228f0256115e024eeed4b}{fd}}) = get\+\_\+dtable\+\_\+port}
+

@@ -1,0 +1,474 @@
+
+;; Function __collidx_table_lookup (__collidx_table_lookup, funcdef_no=0, decl_uid=1863, cgraph_uid=0, symbol_order=3)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+Edge 2->6 redirected to 9
+Edge 3->6 redirected to 10
+Edge 4->6 redirected to 11
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 44.
+Merging block 11 into block 10...
+Merged blocks 10 and 11.
+Merged 10 and 11 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 115 [ table ])
+        (reg:DI 5 di [ table ])) coll-lookup.c:25 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 116 [ wc ])
+        (reg:SI 4 si [ wc ])) coll-lookup.c:25 -1
+     (nil))
+(note 4 3 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 4 12 2 (set (reg:SI 117)
+        (mem:SI (reg/v/f:DI 115 [ table ]) [1 MEM[(const uint32_t *)table_3(D)]+0 S4 A32])) coll-lookup.c:27 -1
+     (nil))
+(insn 12 11 13 2 (parallel [
+            (set (reg/v:SI 89 [ index1 ])
+                (lshiftrt:SI (reg/v:SI 116 [ wc ])
+                    (subreg:QI (reg:SI 117) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:27 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 89 [ index1 ])
+            (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                    (const_int 4 [0x4])) [1 MEM[(const uint32_t *)table_3(D) + 4B]+0 S4 A32]))) coll-lookup.c:29 -1
+     (nil))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 53)
+            (pc))) coll-lookup.c:29 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 53)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (parallel [
+            (set (reg:SI 118 [ D.1945 ])
+                (plus:SI (reg/v:SI 89 [ index1 ])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:31 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 119 [ D.1946 ])
+        (zero_extend:DI (reg:SI 118 [ D.1945 ]))) coll-lookup.c:31 -1
+     (nil))
+(insn 18 17 19 4 (set (reg/v:SI 95 [ lookup1 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 119 [ D.1946 ])
+                    (const_int 4 [0x4]))
+                (reg/v/f:DI 115 [ table ])) [1 *_11+0 S4 A32])) coll-lookup.c:31 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ lookup1 ])
+            (const_int 0 [0]))) coll-lookup.c:32 -1
+     (nil))
+(jump_insn 20 19 21 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 57)
+            (pc))) coll-lookup.c:32 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 57)
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:SI 120)
+        (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                (const_int 8 [0x8])) [1 MEM[(const uint32_t *)table_3(D) + 8B]+0 S4 A32])) coll-lookup.c:37 -1
+     (nil))
+(insn 23 22 24 5 (parallel [
+            (set (reg:SI 121 [ D.1945 ])
+                (lshiftrt:SI (reg/v:SI 116 [ wc ])
+                    (subreg:QI (reg:SI 120) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:37 -1
+     (nil))
+(insn 24 23 25 5 (parallel [
+            (set (reg:SI 122 [ index2 ])
+                (and:SI (reg:SI 121 [ D.1945 ])
+                    (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                            (const_int 12 [0xc])) [1 MEM[(const uint32_t *)table_3(D) + 12B]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:37 -1
+     (nil))
+(insn 25 24 26 5 (set (reg:DI 123 [ D.1946 ])
+        (zero_extend:DI (reg:SI 122 [ index2 ]))) coll-lookup.c:37 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:DI 124 [ D.1948 ])
+        (zero_extend:DI (reg/v:SI 95 [ lookup1 ]))) coll-lookup.c:37 -1
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:DI 126)
+                (ashift:DI (reg:DI 123 [ D.1946 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:37 -1
+     (nil))
+(insn 28 27 29 5 (parallel [
+            (set (reg:DI 125)
+                (plus:DI (reg/v/f:DI 115 [ table ])
+                    (reg:DI 126)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:37 -1
+     (nil))
+(insn 29 28 30 5 (parallel [
+            (set (reg/f:DI 127)
+                (plus:DI (reg:DI 125)
+                    (reg:DI 124 [ D.1948 ])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:37 -1
+     (nil))
+(insn 30 29 31 5 (set (reg/v:SI 105 [ lookup2 ])
+        (mem:SI (reg/f:DI 127) [1 *_21+0 S4 A32])) coll-lookup.c:37 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 105 [ lookup2 ])
+            (const_int 0 [0]))) coll-lookup.c:38 -1
+     (nil))
+(jump_insn 32 31 33 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 61)
+            (pc))) coll-lookup.c:38 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 61)
+(note 33 32 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 6 (parallel [
+            (set (reg:SI 128 [ index3 ])
+                (and:SI (reg/v:SI 116 [ wc ])
+                    (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                            (const_int 16 [0x10])) [1 MEM[(const uint32_t *)table_3(D) + 16B]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:42 -1
+     (nil))
+(insn 35 34 36 6 (set (reg:DI 129 [ D.1946 ])
+        (zero_extend:DI (reg:SI 128 [ index3 ]))) coll-lookup.c:42 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:DI 130 [ D.1948 ])
+        (zero_extend:DI (reg/v:SI 105 [ lookup2 ]))) coll-lookup.c:42 -1
+     (nil))
+(insn 37 36 38 6 (parallel [
+            (set (reg:DI 132)
+                (ashift:DI (reg:DI 129 [ D.1946 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:42 -1
+     (nil))
+(insn 38 37 39 6 (parallel [
+            (set (reg:DI 131)
+                (plus:DI (reg/v/f:DI 115 [ table ])
+                    (reg:DI 132)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:42 -1
+     (nil))
+(insn 39 38 40 6 (parallel [
+            (set (reg/f:DI 133)
+                (plus:DI (reg:DI 131)
+                    (reg:DI 130 [ D.1948 ])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:42 -1
+     (nil))
+(insn 40 39 5 6 (set (reg/v:SI 113 [ lookup3 ])
+        (mem:SI (reg/f:DI 133) [1 *_29+0 S4 A32])) coll-lookup.c:42 -1
+     (nil))
+(insn 5 40 50 6 (set (reg:SI 87 [ D.1944 ])
+        (reg/v:SI 113 [ lookup3 ])) coll-lookup.c:44 -1
+     (nil))
+(jump_insn 50 5 51 6 (set (pc)
+        (label_ref 41)) coll-lookup.c:44 -1
+     (nil)
+ -> 41)
+(barrier 51 50 53)
+(code_label 53 51 52 7 3 "" [1 uses])
+(note 52 53 7 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 7 52 54 7 (set (reg:SI 87 [ D.1944 ])
+        (const_int 0 [0])) coll-lookup.c:48 -1
+     (nil))
+(jump_insn 54 7 55 7 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 55 54 57)
+(code_label 57 55 56 8 4 "" [1 uses])
+(note 56 57 6 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 6 56 58 8 (set (reg:SI 87 [ D.1944 ])
+        (const_int 0 [0])) coll-lookup.c:48 -1
+     (nil))
+(jump_insn 58 6 59 8 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 59 58 61)
+(code_label 61 59 60 9 5 "" [1 uses])
+(note 60 61 8 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 8 60 41 9 (set (reg:SI 87 [ D.1944 ])
+        (const_int 0 [0])) coll-lookup.c:48 -1
+     (nil))
+(code_label 41 8 42 10 2 "" [3 uses])
+(note 42 41 43 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 47 10 (set (reg:SI 114 [ <retval> ])
+        (reg:SI 87 [ D.1944 ])) -1
+     (nil))
+(insn 47 43 48 10 (set (reg/i:SI 0 ax)
+        (reg:SI 114 [ <retval> ])) coll-lookup.c:49 -1
+     (nil))
+(insn 48 47 0 10 (use (reg/i:SI 0 ax)) coll-lookup.c:49 -1
+     (nil))
+
+;; Function __collseq_table_lookup (__collseq_table_lookup, funcdef_no=1, decl_uid=1878, cgraph_uid=1, symbol_order=4)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+Edge 2->6 redirected to 9
+Edge 3->6 redirected to 10
+Edge 4->6 redirected to 11
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 44.
+Merging block 11 into block 10...
+Merged blocks 10 and 11.
+Merged 10 and 11 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 115 [ table ])
+        (reg:DI 5 di [ table ])) coll-lookup.c:56 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 116 [ wc ])
+        (reg:SI 4 si [ wc ])) coll-lookup.c:56 -1
+     (nil))
+(note 4 3 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 4 12 2 (set (reg:SI 117)
+        (mem:SI (reg/v/f:DI 115 [ table ]) [1 MEM[(const uint32_t *)table_3(D)]+0 S4 A32])) coll-lookup.c:58 -1
+     (nil))
+(insn 12 11 13 2 (parallel [
+            (set (reg/v:SI 89 [ index1 ])
+                (lshiftrt:SI (reg/v:SI 116 [ wc ])
+                    (subreg:QI (reg:SI 117) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:58 -1
+     (nil))
+(insn 13 12 14 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 89 [ index1 ])
+            (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                    (const_int 4 [0x4])) [1 MEM[(const uint32_t *)table_3(D) + 4B]+0 S4 A32]))) coll-lookup.c:60 -1
+     (nil))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 53)
+            (pc))) coll-lookup.c:60 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 53)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (parallel [
+            (set (reg:SI 118 [ D.1953 ])
+                (plus:SI (reg/v:SI 89 [ index1 ])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:62 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 119 [ D.1954 ])
+        (zero_extend:DI (reg:SI 118 [ D.1953 ]))) coll-lookup.c:62 -1
+     (nil))
+(insn 18 17 19 4 (set (reg/v:SI 95 [ lookup1 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 119 [ D.1954 ])
+                    (const_int 4 [0x4]))
+                (reg/v/f:DI 115 [ table ])) [1 *_11+0 S4 A32])) coll-lookup.c:62 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ lookup1 ])
+            (const_int 0 [0]))) coll-lookup.c:63 -1
+     (nil))
+(jump_insn 20 19 21 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 57)
+            (pc))) coll-lookup.c:63 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 57)
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:SI 120)
+        (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                (const_int 8 [0x8])) [1 MEM[(const uint32_t *)table_3(D) + 8B]+0 S4 A32])) coll-lookup.c:68 -1
+     (nil))
+(insn 23 22 24 5 (parallel [
+            (set (reg:SI 121 [ D.1953 ])
+                (lshiftrt:SI (reg/v:SI 116 [ wc ])
+                    (subreg:QI (reg:SI 120) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:68 -1
+     (nil))
+(insn 24 23 25 5 (parallel [
+            (set (reg:SI 122 [ index2 ])
+                (and:SI (reg:SI 121 [ D.1953 ])
+                    (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                            (const_int 12 [0xc])) [1 MEM[(const uint32_t *)table_3(D) + 12B]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:68 -1
+     (nil))
+(insn 25 24 26 5 (set (reg:DI 123 [ D.1954 ])
+        (zero_extend:DI (reg:SI 122 [ index2 ]))) coll-lookup.c:68 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:DI 124 [ D.1956 ])
+        (zero_extend:DI (reg/v:SI 95 [ lookup1 ]))) coll-lookup.c:68 -1
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:DI 126)
+                (ashift:DI (reg:DI 123 [ D.1954 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:68 -1
+     (nil))
+(insn 28 27 29 5 (parallel [
+            (set (reg:DI 125)
+                (plus:DI (reg/v/f:DI 115 [ table ])
+                    (reg:DI 126)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:68 -1
+     (nil))
+(insn 29 28 30 5 (parallel [
+            (set (reg/f:DI 127)
+                (plus:DI (reg:DI 125)
+                    (reg:DI 124 [ D.1956 ])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:68 -1
+     (nil))
+(insn 30 29 31 5 (set (reg/v:SI 105 [ lookup2 ])
+        (mem:SI (reg/f:DI 127) [1 *_21+0 S4 A32])) coll-lookup.c:68 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 105 [ lookup2 ])
+            (const_int 0 [0]))) coll-lookup.c:69 -1
+     (nil))
+(jump_insn 32 31 33 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 61)
+            (pc))) coll-lookup.c:69 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 61)
+(note 33 32 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 6 (parallel [
+            (set (reg:SI 128 [ index3 ])
+                (and:SI (reg/v:SI 116 [ wc ])
+                    (mem:SI (plus:DI (reg/v/f:DI 115 [ table ])
+                            (const_int 16 [0x10])) [1 MEM[(const uint32_t *)table_3(D) + 16B]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:73 -1
+     (nil))
+(insn 35 34 36 6 (set (reg:DI 129 [ D.1954 ])
+        (zero_extend:DI (reg:SI 128 [ index3 ]))) coll-lookup.c:73 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:DI 130 [ D.1956 ])
+        (zero_extend:DI (reg/v:SI 105 [ lookup2 ]))) coll-lookup.c:73 -1
+     (nil))
+(insn 37 36 38 6 (parallel [
+            (set (reg:DI 132)
+                (ashift:DI (reg:DI 129 [ D.1954 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:73 -1
+     (nil))
+(insn 38 37 39 6 (parallel [
+            (set (reg:DI 131)
+                (plus:DI (reg/v/f:DI 115 [ table ])
+                    (reg:DI 132)))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:73 -1
+     (nil))
+(insn 39 38 40 6 (parallel [
+            (set (reg/f:DI 133)
+                (plus:DI (reg:DI 131)
+                    (reg:DI 130 [ D.1956 ])))
+            (clobber (reg:CC 17 flags))
+        ]) coll-lookup.c:73 -1
+     (nil))
+(insn 40 39 5 6 (set (reg/v:SI 113 [ lookup3 ])
+        (mem:SI (reg/f:DI 133) [1 *_29+0 S4 A32])) coll-lookup.c:73 -1
+     (nil))
+(insn 5 40 50 6 (set (reg:SI 87 [ D.1952 ])
+        (reg/v:SI 113 [ lookup3 ])) coll-lookup.c:75 -1
+     (nil))
+(jump_insn 50 5 51 6 (set (pc)
+        (label_ref 41)) coll-lookup.c:75 -1
+     (nil)
+ -> 41)
+(barrier 51 50 53)
+(code_label 53 51 52 7 11 "" [1 uses])
+(note 52 53 7 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 7 52 54 7 (set (reg:SI 87 [ D.1952 ])
+        (const_int -1 [0xffffffffffffffff])) coll-lookup.c:79 -1
+     (nil))
+(jump_insn 54 7 55 7 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 55 54 57)
+(code_label 57 55 56 8 12 "" [1 uses])
+(note 56 57 6 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 6 56 58 8 (set (reg:SI 87 [ D.1952 ])
+        (const_int -1 [0xffffffffffffffff])) coll-lookup.c:79 -1
+     (nil))
+(jump_insn 58 6 59 8 (set (pc)
+        (label_ref 41)) -1
+     (nil)
+ -> 41)
+(barrier 59 58 61)
+(code_label 61 59 60 9 13 "" [1 uses])
+(note 60 61 8 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 8 60 41 9 (set (reg:SI 87 [ D.1952 ])
+        (const_int -1 [0xffffffffffffffff])) coll-lookup.c:79 -1
+     (nil))
+(code_label 41 8 42 10 10 "" [3 uses])
+(note 42 41 43 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 47 10 (set (reg:SI 114 [ <retval> ])
+        (reg:SI 87 [ D.1952 ])) -1
+     (nil))
+(insn 47 43 48 10 (set (reg/i:SI 0 ax)
+        (reg:SI 114 [ <retval> ])) coll-lookup.c:80 -1
+     (nil))
+(insn 48 47 0 10 (use (reg/i:SI 0 ax)) coll-lookup.c:80 -1
+     (nil))

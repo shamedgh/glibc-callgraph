@@ -1,0 +1,55 @@
+\hypertarget{generic_2memusage_8h}{}\doxysection{sysdeps/generic/memusage.h File Reference}
+\label{generic_2memusage_8h}\index{sysdeps/generic/memusage.h@{sysdeps/generic/memusage.h}}
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$atomic.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{generic_2memusage_8h_a7ddf75c14b8626d59aa1a07c267dbf9c}{G\+E\+T\+SP}}~0
+\item 
+\#define \mbox{\hyperlink{generic_2memusage_8h_ae5e6173068fa394b67000a61960c9ae0}{G\+E\+T\+T\+I\+ME}}(low,  \mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}})
+\item 
+\#define \mbox{\hyperlink{generic_2memusage_8h_a74a8db16eff6ea3d2f252f9f68ed0177}{memusage\+\_\+cntr\+\_\+t}}~\mbox{\hyperlink{aarch64_2atomic-machine_8h_a9f742e47c90b56d7380d6d989cc5e781}{uatomic64\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{generic_2memusage_8h_a368093f8dac6e3dfb0c13ba8162a1ff6}{memusage\+\_\+size\+\_\+t}}~\mbox{\hyperlink{aarch64_2atomic-machine_8h_a9f742e47c90b56d7380d6d989cc5e781}{uatomic64\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{generic_2memusage_8h_a7ddf75c14b8626d59aa1a07c267dbf9c}\label{generic_2memusage_8h_a7ddf75c14b8626d59aa1a07c267dbf9c}} 
+\index{memusage.h@{memusage.h}!GETSP@{GETSP}}
+\index{GETSP@{GETSP}!memusage.h@{memusage.h}}
+\doxysubsubsection{\texorpdfstring{GETSP}{GETSP}}
+{\footnotesize\ttfamily \#define G\+E\+T\+SP~0}
+
+\mbox{\Hypertarget{generic_2memusage_8h_ae5e6173068fa394b67000a61960c9ae0}\label{generic_2memusage_8h_ae5e6173068fa394b67000a61960c9ae0}} 
+\index{memusage.h@{memusage.h}!GETTIME@{GETTIME}}
+\index{GETTIME@{GETTIME}!memusage.h@{memusage.h}}
+\doxysubsubsection{\texorpdfstring{GETTIME}{GETTIME}}
+{\footnotesize\ttfamily \#define G\+E\+T\+T\+I\+ME(\begin{DoxyParamCaption}\item[{}]{low,  }\item[{}]{\mbox{\hyperlink{sparc64_2dl-plt_8h_ac4d0ba7b95361462383cac7406697294}{high}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    struct timeval tval;                              \(\backslash\)}
+\DoxyCodeLine{    uint64\_t usecs;                               \(\backslash\)}
+\DoxyCodeLine{    gettimeofday (\&tval, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}});                           \(\backslash\)}
+\DoxyCodeLine{    usecs = (\mbox{\hyperlink{stdint_8h_a246b33e9233313797d7dc7d7700d2148}{uint64\_t}}) tval.tv\_usec + (\mbox{\hyperlink{stdint_8h_a246b33e9233313797d7dc7d7700d2148}{uint64\_t}}) tval.tv\_usec * 1000000;      \(\backslash\)}
+\DoxyCodeLine{    low = usecs \& 0xffffffff;                             \(\backslash\)}
+\DoxyCodeLine{    high = usecs >> 32;                               \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic_2memusage_8h_a74a8db16eff6ea3d2f252f9f68ed0177}\label{generic_2memusage_8h_a74a8db16eff6ea3d2f252f9f68ed0177}} 
+\index{memusage.h@{memusage.h}!memusage\_cntr\_t@{memusage\_cntr\_t}}
+\index{memusage\_cntr\_t@{memusage\_cntr\_t}!memusage.h@{memusage.h}}
+\doxysubsubsection{\texorpdfstring{memusage\_cntr\_t}{memusage\_cntr\_t}}
+{\footnotesize\ttfamily \#define memusage\+\_\+cntr\+\_\+t~\mbox{\hyperlink{aarch64_2atomic-machine_8h_a9f742e47c90b56d7380d6d989cc5e781}{uatomic64\+\_\+t}}}
+
+\mbox{\Hypertarget{generic_2memusage_8h_a368093f8dac6e3dfb0c13ba8162a1ff6}\label{generic_2memusage_8h_a368093f8dac6e3dfb0c13ba8162a1ff6}} 
+\index{memusage.h@{memusage.h}!memusage\_size\_t@{memusage\_size\_t}}
+\index{memusage\_size\_t@{memusage\_size\_t}!memusage.h@{memusage.h}}
+\doxysubsubsection{\texorpdfstring{memusage\_size\_t}{memusage\_size\_t}}
+{\footnotesize\ttfamily \#define memusage\+\_\+size\+\_\+t~\mbox{\hyperlink{aarch64_2atomic-machine_8h_a9f742e47c90b56d7380d6d989cc5e781}{uatomic64\+\_\+t}}}
+

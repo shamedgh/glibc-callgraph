@@ -1,0 +1,90 @@
+\hypertarget{tst-tpp_8h}{}\doxysection{nptl/tst-\/tpp.h File Reference}
+\label{tst-tpp_8h}\index{nptl/tst-\/tpp.h@{nptl/tst-\/tpp.h}}
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$sched.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/syscall.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tst-tpp_8h_abff8b87e24b03d0ba3587e08a61f3e87}{C\+H\+E\+C\+K\+\_\+\+T\+P\+P\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}(normal,  boosted)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{tst-tpp_8h_a7ccc238c9379b40d040a90b4a0f425bf}{init\+\_\+tpp\+\_\+test}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-tpp_8h_aaa78b9180593cabec696a3086e269ef7}{fifo\+\_\+min}}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{tst-tpp_8h_a6872d82a59d962b09467e7081416318f}{fifo\+\_\+max}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tst-tpp_8h_abff8b87e24b03d0ba3587e08a61f3e87}\label{tst-tpp_8h_abff8b87e24b03d0ba3587e08a61f3e87}} 
+\index{tst-\/tpp.h@{tst-\/tpp.h}!CHECK\_TPP\_PRIORITY@{CHECK\_TPP\_PRIORITY}}
+\index{CHECK\_TPP\_PRIORITY@{CHECK\_TPP\_PRIORITY}!tst-\/tpp.h@{tst-\/tpp.h}}
+\doxysubsubsection{\texorpdfstring{CHECK\_TPP\_PRIORITY}{CHECK\_TPP\_PRIORITY}}
+{\footnotesize\ttfamily \#define C\+H\+E\+C\+K\+\_\+\+T\+P\+P\+\_\+\+P\+R\+I\+O\+R\+I\+TY(\begin{DoxyParamCaption}\item[{}]{normal,  }\item[{}]{boosted }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                              \(\backslash\)}
+\DoxyCodeLine{    \{                               \(\backslash\)}
+\DoxyCodeLine{      pid\_t \mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}} = \mbox{\hyperlink{misc_2syscall_8c_a26431bc18242adfafc3592f3984ffa0a}{syscall}} (\_\_NR\_gettid);          \(\backslash\)}
+\DoxyCodeLine{                                \(\backslash\)}
+\DoxyCodeLine{      struct \mbox{\hyperlink{structsched__param}{sched\_param}} cep\_sp;             \(\backslash\)}
+\DoxyCodeLine{      int cep\_policy;                       \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{sysdeps_2nptl_2pthread_8h_a56cd0c64274d5cfd7d5c9b085477e1d2}{pthread\_getschedparam}} (\mbox{\hyperlink{sysdeps_2nptl_2pthread_8h_ab23efef0a53401f17d28e7b5660b1d37}{pthread\_self}} (), \&cep\_policy, \(\backslash\)}
+\DoxyCodeLine{                 \&cep\_sp) != 0)         \(\backslash\)}
+\DoxyCodeLine{    \{                           \(\backslash\)}
+\DoxyCodeLine{      puts (\textcolor{stringliteral}{"getschedparam failed"});            \(\backslash\)}
+\DoxyCodeLine{      ret = 1;                      \(\backslash\)}
+\DoxyCodeLine{    \}                           \(\backslash\)}
+\DoxyCodeLine{      else \textcolor{keywordflow}{if} (cep\_sp.sched\_priority != (normal))       \(\backslash\)}
+\DoxyCodeLine{    \{                           \(\backslash\)}
+\DoxyCodeLine{      printf (\textcolor{stringliteral}{"unexpected priority \%d != \%d\(\backslash\)n"},     \(\backslash\)}
+\DoxyCodeLine{          cep\_sp.sched\_priority, (normal));     \(\backslash\)}
+\DoxyCodeLine{    \}                           \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{misc_2syscall_8c_a26431bc18242adfafc3592f3984ffa0a}{syscall}} (\_\_NR\_sched\_getparam, \mbox{\hyperlink{descr_8h_a93ba930b99bef30e8c7351f285c1bdf4}{tid}}, \&cep\_sp) == 0    \(\backslash\)}
+\DoxyCodeLine{      \&\& cep\_sp.sched\_priority != (boosted))        \(\backslash\)}
+\DoxyCodeLine{    \{                           \(\backslash\)}
+\DoxyCodeLine{      printf (\textcolor{stringliteral}{"unexpected boosted priority \%d != \%d\(\backslash\)n"}, \(\backslash\)}
+\DoxyCodeLine{          cep\_sp.sched\_priority, (boosted));        \(\backslash\)}
+\DoxyCodeLine{      ret = 1;                      \(\backslash\)}
+\DoxyCodeLine{    \}                           \(\backslash\)}
+\DoxyCodeLine{    \}                               \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tst-tpp_8h_a7ccc238c9379b40d040a90b4a0f425bf}\label{tst-tpp_8h_a7ccc238c9379b40d040a90b4a0f425bf}} 
+\index{tst-\/tpp.h@{tst-\/tpp.h}!init\_tpp\_test@{init\_tpp\_test}}
+\index{init\_tpp\_test@{init\_tpp\_test}!tst-\/tpp.h@{tst-\/tpp.h}}
+\doxysubsubsection{\texorpdfstring{init\_tpp\_test()}{init\_tpp\_test()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} init\+\_\+tpp\+\_\+test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{tst-tpp_8h_a6872d82a59d962b09467e7081416318f}\label{tst-tpp_8h_a6872d82a59d962b09467e7081416318f}} 
+\index{tst-\/tpp.h@{tst-\/tpp.h}!fifo\_max@{fifo\_max}}
+\index{fifo\_max@{fifo\_max}!tst-\/tpp.h@{tst-\/tpp.h}}
+\doxysubsubsection{\texorpdfstring{fifo\_max}{fifo\_max}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} fifo\+\_\+max}
+
+\mbox{\Hypertarget{tst-tpp_8h_aaa78b9180593cabec696a3086e269ef7}\label{tst-tpp_8h_aaa78b9180593cabec696a3086e269ef7}} 
+\index{tst-\/tpp.h@{tst-\/tpp.h}!fifo\_min@{fifo\_min}}
+\index{fifo\_min@{fifo\_min}!tst-\/tpp.h@{tst-\/tpp.h}}
+\doxysubsubsection{\texorpdfstring{fifo\_min}{fifo\_min}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} fifo\+\_\+min}
+

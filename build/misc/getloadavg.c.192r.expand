@@ -1,0 +1,463 @@
+
+;; Function getloadavg (getloadavg, funcdef_no=32, decl_uid=2884, cgraph_uid=32, symbol_order=37)
+
+Partition 0: size 65 align 16
+	buf
+Partition 1: size 8 align 8
+	endp
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+Edge 4->15 redirected to 18
+Edge 8->14 redirected to 20
+Edge 9->14 redirected to 21
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 105 from 18 to 20.
+Redirecting jump 131 from 18 to 20.
+Redirecting jump 135 from 18 to 20.
+Merging block 18 into block 17...
+Merged blocks 17 and 18.
+Merged 17 and 18 without moving.
+Removing jump 120.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 24 0 37 NOTE_INSN_DELETED)
+(note 37 24 25 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 25 37 26 2 (set (reg/v/f:DI 134 [ loadavg ])
+        (reg:DI 5 di [ loadavg ])) ../sysdeps/unix/sysv/linux/getloadavg.c:33 -1
+     (nil))
+(insn 26 25 27 2 (set (reg/v:SI 135 [ nelem ])
+        (reg:SI 4 si [ nelem ])) ../sysdeps/unix/sysv/linux/getloadavg.c:33 -1
+     (nil))
+(note 27 26 39 2 NOTE_INSN_FUNCTION_BEG)
+(insn 39 27 40 2 (set (reg/v:DI 4 si [ _a2 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 40 39 41 2 (set (reg/v:DI 5 di [ _a1 ])
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x2b188c261cf0 *.LC0>)) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 41 40 42 2 (set (reg:SI 137)
+        (const_int 2 [0x2])) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 42 41 43 2 (parallel [
+            (set (reg:DI 136 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 137)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/getloadavg.c:36)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getloadavg.c:36)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getloadavg.c:36)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/getloadavg.c:36))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 43 42 44 2 (set (reg/v:DI 117 [ resultvar ])
+        (reg:DI 136 [ resultvar ])) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 44 43 45 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 117 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(jump_insn 45 44 46 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 52)
+(note 46 45 47 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 4 (set (reg:DI 138)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b188c186900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 48 47 49 4 (parallel [
+            (set (reg:SI 139)
+                (neg:SI (subreg:SI (reg/v:DI 117 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 49 48 36 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 138)) [2 __libc_errno+0 S4 A32])
+        (reg:SI 139)) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 36 49 50 4 (set (reg:SI 114 [ D.8325 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/getloadavg.c:38 -1
+     (nil))
+(jump_insn 50 36 51 4 (set (pc)
+        (label_ref 117)) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil)
+ -> 117)
+(barrier 51 50 52)
+(code_label 52 51 53 5 2 "" [1 uses])
+(note 53 52 54 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 5 (set (reg/v:SI 121 [ fd ])
+        (subreg:SI (reg/v:DI 117 [ resultvar ]) 0)) ../sysdeps/unix/sysv/linux/getloadavg.c:36 -1
+     (nil))
+(insn 55 54 56 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 121 [ fd ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/getloadavg.c:37 -1
+     (nil))
+(jump_insn 56 55 57 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:37 612 {*jcc_1}
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 129)
+(note 57 56 58 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 6 (set (reg/v:DI 123 [ __arg1 ])
+        (sign_extend:DI (reg/v:SI 121 [ fd ]))) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 59 58 60 6 (set (reg/v:DI 1 dx [ _a3 ])
+        (const_int 64 [0x40])) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 60 59 61 6 (parallel [
+            (set (reg/v:DI 4 si [ _a2 ])
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 61 60 62 6 (set (reg/v:DI 5 di [ _a1 ])
+        (reg/v:DI 123 [ __arg1 ])) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 62 61 63 6 (set (reg:SI 141)
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 63 62 64 6 (parallel [
+            (set (reg:DI 140 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 141)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/getloadavg.c:45)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getloadavg.c:45)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getloadavg.c:45)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getloadavg.c:45)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/getloadavg.c:45))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 64 63 65 6 (set (reg/v:DI 124 [ resultvar ])
+        (reg:DI 140 [ resultvar ])) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 65 64 66 6 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 124 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(jump_insn 66 65 67 6 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 71)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 71)
+(note 67 66 68 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 7 (set (reg:DI 115 [ D.8326 ])
+        (reg/v:DI 124 [ resultvar ])) -1
+     (nil))
+(jump_insn 69 68 70 7 (set (pc)
+        (label_ref 76)) -1
+     (nil)
+ -> 76)
+(barrier 70 69 71)
+(code_label 71 70 72 8 4 "" [1 uses])
+(note 72 71 73 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 73 72 74 8 (set (reg:DI 142)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b188c186900 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 74 73 75 8 (parallel [
+            (set (reg:SI 143)
+                (neg:SI (subreg:SI (reg/v:DI 124 [ resultvar ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 75 74 28 8 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 142)) [2 __libc_errno+0 S4 A32])
+        (reg:SI 143)) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(insn 28 75 76 8 (set (reg:DI 115 [ D.8326 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/getloadavg.c:45 -1
+     (nil))
+(code_label 76 28 77 9 5 "" [1 uses])
+(note 77 76 78 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 78 77 79 9 (set (reg/v:DI 5 di [ _a1 ])
+        (reg/v:DI 123 [ __arg1 ])) ../sysdeps/unix/sysv/linux/getloadavg.c:46 -1
+     (nil))
+(insn 79 78 80 9 (set (reg:SI 145)
+        (const_int 3 [0x3])) ../sysdeps/unix/sysv/linux/getloadavg.c:46 -1
+     (nil))
+(insn 80 79 81 9 (parallel [
+            (set (reg:DI 144 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 145)
+                        (reg/v:DI 5 di [ _a1 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/getloadavg.c:46)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/getloadavg.c:46)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/getloadavg.c:46))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:46 -1
+     (nil))
+(insn 81 80 82 9 (set (reg/v:DI 129 [ resultvar ])
+        (reg:DI 144 [ resultvar ])) ../sysdeps/unix/sysv/linux/getloadavg.c:46 -1
+     (nil))
+(insn 82 81 83 9 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:DI 115 [ D.8326 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/getloadavg.c:47 -1
+     (nil))
+(jump_insn 83 82 84 9 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 134)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:47 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2700 (nil))
+ -> 134)
+(note 84 83 85 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 87 10 (set (mem/j:QI (plus:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (reg:DI 115 [ D.8326 ]))
+                (const_int -81 [0xffffffffffffffaf])) [0 buf S1 A8])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/getloadavg.c:49 -1
+     (nil))
+(insn 87 85 86 10 (set (reg:SI 146)
+        (const_int 3 [0x3])) -1
+     (nil))
+(insn 86 87 88 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 135 [ nelem ])
+            (const_int 3 [0x3]))) -1
+     (nil))
+(insn 88 86 89 10 (set (reg/v:SI 111 [ nelem ])
+        (if_then_else:SI (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg/v:SI 135 [ nelem ])
+            (reg:SI 146))) -1
+     (nil))
+(insn 89 88 90 10 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 111 [ nelem ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (nil))
+(jump_insn 90 89 91 10 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 138)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:54 612 {*jcc_1}
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 138)
+(note 91 90 92 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 92 91 29 11 (set (reg:DI 113 [ ivtmp.10 ])
+        (reg/v/f:DI 134 [ loadavg ])) -1
+     (nil))
+(insn 29 92 30 11 (set (reg/v:SI 125 [ i ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (nil))
+(insn 30 29 112 11 (parallel [
+            (set (reg/v/f:DI 110 [ p ])
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (nil))
+(code_label 112 30 93 12 8 "" [1 uses])
+(note 93 112 94 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 94 93 95 12 (parallel [
+            (set (reg:DI 147)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -88 [0xffffffffffffffa8])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (nil))
+(insn 95 94 96 12 (set (reg:DI 1 dx)
+        (symbol_ref:DI ("_nl_C_locobj") [flags 0x42]  <var_decl 0x2b188c186bd0 _nl_C_locobj>)) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (nil))
+(insn 96 95 97 12 (set (reg:DI 4 si)
+        (reg:DI 147)) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (nil))
+(insn 97 96 98 12 (set (reg:DI 5 di)
+        (reg/v/f:DI 110 [ p ])) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (nil))
+(call_insn 98 97 99 12 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("*__GI___strtod_l") [flags 0x43]  <function_decl 0x2b188bf7d1b0 __strtod_l>) [0 __strtod_l S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___strtod_l") [flags 0x43]  <function_decl 0x2b188bf7d1b0 __strtod_l>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 99 98 100 12 (set (reg:DF 131 [ D.8328 ])
+        (reg:DF 21 xmm0)) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (nil))
+(insn 100 99 101 12 (set (mem:DF (reg:DI 113 [ ivtmp.10 ]) [3 MEM[base: _3, offset: 0B]+0 S8 A64])
+        (reg:DF 131 [ D.8328 ])) ../sysdeps/unix/sysv/linux/getloadavg.c:57 -1
+     (nil))
+(insn 101 100 102 12 (set (reg/v/f:DI 132 [ p ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -88 [0xffffffffffffffa8])) [4 endp+0 S8 A64])) ../sysdeps/unix/sysv/linux/getloadavg.c:58 -1
+     (nil))
+(insn 102 101 103 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ p ])
+            (reg/v/f:DI 132 [ p ]))) ../sysdeps/unix/sysv/linux/getloadavg.c:58 -1
+     (nil))
+(jump_insn 103 102 104 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 107)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:58 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 107)
+(note 104 103 32 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 32 104 105 13 (set (reg:SI 114 [ D.8325 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/getloadavg.c:62 -1
+     (nil))
+(jump_insn 105 32 106 13 (set (pc)
+        (label_ref:DI 117)) ../sysdeps/unix/sysv/linux/getloadavg.c:62 654 {jump}
+     (nil)
+ -> 117)
+(barrier 106 105 107)
+(code_label 107 106 108 14 7 "" [1 uses])
+(note 108 107 109 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 109 108 110 14 (parallel [
+            (set (reg/v:SI 125 [ i ])
+                (plus:SI (reg/v:SI 125 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (nil))
+(insn 110 109 111 14 (parallel [
+            (set (reg:DI 113 [ ivtmp.10 ])
+                (plus:DI (reg:DI 113 [ ivtmp.10 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 111 110 113 14 (set (reg/v/f:DI 110 [ p ])
+        (reg/v/f:DI 132 [ p ])) -1
+     (nil))
+(insn 113 111 114 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 111 [ nelem ])
+            (reg/v:SI 125 [ i ]))) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (nil))
+(jump_insn 114 113 130 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 112)
+            (pc))) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 112)
+(note 130 114 33 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 33 130 131 15 (set (reg:SI 114 [ D.8325 ])
+        (reg/v:SI 111 [ nelem ])) -1
+     (nil))
+(jump_insn 131 33 132 15 (set (pc)
+        (label_ref:DI 117)) 654 {jump}
+     (nil)
+ -> 117)
+(barrier 132 131 134)
+(code_label 134 132 133 16 10 "" [1 uses])
+(note 133 134 31 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 31 133 135 16 (set (reg:SI 114 [ D.8325 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/getloadavg.c:48 -1
+     (nil))
+(jump_insn 135 31 136 16 (set (pc)
+        (label_ref:DI 117)) 654 {jump}
+     (nil)
+ -> 117)
+(barrier 136 135 138)
+(code_label 138 136 137 17 11 "" [1 uses])
+(note 137 138 34 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 34 137 126 17 (set (reg:SI 114 [ D.8325 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/getloadavg.c:54 -1
+     (nil))
+(jump_insn 126 34 127 17 (set (pc)
+        (label_ref 117)) -1
+     (nil)
+ -> 117)
+(barrier 127 126 129)
+(code_label 129 127 128 19 9 "" [1 uses])
+(note 128 129 35 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 35 128 117 19 (set (reg:SI 114 [ D.8325 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/unix/sysv/linux/getloadavg.c:38 -1
+     (nil))
+(code_label 117 35 118 20 3 "" [5 uses])
+(note 118 117 119 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 119 118 123 20 (set (reg:SI 133 [ <retval> ])
+        (reg:SI 114 [ D.8325 ])) -1
+     (nil))
+(insn 123 119 124 20 (set (reg/i:SI 0 ax)
+        (reg:SI 133 [ <retval> ])) ../sysdeps/unix/sysv/linux/getloadavg.c:68 -1
+     (nil))
+(insn 124 123 0 20 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/getloadavg.c:68 -1
+     (nil))

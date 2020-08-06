@@ -1,0 +1,60 @@
+
+;; Function abs (abs, funcdef_no=23, decl_uid=877, cgraph_uid=23, symbol_order=26)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 10.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 89 [ i ])
+        (reg:SI 5 di [ i ])) abs.c:25 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (parallel [
+            (set (reg:SI 91)
+                (ashiftrt:SI (reg/v:SI 89 [ i ])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) abs.c:26 -1
+     (nil))
+(insn 7 6 8 2 (parallel [
+            (set (reg:SI 90 [ D.3475 ])
+                (xor:SI (reg:SI 91)
+                    (reg/v:SI 89 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) abs.c:26 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:SI 90 [ D.3475 ])
+                (minus:SI (reg:SI 90 [ D.3475 ])
+                    (reg:SI 91)))
+            (clobber (reg:CC 17 flags))
+        ]) abs.c:26 -1
+     (nil))
+(insn 9 8 13 2 (set (reg:SI 88 [ <retval> ])
+        (reg:SI 90 [ D.3475 ])) abs.c:26 -1
+     (nil))
+(insn 13 9 14 2 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) abs.c:27 -1
+     (nil))
+(insn 14 13 0 2 (use (reg/i:SI 0 ax)) abs.c:27 -1
+     (nil))

@@ -1,0 +1,82 @@
+
+;; Function lrand48_r (*__GI_lrand48_r, funcdef_no=23, decl_uid=2266, cgraph_uid=23, symbol_order=26)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 20.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 90 [ buffer ])
+        (reg:DI 5 di [ buffer ])) lrand48_r.c:23 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 91 [ result ])
+        (reg:DI 4 si [ result ])) lrand48_r.c:23 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 90 [ buffer ])
+            (const_int 0 [0]))) lrand48_r.c:25 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) lrand48_r.c:25 -1
+     (int_list:REG_BR_PROB 177 (nil))
+ -> 17)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 1 dx)
+        (reg/v/f:DI 91 [ result ])) lrand48_r.c:28 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 90 [ buffer ])) lrand48_r.c:28 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 90 [ buffer ])) lrand48_r.c:28 -1
+     (nil))
+(call_insn/j 14 13 15 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__nrand48_r") [flags 0x41]  <function_decl 0x2b5777771948 __nrand48_r>) [0 __nrand48_r S1 A8])
+            (const_int 0 [0]))) lrand48_r.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__nrand48_r") [flags 0x41]  <function_decl 0x2b5777771948 __nrand48_r>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(barrier 15 14 17)
+(code_label 17 15 18 5 2 "" [1 uses])
+(note 18 17 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 5 18 19 5 (set (reg:SI 87 [ D.3481 ])
+        (const_int -1 [0xffffffffffffffff])) lrand48_r.c:26 -1
+     (nil))
+(insn 19 5 23 5 (set (reg:SI 89 [ <retval> ])
+        (reg:SI 87 [ D.3481 ])) -1
+     (nil))
+(insn 23 19 24 5 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) lrand48_r.c:29 -1
+     (nil))
+(insn 24 23 0 5 (use (reg/i:SI 0 ax)) lrand48_r.c:29 -1
+     (nil))

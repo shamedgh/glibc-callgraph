@@ -1,0 +1,123 @@
+
+;; Function __sqrtf (__sqrtf, funcdef_no=77, decl_uid=2327, cgraph_uid=77, symbol_order=77)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 27.
+Merging block 8 into block 6...
+Merged blocks 6 and 8.
+Merged 6 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SF 91 [ x ])
+        (reg:SF 21 xmm0 [ x ])) w_sqrtf.c:26 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:SF 92)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [2  S4 A32])) w_sqrtf.c:27 -1
+     (expr_list:REG_EQUAL (const_double:SF 0.0 [0x0.0p+0])
+        (nil)))
+(insn 8 7 9 2 (set (reg:CCFPU 17 flags)
+        (compare:CCFPU (reg:SF 92)
+            (reg/v:SF 91 [ x ]))) w_sqrtf.c:27 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (unle (reg:CCFPU 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) w_sqrtf.c:27 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 21)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg/f:DI 93)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("_LIB_VERSION") [flags 0x40]  <var_decl 0x2b500814d1b0 _LIB_VERSION>)
+                    ] UNSPEC_GOTPCREL)) [3  S8 A8])) w_sqrtf.c:27 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (reg/f:DI 93) [1 _LIB_VERSION+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))) w_sqrtf.c:27 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) w_sqrtf.c:27 -1
+     (int_list:REG_BR_PROB 5983 (nil))
+ -> 21)
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg:SI 5 di)
+        (const_int 126 [0x7e])) w_sqrtf.c:28 -1
+     (nil))
+(insn 16 15 17 5 (set (reg:SF 22 xmm1)
+        (reg/v:SF 91 [ x ])) w_sqrtf.c:28 -1
+     (nil))
+(insn 17 16 18 5 (set (reg:SF 21 xmm0)
+        (reg/v:SF 91 [ x ])) w_sqrtf.c:28 -1
+     (nil))
+(call_insn/j 18 17 19 5 (set (reg:SF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("__kernel_standard_f") [flags 0x41]  <function_decl 0x2b5008397360 __kernel_standard_f>) [0 __kernel_standard_f S1 A8])
+            (const_int 0 [0]))) w_sqrtf.c:28 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__kernel_standard_f") [flags 0x41]  <function_decl 0x2b5008397360 __kernel_standard_f>)
+        (nil))
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (expr_list:SF (use (reg:SF 22 xmm1))
+            (expr_list:SI (use (reg:SI 5 di))
+                (nil)))))
+(barrier 19 18 21)
+(code_label 21 19 22 6 2 "" [2 uses])
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (parallel [
+            (set (reg:SF 94 [ res ])
+                (asm_operands:SF ("sqrtss %1, %0") ("=x") 0 [
+                        (reg/v:SF 91 [ x ])
+                    ]
+                     [
+                        (asm_input:SF ("xm") ../sysdeps/x86_64/fpu/math_private.h:70)
+                    ]
+                     [] ../sysdeps/x86_64/fpu/math_private.h:70))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/math_private.h:70 -1
+     (nil))
+(insn 24 23 4 6 (set (reg/v:SF 89 [ res ])
+        (reg:SF 94 [ res ])) ../sysdeps/x86_64/fpu/math_private.h:70 -1
+     (nil))
+(insn 4 24 26 6 (set (reg:SF 87 [ D.5377 ])
+        (reg/v:SF 89 [ res ])) w_sqrtf.c:30 -1
+     (nil))
+(insn 26 4 30 6 (set (reg:SF 90 [ <retval> ])
+        (reg:SF 87 [ D.5377 ])) -1
+     (nil))
+(insn 30 26 31 6 (set (reg/i:SF 21 xmm0)
+        (reg:SF 90 [ <retval> ])) w_sqrtf.c:31 -1
+     (nil))
+(insn 31 30 0 6 (use (reg/i:SF 21 xmm0)) w_sqrtf.c:31 -1
+     (nil))

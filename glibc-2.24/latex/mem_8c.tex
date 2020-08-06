@@ -1,0 +1,93 @@
+\hypertarget{mem_8c}{}\doxysection{nscd/mem.c File Reference}
+\label{mem_8c}\index{nscd/mem.c@{nscd/mem.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$error.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$libintl.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$obstack.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}dbg\+\_\+log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nscd.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}~\mbox{\hyperlink{stdint_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}
+\item 
+\#define \mbox{\hyperlink{mem_8c_a9d2a7c69bd3fabc41e1ee87df2f283b3}{B\+I\+TS}}~(\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}} $\ast$ sizeof (\mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}))
+\item 
+\#define \mbox{\hyperlink{mem_8c_aeef12456483291005b5a0a8e8d2c1256}{A\+L\+L\+B\+I\+TS}}~((((\mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}) 1) $<$$<$ \mbox{\hyperlink{sigsetops_8h_a9d2a7c69bd3fabc41e1ee87df2f283b3}{B\+I\+TS}}) -\/ 1)
+\item 
+\#define \mbox{\hyperlink{mem_8c_ae763850dbffafef9b81b1d7ff509ad25}{H\+I\+G\+H\+B\+IT}}~(((\mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}) 1) $<$$<$ (\mbox{\hyperlink{sigsetops_8h_a9d2a7c69bd3fabc41e1ee87df2f283b3}{B\+I\+TS}} -\/ 1))
+\item 
+\#define \mbox{\hyperlink{mem_8c_afe107f8385341e11aef32eaac290b39a}{obstack\+\_\+chunk\+\_\+alloc}}~\mbox{\hyperlink{xstrdup_8c_abcaa02a86f4775df7ca4419277ccfcc6}{xmalloc}}
+\item 
+\#define \mbox{\hyperlink{mem_8c_a10ffd65176663f1396a3607ebb41470c}{obstack\+\_\+chunk\+\_\+free}}~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{mem_8c_a28e5e868f12f51fde88d3f4f5ae79a49}{gc}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{mem_8c_af4920f0102b38977967b51e4899eef09}{mempool\+\_\+alloc}} (struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$\mbox{\hyperlink{connections_8c_a807dbec92132aa4aa669b7c9e57bbd5b}{db}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} data\+\_\+alloc)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mem_8c_aeef12456483291005b5a0a8e8d2c1256}\label{mem_8c_aeef12456483291005b5a0a8e8d2c1256}} 
+\index{mem.c@{mem.c}!ALLBITS@{ALLBITS}}
+\index{ALLBITS@{ALLBITS}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{ALLBITS}{ALLBITS}}
+{\footnotesize\ttfamily \#define A\+L\+L\+B\+I\+TS~((((\mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}) 1) $<$$<$ \mbox{\hyperlink{sigsetops_8h_a9d2a7c69bd3fabc41e1ee87df2f283b3}{B\+I\+TS}}) -\/ 1)}
+
+\mbox{\Hypertarget{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}\label{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}} 
+\index{mem.c@{mem.c}!BITMAP\_T@{BITMAP\_T}}
+\index{BITMAP\_T@{BITMAP\_T}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{BITMAP\_T}{BITMAP\_T}}
+{\footnotesize\ttfamily \#define B\+I\+T\+M\+A\+P\+\_\+T~\mbox{\hyperlink{stdint_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}
+
+\mbox{\Hypertarget{mem_8c_a9d2a7c69bd3fabc41e1ee87df2f283b3}\label{mem_8c_a9d2a7c69bd3fabc41e1ee87df2f283b3}} 
+\index{mem.c@{mem.c}!BITS@{BITS}}
+\index{BITS@{BITS}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{BITS}{BITS}}
+{\footnotesize\ttfamily \#define B\+I\+TS~(\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}} $\ast$ sizeof (\mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}))}
+
+\mbox{\Hypertarget{mem_8c_ae763850dbffafef9b81b1d7ff509ad25}\label{mem_8c_ae763850dbffafef9b81b1d7ff509ad25}} 
+\index{mem.c@{mem.c}!HIGHBIT@{HIGHBIT}}
+\index{HIGHBIT@{HIGHBIT}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{HIGHBIT}{HIGHBIT}}
+{\footnotesize\ttfamily \#define H\+I\+G\+H\+B\+IT~(((\mbox{\hyperlink{mem_8c_ad7e87ff8232e43ea0dc418a56255bf33}{B\+I\+T\+M\+A\+P\+\_\+T}}) 1) $<$$<$ (\mbox{\hyperlink{sigsetops_8h_a9d2a7c69bd3fabc41e1ee87df2f283b3}{B\+I\+TS}} -\/ 1))}
+
+\mbox{\Hypertarget{mem_8c_afe107f8385341e11aef32eaac290b39a}\label{mem_8c_afe107f8385341e11aef32eaac290b39a}} 
+\index{mem.c@{mem.c}!obstack\_chunk\_alloc@{obstack\_chunk\_alloc}}
+\index{obstack\_chunk\_alloc@{obstack\_chunk\_alloc}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_alloc}{obstack\_chunk\_alloc}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+alloc~\mbox{\hyperlink{xstrdup_8c_abcaa02a86f4775df7ca4419277ccfcc6}{xmalloc}}}
+
+\mbox{\Hypertarget{mem_8c_a10ffd65176663f1396a3607ebb41470c}\label{mem_8c_a10ffd65176663f1396a3607ebb41470c}} 
+\index{mem.c@{mem.c}!obstack\_chunk\_free@{obstack\_chunk\_free}}
+\index{obstack\_chunk\_free@{obstack\_chunk\_free}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{obstack\_chunk\_free}{obstack\_chunk\_free}}
+{\footnotesize\ttfamily \#define obstack\+\_\+chunk\+\_\+free~\mbox{\hyperlink{sysdeps_2posix_2getcwd_8c_aafde19f7d36ca163a143579c1b125b6d}{free}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mem_8c_a28e5e868f12f51fde88d3f4f5ae79a49}\label{mem_8c_a28e5e868f12f51fde88d3f4f5ae79a49}} 
+\index{mem.c@{mem.c}!gc@{gc}}
+\index{gc@{gc}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{gc()}{gc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} gc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mem_8c_af4920f0102b38977967b51e4899eef09}\label{mem_8c_af4920f0102b38977967b51e4899eef09}} 
+\index{mem.c@{mem.c}!mempool\_alloc@{mempool\_alloc}}
+\index{mempool\_alloc@{mempool\_alloc}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{mempool\_alloc()}{mempool\_alloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ mempool\+\_\+alloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structdatabase__dyn}{database\+\_\+dyn}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{len,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{data\+\_\+alloc }\end{DoxyParamCaption})}
+

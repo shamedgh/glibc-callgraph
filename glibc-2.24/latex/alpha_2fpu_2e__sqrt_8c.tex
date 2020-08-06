@@ -1,0 +1,230 @@
+\hypertarget{alpha_2fpu_2e__sqrt_8c}{}\doxysection{sysdeps/alpha/fpu/e\+\_\+sqrt.c File Reference}
+\label{alpha_2fpu_2e__sqrt_8c}\index{sysdeps/alpha/fpu/e\_sqrt.c@{sysdeps/alpha/fpu/e\_sqrt.c}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$math\+\_\+private.\+h$>$}\newline
+{\ttfamily \#include $<$shlib-\/compat.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/ieee754/dbl-\/64/e\+\_\+sqrt.\+c$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bfseries sqrt\+\_\+data\+\_\+struct}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_af77df9e2f7408b096ed9a05c3ed5811e}{strong\+\_\+alias}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})
+\item 
+\#define \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_aa65b0162686f373ef00b5c8fb4fe4599}{\+\_\+\+\_\+ieee754\+\_\+sqrt}}~\+\_\+\+\_\+full\+\_\+ieee754\+\_\+sqrt
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a55819569f9b9317583280851928ddd1f}{asm}} (\char`\"{}\textbackslash{}
+  /$\ast$ Define offsets into the structure \mbox{\hyperlink{rpc__util_8h_a6a4ce3a8d0c7aa871d16e3a14eeb103e}{defined}} \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \mbox{\hyperlink{psiginfo-define_8h_ae7afc18d0b19eba994db47b01743d816}{C}} above.  $\ast$/		\textbackslash{}n\textbackslash{}
+	\$DN = 0$\ast$8							\textbackslash{}n\textbackslash{}
+	\$UP = 1$\ast$8							\textbackslash{}n\textbackslash{}
+	\$\mbox{\hyperlink{mpa_8h_a37c4c48ff47f0838f64b5a1fb3c803b2}{H\+A\+LF}} = 2$\ast$8							\textbackslash{}n\textbackslash{}
+	\$A\+L\+M\+O\+S\+T\+\_\+\+T\+H\+R\+E\+E\+\_\+\+H\+A\+LF = 3$\ast$8					\textbackslash{}n\textbackslash{}
+	\$\mbox{\hyperlink{sysdeps_2mips_2bits_2nan_8h_a8abfcc76130f3f991d124dd22d7e69bc}{N\+AN}} = 7$\ast$8							\textbackslash{}n\textbackslash{}
+	\$\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} = 8$\ast$8							\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+  /$\ast$ Stack variables.  $\ast$/						\textbackslash{}n\textbackslash{}
+	\$K = 0								\textbackslash{}n\textbackslash{}
+	\$\mbox{\hyperlink{mpa_8h_a798e4073d613ca5ba9618e1b3253df14}{Y}} = 8								\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	.text								\textbackslash{}n\textbackslash{}
+	.\mbox{\hyperlink{unionalign}{align}}	5							\textbackslash{}n\textbackslash{}
+	.globl	\mbox{\hyperlink{x86__64_2fpu_2math__private_8h_a431d7e210198e10fe630edc18f13e5dd}{\+\_\+\+\_\+ieee754\+\_\+sqrt}}						\textbackslash{}n\textbackslash{}
+	.ent	\mbox{\hyperlink{x86__64_2fpu_2math__private_8h_a431d7e210198e10fe630edc18f13e5dd}{\+\_\+\+\_\+ieee754\+\_\+sqrt}}						\textbackslash{}n\textbackslash{}
+\+\_\+\+\_\+ieee754\+\_\+sqrt\+:								\textbackslash{}n\textbackslash{}
+	ldgp	\$29, 0(\$27)						\textbackslash{}n\textbackslash{}
+	\mbox{\hyperlink{svml__s__wrapper__impl_8h_ac6f5eea7a15fbaf60b60461a64813ba8}{subq}}	\$\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}, 16, \$\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}						\textbackslash{}n\textbackslash{}
+	.frame	\$\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}, 16, \$26, 0\textbackslash{}\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{} \char`\"{}	.prologue 1							\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	.\mbox{\hyperlink{unionalign}{align}} 4							\textbackslash{}n\textbackslash{}
+	stt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a1157df6936a54ea0ed75fdd8be5a3b30}{f16}}, \$K(\$\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}})		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a0e57a0921c3b95ef76ebff40404060b1}{f31}}, \$\mbox{\hyperlink{bug-atexit1-lib_8c_a0e57a0921c3b95ef76ebff40404060b1}{f31}}, \$\mbox{\hyperlink{bug-atexit1-lib_8c_a0e57a0921c3b95ef76ebff40404060b1}{f31}}	\# .. fm \+:			\textbackslash{}n\textbackslash{}
+	\mbox{\hyperlink{test-fenv-clear-main_8c_a0eb5ad2acac13cd87a735eae738787c0}{lda}}	\$4, sqrt\+\_\+data		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	fblt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a1157df6936a54ea0ed75fdd8be5a3b30}{f16}}, \$fixup		\# .. \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} \+:			\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	ldah	\$2, 0x5fe8		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	ldq	\$3, \$\+K(\$sp)		\# .. e1 \+:			\textbackslash{}n\textbackslash{}
+	ldt	\$f12, \$\+H\+A\+L\+F(\$4)		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	ldt	\$f18, \$\+A\+L\+M\+O\+S\+T\+\_\+\+T\+H\+R\+E\+E\+\_\+\+H\+A\+L\+F(\$4)	\# .. e1 \+:		\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	sll	\$3, 52, \$5		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	lda	\$6, 0x7fd		\# .. e1 \+:			\textbackslash{}n\textbackslash{}
+	fnop				\# .. fa \+:			\textbackslash{}n\textbackslash{}
+	fnop				\# .. fm \+:			\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	subq	\$5, 1, \$5		\# e1    \+:			\textbackslash{}n\textbackslash{}
+	srl	\$3, 33, \$1		\# .. e0 \+:			\textbackslash{}n\textbackslash{}
+	cmpule	\$5, \$6, \$5		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	beq	\$5, \$fixup		\# .. e1 \+:			\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	mult	\$f16, \$f12, \$f11	\# fm    \+: \$f11 = x $\ast$ 0.\+5	\textbackslash{}n\textbackslash{}
+	subl	\$2, \$1, \$2		\# .. e0 \+:			\textbackslash{}n\textbackslash{}
+	addt	\$f12, \$f12, \$f17	\# .. fa \+: \$f17 = 1.\+0		\textbackslash{}n\textbackslash{}
+	srl	\$2, 12, \$1		\# e0    \+:			\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	and	\$1, 0xfc, \$1		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	addq	\$1, \$4, \$1		\# e1    \+:			\textbackslash{}n\textbackslash{}
+	ldl	\$1, \$\+T2(\$1)		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	addt	\$f12, \$f17, \$f15	\# .. fa \+: \$f15 = 1.\+5		\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	subl	\$2, \$1, \$2		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	ldt	\$f14, \$\+D\+N(\$4)		\# .. e1 \+:			\textbackslash{}n\textbackslash{}
+	sll	\$2, 32, \$2		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	stq	\$2, \$\+Y(\$sp)		\# e0    \+:			\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	ldt	\$f13, \$\+Y(\$sp)		\# e0    \+:			\textbackslash{}n\textbackslash{}
+	mult/su	\$f11, \$f13, \$f10	\# fm   2\+: \$f10 = (x $\ast$ 0.\+5) $\ast$ y	\textbackslash{}n\textbackslash{}
+	mult	\$f10, \$f13, \$f10	\# fm   4\+: \$f10 = ((x$\ast$0.\+5)$\ast$y)$\ast$y	\textbackslash{}n\textbackslash{}
+	subt	\$f15, \$f10, \$f1		\# fa   4\+: \$f1 = (1.\+5-\/0.\+5$\ast$x$\ast$y$\ast$y)	\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	mult	\$f13, \$f1, \$f13         \# fm   4\+: yp = y$\ast$(1.\+5-\/0.\+5$\ast$x$\ast$y$^\wedge$2)\textbackslash{}n\textbackslash{}
+	mult/su	\$f11, \$f13, \$f1		\# fm   4\+: \$f11 = x $\ast$ 0.\+5 $\ast$ yp	\textbackslash{}n\textbackslash{}
+	mult	\$f1, \$f13, \$f11		\# fm   4\+: \$f11 = (x$\ast$0.\+5$\ast$yp)$\ast$yp	\textbackslash{}n\textbackslash{}
+	subt	\$f18, \$f11, \$f1		\# fa   4\+: \$f1=(1.\+5-\/2$^\wedge$-\/30)-\/x/2$\ast$yp$^\wedge$2\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	mult	\$f13, \$f1, \$f13		\# fm   4\+: ypp = \$f13 = yp$\ast$\$f1	\textbackslash{}n\textbackslash{}
+	subt	\$f15, \$f12, \$f1		\# .. fa \+: \$f1 = (1.\+5 -\/ 0.\+5)	\textbackslash{}n\textbackslash{}
+	ldt	\$f15, \$\+U\+P(\$4)		\# .. e0 \+:			\textbackslash{}n\textbackslash{}
+	mult/su	\$f16, \$f13, \$f10	\# fm   4\+: z = \$f10 = x $\ast$ ypp	\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	mult	\$f10, \$f13, \$f11	\# fm   4\+: \$f11 = z$\ast$ypp		\textbackslash{}n\textbackslash{}
+	mult	\$f10, \$f12, \$f12	\# fm    \+: \$f12 = z$\ast$0.\+5		\textbackslash{}n\textbackslash{}
+	subt	\$f1, \$f11, \$f1		\# fa   4\+: \$f1 = 1 -\/ z$\ast$ypp	\textbackslash{}n\textbackslash{}
+	mult	\$f12, \$f1, \$f12		\# fm   4\+: \$f12 = z/2$\ast$(1 -\/ z$\ast$ypp)\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	addt	\$f10, \$f12, \$f0		\# fa   4\+: zp=res= z+z/2$\ast$(1-\/z$\ast$ypp)\textbackslash{}n\textbackslash{}
+	mult/c	\$f0, \$f14, \$f12		\# fm   4\+: zmi = zp $\ast$ D\+N		\textbackslash{}n\textbackslash{}
+	mult/c	\$f0, \$f15, \$f11		\# fm    \+: zpl = zp $\ast$ U\+P		\textbackslash{}n\textbackslash{}
+	mult/c	\$f0, \$f12, \$f1		\# fm    \+: \$f1 = zp $\ast$ zmi	\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	mult/c	\$f0, \$f11, \$f15		\# fm    \+: \$f15 = zp $\ast$ zpl	\textbackslash{}n\textbackslash{}
+	subt/su	\$f1, \$f16, \$f13		\# .. fa \+: y1 = zp$\ast$zmi -\/ x	\textbackslash{}n\textbackslash{}
+	subt/su	\$f15, \$f16, \$f14	\# fa   4\+: y2 = zp$\ast$zpl -\/ x	\textbackslash{}n\textbackslash{}
+	fcmovge	\$f13, \$f12, \$f0		\# fa   3\+: res = (y1$>$=0)?zmi\+:res	\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	fcmovlt	\$f14, \$f11, \$f0		\# fa   4\+: res = (y2$<$0)?zpl\+:res	\textbackslash{}n\textbackslash{}
+	addq	\$sp, 16, \$sp		\# .. e0 \+:			\textbackslash{}n\textbackslash{}
+	ret				\# .. e1 \+:			\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	.\+align 4							\textbackslash{}n\textbackslash{}
+\$fixup\+:									\textbackslash{}n\textbackslash{}
+	addq	\$sp, 16, \$sp						\textbackslash{}n\textbackslash{}
+	br	\+\_\+\+\_\+full\+\_\+ieee754\+\_\+sqrt	!samegp				\textbackslash{}n\textbackslash{}
+									\textbackslash{}n\textbackslash{}
+	.\+end	\+\_\+\+\_\+ieee754\+\_\+sqrt\char`\"{})
+\item 
+\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a508b51ee345d317af600d1c7c49ff4d0}{asm}} (\char`\"{}.global	\+\_\+\+\_\+sqrt\+\_\+finite; \+\_\+\+\_\+sqrt\+\_\+finite = \mbox{\hyperlink{x86__64_2fpu_2math__private_8h_a431d7e210198e10fe630edc18f13e5dd}{\+\_\+\+\_\+ieee754\+\_\+sqrt}}\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_ae0f854275c6f0c031d4b2ffecce74a28}{dn}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a53c048c5baf95a1adb03539066412996}{up}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a465e1501d0473e74ff6bd8fbfad5e391}{half}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_abe3585895089afc2f008a7e87c3cb4be}{almost\+\_\+three\+\_\+half}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_adca934cd8c827fc5ef470c075831d88b}{one\+\_\+and\+\_\+a\+\_\+half}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_ae98953add5f143b15f63cc2d1a7204e9}{two\+\_\+to\+\_\+minus\+\_\+30}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}}
+\item 
+unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a17715dd57915a88fc544011a803be47b}{nan}}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}} \mbox{[}64\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_aa65b0162686f373ef00b5c8fb4fe4599}\label{alpha_2fpu_2e__sqrt_8c_aa65b0162686f373ef00b5c8fb4fe4599}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!\_\_ieee754\_sqrt@{\_\_ieee754\_sqrt}}
+\index{\_\_ieee754\_sqrt@{\_\_ieee754\_sqrt}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{\_\_ieee754\_sqrt}{\_\_ieee754\_sqrt}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+ieee754\+\_\+sqrt~\+\_\+\+\_\+full\+\_\+ieee754\+\_\+sqrt}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_af77df9e2f7408b096ed9a05c3ed5811e}\label{alpha_2fpu_2e__sqrt_8c_af77df9e2f7408b096ed9a05c3ed5811e}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!strong\_alias@{strong\_alias}}
+\index{strong\_alias@{strong\_alias}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{strong\_alias}{strong\_alias}}
+{\footnotesize\ttfamily \#define strong\+\_\+alias(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a508b51ee345d317af600d1c7c49ff4d0}\label{alpha_2fpu_2e__sqrt_8c_a508b51ee345d317af600d1c7c49ff4d0}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!asm@{asm}}
+\index{asm@{asm}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a55819569f9b9317583280851928ddd1f}\label{alpha_2fpu_2e__sqrt_8c_a55819569f9b9317583280851928ddd1f}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!asm@{asm}}
+\index{asm@{asm}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{asm()}{asm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily asm (\begin{DoxyParamCaption}\item[{\char`\"{}\textbackslash{} /$\ast$ Define offsets into the structure \mbox{\hyperlink{rpc__util_8h_a6a4ce3a8d0c7aa871d16e3a14eeb103e}{defined}} \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} \mbox{\hyperlink{psiginfo-define_8h_ae7afc18d0b19eba994db47b01743d816}{C}} above. $\ast$/ \textbackslash{}n\textbackslash{}}]{\$\+DN = {\ttfamily 0$\ast$8							\textbackslash{}n\textbackslash{}	\$UP~=~1$\ast$8							\textbackslash{}n\textbackslash{}	\$\mbox{\hyperlink{mpa_8h_a37c4c48ff47f0838f64b5a1fb3c803b2}{H\+A\+LF}}~=~2$\ast$8							\textbackslash{}n\textbackslash{}	\$ALMOST\+\_\+THREE\+\_\+HALF~=~3$\ast$8					\textbackslash{}n\textbackslash{}	\$\mbox{\hyperlink{sysdeps_2mips_2bits_2nan_8h_a8abfcc76130f3f991d124dd22d7e69bc}{N\+AN}}~=~7$\ast$8							\textbackslash{}n\textbackslash{}	\$\mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}{T2}}~=~8$\ast$8							\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}~~/$\ast$~Stack~variables.~~$\ast$/						\textbackslash{}n\textbackslash{}	\$K~=~0								\textbackslash{}n\textbackslash{}	\$\mbox{\hyperlink{mpa_8h_a798e4073d613ca5ba9618e1b3253df14}{Y}}~=~8								\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	.text								\textbackslash{}n\textbackslash{}	.\mbox{\hyperlink{unionalign}{align}}	5							\textbackslash{}n\textbackslash{}	.globl	\mbox{\hyperlink{x86__64_2fpu_2math__private_8h_a431d7e210198e10fe630edc18f13e5dd}{\+\_\+\+\_\+ieee754\+\_\+sqrt}}						\textbackslash{}n\textbackslash{}	.ent	\mbox{\hyperlink{x86__64_2fpu_2math__private_8h_a431d7e210198e10fe630edc18f13e5dd}{\+\_\+\+\_\+ieee754\+\_\+sqrt}}						\textbackslash{}n\textbackslash{}\+\_\+\+\_\+ieee754\+\_\+sqrt\+:								\textbackslash{}n\textbackslash{}	ldgp	\$29},  }\item[{0(\$27) \textbackslash{}n\textbackslash{} \mbox{\hyperlink{svml__s__wrapper__impl_8h_ac6f5eea7a15fbaf60b60461a64813ba8}{subq}}}]{\$sp,  }\item[{16}]{,  }\item[{}]{\$sp \textbackslash{}n\textbackslash{} .\+frame,  }\item[{16}]{,  }\item[{}]{\$26,  }\item[{0\textbackslash{}\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}}\char`\"{} \char`\"{} .prologue 1 \textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} .\mbox{\hyperlink{unionalign}{align}} 4 \textbackslash{}n\textbackslash{} stt}]{\$f16,  }\item[{}]{\$\+K(\$sp) \# e0 \+:\textbackslash{}n\textbackslash{} mult,  }\item[{}]{\$f31,  }\item[{}]{\$f31 \# .. fm \+:\textbackslash{}n\textbackslash{} lda,  }\item[{sqrt\+\_\+data \# e0 \+:\textbackslash{}n\textbackslash{} fblt}]{\$f16,  }\item[{}]{\$fixup \# .. fa \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} ldah,  }\item[{0x5fe8 \# e0 \+:\textbackslash{}n\textbackslash{} ldq}]{\$3,  }\item[{}]{\$\+K(\$sp) \# .. e1 \+:\textbackslash{}n\textbackslash{} ldt,  }\item[{}]{\$\+H\+A\+L\+F(\$4) \# e0 \+:\textbackslash{}n\textbackslash{} ldt,  }\item[{}]{\$\+A\+L\+M\+O\+S\+T\+\_\+\+T\+H\+R\+E\+E\+\_\+\+H\+A\+L\+F(\$4) \# .. e1 \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} sll,  }\item[{52}]{,  }\item[{}]{\$5 \# e0 \+:\textbackslash{}n\textbackslash{} lda,  }\item[{0x7fd \# .. e1 \+:\textbackslash{}n\textbackslash{} fnop \# .. fa \+:\textbackslash{}n\textbackslash{} fnop \# .. fm \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} subq}]{\$5,  }\item[{1}]{,  }\item[{}]{\$5 \# e1 \+:\textbackslash{}n\textbackslash{} srl,  }\item[{33}]{,  }\item[{}]{\$1 \# .. e0 \+:\textbackslash{}n\textbackslash{} cmpule,  }\item[{}]{\$6,  }\item[{}]{\$5 \# e0 \+:\textbackslash{}n\textbackslash{} beq,  }\item[{}]{\$fixup \# .. e1 \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} mult,  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}} \# fm \+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}}}]{ = {\ttfamily \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}~$\ast$~0.5	\textbackslash{}n\textbackslash{}	subl	\$2},  }\item[{}]{\$1,  }\item[{}]{\$2 \# .. e0 \+:\textbackslash{}n\textbackslash{} addt,  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_acfc31a1682eaf457d5037e7bda0146c8}{f17}} \# .. \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} \+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_acfc31a1682eaf457d5037e7bda0146c8}{f17}}}]{ = {\ttfamily 1.0		\textbackslash{}n\textbackslash{}	srl	\$2},  }\item[{12}]{,  }\item[{}]{\$1 \# e0 \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} and,  }\item[{0xfc}]{,  }\item[{}]{\$1 \# e0 \+:\textbackslash{}n\textbackslash{} addq,  }\item[{}]{\$4,  }\item[{}]{\$1 \# e1 \+:\textbackslash{}n\textbackslash{} ldl,  }\item[{}]{\$\+T2(\$1) \# e0 \+:\textbackslash{}n\textbackslash{} addt,  }\item[{}]{\$f17,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}} \# .. \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} \+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}}}]{ = {\ttfamily 1.5		\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	subl	\$2},  }\item[{}]{\$1,  }\item[{}]{\$2 \# e0 \+:\textbackslash{}n\textbackslash{} ldt,  }\item[{}]{\$\+D\+N(\$4) \# .. e1 \+:\textbackslash{}n\textbackslash{} sll,  }\item[{32}]{,  }\item[{}]{\$2 \# e0 \+:\textbackslash{}n\textbackslash{} stq,  }\item[{}]{\$\+Y(\$sp) \# e0 \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} ldt,  }\item[{}]{\$\+Y(\$sp) \# e0 \+:\textbackslash{}n\textbackslash{} mult/su,  }\item[{}]{\$f13,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}} \# fm 2\+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}}]{ = {\ttfamily (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}~$\ast$~0.5)~$\ast$~\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}	\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}},  }\item[{}]{\$f13,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}} \# fm 4\+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}}]{ = {\ttfamily ((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}$\ast$0.5)$\ast$\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}})$\ast$\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}	\textbackslash{}n\textbackslash{}	subt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}}},  }\item[{}]{\$f10,  }\item[{ \$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 4\+:\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}}]{ = {\ttfamily (1.5-\/0.5$\ast$\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}$\ast$\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}$\ast$\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}})	\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}}},  }\item[{}]{\$f1,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}} \# fm 4\+:yp}]{ = {\ttfamily \mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}$\ast$(1.5-\/0.5$\ast$\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}$\ast$\mbox{\hyperlink{test-tgmath_8c_a0ed6a908288e0cd87f79c1b5ab56d07c}{y}}$^\wedge$2)\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}/su	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}}},  }\item[{}]{\$f13,  }\item[{ \$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}} \# fm 4\+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}}}]{ = {\ttfamily \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}~$\ast$~0.5~$\ast$~yp	\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}},  }\item[{}]{\$f13,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}} \# fm 4\+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}}}]{ = {\ttfamily (\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}$\ast$0.5$\ast$yp)$\ast$yp	\textbackslash{}n\textbackslash{}	subt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a1112c98ff62efcb7572e755483bc8f11}{f18}}},  }\item[{}]{\$f11,  }\item[{ \$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 4\+:\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}}]{ = {\ttfamily (1.5-\/2$^\wedge$-\/30)-\/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}/2$\ast$yp$^\wedge$2\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}}},  }\item[{}]{\$f1,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}} \# fm 4\+:ypp}]{ = {\ttfamily \$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}}~=~yp$\ast$\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}	\textbackslash{}n\textbackslash{}	subt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}}},  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}} \# .. \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} \+:\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}}]{ = {\ttfamily (1.5~-\/~0.5)	\textbackslash{}n\textbackslash{}	ldt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}}},  }\item[{}]{\$\+U\+P(\$4) \# .. e0 \+:\textbackslash{}n\textbackslash{} mult/su,  }\item[{}]{\$f13,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}} \# fm 4\+:\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}}]{ = {\ttfamily \$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}~=~\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}~$\ast$~ypp	\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}},  }\item[{}]{\$f13,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}} \# fm 4\+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}}}]{ = {\ttfamily \mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}$\ast$ypp		\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}},  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a293c7fa229bb898943bd1de12a8f8956}{f12}} \# fm \+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a293c7fa229bb898943bd1de12a8f8956}{f12}}}]{ = {\ttfamily \mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}$\ast$0.5		\textbackslash{}n\textbackslash{}	subt	\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}},  }\item[{}]{\$f11,  }\item[{ \$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 4\+:\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}}]{ = {\ttfamily 1~-\/~\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}$\ast$ypp	\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a293c7fa229bb898943bd1de12a8f8956}{f12}}},  }\item[{}]{\$f1,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a293c7fa229bb898943bd1de12a8f8956}{f12}} \# fm 4\+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a293c7fa229bb898943bd1de12a8f8956}{f12}}}]{ = {\ttfamily \mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}/2$\ast$(1~-\/~\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}$\ast$ypp)\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	addt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_af0e250aeff6cb1f10b26c3c63bf9fec6}{f10}}},  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 4\+:zp}]{ = {\ttfamily \mbox{\hyperlink{bug-regex20_8c_aac31eb68bff694554a182bd796b2f1c5}{res}}=~\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}+\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}/2$\ast$(1-\/\mbox{\hyperlink{bug12_8c_a938a5fe074939f775e996871437fafad}{z}}$\ast$ypp)\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}	\$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}}},  }\item[{}]{\$f14,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a293c7fa229bb898943bd1de12a8f8956}{f12}} \# fm 4\+:zmi}]{ = {\ttfamily zp~$\ast$~DN		\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}	\$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}}},  }\item[{}]{\$f15,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a957fb1331002d7d995146bde0291699a}{f11}} \# fm \+:zpl}]{ = {\ttfamily zp~$\ast$~UP		\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}	\$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}}},  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}} \# fm \+:\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}}]{ = {\ttfamily zp~$\ast$~zmi	\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{plural-exp_8h_abdcd7d0cd85251843129fb886379a57caaee10c03a8f92e1a010572cd294e3744}{mult}}/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}	\$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}}},  }\item[{}]{\$f11,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}} \# fm \+:\$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}}}]{ = {\ttfamily zp~$\ast$~zpl	\textbackslash{}n\textbackslash{}	subt/su	\$\mbox{\hyperlink{tst-audit12mod1_8c_afac73dafb78cccce88814028b880d1de}{f1}}},  }\item[{}]{\$f16,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}} \# .. \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} \+:\mbox{\hyperlink{libm__cpu__defs_8h_ace4141a10c19a766e4288e7b613227ad}{y1}}}]{ = {\ttfamily zp$\ast$zmi~-\/~\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}	\textbackslash{}n\textbackslash{}	subt/su	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a9126a851b9f39e140caa402bc5839f37}{f15}}},  }\item[{}]{\$f16,  }\item[{ \$\mbox{\hyperlink{bug-atexit1-lib_8c_a70eb16215a623d56940ed2b001b61e87}{f14}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 4\+:y2}]{ = {\ttfamily zp$\ast$zpl~-\/~\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}	\textbackslash{}n\textbackslash{}	fcmovge	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a76dcb6e2439c60d78d8cdbaaa89dae65}{f13}}},  }\item[{}]{\$f12,  }\item[{ \$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 3\+:\mbox{\hyperlink{bug-regex20_8c_aac31eb68bff694554a182bd796b2f1c5}{res}}}]{ = {\ttfamily (\mbox{\hyperlink{libm__cpu__defs_8h_ace4141a10c19a766e4288e7b613227ad}{y1}}$>$=0)?zmi\+:res	\textbackslash{}n\textbackslash{}									\textbackslash{}n\textbackslash{}	fcmovlt	\$\mbox{\hyperlink{bug-atexit1-lib_8c_a70eb16215a623d56940ed2b001b61e87}{f14}}},  }\item[{}]{\$f11,  }\item[{ \$\mbox{\hyperlink{s390_2s390-64_2dl-trampoline_8h_aa72b1c5ae612ff63bfcab0e39b71d2e8}{f0}} \# \mbox{\hyperlink{test-fenv-clear-main_8c_ad59d51568acb61caf9a30542a5a99128}{fa}} 4\+:\mbox{\hyperlink{bug-regex20_8c_aac31eb68bff694554a182bd796b2f1c5}{res}}}]{ = {\ttfamily (y2$<$0)?zpl\+:res	\textbackslash{}n\textbackslash{}	\mbox{\hyperlink{svml__s__wrapper__impl_8h_afb94f697bcec50b823de388b447d8672}{addq}}	\$\mbox{\hyperlink{div__libc_8h_a827e54757408ef68ff2ff4a27fcef4a2}{sp}}},  }\item[{16}]{,  }\item[{}]{\$sp \# .. e0 \+:\textbackslash{}n\textbackslash{} ret \# .. e1 \+:\textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} .\+align 4 \textbackslash{}n\textbackslash{} \$fixup\+:\textbackslash{}n\textbackslash{} addq,  }\item[{16}]{,  }\item[{}]{\$sp \textbackslash{}n\textbackslash{} br \+\_\+\+\_\+full\+\_\+ieee754\+\_\+sqrt !samegp \textbackslash{}n\textbackslash{} \textbackslash{}n\textbackslash{} .\+end \+\_\+\+\_\+ieee754\+\_\+sqrt\char`\"{} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_abe3585895089afc2f008a7e87c3cb4be}\label{alpha_2fpu_2e__sqrt_8c_abe3585895089afc2f008a7e87c3cb4be}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!almost\_three\_half@{almost\_three\_half}}
+\index{almost\_three\_half@{almost\_three\_half}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{almost\_three\_half}{almost\_three\_half}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} almost\+\_\+three\+\_\+half}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_ae0f854275c6f0c031d4b2ffecce74a28}\label{alpha_2fpu_2e__sqrt_8c_ae0f854275c6f0c031d4b2ffecce74a28}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!dn@{dn}}
+\index{dn@{dn}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{dn}{dn}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} dn}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a465e1501d0473e74ff6bd8fbfad5e391}\label{alpha_2fpu_2e__sqrt_8c_a465e1501d0473e74ff6bd8fbfad5e391}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!half@{half}}
+\index{half@{half}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{half}{half}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} half}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a17715dd57915a88fc544011a803be47b}\label{alpha_2fpu_2e__sqrt_8c_a17715dd57915a88fc544011a803be47b}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!nan@{nan}}
+\index{nan@{nan}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{nan}{nan}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} nan}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}\label{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!one@{one}}
+\index{one@{one}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{one}{one}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} one}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_adca934cd8c827fc5ef470c075831d88b}\label{alpha_2fpu_2e__sqrt_8c_adca934cd8c827fc5ef470c075831d88b}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!one\_and\_a\_half@{one\_and\_a\_half}}
+\index{one\_and\_a\_half@{one\_and\_a\_half}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{one\_and\_a\_half}{one\_and\_a\_half}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} one\+\_\+and\+\_\+a\+\_\+half}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}\label{alpha_2fpu_2e__sqrt_8c_a3ebebb1f0e80ec1025ee8e2be726fd29}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!T2@{T2}}
+\index{T2@{T2}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{T2}{T2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} T2\mbox{[}64\mbox{]}}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_ae98953add5f143b15f63cc2d1a7204e9}\label{alpha_2fpu_2e__sqrt_8c_ae98953add5f143b15f63cc2d1a7204e9}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!two\_to\_minus\_30@{two\_to\_minus\_30}}
+\index{two\_to\_minus\_30@{two\_to\_minus\_30}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{two\_to\_minus\_30}{two\_to\_minus\_30}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} two\+\_\+to\+\_\+minus\+\_\+30}
+
+\mbox{\Hypertarget{alpha_2fpu_2e__sqrt_8c_a53c048c5baf95a1adb03539066412996}\label{alpha_2fpu_2e__sqrt_8c_a53c048c5baf95a1adb03539066412996}} 
+\index{e\_sqrt.c@{e\_sqrt.c}!up@{up}}
+\index{up@{up}!e\_sqrt.c@{e\_sqrt.c}}
+\doxysubsubsection{\texorpdfstring{up}{up}}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} up}
+

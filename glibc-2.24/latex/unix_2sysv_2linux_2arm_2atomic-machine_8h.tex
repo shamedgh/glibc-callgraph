@@ -1,0 +1,62 @@
+\hypertarget{unix_2sysv_2linux_2arm_2atomic-machine_8h}{}\doxysection{sysdeps/unix/sysv/linux/arm/atomic-\/machine.h File Reference}
+\label{unix_2sysv_2linux_2arm_2atomic-machine_8h}\index{sysdeps/unix/sysv/linux/arm/atomic-\/machine.h@{sysdeps/unix/sysv/linux/arm/atomic-\/machine.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sysdeps/arm/atomic-\/machine.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2arm_2atomic-machine_8h_a26ed2232b279afc69591e91ad283431b}{\+\_\+\+\_\+arm\+\_\+assisted\+\_\+full\+\_\+barrier}}()
+\item 
+\#define \mbox{\hyperlink{unix_2sysv_2linux_2arm_2atomic-machine_8h_a253e65f92f4f1cfb2b92c2480423c659}{\+\_\+\+\_\+arm\+\_\+assisted\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+32\+\_\+acq}}(mem,  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unix_2sysv_2linux_2arm_2atomic-machine_8h_a253e65f92f4f1cfb2b92c2480423c659}\label{unix_2sysv_2linux_2arm_2atomic-machine_8h_a253e65f92f4f1cfb2b92c2480423c659}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!\_\_arm\_assisted\_compare\_and\_exchange\_val\_32\_acq@{\_\_arm\_assisted\_compare\_and\_exchange\_val\_32\_acq}}
+\index{\_\_arm\_assisted\_compare\_and\_exchange\_val\_32\_acq@{\_\_arm\_assisted\_compare\_and\_exchange\_val\_32\_acq}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_\_arm\_assisted\_compare\_and\_exchange\_val\_32\_acq}{\_\_arm\_assisted\_compare\_and\_exchange\_val\_32\_acq}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+arm\+\_\+assisted\+\_\+compare\+\_\+and\+\_\+exchange\+\_\+val\+\_\+32\+\_\+acq(\begin{DoxyParamCaption}\item[{}]{mem,  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}},  }\item[{}]{\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \textcolor{keyword}{union }\{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}) \mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}; \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} v; \} oldval\_arg = \{ .a = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}}) \};\(\backslash\)}
+\DoxyCodeLine{     union \{ \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}) \mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}; \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} v; \} newval\_arg = \{ .a = (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a2b523c59975697f4ac8ea7a601f627e1}{newval}}) \};\(\backslash\)}
+\DoxyCodeLine{     register \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} a\_oldval \textcolor{keyword}{asm} (\textcolor{stringliteral}{"r0"});                   \(\backslash\)}
+\DoxyCodeLine{     register \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} a\_newval \textcolor{keyword}{asm} (\textcolor{stringliteral}{"r1"}) = newval\_arg.v;            \(\backslash\)}
+\DoxyCodeLine{     \textcolor{keyword}{register} \mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (mem) a\_ptr \textcolor{keyword}{asm} (\textcolor{stringliteral}{"r2"}) = (mem);                \(\backslash\)}
+\DoxyCodeLine{     register \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} a\_tmp \textcolor{keyword}{asm} (\textcolor{stringliteral}{"r3"});                      \(\backslash\)}
+\DoxyCodeLine{     register \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} a\_oldval2 \textcolor{keyword}{asm} (\textcolor{stringliteral}{"r4"}) = oldval\_arg.v;           \(\backslash\)}
+\DoxyCodeLine{     \mbox{\hyperlink{ifuncmod1_8c_ac2263ffc8f8b78dcc21ad0e2aa22f7d4}{\_\_asm\_\_}} \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a4f4f750db64434d27bfb6fc439b3776a}{\_\_volatile\_\_}}                              \(\backslash\)}
+\DoxyCodeLine{         (\textcolor{stringliteral}{"0:\(\backslash\)tldr\(\backslash\)t\%[tmp],[\%[ptr]]\(\backslash\)n\(\backslash\)t"}                      \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"cmp\(\backslash\)t\%[tmp], \%[old2]\(\backslash\)n\(\backslash\)t"}                      \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"bne\(\backslash\)t1f\(\backslash\)n\(\backslash\)t"}                           \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"mov\(\backslash\)t\%[old], \%[old2]\(\backslash\)n\(\backslash\)t"}                      \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"mov\(\backslash\)t\%[tmp], \#0xffff0fff\(\backslash\)n\(\backslash\)t"}                      \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"mov\(\backslash\)tlr, pc\(\backslash\)n\(\backslash\)t"}                           \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"add\(\backslash\)tpc, \%[tmp], \#(0xffff0fc0 -\/ 0xffff0fff)\(\backslash\)n\(\backslash\)t"}           \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"bcc\(\backslash\)t0b\(\backslash\)n\(\backslash\)t"}                           \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"mov\(\backslash\)t\%[tmp], \%[old2]\(\backslash\)n\(\backslash\)t"}                      \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"1:"}                                \(\backslash\)}
+\DoxyCodeLine{          : [old] \textcolor{stringliteral}{"=\&r"} (a\_oldval), [tmp] \textcolor{stringliteral}{"=\&r"} (a\_tmp)           \(\backslash\)}
+\DoxyCodeLine{          : [\textcolor{keyword}{new}] \textcolor{stringliteral}{"r"} (a\_newval), [\mbox{\hyperlink{inet6__option_8c_aed894f4f56e7d19dcbd833dd4b2d31a9}{ptr}}] \textcolor{stringliteral}{"r"} (a\_ptr),           \(\backslash\)}
+\DoxyCodeLine{        [old2] \textcolor{stringliteral}{"r"} (a\_oldval2)                        \(\backslash\)}
+\DoxyCodeLine{          : \textcolor{stringliteral}{"ip"}, \textcolor{stringliteral}{"lr"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});                      \(\backslash\)}
+\DoxyCodeLine{     (\mbox{\hyperlink{do-rel_8h_a2630eb7cc0618e21d37e92cf70f73c7e}{\_\_typeof}} (\mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_aaa08235d37320d6e6594edbfa8f2abe6}{oldval}})) a\_tmp; \})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{unix_2sysv_2linux_2arm_2atomic-machine_8h_a26ed2232b279afc69591e91ad283431b}\label{unix_2sysv_2linux_2arm_2atomic-machine_8h_a26ed2232b279afc69591e91ad283431b}} 
+\index{atomic-\/machine.h@{atomic-\/machine.h}!\_\_arm\_assisted\_full\_barrier@{\_\_arm\_assisted\_full\_barrier}}
+\index{\_\_arm\_assisted\_full\_barrier@{\_\_arm\_assisted\_full\_barrier}!atomic-\/machine.h@{atomic-\/machine.h}}
+\doxysubsubsection{\texorpdfstring{\_\_arm\_assisted\_full\_barrier}{\_\_arm\_assisted\_full\_barrier}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+arm\+\_\+assisted\+\_\+full\+\_\+barrier(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ifuncmod1_8c_ac2263ffc8f8b78dcc21ad0e2aa22f7d4}{\_\_asm\_\_}} \mbox{\hyperlink{tile_2tilepro_2atomic-machine_8h_a4f4f750db64434d27bfb6fc439b3776a}{\_\_volatile\_\_}}                           \(\backslash\)}
+\DoxyCodeLine{         (\textcolor{stringliteral}{"mov\(\backslash\)tip, \#0xffff0fff\(\backslash\)n\(\backslash\)t"}                      \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"mov\(\backslash\)tlr, pc\(\backslash\)n\(\backslash\)t"}                           \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"add\(\backslash\)tpc, ip, \#(0xffff0fa0 -\/ 0xffff0fff)"}               \(\backslash\)}
+\DoxyCodeLine{          : : : \textcolor{stringliteral}{"ip"}, \textcolor{stringliteral}{"lr"}, \textcolor{stringliteral}{"cc"}, \textcolor{stringliteral}{"memory"});}
+
+\end{DoxyCode}

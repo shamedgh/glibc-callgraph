@@ -1,0 +1,935 @@
+\hypertarget{mtio_8h}{}\doxysection{sysdeps/gnu/sys/mtio.h File Reference}
+\label{mtio_8h}\index{sysdeps/gnu/sys/mtio.h@{sysdeps/gnu/sys/mtio.h}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmtop}{mtop}}
+\item 
+struct \mbox{\hyperlink{structmtget}{mtget}}
+\item 
+struct \mbox{\hyperlink{structmt__tape__info}{mt\+\_\+tape\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structmtpos}{mtpos}}
+\item 
+struct \mbox{\hyperlink{structmtconfiginfo}{mtconfiginfo}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a71c4101f1c28629f7ea28a31faafb68a}{\+\_\+\+I\+O\+T\+\_\+mtop}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6670b31a5a84c852ab6870a7c575a3ca}{M\+T\+R\+E\+S\+ET}}~0	/$\ast$ +reset drive \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} case of problems.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a135d95c34b7eafa8f2afb30c07e47c72}{M\+T\+F\+SF}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_acb7e59803c2653c0a80897d6a76edbd4}{M\+T\+B\+SF}}~2	/$\ast$ Backward space File\+Mark (position before FM).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_adb4d8fc10f9f290428036789ec653aa7}{M\+T\+F\+SR}}~3	/$\ast$ Forward space record.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a2b69742fb8cd271e95c6c7ed589ae8aa}{M\+T\+B\+SR}}~4	/$\ast$ Backward space record.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ab3d352a250c16f66bf761e274f89d47e}{M\+T\+W\+E\+OF}}~5	/$\ast$ Write an end-\/of-\/\mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}} record (mark).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a31419c175335f9ae49ad75a077fe2166}{M\+T\+R\+EW}}~6	/$\ast$ Rewind.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ab306a3db40e0057a9cb78ae1da921d50}{M\+T\+O\+F\+FL}}~7	/$\ast$ Rewind and put the drive offline (eject?).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a0ff813c2131cd8b52648282bf9e85d1f}{M\+T\+N\+OP}}~8	/$\ast$ No op, set \mbox{\hyperlink{nss_2nsswitch_8h_a21fd5ece2dac024d267070d9eabf87d2}{status}} only (\mbox{\hyperlink{posix_2unistd_8h_a83953352ffbeb7662b97f01f5f6ce2ed}{read}} with \mbox{\hyperlink{mtio_8h_a3243a4d12262b48dd093a16e810d2191}{M\+T\+I\+O\+C\+G\+ET}}).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a699be9dbf7d505ae1835295775ac763e}{M\+T\+R\+E\+T\+EN}}~9	/$\ast$ Retension tape.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a72811e3bd6901986ec2319111dc6ee9b}{M\+T\+B\+S\+FM}}~10	/$\ast$ +backward space File\+Mark, position at F\+M.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a379b0fb19c681e7ac52e32d03a1f239c}{M\+T\+F\+S\+FM}}~11	/$\ast$ +forward space File\+Mark, position at F\+M.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a980e403e99395705e8341d18a4129a51}{M\+T\+E\+OM}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a71373177c0a1e86453a15d3efcdc93fe}{M\+T\+E\+R\+A\+SE}}~13	/$\ast$ Erase tape -\/-\/ be careful!  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a40aa30d2507e8ad87655a4ad0ea585ca}{M\+T\+R\+A\+S1}}~14	/$\ast$ Run self \mbox{\hyperlink{structtest}{test}} 1 (nondestructive).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a98095969a5fa18f8307e87069c6e289d}{M\+T\+R\+A\+S2}}~15	/$\ast$ Run self \mbox{\hyperlink{structtest}{test}} 2 (destructive).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ac451d6e2389ba9a708284f0e3f29bc66}{M\+T\+R\+A\+S3}}~16	/$\ast$ Reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} self \mbox{\hyperlink{structtest}{test}} 3.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aa8b75886696a87c1a07499ac43430931}{M\+T\+S\+E\+T\+B\+LK}}~20	/$\ast$ Set block \mbox{\hyperlink{unwind-dw2-fde_8h_a8489cf2ea7d3a7f7c34c018044644565}{length}} (S\+C\+SI).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aedcfbaf02e19a7242d1c1b0c08ea4d28}{M\+T\+S\+E\+T\+D\+E\+N\+S\+I\+TY}}~21	/$\ast$ Set tape density (S\+C\+SI).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a00b4b80150d84f4adfc28fbc45ff6ac8}{M\+T\+S\+E\+EK}}~22	/$\ast$ Seek \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} block (Tandberg, etc.).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6e21ce34db51aa858bef44e12c07cfd5}{M\+T\+T\+E\+LL}}~23	/$\ast$ Tell block (Tandberg, etc.).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a49dfe37bc086ec0a288c7d39e8dd4315}{M\+T\+S\+E\+T\+D\+R\+V\+B\+U\+F\+F\+ER}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a7c6cd1081da67e0729cc4e30abccd6c7}{M\+T\+F\+SS}}~25	/$\ast$ Space forward over setmarks.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6472425e9547b4b765037b9fbf3b5572}{M\+T\+B\+SS}}~26	/$\ast$ Space backward over setmarks.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a889d1e59c0c368cc2fc74d2e38abb78e}{M\+T\+W\+SM}}~27	/$\ast$ Write setmarks.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_abeaab85e47628c7ca2dfb0492641ad17}{M\+T\+L\+O\+CK}}~28	/$\ast$ Lock the drive door.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ac54b54a96a41938b6f6e324bbfa6402b}{M\+T\+U\+N\+L\+O\+CK}}~29	/$\ast$ Unlock the drive door.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a80009e8b5171ace3f1390cc9e44b5149}{M\+T\+L\+O\+AD}}~30	/$\ast$ Execute the S\+C\+SI load command.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a09f6e12a31f7bb268208dc9863aa4153}{M\+T\+U\+N\+L\+O\+AD}}~31	/$\ast$ Execute the S\+C\+SI unload command.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ae96724052ae97082e73e27708fef97e5}{M\+T\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON}}~32/$\ast$ Control compression with S\+C\+SI \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}} page 15.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a8690b6930067b56968d4c6421ec68de4}{M\+T\+S\+E\+T\+P\+A\+RT}}~33	/$\ast$ Change the active tape partition.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a89dd66daea3f9aa2aed14b6ae8cd4500}{M\+T\+M\+K\+P\+A\+RT}}~34	/$\ast$ Format the tape with \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}} or \mbox{\hyperlink{tester_8c_aa99655c3878749f6bc84e3c3e4981049}{two}} partitions.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ae19013630e171e687cce8b9189d035f0}{\+\_\+\+I\+O\+T\+\_\+mtget}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a245a18f8138a3c954aa3eb533e3e0781}{M\+T\+\_\+\+I\+S\+U\+N\+K\+N\+O\+WN}}~0x01
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a25e38b01347877c9f02898d37dad5ba0}{M\+T\+\_\+\+I\+S\+Q\+I\+C02}}~0x02	/$\ast$ Generic Q\+I\+C-\/02 tape streamer.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a86a8dad9de69c513041d775940821c4b}{M\+T\+\_\+\+I\+S\+W\+T5150}}~0x03	/$\ast$ Wangtek 5150\+E\+Q, Q\+I\+C-\/150, Q\+I\+C-\/02.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aaf5e71872f0af77a6f608d7f45fbaf87}{M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+5945\+L2}}~0x04	/$\ast$ Archive 5945\+L-\/2, Q\+I\+C-\/24, Q\+I\+C-\/02?. $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a710483d04f75e6a193ad97c053a16634}{M\+T\+\_\+\+I\+S\+C\+M\+S\+J500}}~0x05	/$\ast$ C\+M\+S Jumbo 500 (\+Q\+I\+C-\/02?).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ab26d437d8af7446d35de34cf1fc47b32}{M\+T\+\_\+\+I\+S\+T\+D\+C3610}}~0x06	/$\ast$ Tandberg 6310, Q\+I\+C-\/24.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a140eeaf643cb741c3335f4aad35fe8ca}{M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+\+V\+P60I}}~0x07	/$\ast$ Archive V\+P60i, Q\+I\+C-\/02.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a71e351bc72a4ffd75c2dc0bd67abad93}{M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+2150L}}~0x08	/$\ast$ Archive Viper 2150\+L.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6567863d08166d0937674437f99b95c8}{M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+2060L}}~0x09	/$\ast$ Archive Viper 2060\+L.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ad865b672052fa2696673a66c6d033664}{M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+S\+C499}}~0x0\+A	/$\ast$ Archive S\+C-\/499 Q\+I\+C-\/36 controller. $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a0dedd5ac78ba492ac63fd7328a0e6183}{M\+T\+\_\+\+I\+S\+Q\+I\+C02\+\_\+\+A\+L\+L\+\_\+\+F\+E\+A\+T\+U\+R\+ES}}~0x0\+F	/$\ast$ Generic Q\+I\+C-\/02 with all features. $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a561e5612110e512d4d1a1c1846717cf9}{M\+T\+\_\+\+I\+S\+W\+T5099\+E\+E\+N24}}~0x11	/$\ast$ Wangtek 5099-\/een24, 60\+M\+B, Q\+I\+C-\/24. $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a48995e9885497e30b386a7b4e64ca953}{M\+T\+\_\+\+I\+S\+T\+E\+A\+C\+\_\+\+M\+T2\+ST}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a14fc2a4ffd4bc0a6a51adf659354d581}{M\+T\+\_\+\+I\+S\+E\+V\+E\+R\+E\+X\+\_\+\+F\+T40A}}~0x32	/$\ast$ Everex F\+T40\+A (\+Q\+I\+C-\/40).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_af768e375a7edbabb3e28e1b1a8971ff6}{M\+T\+\_\+\+I\+S\+D\+D\+S1}}~0x51	/$\ast$ D\+D\+S device without partitions.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a2bca9fd185469e028df259ca77040d67}{M\+T\+\_\+\+I\+S\+D\+D\+S2}}~0x52	/$\ast$ D\+D\+S device with partitions.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a54b85a99d9e1d095ddc9bc9a60fca408}{M\+T\+\_\+\+I\+S\+S\+C\+S\+I1}}~0x71	/$\ast$ Generic A\+N\+S\+I S\+C\+S\+I-\/1 tape unit.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a45863a6d519768b4aa769d61f6305bb5}{M\+T\+\_\+\+I\+S\+S\+C\+S\+I2}}~0x72	/$\ast$ Generic A\+N\+S\+I S\+C\+S\+I-\/2 tape unit.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6ea08ed5a8d030dff654e09d8a69a33d}{M\+T\+\_\+\+I\+S\+F\+T\+A\+P\+E\+\_\+\+U\+N\+K\+N\+O\+WN}}~0x800000 /$\ast$ obsolete $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a132ed9ee612732e3d96f7aaf5cba0fd2}{M\+T\+\_\+\+I\+S\+F\+T\+A\+P\+E\+\_\+\+F\+L\+AG}}~0x800000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a0dda0c3763b2c9acc2f1299d21bcdc05}{M\+T\+\_\+\+T\+A\+P\+E\+\_\+\+I\+N\+FO}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ac717752b2d59696b396a6a75f5c28a8a}{\+\_\+\+I\+O\+T\+\_\+mtpos}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a37893a4adff6dafb38a6a253d4e2e72c}{\+\_\+\+I\+O\+T\+\_\+mtconfiginfo}}
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a8481020694b3542d0b7bc0c2739480e5}{M\+T\+I\+O\+C\+T\+OP}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 1, struct \mbox{\hyperlink{structmtop}{mtop}})	/$\ast$ Do \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} mag tape op. $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a3243a4d12262b48dd093a16e810d2191}{M\+T\+I\+O\+C\+G\+ET}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 2, struct \mbox{\hyperlink{structmtget}{mtget}})	/$\ast$ Get tape status.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6334c469328910acf4f01ee291cecce1}{M\+T\+I\+O\+C\+P\+OS}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 3, struct \mbox{\hyperlink{structmtpos}{mtpos}})	/$\ast$ Get tape position.$\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a3e10f947c6b3a40e186e6cd6069bdcff}{M\+T\+I\+O\+C\+G\+E\+T\+C\+O\+N\+F\+IG}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 4, struct \mbox{\hyperlink{structmtconfiginfo}{mtconfiginfo}}) /$\ast$ Get tape config.$\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a9d7d5beb19c80d362e3158b3cd509e00}{M\+T\+I\+O\+C\+S\+E\+T\+C\+O\+N\+F\+IG}}~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 5, struct \mbox{\hyperlink{structmtconfiginfo}{mtconfiginfo}}) /$\ast$ Set tape config.$\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aaabdda18c4e79f2b0ffac295872a0373}{G\+M\+T\+\_\+\+E\+OF}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x80000000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ac2b903f7e0999ff83830575ae72b0e40}{G\+M\+T\+\_\+\+B\+OT}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x40000000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a37cd75b44c6f1f19d151c12c867c99ce}{G\+M\+T\+\_\+\+E\+OT}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x20000000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a73ff43f590e4c7376ba2faf80eaf7e03}{G\+M\+T\+\_\+\+SM}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x10000000)  /$\ast$ D\+D\+S setmark $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a898716deecb8528799b72126067e241b}{G\+M\+T\+\_\+\+E\+OD}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x08000000)  /$\ast$ D\+D\+S E\+O\+D $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a68dddab2258db0da534f2b7effe3e7cd}{G\+M\+T\+\_\+\+W\+R\+\_\+\+P\+R\+OT}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x04000000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aaa466137de28deb1b96fea972ff6837c}{G\+M\+T\+\_\+\+O\+N\+L\+I\+NE}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x01000000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a3b3bd9597efe6ccd37df638d150fb86d}{G\+M\+T\+\_\+\+D\+\_\+6250}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00800000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a384165f055775f4920570f17fa850e30}{G\+M\+T\+\_\+\+D\+\_\+1600}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00400000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a8e584c986ea78f235029bac5cbcec388}{G\+M\+T\+\_\+\+D\+\_\+800}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00200000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_acda24b90a31cf4581e3678ba1a337e12}{G\+M\+T\+\_\+\+D\+R\+\_\+\+O\+P\+EN}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00040000)  /$\ast$ Door open (no tape).  $\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_af4461b73f7371c116dad178693f2e6cd}{G\+M\+T\+\_\+\+I\+M\+\_\+\+R\+E\+P\+\_\+\+EN}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00010000)  /$\ast$ Immediate report mode.$\ast$/
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aa1a15667226b850b5b742a61d1ef21e1}{M\+T\+\_\+\+S\+T\+\_\+\+B\+L\+K\+S\+I\+Z\+E\+\_\+\+S\+H\+I\+FT}}~0
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6767377b43ec4d621b31321f2f9913bd}{M\+T\+\_\+\+S\+T\+\_\+\+B\+L\+K\+S\+I\+Z\+E\+\_\+\+M\+A\+SK}}~0xffffff
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a4850723809e697a0566752af51c49bed}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+N\+S\+I\+T\+Y\+\_\+\+S\+H\+I\+FT}}~24
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a7e0a4f529d8cb3ea9f3d6a23e0fc7a72}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+N\+S\+I\+T\+Y\+\_\+\+M\+A\+SK}}~0xff000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_af321a4787e14fdc6bfd9c7b02c805397}{M\+T\+\_\+\+S\+T\+\_\+\+S\+O\+F\+T\+E\+R\+R\+\_\+\+S\+H\+I\+FT}}~0
+\item 
+\#define \mbox{\hyperlink{mtio_8h_acfb7b758c15eba75d0ef0a2061ef3ae1}{M\+T\+\_\+\+S\+T\+\_\+\+S\+O\+F\+T\+E\+R\+R\+\_\+\+M\+A\+SK}}~0xffff
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a20d84bd0c6fc7705ef39430c620fded9}{M\+T\+\_\+\+S\+T\+\_\+\+O\+P\+T\+I\+O\+NS}}~0xf0000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a9f3adb020ca17f1fdfaf19140a3d27d4}{M\+T\+\_\+\+S\+T\+\_\+\+B\+O\+O\+L\+E\+A\+NS}}~0x10000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_af4c9290ed26955eba47a676dfa3c1506}{M\+T\+\_\+\+S\+T\+\_\+\+S\+E\+T\+B\+O\+O\+L\+E\+A\+NS}}~0x30000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_abb97b057ddcbe0d7935a956500701259}{M\+T\+\_\+\+S\+T\+\_\+\+C\+L\+E\+A\+R\+B\+O\+O\+L\+E\+A\+NS}}~0x40000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a74ba1bbfe5344ef8aa8c8328b1e92dba}{M\+T\+\_\+\+S\+T\+\_\+\+W\+R\+I\+T\+E\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}}~0x20000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a97daf814b29ca447b860289df2a496db}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+B\+L\+K\+S\+I\+ZE}}~0x50000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}}~0x60000000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a897b7347a5bdf3150530bfb63fd2bd9f}{M\+T\+\_\+\+S\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+W\+R\+I\+T\+ES}}~0x1
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a26f1102fa474b396e5c39ab36e527b0b}{M\+T\+\_\+\+S\+T\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+W\+R\+I\+T\+ES}}~0x2
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aa9fbdf5372986cace6652ea1c14e8ba1}{M\+T\+\_\+\+S\+T\+\_\+\+R\+E\+A\+D\+\_\+\+A\+H\+E\+AD}}~0x4
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a84c88e599a9e0196c081b683a4bd5c93}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+B\+U\+G\+G\+I\+NG}}~0x8
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a599e74a13d232075a88ab0beea761679}{M\+T\+\_\+\+S\+T\+\_\+\+T\+W\+O\+\_\+\+FM}}~0x10
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ac3da9812e248b3d6b92bfb4f8164a190}{M\+T\+\_\+\+S\+T\+\_\+\+F\+A\+S\+T\+\_\+\+M\+T\+E\+OM}}~0x20
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a952a6840a0bda6648247503abc00c757}{M\+T\+\_\+\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+L\+O\+CK}}~0x40
+\item 
+\#define \mbox{\hyperlink{mtio_8h_af54922a1cd87bb00f8b5cdd40de5e169}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+W\+R\+I\+T\+ES}}~0x80
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a6f56401c324b384dd69291e203b7ed43}{M\+T\+\_\+\+S\+T\+\_\+\+C\+A\+N\+\_\+\+B\+SR}}~0x100
+\item 
+\#define \mbox{\hyperlink{mtio_8h_aab88df26e5519795de37d7ec6a191260}{M\+T\+\_\+\+S\+T\+\_\+\+N\+O\+\_\+\+B\+L\+K\+L\+I\+MS}}~0x200
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a227e9df26864e967366fb872e41ba82c}{M\+T\+\_\+\+S\+T\+\_\+\+C\+A\+N\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+NS}}~0x400
+\item 
+\#define \mbox{\hyperlink{mtio_8h_afc015359ab946ef79c8c22ff87f9c7cf}{M\+T\+\_\+\+S\+T\+\_\+\+S\+C\+S\+I2\+L\+O\+G\+I\+C\+AL}}~0x800
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a141cc8486e85a8484c46b2903d492261}{M\+T\+\_\+\+S\+T\+\_\+\+C\+L\+E\+A\+R\+\_\+\+D\+E\+F\+A\+U\+LT}}~0xfffff
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a9ca32f3cdca782a7ec4f2d11b1ec5858}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+D\+E\+N\+S\+I\+TY}}~(\mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}} $\vert$ 0x100000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a79842c89878de8fd26adfd2764471e71}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON}}~(\mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}} $\vert$ 0x200000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_ac596d097832310633437de491305dc79}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+D\+R\+V\+B\+U\+F\+F\+ER}}~(\mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}} $\vert$ 0x300000)
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a39e1a736f5cb49ad4057103ae1257bb8}{M\+T\+\_\+\+S\+T\+\_\+\+H\+P\+L\+O\+A\+D\+E\+R\+\_\+\+O\+F\+F\+S\+ET}}~10000
+\item 
+\#define \mbox{\hyperlink{mtio_8h_a8d2f06d3d6f38a1818847470b0978176}{D\+E\+F\+T\+A\+PE}}~\char`\"{}/dev/tape\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mtio_8h_a37893a4adff6dafb38a6a253d4e2e72c}\label{mtio_8h_a37893a4adff6dafb38a6a253d4e2e72c}} 
+\index{mtio.h@{mtio.h}!\_IOT\_mtconfiginfo@{\_IOT\_mtconfiginfo}}
+\index{\_IOT\_mtconfiginfo@{\_IOT\_mtconfiginfo}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{\_IOT\_mtconfiginfo}{\_IOT\_mtconfiginfo}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+O\+T\+\_\+mtconfiginfo}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Hurd ioctl type field.  */} \(\backslash\)}
+\DoxyCodeLine{  \_IOT (\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a3adfc3f6a33d54ad514d487457565a94}{\_IOTS}} (\textcolor{keywordtype}{long}), 2, \mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a3adfc3f6a33d54ad514d487457565a94}{\_IOTS}} (\textcolor{keywordtype}{short}), 3, \mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a3adfc3f6a33d54ad514d487457565a94}{\_IOTS}} (\textcolor{keywordtype}{long}), 1) \textcolor{comment}{/* XXX wrong */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_ae19013630e171e687cce8b9189d035f0}\label{mtio_8h_ae19013630e171e687cce8b9189d035f0}} 
+\index{mtio.h@{mtio.h}!\_IOT\_mtget@{\_IOT\_mtget}}
+\index{\_IOT\_mtget@{\_IOT\_mtget}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{\_IOT\_mtget}{\_IOT\_mtget}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+O\+T\+\_\+mtget}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Hurd ioctl type field.  */} \(\backslash\)}
+\DoxyCodeLine{  \_IOT (\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a3adfc3f6a33d54ad514d487457565a94}{\_IOTS}} (\textcolor{keywordtype}{long}), 7, 0, 0, 0, 0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_a71c4101f1c28629f7ea28a31faafb68a}\label{mtio_8h_a71c4101f1c28629f7ea28a31faafb68a}} 
+\index{mtio.h@{mtio.h}!\_IOT\_mtop@{\_IOT\_mtop}}
+\index{\_IOT\_mtop@{\_IOT\_mtop}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{\_IOT\_mtop}{\_IOT\_mtop}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+O\+T\+\_\+mtop}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Hurd ioctl type field.  */} \(\backslash\)}
+\DoxyCodeLine{  \_IOT (\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a3adfc3f6a33d54ad514d487457565a94}{\_IOTS}} (\textcolor{keywordtype}{short}), 1, \mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a3adfc3f6a33d54ad514d487457565a94}{\_IOTS}} (\textcolor{keywordtype}{int}), 1, 0, 0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_ac717752b2d59696b396a6a75f5c28a8a}\label{mtio_8h_ac717752b2d59696b396a6a75f5c28a8a}} 
+\index{mtio.h@{mtio.h}!\_IOT\_mtpos@{\_IOT\_mtpos}}
+\index{\_IOT\_mtpos@{\_IOT\_mtpos}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{\_IOT\_mtpos}{\_IOT\_mtpos}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+O\+T\+\_\+mtpos}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* Hurd ioctl type field.  */} \(\backslash\)}
+\DoxyCodeLine{  \_IOT\_SIMPLE (\textcolor{keywordtype}{long})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_a8d2f06d3d6f38a1818847470b0978176}\label{mtio_8h_a8d2f06d3d6f38a1818847470b0978176}} 
+\index{mtio.h@{mtio.h}!DEFTAPE@{DEFTAPE}}
+\index{DEFTAPE@{DEFTAPE}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{DEFTAPE}{DEFTAPE}}
+{\footnotesize\ttfamily \#define D\+E\+F\+T\+A\+PE~\char`\"{}/dev/tape\char`\"{}}
+
+\mbox{\Hypertarget{mtio_8h_ac2b903f7e0999ff83830575ae72b0e40}\label{mtio_8h_ac2b903f7e0999ff83830575ae72b0e40}} 
+\index{mtio.h@{mtio.h}!GMT\_BOT@{GMT\_BOT}}
+\index{GMT\_BOT@{GMT\_BOT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_BOT}{GMT\_BOT}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+B\+OT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x40000000)}
+
+\mbox{\Hypertarget{mtio_8h_a384165f055775f4920570f17fa850e30}\label{mtio_8h_a384165f055775f4920570f17fa850e30}} 
+\index{mtio.h@{mtio.h}!GMT\_D\_1600@{GMT\_D\_1600}}
+\index{GMT\_D\_1600@{GMT\_D\_1600}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_D\_1600}{GMT\_D\_1600}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+D\+\_\+1600(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00400000)}
+
+\mbox{\Hypertarget{mtio_8h_a3b3bd9597efe6ccd37df638d150fb86d}\label{mtio_8h_a3b3bd9597efe6ccd37df638d150fb86d}} 
+\index{mtio.h@{mtio.h}!GMT\_D\_6250@{GMT\_D\_6250}}
+\index{GMT\_D\_6250@{GMT\_D\_6250}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_D\_6250}{GMT\_D\_6250}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+D\+\_\+6250(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00800000)}
+
+\mbox{\Hypertarget{mtio_8h_a8e584c986ea78f235029bac5cbcec388}\label{mtio_8h_a8e584c986ea78f235029bac5cbcec388}} 
+\index{mtio.h@{mtio.h}!GMT\_D\_800@{GMT\_D\_800}}
+\index{GMT\_D\_800@{GMT\_D\_800}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_D\_800}{GMT\_D\_800}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+D\+\_\+800(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00200000)}
+
+\mbox{\Hypertarget{mtio_8h_acda24b90a31cf4581e3678ba1a337e12}\label{mtio_8h_acda24b90a31cf4581e3678ba1a337e12}} 
+\index{mtio.h@{mtio.h}!GMT\_DR\_OPEN@{GMT\_DR\_OPEN}}
+\index{GMT\_DR\_OPEN@{GMT\_DR\_OPEN}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_DR\_OPEN}{GMT\_DR\_OPEN}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+D\+R\+\_\+\+O\+P\+EN(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00040000)  /$\ast$ Door open (no tape).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a898716deecb8528799b72126067e241b}\label{mtio_8h_a898716deecb8528799b72126067e241b}} 
+\index{mtio.h@{mtio.h}!GMT\_EOD@{GMT\_EOD}}
+\index{GMT\_EOD@{GMT\_EOD}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_EOD}{GMT\_EOD}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+E\+OD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x08000000)  /$\ast$ D\+D\+S E\+O\+D $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_aaabdda18c4e79f2b0ffac295872a0373}\label{mtio_8h_aaabdda18c4e79f2b0ffac295872a0373}} 
+\index{mtio.h@{mtio.h}!GMT\_EOF@{GMT\_EOF}}
+\index{GMT\_EOF@{GMT\_EOF}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_EOF}{GMT\_EOF}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+E\+OF(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x80000000)}
+
+\mbox{\Hypertarget{mtio_8h_a37cd75b44c6f1f19d151c12c867c99ce}\label{mtio_8h_a37cd75b44c6f1f19d151c12c867c99ce}} 
+\index{mtio.h@{mtio.h}!GMT\_EOT@{GMT\_EOT}}
+\index{GMT\_EOT@{GMT\_EOT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_EOT}{GMT\_EOT}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+E\+OT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x20000000)}
+
+\mbox{\Hypertarget{mtio_8h_af4461b73f7371c116dad178693f2e6cd}\label{mtio_8h_af4461b73f7371c116dad178693f2e6cd}} 
+\index{mtio.h@{mtio.h}!GMT\_IM\_REP\_EN@{GMT\_IM\_REP\_EN}}
+\index{GMT\_IM\_REP\_EN@{GMT\_IM\_REP\_EN}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_IM\_REP\_EN}{GMT\_IM\_REP\_EN}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+I\+M\+\_\+\+R\+E\+P\+\_\+\+EN(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x00010000)  /$\ast$ Immediate report mode.$\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_aaa466137de28deb1b96fea972ff6837c}\label{mtio_8h_aaa466137de28deb1b96fea972ff6837c}} 
+\index{mtio.h@{mtio.h}!GMT\_ONLINE@{GMT\_ONLINE}}
+\index{GMT\_ONLINE@{GMT\_ONLINE}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_ONLINE}{GMT\_ONLINE}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+O\+N\+L\+I\+NE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x01000000)}
+
+\mbox{\Hypertarget{mtio_8h_a73ff43f590e4c7376ba2faf80eaf7e03}\label{mtio_8h_a73ff43f590e4c7376ba2faf80eaf7e03}} 
+\index{mtio.h@{mtio.h}!GMT\_SM@{GMT\_SM}}
+\index{GMT\_SM@{GMT\_SM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_SM}{GMT\_SM}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+SM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x10000000)  /$\ast$ D\+D\+S setmark $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a68dddab2258db0da534f2b7effe3e7cd}\label{mtio_8h_a68dddab2258db0da534f2b7effe3e7cd}} 
+\index{mtio.h@{mtio.h}!GMT\_WR\_PROT@{GMT\_WR\_PROT}}
+\index{GMT\_WR\_PROT@{GMT\_WR\_PROT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{GMT\_WR\_PROT}{GMT\_WR\_PROT}}
+{\footnotesize\ttfamily \#define G\+M\+T\+\_\+\+W\+R\+\_\+\+P\+R\+OT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}}) \& 0x04000000)}
+
+\mbox{\Hypertarget{mtio_8h_a6567863d08166d0937674437f99b95c8}\label{mtio_8h_a6567863d08166d0937674437f99b95c8}} 
+\index{mtio.h@{mtio.h}!MT\_ISARCHIVE\_2060L@{MT\_ISARCHIVE\_2060L}}
+\index{MT\_ISARCHIVE\_2060L@{MT\_ISARCHIVE\_2060L}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISARCHIVE\_2060L}{MT\_ISARCHIVE\_2060L}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+2060L~0x09	/$\ast$ Archive Viper 2060\+L.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a71e351bc72a4ffd75c2dc0bd67abad93}\label{mtio_8h_a71e351bc72a4ffd75c2dc0bd67abad93}} 
+\index{mtio.h@{mtio.h}!MT\_ISARCHIVE\_2150L@{MT\_ISARCHIVE\_2150L}}
+\index{MT\_ISARCHIVE\_2150L@{MT\_ISARCHIVE\_2150L}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISARCHIVE\_2150L}{MT\_ISARCHIVE\_2150L}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+2150L~0x08	/$\ast$ Archive Viper 2150\+L.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_aaf5e71872f0af77a6f608d7f45fbaf87}\label{mtio_8h_aaf5e71872f0af77a6f608d7f45fbaf87}} 
+\index{mtio.h@{mtio.h}!MT\_ISARCHIVE\_5945L2@{MT\_ISARCHIVE\_5945L2}}
+\index{MT\_ISARCHIVE\_5945L2@{MT\_ISARCHIVE\_5945L2}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISARCHIVE\_5945L2}{MT\_ISARCHIVE\_5945L2}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+5945\+L2~0x04	/$\ast$ Archive 5945\+L-\/2, Q\+I\+C-\/24, Q\+I\+C-\/02?. $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a140eeaf643cb741c3335f4aad35fe8ca}\label{mtio_8h_a140eeaf643cb741c3335f4aad35fe8ca}} 
+\index{mtio.h@{mtio.h}!MT\_ISARCHIVE\_VP60I@{MT\_ISARCHIVE\_VP60I}}
+\index{MT\_ISARCHIVE\_VP60I@{MT\_ISARCHIVE\_VP60I}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISARCHIVE\_VP60I}{MT\_ISARCHIVE\_VP60I}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+\_\+\+V\+P60I~0x07	/$\ast$ Archive V\+P60i, Q\+I\+C-\/02.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ad865b672052fa2696673a66c6d033664}\label{mtio_8h_ad865b672052fa2696673a66c6d033664}} 
+\index{mtio.h@{mtio.h}!MT\_ISARCHIVESC499@{MT\_ISARCHIVESC499}}
+\index{MT\_ISARCHIVESC499@{MT\_ISARCHIVESC499}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISARCHIVESC499}{MT\_ISARCHIVESC499}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+A\+R\+C\+H\+I\+V\+E\+S\+C499~0x0\+A	/$\ast$ Archive S\+C-\/499 Q\+I\+C-\/36 controller. $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a710483d04f75e6a193ad97c053a16634}\label{mtio_8h_a710483d04f75e6a193ad97c053a16634}} 
+\index{mtio.h@{mtio.h}!MT\_ISCMSJ500@{MT\_ISCMSJ500}}
+\index{MT\_ISCMSJ500@{MT\_ISCMSJ500}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISCMSJ500}{MT\_ISCMSJ500}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+C\+M\+S\+J500~0x05	/$\ast$ C\+M\+S Jumbo 500 (\+Q\+I\+C-\/02?).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_af768e375a7edbabb3e28e1b1a8971ff6}\label{mtio_8h_af768e375a7edbabb3e28e1b1a8971ff6}} 
+\index{mtio.h@{mtio.h}!MT\_ISDDS1@{MT\_ISDDS1}}
+\index{MT\_ISDDS1@{MT\_ISDDS1}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISDDS1}{MT\_ISDDS1}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+D\+D\+S1~0x51	/$\ast$ D\+D\+S device without partitions.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a2bca9fd185469e028df259ca77040d67}\label{mtio_8h_a2bca9fd185469e028df259ca77040d67}} 
+\index{mtio.h@{mtio.h}!MT\_ISDDS2@{MT\_ISDDS2}}
+\index{MT\_ISDDS2@{MT\_ISDDS2}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISDDS2}{MT\_ISDDS2}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+D\+D\+S2~0x52	/$\ast$ D\+D\+S device with partitions.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a14fc2a4ffd4bc0a6a51adf659354d581}\label{mtio_8h_a14fc2a4ffd4bc0a6a51adf659354d581}} 
+\index{mtio.h@{mtio.h}!MT\_ISEVEREX\_FT40A@{MT\_ISEVEREX\_FT40A}}
+\index{MT\_ISEVEREX\_FT40A@{MT\_ISEVEREX\_FT40A}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISEVEREX\_FT40A}{MT\_ISEVEREX\_FT40A}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+E\+V\+E\+R\+E\+X\+\_\+\+F\+T40A~0x32	/$\ast$ Everex F\+T40\+A (\+Q\+I\+C-\/40).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a132ed9ee612732e3d96f7aaf5cba0fd2}\label{mtio_8h_a132ed9ee612732e3d96f7aaf5cba0fd2}} 
+\index{mtio.h@{mtio.h}!MT\_ISFTAPE\_FLAG@{MT\_ISFTAPE\_FLAG}}
+\index{MT\_ISFTAPE\_FLAG@{MT\_ISFTAPE\_FLAG}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISFTAPE\_FLAG}{MT\_ISFTAPE\_FLAG}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+F\+T\+A\+P\+E\+\_\+\+F\+L\+AG~0x800000}
+
+\mbox{\Hypertarget{mtio_8h_a6ea08ed5a8d030dff654e09d8a69a33d}\label{mtio_8h_a6ea08ed5a8d030dff654e09d8a69a33d}} 
+\index{mtio.h@{mtio.h}!MT\_ISFTAPE\_UNKNOWN@{MT\_ISFTAPE\_UNKNOWN}}
+\index{MT\_ISFTAPE\_UNKNOWN@{MT\_ISFTAPE\_UNKNOWN}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISFTAPE\_UNKNOWN}{MT\_ISFTAPE\_UNKNOWN}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+F\+T\+A\+P\+E\+\_\+\+U\+N\+K\+N\+O\+WN~0x800000 /$\ast$ obsolete $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a25e38b01347877c9f02898d37dad5ba0}\label{mtio_8h_a25e38b01347877c9f02898d37dad5ba0}} 
+\index{mtio.h@{mtio.h}!MT\_ISQIC02@{MT\_ISQIC02}}
+\index{MT\_ISQIC02@{MT\_ISQIC02}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISQIC02}{MT\_ISQIC02}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+Q\+I\+C02~0x02	/$\ast$ Generic Q\+I\+C-\/02 tape streamer.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a0dedd5ac78ba492ac63fd7328a0e6183}\label{mtio_8h_a0dedd5ac78ba492ac63fd7328a0e6183}} 
+\index{mtio.h@{mtio.h}!MT\_ISQIC02\_ALL\_FEATURES@{MT\_ISQIC02\_ALL\_FEATURES}}
+\index{MT\_ISQIC02\_ALL\_FEATURES@{MT\_ISQIC02\_ALL\_FEATURES}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISQIC02\_ALL\_FEATURES}{MT\_ISQIC02\_ALL\_FEATURES}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+Q\+I\+C02\+\_\+\+A\+L\+L\+\_\+\+F\+E\+A\+T\+U\+R\+ES~0x0\+F	/$\ast$ Generic Q\+I\+C-\/02 with all features. $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a54b85a99d9e1d095ddc9bc9a60fca408}\label{mtio_8h_a54b85a99d9e1d095ddc9bc9a60fca408}} 
+\index{mtio.h@{mtio.h}!MT\_ISSCSI1@{MT\_ISSCSI1}}
+\index{MT\_ISSCSI1@{MT\_ISSCSI1}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISSCSI1}{MT\_ISSCSI1}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+S\+C\+S\+I1~0x71	/$\ast$ Generic A\+N\+S\+I S\+C\+S\+I-\/1 tape unit.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a45863a6d519768b4aa769d61f6305bb5}\label{mtio_8h_a45863a6d519768b4aa769d61f6305bb5}} 
+\index{mtio.h@{mtio.h}!MT\_ISSCSI2@{MT\_ISSCSI2}}
+\index{MT\_ISSCSI2@{MT\_ISSCSI2}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISSCSI2}{MT\_ISSCSI2}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+S\+C\+S\+I2~0x72	/$\ast$ Generic A\+N\+S\+I S\+C\+S\+I-\/2 tape unit.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ab26d437d8af7446d35de34cf1fc47b32}\label{mtio_8h_ab26d437d8af7446d35de34cf1fc47b32}} 
+\index{mtio.h@{mtio.h}!MT\_ISTDC3610@{MT\_ISTDC3610}}
+\index{MT\_ISTDC3610@{MT\_ISTDC3610}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISTDC3610}{MT\_ISTDC3610}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+T\+D\+C3610~0x06	/$\ast$ Tandberg 6310, Q\+I\+C-\/24.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a48995e9885497e30b386a7b4e64ca953}\label{mtio_8h_a48995e9885497e30b386a7b4e64ca953}} 
+\index{mtio.h@{mtio.h}!MT\_ISTEAC\_MT2ST@{MT\_ISTEAC\_MT2ST}}
+\index{MT\_ISTEAC\_MT2ST@{MT\_ISTEAC\_MT2ST}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISTEAC\_MT2ST}{MT\_ISTEAC\_MT2ST}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+T\+E\+A\+C\+\_\+\+M\+T2\+ST}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{0x12    \textcolor{comment}{/* Teac MT-\/2ST 155mb drive,}}
+\DoxyCodeLine{\textcolor{comment}{                       Teac DC-\/1 card (Wangtek type).  */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_a245a18f8138a3c954aa3eb533e3e0781}\label{mtio_8h_a245a18f8138a3c954aa3eb533e3e0781}} 
+\index{mtio.h@{mtio.h}!MT\_ISUNKNOWN@{MT\_ISUNKNOWN}}
+\index{MT\_ISUNKNOWN@{MT\_ISUNKNOWN}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISUNKNOWN}{MT\_ISUNKNOWN}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+U\+N\+K\+N\+O\+WN~0x01}
+
+\mbox{\Hypertarget{mtio_8h_a561e5612110e512d4d1a1c1846717cf9}\label{mtio_8h_a561e5612110e512d4d1a1c1846717cf9}} 
+\index{mtio.h@{mtio.h}!MT\_ISWT5099EEN24@{MT\_ISWT5099EEN24}}
+\index{MT\_ISWT5099EEN24@{MT\_ISWT5099EEN24}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISWT5099EEN24}{MT\_ISWT5099EEN24}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+W\+T5099\+E\+E\+N24~0x11	/$\ast$ Wangtek 5099-\/een24, 60\+M\+B, Q\+I\+C-\/24. $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a86a8dad9de69c513041d775940821c4b}\label{mtio_8h_a86a8dad9de69c513041d775940821c4b}} 
+\index{mtio.h@{mtio.h}!MT\_ISWT5150@{MT\_ISWT5150}}
+\index{MT\_ISWT5150@{MT\_ISWT5150}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ISWT5150}{MT\_ISWT5150}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+I\+S\+W\+T5150~0x03	/$\ast$ Wangtek 5150\+E\+Q, Q\+I\+C-\/150, Q\+I\+C-\/02.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a26f1102fa474b396e5c39ab36e527b0b}\label{mtio_8h_a26f1102fa474b396e5c39ab36e527b0b}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_ASYNC\_WRITES@{MT\_ST\_ASYNC\_WRITES}}
+\index{MT\_ST\_ASYNC\_WRITES@{MT\_ST\_ASYNC\_WRITES}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_ASYNC\_WRITES}{MT\_ST\_ASYNC\_WRITES}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+A\+S\+Y\+N\+C\+\_\+\+W\+R\+I\+T\+ES~0x2}
+
+\mbox{\Hypertarget{mtio_8h_a952a6840a0bda6648247503abc00c757}\label{mtio_8h_a952a6840a0bda6648247503abc00c757}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_AUTO\_LOCK@{MT\_ST\_AUTO\_LOCK}}
+\index{MT\_ST\_AUTO\_LOCK@{MT\_ST\_AUTO\_LOCK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_AUTO\_LOCK}{MT\_ST\_AUTO\_LOCK}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+A\+U\+T\+O\+\_\+\+L\+O\+CK~0x40}
+
+\mbox{\Hypertarget{mtio_8h_a6767377b43ec4d621b31321f2f9913bd}\label{mtio_8h_a6767377b43ec4d621b31321f2f9913bd}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_BLKSIZE\_MASK@{MT\_ST\_BLKSIZE\_MASK}}
+\index{MT\_ST\_BLKSIZE\_MASK@{MT\_ST\_BLKSIZE\_MASK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_BLKSIZE\_MASK}{MT\_ST\_BLKSIZE\_MASK}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+B\+L\+K\+S\+I\+Z\+E\+\_\+\+M\+A\+SK~0xffffff}
+
+\mbox{\Hypertarget{mtio_8h_aa1a15667226b850b5b742a61d1ef21e1}\label{mtio_8h_aa1a15667226b850b5b742a61d1ef21e1}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_BLKSIZE\_SHIFT@{MT\_ST\_BLKSIZE\_SHIFT}}
+\index{MT\_ST\_BLKSIZE\_SHIFT@{MT\_ST\_BLKSIZE\_SHIFT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_BLKSIZE\_SHIFT}{MT\_ST\_BLKSIZE\_SHIFT}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+B\+L\+K\+S\+I\+Z\+E\+\_\+\+S\+H\+I\+FT~0}
+
+\mbox{\Hypertarget{mtio_8h_a9f3adb020ca17f1fdfaf19140a3d27d4}\label{mtio_8h_a9f3adb020ca17f1fdfaf19140a3d27d4}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_BOOLEANS@{MT\_ST\_BOOLEANS}}
+\index{MT\_ST\_BOOLEANS@{MT\_ST\_BOOLEANS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_BOOLEANS}{MT\_ST\_BOOLEANS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+B\+O\+O\+L\+E\+A\+NS~0x10000000}
+
+\mbox{\Hypertarget{mtio_8h_a897b7347a5bdf3150530bfb63fd2bd9f}\label{mtio_8h_a897b7347a5bdf3150530bfb63fd2bd9f}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_BUFFER\_WRITES@{MT\_ST\_BUFFER\_WRITES}}
+\index{MT\_ST\_BUFFER\_WRITES@{MT\_ST\_BUFFER\_WRITES}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_BUFFER\_WRITES}{MT\_ST\_BUFFER\_WRITES}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+W\+R\+I\+T\+ES~0x1}
+
+\mbox{\Hypertarget{mtio_8h_a6f56401c324b384dd69291e203b7ed43}\label{mtio_8h_a6f56401c324b384dd69291e203b7ed43}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_CAN\_BSR@{MT\_ST\_CAN\_BSR}}
+\index{MT\_ST\_CAN\_BSR@{MT\_ST\_CAN\_BSR}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_CAN\_BSR}{MT\_ST\_CAN\_BSR}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+C\+A\+N\+\_\+\+B\+SR~0x100}
+
+\mbox{\Hypertarget{mtio_8h_a227e9df26864e967366fb872e41ba82c}\label{mtio_8h_a227e9df26864e967366fb872e41ba82c}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_CAN\_PARTITIONS@{MT\_ST\_CAN\_PARTITIONS}}
+\index{MT\_ST\_CAN\_PARTITIONS@{MT\_ST\_CAN\_PARTITIONS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_CAN\_PARTITIONS}{MT\_ST\_CAN\_PARTITIONS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+C\+A\+N\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+NS~0x400}
+
+\mbox{\Hypertarget{mtio_8h_a141cc8486e85a8484c46b2903d492261}\label{mtio_8h_a141cc8486e85a8484c46b2903d492261}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_CLEAR\_DEFAULT@{MT\_ST\_CLEAR\_DEFAULT}}
+\index{MT\_ST\_CLEAR\_DEFAULT@{MT\_ST\_CLEAR\_DEFAULT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_CLEAR\_DEFAULT}{MT\_ST\_CLEAR\_DEFAULT}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+C\+L\+E\+A\+R\+\_\+\+D\+E\+F\+A\+U\+LT~0xfffff}
+
+\mbox{\Hypertarget{mtio_8h_abb97b057ddcbe0d7935a956500701259}\label{mtio_8h_abb97b057ddcbe0d7935a956500701259}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_CLEARBOOLEANS@{MT\_ST\_CLEARBOOLEANS}}
+\index{MT\_ST\_CLEARBOOLEANS@{MT\_ST\_CLEARBOOLEANS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_CLEARBOOLEANS}{MT\_ST\_CLEARBOOLEANS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+C\+L\+E\+A\+R\+B\+O\+O\+L\+E\+A\+NS~0x40000000}
+
+\mbox{\Hypertarget{mtio_8h_a84c88e599a9e0196c081b683a4bd5c93}\label{mtio_8h_a84c88e599a9e0196c081b683a4bd5c93}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEBUGGING@{MT\_ST\_DEBUGGING}}
+\index{MT\_ST\_DEBUGGING@{MT\_ST\_DEBUGGING}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEBUGGING}{MT\_ST\_DEBUGGING}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+B\+U\+G\+G\+I\+NG~0x8}
+
+\mbox{\Hypertarget{mtio_8h_a97daf814b29ca447b860289df2a496db}\label{mtio_8h_a97daf814b29ca447b860289df2a496db}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEF\_BLKSIZE@{MT\_ST\_DEF\_BLKSIZE}}
+\index{MT\_ST\_DEF\_BLKSIZE@{MT\_ST\_DEF\_BLKSIZE}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEF\_BLKSIZE}{MT\_ST\_DEF\_BLKSIZE}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+B\+L\+K\+S\+I\+ZE~0x50000000}
+
+\mbox{\Hypertarget{mtio_8h_a79842c89878de8fd26adfd2764471e71}\label{mtio_8h_a79842c89878de8fd26adfd2764471e71}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEF\_COMPRESSION@{MT\_ST\_DEF\_COMPRESSION}}
+\index{MT\_ST\_DEF\_COMPRESSION@{MT\_ST\_DEF\_COMPRESSION}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEF\_COMPRESSION}{MT\_ST\_DEF\_COMPRESSION}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON~(\mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}} $\vert$ 0x200000)}
+
+\mbox{\Hypertarget{mtio_8h_a9ca32f3cdca782a7ec4f2d11b1ec5858}\label{mtio_8h_a9ca32f3cdca782a7ec4f2d11b1ec5858}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEF\_DENSITY@{MT\_ST\_DEF\_DENSITY}}
+\index{MT\_ST\_DEF\_DENSITY@{MT\_ST\_DEF\_DENSITY}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEF\_DENSITY}{MT\_ST\_DEF\_DENSITY}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+D\+E\+N\+S\+I\+TY~(\mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}} $\vert$ 0x100000)}
+
+\mbox{\Hypertarget{mtio_8h_ac596d097832310633437de491305dc79}\label{mtio_8h_ac596d097832310633437de491305dc79}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEF\_DRVBUFFER@{MT\_ST\_DEF\_DRVBUFFER}}
+\index{MT\_ST\_DEF\_DRVBUFFER@{MT\_ST\_DEF\_DRVBUFFER}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEF\_DRVBUFFER}{MT\_ST\_DEF\_DRVBUFFER}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+D\+R\+V\+B\+U\+F\+F\+ER~(\mbox{\hyperlink{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}{M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS}} $\vert$ 0x300000)}
+
+\mbox{\Hypertarget{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}\label{mtio_8h_aac4e8c94c7450cc009d2bb2bc5ff9381}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEF\_OPTIONS@{MT\_ST\_DEF\_OPTIONS}}
+\index{MT\_ST\_DEF\_OPTIONS@{MT\_ST\_DEF\_OPTIONS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEF\_OPTIONS}{MT\_ST\_DEF\_OPTIONS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+O\+P\+T\+I\+O\+NS~0x60000000}
+
+\mbox{\Hypertarget{mtio_8h_af54922a1cd87bb00f8b5cdd40de5e169}\label{mtio_8h_af54922a1cd87bb00f8b5cdd40de5e169}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DEF\_WRITES@{MT\_ST\_DEF\_WRITES}}
+\index{MT\_ST\_DEF\_WRITES@{MT\_ST\_DEF\_WRITES}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DEF\_WRITES}{MT\_ST\_DEF\_WRITES}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+F\+\_\+\+W\+R\+I\+T\+ES~0x80}
+
+\mbox{\Hypertarget{mtio_8h_a7e0a4f529d8cb3ea9f3d6a23e0fc7a72}\label{mtio_8h_a7e0a4f529d8cb3ea9f3d6a23e0fc7a72}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DENSITY\_MASK@{MT\_ST\_DENSITY\_MASK}}
+\index{MT\_ST\_DENSITY\_MASK@{MT\_ST\_DENSITY\_MASK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DENSITY\_MASK}{MT\_ST\_DENSITY\_MASK}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+N\+S\+I\+T\+Y\+\_\+\+M\+A\+SK~0xff000000}
+
+\mbox{\Hypertarget{mtio_8h_a4850723809e697a0566752af51c49bed}\label{mtio_8h_a4850723809e697a0566752af51c49bed}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_DENSITY\_SHIFT@{MT\_ST\_DENSITY\_SHIFT}}
+\index{MT\_ST\_DENSITY\_SHIFT@{MT\_ST\_DENSITY\_SHIFT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_DENSITY\_SHIFT}{MT\_ST\_DENSITY\_SHIFT}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+D\+E\+N\+S\+I\+T\+Y\+\_\+\+S\+H\+I\+FT~24}
+
+\mbox{\Hypertarget{mtio_8h_ac3da9812e248b3d6b92bfb4f8164a190}\label{mtio_8h_ac3da9812e248b3d6b92bfb4f8164a190}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_FAST\_MTEOM@{MT\_ST\_FAST\_MTEOM}}
+\index{MT\_ST\_FAST\_MTEOM@{MT\_ST\_FAST\_MTEOM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_FAST\_MTEOM}{MT\_ST\_FAST\_MTEOM}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+F\+A\+S\+T\+\_\+\+M\+T\+E\+OM~0x20}
+
+\mbox{\Hypertarget{mtio_8h_a39e1a736f5cb49ad4057103ae1257bb8}\label{mtio_8h_a39e1a736f5cb49ad4057103ae1257bb8}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_HPLOADER\_OFFSET@{MT\_ST\_HPLOADER\_OFFSET}}
+\index{MT\_ST\_HPLOADER\_OFFSET@{MT\_ST\_HPLOADER\_OFFSET}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_HPLOADER\_OFFSET}{MT\_ST\_HPLOADER\_OFFSET}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+H\+P\+L\+O\+A\+D\+E\+R\+\_\+\+O\+F\+F\+S\+ET~10000}
+
+\mbox{\Hypertarget{mtio_8h_aab88df26e5519795de37d7ec6a191260}\label{mtio_8h_aab88df26e5519795de37d7ec6a191260}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_NO\_BLKLIMS@{MT\_ST\_NO\_BLKLIMS}}
+\index{MT\_ST\_NO\_BLKLIMS@{MT\_ST\_NO\_BLKLIMS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_NO\_BLKLIMS}{MT\_ST\_NO\_BLKLIMS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+N\+O\+\_\+\+B\+L\+K\+L\+I\+MS~0x200}
+
+\mbox{\Hypertarget{mtio_8h_a20d84bd0c6fc7705ef39430c620fded9}\label{mtio_8h_a20d84bd0c6fc7705ef39430c620fded9}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_OPTIONS@{MT\_ST\_OPTIONS}}
+\index{MT\_ST\_OPTIONS@{MT\_ST\_OPTIONS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_OPTIONS}{MT\_ST\_OPTIONS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+O\+P\+T\+I\+O\+NS~0xf0000000}
+
+\mbox{\Hypertarget{mtio_8h_aa9fbdf5372986cace6652ea1c14e8ba1}\label{mtio_8h_aa9fbdf5372986cace6652ea1c14e8ba1}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_READ\_AHEAD@{MT\_ST\_READ\_AHEAD}}
+\index{MT\_ST\_READ\_AHEAD@{MT\_ST\_READ\_AHEAD}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_READ\_AHEAD}{MT\_ST\_READ\_AHEAD}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+R\+E\+A\+D\+\_\+\+A\+H\+E\+AD~0x4}
+
+\mbox{\Hypertarget{mtio_8h_afc015359ab946ef79c8c22ff87f9c7cf}\label{mtio_8h_afc015359ab946ef79c8c22ff87f9c7cf}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_SCSI2LOGICAL@{MT\_ST\_SCSI2LOGICAL}}
+\index{MT\_ST\_SCSI2LOGICAL@{MT\_ST\_SCSI2LOGICAL}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_SCSI2LOGICAL}{MT\_ST\_SCSI2LOGICAL}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+S\+C\+S\+I2\+L\+O\+G\+I\+C\+AL~0x800}
+
+\mbox{\Hypertarget{mtio_8h_af4c9290ed26955eba47a676dfa3c1506}\label{mtio_8h_af4c9290ed26955eba47a676dfa3c1506}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_SETBOOLEANS@{MT\_ST\_SETBOOLEANS}}
+\index{MT\_ST\_SETBOOLEANS@{MT\_ST\_SETBOOLEANS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_SETBOOLEANS}{MT\_ST\_SETBOOLEANS}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+S\+E\+T\+B\+O\+O\+L\+E\+A\+NS~0x30000000}
+
+\mbox{\Hypertarget{mtio_8h_acfb7b758c15eba75d0ef0a2061ef3ae1}\label{mtio_8h_acfb7b758c15eba75d0ef0a2061ef3ae1}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_SOFTERR\_MASK@{MT\_ST\_SOFTERR\_MASK}}
+\index{MT\_ST\_SOFTERR\_MASK@{MT\_ST\_SOFTERR\_MASK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_SOFTERR\_MASK}{MT\_ST\_SOFTERR\_MASK}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+S\+O\+F\+T\+E\+R\+R\+\_\+\+M\+A\+SK~0xffff}
+
+\mbox{\Hypertarget{mtio_8h_af321a4787e14fdc6bfd9c7b02c805397}\label{mtio_8h_af321a4787e14fdc6bfd9c7b02c805397}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_SOFTERR\_SHIFT@{MT\_ST\_SOFTERR\_SHIFT}}
+\index{MT\_ST\_SOFTERR\_SHIFT@{MT\_ST\_SOFTERR\_SHIFT}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_SOFTERR\_SHIFT}{MT\_ST\_SOFTERR\_SHIFT}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+S\+O\+F\+T\+E\+R\+R\+\_\+\+S\+H\+I\+FT~0}
+
+\mbox{\Hypertarget{mtio_8h_a599e74a13d232075a88ab0beea761679}\label{mtio_8h_a599e74a13d232075a88ab0beea761679}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_TWO\_FM@{MT\_ST\_TWO\_FM}}
+\index{MT\_ST\_TWO\_FM@{MT\_ST\_TWO\_FM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_TWO\_FM}{MT\_ST\_TWO\_FM}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+T\+W\+O\+\_\+\+FM~0x10}
+
+\mbox{\Hypertarget{mtio_8h_a74ba1bbfe5344ef8aa8c8328b1e92dba}\label{mtio_8h_a74ba1bbfe5344ef8aa8c8328b1e92dba}} 
+\index{mtio.h@{mtio.h}!MT\_ST\_WRITE\_THRESHOLD@{MT\_ST\_WRITE\_THRESHOLD}}
+\index{MT\_ST\_WRITE\_THRESHOLD@{MT\_ST\_WRITE\_THRESHOLD}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_ST\_WRITE\_THRESHOLD}{MT\_ST\_WRITE\_THRESHOLD}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+S\+T\+\_\+\+W\+R\+I\+T\+E\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD~0x20000000}
+
+\mbox{\Hypertarget{mtio_8h_a0dda0c3763b2c9acc2f1299d21bcdc05}\label{mtio_8h_a0dda0c3763b2c9acc2f1299d21bcdc05}} 
+\index{mtio.h@{mtio.h}!MT\_TAPE\_INFO@{MT\_TAPE\_INFO}}
+\index{MT\_TAPE\_INFO@{MT\_TAPE\_INFO}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MT\_TAPE\_INFO}{MT\_TAPE\_INFO}}
+{\footnotesize\ttfamily \#define M\+T\+\_\+\+T\+A\+P\+E\+\_\+\+I\+N\+FO}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a245a18f8138a3c954aa3eb533e3e0781}{MT\_ISUNKNOWN}},      \textcolor{stringliteral}{"Unknown type of tape device"}\},           \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a25e38b01347877c9f02898d37dad5ba0}{MT\_ISQIC02}},      \textcolor{stringliteral}{"Generic QIC-\/02 tape streamer"}\},          \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a86a8dad9de69c513041d775940821c4b}{MT\_ISWT5150}},        \textcolor{stringliteral}{"Wangtek 5150, QIC-\/150"}\},             \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_aaf5e71872f0af77a6f608d7f45fbaf87}{MT\_ISARCHIVE\_5945L2}},    \textcolor{stringliteral}{"Archive 5945L-\/2"}\},               \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a710483d04f75e6a193ad97c053a16634}{MT\_ISCMSJ500}},      \textcolor{stringliteral}{"CMS Jumbo 500"}\},                 \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_ab26d437d8af7446d35de34cf1fc47b32}{MT\_ISTDC3610}},      \textcolor{stringliteral}{"Tandberg TDC 3610, QIC-\/24"}\},             \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a140eeaf643cb741c3335f4aad35fe8ca}{MT\_ISARCHIVE\_VP60I}},  \textcolor{stringliteral}{"Archive VP60i, QIC-\/02"}\},             \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a71e351bc72a4ffd75c2dc0bd67abad93}{MT\_ISARCHIVE\_2150L}},  \textcolor{stringliteral}{"Archive Viper 2150L"}\},               \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a6567863d08166d0937674437f99b95c8}{MT\_ISARCHIVE\_2060L}},  \textcolor{stringliteral}{"Archive Viper 2060L"}\},               \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_ad865b672052fa2696673a66c6d033664}{MT\_ISARCHIVESC499}},    \textcolor{stringliteral}{"Archive SC-\/499 QIC-\/36 controller"}\},          \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a0dedd5ac78ba492ac63fd7328a0e6183}{MT\_ISQIC02\_ALL\_FEATURES}}, \textcolor{stringliteral}{"Generic QIC-\/02 tape, all features"}\},        \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a561e5612110e512d4d1a1c1846717cf9}{MT\_ISWT5099EEN24}},  \textcolor{stringliteral}{"Wangtek 5099-\/een24, 60MB"}\},              \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a48995e9885497e30b386a7b4e64ca953}{MT\_ISTEAC\_MT2ST}},    \textcolor{stringliteral}{"Teac MT-\/2ST 155mb data cassette drive"}\},     \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a14fc2a4ffd4bc0a6a51adf659354d581}{MT\_ISEVEREX\_FT40A}},    \textcolor{stringliteral}{"Everex FT40A, QIC-\/40"}\},              \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a54b85a99d9e1d095ddc9bc9a60fca408}{MT\_ISSCSI1}},      \textcolor{stringliteral}{"Generic SCSI-\/1 tape"}\},               \(\backslash\)}
+\DoxyCodeLine{    \{\mbox{\hyperlink{mtio_8h_a45863a6d519768b4aa769d61f6305bb5}{MT\_ISSCSI2}},      \textcolor{stringliteral}{"Generic SCSI-\/2 tape"}\},               \(\backslash\)}
+\DoxyCodeLine{    \{0, \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}\}                                 \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_acb7e59803c2653c0a80897d6a76edbd4}\label{mtio_8h_acb7e59803c2653c0a80897d6a76edbd4}} 
+\index{mtio.h@{mtio.h}!MTBSF@{MTBSF}}
+\index{MTBSF@{MTBSF}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTBSF}{MTBSF}}
+{\footnotesize\ttfamily \#define M\+T\+B\+SF~2	/$\ast$ Backward space File\+Mark (position before FM).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a72811e3bd6901986ec2319111dc6ee9b}\label{mtio_8h_a72811e3bd6901986ec2319111dc6ee9b}} 
+\index{mtio.h@{mtio.h}!MTBSFM@{MTBSFM}}
+\index{MTBSFM@{MTBSFM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTBSFM}{MTBSFM}}
+{\footnotesize\ttfamily \#define M\+T\+B\+S\+FM~10	/$\ast$ +backward space File\+Mark, position at F\+M.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a2b69742fb8cd271e95c6c7ed589ae8aa}\label{mtio_8h_a2b69742fb8cd271e95c6c7ed589ae8aa}} 
+\index{mtio.h@{mtio.h}!MTBSR@{MTBSR}}
+\index{MTBSR@{MTBSR}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTBSR}{MTBSR}}
+{\footnotesize\ttfamily \#define M\+T\+B\+SR~4	/$\ast$ Backward space record.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a6472425e9547b4b765037b9fbf3b5572}\label{mtio_8h_a6472425e9547b4b765037b9fbf3b5572}} 
+\index{mtio.h@{mtio.h}!MTBSS@{MTBSS}}
+\index{MTBSS@{MTBSS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTBSS}{MTBSS}}
+{\footnotesize\ttfamily \#define M\+T\+B\+SS~26	/$\ast$ Space backward over setmarks.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ae96724052ae97082e73e27708fef97e5}\label{mtio_8h_ae96724052ae97082e73e27708fef97e5}} 
+\index{mtio.h@{mtio.h}!MTCOMPRESSION@{MTCOMPRESSION}}
+\index{MTCOMPRESSION@{MTCOMPRESSION}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTCOMPRESSION}{MTCOMPRESSION}}
+{\footnotesize\ttfamily \#define M\+T\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON~32/$\ast$ Control compression with S\+C\+SI \mbox{\hyperlink{bug-glob2_8c_adc8d3cf511ceb277aea0cfa1cd027c59}{mode}} page 15.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a980e403e99395705e8341d18a4129a51}\label{mtio_8h_a980e403e99395705e8341d18a4129a51}} 
+\index{mtio.h@{mtio.h}!MTEOM@{MTEOM}}
+\index{MTEOM@{MTEOM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTEOM}{MTEOM}}
+{\footnotesize\ttfamily \#define M\+T\+E\+OM}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{12  \textcolor{comment}{/* Goto end of recorded media (for appending files).}}
+\DoxyCodeLine{\textcolor{comment}{               MTEOM positions after the last FM, ready for}}
+\DoxyCodeLine{\textcolor{comment}{               appending another file.  */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_a71373177c0a1e86453a15d3efcdc93fe}\label{mtio_8h_a71373177c0a1e86453a15d3efcdc93fe}} 
+\index{mtio.h@{mtio.h}!MTERASE@{MTERASE}}
+\index{MTERASE@{MTERASE}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTERASE}{MTERASE}}
+{\footnotesize\ttfamily \#define M\+T\+E\+R\+A\+SE~13	/$\ast$ Erase tape -\/-\/ be careful!  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a135d95c34b7eafa8f2afb30c07e47c72}\label{mtio_8h_a135d95c34b7eafa8f2afb30c07e47c72}} 
+\index{mtio.h@{mtio.h}!MTFSF@{MTFSF}}
+\index{MTFSF@{MTFSF}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTFSF}{MTFSF}}
+{\footnotesize\ttfamily \#define M\+T\+F\+SF}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1   \textcolor{comment}{/* Forward space over FileMark,}}
+\DoxyCodeLine{\textcolor{comment}{             * position at first record of next file.  */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_a379b0fb19c681e7ac52e32d03a1f239c}\label{mtio_8h_a379b0fb19c681e7ac52e32d03a1f239c}} 
+\index{mtio.h@{mtio.h}!MTFSFM@{MTFSFM}}
+\index{MTFSFM@{MTFSFM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTFSFM}{MTFSFM}}
+{\footnotesize\ttfamily \#define M\+T\+F\+S\+FM~11	/$\ast$ +forward space File\+Mark, position at F\+M.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_adb4d8fc10f9f290428036789ec653aa7}\label{mtio_8h_adb4d8fc10f9f290428036789ec653aa7}} 
+\index{mtio.h@{mtio.h}!MTFSR@{MTFSR}}
+\index{MTFSR@{MTFSR}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTFSR}{MTFSR}}
+{\footnotesize\ttfamily \#define M\+T\+F\+SR~3	/$\ast$ Forward space record.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a7c6cd1081da67e0729cc4e30abccd6c7}\label{mtio_8h_a7c6cd1081da67e0729cc4e30abccd6c7}} 
+\index{mtio.h@{mtio.h}!MTFSS@{MTFSS}}
+\index{MTFSS@{MTFSS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTFSS}{MTFSS}}
+{\footnotesize\ttfamily \#define M\+T\+F\+SS~25	/$\ast$ Space forward over setmarks.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a3243a4d12262b48dd093a16e810d2191}\label{mtio_8h_a3243a4d12262b48dd093a16e810d2191}} 
+\index{mtio.h@{mtio.h}!MTIOCGET@{MTIOCGET}}
+\index{MTIOCGET@{MTIOCGET}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTIOCGET}{MTIOCGET}}
+{\footnotesize\ttfamily \#define M\+T\+I\+O\+C\+G\+ET~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 2, struct \mbox{\hyperlink{structmtget}{mtget}})	/$\ast$ Get tape status.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a3e10f947c6b3a40e186e6cd6069bdcff}\label{mtio_8h_a3e10f947c6b3a40e186e6cd6069bdcff}} 
+\index{mtio.h@{mtio.h}!MTIOCGETCONFIG@{MTIOCGETCONFIG}}
+\index{MTIOCGETCONFIG@{MTIOCGETCONFIG}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTIOCGETCONFIG}{MTIOCGETCONFIG}}
+{\footnotesize\ttfamily \#define M\+T\+I\+O\+C\+G\+E\+T\+C\+O\+N\+F\+IG~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 4, struct \mbox{\hyperlink{structmtconfiginfo}{mtconfiginfo}}) /$\ast$ Get tape config.$\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a6334c469328910acf4f01ee291cecce1}\label{mtio_8h_a6334c469328910acf4f01ee291cecce1}} 
+\index{mtio.h@{mtio.h}!MTIOCPOS@{MTIOCPOS}}
+\index{MTIOCPOS@{MTIOCPOS}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTIOCPOS}{MTIOCPOS}}
+{\footnotesize\ttfamily \#define M\+T\+I\+O\+C\+P\+OS~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_a9c75511e172abae589bdaec3a9bc47fc}{\+\_\+\+I\+OR}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 3, struct \mbox{\hyperlink{structmtpos}{mtpos}})	/$\ast$ Get tape position.$\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a9d7d5beb19c80d362e3158b3cd509e00}\label{mtio_8h_a9d7d5beb19c80d362e3158b3cd509e00}} 
+\index{mtio.h@{mtio.h}!MTIOCSETCONFIG@{MTIOCSETCONFIG}}
+\index{MTIOCSETCONFIG@{MTIOCSETCONFIG}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTIOCSETCONFIG}{MTIOCSETCONFIG}}
+{\footnotesize\ttfamily \#define M\+T\+I\+O\+C\+S\+E\+T\+C\+O\+N\+F\+IG~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 5, struct \mbox{\hyperlink{structmtconfiginfo}{mtconfiginfo}}) /$\ast$ Set tape config.$\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a8481020694b3542d0b7bc0c2739480e5}\label{mtio_8h_a8481020694b3542d0b7bc0c2739480e5}} 
+\index{mtio.h@{mtio.h}!MTIOCTOP@{MTIOCTOP}}
+\index{MTIOCTOP@{MTIOCTOP}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTIOCTOP}{MTIOCTOP}}
+{\footnotesize\ttfamily \#define M\+T\+I\+O\+C\+T\+OP~\mbox{\hyperlink{sysdeps_2mach_2hurd_2bits_2ioctls_8h_af6f978c977cb0e07f43fb862b23a8096}{\+\_\+\+I\+OW}}(\textquotesingle{}\mbox{\hyperlink{tst-fini1mod_8c_aa2e3edb156b8116204fda5c7cd008e98}{m}}\textquotesingle{}, 1, struct \mbox{\hyperlink{structmtop}{mtop}})	/$\ast$ Do \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} mag tape op. $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a80009e8b5171ace3f1390cc9e44b5149}\label{mtio_8h_a80009e8b5171ace3f1390cc9e44b5149}} 
+\index{mtio.h@{mtio.h}!MTLOAD@{MTLOAD}}
+\index{MTLOAD@{MTLOAD}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTLOAD}{MTLOAD}}
+{\footnotesize\ttfamily \#define M\+T\+L\+O\+AD~30	/$\ast$ Execute the S\+C\+SI load command.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_abeaab85e47628c7ca2dfb0492641ad17}\label{mtio_8h_abeaab85e47628c7ca2dfb0492641ad17}} 
+\index{mtio.h@{mtio.h}!MTLOCK@{MTLOCK}}
+\index{MTLOCK@{MTLOCK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTLOCK}{MTLOCK}}
+{\footnotesize\ttfamily \#define M\+T\+L\+O\+CK~28	/$\ast$ Lock the drive door.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a89dd66daea3f9aa2aed14b6ae8cd4500}\label{mtio_8h_a89dd66daea3f9aa2aed14b6ae8cd4500}} 
+\index{mtio.h@{mtio.h}!MTMKPART@{MTMKPART}}
+\index{MTMKPART@{MTMKPART}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTMKPART}{MTMKPART}}
+{\footnotesize\ttfamily \#define M\+T\+M\+K\+P\+A\+RT~34	/$\ast$ Format the tape with \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}} or \mbox{\hyperlink{tester_8c_aa99655c3878749f6bc84e3c3e4981049}{two}} partitions.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a0ff813c2131cd8b52648282bf9e85d1f}\label{mtio_8h_a0ff813c2131cd8b52648282bf9e85d1f}} 
+\index{mtio.h@{mtio.h}!MTNOP@{MTNOP}}
+\index{MTNOP@{MTNOP}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTNOP}{MTNOP}}
+{\footnotesize\ttfamily \#define M\+T\+N\+OP~8	/$\ast$ No op, set \mbox{\hyperlink{nss_2nsswitch_8h_a21fd5ece2dac024d267070d9eabf87d2}{status}} only (\mbox{\hyperlink{posix_2unistd_8h_a83953352ffbeb7662b97f01f5f6ce2ed}{read}} with \mbox{\hyperlink{mtio_8h_a3243a4d12262b48dd093a16e810d2191}{M\+T\+I\+O\+C\+G\+ET}}).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ab306a3db40e0057a9cb78ae1da921d50}\label{mtio_8h_ab306a3db40e0057a9cb78ae1da921d50}} 
+\index{mtio.h@{mtio.h}!MTOFFL@{MTOFFL}}
+\index{MTOFFL@{MTOFFL}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTOFFL}{MTOFFL}}
+{\footnotesize\ttfamily \#define M\+T\+O\+F\+FL~7	/$\ast$ Rewind and put the drive offline (eject?).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a40aa30d2507e8ad87655a4ad0ea585ca}\label{mtio_8h_a40aa30d2507e8ad87655a4ad0ea585ca}} 
+\index{mtio.h@{mtio.h}!MTRAS1@{MTRAS1}}
+\index{MTRAS1@{MTRAS1}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTRAS1}{MTRAS1}}
+{\footnotesize\ttfamily \#define M\+T\+R\+A\+S1~14	/$\ast$ Run self \mbox{\hyperlink{structtest}{test}} 1 (nondestructive).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a98095969a5fa18f8307e87069c6e289d}\label{mtio_8h_a98095969a5fa18f8307e87069c6e289d}} 
+\index{mtio.h@{mtio.h}!MTRAS2@{MTRAS2}}
+\index{MTRAS2@{MTRAS2}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTRAS2}{MTRAS2}}
+{\footnotesize\ttfamily \#define M\+T\+R\+A\+S2~15	/$\ast$ Run self \mbox{\hyperlink{structtest}{test}} 2 (destructive).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ac451d6e2389ba9a708284f0e3f29bc66}\label{mtio_8h_ac451d6e2389ba9a708284f0e3f29bc66}} 
+\index{mtio.h@{mtio.h}!MTRAS3@{MTRAS3}}
+\index{MTRAS3@{MTRAS3}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTRAS3}{MTRAS3}}
+{\footnotesize\ttfamily \#define M\+T\+R\+A\+S3~16	/$\ast$ Reserved \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} self \mbox{\hyperlink{structtest}{test}} 3.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a6670b31a5a84c852ab6870a7c575a3ca}\label{mtio_8h_a6670b31a5a84c852ab6870a7c575a3ca}} 
+\index{mtio.h@{mtio.h}!MTRESET@{MTRESET}}
+\index{MTRESET@{MTRESET}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTRESET}{MTRESET}}
+{\footnotesize\ttfamily \#define M\+T\+R\+E\+S\+ET~0	/$\ast$ +reset drive \mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}} case of problems.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a699be9dbf7d505ae1835295775ac763e}\label{mtio_8h_a699be9dbf7d505ae1835295775ac763e}} 
+\index{mtio.h@{mtio.h}!MTRETEN@{MTRETEN}}
+\index{MTRETEN@{MTRETEN}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTRETEN}{MTRETEN}}
+{\footnotesize\ttfamily \#define M\+T\+R\+E\+T\+EN~9	/$\ast$ Retension tape.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a31419c175335f9ae49ad75a077fe2166}\label{mtio_8h_a31419c175335f9ae49ad75a077fe2166}} 
+\index{mtio.h@{mtio.h}!MTREW@{MTREW}}
+\index{MTREW@{MTREW}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTREW}{MTREW}}
+{\footnotesize\ttfamily \#define M\+T\+R\+EW~6	/$\ast$ Rewind.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a00b4b80150d84f4adfc28fbc45ff6ac8}\label{mtio_8h_a00b4b80150d84f4adfc28fbc45ff6ac8}} 
+\index{mtio.h@{mtio.h}!MTSEEK@{MTSEEK}}
+\index{MTSEEK@{MTSEEK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTSEEK}{MTSEEK}}
+{\footnotesize\ttfamily \#define M\+T\+S\+E\+EK~22	/$\ast$ Seek \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} block (Tandberg, etc.).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_aa8b75886696a87c1a07499ac43430931}\label{mtio_8h_aa8b75886696a87c1a07499ac43430931}} 
+\index{mtio.h@{mtio.h}!MTSETBLK@{MTSETBLK}}
+\index{MTSETBLK@{MTSETBLK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTSETBLK}{MTSETBLK}}
+{\footnotesize\ttfamily \#define M\+T\+S\+E\+T\+B\+LK~20	/$\ast$ Set block \mbox{\hyperlink{unwind-dw2-fde_8h_a8489cf2ea7d3a7f7c34c018044644565}{length}} (S\+C\+SI).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_aedcfbaf02e19a7242d1c1b0c08ea4d28}\label{mtio_8h_aedcfbaf02e19a7242d1c1b0c08ea4d28}} 
+\index{mtio.h@{mtio.h}!MTSETDENSITY@{MTSETDENSITY}}
+\index{MTSETDENSITY@{MTSETDENSITY}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTSETDENSITY}{MTSETDENSITY}}
+{\footnotesize\ttfamily \#define M\+T\+S\+E\+T\+D\+E\+N\+S\+I\+TY~21	/$\ast$ Set tape density (S\+C\+SI).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a49dfe37bc086ec0a288c7d39e8dd4315}\label{mtio_8h_a49dfe37bc086ec0a288c7d39e8dd4315}} 
+\index{mtio.h@{mtio.h}!MTSETDRVBUFFER@{MTSETDRVBUFFER}}
+\index{MTSETDRVBUFFER@{MTSETDRVBUFFER}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTSETDRVBUFFER}{MTSETDRVBUFFER}}
+{\footnotesize\ttfamily \#define M\+T\+S\+E\+T\+D\+R\+V\+B\+U\+F\+F\+ER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \textcolor{comment}{/* Set the drive buffering according to SCSI-\/2.}}
+\DoxyCodeLine{\textcolor{comment}{                 Ordinary buffered operation with code 1.  */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mtio_8h_a8690b6930067b56968d4c6421ec68de4}\label{mtio_8h_a8690b6930067b56968d4c6421ec68de4}} 
+\index{mtio.h@{mtio.h}!MTSETPART@{MTSETPART}}
+\index{MTSETPART@{MTSETPART}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTSETPART}{MTSETPART}}
+{\footnotesize\ttfamily \#define M\+T\+S\+E\+T\+P\+A\+RT~33	/$\ast$ Change the active tape partition.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a6e21ce34db51aa858bef44e12c07cfd5}\label{mtio_8h_a6e21ce34db51aa858bef44e12c07cfd5}} 
+\index{mtio.h@{mtio.h}!MTTELL@{MTTELL}}
+\index{MTTELL@{MTTELL}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTTELL}{MTTELL}}
+{\footnotesize\ttfamily \#define M\+T\+T\+E\+LL~23	/$\ast$ Tell block (Tandberg, etc.).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a09f6e12a31f7bb268208dc9863aa4153}\label{mtio_8h_a09f6e12a31f7bb268208dc9863aa4153}} 
+\index{mtio.h@{mtio.h}!MTUNLOAD@{MTUNLOAD}}
+\index{MTUNLOAD@{MTUNLOAD}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTUNLOAD}{MTUNLOAD}}
+{\footnotesize\ttfamily \#define M\+T\+U\+N\+L\+O\+AD~31	/$\ast$ Execute the S\+C\+SI unload command.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ac54b54a96a41938b6f6e324bbfa6402b}\label{mtio_8h_ac54b54a96a41938b6f6e324bbfa6402b}} 
+\index{mtio.h@{mtio.h}!MTUNLOCK@{MTUNLOCK}}
+\index{MTUNLOCK@{MTUNLOCK}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTUNLOCK}{MTUNLOCK}}
+{\footnotesize\ttfamily \#define M\+T\+U\+N\+L\+O\+CK~29	/$\ast$ Unlock the drive door.  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_ab3d352a250c16f66bf761e274f89d47e}\label{mtio_8h_ab3d352a250c16f66bf761e274f89d47e}} 
+\index{mtio.h@{mtio.h}!MTWEOF@{MTWEOF}}
+\index{MTWEOF@{MTWEOF}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTWEOF}{MTWEOF}}
+{\footnotesize\ttfamily \#define M\+T\+W\+E\+OF~5	/$\ast$ Write an end-\/of-\/\mbox{\hyperlink{tst-xpg-basename_8c_af0baa3ccdd9d2a6adf03b72e2bea5789}{file}} record (mark).  $\ast$/}
+
+\mbox{\Hypertarget{mtio_8h_a889d1e59c0c368cc2fc74d2e38abb78e}\label{mtio_8h_a889d1e59c0c368cc2fc74d2e38abb78e}} 
+\index{mtio.h@{mtio.h}!MTWSM@{MTWSM}}
+\index{MTWSM@{MTWSM}!mtio.h@{mtio.h}}
+\doxysubsubsection{\texorpdfstring{MTWSM}{MTWSM}}
+{\footnotesize\ttfamily \#define M\+T\+W\+SM~27	/$\ast$ Write setmarks.  $\ast$/}
+

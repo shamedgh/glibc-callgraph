@@ -1,0 +1,440 @@
+\hypertarget{quota_8h}{}\doxysection{sysdeps/unix/sysv/linux/sys/quota.h File Reference}
+\label{quota_8h}\index{sysdeps/unix/sysv/linux/sys/quota.h@{sysdeps/unix/sysv/linux/sys/quota.h}}
+{\ttfamily \#include $<$features.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdqblk}{dqblk}}
+\item 
+struct \mbox{\hyperlink{structdqinfo}{dqinfo}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{quota_8h_ab96900c2213128a55fd5497fc6be9f52}{\+\_\+\+L\+I\+N\+U\+X\+\_\+\+Q\+U\+O\+T\+A\+\_\+\+V\+E\+R\+S\+I\+ON}}~2
+\item 
+\#define \mbox{\hyperlink{quota_8h_ae3fdd66ff5848edb0933bbff2255a2d8}{dbtob}}(\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}})~((\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}}) $<$$<$ 10)
+\item 
+\#define \mbox{\hyperlink{quota_8h_a135c968944764effc43780d142339fb3}{btodb}}(\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}})~((\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}}) $>$$>$ 10)
+\item 
+\#define \mbox{\hyperlink{quota_8h_a4d41006efc503c64074e703300c1dc0c}{fs\+\_\+to\+\_\+dq\+\_\+blocks}}(\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}},  blksize)~(((\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}}) $\ast$ (blksize)) / \mbox{\hyperlink{mount_8h_ad51ded0bbd705f02f73fc60c0b721ced}{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}})
+\item 
+\#define \mbox{\hyperlink{quota_8h_a790974d66bb90f29e69ea7beef79d5e9}{M\+A\+X\+\_\+\+I\+Q\+\_\+\+T\+I\+ME}}~604800	/$\ast$ (7$\ast$24$\ast$60$\ast$60) 1 week $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a6a216a59e1e7896c0829ef845bce1e26}{M\+A\+X\+\_\+\+D\+Q\+\_\+\+T\+I\+ME}}~604800	/$\ast$ (7$\ast$24$\ast$60$\ast$60) 1 week $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_ae6dd77dd02806c3d3247dbe591c6bfd5}{M\+A\+X\+Q\+U\+O\+T\+AS}}~2
+\item 
+\#define \mbox{\hyperlink{quota_8h_a1e64c3d73e993779c259f706771f47a3}{U\+S\+R\+Q\+U\+O\+TA}}~0		/$\ast$ element used \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{structuser}{user}} quotas $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_ac40db510c9cbbfacb2ce52c827c7ed58}{G\+R\+P\+Q\+U\+O\+TA}}~1		/$\ast$ element used \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{structgroup}{group}} quotas $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_af98c8e27bb6b340f79e1b15c002c3ccd}{I\+N\+I\+T\+Q\+F\+N\+A\+M\+ES}}
+\item 
+\#define \mbox{\hyperlink{quota_8h_ac70f1a790c9f33e6e6f60cc195f47a14}{Q\+U\+O\+T\+A\+F\+I\+L\+E\+N\+A\+ME}}~\char`\"{}quota\char`\"{}
+\item 
+\#define \mbox{\hyperlink{quota_8h_ac4a9ad55fa4b203df127d010fcea9bdf}{Q\+U\+O\+T\+A\+G\+R\+O\+UP}}~\char`\"{}staff\char`\"{}
+\item 
+\#define \mbox{\hyperlink{quota_8h_a03e53466ee7365633b273dd3c6608311}{N\+R\+\_\+\+D\+Q\+H\+A\+SH}}~43          /$\ast$ Just an arbitrary \mbox{\hyperlink{unionnumber}{number}} any suggestions ? $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_aa3ad8937f0e178ea28d0b38459b91c41}{N\+R\+\_\+\+D\+Q\+U\+O\+TS}}~256         /$\ast$ Number of quotas active at \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}} \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a9f8cfc1f44c48ed79699e84ab121509e}{S\+U\+B\+C\+M\+D\+M\+A\+SK}}~0x00ff
+\item 
+\#define \mbox{\hyperlink{quota_8h_a318a11f40b13b28db8a653562fd4de26}{S\+U\+B\+C\+M\+D\+S\+H\+I\+FT}}~8
+\item 
+\#define \mbox{\hyperlink{quota_8h_a9cb366937a850004cea25568da3ce54b}{Q\+C\+MD}}(\mbox{\hyperlink{include_2fcntl_8h_a85092d82ab6ea85dad51ba78cbda36a0}{cmd}},  \mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}})~(((\mbox{\hyperlink{include_2fcntl_8h_a85092d82ab6ea85dad51ba78cbda36a0}{cmd}}) $<$$<$ \mbox{\hyperlink{quota_8h_a318a11f40b13b28db8a653562fd4de26}{S\+U\+B\+C\+M\+D\+S\+H\+I\+FT}}) $\vert$ ((\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}) \& \mbox{\hyperlink{quota_8h_a9f8cfc1f44c48ed79699e84ab121509e}{S\+U\+B\+C\+M\+D\+M\+A\+SK}}))
+\item 
+\#define \mbox{\hyperlink{quota_8h_a868d9e11248570cd3555aadca051191e}{Q\+\_\+\+S\+Y\+NC}}~0x800001	/$\ast$ sync disk copy of a filesystems quotas $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_ab4abef932e949ed7e1fa541d0247afd3}{Q\+\_\+\+Q\+U\+O\+T\+A\+ON}}~0x800002	/$\ast$ turn quotas on $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_ae8beae314fe8eeba719c9bec0cd2dcde}{Q\+\_\+\+Q\+U\+O\+T\+A\+O\+FF}}~0x800003	/$\ast$ turn quotas off $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a4059ec149981e8862809a80d0c122203}{Q\+\_\+\+G\+E\+T\+F\+MT}}~0x800004	/$\ast$ get quota format used on given filesystem $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a1fd32c7a6fdf9e01623048ec923b5bbf}{Q\+\_\+\+G\+E\+T\+I\+N\+FO}}~0x800005	/$\ast$ get information about quota files $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_ad7933fa87199e537c8d50eb024fa536f}{Q\+\_\+\+S\+E\+T\+I\+N\+FO}}~0x800006	/$\ast$ set information about quota files $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a16c74c59fd0bb764b5616c536b668a30}{Q\+\_\+\+G\+E\+T\+Q\+U\+O\+TA}}~0x800007	/$\ast$ get user quota structure $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a5bf478599df52ae18618de0823ead68b}{Q\+\_\+\+S\+E\+T\+Q\+U\+O\+TA}}~0x800008	/$\ast$ set user quota structure $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a5950f947d7288a241b97cc8294abfd84}{Q\+\_\+\+G\+E\+T\+N\+E\+X\+T\+Q\+U\+O\+TA}}~0x800009	/$\ast$ get disk limits and usage $>$= I\+D $\ast$/
+\item 
+\#define \mbox{\hyperlink{quota_8h_a44b105270eb7ae0822aaf9e6681b9715}{Q\+I\+F\+\_\+\+B\+L\+I\+M\+I\+TS}}~1
+\item 
+\#define \mbox{\hyperlink{quota_8h_a54d3af9d1f3c65c3fdd0c8cadc32e396}{Q\+I\+F\+\_\+\+S\+P\+A\+CE}}~2
+\item 
+\#define \mbox{\hyperlink{quota_8h_a402d270349bd7d65dc9de0ba8c335653}{Q\+I\+F\+\_\+\+I\+L\+I\+M\+I\+TS}}~4
+\item 
+\#define \mbox{\hyperlink{quota_8h_ac0dbf45e9fe857ff59b20c57cf2f14f0}{Q\+I\+F\+\_\+\+I\+N\+O\+D\+ES}}~8
+\item 
+\#define \mbox{\hyperlink{quota_8h_abfd0de266c5b4ac8b4014c8e914f1bd7}{Q\+I\+F\+\_\+\+B\+T\+I\+ME}}~16
+\item 
+\#define \mbox{\hyperlink{quota_8h_a05965e8a501d907c1484b4e2575bda12}{Q\+I\+F\+\_\+\+I\+T\+I\+ME}}~32
+\item 
+\#define \mbox{\hyperlink{quota_8h_a2c0864f56f876ec2b640491aa267c74f}{Q\+I\+F\+\_\+\+L\+I\+M\+I\+TS}}~(\mbox{\hyperlink{quota_8h_a44b105270eb7ae0822aaf9e6681b9715}{Q\+I\+F\+\_\+\+B\+L\+I\+M\+I\+TS}} $\vert$ \mbox{\hyperlink{quota_8h_a402d270349bd7d65dc9de0ba8c335653}{Q\+I\+F\+\_\+\+I\+L\+I\+M\+I\+TS}})
+\item 
+\#define \mbox{\hyperlink{quota_8h_aff786b63612e10ae5e59a31430b87067}{Q\+I\+F\+\_\+\+U\+S\+A\+GE}}~(\mbox{\hyperlink{quota_8h_a54d3af9d1f3c65c3fdd0c8cadc32e396}{Q\+I\+F\+\_\+\+S\+P\+A\+CE}} $\vert$ \mbox{\hyperlink{quota_8h_ac0dbf45e9fe857ff59b20c57cf2f14f0}{Q\+I\+F\+\_\+\+I\+N\+O\+D\+ES}})
+\item 
+\#define \mbox{\hyperlink{quota_8h_af630bcac4f1c5df45c694865852a1fad}{Q\+I\+F\+\_\+\+T\+I\+M\+ES}}~(\mbox{\hyperlink{quota_8h_abfd0de266c5b4ac8b4014c8e914f1bd7}{Q\+I\+F\+\_\+\+B\+T\+I\+ME}} $\vert$ \mbox{\hyperlink{quota_8h_a05965e8a501d907c1484b4e2575bda12}{Q\+I\+F\+\_\+\+I\+T\+I\+ME}})
+\item 
+\#define \mbox{\hyperlink{quota_8h_a92d7badab2e81489958c3cea9a92dfd8}{Q\+I\+F\+\_\+\+A\+LL}}~(\mbox{\hyperlink{quota_8h_a2c0864f56f876ec2b640491aa267c74f}{Q\+I\+F\+\_\+\+L\+I\+M\+I\+TS}} $\vert$ \mbox{\hyperlink{quota_8h_aff786b63612e10ae5e59a31430b87067}{Q\+I\+F\+\_\+\+U\+S\+A\+GE}} $\vert$ \mbox{\hyperlink{quota_8h_af630bcac4f1c5df45c694865852a1fad}{Q\+I\+F\+\_\+\+T\+I\+M\+ES}})
+\item 
+\#define \mbox{\hyperlink{quota_8h_ab3d9ef807a80097d6ae03aebc0b3471b}{dq\+\_\+bhardlimit}}~dq\+\_\+dqb.\+dqb\+\_\+bhardlimit
+\item 
+\#define \mbox{\hyperlink{quota_8h_a32f0ac2886de9bc15cdab7a38f0d0c04}{dq\+\_\+bsoftlimit}}~dq\+\_\+dqb.\+dqb\+\_\+bsoftlimit
+\item 
+\#define \mbox{\hyperlink{quota_8h_ae15ade9c4d61a70ca68853c3622677f0}{dq\+\_\+curspace}}~dq\+\_\+dqb.\+dqb\+\_\+curspace
+\item 
+\#define \mbox{\hyperlink{quota_8h_ab200f7b26a3a6dbd417d19eae6df2627}{dq\+\_\+valid}}~dq\+\_\+dqb.\+dqb\+\_\+valid
+\item 
+\#define \mbox{\hyperlink{quota_8h_ac8943fe6ac9b1ccdfe713ca70cf78024}{dq\+\_\+ihardlimit}}~dq\+\_\+dqb.\+dqb\+\_\+ihardlimit
+\item 
+\#define \mbox{\hyperlink{quota_8h_a17c23658358d2d54657f19b79c0ad6f5}{dq\+\_\+isoftlimit}}~dq\+\_\+dqb.\+dqb\+\_\+isoftlimit
+\item 
+\#define \mbox{\hyperlink{quota_8h_a38fd7e8a4dd308118e4db0a6e4be894c}{dq\+\_\+curinodes}}~dq\+\_\+dqb.\+dqb\+\_\+curinodes
+\item 
+\#define \mbox{\hyperlink{quota_8h_ad76849fa07d215477f8ac69f2d7c1bc5}{dq\+\_\+btime}}~dq\+\_\+dqb.\+dqb\+\_\+btime
+\item 
+\#define \mbox{\hyperlink{quota_8h_a7926803dc9339f98bbdbbc4e8d19cff4}{dq\+\_\+itime}}~dq\+\_\+dqb.\+dqb\+\_\+itime
+\item 
+\#define \mbox{\hyperlink{quota_8h_a5b4ee4acc4d46f4c57f0259502cf2287}{dqoff}}(U\+ID)~((\mbox{\hyperlink{posix_2sys_2types_8h_ab312cb7200f9b6a6764e6833cce78bcf}{loff\+\_\+t}})((U\+ID) $\ast$ sizeof (struct \mbox{\hyperlink{structdqblk}{dqblk}})))
+\item 
+\#define \mbox{\hyperlink{quota_8h_a70fdc4d81e14e25b55e66e7ecaff8a30}{I\+I\+F\+\_\+\+B\+G\+R\+A\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{quota_8h_ab05261ffe2b004184b890228884b9cc0}{I\+I\+F\+\_\+\+I\+G\+R\+A\+CE}}~2
+\item 
+\#define \mbox{\hyperlink{quota_8h_a980a541bed2653cb641a53fd30be5172}{I\+I\+F\+\_\+\+F\+L\+A\+GS}}~4
+\item 
+\#define \mbox{\hyperlink{quota_8h_a8a7920455b58c4b61afc92699edb10c2}{I\+I\+F\+\_\+\+A\+LL}}~(\mbox{\hyperlink{quota_8h_a70fdc4d81e14e25b55e66e7ecaff8a30}{I\+I\+F\+\_\+\+B\+G\+R\+A\+CE}} $\vert$ \mbox{\hyperlink{quota_8h_ab05261ffe2b004184b890228884b9cc0}{I\+I\+F\+\_\+\+I\+G\+R\+A\+CE}} $\vert$ \mbox{\hyperlink{quota_8h_a980a541bed2653cb641a53fd30be5172}{I\+I\+F\+\_\+\+F\+L\+A\+GS}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{misc_2sys_2cdefs_8h_a568e6bde99652b7fd271ad206cfe38f5}{\+\_\+\+\_\+\+B\+E\+G\+I\+N\+\_\+\+D\+E\+C\+LS}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{quota_8h_a9e5c79310e6f27f1450c82434a9d6339}{quotactl}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{include_2fcntl_8h_ae8100e5607784e55bf855fa05efcebe3}{\+\_\+\+\_\+cmd}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\+\_\+\+\_\+special, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \+\_\+\+\_\+id, \mbox{\hyperlink{sunrpc_2rpc_2types_8h_acf8257947bd8294799477e9cd56b0e65}{caddr\+\_\+t}} \mbox{\hyperlink{include_2sys_2socket_8h_aa92383514c0e1c52c2030eefddd60b13}{\+\_\+\+\_\+addr}}) \mbox{\hyperlink{libioP_8h_a350a94e75772113b30ba236c031f2f29}{\+\_\+\+\_\+\+T\+H\+R\+OW}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{quota_8h_ab96900c2213128a55fd5497fc6be9f52}\label{quota_8h_ab96900c2213128a55fd5497fc6be9f52}} 
+\index{quota.h@{quota.h}!\_LINUX\_QUOTA\_VERSION@{\_LINUX\_QUOTA\_VERSION}}
+\index{\_LINUX\_QUOTA\_VERSION@{\_LINUX\_QUOTA\_VERSION}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{\_LINUX\_QUOTA\_VERSION}{\_LINUX\_QUOTA\_VERSION}}
+{\footnotesize\ttfamily \#define \+\_\+\+L\+I\+N\+U\+X\+\_\+\+Q\+U\+O\+T\+A\+\_\+\+V\+E\+R\+S\+I\+ON~2}
+
+\mbox{\Hypertarget{quota_8h_a135c968944764effc43780d142339fb3}\label{quota_8h_a135c968944764effc43780d142339fb3}} 
+\index{quota.h@{quota.h}!btodb@{btodb}}
+\index{btodb@{btodb}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{btodb}{btodb}}
+{\footnotesize\ttfamily \#define btodb(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}}) $>$$>$ 10)}
+
+\mbox{\Hypertarget{quota_8h_ae3fdd66ff5848edb0933bbff2255a2d8}\label{quota_8h_ae3fdd66ff5848edb0933bbff2255a2d8}} 
+\index{quota.h@{quota.h}!dbtob@{dbtob}}
+\index{dbtob@{dbtob}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dbtob}{dbtob}}
+{\footnotesize\ttfamily \#define dbtob(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}}) $<$$<$ 10)}
+
+\mbox{\Hypertarget{quota_8h_ab3d9ef807a80097d6ae03aebc0b3471b}\label{quota_8h_ab3d9ef807a80097d6ae03aebc0b3471b}} 
+\index{quota.h@{quota.h}!dq\_bhardlimit@{dq\_bhardlimit}}
+\index{dq\_bhardlimit@{dq\_bhardlimit}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_bhardlimit}{dq\_bhardlimit}}
+{\footnotesize\ttfamily \#define dq\+\_\+bhardlimit~dq\+\_\+dqb.\+dqb\+\_\+bhardlimit}
+
+\mbox{\Hypertarget{quota_8h_a32f0ac2886de9bc15cdab7a38f0d0c04}\label{quota_8h_a32f0ac2886de9bc15cdab7a38f0d0c04}} 
+\index{quota.h@{quota.h}!dq\_bsoftlimit@{dq\_bsoftlimit}}
+\index{dq\_bsoftlimit@{dq\_bsoftlimit}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_bsoftlimit}{dq\_bsoftlimit}}
+{\footnotesize\ttfamily \#define dq\+\_\+bsoftlimit~dq\+\_\+dqb.\+dqb\+\_\+bsoftlimit}
+
+\mbox{\Hypertarget{quota_8h_ad76849fa07d215477f8ac69f2d7c1bc5}\label{quota_8h_ad76849fa07d215477f8ac69f2d7c1bc5}} 
+\index{quota.h@{quota.h}!dq\_btime@{dq\_btime}}
+\index{dq\_btime@{dq\_btime}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_btime}{dq\_btime}}
+{\footnotesize\ttfamily \#define dq\+\_\+btime~dq\+\_\+dqb.\+dqb\+\_\+btime}
+
+\mbox{\Hypertarget{quota_8h_a38fd7e8a4dd308118e4db0a6e4be894c}\label{quota_8h_a38fd7e8a4dd308118e4db0a6e4be894c}} 
+\index{quota.h@{quota.h}!dq\_curinodes@{dq\_curinodes}}
+\index{dq\_curinodes@{dq\_curinodes}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_curinodes}{dq\_curinodes}}
+{\footnotesize\ttfamily \#define dq\+\_\+curinodes~dq\+\_\+dqb.\+dqb\+\_\+curinodes}
+
+\mbox{\Hypertarget{quota_8h_ae15ade9c4d61a70ca68853c3622677f0}\label{quota_8h_ae15ade9c4d61a70ca68853c3622677f0}} 
+\index{quota.h@{quota.h}!dq\_curspace@{dq\_curspace}}
+\index{dq\_curspace@{dq\_curspace}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_curspace}{dq\_curspace}}
+{\footnotesize\ttfamily \#define dq\+\_\+curspace~dq\+\_\+dqb.\+dqb\+\_\+curspace}
+
+\mbox{\Hypertarget{quota_8h_ac8943fe6ac9b1ccdfe713ca70cf78024}\label{quota_8h_ac8943fe6ac9b1ccdfe713ca70cf78024}} 
+\index{quota.h@{quota.h}!dq\_ihardlimit@{dq\_ihardlimit}}
+\index{dq\_ihardlimit@{dq\_ihardlimit}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_ihardlimit}{dq\_ihardlimit}}
+{\footnotesize\ttfamily \#define dq\+\_\+ihardlimit~dq\+\_\+dqb.\+dqb\+\_\+ihardlimit}
+
+\mbox{\Hypertarget{quota_8h_a17c23658358d2d54657f19b79c0ad6f5}\label{quota_8h_a17c23658358d2d54657f19b79c0ad6f5}} 
+\index{quota.h@{quota.h}!dq\_isoftlimit@{dq\_isoftlimit}}
+\index{dq\_isoftlimit@{dq\_isoftlimit}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_isoftlimit}{dq\_isoftlimit}}
+{\footnotesize\ttfamily \#define dq\+\_\+isoftlimit~dq\+\_\+dqb.\+dqb\+\_\+isoftlimit}
+
+\mbox{\Hypertarget{quota_8h_a7926803dc9339f98bbdbbc4e8d19cff4}\label{quota_8h_a7926803dc9339f98bbdbbc4e8d19cff4}} 
+\index{quota.h@{quota.h}!dq\_itime@{dq\_itime}}
+\index{dq\_itime@{dq\_itime}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_itime}{dq\_itime}}
+{\footnotesize\ttfamily \#define dq\+\_\+itime~dq\+\_\+dqb.\+dqb\+\_\+itime}
+
+\mbox{\Hypertarget{quota_8h_ab200f7b26a3a6dbd417d19eae6df2627}\label{quota_8h_ab200f7b26a3a6dbd417d19eae6df2627}} 
+\index{quota.h@{quota.h}!dq\_valid@{dq\_valid}}
+\index{dq\_valid@{dq\_valid}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dq\_valid}{dq\_valid}}
+{\footnotesize\ttfamily \#define dq\+\_\+valid~dq\+\_\+dqb.\+dqb\+\_\+valid}
+
+\mbox{\Hypertarget{quota_8h_a5b4ee4acc4d46f4c57f0259502cf2287}\label{quota_8h_a5b4ee4acc4d46f4c57f0259502cf2287}} 
+\index{quota.h@{quota.h}!dqoff@{dqoff}}
+\index{dqoff@{dqoff}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{dqoff}{dqoff}}
+{\footnotesize\ttfamily \#define dqoff(\begin{DoxyParamCaption}\item[{}]{U\+ID }\end{DoxyParamCaption})~((\mbox{\hyperlink{posix_2sys_2types_8h_ab312cb7200f9b6a6764e6833cce78bcf}{loff\+\_\+t}})((U\+ID) $\ast$ sizeof (struct \mbox{\hyperlink{structdqblk}{dqblk}})))}
+
+\mbox{\Hypertarget{quota_8h_a4d41006efc503c64074e703300c1dc0c}\label{quota_8h_a4d41006efc503c64074e703300c1dc0c}} 
+\index{quota.h@{quota.h}!fs\_to\_dq\_blocks@{fs\_to\_dq\_blocks}}
+\index{fs\_to\_dq\_blocks@{fs\_to\_dq\_blocks}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{fs\_to\_dq\_blocks}{fs\_to\_dq\_blocks}}
+{\footnotesize\ttfamily \#define fs\+\_\+to\+\_\+dq\+\_\+blocks(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}},  }\item[{}]{blksize }\end{DoxyParamCaption})~(((\mbox{\hyperlink{ld-address_8c_a7beea8f6745c478347f244cadef771c2}{num}}) $\ast$ (blksize)) / \mbox{\hyperlink{mount_8h_ad51ded0bbd705f02f73fc60c0b721ced}{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}})}
+
+\mbox{\Hypertarget{quota_8h_ac40db510c9cbbfacb2ce52c827c7ed58}\label{quota_8h_ac40db510c9cbbfacb2ce52c827c7ed58}} 
+\index{quota.h@{quota.h}!GRPQUOTA@{GRPQUOTA}}
+\index{GRPQUOTA@{GRPQUOTA}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{GRPQUOTA}{GRPQUOTA}}
+{\footnotesize\ttfamily \#define G\+R\+P\+Q\+U\+O\+TA~1		/$\ast$ element used \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{structgroup}{group}} quotas $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a8a7920455b58c4b61afc92699edb10c2}\label{quota_8h_a8a7920455b58c4b61afc92699edb10c2}} 
+\index{quota.h@{quota.h}!IIF\_ALL@{IIF\_ALL}}
+\index{IIF\_ALL@{IIF\_ALL}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{IIF\_ALL}{IIF\_ALL}}
+{\footnotesize\ttfamily \#define I\+I\+F\+\_\+\+A\+LL~(\mbox{\hyperlink{quota_8h_a70fdc4d81e14e25b55e66e7ecaff8a30}{I\+I\+F\+\_\+\+B\+G\+R\+A\+CE}} $\vert$ \mbox{\hyperlink{quota_8h_ab05261ffe2b004184b890228884b9cc0}{I\+I\+F\+\_\+\+I\+G\+R\+A\+CE}} $\vert$ \mbox{\hyperlink{quota_8h_a980a541bed2653cb641a53fd30be5172}{I\+I\+F\+\_\+\+F\+L\+A\+GS}})}
+
+\mbox{\Hypertarget{quota_8h_a70fdc4d81e14e25b55e66e7ecaff8a30}\label{quota_8h_a70fdc4d81e14e25b55e66e7ecaff8a30}} 
+\index{quota.h@{quota.h}!IIF\_BGRACE@{IIF\_BGRACE}}
+\index{IIF\_BGRACE@{IIF\_BGRACE}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{IIF\_BGRACE}{IIF\_BGRACE}}
+{\footnotesize\ttfamily \#define I\+I\+F\+\_\+\+B\+G\+R\+A\+CE~1}
+
+\mbox{\Hypertarget{quota_8h_a980a541bed2653cb641a53fd30be5172}\label{quota_8h_a980a541bed2653cb641a53fd30be5172}} 
+\index{quota.h@{quota.h}!IIF\_FLAGS@{IIF\_FLAGS}}
+\index{IIF\_FLAGS@{IIF\_FLAGS}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{IIF\_FLAGS}{IIF\_FLAGS}}
+{\footnotesize\ttfamily \#define I\+I\+F\+\_\+\+F\+L\+A\+GS~4}
+
+\mbox{\Hypertarget{quota_8h_ab05261ffe2b004184b890228884b9cc0}\label{quota_8h_ab05261ffe2b004184b890228884b9cc0}} 
+\index{quota.h@{quota.h}!IIF\_IGRACE@{IIF\_IGRACE}}
+\index{IIF\_IGRACE@{IIF\_IGRACE}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{IIF\_IGRACE}{IIF\_IGRACE}}
+{\footnotesize\ttfamily \#define I\+I\+F\+\_\+\+I\+G\+R\+A\+CE~2}
+
+\mbox{\Hypertarget{quota_8h_af98c8e27bb6b340f79e1b15c002c3ccd}\label{quota_8h_af98c8e27bb6b340f79e1b15c002c3ccd}} 
+\index{quota.h@{quota.h}!INITQFNAMES@{INITQFNAMES}}
+\index{INITQFNAMES@{INITQFNAMES}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{INITQFNAMES}{INITQFNAMES}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+Q\+F\+N\+A\+M\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   \textcolor{stringliteral}{"user"},      \textcolor{comment}{/* USRQUOTA */} \(\backslash\)}
+\DoxyCodeLine{   \textcolor{stringliteral}{"group"},   \textcolor{comment}{/* GRPQUOTA */} \(\backslash\)}
+\DoxyCodeLine{   \textcolor{stringliteral}{"undefined"}, \(\backslash\)}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{quota_8h_a6a216a59e1e7896c0829ef845bce1e26}\label{quota_8h_a6a216a59e1e7896c0829ef845bce1e26}} 
+\index{quota.h@{quota.h}!MAX\_DQ\_TIME@{MAX\_DQ\_TIME}}
+\index{MAX\_DQ\_TIME@{MAX\_DQ\_TIME}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_DQ\_TIME}{MAX\_DQ\_TIME}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+D\+Q\+\_\+\+T\+I\+ME~604800	/$\ast$ (7$\ast$24$\ast$60$\ast$60) 1 week $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a790974d66bb90f29e69ea7beef79d5e9}\label{quota_8h_a790974d66bb90f29e69ea7beef79d5e9}} 
+\index{quota.h@{quota.h}!MAX\_IQ\_TIME@{MAX\_IQ\_TIME}}
+\index{MAX\_IQ\_TIME@{MAX\_IQ\_TIME}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_IQ\_TIME}{MAX\_IQ\_TIME}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+I\+Q\+\_\+\+T\+I\+ME~604800	/$\ast$ (7$\ast$24$\ast$60$\ast$60) 1 week $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_ae6dd77dd02806c3d3247dbe591c6bfd5}\label{quota_8h_ae6dd77dd02806c3d3247dbe591c6bfd5}} 
+\index{quota.h@{quota.h}!MAXQUOTAS@{MAXQUOTAS}}
+\index{MAXQUOTAS@{MAXQUOTAS}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{MAXQUOTAS}{MAXQUOTAS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+Q\+U\+O\+T\+AS~2}
+
+\mbox{\Hypertarget{quota_8h_a03e53466ee7365633b273dd3c6608311}\label{quota_8h_a03e53466ee7365633b273dd3c6608311}} 
+\index{quota.h@{quota.h}!NR\_DQHASH@{NR\_DQHASH}}
+\index{NR\_DQHASH@{NR\_DQHASH}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{NR\_DQHASH}{NR\_DQHASH}}
+{\footnotesize\ttfamily \#define N\+R\+\_\+\+D\+Q\+H\+A\+SH~43          /$\ast$ Just an arbitrary \mbox{\hyperlink{unionnumber}{number}} any suggestions ? $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_aa3ad8937f0e178ea28d0b38459b91c41}\label{quota_8h_aa3ad8937f0e178ea28d0b38459b91c41}} 
+\index{quota.h@{quota.h}!NR\_DQUOTS@{NR\_DQUOTS}}
+\index{NR\_DQUOTS@{NR\_DQUOTS}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{NR\_DQUOTS}{NR\_DQUOTS}}
+{\footnotesize\ttfamily \#define N\+R\+\_\+\+D\+Q\+U\+O\+TS~256         /$\ast$ Number of quotas active at \mbox{\hyperlink{alpha_2fpu_2e__sqrt_8c_a7dc8cd0f182ec1ed688e36447d19747d}{one}} \mbox{\hyperlink{time_2time_8h_a4d6ec7cf18640e6d97efcc8727f71d3e}{time}} $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a4059ec149981e8862809a80d0c122203}\label{quota_8h_a4059ec149981e8862809a80d0c122203}} 
+\index{quota.h@{quota.h}!Q\_GETFMT@{Q\_GETFMT}}
+\index{Q\_GETFMT@{Q\_GETFMT}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_GETFMT}{Q\_GETFMT}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+G\+E\+T\+F\+MT~0x800004	/$\ast$ get quota format used on given filesystem $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a1fd32c7a6fdf9e01623048ec923b5bbf}\label{quota_8h_a1fd32c7a6fdf9e01623048ec923b5bbf}} 
+\index{quota.h@{quota.h}!Q\_GETINFO@{Q\_GETINFO}}
+\index{Q\_GETINFO@{Q\_GETINFO}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_GETINFO}{Q\_GETINFO}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+G\+E\+T\+I\+N\+FO~0x800005	/$\ast$ get information about quota files $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a5950f947d7288a241b97cc8294abfd84}\label{quota_8h_a5950f947d7288a241b97cc8294abfd84}} 
+\index{quota.h@{quota.h}!Q\_GETNEXTQUOTA@{Q\_GETNEXTQUOTA}}
+\index{Q\_GETNEXTQUOTA@{Q\_GETNEXTQUOTA}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_GETNEXTQUOTA}{Q\_GETNEXTQUOTA}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+G\+E\+T\+N\+E\+X\+T\+Q\+U\+O\+TA~0x800009	/$\ast$ get disk limits and usage $>$= I\+D $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a16c74c59fd0bb764b5616c536b668a30}\label{quota_8h_a16c74c59fd0bb764b5616c536b668a30}} 
+\index{quota.h@{quota.h}!Q\_GETQUOTA@{Q\_GETQUOTA}}
+\index{Q\_GETQUOTA@{Q\_GETQUOTA}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_GETQUOTA}{Q\_GETQUOTA}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+G\+E\+T\+Q\+U\+O\+TA~0x800007	/$\ast$ get user quota structure $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_ae8beae314fe8eeba719c9bec0cd2dcde}\label{quota_8h_ae8beae314fe8eeba719c9bec0cd2dcde}} 
+\index{quota.h@{quota.h}!Q\_QUOTAOFF@{Q\_QUOTAOFF}}
+\index{Q\_QUOTAOFF@{Q\_QUOTAOFF}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_QUOTAOFF}{Q\_QUOTAOFF}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+Q\+U\+O\+T\+A\+O\+FF~0x800003	/$\ast$ turn quotas off $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_ab4abef932e949ed7e1fa541d0247afd3}\label{quota_8h_ab4abef932e949ed7e1fa541d0247afd3}} 
+\index{quota.h@{quota.h}!Q\_QUOTAON@{Q\_QUOTAON}}
+\index{Q\_QUOTAON@{Q\_QUOTAON}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_QUOTAON}{Q\_QUOTAON}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+Q\+U\+O\+T\+A\+ON~0x800002	/$\ast$ turn quotas on $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_ad7933fa87199e537c8d50eb024fa536f}\label{quota_8h_ad7933fa87199e537c8d50eb024fa536f}} 
+\index{quota.h@{quota.h}!Q\_SETINFO@{Q\_SETINFO}}
+\index{Q\_SETINFO@{Q\_SETINFO}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_SETINFO}{Q\_SETINFO}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+S\+E\+T\+I\+N\+FO~0x800006	/$\ast$ set information about quota files $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a5bf478599df52ae18618de0823ead68b}\label{quota_8h_a5bf478599df52ae18618de0823ead68b}} 
+\index{quota.h@{quota.h}!Q\_SETQUOTA@{Q\_SETQUOTA}}
+\index{Q\_SETQUOTA@{Q\_SETQUOTA}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_SETQUOTA}{Q\_SETQUOTA}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+S\+E\+T\+Q\+U\+O\+TA~0x800008	/$\ast$ set user quota structure $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a868d9e11248570cd3555aadca051191e}\label{quota_8h_a868d9e11248570cd3555aadca051191e}} 
+\index{quota.h@{quota.h}!Q\_SYNC@{Q\_SYNC}}
+\index{Q\_SYNC@{Q\_SYNC}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{Q\_SYNC}{Q\_SYNC}}
+{\footnotesize\ttfamily \#define Q\+\_\+\+S\+Y\+NC~0x800001	/$\ast$ sync disk copy of a filesystems quotas $\ast$/}
+
+\mbox{\Hypertarget{quota_8h_a9cb366937a850004cea25568da3ce54b}\label{quota_8h_a9cb366937a850004cea25568da3ce54b}} 
+\index{quota.h@{quota.h}!QCMD@{QCMD}}
+\index{QCMD@{QCMD}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QCMD}{QCMD}}
+{\footnotesize\ttfamily \#define Q\+C\+MD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{include_2fcntl_8h_a85092d82ab6ea85dad51ba78cbda36a0}{cmd}},  }\item[{}]{\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{include_2fcntl_8h_a85092d82ab6ea85dad51ba78cbda36a0}{cmd}}) $<$$<$ \mbox{\hyperlink{quota_8h_a318a11f40b13b28db8a653562fd4de26}{S\+U\+B\+C\+M\+D\+S\+H\+I\+FT}}) $\vert$ ((\mbox{\hyperlink{private_8h_a1c6de65cc31c36fe2ede0d438531d327}{type}}) \& \mbox{\hyperlink{quota_8h_a9f8cfc1f44c48ed79699e84ab121509e}{S\+U\+B\+C\+M\+D\+M\+A\+SK}}))}
+
+\mbox{\Hypertarget{quota_8h_a92d7badab2e81489958c3cea9a92dfd8}\label{quota_8h_a92d7badab2e81489958c3cea9a92dfd8}} 
+\index{quota.h@{quota.h}!QIF\_ALL@{QIF\_ALL}}
+\index{QIF\_ALL@{QIF\_ALL}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_ALL}{QIF\_ALL}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+A\+LL~(\mbox{\hyperlink{quota_8h_a2c0864f56f876ec2b640491aa267c74f}{Q\+I\+F\+\_\+\+L\+I\+M\+I\+TS}} $\vert$ \mbox{\hyperlink{quota_8h_aff786b63612e10ae5e59a31430b87067}{Q\+I\+F\+\_\+\+U\+S\+A\+GE}} $\vert$ \mbox{\hyperlink{quota_8h_af630bcac4f1c5df45c694865852a1fad}{Q\+I\+F\+\_\+\+T\+I\+M\+ES}})}
+
+\mbox{\Hypertarget{quota_8h_a44b105270eb7ae0822aaf9e6681b9715}\label{quota_8h_a44b105270eb7ae0822aaf9e6681b9715}} 
+\index{quota.h@{quota.h}!QIF\_BLIMITS@{QIF\_BLIMITS}}
+\index{QIF\_BLIMITS@{QIF\_BLIMITS}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_BLIMITS}{QIF\_BLIMITS}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+B\+L\+I\+M\+I\+TS~1}
+
+\mbox{\Hypertarget{quota_8h_abfd0de266c5b4ac8b4014c8e914f1bd7}\label{quota_8h_abfd0de266c5b4ac8b4014c8e914f1bd7}} 
+\index{quota.h@{quota.h}!QIF\_BTIME@{QIF\_BTIME}}
+\index{QIF\_BTIME@{QIF\_BTIME}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_BTIME}{QIF\_BTIME}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+B\+T\+I\+ME~16}
+
+\mbox{\Hypertarget{quota_8h_a402d270349bd7d65dc9de0ba8c335653}\label{quota_8h_a402d270349bd7d65dc9de0ba8c335653}} 
+\index{quota.h@{quota.h}!QIF\_ILIMITS@{QIF\_ILIMITS}}
+\index{QIF\_ILIMITS@{QIF\_ILIMITS}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_ILIMITS}{QIF\_ILIMITS}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+I\+L\+I\+M\+I\+TS~4}
+
+\mbox{\Hypertarget{quota_8h_ac0dbf45e9fe857ff59b20c57cf2f14f0}\label{quota_8h_ac0dbf45e9fe857ff59b20c57cf2f14f0}} 
+\index{quota.h@{quota.h}!QIF\_INODES@{QIF\_INODES}}
+\index{QIF\_INODES@{QIF\_INODES}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_INODES}{QIF\_INODES}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+I\+N\+O\+D\+ES~8}
+
+\mbox{\Hypertarget{quota_8h_a05965e8a501d907c1484b4e2575bda12}\label{quota_8h_a05965e8a501d907c1484b4e2575bda12}} 
+\index{quota.h@{quota.h}!QIF\_ITIME@{QIF\_ITIME}}
+\index{QIF\_ITIME@{QIF\_ITIME}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_ITIME}{QIF\_ITIME}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+I\+T\+I\+ME~32}
+
+\mbox{\Hypertarget{quota_8h_a2c0864f56f876ec2b640491aa267c74f}\label{quota_8h_a2c0864f56f876ec2b640491aa267c74f}} 
+\index{quota.h@{quota.h}!QIF\_LIMITS@{QIF\_LIMITS}}
+\index{QIF\_LIMITS@{QIF\_LIMITS}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_LIMITS}{QIF\_LIMITS}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+L\+I\+M\+I\+TS~(\mbox{\hyperlink{quota_8h_a44b105270eb7ae0822aaf9e6681b9715}{Q\+I\+F\+\_\+\+B\+L\+I\+M\+I\+TS}} $\vert$ \mbox{\hyperlink{quota_8h_a402d270349bd7d65dc9de0ba8c335653}{Q\+I\+F\+\_\+\+I\+L\+I\+M\+I\+TS}})}
+
+\mbox{\Hypertarget{quota_8h_a54d3af9d1f3c65c3fdd0c8cadc32e396}\label{quota_8h_a54d3af9d1f3c65c3fdd0c8cadc32e396}} 
+\index{quota.h@{quota.h}!QIF\_SPACE@{QIF\_SPACE}}
+\index{QIF\_SPACE@{QIF\_SPACE}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_SPACE}{QIF\_SPACE}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+S\+P\+A\+CE~2}
+
+\mbox{\Hypertarget{quota_8h_af630bcac4f1c5df45c694865852a1fad}\label{quota_8h_af630bcac4f1c5df45c694865852a1fad}} 
+\index{quota.h@{quota.h}!QIF\_TIMES@{QIF\_TIMES}}
+\index{QIF\_TIMES@{QIF\_TIMES}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_TIMES}{QIF\_TIMES}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+T\+I\+M\+ES~(\mbox{\hyperlink{quota_8h_abfd0de266c5b4ac8b4014c8e914f1bd7}{Q\+I\+F\+\_\+\+B\+T\+I\+ME}} $\vert$ \mbox{\hyperlink{quota_8h_a05965e8a501d907c1484b4e2575bda12}{Q\+I\+F\+\_\+\+I\+T\+I\+ME}})}
+
+\mbox{\Hypertarget{quota_8h_aff786b63612e10ae5e59a31430b87067}\label{quota_8h_aff786b63612e10ae5e59a31430b87067}} 
+\index{quota.h@{quota.h}!QIF\_USAGE@{QIF\_USAGE}}
+\index{QIF\_USAGE@{QIF\_USAGE}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QIF\_USAGE}{QIF\_USAGE}}
+{\footnotesize\ttfamily \#define Q\+I\+F\+\_\+\+U\+S\+A\+GE~(\mbox{\hyperlink{quota_8h_a54d3af9d1f3c65c3fdd0c8cadc32e396}{Q\+I\+F\+\_\+\+S\+P\+A\+CE}} $\vert$ \mbox{\hyperlink{quota_8h_ac0dbf45e9fe857ff59b20c57cf2f14f0}{Q\+I\+F\+\_\+\+I\+N\+O\+D\+ES}})}
+
+\mbox{\Hypertarget{quota_8h_ac70f1a790c9f33e6e6f60cc195f47a14}\label{quota_8h_ac70f1a790c9f33e6e6f60cc195f47a14}} 
+\index{quota.h@{quota.h}!QUOTAFILENAME@{QUOTAFILENAME}}
+\index{QUOTAFILENAME@{QUOTAFILENAME}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QUOTAFILENAME}{QUOTAFILENAME}}
+{\footnotesize\ttfamily \#define Q\+U\+O\+T\+A\+F\+I\+L\+E\+N\+A\+ME~\char`\"{}quota\char`\"{}}
+
+\mbox{\Hypertarget{quota_8h_ac4a9ad55fa4b203df127d010fcea9bdf}\label{quota_8h_ac4a9ad55fa4b203df127d010fcea9bdf}} 
+\index{quota.h@{quota.h}!QUOTAGROUP@{QUOTAGROUP}}
+\index{QUOTAGROUP@{QUOTAGROUP}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{QUOTAGROUP}{QUOTAGROUP}}
+{\footnotesize\ttfamily \#define Q\+U\+O\+T\+A\+G\+R\+O\+UP~\char`\"{}staff\char`\"{}}
+
+\mbox{\Hypertarget{quota_8h_a9f8cfc1f44c48ed79699e84ab121509e}\label{quota_8h_a9f8cfc1f44c48ed79699e84ab121509e}} 
+\index{quota.h@{quota.h}!SUBCMDMASK@{SUBCMDMASK}}
+\index{SUBCMDMASK@{SUBCMDMASK}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{SUBCMDMASK}{SUBCMDMASK}}
+{\footnotesize\ttfamily \#define S\+U\+B\+C\+M\+D\+M\+A\+SK~0x00ff}
+
+\mbox{\Hypertarget{quota_8h_a318a11f40b13b28db8a653562fd4de26}\label{quota_8h_a318a11f40b13b28db8a653562fd4de26}} 
+\index{quota.h@{quota.h}!SUBCMDSHIFT@{SUBCMDSHIFT}}
+\index{SUBCMDSHIFT@{SUBCMDSHIFT}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{SUBCMDSHIFT}{SUBCMDSHIFT}}
+{\footnotesize\ttfamily \#define S\+U\+B\+C\+M\+D\+S\+H\+I\+FT~8}
+
+\mbox{\Hypertarget{quota_8h_a1e64c3d73e993779c259f706771f47a3}\label{quota_8h_a1e64c3d73e993779c259f706771f47a3}} 
+\index{quota.h@{quota.h}!USRQUOTA@{USRQUOTA}}
+\index{USRQUOTA@{USRQUOTA}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{USRQUOTA}{USRQUOTA}}
+{\footnotesize\ttfamily \#define U\+S\+R\+Q\+U\+O\+TA~0		/$\ast$ element used \mbox{\hyperlink{unix_2sysv_2linux_2s390_2dl-procinfo_8h_a1759470dc4a23bda185d2dfabe1a5b1d}{for}} \mbox{\hyperlink{structuser}{user}} quotas $\ast$/}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{quota_8h_a9e5c79310e6f27f1450c82434a9d6339}\label{quota_8h_a9e5c79310e6f27f1450c82434a9d6339}} 
+\index{quota.h@{quota.h}!quotactl@{quotactl}}
+\index{quotactl@{quotactl}!quota.h@{quota.h}}
+\doxysubsubsection{\texorpdfstring{quotactl()}{quotactl()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{misc_2sys_2cdefs_8h_a568e6bde99652b7fd271ad206cfe38f5}{\+\_\+\+\_\+\+B\+E\+G\+I\+N\+\_\+\+D\+E\+C\+LS}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} quotactl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{\+\_\+\+\_\+cmd,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{\+\_\+\+\_\+special,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{\+\_\+\+\_\+id,  }\item[{\mbox{\hyperlink{sunrpc_2rpc_2types_8h_acf8257947bd8294799477e9cd56b0e65}{caddr\+\_\+t}}}]{\+\_\+\+\_\+addr }\end{DoxyParamCaption})}
+

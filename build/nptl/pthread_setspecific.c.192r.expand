@@ -1,0 +1,468 @@
+
+;; Function __pthread_setspecific (__pthread_setspecific, funcdef_no=42, decl_uid=7431, cgraph_uid=42, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+Edge 3->14 redirected to 17
+Edge 6->14 redirected to 18
+Edge 7->14 redirected to 19
+Edge 9->14 redirected to 20
+Edge 10->14 redirected to 21
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 86.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v:SI 103 [ key ])
+        (reg:SI 5 di [ key ])) pthread_setspecific.c:26 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 104 [ value ])
+        (reg:DI 4 si [ value ])) pthread_setspecific.c:26 -1
+     (nil))
+(note 4 3 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 4 14 2 (parallel [
+            (set (reg:DI 105 [ self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") pthread_setspecific.c:33)
+                    ]
+                     [] pthread_setspecific.c:33))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_setspecific.c:33 -1
+     (nil))
+(insn 14 13 15 2 (set (reg/v/f:DI 91 [ self ])
+        (reg:DI 105 [ self ])) pthread_setspecific.c:33 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 103 [ key ])
+            (const_int 31 [0x1f]))) pthread_setspecific.c:37 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) pthread_setspecific.c:37 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 39)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (set (reg/f:DI 106)
+        (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2b9b7e6b42d0 __pthread_keys>)) pthread_setspecific.c:40 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:DI 107)
+        (zero_extend:DI (reg/v:SI 103 [ key ]))) pthread_setspecific.c:40 -1
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (reg:DI 108)
+                (ashift:DI (reg:DI 107)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:40 -1
+     (nil))
+(insn 21 20 22 4 (parallel [
+            (set (reg/f:DI 109)
+                (plus:DI (reg/f:DI 106)
+                    (reg:DI 108)))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:40 -1
+     (nil))
+(insn 22 21 23 4 (set (reg:DI 110)
+        (mem:DI (reg/f:DI 109) [2 __pthread_keys[key_9(D)].seq+0 S8 A64])) pthread_setspecific.c:40 -1
+     (nil))
+(insn 23 22 24 4 (set (reg/v:SI 89 [ seq ])
+        (subreg:SI (reg:DI 110) 0)) pthread_setspecific.c:40 -1
+     (nil))
+(insn 24 23 25 4 (parallel [
+            (set (reg:SI 111 [ D.7628 ])
+                (and:SI (reg/v:SI 89 [ seq ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:40 -1
+     (nil))
+(insn 25 24 26 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.7628 ])
+            (const_int 0 [0]))) pthread_setspecific.c:40 -1
+     (nil))
+(jump_insn 26 25 27 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 95)
+            (pc))) pthread_setspecific.c:40 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 95)
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (set (reg:DI 112)
+        (zero_extend:DI (reg/v:SI 103 [ key ]))) pthread_setspecific.c:44 -1
+     (nil))
+(insn 29 28 30 5 (parallel [
+            (set (reg:DI 113)
+                (plus:DI (reg:DI 112)
+                    (const_int 48 [0x30])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:44 -1
+     (nil))
+(insn 30 29 31 5 (parallel [
+            (set (reg:DI 114)
+                (ashift:DI (reg:DI 113)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:44 -1
+     (nil))
+(insn 31 30 32 5 (parallel [
+            (set (reg:DI 115)
+                (plus:DI (reg/v/f:DI 91 [ self ])
+                    (reg:DI 114)))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:44 -1
+     (nil))
+(insn 32 31 33 5 (parallel [
+            (set (reg/v/f:DI 88 [ level2 ])
+                (plus:DI (reg:DI 115)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:44 -1
+     (nil))
+(insn 33 32 34 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 104 [ value ])
+            (const_int 0 [0]))) pthread_setspecific.c:47 -1
+     (nil))
+(jump_insn 34 33 35 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) pthread_setspecific.c:47 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 79)
+(note 35 34 36 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 6 (parallel [
+            (asm_operands/v ("movb %b0,%%fs:%P1") ("") 0 [
+                    (const_int 1 [0x1])
+                    (const_int 1552 [0x610])
+                ]
+                 [
+                    (asm_input:SI ("iq") pthread_setspecific.c:48)
+                    (asm_input:DI ("i") pthread_setspecific.c:48)
+                ]
+                 [] pthread_setspecific.c:48)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_setspecific.c:48 -1
+     (nil))
+(jump_insn 37 36 38 6 (set (pc)
+        (label_ref 79)) -1
+     (nil)
+ -> 79)
+(barrier 38 37 39)
+(code_label 39 38 40 7 2 "" [1 uses])
+(note 40 39 41 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 7 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 103 [ key ])
+            (const_int 1023 [0x3ff]))) pthread_setspecific.c:52 -1
+     (nil))
+(jump_insn 42 41 43 7 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 99)
+            (pc))) pthread_setspecific.c:52 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 99)
+(note 43 42 44 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 8 (set (reg/f:DI 116)
+        (symbol_ref:DI ("__pthread_keys") [flags 0x40]  <var_decl 0x2b9b7e6b42d0 __pthread_keys>)) pthread_setspecific.c:53 -1
+     (nil))
+(insn 45 44 46 8 (set (reg:DI 117)
+        (zero_extend:DI (reg/v:SI 103 [ key ]))) pthread_setspecific.c:53 -1
+     (nil))
+(insn 46 45 47 8 (parallel [
+            (set (reg:DI 118)
+                (ashift:DI (reg:DI 117)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:53 -1
+     (nil))
+(insn 47 46 48 8 (parallel [
+            (set (reg/f:DI 119)
+                (plus:DI (reg/f:DI 116)
+                    (reg:DI 118)))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:53 -1
+     (nil))
+(insn 48 47 49 8 (set (reg:DI 120)
+        (mem:DI (reg/f:DI 119) [2 __pthread_keys[key_9(D)].seq+0 S8 A64])) pthread_setspecific.c:53 -1
+     (nil))
+(insn 49 48 50 8 (set (reg/v:SI 89 [ seq ])
+        (subreg:SI (reg:DI 120) 0)) pthread_setspecific.c:53 -1
+     (nil))
+(insn 50 49 51 8 (parallel [
+            (set (reg:SI 121 [ D.7628 ])
+                (and:SI (reg/v:SI 89 [ seq ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:53 -1
+     (nil))
+(insn 51 50 52 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 121 [ D.7628 ])
+            (const_int 0 [0]))) pthread_setspecific.c:53 -1
+     (nil))
+(jump_insn 52 51 53 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 103)
+            (pc))) pthread_setspecific.c:53 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6700 (nil))
+ -> 103)
+(note 53 52 54 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 9 (parallel [
+            (set (reg/v:SI 96 [ idx1st ])
+                (lshiftrt:SI (reg/v:SI 103 [ key ])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:57 -1
+     (nil))
+(insn 55 54 56 9 (parallel [
+            (set (reg/v:SI 97 [ idx2nd ])
+                (and:SI (reg/v:SI 103 [ key ])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:58 -1
+     (nil))
+(insn 56 55 57 9 (parallel [
+            (set (reg:DI 122 [ level2 ])
+                (asm_operands/v:DI ("movq %%fs:%P1(,%q2,8),%q0") ("=r") 0 [
+                        (const_int 1296 [0x510])
+                        (reg/v:SI 96 [ idx1st ])
+                    ]
+                     [
+                        (asm_input:DI ("i") pthread_setspecific.c:61)
+                        (asm_input:SI ("r") pthread_setspecific.c:61)
+                    ]
+                     [] pthread_setspecific.c:61))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_setspecific.c:61 -1
+     (nil))
+(insn 57 56 58 9 (set (reg/v/f:DI 87 [ level2 ])
+        (reg:DI 122 [ level2 ])) pthread_setspecific.c:61 -1
+     (nil))
+(insn 58 57 59 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ level2 ])
+            (const_int 0 [0]))) pthread_setspecific.c:62 -1
+     (nil))
+(jump_insn 59 58 60 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 73)
+            (pc))) pthread_setspecific.c:62 -1
+     (int_list:REG_BR_PROB 8500 (nil))
+ -> 73)
+(note 60 59 61 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 104 [ value ])
+            (const_int 0 [0]))) pthread_setspecific.c:64 -1
+     (nil))
+(jump_insn 62 61 63 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 107)
+            (pc))) pthread_setspecific.c:64 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2164 (nil))
+ -> 107)
+(note 63 62 64 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 11 (set (reg:DI 4 si)
+        (const_int 16 [0x10])) pthread_setspecific.c:70 -1
+     (nil))
+(insn 65 64 66 11 (set (reg:DI 5 di)
+        (const_int 32 [0x20])) pthread_setspecific.c:70 -1
+     (nil))
+(call_insn 66 65 67 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x2b9b7e2ac000 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) pthread_setspecific.c:70 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x2b9b7e2ac000 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 67 66 68 11 (set (reg/f:DI 123)
+        (reg:DI 0 ax)) pthread_setspecific.c:70 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 123)
+        (nil)))
+(insn 68 67 69 11 (set (reg/v/f:DI 87 [ level2 ])
+        (reg/f:DI 123)) pthread_setspecific.c:70 -1
+     (nil))
+(insn 69 68 70 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ level2 ])
+            (const_int 0 [0]))) pthread_setspecific.c:72 -1
+     (nil))
+(jump_insn 70 69 71 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 111)
+            (pc))) pthread_setspecific.c:72 612 {*jcc_1}
+     (int_list:REG_BR_PROB 2638 (nil))
+ -> 111)
+(note 71 70 72 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 73 12 (parallel [
+            (asm_operands/v ("movq %q0,%%fs:%P1(,%q2,8)") ("") 0 [
+                    (reg/v/f:DI 87 [ level2 ])
+                    (const_int 1296 [0x510])
+                    (reg/v:SI 96 [ idx1st ])
+                ]
+                 [
+                    (asm_input:DI ("ir") pthread_setspecific.c:75)
+                    (asm_input:DI ("i") pthread_setspecific.c:75)
+                    (asm_input:SI ("r") pthread_setspecific.c:75)
+                ]
+                 [] pthread_setspecific.c:75)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_setspecific.c:75 -1
+     (nil))
+(code_label 73 72 74 13 5 "" [1 uses])
+(note 74 73 75 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 13 (set (reg:DI 124 [ D.7627 ])
+        (zero_extend:DI (reg/v:SI 97 [ idx2nd ]))) pthread_setspecific.c:79 -1
+     (nil))
+(insn 76 75 77 13 (parallel [
+            (set (reg:DI 125 [ D.7627 ])
+                (ashift:DI (reg:DI 124 [ D.7627 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:79 -1
+     (nil))
+(insn 77 76 78 13 (parallel [
+            (set (reg/v/f:DI 88 [ level2 ])
+                (plus:DI (reg/v/f:DI 87 [ level2 ])
+                    (reg:DI 125 [ D.7627 ])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_setspecific.c:79 -1
+     (nil))
+(insn 78 77 79 13 (parallel [
+            (asm_operands/v ("movb %b0,%%fs:%P1") ("") 0 [
+                    (const_int 1 [0x1])
+                    (const_int 1552 [0x610])
+                ]
+                 [
+                    (asm_input:SI ("iq") pthread_setspecific.c:82)
+                    (asm_input:DI ("i") pthread_setspecific.c:82)
+                ]
+                 [] pthread_setspecific.c:82)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_setspecific.c:82 -1
+     (nil))
+(code_label 79 78 80 14 4 "" [2 uses])
+(note 80 79 81 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 14 (set (mem:DI (reg/v/f:DI 88 [ level2 ]) [2 level2_2->seq+0 S8 A64])
+        (zero_extend:DI (reg/v:SI 89 [ seq ]))) pthread_setspecific.c:87 -1
+     (nil))
+(insn 82 81 6 14 (set (mem/f:DI (plus:DI (reg/v/f:DI 88 [ level2 ])
+                (const_int 8 [0x8])) [3 level2_2->data+0 S8 A64])
+        (reg/v/f:DI 104 [ value ])) pthread_setspecific.c:88 -1
+     (nil))
+(insn 6 82 92 14 (set (reg:SI 90 [ D.7626 ])
+        (const_int 0 [0])) pthread_setspecific.c:90 -1
+     (nil))
+(jump_insn 92 6 93 14 (set (pc)
+        (label_ref 83)) pthread_setspecific.c:90 -1
+     (nil)
+ -> 83)
+(barrier 93 92 95)
+(code_label 95 93 94 15 6 "" [1 uses])
+(note 94 95 9 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 9 94 96 15 (set (reg:SI 90 [ D.7626 ])
+        (const_int 22 [0x16])) pthread_setspecific.c:42 -1
+     (nil))
+(jump_insn 96 9 97 15 (set (pc)
+        (label_ref 83)) -1
+     (nil)
+ -> 83)
+(barrier 97 96 99)
+(code_label 99 97 98 16 7 "" [1 uses])
+(note 98 99 5 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 5 98 100 16 (set (reg:SI 90 [ D.7626 ])
+        (const_int 22 [0x16])) pthread_setspecific.c:42 -1
+     (nil))
+(jump_insn 100 5 101 16 (set (pc)
+        (label_ref 83)) -1
+     (nil)
+ -> 83)
+(barrier 101 100 103)
+(code_label 103 101 102 17 8 "" [1 uses])
+(note 102 103 10 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 10 102 104 17 (set (reg:SI 90 [ D.7626 ])
+        (const_int 22 [0x16])) pthread_setspecific.c:42 -1
+     (nil))
+(jump_insn 104 10 105 17 (set (pc)
+        (label_ref 83)) -1
+     (nil)
+ -> 83)
+(barrier 105 104 107)
+(code_label 107 105 106 18 9 "" [1 uses])
+(note 106 107 7 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 7 106 108 18 (set (reg:SI 90 [ D.7626 ])
+        (const_int 0 [0])) pthread_setspecific.c:67 -1
+     (nil))
+(jump_insn 108 7 109 18 (set (pc)
+        (label_ref 83)) -1
+     (nil)
+ -> 83)
+(barrier 109 108 111)
+(code_label 111 109 110 19 10 "" [1 uses])
+(note 110 111 8 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 8 110 83 19 (set (reg:SI 90 [ D.7626 ])
+        (const_int 12 [0xc])) pthread_setspecific.c:73 -1
+     (nil))
+(code_label 83 8 84 20 3 "" [5 uses])
+(note 84 83 85 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 89 20 (set (reg:SI 102 [ <retval> ])
+        (reg:SI 90 [ D.7626 ])) -1
+     (nil))
+(insn 89 85 90 20 (set (reg/i:SI 0 ax)
+        (reg:SI 102 [ <retval> ])) pthread_setspecific.c:91 -1
+     (nil))
+(insn 90 89 0 20 (use (reg/i:SI 0 ax)) pthread_setspecific.c:91 -1
+     (nil))

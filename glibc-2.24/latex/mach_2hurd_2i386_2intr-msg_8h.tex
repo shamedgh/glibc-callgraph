@@ -1,0 +1,105 @@
+\hypertarget{mach_2hurd_2i386_2intr-msg_8h}{}\doxysection{sysdeps/mach/hurd/i386/intr-\/msg.h File Reference}
+\label{mach_2hurd_2i386_2intr-msg_8h}\index{sysdeps/mach/hurd/i386/intr-\/msg.h@{sysdeps/mach/hurd/i386/intr-\/msg.h}}
+{\ttfamily \#include \char`\"{}hurdfault.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmach__msg__trap__args}{mach\+\_\+msg\+\_\+trap\+\_\+args}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2i386_2intr-msg_8h_a29d29d2a0451ea83eedd34e8c5ee7f58}{I\+N\+T\+R\+\_\+\+M\+S\+G\+\_\+\+T\+R\+AP}}(msg,  \mbox{\hyperlink{structoption}{option}},  send\+\_\+size,  rcv\+\_\+size,  rcv\+\_\+name,  timeout,  notify)
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2i386_2intr-msg_8h_a1d766db8e251422a1eb893a6e4de882a}{S\+Y\+S\+C\+A\+L\+L\+\_\+\+E\+X\+A\+M\+I\+NE}}(\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}},  callno)
+\item 
+\#define \mbox{\hyperlink{mach_2hurd_2i386_2intr-msg_8h_af876a8af0316eb51836c6a033517d4bc}{M\+S\+G\+\_\+\+E\+X\+A\+M\+I\+NE}}(\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}},  \mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}},  rcvname,  send\+\_\+name,  opt,  tmout)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mach_2hurd_2i386_2intr-msg_8h_a29d29d2a0451ea83eedd34e8c5ee7f58}\label{mach_2hurd_2i386_2intr-msg_8h_a29d29d2a0451ea83eedd34e8c5ee7f58}} 
+\index{intr-\/msg.h@{intr-\/msg.h}!INTR\_MSG\_TRAP@{INTR\_MSG\_TRAP}}
+\index{INTR\_MSG\_TRAP@{INTR\_MSG\_TRAP}!intr-\/msg.h@{intr-\/msg.h}}
+\doxysubsubsection{\texorpdfstring{INTR\_MSG\_TRAP}{INTR\_MSG\_TRAP}}
+{\footnotesize\ttfamily \#define I\+N\+T\+R\+\_\+\+M\+S\+G\+\_\+\+T\+R\+AP(\begin{DoxyParamCaption}\item[{}]{msg,  }\item[{}]{\mbox{\hyperlink{structoption}{option}},  }\item[{}]{send\+\_\+size,  }\item[{}]{rcv\+\_\+size,  }\item[{}]{rcv\+\_\+name,  }\item[{}]{timeout,  }\item[{}]{notify }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{  error\_t \mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a19339d73d40f003bc954bfd93893aba7}{err}};                                     \(\backslash\)}
+\DoxyCodeLine{  asm (\textcolor{stringliteral}{".globl \_hurd\_intr\_rpc\_msg\_do\_trap\(\backslash\)n"}                      \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{".globl \_hurd\_intr\_rpc\_msg\_in\_trap\(\backslash\)n"}                      \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{".globl \_hurd\_intr\_rpc\_msg\_cx\_sp\(\backslash\)n"}                    \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{".globl \_hurd\_intr\_rpc\_msg\_sp\_restored\(\backslash\)n"}                  \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{"                movl \%\%esp, \%\%ecx\(\backslash\)n"}              \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{"                leal \%3, \%\%esp\(\backslash\)n"}             \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{"\_hurd\_intr\_rpc\_msg\_cx\_sp:   movl \$-\/25, \%\%eax\(\backslash\)n"}           \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{"\_hurd\_intr\_rpc\_msg\_do\_trap: lcall \$7, \$0 \# status in \%0\(\backslash\)n"}        \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{"\_hurd\_intr\_rpc\_msg\_in\_trap: movl \%\%ecx, \%\%esp\(\backslash\)n"}              \(\backslash\)}
+\DoxyCodeLine{       \textcolor{stringliteral}{"\_hurd\_intr\_rpc\_msg\_sp\_restored:"}                      \(\backslash\)}
+\DoxyCodeLine{       : \textcolor{stringliteral}{"=a"} (\mbox{\hyperlink{mach_2hurd_2i386_2tls_8h_a19339d73d40f003bc954bfd93893aba7}{err}}), \textcolor{stringliteral}{"+m"} (\mbox{\hyperlink{structoption}{option}}), \textcolor{stringliteral}{"+m"} (timeout)               \(\backslash\)}
+\DoxyCodeLine{       : \textcolor{stringliteral}{"m"} ((\&msg)[-\/1])                             \(\backslash\)}
+\DoxyCodeLine{       : \textcolor{stringliteral}{"ecx"});                                  \(\backslash\)}
+\DoxyCodeLine{  err;                                        \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mach_2hurd_2i386_2intr-msg_8h_af876a8af0316eb51836c6a033517d4bc}\label{mach_2hurd_2i386_2intr-msg_8h_af876a8af0316eb51836c6a033517d4bc}} 
+\index{intr-\/msg.h@{intr-\/msg.h}!MSG\_EXAMINE@{MSG\_EXAMINE}}
+\index{MSG\_EXAMINE@{MSG\_EXAMINE}!intr-\/msg.h@{intr-\/msg.h}}
+\doxysubsubsection{\texorpdfstring{MSG\_EXAMINE}{MSG\_EXAMINE}}
+{\footnotesize\ttfamily \#define M\+S\+G\+\_\+\+E\+X\+A\+M\+I\+NE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}},  }\item[{}]{\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}},  }\item[{}]{rcvname,  }\item[{}]{send\+\_\+name,  }\item[{}]{opt,  }\item[{}]{tmout }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{  const \textcolor{keyword}{struct }\mbox{\hyperlink{structmach__msg__trap__args}{mach\_msg\_trap\_args}} *args = (\textcolor{keyword}{const} \textcolor{keywordtype}{void} *) (\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}})-\/>uesp;        \(\backslash\)}
+\DoxyCodeLine{  mach\_msg\_header\_t *\mbox{\hyperlink{structmach__msg__trap__args_afa7c5c9bd2235ddd4ff1785505cb553a}{msg}};                              \(\backslash\)}
+\DoxyCodeLine{  \_hurdsig\_catch\_memory\_fault (args) ? -\/1 :                   \(\backslash\)}
+\DoxyCodeLine{    (\{                                        \(\backslash\)}
+\DoxyCodeLine{      msg = args-\/>\mbox{\hyperlink{structmach__msg__trap__args_afa7c5c9bd2235ddd4ff1785505cb553a}{msg}};                                 \(\backslash\)}
+\DoxyCodeLine{      *(opt) = args-\/>\mbox{\hyperlink{structmach__msg__trap__args_acd0a7d7b5741cdac4ebb6f828354b2ca}{option}};                            \(\backslash\)}
+\DoxyCodeLine{      *(tmout) = args-\/>\mbox{\hyperlink{structmach__msg__trap__args_ae2a0bd6f2b7d88358628c85718b864a1}{timeout}};                            \(\backslash\)}
+\DoxyCodeLine{      *(rcvname) = args-\/>\mbox{\hyperlink{structmach__msg__trap__args_ac32a90659e7b2150af0af774808b4e1f}{rcv\_name}};                        \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{hurdfault_8h_a2d5ce38f1ebf2c255091ffa397e37cc1}{\_hurdsig\_end\_catch\_fault}} ();                        \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{structmach__msg__trap__args_afa7c5c9bd2235ddd4ff1785505cb553a}{msg}} == 0)                                \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      *(send\_name) = MACH\_PORT\_NULL;                      \(\backslash\)}
+\DoxyCodeLine{      *(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}}) = 0;                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      else                                    \(\backslash\)}
+\DoxyCodeLine{    \{                                     \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{hurdfault_8h_a11a48d622a2539ce53bfda5e41a8b69f}{\_hurdsig\_catch\_memory\_fault}} (\mbox{\hyperlink{structmach__msg__trap__args_afa7c5c9bd2235ddd4ff1785505cb553a}{msg}}))                \(\backslash\)}
+\DoxyCodeLine{        return -\/1;                                \(\backslash\)}
+\DoxyCodeLine{      *(send\_name) = \mbox{\hyperlink{structmach__msg__trap__args_afa7c5c9bd2235ddd4ff1785505cb553a}{msg}}-\/>msgh\_remote\_port;                    \(\backslash\)}
+\DoxyCodeLine{      *(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}}) = \mbox{\hyperlink{structmach__msg__trap__args_afa7c5c9bd2235ddd4ff1785505cb553a}{msg}}-\/>msgh\_id;                        \(\backslash\)}
+\DoxyCodeLine{      \_hurdsig\_end\_catch\_fault ();                        \(\backslash\)}
+\DoxyCodeLine{    \}                                     \(\backslash\)}
+\DoxyCodeLine{      0;                                      \(\backslash\)}
+\DoxyCodeLine{    \});                                       \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mach_2hurd_2i386_2intr-msg_8h_a1d766db8e251422a1eb893a6e4de882a}\label{mach_2hurd_2i386_2intr-msg_8h_a1d766db8e251422a1eb893a6e4de882a}} 
+\index{intr-\/msg.h@{intr-\/msg.h}!SYSCALL\_EXAMINE@{SYSCALL\_EXAMINE}}
+\index{SYSCALL\_EXAMINE@{SYSCALL\_EXAMINE}!intr-\/msg.h@{intr-\/msg.h}}
+\doxysubsubsection{\texorpdfstring{SYSCALL\_EXAMINE}{SYSCALL\_EXAMINE}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+C\+A\+L\+L\+\_\+\+E\+X\+A\+M\+I\+NE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}},  }\item[{}]{callno }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{                                        \(\backslash\)}
+\DoxyCodeLine{  struct \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{tst-sem14_8c_a4e1e0e72dd773439e333c84dd762a9c3}{c}}[2]; \} *\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} = (\textcolor{keywordtype}{void} *) ((\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}})-\/>eip -\/ 7);          \(\backslash\)}
+\DoxyCodeLine{  int \mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}};                                   \(\backslash\)}
+\DoxyCodeLine{  if (\mbox{\hyperlink{hurdfault_8h_a11a48d622a2539ce53bfda5e41a8b69f}{\_hurdsig\_catch\_memory\_fault}} (\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}}))                        \(\backslash\)}
+\DoxyCodeLine{    return 0;                                     \(\backslash\)}
+\DoxyCodeLine{  if (\mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}} = \mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}}-\/>c[0] == 0x0000009a \&\& (\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}}-\/>c[1] \& 0x00ffffff) == 0x00000700) \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* The PC is just after an `lcall \$7,\$0' instruction.             \(\backslash\)}}
+\DoxyCodeLine{\textcolor{comment}{       This is a system call in progress; \%eax holds the call number.  */}     \(\backslash\)}
+\DoxyCodeLine{    *(callno) = (\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}})-\/>eax;                            \(\backslash\)}
+\DoxyCodeLine{  \_hurdsig\_end\_catch\_fault ();                            \(\backslash\)}
+\DoxyCodeLine{  result;                                     \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}

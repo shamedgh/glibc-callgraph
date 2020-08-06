@@ -1,0 +1,136 @@
+
+;; Function __longjmp_chk (__longjmp_chk, funcdef_no=3, decl_uid=2529, cgraph_uid=3, symbol_order=6)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+Edge 4->6 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 91 [ env ])
+        (reg:DI 5 di [ env ])) ../setjmp/longjmp.c:28 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 92 [ val ])
+        (reg:SI 4 si [ val ])) ../setjmp/longjmp.c:28 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:SI 4 si)
+        (reg/v:SI 92 [ val ])) ../setjmp/longjmp.c:30 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ env ])) ../setjmp/longjmp.c:30 -1
+     (nil))
+(call_insn 11 10 12 2 (call (mem:QI (symbol_ref:DI ("_longjmp_unwind") [flags 0x41]  <function_decl 0x2af571369438 _longjmp_unwind>) [0 _longjmp_unwind S1 A8])
+        (const_int 0 [0])) ../setjmp/longjmp.c:30 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_longjmp_unwind") [flags 0x41]  <function_decl 0x2af571369438 _longjmp_unwind>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 91 [ env ])
+                    (const_int 64 [0x40])) [3 env_4(D)->__mask_was_saved+0 S4 A64])
+            (const_int 0 [0]))) ../setjmp/longjmp.c:32 -1
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) ../setjmp/longjmp.c:32 -1
+     (int_list:REG_BR_PROB 7100 (nil))
+ -> 20)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (parallel [
+            (set (reg:DI 93 [ D.2547 ])
+                (plus:DI (reg/v/f:DI 91 [ env ])
+                    (const_int 72 [0x48])))
+            (clobber (reg:CC 17 flags))
+        ]) ../setjmp/longjmp.c:34 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 1 dx)
+        (const_int 0 [0])) ../setjmp/longjmp.c:34 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 4 si)
+        (reg:DI 93 [ D.2547 ])) ../setjmp/longjmp.c:34 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:SI 5 di)
+        (const_int 2 [0x2])) ../setjmp/longjmp.c:34 -1
+     (nil))
+(call_insn 19 18 20 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2af5713bed80 __sigprocmask>) [0 __sigprocmask S1 A8])
+            (const_int 0 [0]))) ../setjmp/longjmp.c:34 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sigprocmask") [flags 0x41]  <function_decl 0x2af5713bed80 __sigprocmask>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(code_label 20 19 21 5 2 "" [1 uses])
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ val ])
+            (const_int 0 [0]))) ../setjmp/longjmp.c:38 -1
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) ../setjmp/longjmp.c:38 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 36)
+(note 24 23 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 24 33 6 (set (reg:SI 87 [ D.2546 ])
+        (reg/v:SI 92 [ val ])) ../setjmp/longjmp.c:38 -1
+     (nil))
+(jump_insn 33 5 34 6 (set (pc)
+        (label_ref 25)) -1
+     (nil)
+ -> 25)
+(barrier 34 33 36)
+(code_label 36 34 35 7 4 "" [1 uses])
+(note 35 36 6 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 6 35 25 7 (set (reg:SI 87 [ D.2546 ])
+        (const_int 1 [0x1])) ../setjmp/longjmp.c:38 -1
+     (nil))
+(code_label 25 6 26 8 3 "" [1 uses])
+(note 26 25 27 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 8 (set (reg:SI 4 si)
+        (reg:SI 87 [ D.2546 ])) ../setjmp/longjmp.c:38 -1
+     (nil))
+(insn 28 27 29 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ env ])) ../setjmp/longjmp.c:38 -1
+     (nil))
+(call_insn 29 28 30 8 (call (mem:QI (symbol_ref:DI ("____longjmp_chk") [flags 0x41]  <function_decl 0x2af571369bd0 ____longjmp_chk>) [0 ____longjmp_chk S1 A8])
+        (const_int 0 [0])) ../setjmp/longjmp.c:38 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("____longjmp_chk") [flags 0x41]  <function_decl 0x2af571369bd0 ____longjmp_chk>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(barrier 30 29 0)

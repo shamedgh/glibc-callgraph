@@ -1,0 +1,92 @@
+
+;; Function __getc_unlocked (__getc_unlocked, funcdef_no=49, decl_uid=10326, cgraph_uid=49, symbol_order=54)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 21.
+Merging block 7 into block 5...
+Merged blocks 5 and 7.
+Merged 5 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 93 [ fp ])
+        (reg:DI 5 di [ fp ])) getc_u.c:34 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg/f:DI 88 [ D.10428 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 93 [ fp ])
+                (const_int 8 [0x8])) [3 fp_4(D)->_IO_read_ptr+0 S8 A64])) getc_u.c:36 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 88 [ D.10428 ])
+            (mem/f:DI (plus:DI (reg/v/f:DI 93 [ fp ])
+                    (const_int 16 [0x10])) [3 fp_4(D)->_IO_read_end+0 S8 A64]))) getc_u.c:36 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) getc_u.c:36 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 14)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ fp ])) getc_u.c:36 -1
+     (nil))
+(call_insn/j 11 10 12 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___uflow") [flags 0x43]  <function_decl 0x2b9f2051f5e8 __uflow>) [0 __uflow S1 A8])
+            (const_int 0 [0]))) getc_u.c:36 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___uflow") [flags 0x43]  <function_decl 0x2b9f2051f5e8 __uflow>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 12 11 14)
+(code_label 14 12 15 5 2 "" [1 uses])
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 5 (parallel [
+            (set (reg:DI 94)
+                (plus:DI (reg/f:DI 88 [ D.10428 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) getc_u.c:36 -1
+     (nil))
+(insn 17 16 18 5 (set (mem/f:DI (plus:DI (reg/v/f:DI 93 [ fp ])
+                (const_int 8 [0x8])) [3 fp_4(D)->_IO_read_ptr+0 S8 A64])
+        (reg:DI 94)) getc_u.c:36 -1
+     (nil))
+(insn 18 17 20 5 (set (reg:SI 87 [ D.10427 ])
+        (zero_extend:SI (mem:QI (reg/f:DI 88 [ D.10428 ]) [0 MEM[(unsigned char *)_5]+0 S1 A8]))) getc_u.c:36 -1
+     (nil))
+(insn 20 18 24 5 (set (reg:SI 92 [ <retval> ])
+        (reg:SI 87 [ D.10427 ])) getc_u.c:36 -1
+     (nil))
+(insn 24 20 25 5 (set (reg/i:SI 0 ax)
+        (reg:SI 92 [ <retval> ])) getc_u.c:37 -1
+     (nil))
+(insn 25 24 0 5 (use (reg/i:SI 0 ax)) getc_u.c:37 -1
+     (nil))

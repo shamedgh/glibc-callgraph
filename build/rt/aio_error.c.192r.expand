@@ -1,0 +1,65 @@
+
+;; Function aio_error (aio_error, funcdef_no=67, decl_uid=2162, cgraph_uid=67, symbol_order=68)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 12.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 89 [ aiocbp ])
+        (reg:DI 5 di [ aiocbp ])) ../sysdeps/pthread/aio_error.c:36 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2abdb70566c0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_error.c:41 -1
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2abdb6c65ca8 pthread_mutex_lock>) [0 pthread_mutex_lock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_error.c:41 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2abdb6c65ca8 pthread_mutex_lock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg/v:SI 87 [ ret ])
+        (mem:SI (plus:DI (reg/v/f:DI 89 [ aiocbp ])
+                (const_int 112 [0x70])) [2 aiocbp_3(D)->__error_code+0 S4 A64])) ../sysdeps/pthread/aio_error.c:42 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2abdb70566c0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_error.c:43 -1
+     (nil))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2abdb6c65e58 pthread_mutex_unlock>) [0 pthread_mutex_unlock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_error.c:43 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2abdb6c65e58 pthread_mutex_unlock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 11 10 15 2 (set (reg:SI 88 [ <retval> ])
+        (reg/v:SI 87 [ ret ])) ../sysdeps/pthread/aio_error.c:45 -1
+     (nil))
+(insn 15 11 16 2 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) ../sysdeps/pthread/aio_error.c:46 -1
+     (nil))
+(insn 16 15 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/pthread/aio_error.c:46 -1
+     (nil))

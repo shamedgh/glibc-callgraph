@@ -1,0 +1,59 @@
+\hypertarget{tst-sprintf2_8c}{}\doxysection{stdio-\/common/tst-\/sprintf2.c File Reference}
+\label{tst-sprintf2_8c}\index{stdio-\/common/tst-\/sprintf2.c@{stdio-\/common/tst-\/sprintf2.c}}
+{\ttfamily \#include $<$float.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tst-sprintf2_8c_a5f10eafa7526c133cf42378291417c3b}{C\+O\+M\+P\+A\+R\+E\+\_\+\+L\+D\+BL}}(\mbox{\hyperlink{unionu}{u}},  v)~((\mbox{\hyperlink{unionu}{u}}).l == (v).l)
+\item 
+\#define \mbox{\hyperlink{tst-sprintf2_8c_a5b5f279927f6b79007279ea7c354707b}{T\+E\+ST}}(\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}})
+\item 
+\#define \mbox{\hyperlink{tst-sprintf2_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tst-sprintf2_8c_a5f10eafa7526c133cf42378291417c3b}\label{tst-sprintf2_8c_a5f10eafa7526c133cf42378291417c3b}} 
+\index{tst-\/sprintf2.c@{tst-\/sprintf2.c}!COMPARE\_LDBL@{COMPARE\_LDBL}}
+\index{COMPARE\_LDBL@{COMPARE\_LDBL}!tst-\/sprintf2.c@{tst-\/sprintf2.c}}
+\doxysubsubsection{\texorpdfstring{COMPARE\_LDBL}{COMPARE\_LDBL}}
+{\footnotesize\ttfamily \#define C\+O\+M\+P\+A\+R\+E\+\_\+\+L\+D\+BL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unionu}{u}},  }\item[{}]{v }\end{DoxyParamCaption})~((\mbox{\hyperlink{unionu}{u}}).l == (v).l)}
+
+\mbox{\Hypertarget{tst-sprintf2_8c_a5b5f279927f6b79007279ea7c354707b}\label{tst-sprintf2_8c_a5b5f279927f6b79007279ea7c354707b}} 
+\index{tst-\/sprintf2.c@{tst-\/sprintf2.c}!TEST@{TEST}}
+\index{TEST@{TEST}!tst-\/sprintf2.c@{tst-\/sprintf2.c}}
+\doxysubsubsection{\texorpdfstring{TEST}{TEST}}
+{\footnotesize\ttfamily \#define T\+E\+ST(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}                                     \(\backslash\)}
+\DoxyCodeLine{    \{                                      \(\backslash\)}
+\DoxyCodeLine{      u.l = (\mbox{\hyperlink{jisx0213_8h_ac9c27479cf7677bea26d3c59ce2a2dc3}{val}});                              \(\backslash\)}
+\DoxyCodeLine{      snprintf (\mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \textcolor{keyword}{sizeof} \mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \textcolor{stringliteral}{"\%LaL"}, \mbox{\hyperlink{unionu}{u}}.l);                  \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{string_2string_8h_a72c32a7b6e6ec46536ac21b02c9dc018}{strcmp}} (\mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \#val) != 0)                    \(\backslash\)}
+\DoxyCodeLine{    \{                                  \(\backslash\)}
+\DoxyCodeLine{      printf (\textcolor{stringliteral}{"Error on line \%d: \%s != \%s\(\backslash\)n"}, \_\_LINE\_\_, \mbox{\hyperlink{test-assert-perr_8c_a8e9ca821ce9a85d262bf88d24655520d}{buf}}, \#val);     \(\backslash\)}
+\DoxyCodeLine{      result = 1;                              \(\backslash\)}
+\DoxyCodeLine{    \}                                  \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{libio_2stdio_8h_a3f11fedd7c2b7f572642e19d4838b28c}{sscanf}} (\#val, \textcolor{stringliteral}{"\%La"}, \&v.l) != 1 || !\mbox{\hyperlink{tst-sprintf2_8c_a5f10eafa7526c133cf42378291417c3b}{COMPARE\_LDBL}} (\mbox{\hyperlink{unionu}{u}}, v))      \(\backslash\)}
+\DoxyCodeLine{    \{                                  \(\backslash\)}
+\DoxyCodeLine{      printf (\textcolor{stringliteral}{"Error sscanf on line \%d: \%La != \%La\(\backslash\)n"}, \_\_LINE\_\_,       \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{unionu}{u}}.l, v.l);                          \(\backslash\)}
+\DoxyCodeLine{      result = 1;                              \(\backslash\)}
+\DoxyCodeLine{    \}                                  \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* printf ("\%s \%La \%016Lx \%016Lx\(\backslash\)n", \#val, u.l, u.x[0], u.x[1]); */}  \(\backslash\)}
+\DoxyCodeLine{    \}                                      \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tst-sprintf2_8c_a6002ab22c656c4024eb89b538930bc32}\label{tst-sprintf2_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{tst-\/sprintf2.c@{tst-\/sprintf2.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!tst-\/sprintf2.c@{tst-\/sprintf2.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+

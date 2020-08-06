@@ -1,0 +1,201 @@
+\hypertarget{argp-parse_8c}{}\doxysection{argp/argp-\/parse.c File Reference}
+\label{argp-parse_8c}\index{argp/argp-\/parse.c@{argp/argp-\/parse.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$getopt\+\_\+int.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}argp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}argp-\/namefrob.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgroup}{group}}
+\item 
+struct \mbox{\hyperlink{structparser}{parser}}
+\item 
+struct \mbox{\hyperlink{structparser__convert__state}{parser\+\_\+convert\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structparser__sizes}{parser\+\_\+sizes}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a388e95d40b4956ff9643881d201b9f97}{dgettext}}(domain,  \mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a84591b979e395c1ecf40f06963f89d8b}{gettext}}(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_abdf0847bd8caa2c2247f5d9bc5e12982}{N\+\_\+}}(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a912861b945e779c29f718cdcd62be10c}{K\+E\+Y\+\_\+\+E\+ND}}~(-\/1)		/$\ast$ The end of the options.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_aaeb7a39bc7018a8e4139639bd9384f87}{K\+E\+Y\+\_\+\+A\+RG}}~1		/$\ast$ \mbox{\hyperlink{structA}{A}} non-\/\mbox{\hyperlink{structoption}{option}} argument.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a8bf23f3c7e277af708b4ec59f608c35c}{K\+E\+Y\+\_\+\+E\+RR}}~\textquotesingle{}?\textquotesingle{}		/$\ast$ An \mbox{\hyperlink{rpc__util_8h_a4866b2d37ffc80c5ba705d3fcd1e0ecf}{error}} parsing the options.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a87978601e53a12294c82624e90c46b76}{Q\+U\+O\+TE}}~\char`\"{}-\/-\/\char`\"{}
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a23352dcb36731af33c14a7163fa9ee62}{G\+R\+O\+U\+P\+\_\+\+B\+I\+TS}}~\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}}
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a3b664164d052115f05c3b021f82bdd4b}{U\+S\+E\+R\+\_\+\+B\+I\+TS}}~((sizeof ((struct \mbox{\hyperlink{structoption}{option}} $\ast$)0)-\/$>$\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} $\ast$ \mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}}) -\/ \mbox{\hyperlink{argp-parse_8c_a23352dcb36731af33c14a7163fa9ee62}{G\+R\+O\+U\+P\+\_\+\+B\+I\+TS}})
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a0a315dfd5b03c9e7f45eba74f9cae17a}{U\+S\+E\+R\+\_\+\+M\+A\+SK}}~((1 $<$$<$ \mbox{\hyperlink{argp-parse_8c_a3b664164d052115f05c3b021f82bdd4b}{U\+S\+E\+R\+\_\+\+B\+I\+TS}}) -\/ 1)
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_aafddf1cd4cd76e073bd71acaaf37f2b5}{E\+B\+A\+D\+K\+EY}}~\mbox{\hyperlink{argp_2argp_8h_aa5bec5f9165817ac3d8d0afc9152fc31}{A\+R\+G\+P\+\_\+\+E\+R\+R\+\_\+\+U\+N\+K\+N\+O\+WN}}
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a2d09b3a6f7d73aaa0e1dee658c269293}{O\+P\+T\+\_\+\+P\+R\+O\+G\+N\+A\+ME}}~-\/2
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a8afc3ae207e3fe3482eb25d1fc7aad22}{O\+P\+T\+\_\+\+U\+S\+A\+GE}}~-\/3
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a6567f4f4a4ff9a806ef0bf72b59da870}{O\+P\+T\+\_\+\+H\+A\+NG}}~-\/4
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a017b73954e27053527e406722ffacca8}{G\+L\+EN}}~(szs.\+num\+\_\+groups + 1) $\ast$ sizeof (struct \mbox{\hyperlink{structgroup}{group}})
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_ad1e7f286ea95b73b6060d83beba84c9e}{C\+L\+EN}}~(szs.\+num\+\_\+child\+\_\+inputs $\ast$ sizeof (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$))
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_a4dbdeec6f3fa43f11b22a95cd6fe2172}{L\+L\+EN}}~((szs.\+long\+\_\+len + 1) $\ast$ sizeof (struct \mbox{\hyperlink{structoption}{option}}))
+\item 
+\#define \mbox{\hyperlink{argp-parse_8c_ad5d0683a71993a90a735505fabe0b8c1}{S\+L\+EN}}~(szs.\+short\+\_\+len + 1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{argp-parse_8c_aeb1df3e83fb069eaa2eb66ace3a0ea52}{alloca}} ()
+\item 
+\mbox{\hyperlink{argp_2argp_8h_a9ad6b2dc3cbff040775e79656fe8e1a3}{error\+\_\+t}} \mbox{\hyperlink{argp-parse_8c_a055e5d7a4fef6f8590a4c442166b4e1d}{\+\_\+\+\_\+argp\+\_\+parse}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp}{argp}} $\ast$\mbox{\hyperlink{structargp}{argp}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} argc, char $\ast$$\ast$argv, unsigned \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}}, \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$end\+\_\+index, \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$\mbox{\hyperlink{tst-strptime_8c_a9adc11d527cdd7b029b0d2ccd910ff3b}{input}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$ \mbox{\hyperlink{argp-parse_8c_aefb8f2b15d8c75b4d64113b64e385a9e}{\+\_\+\+\_\+argp\+\_\+input}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp}{argp}} $\ast$\mbox{\hyperlink{structargp}{argp}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$\mbox{\hyperlink{tst-loading_8c_adc6e5733fc3c22f0a7b2914188c49c90}{state}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{argp-parse_8c_ad1e7f286ea95b73b6060d83beba84c9e}\label{argp-parse_8c_ad1e7f286ea95b73b6060d83beba84c9e}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!CLEN@{CLEN}}
+\index{CLEN@{CLEN}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{CLEN}{CLEN}}
+{\footnotesize\ttfamily \#define C\+L\+EN~(szs.\+num\+\_\+child\+\_\+inputs $\ast$ sizeof (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$))}
+
+\mbox{\Hypertarget{argp-parse_8c_a388e95d40b4956ff9643881d201b9f97}\label{argp-parse_8c_a388e95d40b4956ff9643881d201b9f97}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!dgettext@{dgettext}}
+\index{dgettext@{dgettext}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{dgettext}{dgettext}}
+{\footnotesize\ttfamily \#define dgettext(\begin{DoxyParamCaption}\item[{}]{domain,  }\item[{}]{\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})}
+
+\mbox{\Hypertarget{argp-parse_8c_aafddf1cd4cd76e073bd71acaaf37f2b5}\label{argp-parse_8c_aafddf1cd4cd76e073bd71acaaf37f2b5}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!EBADKEY@{EBADKEY}}
+\index{EBADKEY@{EBADKEY}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{EBADKEY}{EBADKEY}}
+{\footnotesize\ttfamily \#define E\+B\+A\+D\+K\+EY~\mbox{\hyperlink{argp_2argp_8h_aa5bec5f9165817ac3d8d0afc9152fc31}{A\+R\+G\+P\+\_\+\+E\+R\+R\+\_\+\+U\+N\+K\+N\+O\+WN}}}
+
+\mbox{\Hypertarget{argp-parse_8c_a84591b979e395c1ecf40f06963f89d8b}\label{argp-parse_8c_a84591b979e395c1ecf40f06963f89d8b}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!gettext@{gettext}}
+\index{gettext@{gettext}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{gettext}{gettext}}
+{\footnotesize\ttfamily \#define gettext(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})}
+
+\mbox{\Hypertarget{argp-parse_8c_a017b73954e27053527e406722ffacca8}\label{argp-parse_8c_a017b73954e27053527e406722ffacca8}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!GLEN@{GLEN}}
+\index{GLEN@{GLEN}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{GLEN}{GLEN}}
+{\footnotesize\ttfamily \#define G\+L\+EN~(szs.\+num\+\_\+groups + 1) $\ast$ sizeof (struct \mbox{\hyperlink{structgroup}{group}})}
+
+\mbox{\Hypertarget{argp-parse_8c_a23352dcb36731af33c14a7163fa9ee62}\label{argp-parse_8c_a23352dcb36731af33c14a7163fa9ee62}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!GROUP\_BITS@{GROUP\_BITS}}
+\index{GROUP\_BITS@{GROUP\_BITS}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{GROUP\_BITS}{GROUP\_BITS}}
+{\footnotesize\ttfamily \#define G\+R\+O\+U\+P\+\_\+\+B\+I\+TS~\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}}}
+
+\mbox{\Hypertarget{argp-parse_8c_aaeb7a39bc7018a8e4139639bd9384f87}\label{argp-parse_8c_aaeb7a39bc7018a8e4139639bd9384f87}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!KEY\_ARG@{KEY\_ARG}}
+\index{KEY\_ARG@{KEY\_ARG}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{KEY\_ARG}{KEY\_ARG}}
+{\footnotesize\ttfamily \#define K\+E\+Y\+\_\+\+A\+RG~1		/$\ast$ \mbox{\hyperlink{structA}{A}} non-\/\mbox{\hyperlink{structoption}{option}} argument.  $\ast$/}
+
+\mbox{\Hypertarget{argp-parse_8c_a912861b945e779c29f718cdcd62be10c}\label{argp-parse_8c_a912861b945e779c29f718cdcd62be10c}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!KEY\_END@{KEY\_END}}
+\index{KEY\_END@{KEY\_END}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{KEY\_END}{KEY\_END}}
+{\footnotesize\ttfamily \#define K\+E\+Y\+\_\+\+E\+ND~(-\/1)		/$\ast$ The end of the options.  $\ast$/}
+
+\mbox{\Hypertarget{argp-parse_8c_a8bf23f3c7e277af708b4ec59f608c35c}\label{argp-parse_8c_a8bf23f3c7e277af708b4ec59f608c35c}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!KEY\_ERR@{KEY\_ERR}}
+\index{KEY\_ERR@{KEY\_ERR}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{KEY\_ERR}{KEY\_ERR}}
+{\footnotesize\ttfamily \#define K\+E\+Y\+\_\+\+E\+RR~\textquotesingle{}?\textquotesingle{}		/$\ast$ An \mbox{\hyperlink{rpc__util_8h_a4866b2d37ffc80c5ba705d3fcd1e0ecf}{error}} parsing the options.  $\ast$/}
+
+\mbox{\Hypertarget{argp-parse_8c_a4dbdeec6f3fa43f11b22a95cd6fe2172}\label{argp-parse_8c_a4dbdeec6f3fa43f11b22a95cd6fe2172}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!LLEN@{LLEN}}
+\index{LLEN@{LLEN}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{LLEN}{LLEN}}
+{\footnotesize\ttfamily \#define L\+L\+EN~((szs.\+long\+\_\+len + 1) $\ast$ sizeof (struct \mbox{\hyperlink{structoption}{option}}))}
+
+\mbox{\Hypertarget{argp-parse_8c_abdf0847bd8caa2c2247f5d9bc5e12982}\label{argp-parse_8c_abdf0847bd8caa2c2247f5d9bc5e12982}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!N\_@{N\_}}
+\index{N\_@{N\_}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{N\_}{N\_}}
+{\footnotesize\ttfamily \#define N\+\_\+(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{tst-gettext_8c_a830ed8121b1621a775c904279677c4f4}{msgid}})}
+
+\mbox{\Hypertarget{argp-parse_8c_a6567f4f4a4ff9a806ef0bf72b59da870}\label{argp-parse_8c_a6567f4f4a4ff9a806ef0bf72b59da870}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!OPT\_HANG@{OPT\_HANG}}
+\index{OPT\_HANG@{OPT\_HANG}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_HANG}{OPT\_HANG}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+H\+A\+NG~-\/4}
+
+\mbox{\Hypertarget{argp-parse_8c_a2d09b3a6f7d73aaa0e1dee658c269293}\label{argp-parse_8c_a2d09b3a6f7d73aaa0e1dee658c269293}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!OPT\_PROGNAME@{OPT\_PROGNAME}}
+\index{OPT\_PROGNAME@{OPT\_PROGNAME}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_PROGNAME}{OPT\_PROGNAME}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+P\+R\+O\+G\+N\+A\+ME~-\/2}
+
+\mbox{\Hypertarget{argp-parse_8c_a8afc3ae207e3fe3482eb25d1fc7aad22}\label{argp-parse_8c_a8afc3ae207e3fe3482eb25d1fc7aad22}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!OPT\_USAGE@{OPT\_USAGE}}
+\index{OPT\_USAGE@{OPT\_USAGE}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{OPT\_USAGE}{OPT\_USAGE}}
+{\footnotesize\ttfamily \#define O\+P\+T\+\_\+\+U\+S\+A\+GE~-\/3}
+
+\mbox{\Hypertarget{argp-parse_8c_a87978601e53a12294c82624e90c46b76}\label{argp-parse_8c_a87978601e53a12294c82624e90c46b76}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!QUOTE@{QUOTE}}
+\index{QUOTE@{QUOTE}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{QUOTE}{QUOTE}}
+{\footnotesize\ttfamily \#define Q\+U\+O\+TE~\char`\"{}-\/-\/\char`\"{}}
+
+\mbox{\Hypertarget{argp-parse_8c_ad5d0683a71993a90a735505fabe0b8c1}\label{argp-parse_8c_ad5d0683a71993a90a735505fabe0b8c1}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!SLEN@{SLEN}}
+\index{SLEN@{SLEN}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{SLEN}{SLEN}}
+{\footnotesize\ttfamily \#define S\+L\+EN~(szs.\+short\+\_\+len + 1)}
+
+\mbox{\Hypertarget{argp-parse_8c_a3b664164d052115f05c3b021f82bdd4b}\label{argp-parse_8c_a3b664164d052115f05c3b021f82bdd4b}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!USER\_BITS@{USER\_BITS}}
+\index{USER\_BITS@{USER\_BITS}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{USER\_BITS}{USER\_BITS}}
+{\footnotesize\ttfamily \#define U\+S\+E\+R\+\_\+\+B\+I\+TS~((sizeof ((struct \mbox{\hyperlink{structoption}{option}} $\ast$)0)-\/$>$\mbox{\hyperlink{bug16_8c_a8901f148a5ae75a0bf0d2296d20bafa0}{val}} $\ast$ \mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}}) -\/ \mbox{\hyperlink{argp-parse_8c_a23352dcb36731af33c14a7163fa9ee62}{G\+R\+O\+U\+P\+\_\+\+B\+I\+TS}})}
+
+\mbox{\Hypertarget{argp-parse_8c_a0a315dfd5b03c9e7f45eba74f9cae17a}\label{argp-parse_8c_a0a315dfd5b03c9e7f45eba74f9cae17a}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!USER\_MASK@{USER\_MASK}}
+\index{USER\_MASK@{USER\_MASK}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{USER\_MASK}{USER\_MASK}}
+{\footnotesize\ttfamily \#define U\+S\+E\+R\+\_\+\+M\+A\+SK~((1 $<$$<$ \mbox{\hyperlink{argp-parse_8c_a3b664164d052115f05c3b021f82bdd4b}{U\+S\+E\+R\+\_\+\+B\+I\+TS}}) -\/ 1)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{argp-parse_8c_aefb8f2b15d8c75b4d64113b64e385a9e}\label{argp-parse_8c_aefb8f2b15d8c75b4d64113b64e385a9e}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!\_\_argp\_input@{\_\_argp\_input}}
+\index{\_\_argp\_input@{\_\_argp\_input}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_input()}{\_\_argp\_input()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}$\ast$ \+\_\+\+\_\+argp\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp}{argp}} $\ast$}]{argp,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp__state}{argp\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-parse_8c_a055e5d7a4fef6f8590a4c442166b4e1d}\label{argp-parse_8c_a055e5d7a4fef6f8590a4c442166b4e1d}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!\_\_argp\_parse@{\_\_argp\_parse}}
+\index{\_\_argp\_parse@{\_\_argp\_parse}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{\_\_argp\_parse()}{\_\_argp\_parse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{argp_2argp_8h_a9ad6b2dc3cbff040775e79656fe8e1a3}{error\+\_\+t}} \+\_\+\+\_\+argp\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} struct \mbox{\hyperlink{structargp}{argp}} $\ast$}]{argp,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{unsigned}]{flags,  }\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} $\ast$}]{end\+\_\+index,  }\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} $\ast$}]{input }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{argp-parse_8c_aeb1df3e83fb069eaa2eb66ace3a0ea52}\label{argp-parse_8c_aeb1df3e83fb069eaa2eb66ace3a0ea52}} 
+\index{argp-\/parse.c@{argp-\/parse.c}!alloca@{alloca}}
+\index{alloca@{alloca}!argp-\/parse.c@{argp-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{alloca()}{alloca()}}
+{\footnotesize\ttfamily char$\ast$ alloca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

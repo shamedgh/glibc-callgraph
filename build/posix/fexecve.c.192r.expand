@@ -1,0 +1,291 @@
+
+;; Function fexecve (fexecve, funcdef_no=44, decl_uid=7875, cgraph_uid=44, symbol_order=46)
+
+Partition 1: size 144 align 16
+	st
+Partition 0: size 27 align 16
+	buf
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+Purged non-fallthru edges from bb 12
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+Forwarding edge 4->5 to 6 failed.
+Deleted label in block 5.
+Removing jump 62.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 6 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v:SI 96 [ fd ])
+        (reg:SI 5 di [ fd ])) ../sysdeps/unix/sysv/linux/fexecve.c:29 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 97 [ argv ])
+        (reg:DI 4 si [ argv ])) ../sysdeps/unix/sysv/linux/fexecve.c:29 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 98 [ envp ])
+        (reg:DI 1 dx [ envp ])) ../sysdeps/unix/sysv/linux/fexecve.c:29 -1
+     (nil))
+(note 5 4 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 5 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 97 [ argv ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:QI 100 [ D.8709 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 98 [ envp ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:QI 102 [ D.8709 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 13 12 14 2 (parallel [
+            (set (reg:QI 103 [ D.8709 ])
+                (ior:QI (reg:QI 100 [ D.8709 ])
+                    (reg:QI 102 [ D.8709 ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 103 [ D.8709 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(jump_insn 15 14 68 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 70)
+            (pc))) ../sysdeps/unix/sysv/linux/fexecve.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 1082 (nil))
+ -> 70)
+(note 68 15 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 68 17 4 (parallel [
+            (set (reg:SI 105)
+                (lshiftrt:SI (reg/v:SI 96 [ fd ])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:QI 106)
+        (subreg:QI (reg:SI 105) 0)) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 106)
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (nil))
+(jump_insn 19 18 69 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) ../sysdeps/unix/sysv/linux/fexecve.c:30 -1
+     (int_list:REG_BR_PROB 8787 (nil))
+ -> 26)
+(note 69 19 70 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(code_label 70 69 21 6 6 "" [1 uses])
+(note 21 70 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 6 (set (reg:DI 107)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b60a4f83630 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) ../sysdeps/unix/sysv/linux/fexecve.c:32 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 107)) [1 __libc_errno+0 S4 A32])
+        (const_int 22 [0x16])) ../sysdeps/unix/sysv/linux/fexecve.c:32 -1
+     (nil))
+(jump_insn 24 23 25 6 (set (pc)
+        (label_ref 59)) ../sysdeps/unix/sysv/linux/fexecve.c:33 -1
+     (nil)
+ -> 59)
+(barrier 25 24 26)
+(code_label 26 25 27 7 2 "" [1 uses])
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (parallel [
+            (set (reg:DI 108)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -176 [0xffffffffffffff50])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (nil))
+(insn 29 28 30 7 (set (reg:SI 2 cx)
+        (reg/v:SI 96 [ fd ])) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (nil))
+(insn 30 29 31 7 (set (reg:DI 1 dx)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x2b60a508a870 *.LC0>)) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (nil))
+(insn 31 30 32 7 (set (reg:DI 4 si)
+        (const_int 27 [0x1b])) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (nil))
+(insn 32 31 33 7 (set (reg:DI 5 di)
+        (reg:DI 108)) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:QI 0 ax)
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (nil))
+(call_insn 34 33 35 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__snprintf") [flags 0x41]  <function_decl 0x2b60a5010438 __snprintf>) [0 __snprintf S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:39 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__snprintf") [flags 0x41]  <function_decl 0x2b60a5010438 __snprintf>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+(insn 35 34 36 7 (parallel [
+            (set (reg:DI 109)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -176 [0xffffffffffffff50])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/fexecve.c:42 -1
+     (nil))
+(insn 36 35 37 7 (set (reg:DI 1 dx)
+        (reg/v/f:DI 98 [ envp ])) ../sysdeps/unix/sysv/linux/fexecve.c:42 -1
+     (nil))
+(insn 37 36 38 7 (set (reg:DI 4 si)
+        (reg/v/f:DI 97 [ argv ])) ../sysdeps/unix/sysv/linux/fexecve.c:42 -1
+     (nil))
+(insn 38 37 39 7 (set (reg:DI 5 di)
+        (reg:DI 109)) ../sysdeps/unix/sysv/linux/fexecve.c:42 -1
+     (nil))
+(call_insn 39 38 40 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__execve") [flags 0x41]  <function_decl 0x2b60a5077af8 __execve>) [0 __execve S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:42 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__execve") [flags 0x41]  <function_decl 0x2b60a5077af8 __execve>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 40 39 41 7 (set (reg:DI 110)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b60a4f83630 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) ../sysdeps/unix/sysv/linux/fexecve.c:44 -1
+     (nil))
+(insn 41 40 42 7 (set (reg/v:SI 87 [ save ])
+        (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 110)) [1 __libc_errno+0 S4 A32])) ../sysdeps/unix/sysv/linux/fexecve.c:44 -1
+     (nil))
+(insn 42 41 43 7 (parallel [
+            (set (reg:DI 111)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -144 [0xffffffffffffff70])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(insn 43 42 44 7 (set (reg:DI 1 dx)
+        (reg:DI 111)) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(insn 44 43 45 7 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b60a508a900 *.LC1>)) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(insn 45 44 46 7 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(call_insn 46 45 47 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__xstat") [flags 0x41]  <function_decl 0x2b60a4dab438 __xstat>) [0 __xstat S1 A8])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__xstat") [flags 0x41]  <function_decl 0x2b60a4dab438 __xstat>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 47 46 48 7 (set (reg:SI 90 [ D.8710 ])
+        (reg:SI 0 ax)) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(insn 48 47 49 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.8710 ])
+            (const_int 0 [0]))) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(jump_insn 49 48 50 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 55)
+            (pc))) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 55)
+(note 50 49 51 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 52 8 (set (reg:DI 112)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b60a4f83630 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(insn 52 51 53 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (unspec:DI [
+                            (const_int 0 [0])
+                        ] UNSPEC_TP)
+                    (reg:DI 112)) [1 __libc_errno+0 S4 A32])
+            (const_int 2 [0x2]))) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (nil))
+(jump_insn 53 52 54 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 55)
+            (pc))) ../sysdeps/unix/sysv/linux/fexecve.c:49 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 55)
+(note 54 53 6 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 6 54 55 9 (set (reg/v:SI 87 [ save ])
+        (const_int 38 [0x26])) ../sysdeps/unix/sysv/linux/fexecve.c:50 -1
+     (nil))
+(code_label 55 6 56 10 5 "" [2 uses])
+(note 56 55 57 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 57 56 58 10 (set (reg:DI 113)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("__libc_errno") [flags 0x60]  <var_decl 0x2b60a4f83630 __libc_errno>)
+                    ] UNSPEC_GOTNTPOFF)) [5  S8 A8])) ../sysdeps/unix/sysv/linux/fexecve.c:52 -1
+     (nil))
+(insn 58 57 59 10 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 113)) [1 __libc_errno+0 S4 A32])
+        (reg/v:SI 87 [ save ])) ../sysdeps/unix/sysv/linux/fexecve.c:52 -1
+     (nil))
+(code_label 59 58 60 11 4 "" [1 uses])
+(note 60 59 61 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 65 11 (set (reg:SI 95 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) -1
+     (nil))
+(insn 65 61 66 11 (set (reg/i:SI 0 ax)
+        (reg:SI 95 [ <retval> ])) ../sysdeps/unix/sysv/linux/fexecve.c:55 -1
+     (nil))
+(insn 66 65 0 11 (use (reg/i:SI 0 ax)) ../sysdeps/unix/sysv/linux/fexecve.c:55 -1
+     (nil))

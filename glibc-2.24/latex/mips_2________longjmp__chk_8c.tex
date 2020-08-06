@@ -1,0 +1,50 @@
+\hypertarget{mips_2________longjmp__chk_8c}{}\doxysection{sysdeps/unix/sysv/linux/mips/\+\_\+\+\_\+\+\_\+\+\_\+longjmp\+\_\+chk.c File Reference}
+\label{mips_2________longjmp__chk_8c}\index{sysdeps/unix/sysv/linux/mips/\_\_\_\_longjmp\_chk.c@{sysdeps/unix/sysv/linux/mips/\_\_\_\_longjmp\_chk.c}}
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$\+\_\+\+\_\+longjmp.\+c$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mips_2________longjmp__chk_8c_a524adbd82db7b437a59d7436fddf0e96}{\+\_\+\+\_\+longjmp}}~\mbox{\hyperlink{generic_2________longjmp__chk_8c_a6c9abe25c7b31f9604c5bd1297b76aaa}{\+\_\+\+\_\+\+\_\+\+\_\+longjmp\+\_\+chk}}
+\item 
+\#define \mbox{\hyperlink{mips_2________longjmp__chk_8c_a0abade5b86660552a8db87f2758aa7ed}{C\+H\+E\+C\+K\+\_\+\+SP}}(saved\+\_\+sp,  cur\+\_\+sp,  sp\+\_\+type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mips_2________longjmp__chk_8c_a524adbd82db7b437a59d7436fddf0e96}\label{mips_2________longjmp__chk_8c_a524adbd82db7b437a59d7436fddf0e96}} 
+\index{\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}!\_\_longjmp@{\_\_longjmp}}
+\index{\_\_longjmp@{\_\_longjmp}!\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}}
+\doxysubsubsection{\texorpdfstring{\_\_longjmp}{\_\_longjmp}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+longjmp~\mbox{\hyperlink{generic_2________longjmp__chk_8c_a6c9abe25c7b31f9604c5bd1297b76aaa}{\+\_\+\+\_\+\+\_\+\+\_\+longjmp\+\_\+chk}}}
+
+\mbox{\Hypertarget{mips_2________longjmp__chk_8c_a0abade5b86660552a8db87f2758aa7ed}\label{mips_2________longjmp__chk_8c_a0abade5b86660552a8db87f2758aa7ed}} 
+\index{\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}!CHECK\_SP@{CHECK\_SP}}
+\index{CHECK\_SP@{CHECK\_SP}!\_\_\_\_longjmp\_chk.c@{\_\_\_\_longjmp\_chk.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SP}{CHECK\_SP}}
+{\footnotesize\ttfamily \#define C\+H\+E\+C\+K\+\_\+\+SP(\begin{DoxyParamCaption}\item[{}]{saved\+\_\+sp,  }\item[{}]{cur\+\_\+sp,  }\item[{}]{sp\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                    \(\backslash\)}
+\DoxyCodeLine{    sp\_type sp\_saved = (sp\_type) (saved\_sp);                \(\backslash\)}
+\DoxyCodeLine{    if (sp\_saved < (cur\_sp))                        \(\backslash\)}
+\DoxyCodeLine{      \{                                 \(\backslash\)}
+\DoxyCodeLine{    struct \mbox{\hyperlink{union____jmp__buf__internal__tag}{\_\_jmp\_buf\_internal\_tag}} *env\_save = env\_arg;        \(\backslash\)}
+\DoxyCodeLine{    int val\_save = val\_arg;                     \(\backslash\)}
+\DoxyCodeLine{    stack\_t ss;                         \(\backslash\)}
+\DoxyCodeLine{    int \mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}} = \mbox{\hyperlink{include_2signal_8h_a23f00154c9bc55c283de263895958914}{\_\_sigaltstack}} (\mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}, \&ss);                \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{tst-backtrace_8h_aceabdac0a64ca29f4c9fb831d0c3a49b}{ret}} == 0                         \(\backslash\)}
+\DoxyCodeLine{        \&\& (!(ss.ss\_flags \& \mbox{\hyperlink{bits_2sigstack_8h_a17bcfefa3c6fafd5d3277d867bd723fb}{SS\_ONSTACK}})               \(\backslash\)}
+\DoxyCodeLine{        || ((\textcolor{keywordtype}{unsigned} sp\_type) ((sp\_type) (\textcolor{keywordtype}{long}) ss.ss\_sp   \(\backslash\)}
+\DoxyCodeLine{                    + (sp\_type) ss.ss\_size      \(\backslash\)}
+\DoxyCodeLine{                    -\/ sp\_saved)         \(\backslash\)}
+\DoxyCodeLine{            < ss.ss\_size)))                 \(\backslash\)}
+\DoxyCodeLine{      \_\_fortify\_fail (\textcolor{stringliteral}{"longjmp causes uninitialized stack frame"});  \(\backslash\)}
+\DoxyCodeLine{    asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"move \%0, \%1"} : \textcolor{stringliteral}{"=r"} (\mbox{\hyperlink{test-tz_8c_a9e33a4e814bb62ae7755acbe09bbefe0}{env}}) : \textcolor{stringliteral}{"r"} (env\_save));  \(\backslash\)}
+\DoxyCodeLine{    asm \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"move \%0, \%1"} : \textcolor{stringliteral}{"=r"} (\mbox{\hyperlink{jisx0213_8h_ac9c27479cf7677bea26d3c59ce2a2dc3}{val}}) : \textcolor{stringliteral}{"r"} (val\_save));  \(\backslash\)}
+\DoxyCodeLine{      \}                                 \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

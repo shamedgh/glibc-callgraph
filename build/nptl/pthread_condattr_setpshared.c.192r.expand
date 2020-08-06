@@ -1,0 +1,98 @@
+
+;; Function pthread_condattr_setpshared (pthread_condattr_setpshared, funcdef_no=65, decl_uid=5500, cgraph_uid=65, symbol_order=66)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 93 [ attr ])
+        (reg:DI 5 di [ attr ])) pthread_condattr_setpshared.c:25 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 94 [ pshared ])
+        (reg:SI 4 si [ pshared ])) pthread_condattr_setpshared.c:25 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 94 [ pshared ])
+            (const_int 1 [0x1]))) ../sysdeps/unix/sysv/linux/futex-internal.h:43 -1
+     (nil))
+(jump_insn 10 9 28 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:43 -1
+     (int_list:REG_BR_PROB 2800 (nil))
+ -> 15)
+(note 28 10 5 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 5 28 21 4 (set (reg:SI 87 [ D.8658 ])
+        (const_int 22 [0x16])) ../sysdeps/unix/sysv/linux/futex-internal.h:46 -1
+     (nil))
+(code_label 21 5 11 5 3 "" [1 uses])
+(note 11 21 12 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 5 (set (reg:SI 92 [ <retval> ])
+        (reg:SI 87 [ D.8658 ])) -1
+     (nil))
+(jump_insn 13 12 14 5 (set (pc)
+        (label_ref 24)) -1
+     (nil)
+ -> 24)
+(barrier 14 13 15)
+(code_label 15 14 16 6 2 "" [1 uses])
+(note 16 15 17 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 6 (set (reg:SI 97)
+        (mem:SI (reg/v/f:DI 93 [ attr ]) [1 MEM[(int *)attr_6(D)]+0 S4 A32])) pthread_condattr_setpshared.c:32 -1
+     (nil))
+(insn 18 17 19 6 (parallel [
+            (set (reg:SI 96 [ D.8658 ])
+                (and:SI (reg:SI 97)
+                    (const_int -2 [0xfffffffffffffffe])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_condattr_setpshared.c:32 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 93 [ attr ]) [1 MEM[(int *)attr_6(D)]+0 S4 A32])
+            (const_int -2 [0xfffffffffffffffe]))
+        (nil)))
+(insn 19 18 20 6 (parallel [
+            (set (reg:SI 98)
+                (ior:SI (reg:SI 96 [ D.8658 ])
+                    (reg/v:SI 94 [ pshared ])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_condattr_setpshared.c:32 -1
+     (nil))
+(insn 20 19 6 6 (set (mem:SI (reg/v/f:DI 93 [ attr ]) [1 MEM[(int *)attr_6(D)]+0 S4 A32])
+        (reg:SI 98)) pthread_condattr_setpshared.c:32 -1
+     (nil))
+(insn 6 20 22 6 (set (reg:SI 87 [ D.8658 ])
+        (const_int 0 [0])) pthread_condattr_setpshared.c:34 -1
+     (nil))
+(jump_insn 22 6 23 6 (set (pc)
+        (label_ref 21)) pthread_condattr_setpshared.c:34 -1
+     (nil)
+ -> 21)
+(barrier 23 22 24)
+(code_label 24 23 27 7 1 "" [1 uses])
+(note 27 24 25 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 25 27 26 7 (set (reg/i:SI 0 ax)
+        (reg:SI 92 [ <retval> ])) pthread_condattr_setpshared.c:35 -1
+     (nil))
+(insn 26 25 0 7 (use (reg/i:SI 0 ax)) pthread_condattr_setpshared.c:35 -1
+     (nil))

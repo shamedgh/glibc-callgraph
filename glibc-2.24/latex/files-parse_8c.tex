@@ -1,0 +1,303 @@
+\hypertarget{files-parse_8c}{}\doxysection{nss/nss\+\_\+files/files-\/parse.c File Reference}
+\label{files-parse_8c}\index{nss/nss\_files/files-\/parse.c@{nss/nss\_files/files-\/parse.c}}
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structparser__data}{parser\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a17fc0667136065054407ee7102016968}{E\+X\+T\+R\+A\+\_\+\+A\+R\+GS}}
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_af769ecc62e4b9cff6a0d1a793a9914ab}{E\+X\+T\+R\+A\+\_\+\+A\+R\+G\+S\+\_\+\+D\+E\+CL}}
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_aeab3605b763946b668b4ea0dfd2033db}{E\+X\+T\+R\+A\+\_\+\+A\+R\+G\+S\+\_\+\+V\+A\+L\+UE}}
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a88fa737059e67b4b17ec980e5877361e}{C\+O\+N\+C\+AT}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})~\mbox{\hyperlink{strxfrm__l_8c_ac1bd762df6f68795cfe6a980728bf233}{C\+O\+N\+C\+A\+T1}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_ac1bd762df6f68795cfe6a980728bf233}{C\+O\+N\+C\+A\+T1}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})~\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}}\#\#\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a4ec0ac52733a6c45141d7325c9db83b4}{S\+T\+R\+U\+C\+T\+U\+RE}}~\mbox{\hyperlink{sgetspent__r_8c_a7949857ebaf8c02ff99ac967f84784fc}{E\+N\+T\+N\+A\+ME}}
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_ad6d8a8613657fc8ed60b8ef2230ca8f2}{E\+N\+T\+D\+A\+T\+A\+\_\+\+D\+E\+CL}}(\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}})
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a1c8c4452800dcbb2703bbc4e07250c73}{parser\+\_\+stclass}}~/$\ast$ Global $\ast$/
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_aa143d938c5b6e9f971f93eb21093b24d}{parse\+\_\+line}}~\mbox{\hyperlink{files-XXX_8c_a598d802e83545d379037b83265041b07}{C\+O\+N\+C\+AT}}(\+\_\+nss\+\_\+files\+\_\+parse\+\_\+,\mbox{\hyperlink{sgetspent__r_8c_a7949857ebaf8c02ff99ac967f84784fc}{E\+N\+T\+N\+A\+ME}})
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_aa7c709c5d86b332beef9bcc20657c110}{nss\+\_\+files\+\_\+parse\+\_\+hidden\+\_\+def}}(\mbox{\hyperlink{structname}{name}})~\mbox{\hyperlink{files-netgrp_8c_acfbaccb3c8ccf53f59f8c44c8b6759c5}{libnss\+\_\+files\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{structname}{name}})
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a9a6ee92522abf357a994354228a6553a}{L\+I\+N\+E\+\_\+\+P\+A\+R\+S\+ER}}(E\+O\+L\+S\+ET,  \mbox{\hyperlink{utf8-utf32-z9_8c_aa6bdf6a6d9916c343e1e17774d84a156}{B\+O\+DY}})
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a09bf102cff6c89a8379f32d330ed0621}{S\+T\+R\+I\+N\+G\+\_\+\+F\+I\+E\+LD}}(variable,  terminator\+\_\+p,  swallow)
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a31d21d836a14710c7f7c4d0515b44630}{S\+T\+R\+I\+N\+G\+\_\+\+L\+I\+ST}}(variable,  terminator\+\_\+c)
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a1dad6ca552b27c2578cd096f7b0c70e7}{I\+N\+T\+\_\+\+F\+I\+E\+LD}}(variable,  terminator\+\_\+p,  swallow,  \mbox{\hyperlink{unix_2sysv_2linux_2ia64_2ioperm_8c_a5a99fc3d1551f7f70f02d1aa0d673abe}{base}},  convert)
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a77174079a528ea68cefdfa01ac47169e}{I\+N\+T\+\_\+\+F\+I\+E\+L\+D\+\_\+\+M\+A\+Y\+B\+E\+\_\+\+N\+U\+LL}}(variable,  terminator\+\_\+p,  swallow,  \mbox{\hyperlink{unix_2sysv_2linux_2ia64_2ioperm_8c_a5a99fc3d1551f7f70f02d1aa0d673abe}{base}},  convert,  default)
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a98453dd00ec86897cf439b6ecc3a9d72}{I\+S\+C\+O\+L\+ON}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}) == \textquotesingle{}\+:\textquotesingle{})
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_ae90543ec92cd2a3d5e52a1b2beb951d1}{B\+U\+F\+F\+E\+R\+\_\+\+P\+R\+E\+P\+A\+RE}}~/$\ast$ Nothing \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} do.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a404a129bef1b1d2f3b9df51e21640aab}{T\+R\+A\+I\+L\+I\+N\+G\+\_\+\+L\+I\+S\+T\+\_\+\+P\+A\+R\+S\+ER}}~/$\ast$ Nothing \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} do.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_acf657a72a437e0dba65c9562ac59451f}{L\+O\+O\+K\+U\+P\+\_\+\+N\+A\+ME}}(nameelt,  aliaselt)
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_a48ddf46d7cd28841be3a2fe20bfef302}{L\+O\+O\+K\+U\+P\+\_\+\+N\+A\+M\+E\+\_\+\+C\+A\+SE}}(nameelt,  aliaselt)
+\item 
+\#define \mbox{\hyperlink{files-parse_8c_ac08cb533186434b5fc055cc0c72f8ef6}{G\+E\+N\+E\+R\+IC}}~\char`\"{}files-\/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{X\+X\+X.\+c}}\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{files-parse_8c_ae90543ec92cd2a3d5e52a1b2beb951d1}\label{files-parse_8c_ae90543ec92cd2a3d5e52a1b2beb951d1}} 
+\index{files-\/parse.c@{files-\/parse.c}!BUFFER\_PREPARE@{BUFFER\_PREPARE}}
+\index{BUFFER\_PREPARE@{BUFFER\_PREPARE}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_PREPARE}{BUFFER\_PREPARE}}
+{\footnotesize\ttfamily \#define B\+U\+F\+F\+E\+R\+\_\+\+P\+R\+E\+P\+A\+RE~/$\ast$ Nothing \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} do.  $\ast$/}
+
+\mbox{\Hypertarget{files-parse_8c_a88fa737059e67b4b17ec980e5877361e}\label{files-parse_8c_a88fa737059e67b4b17ec980e5877361e}} 
+\index{files-\/parse.c@{files-\/parse.c}!CONCAT@{CONCAT}}
+\index{CONCAT@{CONCAT}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{CONCAT}{CONCAT}}
+{\footnotesize\ttfamily \#define C\+O\+N\+C\+AT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})~\mbox{\hyperlink{strxfrm__l_8c_ac1bd762df6f68795cfe6a980728bf233}{C\+O\+N\+C\+A\+T1}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})}
+
+\mbox{\Hypertarget{files-parse_8c_ac1bd762df6f68795cfe6a980728bf233}\label{files-parse_8c_ac1bd762df6f68795cfe6a980728bf233}} 
+\index{files-\/parse.c@{files-\/parse.c}!CONCAT1@{CONCAT1}}
+\index{CONCAT1@{CONCAT1}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{CONCAT1}{CONCAT1}}
+{\footnotesize\ttfamily \#define C\+O\+N\+C\+A\+T1(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})~\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}}\#\#\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}}}
+
+\mbox{\Hypertarget{files-parse_8c_ad6d8a8613657fc8ed60b8ef2230ca8f2}\label{files-parse_8c_ad6d8a8613657fc8ed60b8ef2230ca8f2}} 
+\index{files-\/parse.c@{files-\/parse.c}!ENTDATA\_DECL@{ENTDATA\_DECL}}
+\index{ENTDATA\_DECL@{ENTDATA\_DECL}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{ENTDATA\_DECL}{ENTDATA\_DECL}}
+{\footnotesize\ttfamily \#define E\+N\+T\+D\+A\+T\+A\+\_\+\+D\+E\+CL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{files-parse_8c_a17fc0667136065054407ee7102016968}\label{files-parse_8c_a17fc0667136065054407ee7102016968}} 
+\index{files-\/parse.c@{files-\/parse.c}!EXTRA\_ARGS@{EXTRA\_ARGS}}
+\index{EXTRA\_ARGS@{EXTRA\_ARGS}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_ARGS}{EXTRA\_ARGS}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+A\+R\+GS}
+
+\mbox{\Hypertarget{files-parse_8c_af769ecc62e4b9cff6a0d1a793a9914ab}\label{files-parse_8c_af769ecc62e4b9cff6a0d1a793a9914ab}} 
+\index{files-\/parse.c@{files-\/parse.c}!EXTRA\_ARGS\_DECL@{EXTRA\_ARGS\_DECL}}
+\index{EXTRA\_ARGS\_DECL@{EXTRA\_ARGS\_DECL}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_ARGS\_DECL}{EXTRA\_ARGS\_DECL}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+A\+R\+G\+S\+\_\+\+D\+E\+CL}
+
+\mbox{\Hypertarget{files-parse_8c_aeab3605b763946b668b4ea0dfd2033db}\label{files-parse_8c_aeab3605b763946b668b4ea0dfd2033db}} 
+\index{files-\/parse.c@{files-\/parse.c}!EXTRA\_ARGS\_VALUE@{EXTRA\_ARGS\_VALUE}}
+\index{EXTRA\_ARGS\_VALUE@{EXTRA\_ARGS\_VALUE}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{EXTRA\_ARGS\_VALUE}{EXTRA\_ARGS\_VALUE}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+\_\+\+A\+R\+G\+S\+\_\+\+V\+A\+L\+UE}
+
+\mbox{\Hypertarget{files-parse_8c_ac08cb533186434b5fc055cc0c72f8ef6}\label{files-parse_8c_ac08cb533186434b5fc055cc0c72f8ef6}} 
+\index{files-\/parse.c@{files-\/parse.c}!GENERIC@{GENERIC}}
+\index{GENERIC@{GENERIC}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{GENERIC}{GENERIC}}
+{\footnotesize\ttfamily \#define G\+E\+N\+E\+R\+IC~\char`\"{}files-\/\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{X\+X\+X.\+c}}\char`\"{}}
+
+\mbox{\Hypertarget{files-parse_8c_a1dad6ca552b27c2578cd096f7b0c70e7}\label{files-parse_8c_a1dad6ca552b27c2578cd096f7b0c70e7}} 
+\index{files-\/parse.c@{files-\/parse.c}!INT\_FIELD@{INT\_FIELD}}
+\index{INT\_FIELD@{INT\_FIELD}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{INT\_FIELD}{INT\_FIELD}}
+{\footnotesize\ttfamily \#define I\+N\+T\+\_\+\+F\+I\+E\+LD(\begin{DoxyParamCaption}\item[{}]{variable,  }\item[{}]{terminator\+\_\+p,  }\item[{}]{swallow,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2ia64_2ioperm_8c_a5a99fc3d1551f7f70f02d1aa0d673abe}{base}},  }\item[{}]{convert }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    char *\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}};                                   \(\backslash\)}
+\DoxyCodeLine{    variable = convert (strtou32 (line, \&\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}}, \mbox{\hyperlink{cp1255_8c_abfd71761a6b1360dabc57c127d2c1c9d}{base}}));                \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}} == line)                                 \(\backslash\)}
+\DoxyCodeLine{      return 0;                                   \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (terminator\_p (*\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}}))                        \(\backslash\)}
+\DoxyCodeLine{      do                                      \(\backslash\)}
+\DoxyCodeLine{    ++\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}};                                   \(\backslash\)}
+\DoxyCodeLine{      while (swallow \&\& terminator\_p (*\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}}));                    \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (*\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}} != \textcolor{charliteral}{'\(\backslash\)0'})                           \(\backslash\)}
+\DoxyCodeLine{      return 0;                                   \(\backslash\)}
+\DoxyCodeLine{    line = \mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}};                                  \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_a77174079a528ea68cefdfa01ac47169e}\label{files-parse_8c_a77174079a528ea68cefdfa01ac47169e}} 
+\index{files-\/parse.c@{files-\/parse.c}!INT\_FIELD\_MAYBE\_NULL@{INT\_FIELD\_MAYBE\_NULL}}
+\index{INT\_FIELD\_MAYBE\_NULL@{INT\_FIELD\_MAYBE\_NULL}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{INT\_FIELD\_MAYBE\_NULL}{INT\_FIELD\_MAYBE\_NULL}}
+{\footnotesize\ttfamily \#define I\+N\+T\+\_\+\+F\+I\+E\+L\+D\+\_\+\+M\+A\+Y\+B\+E\+\_\+\+N\+U\+LL(\begin{DoxyParamCaption}\item[{}]{variable,  }\item[{}]{terminator\+\_\+p,  }\item[{}]{swallow,  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2ia64_2ioperm_8c_a5a99fc3d1551f7f70f02d1aa0d673abe}{base}},  }\item[{}]{convert,  }\item[{}]{default }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    char *\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}};                                   \(\backslash\)}
+\DoxyCodeLine{    if (*line == \textcolor{charliteral}{'\(\backslash\)0'})                                \(\backslash\)}
+\DoxyCodeLine{      \textcolor{comment}{/* We expect some more input, so don't allow the string to end here. */} \(\backslash\)}
+\DoxyCodeLine{      return 0;                                   \(\backslash\)}
+\DoxyCodeLine{    variable = convert (strtou32 (line, \&\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}}, \mbox{\hyperlink{cp1255_8c_abfd71761a6b1360dabc57c127d2c1c9d}{base}}));                \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}} == line)                                 \(\backslash\)}
+\DoxyCodeLine{      variable = \textcolor{keywordflow}{default};                             \(\backslash\)}
+\DoxyCodeLine{    if (terminator\_p (*\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}}))                             \(\backslash\)}
+\DoxyCodeLine{      do                                      \(\backslash\)}
+\DoxyCodeLine{    ++\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}};                                   \(\backslash\)}
+\DoxyCodeLine{      while (swallow \&\& terminator\_p (*\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}}));                    \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if} (*\mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}} != \textcolor{charliteral}{'\(\backslash\)0'})                           \(\backslash\)}
+\DoxyCodeLine{      return 0;                                   \(\backslash\)}
+\DoxyCodeLine{    line = \mbox{\hyperlink{inet6__option_8c_a3be3b0e9c8a411077728eeca99e320e2}{endp}};                                  \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_a98453dd00ec86897cf439b6ecc3a9d72}\label{files-parse_8c_a98453dd00ec86897cf439b6ecc3a9d72}} 
+\index{files-\/parse.c@{files-\/parse.c}!ISCOLON@{ISCOLON}}
+\index{ISCOLON@{ISCOLON}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{ISCOLON}{ISCOLON}}
+{\footnotesize\ttfamily \#define I\+S\+C\+O\+L\+ON(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}) == \textquotesingle{}\+:\textquotesingle{})}
+
+\mbox{\Hypertarget{files-parse_8c_a9a6ee92522abf357a994354228a6553a}\label{files-parse_8c_a9a6ee92522abf357a994354228a6553a}} 
+\index{files-\/parse.c@{files-\/parse.c}!LINE\_PARSER@{LINE\_PARSER}}
+\index{LINE\_PARSER@{LINE\_PARSER}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{LINE\_PARSER}{LINE\_PARSER}}
+{\footnotesize\ttfamily \#define L\+I\+N\+E\+\_\+\+P\+A\+R\+S\+ER(\begin{DoxyParamCaption}\item[{}]{E\+O\+L\+S\+ET,  }\item[{}]{\mbox{\hyperlink{utf8-utf32-z9_8c_aa6bdf6a6d9916c343e1e17774d84a156}{B\+O\+DY}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{files-parse_8c_a1c8c4452800dcbb2703bbc4e07250c73}{parser\_stclass}} \mbox{\hyperlink{files-parse_8c_aa143d938c5b6e9f971f93eb21093b24d}{int                                  \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{files-parse_8c_aa143d938c5b6e9f971f93eb21093b24d}{parse\_line}} (\textcolor{keywordtype}{char} *line, \textcolor{keyword}{struct} \mbox{\hyperlink{files-parse_8c_a4ec0ac52733a6c45141d7325c9db83b4}{STRUCTURE}} *\mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}},                \(\backslash\)}
+\DoxyCodeLine{        \textcolor{keyword}{struct} \mbox{\hyperlink{structparser__data}{parser\_data}} *\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}}, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{tst-fopenloc2_8c_a3d12e161726566d24a1d0cf6c6b416bb}{datalen}}, \textcolor{keywordtype}{int} *errnop       \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{files-parse_8c_af769ecc62e4b9cff6a0d1a793a9914ab}{EXTRA\_ARGS\_DECL}})                           \(\backslash\)}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{  ENTDATA\_DECL (\mbox{\hyperlink{tst-fopenloc2_8c_a8f64897c7ccc5c13f276d1d07c4e7095}{data}})                                 \(\backslash\)}
+\DoxyCodeLine{  BUFFER\_PREPARE                                  \(\backslash\)}
+\DoxyCodeLine{  char *\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} = \mbox{\hyperlink{string_2string_8h_a102bae5d93352f0af5119ef78ea41ecc}{strpbrk}} (line, EOLSET \textcolor{stringliteral}{"\(\backslash\)n"});                      \(\backslash\)}
+\DoxyCodeLine{  if (\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                                 \(\backslash\)}
+\DoxyCodeLine{    *\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} = \textcolor{charliteral}{'\(\backslash\)0'};                                   \(\backslash\)}
+\DoxyCodeLine{  BODY;                                       \(\backslash\)}
+\DoxyCodeLine{  TRAILING\_LIST\_PARSER;                               \(\backslash\)}
+\DoxyCodeLine{  return 1;                                   \(\backslash\)}
+\DoxyCodeLine{\}                                         \(\backslash\)}
+\DoxyCodeLine{nss\_files\_parse\_hidden\_def (\mbox{\hyperlink{files-parse_8c_aa143d938c5b6e9f971f93eb21093b24d}{parse\_line}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_acf657a72a437e0dba65c9562ac59451f}\label{files-parse_8c_acf657a72a437e0dba65c9562ac59451f}} 
+\index{files-\/parse.c@{files-\/parse.c}!LOOKUP\_NAME@{LOOKUP\_NAME}}
+\index{LOOKUP\_NAME@{LOOKUP\_NAME}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{LOOKUP\_NAME}{LOOKUP\_NAME}}
+{\footnotesize\ttfamily \#define L\+O\+O\+K\+U\+P\+\_\+\+N\+A\+ME(\begin{DoxyParamCaption}\item[{}]{nameelt,  }\item[{}]{aliaselt }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{  char **ap;                                      \(\backslash\)}
+\DoxyCodeLine{  if (! \mbox{\hyperlink{string_2string_8h_a72c32a7b6e6ec46536ac21b02c9dc018}{strcmp}} (\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}}-\/>nameelt))                       \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{  for (ap = \mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}}-\/>aliaselt; *ap; ++ap)                    \(\backslash\)}
+\DoxyCodeLine{    if (! \mbox{\hyperlink{string_2string_8h_a72c32a7b6e6ec46536ac21b02c9dc018}{strcmp}} (\mbox{\hyperlink{structname}{name}}, *ap))                           \(\backslash\)}
+\DoxyCodeLine{      break;                                      \(\backslash\)}
+\DoxyCodeLine{  if (*ap)                                    \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_a48ddf46d7cd28841be3a2fe20bfef302}\label{files-parse_8c_a48ddf46d7cd28841be3a2fe20bfef302}} 
+\index{files-\/parse.c@{files-\/parse.c}!LOOKUP\_NAME\_CASE@{LOOKUP\_NAME\_CASE}}
+\index{LOOKUP\_NAME\_CASE@{LOOKUP\_NAME\_CASE}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{LOOKUP\_NAME\_CASE}{LOOKUP\_NAME\_CASE}}
+{\footnotesize\ttfamily \#define L\+O\+O\+K\+U\+P\+\_\+\+N\+A\+M\+E\+\_\+\+C\+A\+SE(\begin{DoxyParamCaption}\item[{}]{nameelt,  }\item[{}]{aliaselt }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{  char **ap;                                      \(\backslash\)}
+\DoxyCodeLine{  if (! \mbox{\hyperlink{argp-namefrob_8h_a86d79639c62bd27a0e26a1455c66c32d}{\_\_strcasecmp}} (\mbox{\hyperlink{structname}{name}}, \mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}}-\/>nameelt))                   \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{  for (ap = \mbox{\hyperlink{md5test_8c_a0cc269461e52ff88d3e8e2695b03fe8e}{result}}-\/>aliaselt; *ap; ++ap)                    \(\backslash\)}
+\DoxyCodeLine{    if (! \mbox{\hyperlink{argp-namefrob_8h_a86d79639c62bd27a0e26a1455c66c32d}{\_\_strcasecmp}} (\mbox{\hyperlink{structname}{name}}, *ap))                       \(\backslash\)}
+\DoxyCodeLine{      break;                                      \(\backslash\)}
+\DoxyCodeLine{  if (*ap)                                    \(\backslash\)}
+\DoxyCodeLine{    break;                                    \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_aa7c709c5d86b332beef9bcc20657c110}\label{files-parse_8c_aa7c709c5d86b332beef9bcc20657c110}} 
+\index{files-\/parse.c@{files-\/parse.c}!nss\_files\_parse\_hidden\_def@{nss\_files\_parse\_hidden\_def}}
+\index{nss\_files\_parse\_hidden\_def@{nss\_files\_parse\_hidden\_def}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{nss\_files\_parse\_hidden\_def}{nss\_files\_parse\_hidden\_def}}
+{\footnotesize\ttfamily \#define nss\+\_\+files\+\_\+parse\+\_\+hidden\+\_\+def(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}} }\end{DoxyParamCaption})~\mbox{\hyperlink{files-netgrp_8c_acfbaccb3c8ccf53f59f8c44c8b6759c5}{libnss\+\_\+files\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{structname}{name}})}
+
+\mbox{\Hypertarget{files-parse_8c_aa143d938c5b6e9f971f93eb21093b24d}\label{files-parse_8c_aa143d938c5b6e9f971f93eb21093b24d}} 
+\index{files-\/parse.c@{files-\/parse.c}!parse\_line@{parse\_line}}
+\index{parse\_line@{parse\_line}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{parse\_line}{parse\_line}}
+{\footnotesize\ttfamily \#define parse\+\_\+line~\mbox{\hyperlink{files-XXX_8c_a598d802e83545d379037b83265041b07}{C\+O\+N\+C\+AT}}(\+\_\+nss\+\_\+files\+\_\+parse\+\_\+,\mbox{\hyperlink{sgetspent__r_8c_a7949857ebaf8c02ff99ac967f84784fc}{E\+N\+T\+N\+A\+ME}})}
+
+\mbox{\Hypertarget{files-parse_8c_a1c8c4452800dcbb2703bbc4e07250c73}\label{files-parse_8c_a1c8c4452800dcbb2703bbc4e07250c73}} 
+\index{files-\/parse.c@{files-\/parse.c}!parser\_stclass@{parser\_stclass}}
+\index{parser\_stclass@{parser\_stclass}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{parser\_stclass}{parser\_stclass}}
+{\footnotesize\ttfamily \#define parser\+\_\+stclass~/$\ast$ Global $\ast$/}
+
+\mbox{\Hypertarget{files-parse_8c_a09bf102cff6c89a8379f32d330ed0621}\label{files-parse_8c_a09bf102cff6c89a8379f32d330ed0621}} 
+\index{files-\/parse.c@{files-\/parse.c}!STRING\_FIELD@{STRING\_FIELD}}
+\index{STRING\_FIELD@{STRING\_FIELD}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{STRING\_FIELD}{STRING\_FIELD}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+F\+I\+E\+LD(\begin{DoxyParamCaption}\item[{}]{variable,  }\item[{}]{terminator\+\_\+p,  }\item[{}]{swallow }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    variable = line;                                  \(\backslash\)}
+\DoxyCodeLine{    while (*line != \textcolor{charliteral}{'\(\backslash\)0'} \&\& !terminator\_p (*line))                \(\backslash\)}
+\DoxyCodeLine{      ++line;                                     \(\backslash\)}
+\DoxyCodeLine{    if (*line != \textcolor{charliteral}{'\(\backslash\)0'})                                \(\backslash\)}
+\DoxyCodeLine{      \{                                       \(\backslash\)}
+\DoxyCodeLine{    *line = \textcolor{charliteral}{'\(\backslash\)0'};                                 \(\backslash\)}
+\DoxyCodeLine{    do                                    \(\backslash\)}
+\DoxyCodeLine{      ++line;                                 \(\backslash\)}
+\DoxyCodeLine{    while (swallow \&\& terminator\_p (*line));                  \(\backslash\)}
+\DoxyCodeLine{      \}                                       \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_a31d21d836a14710c7f7c4d0515b44630}\label{files-parse_8c_a31d21d836a14710c7f7c4d0515b44630}} 
+\index{files-\/parse.c@{files-\/parse.c}!STRING\_LIST@{STRING\_LIST}}
+\index{STRING\_LIST@{STRING\_LIST}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{STRING\_LIST}{STRING\_LIST}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+\_\+\+L\+I\+ST(\begin{DoxyParamCaption}\item[{}]{variable,  }\item[{}]{terminator\+\_\+c }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                         \(\backslash\)}
+\DoxyCodeLine{    char **\mbox{\hyperlink{structlist}{list}} = parse\_list (\&line, buf\_start, buf\_end, terminator\_c,        \(\backslash\)}
+\DoxyCodeLine{                  errnop);                        \(\backslash\)}
+\DoxyCodeLine{    if (\mbox{\hyperlink{structlist}{list}})                                     \(\backslash\)}
+\DoxyCodeLine{      variable = \mbox{\hyperlink{rpc__util_8h_aa295f649a192b2bcdc06effc2f71dde4}{list}};                                \(\backslash\)}
+\DoxyCodeLine{    else                                      \(\backslash\)}
+\DoxyCodeLine{      return -\/1;        \textcolor{comment}{/* -\/1 indicates we ran out of space.  */}      \(\backslash\)}
+\DoxyCodeLine{                                          \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* Determine the new end of the buffer.  */}                   \(\backslash\)}
+\DoxyCodeLine{    while (*\mbox{\hyperlink{structlist}{list}} != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                             \(\backslash\)}
+\DoxyCodeLine{      ++\mbox{\hyperlink{rpc__util_8h_aa295f649a192b2bcdc06effc2f71dde4}{list}};                                     \(\backslash\)}
+\DoxyCodeLine{    buf\_start = (\textcolor{keywordtype}{char} *) (\mbox{\hyperlink{structlist}{list}} + 1);                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{files-parse_8c_a4ec0ac52733a6c45141d7325c9db83b4}\label{files-parse_8c_a4ec0ac52733a6c45141d7325c9db83b4}} 
+\index{files-\/parse.c@{files-\/parse.c}!STRUCTURE@{STRUCTURE}}
+\index{STRUCTURE@{STRUCTURE}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{STRUCTURE}{STRUCTURE}}
+{\footnotesize\ttfamily \#define S\+T\+R\+U\+C\+T\+U\+RE~\mbox{\hyperlink{sgetspent__r_8c_a7949857ebaf8c02ff99ac967f84784fc}{E\+N\+T\+N\+A\+ME}}}
+
+\mbox{\Hypertarget{files-parse_8c_a404a129bef1b1d2f3b9df51e21640aab}\label{files-parse_8c_a404a129bef1b1d2f3b9df51e21640aab}} 
+\index{files-\/parse.c@{files-\/parse.c}!TRAILING\_LIST\_PARSER@{TRAILING\_LIST\_PARSER}}
+\index{TRAILING\_LIST\_PARSER@{TRAILING\_LIST\_PARSER}!files-\/parse.c@{files-\/parse.c}}
+\doxysubsubsection{\texorpdfstring{TRAILING\_LIST\_PARSER}{TRAILING\_LIST\_PARSER}}
+{\footnotesize\ttfamily \#define T\+R\+A\+I\+L\+I\+N\+G\+\_\+\+L\+I\+S\+T\+\_\+\+P\+A\+R\+S\+ER~/$\ast$ Nothing \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} do.  $\ast$/}
+

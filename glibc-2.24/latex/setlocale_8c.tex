@@ -1,0 +1,191 @@
+\hypertarget{setlocale_8c}{}\doxysection{locale/setlocale.c File Reference}
+\label{setlocale_8c}\index{locale/setlocale.c@{locale/setlocale.c}}
+{\ttfamily \#include $<$alloca.\+h$>$}\newline
+{\ttfamily \#include $<$argz.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$libc-\/lock.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}localeinfo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}categories.\+def\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = \&\+\_\+nl\+\_\+current\+\_\+\#\#\mbox{\hyperlink{structcategory}{category}}\#\#\+\_\+used,
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a6a054ba316481c4ad409e274050757c0}{C\+A\+T\+E\+G\+O\+R\+Y\+\_\+\+U\+S\+ED}}(\mbox{\hyperlink{structcategory}{category}})~(\+\_\+nl\+\_\+current\+\_\+used\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} != 0)
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})~category\+\_\+name,
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = \mbox{\hyperlink{dcigettext_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (union \mbox{\hyperlink{unioncatnamestr__t}{catnamestr\+\_\+t}}, \mbox{\hyperlink{localeinfo_8h_a383bbbf8fdb8f10449051c2b9ccf0915}{C\+A\+T\+N\+A\+M\+E\+MF}} (\+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+)),
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = sizeof (category\+\_\+name) -\/ 1,
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a6d96ea871927c11cf2d52e10f4a6156c}{W\+E\+A\+K\+\_\+\+P\+O\+S\+T\+L\+O\+AD}}(postload)~\mbox{\hyperlink{generic_2ldsodefs_8h_a5d5d8b153a4617f8750a3b47b113b6c4}{weak\+\_\+extern}} (postload)
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a719b831c7273bdfbf9e79660f7a3bac6}{N\+O\+\_\+\+P\+O\+S\+T\+L\+O\+AD}}~\mbox{\hyperlink{localeinfo_8h_a2f4bb76a1edd93514c26a2eb8dfea912}{\+\_\+nl\+\_\+postload\+\_\+ctype}} /$\ast$ Harmless thing known \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} exist.  $\ast$/
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_af9be2ea5f2ae9b31d1c724fdd2612a20}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  postload)~extern \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} postload (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}); \mbox{\hyperlink{setlocale_8c_a6d96ea871927c11cf2d52e10f4a6156c}{W\+E\+A\+K\+\_\+\+P\+O\+S\+T\+L\+O\+AD}} (postload)
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_af9be2ea5f2ae9b31d1c724fdd2612a20}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  postload)~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = postload,
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_ac91445e4ad0b40fc554754bb1aa20317}{E\+R\+R\+O\+R\+\_\+\+R\+E\+T\+U\+RN}}
+\item 
+\#define \mbox{\hyperlink{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}{D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY}}(\mbox{\hyperlink{structcategory}{category}},  category\+\_\+name,  items,  \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{setlocale_8c_a9e42d477da64e561f482417acb1c52d7}{\+\_\+\+\_\+libc\+\_\+rwlock\+\_\+define\+\_\+initialized}} (, \+\_\+\+\_\+libc\+\_\+setlocale\+\_\+lock \mbox{\hyperlink{wcwidth_8h_a0e3a82c1799cd006bfb28832e7499be9}{attribute\+\_\+hidden}}) extern \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{loadmsgcat_8c_ab87860b60e57fa2bc7ecff5dfbf8db4f}{\+\_\+nl\+\_\+msg\+\_\+cat\+\_\+cntr}}
+\item 
+char $\ast$ \mbox{\hyperlink{setlocale_8c_afe784c4f5d12b74272740c5211c960c5}{setlocale}} (\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{structcategory}{category}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strptime_8c_a38008f9ebcd87acfca726e35504b2e8d}{locale}})
+\item 
+\mbox{\hyperlink{setlocale_8c_ab56c1943970484ed7f405cce86e0c740}{libc\+\_\+hidden\+\_\+def}} (\mbox{\hyperlink{setlocale_8c_afe784c4f5d12b74272740c5211c960c5}{setlocale}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{libc-symbols_8h_ab4ee1044cc5139fe8a98fc0830fce245}{\+\_\+\+\_\+libc\+\_\+freeres\+\_\+fn\+\_\+section}} \mbox{\hyperlink{setlocale_8c_a98cd3fdf4099130f898b327edb20defb}{\+\_\+nl\+\_\+locale\+\_\+subfreeres}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} union \mbox{\hyperlink{unioncatnamestr__t}{catnamestr\+\_\+t}} \+\_\+nl\+\_\+category\+\_\+names \mbox{\hyperlink{setlocale_8c_a28c7ef7587f4f7e6cad6d7f95880dde0}{attribute\+\_\+hidden}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{setlocale_8c_a6a054ba316481c4ad409e274050757c0}\label{setlocale_8c_a6a054ba316481c4ad409e274050757c0}} 
+\index{setlocale.c@{setlocale.c}!CATEGORY\_USED@{CATEGORY\_USED}}
+\index{CATEGORY\_USED@{CATEGORY\_USED}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{CATEGORY\_USED}{CATEGORY\_USED}}
+{\footnotesize\ttfamily \#define C\+A\+T\+E\+G\+O\+R\+Y\+\_\+\+U\+S\+ED(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}} }\end{DoxyParamCaption})~(\+\_\+nl\+\_\+current\+\_\+used\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} != 0)}
+
+\mbox{\Hypertarget{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{extern} \textcolor{keywordtype}{char} \_nl\_current\_\#\#\mbox{\hyperlink{structcategory}{category}}\#\#\_used; \(\backslash\)}
+\DoxyCodeLine{    weak\_extern (\_nl\_current\_\#\#\mbox{\hyperlink{structcategory}{category}}\#\#\_used) \(\backslash\)}
+\DoxyCodeLine{    weak\_extern (\_nl\_current\_\#\#\mbox{\hyperlink{structcategory}{category}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = \&\+\_\+nl\+\_\+current\+\_\+\#\#\mbox{\hyperlink{structcategory}{category}}\#\#\+\_\+used,}
+
+\mbox{\Hypertarget{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})~category\+\_\+name,}
+
+\mbox{\Hypertarget{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = \mbox{\hyperlink{dcigettext_8c_a44af933e89b6eb79b41d326f1a346a9b}{offsetof}} (union \mbox{\hyperlink{unioncatnamestr__t}{catnamestr\+\_\+t}}, \mbox{\hyperlink{localeinfo_8h_a383bbbf8fdb8f10449051c2b9ccf0915}{C\+A\+T\+N\+A\+M\+E\+MF}} (\+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+)),}
+
+\mbox{\Hypertarget{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = sizeof (category\+\_\+name) -\/ 1,}
+
+\mbox{\Hypertarget{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}\label{setlocale_8c_a41069bc7887a05a38bc8d6b00b3c5cd0}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{setlocale_8c_a6a054ba316481c4ad409e274050757c0}{CATEGORY\_USED}} (\mbox{\hyperlink{structcategory}{category}}))                            \(\backslash\)}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{      extern \textcolor{keyword}{struct }\mbox{\hyperlink{struct____locale__data}{\_\_locale\_data}} \_nl\_C\_\#\#\mbox{\hyperlink{structcategory}{category}};                  \(\backslash\)}
+\DoxyCodeLine{      weak\_extern (\_nl\_C\_\#\#\mbox{\hyperlink{structcategory}{category}})                          \(\backslash\)}
+\DoxyCodeLine{      free\_category (\mbox{\hyperlink{structcategory}{category}}, *\_nl\_current\_\#\#\mbox{\hyperlink{structcategory}{category}}, \&\_nl\_C\_\#\#\mbox{\hyperlink{structcategory}{category}});   \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{setlocale_8c_af9be2ea5f2ae9b31d1c724fdd2612a20}\label{setlocale_8c_af9be2ea5f2ae9b31d1c724fdd2612a20}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{postload }\end{DoxyParamCaption})~extern \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} postload (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}); \mbox{\hyperlink{setlocale_8c_a6d96ea871927c11cf2d52e10f4a6156c}{W\+E\+A\+K\+\_\+\+P\+O\+S\+T\+L\+O\+AD}} (postload)}
+
+\mbox{\Hypertarget{setlocale_8c_af9be2ea5f2ae9b31d1c724fdd2612a20}\label{setlocale_8c_af9be2ea5f2ae9b31d1c724fdd2612a20}} 
+\index{setlocale.c@{setlocale.c}!DEFINE\_CATEGORY@{DEFINE\_CATEGORY}}
+\index{DEFINE\_CATEGORY@{DEFINE\_CATEGORY}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_CATEGORY}{DEFINE\_CATEGORY}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+A\+T\+E\+G\+O\+RY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structcategory}{category}},  }\item[{}]{category\+\_\+name,  }\item[{}]{items,  }\item[{}]{postload }\end{DoxyParamCaption})~\mbox{[}\mbox{\hyperlink{structcategory}{category}}\mbox{]} = postload,}
+
+\mbox{\Hypertarget{setlocale_8c_ac91445e4ad0b40fc554754bb1aa20317}\label{setlocale_8c_ac91445e4ad0b40fc554754bb1aa20317}} 
+\index{setlocale.c@{setlocale.c}!ERROR\_RETURN@{ERROR\_RETURN}}
+\index{ERROR\_RETURN@{ERROR\_RETURN}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{ERROR\_RETURN}{ERROR\_RETURN}}
+{\footnotesize\ttfamily \#define E\+R\+R\+O\+R\+\_\+\+R\+E\+T\+U\+RN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    \_\_set\_errno (EINVAL);                             \(\backslash\)}
+\DoxyCodeLine{    return \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}};                                  \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{setlocale_8c_a719b831c7273bdfbf9e79660f7a3bac6}\label{setlocale_8c_a719b831c7273bdfbf9e79660f7a3bac6}} 
+\index{setlocale.c@{setlocale.c}!NO\_POSTLOAD@{NO\_POSTLOAD}}
+\index{NO\_POSTLOAD@{NO\_POSTLOAD}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{NO\_POSTLOAD}{NO\_POSTLOAD}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+P\+O\+S\+T\+L\+O\+AD~\mbox{\hyperlink{localeinfo_8h_a2f4bb76a1edd93514c26a2eb8dfea912}{\+\_\+nl\+\_\+postload\+\_\+ctype}} /$\ast$ Harmless thing known \mbox{\hyperlink{big5hkscs_8c_a6b12453755df83a8ad128072c21009eb}{to}} exist.  $\ast$/}
+
+\mbox{\Hypertarget{setlocale_8c_a6d96ea871927c11cf2d52e10f4a6156c}\label{setlocale_8c_a6d96ea871927c11cf2d52e10f4a6156c}} 
+\index{setlocale.c@{setlocale.c}!WEAK\_POSTLOAD@{WEAK\_POSTLOAD}}
+\index{WEAK\_POSTLOAD@{WEAK\_POSTLOAD}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{WEAK\_POSTLOAD}{WEAK\_POSTLOAD}}
+{\footnotesize\ttfamily \#define W\+E\+A\+K\+\_\+\+P\+O\+S\+T\+L\+O\+AD(\begin{DoxyParamCaption}\item[{}]{postload }\end{DoxyParamCaption})~\mbox{\hyperlink{generic_2ldsodefs_8h_a5d5d8b153a4617f8750a3b47b113b6c4}{weak\+\_\+extern}} (postload)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{setlocale_8c_a9e42d477da64e561f482417acb1c52d7}\label{setlocale_8c_a9e42d477da64e561f482417acb1c52d7}} 
+\index{setlocale.c@{setlocale.c}!\_\_libc\_rwlock\_define\_initialized@{\_\_libc\_rwlock\_define\_initialized}}
+\index{\_\_libc\_rwlock\_define\_initialized@{\_\_libc\_rwlock\_define\_initialized}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{\_\_libc\_rwlock\_define\_initialized()}{\_\_libc\_rwlock\_define\_initialized()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+libc\+\_\+rwlock\+\_\+define\+\_\+initialized (\begin{DoxyParamCaption}\item[{\+\_\+\+\_\+libc\+\_\+setlocale\+\_\+lock}]{attribute\+\_\+hidden }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{setlocale_8c_a98cd3fdf4099130f898b327edb20defb}\label{setlocale_8c_a98cd3fdf4099130f898b327edb20defb}} 
+\index{setlocale.c@{setlocale.c}!\_nl\_locale\_subfreeres@{\_nl\_locale\_subfreeres}}
+\index{\_nl\_locale\_subfreeres@{\_nl\_locale\_subfreeres}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{\_nl\_locale\_subfreeres()}{\_nl\_locale\_subfreeres()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{libc-symbols_8h_ab4ee1044cc5139fe8a98fc0830fce245}{\+\_\+\+\_\+libc\+\_\+freeres\+\_\+fn\+\_\+section}} \+\_\+nl\+\_\+locale\+\_\+subfreeres (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{setlocale_8c_ab56c1943970484ed7f405cce86e0c740}\label{setlocale_8c_ab56c1943970484ed7f405cce86e0c740}} 
+\index{setlocale.c@{setlocale.c}!libc\_hidden\_def@{libc\_hidden\_def}}
+\index{libc\_hidden\_def@{libc\_hidden\_def}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{libc\_hidden\_def()}{libc\_hidden\_def()}}
+{\footnotesize\ttfamily libc\+\_\+hidden\+\_\+def (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{setlocale_8c_afe784c4f5d12b74272740c5211c960c5}{setlocale}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{setlocale_8c_afe784c4f5d12b74272740c5211c960c5}\label{setlocale_8c_afe784c4f5d12b74272740c5211c960c5}} 
+\index{setlocale.c@{setlocale.c}!setlocale@{setlocale}}
+\index{setlocale@{setlocale}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{setlocale()}{setlocale()}}
+{\footnotesize\ttfamily char$\ast$ setlocale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}}]{category,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{locale }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{setlocale_8c_a28c7ef7587f4f7e6cad6d7f95880dde0}\label{setlocale_8c_a28c7ef7587f4f7e6cad6d7f95880dde0}} 
+\index{setlocale.c@{setlocale.c}!attribute\_hidden@{attribute\_hidden}}
+\index{attribute\_hidden@{attribute\_hidden}!setlocale.c@{setlocale.c}}
+\doxysubsubsection{\texorpdfstring{attribute\_hidden}{attribute\_hidden}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \+\_\+nl\+\_\+category\+\_\+name\+\_\+sizes \mbox{[}$\,$\mbox{]} attribute\+\_\+hidden}
+

@@ -1,0 +1,48 @@
+\hypertarget{fnmatch__loop_8c}{}\doxysection{posix/fnmatch\+\_\+loop.c File Reference}
+\label{fnmatch__loop_8c}\index{posix/fnmatch\_loop.c@{posix/fnmatch\_loop.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSTRUCT}{S\+T\+R\+U\+CT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fnmatch__loop_8c_ae15f37865cd0be7ea895ffa8a061a4b3}{N\+E\+W\+\_\+\+P\+A\+T\+T\+E\+RN}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{fnmatch__loop_8c_ae15f37865cd0be7ea895ffa8a061a4b3}\label{fnmatch__loop_8c_ae15f37865cd0be7ea895ffa8a061a4b3}} 
+\index{fnmatch\_loop.c@{fnmatch\_loop.c}!NEW\_PATTERN@{NEW\_PATTERN}}
+\index{NEW\_PATTERN@{NEW\_PATTERN}!fnmatch\_loop.c@{fnmatch\_loop.c}}
+\doxysubsubsection{\texorpdfstring{NEW\_PATTERN}{NEW\_PATTERN}}
+{\footnotesize\ttfamily \#define N\+E\+W\+\_\+\+P\+A\+T\+T\+E\+RN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }patternlist *\mbox{\hyperlink{inet6__option_8c_a36a34ef96de1b196ba26f506976d3235}{newp}};                         \(\backslash\)}
+\DoxyCodeLine{        size\_t slen = (opt == \mbox{\hyperlink{bench-strcmp_8c_a16da33c4777d0dc8de955b3e28b483eb}{L}}(\textcolor{charliteral}{'?'}) || opt == \mbox{\hyperlink{bench-strcmp_8c_a16da33c4777d0dc8de955b3e28b483eb}{L}}(\textcolor{charliteral}{'@'})           \(\backslash\)}
+\DoxyCodeLine{               ? pattern\_len : (\mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} -\/ startp + 1));            \(\backslash\)}
+\DoxyCodeLine{        slen = \textcolor{keyword}{sizeof} (\textcolor{keyword}{struct }patternlist) + (slen * \textcolor{keyword}{sizeof} (\mbox{\hyperlink{bench-memchr_8c_a35cd67ba7bb0db8105eb6267467535d7}{CHAR}}));      \(\backslash\)}
+\DoxyCodeLine{        int malloced = ! \mbox{\hyperlink{gai_8c_a41fafd04d89abc981cb80308dacd470e}{\_\_libc\_use\_alloca}} (alloca\_used + slen);         \(\backslash\)}
+\DoxyCodeLine{        if (\mbox{\hyperlink{gettextP_8h_a2a2cf4a629132aed16f845d4d1bffd95}{\_\_builtin\_expect}} (malloced, 0))                   \(\backslash\)}
+\DoxyCodeLine{          \{                                   \(\backslash\)}
+\DoxyCodeLine{        newp = \mbox{\hyperlink{hurdmalloc_8h_acf143577800376dd931c059ecc61ba06}{malloc}} (slen);                       \(\backslash\)}
+\DoxyCodeLine{        if (\mbox{\hyperlink{inet6__option_8c_a36a34ef96de1b196ba26f506976d3235}{newp}} == \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}})                         \(\backslash\)}
+\DoxyCodeLine{          \{                               \(\backslash\)}
+\DoxyCodeLine{            retval = -\/2;                          \(\backslash\)}
+\DoxyCodeLine{            goto \mbox{\hyperlink{test-canon_8c_a9ac556f1c36efc1f215fad77bb81c5bf}{out}};                              \(\backslash\)}
+\DoxyCodeLine{          \}                               \(\backslash\)}
+\DoxyCodeLine{        any\_malloced = 1;                         \(\backslash\)}
+\DoxyCodeLine{          \}                                   \(\backslash\)}
+\DoxyCodeLine{        else                                  \(\backslash\)}
+\DoxyCodeLine{          newp = \mbox{\hyperlink{include_2alloca_8h_a9ba48c2569506942360e9ca4e2bbeaec}{alloca\_account}} (slen, alloca\_used);            \(\backslash\)}
+\DoxyCodeLine{        newp-\/>next = \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}};                            \(\backslash\)}
+\DoxyCodeLine{        newp-\/>malloced = malloced;                        \(\backslash\)}
+\DoxyCodeLine{        *((\mbox{\hyperlink{bench-memchr_8c_a35cd67ba7bb0db8105eb6267467535d7}{CHAR}} *) \mbox{\hyperlink{string_2mempcpy_8c_a0271e06dd556b55fe4cf726cc5ed86dc}{MEMPCPY}} (\mbox{\hyperlink{inet6__option_8c_a36a34ef96de1b196ba26f506976d3235}{newp}}-\/>str, startp, \mbox{\hyperlink{tst-chk1_8c_aa936c93f90470f225a12d4861e33a205}{p}} -\/ startp)) = \mbox{\hyperlink{bench-strcmp_8c_a16da33c4777d0dc8de955b3e28b483eb}{L}}(\textcolor{charliteral}{'\(\backslash\)0'});    \(\backslash\)}
+\DoxyCodeLine{        *lastp = \mbox{\hyperlink{inet6__option_8c_a36a34ef96de1b196ba26f506976d3235}{newp}};                            \(\backslash\)}
+\DoxyCodeLine{        lastp = \&\mbox{\hyperlink{inet6__option_8c_a36a34ef96de1b196ba26f506976d3235}{newp}}-\/>next}
+
+\end{DoxyCode}

@@ -1,0 +1,93 @@
+
+;; Function _longjmp_unwind (_longjmp_unwind, funcdef_no=33, decl_uid=1868, cgraph_uid=33, symbol_order=36)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+deleting block 5
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 91 [ env ])
+        (reg:DI 5 di [ env ])) ../sysdeps/nptl/jmp-unwind.c:29 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 92 [ val ])
+        (reg:SI 4 si [ val ])) ../sysdeps/nptl/jmp-unwind.c:29 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (symbol_ref:DI ("__libc_pthread_functions_init") [flags 0x42]  <var_decl 0x2af843829360 __libc_pthread_functions_init>) [1 __libc_pthread_functions_init+0 S4 A32])
+            (const_int 0 [0]))) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 21)
+            (pc))) ../sysdeps/nptl/jmp-unwind.c:30 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 21)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg/f:DI 93)
+        (symbol_ref:DI ("__libc_pthread_functions") [flags 0x42]  <var_decl 0x2af8438292d0 __libc_pthread_functions>)) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(insn 11 10 12 4 (set (reg/v/f:DI 88 [ __p ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 93)
+                (const_int 304 [0x130])) [3 __libc_pthread_functions.ptr___pthread_cleanup_upto+0 S8 A64])) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(insn 12 11 13 4 (parallel [
+            (set (reg:DI 94 [ __p ])
+                (asm_operands:DI ("ror $2*8+1, %0
+xor %%fs:%c2, %0") ("=r") 0 [
+                        (reg/v/f:DI 88 [ __p ])
+                        (const_int 48 [0x30])
+                    ]
+                     [
+                        (asm_input:DI ("0") ../sysdeps/nptl/jmp-unwind.c:30)
+                        (asm_input:DI ("i") ../sysdeps/nptl/jmp-unwind.c:30)
+                    ]
+                     [] ../sysdeps/nptl/jmp-unwind.c:30))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(insn 13 12 14 4 (set (reg/v/f:DI 88 [ __p ])
+        (reg:DI 94 [ __p ])) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(insn 14 13 15 4 (set (reg/f:DI 89 [ D.7411 ])
+        (reg/v:DI 7 sp [ frame ])) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:DI 4 si)
+        (reg/f:DI 89 [ D.7411 ])) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ env ])) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (nil))
+(call_insn/j 17 16 18 4 (call (mem:QI (reg/v/f:DI 88 [ __p ]) [0 *__p_5 S1 A8])
+        (const_int 0 [0])) ../sysdeps/nptl/jmp-unwind.c:30 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(barrier 18 17 21)
+(code_label 21 18 22 6 1 "" [1 uses])
+(note 22 21 0 6 [bb 6] NOTE_INSN_BASIC_BLOCK)

@@ -1,0 +1,85 @@
+
+;; Function __default_morecore (*__GI___default_morecore, funcdef_no=35, decl_uid=2825, cgraph_uid=35, symbol_order=38)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 17.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v:DI 90 [ increment ])
+        (reg:DI 5 di [ increment ])) morecore.c:46 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:DI 5 di)
+        (reg/v:DI 90 [ increment ])) morecore.c:47 -1
+     (nil))
+(call_insn 9 8 10 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__GI___sbrk") [flags 0x43]  <function_decl 0x2ae1ee0631b0 __sbrk>) [0 __sbrk S1 A8])
+            (const_int 0 [0]))) morecore.c:47 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___sbrk") [flags 0x43]  <function_decl 0x2ae1ee0631b0 __sbrk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg/v/f:DI 88 [ result ])
+        (reg:DI 0 ax)) morecore.c:47 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ result ])
+            (const_int -1 [0xffffffffffffffff]))) morecore.c:48 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 26)
+            (pc))) morecore.c:48 612 {*jcc_1}
+     (int_list:REG_BR_PROB 192 (nil))
+ -> 26)
+(note 13 12 5 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 5 13 23 4 (set (reg/f:DI 87 [ D.4462 ])
+        (reg/v/f:DI 88 [ result ])) morecore.c:48 -1
+     (nil))
+(jump_insn 23 5 24 4 (set (pc)
+        (label_ref 14)) -1
+     (nil)
+ -> 14)
+(barrier 24 23 26)
+(code_label 26 24 25 5 3 "" [1 uses])
+(note 25 26 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 25 14 5 (set (reg/f:DI 87 [ D.4462 ])
+        (const_int 0 [0])) morecore.c:49 -1
+     (nil))
+(code_label 14 4 15 6 2 "" [1 uses])
+(note 15 14 16 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 20 6 (set (reg:DI 89 [ <retval> ])
+        (reg/f:DI 87 [ D.4462 ])) -1
+     (nil))
+(insn 20 16 21 6 (set (reg/i:DI 0 ax)
+        (reg:DI 89 [ <retval> ])) morecore.c:52 -1
+     (nil))
+(insn 21 20 0 6 (use (reg/i:DI 0 ax)) morecore.c:52 -1
+     (nil))

@@ -1,0 +1,68 @@
+
+;; Function lldiv (lldiv, funcdef_no=23, decl_uid=2780, cgraph_uid=23, symbol_order=26)
+
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 12.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:DI 91 [ numer ])
+        (reg:DI 5 di [ numer ])) lldiv.c:25 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 92 [ denom ])
+        (reg:DI 4 si [ denom ])) lldiv.c:25 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (parallel [
+            (set (reg:DI 94 [ D.3482 ])
+                (div:DI (reg/v:DI 91 [ numer ])
+                    (reg/v:DI 92 [ denom ])))
+            (set (reg:DI 95)
+                (mod:DI (reg/v:DI 91 [ numer ])
+                    (reg/v:DI 92 [ denom ])))
+            (clobber (reg:CC 17 flags))
+        ]) lldiv.c:31 -1
+     (nil))
+(insn 8 7 9 2 (set (subreg:DI (reg:TI 89 [ D.3473 ]) 0)
+        (reg:DI 94 [ D.3482 ])) lldiv.c:31 -1
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg:DI 98)
+                (div:DI (reg/v:DI 91 [ numer ])
+                    (reg/v:DI 92 [ denom ])))
+            (set (reg:DI 97 [ D.3482 ])
+                (mod:DI (reg/v:DI 91 [ numer ])
+                    (reg/v:DI 92 [ denom ])))
+            (clobber (reg:CC 17 flags))
+        ]) lldiv.c:31 -1
+     (nil))
+(insn 10 9 11 2 (set (subreg:DI (reg:TI 89 [ D.3473 ]) 8)
+        (reg:DI 97 [ D.3482 ])) lldiv.c:31 -1
+     (nil))
+(insn 11 10 15 2 (set (reg:TI 90 [ <retval> ])
+        (reg:TI 89 [ D.3473 ])) lldiv.c:31 -1
+     (nil))
+(insn 15 11 16 2 (set (reg/i:TI 0 ax)
+        (reg:TI 90 [ <retval> ])) lldiv.c:32 -1
+     (nil))
+(insn 16 15 0 2 (use (reg/i:TI 0 ax)) lldiv.c:32 -1
+     (nil))

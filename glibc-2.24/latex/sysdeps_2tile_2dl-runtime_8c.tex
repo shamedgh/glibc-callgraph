@@ -1,0 +1,80 @@
+\hypertarget{sysdeps_2tile_2dl-runtime_8c}{}\doxysection{sysdeps/tile/dl-\/runtime.c File Reference}
+\label{sysdeps_2tile_2dl-runtime_8c}\index{sysdeps/tile/dl-\/runtime.c@{sysdeps/tile/dl-\/runtime.c}}
+{\ttfamily \#include $<$elf/dl-\/runtime.\+c$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$arch/sim.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/unmap-\/segments.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sysdeps_2tile_2dl-runtime_8c_ab2d1a3ecd255ca2ce5999e212b0e3c4f}{reloc\+\_\+offset}}~reloc\+\_\+arg $\ast$ sizeof (\mbox{\hyperlink{elf_2dl-runtime_8c_a2e8c0dc71321228b0da1671af6b237ef}{P\+L\+T\+R\+EL}})
+\item 
+\#define \mbox{\hyperlink{sysdeps_2tile_2dl-runtime_8c_aa194f34bb99dfb22bccdc2486c87719a}{reloc\+\_\+index}}~reloc\+\_\+arg
+\item 
+\#define \mbox{\hyperlink{sysdeps_2tile_2dl-runtime_8c_a5ce6140c89b1c0ae7218461699113360}{D\+L\+P\+U\+TC}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}})
+\item 
+\#define \mbox{\hyperlink{sysdeps_2tile_2dl-runtime_8c_a5ce6140c89b1c0ae7218461699113360}{D\+L\+P\+U\+TC}}(\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{sysdeps_2tile_2dl-runtime_8c_a0fa58f567f11a2c9895155336d48b289}{\+\_\+dl\+\_\+after\+\_\+load}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$l)
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{sysdeps_2tile_2dl-runtime_8c_a1c74651d002734948482dde94d7da3ad}{\+\_\+dl\+\_\+unmap}} (struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$\mbox{\hyperlink{structmap}{map}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sysdeps_2tile_2dl-runtime_8c_a5ce6140c89b1c0ae7218461699113360}\label{sysdeps_2tile_2dl-runtime_8c_a5ce6140c89b1c0ae7218461699113360}} 
+\index{dl-\/runtime.c@{dl-\/runtime.c}!DLPUTC@{DLPUTC}}
+\index{DLPUTC@{DLPUTC}!dl-\/runtime.c@{dl-\/runtime.c}}
+\doxysubsubsection{\texorpdfstring{DLPUTC}{DLPUTC}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define D\+L\+P\+U\+TC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_\_insn\_mtspr (SPR\_SIM\_CONTROL,                         \(\backslash\)}
+\DoxyCodeLine{                                (SIM\_CONTROL\_DLOPEN                      \(\backslash\)}
+\DoxyCodeLine{                                 | ((c) << \_SIM\_CONTROL\_OPERATOR\_BITS)))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sysdeps_2tile_2dl-runtime_8c_a5ce6140c89b1c0ae7218461699113360}\label{sysdeps_2tile_2dl-runtime_8c_a5ce6140c89b1c0ae7218461699113360}} 
+\index{dl-\/runtime.c@{dl-\/runtime.c}!DLPUTC@{DLPUTC}}
+\index{DLPUTC@{DLPUTC}!dl-\/runtime.c@{dl-\/runtime.c}}
+\doxysubsubsection{\texorpdfstring{DLPUTC}{DLPUTC}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define D\+L\+P\+U\+TC(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_\_insn\_mtspr (SPR\_SIM\_CONTROL,                         \(\backslash\)}
+\DoxyCodeLine{                                (SIM\_CONTROL\_DLCLOSE                     \(\backslash\)}
+\DoxyCodeLine{                                 | ((c) << \_SIM\_CONTROL\_OPERATOR\_BITS)))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sysdeps_2tile_2dl-runtime_8c_aa194f34bb99dfb22bccdc2486c87719a}\label{sysdeps_2tile_2dl-runtime_8c_aa194f34bb99dfb22bccdc2486c87719a}} 
+\index{dl-\/runtime.c@{dl-\/runtime.c}!reloc\_index@{reloc\_index}}
+\index{reloc\_index@{reloc\_index}!dl-\/runtime.c@{dl-\/runtime.c}}
+\doxysubsubsection{\texorpdfstring{reloc\_index}{reloc\_index}}
+{\footnotesize\ttfamily \#define reloc\+\_\+index~reloc\+\_\+arg}
+
+\mbox{\Hypertarget{sysdeps_2tile_2dl-runtime_8c_ab2d1a3ecd255ca2ce5999e212b0e3c4f}\label{sysdeps_2tile_2dl-runtime_8c_ab2d1a3ecd255ca2ce5999e212b0e3c4f}} 
+\index{dl-\/runtime.c@{dl-\/runtime.c}!reloc\_offset@{reloc\_offset}}
+\index{reloc\_offset@{reloc\_offset}!dl-\/runtime.c@{dl-\/runtime.c}}
+\doxysubsubsection{\texorpdfstring{reloc\_offset}{reloc\_offset}}
+{\footnotesize\ttfamily \#define reloc\+\_\+offset~reloc\+\_\+arg $\ast$ sizeof (\mbox{\hyperlink{elf_2dl-runtime_8c_a2e8c0dc71321228b0da1671af6b237ef}{P\+L\+T\+R\+EL}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sysdeps_2tile_2dl-runtime_8c_a0fa58f567f11a2c9895155336d48b289}\label{sysdeps_2tile_2dl-runtime_8c_a0fa58f567f11a2c9895155336d48b289}} 
+\index{dl-\/runtime.c@{dl-\/runtime.c}!\_dl\_after\_load@{\_dl\_after\_load}}
+\index{\_dl\_after\_load@{\_dl\_after\_load}!dl-\/runtime.c@{dl-\/runtime.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_after\_load()}{\_dl\_after\_load()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+after\+\_\+load (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sysdeps_2tile_2dl-runtime_8c_a1c74651d002734948482dde94d7da3ad}\label{sysdeps_2tile_2dl-runtime_8c_a1c74651d002734948482dde94d7da3ad}} 
+\index{dl-\/runtime.c@{dl-\/runtime.c}!\_dl\_unmap@{\_dl\_unmap}}
+\index{\_dl\_unmap@{\_dl\_unmap}!dl-\/runtime.c@{dl-\/runtime.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_unmap()}{\_dl\_unmap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+unmap (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlink__map}{link\+\_\+map}} $\ast$}]{map }\end{DoxyParamCaption})}
+

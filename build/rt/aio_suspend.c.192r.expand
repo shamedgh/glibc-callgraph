@@ -1,0 +1,1723 @@
+
+;; Function do_aio_misc_wait (do_aio_misc_wait, funcdef_no=70, decl_uid=9017, cgraph_uid=70, symbol_order=71)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+Edge 2->14 redirected to 21
+Edge 7->13 redirected to 22
+Edge 10->13 redirected to 23
+Edge 11->13 redirected to 24
+Purged edges from bb 27
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 8->9 to 13 failed.
+Forwarding edge 11->12 to 16 failed.
+Forwarding edge 14->15 to 26 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 8->9 to 13 failed.
+Forwarding edge 11->12 to 16 failed.
+Forwarding edge 14->15 to 26 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 100 [ cntr ])
+        (reg:DI 5 di [ cntr ])) ../sysdeps/pthread/aio_suspend.c:98 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 101 [ timeout ])
+        (reg:DI 4 si [ timeout ])) ../sysdeps/pthread/aio_suspend.c:98 -1
+     (nil))
+(note 4 3 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 4 14 2 (set (reg/v:SI 88 [ oldval ])
+        (mem:SI (reg/v/f:DI 100 [ cntr ]) [3 *cntr_6(D)+0 S4 A32])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 88 [ oldval ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 119)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 612 {*jcc_1}
+     (int_list:REG_BR_PROB 6102 (nil))
+ -> 119)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 4 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2b7dc2728ab0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(call_insn 18 17 19 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2b7dc24f1bd0 pthread_mutex_unlock>) [0 pthread_mutex_unlock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2b7dc24f1bd0 pthread_mutex_unlock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(call_insn 19 18 20 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__librt_enable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2640438 __librt_enable_asynccancel>) [0 __librt_enable_asynccancel S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__librt_enable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2640438 __librt_enable_asynccancel>)
+        (nil))
+    (nil))
+(insn 20 19 21 4 (set (reg/v:SI 89 [ oldtype ])
+        (reg:SI 0 ax)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:DI 93 [ D.9232 ])
+        (reg/v/f:DI 101 [ timeout ])) -1
+     (nil))
+(insn 22 21 64 4 (set (reg:DI 96 [ D.9232 ])
+        (reg/v/f:DI 100 [ cntr ])) -1
+     (nil))
+(code_label 64 22 23 5 9 "" [1 uses])
+(note 23 64 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (set (reg/v:DI 39 r10 [ _a4 ])
+        (reg:DI 93 [ D.9232 ])) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 25 24 26 5 (set (reg/v:DI 1 dx [ _a3 ])
+        (zero_extend:DI (reg/v:SI 88 [ oldval ]))) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 26 25 27 5 (set (reg/v:DI 4 si [ _a2 ])
+        (const_int 128 [0x80])) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 27 26 28 5 (set (reg/v:DI 5 di [ _a1 ])
+        (reg:DI 96 [ D.9232 ])) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 28 27 29 5 (set (reg:SI 103)
+        (const_int 202 [0xca])) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 29 28 30 5 (parallel [
+            (set (reg:DI 102 [ resultvar ])
+                (asm_operands/v:DI ("syscall
+	") ("=a") 0 [
+                        (reg:SI 103)
+                        (reg/v:DI 5 di [ _a1 ])
+                        (reg/v:DI 4 si [ _a2 ])
+                        (reg/v:DI 1 dx [ _a3 ])
+                        (reg/v:DI 39 r10 [ _a4 ])
+                    ]
+                     [
+                        (asm_input:SI ("0") ../sysdeps/unix/sysv/linux/futex-internal.h:114)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:114)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:114)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:114)
+                        (asm_input:DI ("r") ../sysdeps/unix/sysv/linux/futex-internal.h:114)
+                    ]
+                     [] ../sysdeps/unix/sysv/linux/futex-internal.h:114))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 40 r11))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 30 29 31 5 (set (reg/v:DI 92 [ resultvar ])
+        (reg:DI 102 [ resultvar ])) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 92 [ resultvar ])
+            (const_int -4096 [0xfffffffffffff000]))) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(jump_insn 32 31 33 5 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 105)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 105)
+(note 33 32 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 6 (set (reg/v:SI 95 [ err ])
+        (subreg:SI (reg/v:DI 92 [ resultvar ]) 0)) ../sysdeps/unix/sysv/linux/futex-internal.h:114 -1
+     (nil))
+(insn 35 34 36 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ err ])
+            (const_int -11 [0xfffffffffffffff5]))) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (nil))
+(jump_insn 36 35 130 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (int_list:REG_BR_PROB 3320 (nil))
+ -> 43)
+(note 130 36 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 37 130 38 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ err ])
+            (const_int -4 [0xfffffffffffffffc]))) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (nil))
+(jump_insn 38 37 131 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (int_list:REG_BR_PROB 4970 (nil))
+ -> 43)
+(note 131 38 39 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 39 131 40 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 95 [ err ])
+            (const_int -110 [0xffffffffffffff92]))) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (nil))
+(jump_insn 40 39 132 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (int_list:REG_BR_PROB 4970 (nil))
+ -> 43)
+(note 132 40 41 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 41 132 42 9 (set (pc)
+        (label_ref 56)) ../sysdeps/unix/sysv/linux/futex-internal.h:115 -1
+     (nil)
+ -> 56)
+(barrier 42 41 43)
+(code_label 43 42 44 10 5 "" [3 uses])
+(note 44 43 45 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 10 (parallel [
+            (set (reg:SI 90 [ D.9231 ])
+                (neg:SI (reg/v:SI 95 [ err ])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/unix/sysv/linux/futex-internal.h:121 -1
+     (nil))
+(insn 46 45 47 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.9231 ])
+            (const_int 11 [0xb]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 47 46 48 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 61)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 61)
+(note 48 47 49 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 11 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ oldtype ])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(call_insn 50 49 51 11 (call (mem:QI (symbol_ref:DI ("__librt_disable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2647000 __librt_disable_asynccancel>) [0 __librt_disable_asynccancel S1 A8])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__librt_disable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2647000 __librt_disable_asynccancel>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 51 50 52 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.9231 ])
+            (const_int 4 [0x4]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 52 51 55 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 121)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3619 (nil))
+ -> 121)
+(note 55 52 53 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 53 55 54 12 (set (pc)
+        (label_ref 70)) -1
+     (nil)
+ -> 70)
+(barrier 54 53 56)
+(code_label 56 54 57 13 4 "" [1 uses])
+(note 57 56 58 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 13 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x2b7dc276d120 *.LC0>)) ../sysdeps/nptl/futex-internal.h:200 -1
+     (nil))
+(call_insn 59 58 60 13 (call (mem:QI (symbol_ref:DI ("__libc_fatal") [flags 0x41]  <function_decl 0x2b7dc26fa288 __libc_fatal>) [0 __libc_fatal S1 A8])
+        (const_int 0 [0])) ../sysdeps/nptl/futex-internal.h:200 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__libc_fatal") [flags 0x41]  <function_decl 0x2b7dc26fa288 __libc_fatal>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 60 59 61)
+(code_label 61 60 62 14 6 "" [1 uses])
+(note 62 61 63 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 65 14 (set (reg/v:SI 88 [ oldval ])
+        (mem/v:SI (reg/v/f:DI 100 [ cntr ]) [3 MEM[(volatile unsigned int *)cntr_6(D)]+0 S4 A32])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 65 63 66 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 88 [ oldval ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 66 65 69 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 64)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (int_list:REG_BR_PROB 9700 (nil))
+ -> 64)
+(note 69 66 67 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 67 69 68 15 (set (pc)
+        (label_ref 99)) -1
+     (nil)
+ -> 99)
+(barrier 68 67 70)
+(code_label 70 68 71 16 8 "" [1 uses])
+(note 71 70 72 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 73 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.9231 ])
+            (const_int 110 [0x6e]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 73 72 109 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 125)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 612 {*jcc_1}
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 125)
+(code_label 109 73 74 17 11 "" [1 uses])
+(note 74 109 75 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.9231 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 76 75 77 17 (set (reg:QI 105 [ D.9233 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 77 76 78 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 105 [ D.9233 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 78 77 133 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 612 {*jcc_1}
+     (int_list:REG_BR_PROB 4990 (nil))
+ -> 129)
+(note 133 78 79 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 79 133 80 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.9231 ])
+            (const_int 11 [0xb]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 80 79 81 18 (set (reg:QI 107 [ D.9233 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 81 80 82 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 107 [ D.9233 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 82 81 83 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:101 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9960 (nil))
+ -> 129)
+(note 83 82 84 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 84 83 85 19 (set (reg:DI 2 cx)
+        (symbol_ref:DI ("__PRETTY_FUNCTION__.9026") [flags 0x2]  <var_decl 0x2b7dc2747480 __PRETTY_FUNCTION__>)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 85 84 86 19 (set (reg:SI 1 dx)
+        (const_int 101 [0x65])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 86 85 87 19 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b7dc276d510 *.LC1>)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(insn 87 86 88 19 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b7dc27a0000 *.LC2>)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(call_insn 88 87 89 19 (call (mem:QI (symbol_ref:DI ("__assert_fail") [flags 0x41]  <function_decl 0x2b7dc22dbca8 __assert_fail>) [0 __assert_fail S1 A8])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__assert_fail") [flags 0x41]  <function_decl 0x2b7dc22dbca8 __assert_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(barrier 89 88 121)
+(code_label 121 89 120 20 13 "" [1 uses])
+(note 120 121 6 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 6 120 122 20 (set (reg/v:SI 87 [ result ])
+        (const_int 4 [0x4])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 122 6 123 20 (set (pc)
+        (label_ref 90)) -1
+     (nil)
+ -> 90)
+(barrier 123 122 125)
+(code_label 125 123 124 21 14 "" [1 uses])
+(note 124 125 7 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 7 124 126 21 (set (reg/v:SI 87 [ result ])
+        (const_int 11 [0xb])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(jump_insn 126 7 127 21 (set (pc)
+        (label_ref 90)) -1
+     (nil)
+ -> 90)
+(barrier 127 126 129)
+(code_label 129 127 128 22 15 "" [2 uses])
+(note 128 129 8 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 8 128 90 22 (set (reg/v:SI 87 [ result ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:99 -1
+     (nil))
+(code_label 90 8 91 23 7 "" [3 uses])
+(note 91 90 92 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 92 91 93 23 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2b7dc2728ab0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(call_insn 93 92 116 23 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2b7dc24f1a20 pthread_mutex_lock>) [0 pthread_mutex_lock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2b7dc24f1a20 pthread_mutex_lock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 116 93 117 23 (set (pc)
+        (label_ref 94)) -1
+     (nil)
+ -> 94)
+(barrier 117 116 119)
+(code_label 119 117 118 24 12 "" [1 uses])
+(note 118 119 10 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 10 118 94 24 (set (reg/v:SI 87 [ result ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:99 -1
+     (nil))
+(code_label 94 10 95 25 2 "" [1 uses])
+(note 95 94 96 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 96 95 97 25 (set (reg:SI 99 [ <retval> ])
+        (reg/v:SI 87 [ result ])) ../sysdeps/pthread/aio_suspend.c:103 -1
+     (nil))
+(jump_insn 97 96 98 25 (set (pc)
+        (label_ref 112)) ../sysdeps/pthread/aio_suspend.c:103 -1
+     (nil)
+ -> 112)
+(barrier 98 97 99)
+(code_label 99 98 100 26 10 "" [1 uses])
+(note 100 99 101 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 101 100 102 26 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ oldtype ])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(call_insn 102 101 9 26 (call (mem:QI (symbol_ref:DI ("__librt_disable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2647000 __librt_disable_asynccancel>) [0 __librt_disable_asynccancel S1 A8])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__librt_disable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2647000 __librt_disable_asynccancel>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 9 102 103 26 (set (reg/v:SI 87 [ result ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:99 -1
+     (nil))
+(jump_insn 103 9 104 26 (set (pc)
+        (label_ref 90)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil)
+ -> 90)
+(barrier 104 103 105)
+(code_label 105 104 106 27 3 "" [1 uses])
+(note 106 105 107 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 27 (set (reg:SI 5 di)
+        (reg/v:SI 89 [ oldtype ])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil))
+(call_insn 108 107 5 27 (call (mem:QI (symbol_ref:DI ("__librt_disable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2647000 __librt_disable_asynccancel>) [0 __librt_disable_asynccancel S1 A8])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__librt_disable_asynccancel") [flags 0x43]  <function_decl 0x2b7dc2647000 __librt_disable_asynccancel>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 5 108 110 27 (set (reg:SI 90 [ D.9231 ])
+        (const_int 0 [0])) ../sysdeps/unix/sysv/linux/futex-internal.h:121 -1
+     (nil))
+(jump_insn 110 5 111 27 (set (pc)
+        (label_ref 109)) ../sysdeps/pthread/aio_suspend.c:101 -1
+     (nil)
+ -> 109)
+(barrier 111 110 112)
+(code_label 112 111 115 28 1 "" [1 uses])
+(note 115 112 113 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 113 115 114 28 (set (reg/i:SI 0 ax)
+        (reg:SI 99 [ <retval> ])) ../sysdeps/pthread/aio_suspend.c:104 -1
+     (nil))
+(insn 114 113 0 28 (use (reg/i:SI 0 ax)) ../sysdeps/pthread/aio_suspend.c:104 -1
+     (nil))
+
+;; Function aio_suspend (aio_suspend, funcdef_no=71, decl_uid=2171, cgraph_uid=71, symbol_order=72)
+
+Partition 0: size 4 align 4
+	cntr
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+
+;; Generating RTL for gimple basic block 21
+
+;; Generating RTL for gimple basic block 22
+
+;; Generating RTL for gimple basic block 23
+
+;; Generating RTL for gimple basic block 24
+
+;; Generating RTL for gimple basic block 25
+
+;; Generating RTL for gimple basic block 26
+
+;; Generating RTL for gimple basic block 27
+
+;; Generating RTL for gimple basic block 28
+
+;; Generating RTL for gimple basic block 29
+
+;; Generating RTL for gimple basic block 30
+
+;; Generating RTL for gimple basic block 31
+
+;; Generating RTL for gimple basic block 32
+
+;; Generating RTL for gimple basic block 33
+
+;; Generating RTL for gimple basic block 34
+
+;; Generating RTL for gimple basic block 35
+
+;; Generating RTL for gimple basic block 36
+
+;; Generating RTL for gimple basic block 37
+
+;; Generating RTL for gimple basic block 38
+
+;; Generating RTL for gimple basic block 39
+
+;; Generating RTL for gimple basic block 40
+
+;; Generating RTL for gimple basic block 41
+
+;; Generating RTL for gimple basic block 42
+
+;; Generating RTL for gimple basic block 43
+
+;; Generating RTL for gimple basic block 44
+
+;; Generating RTL for gimple basic block 45
+
+;; Generating RTL for gimple basic block 46
+
+;; Generating RTL for gimple basic block 47
+Edge 4->14 redirected to 50
+Edge 11->14 redirected to 52
+Edge 23->22 redirected to 53
+Edge 40->39 redirected to 54
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Merging block 17 into block 16...
+Merged blocks 16 and 17.
+Merged 16 and 17 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 28 0 46 NOTE_INSN_DELETED)
+(note 46 28 29 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 29 46 30 2 (set (reg/v/f:DI 172 [ list ])
+        (reg:DI 5 di [ list ])) ../sysdeps/pthread/aio_suspend.c:110 -1
+     (nil))
+(insn 30 29 31 2 (set (reg/v:SI 173 [ nent ])
+        (reg:SI 4 si [ nent ])) ../sysdeps/pthread/aio_suspend.c:110 -1
+     (nil))
+(insn 31 30 32 2 (set (reg/v/f:DI 174 [ timeout ])
+        (reg:DI 1 dx [ timeout ])) ../sysdeps/pthread/aio_suspend.c:110 -1
+     (nil))
+(note 32 31 48 2 NOTE_INSN_FUNCTION_BEG)
+(insn 48 32 49 2 (set (reg/f:DI 120 [ D.9291 ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:110 -1
+     (nil))
+(insn 49 48 50 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 173 [ nent ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:111 -1
+     (nil))
+(jump_insn 50 49 51 2 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:111 -1
+     (int_list:REG_BR_PROB 9000 (nil))
+ -> 56)
+(note 51 50 52 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 4 (set (reg:DI 175)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b7dc2589870 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [17  S8 A8])) ../sysdeps/pthread/aio_suspend.c:113 -1
+     (nil))
+(insn 53 52 42 4 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 175)) [3 errno+0 S4 A32])
+        (const_int 22 [0x16])) ../sysdeps/pthread/aio_suspend.c:113 -1
+     (nil))
+(insn 42 53 54 4 (set (reg:SI 119 [ D.9290 ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/pthread/aio_suspend.c:114 -1
+     (nil))
+(jump_insn 54 42 55 4 (set (pc)
+        (label_ref 210)) ../sysdeps/pthread/aio_suspend.c:114 -1
+     (nil)
+ -> 210)
+(barrier 55 54 56)
+(code_label 56 55 57 5 39 "" [1 uses])
+(note 57 56 58 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 5 (set (reg:DI 123 [ D.9292 ])
+        (sign_extend:DI (reg/v:SI 173 [ nent ]))) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 59 58 60 5 (parallel [
+            (set (reg:DI 125 [ D.9292 ])
+                (ashift:DI (reg:DI 123 [ D.9292 ])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 60 59 61 5 (parallel [
+            (set (reg:DI 176)
+                (plus:DI (reg:DI 125 [ D.9292 ])
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 61 60 62 5 (parallel [
+            (set (reg:DI 177)
+                (plus:DI (reg:DI 86 virtual-preferred-stack-boundary)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 62 61 63 5 (parallel [
+            (set (reg:DI 178)
+                (plus:DI (reg:DI 176)
+                    (reg:DI 177)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 63 62 64 5 (parallel [
+            (set (reg:DI 180)
+                (udiv:DI (reg:DI 178)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (set (reg:DI 181)
+                (umod:DI (reg:DI 178)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 64 63 65 5 (parallel [
+            (set (reg:DI 182)
+                (mult:DI (reg:DI 180)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 65 64 66 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (minus:DI (reg/f:DI 7 sp)
+                    (reg:DI 182)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 66 65 67 5 (set (reg:DI 183)
+        (reg/f:DI 83 virtual-stack-dynamic)) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 67 66 68 5 (parallel [
+            (set (reg:DI 184)
+                (plus:DI (reg:DI 183)
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 68 67 69 5 (parallel [
+            (set (reg:DI 185)
+                (lshiftrt:DI (reg:DI 184)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg:DI 184)
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 69 68 70 5 (parallel [
+            (set (reg/f:DI 186)
+                (ashift:DI (reg:DI 185)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 70 69 71 5 (set (reg/f:DI 126 [ waitlist.1 ])
+        (reg/f:DI 186)) ../sysdeps/pthread/aio_suspend.c:117 -1
+     (nil))
+(insn 71 70 72 5 (parallel [
+            (set (reg:DI 127 [ D.9292 ])
+                (ashift:DI (reg:DI 123 [ D.9292 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 72 71 73 5 (parallel [
+            (set (reg:DI 187)
+                (plus:DI (reg:DI 127 [ D.9292 ])
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 73 72 74 5 (parallel [
+            (set (reg:DI 188)
+                (plus:DI (reg:DI 86 virtual-preferred-stack-boundary)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 74 73 75 5 (parallel [
+            (set (reg:DI 189)
+                (plus:DI (reg:DI 187)
+                    (reg:DI 188)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 75 74 76 5 (parallel [
+            (set (reg:DI 191)
+                (udiv:DI (reg:DI 189)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (set (reg:DI 192)
+                (umod:DI (reg:DI 189)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 76 75 77 5 (parallel [
+            (set (reg:DI 193)
+                (mult:DI (reg:DI 191)
+                    (reg:DI 86 virtual-preferred-stack-boundary)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 77 76 78 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (minus:DI (reg/f:DI 7 sp)
+                    (reg:DI 193)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 78 77 79 5 (set (reg:DI 194)
+        (reg/f:DI 83 virtual-stack-dynamic)) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 79 78 80 5 (parallel [
+            (set (reg:DI 195)
+                (plus:DI (reg:DI 194)
+                    (const_int 7 [0x7])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 80 79 81 5 (parallel [
+            (set (reg:DI 196)
+                (lshiftrt:DI (reg:DI 195)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (expr_list:REG_EQUAL (udiv:DI (reg:DI 195)
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 81 80 82 5 (parallel [
+            (set (reg/f:DI 197)
+                (ashift:DI (reg:DI 196)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 82 81 83 5 (set (reg/f:DI 128 [ requestlist.3 ])
+        (reg/f:DI 197)) ../sysdeps/pthread/aio_suspend.c:118 -1
+     (nil))
+(insn 83 82 84 5 (set (mem/c:SI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [3 cntr+0 S4 A32])
+        (const_int 1 [0x1])) ../sysdeps/pthread/aio_suspend.c:125 -1
+     (nil))
+(insn 84 83 85 5 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2b7dc2728ab0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_suspend.c:128 -1
+     (nil))
+(call_insn 85 84 86 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2b7dc24f1a20 pthread_mutex_lock>) [0 pthread_mutex_lock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:128 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2b7dc24f1a20 pthread_mutex_lock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 86 85 87 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 173 [ nent ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (nil))
+(jump_insn 87 86 88 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 313)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:132 612 {*jcc_1}
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 313)
+(note 88 87 89 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 89 88 90 6 (set (reg:DI 137 [ ivtmp.51 ])
+        (reg/v/f:DI 172 [ list ])) -1
+     (nil))
+(insn 90 89 91 6 (set (reg:DI 154 [ ivtmp.55 ])
+        (reg/f:DI 126 [ waitlist.1 ])) -1
+     (nil))
+(insn 91 90 33 6 (set (reg:DI 167 [ ivtmp.58 ])
+        (reg/f:DI 128 [ requestlist.3 ])) -1
+     (nil))
+(insn 33 91 34 6 (set (reg/v:QI 115 [ any ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (nil))
+(insn 34 33 121 6 (set (reg/v:SI 114 [ nent ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (nil))
+(code_label 121 34 92 7 44 "" [1 uses])
+(note 92 121 93 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 93 92 94 7 (set (reg/f:DI 129 [ D.9293 ])
+        (mem/f:DI (reg:DI 137 [ ivtmp.51 ]) [2 MEM[base: _141, offset: 0B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:133 -1
+     (nil))
+(insn 94 93 95 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 129 [ D.9293 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:133 -1
+     (nil))
+(jump_insn 95 94 96 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 115)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:133 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 115)
+(note 96 95 97 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 97 96 98 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 129 [ D.9293 ])
+                    (const_int 112 [0x70])) [3 _40->__error_code+0 S4 A64])
+            (const_int 115 [0x73]))) ../sysdeps/pthread/aio_suspend.c:135 -1
+     (nil))
+(jump_insn 98 97 99 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 124)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:135 -1
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 124)
+(note 99 98 100 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 100 99 101 9 (set (reg:DI 5 di)
+        (reg/f:DI 129 [ D.9293 ])) ../sysdeps/pthread/aio_suspend.c:137 -1
+     (nil))
+(call_insn 101 100 102 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__aio_find_req") [flags 0x43]  <function_decl 0x2b7dc2725af8 __aio_find_req>) [0 __aio_find_req S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:137 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__aio_find_req") [flags 0x43]  <function_decl 0x2b7dc2725af8 __aio_find_req>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 102 101 103 9 (set (reg/f:DI 131 [ D.9294 ])
+        (reg:DI 0 ax)) ../sysdeps/pthread/aio_suspend.c:137 -1
+     (nil))
+(insn 103 102 104 9 (set (mem/f:DI (reg:DI 167 [ ivtmp.58 ]) [2 MEM[base: _146, offset: 0B]+0 S8 A64])
+        (reg/f:DI 131 [ D.9294 ])) ../sysdeps/pthread/aio_suspend.c:137 -1
+     (nil))
+(insn 104 103 105 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 131 [ D.9294 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:139 -1
+     (nil))
+(jump_insn 105 104 106 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 124)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:139 -1
+     (int_list:REG_BR_PROB 300 (nil))
+ -> 124)
+(note 106 105 107 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 10 (set (reg/f:DI 169 [ D.9291 ])
+        (reg:DI 154 [ ivtmp.55 ])) -1
+     (nil))
+(insn 108 107 109 10 (set (mem/f:DI (plus:DI (reg/f:DI 169 [ D.9291 ])
+                (const_int 8 [0x8])) [2 MEM[base: _142, offset: 8B]+0 S8 A64])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:144 -1
+     (nil))
+(insn 109 108 110 10 (set (reg/f:DI 132 [ D.9288 ])
+        (mem/f:DI (plus:DI (reg/f:DI 131 [ D.9294 ])
+                (const_int 48 [0x30])) [2 _44->waiting+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:145 -1
+     (nil))
+(insn 110 109 111 10 (set (mem/f:DI (reg/f:DI 169 [ D.9291 ]) [2 MEM[base: _142, offset: 0B]+0 S8 A64])
+        (reg/f:DI 132 [ D.9288 ])) ../sysdeps/pthread/aio_suspend.c:145 -1
+     (nil))
+(insn 111 110 112 10 (parallel [
+            (set (reg:DI 198)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:146 -1
+     (nil))
+(insn 112 111 113 10 (set (mem/f:DI (plus:DI (reg/f:DI 169 [ D.9291 ])
+                (const_int 16 [0x10])) [2 MEM[base: _142, offset: 16B]+0 S8 A64])
+        (reg:DI 198)) ../sysdeps/pthread/aio_suspend.c:146 -1
+     (nil))
+(insn 113 112 114 10 (set (mem/f:DI (plus:DI (reg/f:DI 169 [ D.9291 ])
+                (const_int 24 [0x18])) [2 MEM[base: _142, offset: 24B]+0 S8 A64])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:147 -1
+     (nil))
+(insn 114 113 35 10 (set (mem/f:DI (plus:DI (reg/f:DI 131 [ D.9294 ])
+                (const_int 48 [0x30])) [2 _44->waiting+0 S8 A64])
+        (reg/f:DI 169 [ D.9291 ])) ../sysdeps/pthread/aio_suspend.c:151 -1
+     (nil))
+(insn 35 114 115 10 (set (reg/v:QI 115 [ any ])
+        (const_int 1 [0x1])) ../sysdeps/pthread/aio_suspend.c:152 -1
+     (nil))
+(code_label 115 35 116 11 42 "" [1 uses])
+(note 116 115 117 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 117 116 118 11 (parallel [
+            (set (reg/v:SI 114 [ nent ])
+                (plus:SI (reg/v:SI 114 [ nent ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (nil))
+(insn 118 117 119 11 (parallel [
+            (set (reg:DI 137 [ ivtmp.51 ])
+                (plus:DI (reg:DI 137 [ ivtmp.51 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 119 118 120 11 (parallel [
+            (set (reg:DI 154 [ ivtmp.55 ])
+                (plus:DI (reg:DI 154 [ ivtmp.55 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 120 119 122 11 (parallel [
+            (set (reg:DI 167 [ ivtmp.58 ])
+                (plus:DI (reg:DI 167 [ ivtmp.58 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 122 120 123 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 173 [ nent ])
+            (reg/v:SI 114 [ nent ]))) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (nil))
+(jump_insn 123 122 314 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 121)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (int_list:REG_BR_PROB 9700 (nil))
+ -> 121)
+(note 314 123 36 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 36 314 124 12 (set (reg/v:SI 114 [ nent ])
+        (reg/v:SI 173 [ nent ])) -1
+     (nil))
+(code_label 124 36 125 13 43 "" [2 uses])
+(note 125 124 126 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 126 125 127 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 173 [ nent ])
+            (reg/v:SI 114 [ nent ]))) ../sysdeps/pthread/aio_suspend.c:165 -1
+     (nil))
+(insn 127 126 128 13 (set (reg:QI 200 [ D.9295 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:165 -1
+     (nil))
+(insn 128 127 129 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 200 [ D.9295 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:165 -1
+     (nil))
+(jump_insn 129 128 327 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 318)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:165 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3505 (nil))
+ -> 318)
+(note 327 129 130 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 130 327 131 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 115 [ any ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:165 -1
+     (nil))
+(jump_insn 131 130 132 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 318)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:165 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5396 (nil))
+ -> 318)
+(note 132 131 133 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 134 15 (parallel [
+            (set (reg:DI 201)
+                (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:181 -1
+     (nil))
+(insn 134 133 135 15 (set (reg:DI 4 si)
+        (reg/v/f:DI 174 [ timeout ])) ../sysdeps/pthread/aio_suspend.c:181 -1
+     (nil))
+(insn 135 134 136 15 (set (reg:DI 5 di)
+        (reg:DI 201)) ../sysdeps/pthread/aio_suspend.c:181 -1
+     (nil))
+(call_insn 136 135 328 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("do_aio_misc_wait") [flags 0x3]  <function_decl 0x2b7dc273a798 do_aio_misc_wait>) [0 do_aio_misc_wait S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:181 -1
+     (expr_list:REG_EH_REGION (const_int 2 [0x2])
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("do_aio_misc_wait") [flags 0x3]  <function_decl 0x2b7dc273a798 do_aio_misc_wait>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(note 328 136 137 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 137 328 310 16 (set (reg/v:SI 117 [ result ])
+        (reg:SI 0 ax)) ../sysdeps/pthread/aio_suspend.c:181 -1
+     (nil))
+(jump_insn 310 137 311 16 (set (pc)
+        (label_ref 139)) -1
+     (nil)
+ -> 139)
+(barrier 311 310 313)
+(code_label 313 311 312 18 60 "" [1 uses])
+(note 312 313 38 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 38 312 39 18 (set (reg/v:SI 114 [ nent ])
+        (reg/v:SI 173 [ nent ])) ../sysdeps/pthread/aio_suspend.c:132 -1
+     (nil))
+(insn 39 38 315 18 (set (reg/v:SI 117 [ result ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:124 -1
+     (nil))
+(jump_insn 315 39 316 18 (set (pc)
+        (label_ref 139)) -1
+     (nil)
+ -> 139)
+(barrier 316 315 318)
+(code_label 318 316 317 19 61 "" [2 uses])
+(note 317 318 37 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 37 317 139 19 (set (reg/v:SI 117 [ result ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:124 -1
+     (nil))
+(code_label 139 37 140 20 41 "" [2 uses])
+(note 140 139 141 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 141 140 142 20 (set (reg:DI 145 [ D.9297 ])
+        (sign_extend:DI (reg/v:SI 114 [ nent ]))) -1
+     (nil))
+(insn 142 141 143 20 (parallel [
+            (set (reg:DI 202 [ D.9297 ])
+                (ashift:DI (reg:DI 145 [ D.9297 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 143 142 144 20 (parallel [
+            (set (reg:DI 144 [ ivtmp.44 ])
+                (plus:DI (reg/v/f:DI 172 [ list ])
+                    (reg:DI 202 [ D.9297 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 144 143 145 20 (parallel [
+            (set (reg:DI 203 [ D.9292 ])
+                (ashift:DI (reg:DI 145 [ D.9297 ])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 145 144 146 20 (parallel [
+            (set (reg:DI 204 [ D.9292 ])
+                (plus:DI (reg:DI 203 [ D.9292 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 146 145 147 20 (parallel [
+            (set (reg:DI 146 [ ivtmp.45 ])
+                (plus:DI (reg/f:DI 126 [ waitlist.1 ])
+                    (reg:DI 204 [ D.9292 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(jump_insn 147 146 148 20 (set (pc)
+        (label_ref 194)) -1
+     (nil)
+ -> 194)
+(barrier 148 147 197)
+(code_label 197 148 149 21 51 "" [1 uses])
+(note 149 197 150 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 150 149 151 21 (set (reg/f:DI 138 [ D.9293 ])
+        (mem/f:DI (plus:DI (reg:DI 144 [ ivtmp.44 ])
+                (const_int -8 [0xfffffffffffffff8])) [2 MEM[base: _113, offset: -8B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:212 -1
+     (nil))
+(insn 151 150 152 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 138 [ D.9293 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:212 -1
+     (nil))
+(jump_insn 152 151 153 21 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:212 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 190)
+(note 153 152 154 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 154 153 155 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 138 [ D.9293 ])
+                    (const_int 112 [0x70])) [3 _67->__error_code+0 S4 A64])
+            (const_int 115 [0x73]))) ../sysdeps/pthread/aio_suspend.c:212 -1
+     (nil))
+(jump_insn 155 154 156 22 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:212 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 190)
+(note 156 155 157 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 157 156 158 23 (set (reg:DI 205)
+        (sign_extend:DI (reg/v:SI 114 [ nent ]))) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(insn 158 157 159 23 (set (reg/f:DI 140 [ D.9294 ])
+        (mem/f:DI (plus:DI (mult:DI (reg:DI 205)
+                    (const_int 8 [0x8]))
+                (reg/f:DI 128 [ requestlist.3 ])) [2 *requestlist.3_33 S8 A64])) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(insn 159 158 160 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 140 [ D.9294 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(jump_insn 160 159 161 23 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 168)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 168)
+(note 161 160 162 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 162 161 163 24 (set (reg:DI 2 cx)
+        (symbol_ref:DI ("__PRETTY_FUNCTION__.9044") [flags 0x2]  <var_decl 0x2b7dc2747ab0 __PRETTY_FUNCTION__>)) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(insn 163 162 164 24 (set (reg:SI 1 dx)
+        (const_int 216 [0xd8])) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(insn 164 163 165 24 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b7dc276d510 *.LC1>)) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(insn 165 164 166 24 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x2b7dc276db40 *.LC4>)) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (nil))
+(call_insn 166 165 167 24 (call (mem:QI (symbol_ref:DI ("__assert_fail") [flags 0x41]  <function_decl 0x2b7dc22dbca8 __assert_fail>) [0 __assert_fail S1 A8])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:216 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__assert_fail") [flags 0x41]  <function_decl 0x2b7dc22dbca8 __assert_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(barrier 167 166 168)
+(code_label 168 167 169 25 47 "" [1 uses])
+(note 169 168 170 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 170 169 171 25 (set (reg/f:DI 121 [ D.9288 ])
+        (mem/f:DI (plus:DI (reg/f:DI 140 [ D.9294 ])
+                (const_int 48 [0x30])) [2 MEM[(struct waitlist * *)_69 + 48B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:220 -1
+     (nil))
+(insn 171 170 172 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 121 [ D.9288 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (nil))
+(jump_insn 172 171 173 25 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 190)
+(note 173 172 174 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 174 173 175 26 (set (reg/f:DI 166 [ D.9288 ])
+        (reg:DI 146 [ ivtmp.45 ])) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (nil))
+(insn 175 174 176 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 121 [ D.9288 ])
+            (reg/f:DI 166 [ D.9288 ]))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (nil))
+(jump_insn 176 175 177 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 288)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 288)
+(note 177 176 319 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 319 177 320 27 (set (pc)
+        (label_ref 183)) -1
+     (nil)
+ -> 183)
+(barrier 320 319 322)
+(code_label 322 320 321 28 62 "" [1 uses])
+(note 321 322 40 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 40 321 183 28 (set (reg/f:DI 121 [ D.9288 ])
+        (reg/f:DI 136 [ D.9288 ])) -1
+     (nil))
+(code_label 183 40 178 29 49 "" [1 uses])
+(note 178 183 179 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 179 178 180 29 (set (reg/f:DI 136 [ D.9288 ])
+        (mem/f:DI (reg/f:DI 121 [ D.9288 ]) [2 MEM[(struct waitlist * *)_82]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:222 -1
+     (nil))
+(insn 180 179 181 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 136 [ D.9288 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (nil))
+(jump_insn 181 180 182 29 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 190)
+(note 182 181 184 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 184 182 185 30 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 136 [ D.9288 ])
+            (reg/f:DI 166 [ D.9288 ]))) ../sysdeps/pthread/aio_suspend.c:221 -1
+     (nil))
+(jump_insn 185 184 186 30 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 322)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:221 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 322)
+(note 186 185 187 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 187 186 188 31 (set (reg/v/f:DI 135 [ listp ])
+        (reg/f:DI 121 [ D.9288 ])) ../sysdeps/pthread/aio_suspend.c:222 -1
+     (nil))
+(jump_insn 188 187 189 31 (set (pc)
+        (label_ref 291)) ../sysdeps/pthread/aio_suspend.c:222 -1
+     (nil)
+ -> 291)
+(barrier 189 188 190)
+(code_label 190 189 191 32 46 "" [5 uses])
+(note 191 190 192 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 192 191 193 32 (parallel [
+            (set (reg:DI 144 [ ivtmp.44 ])
+                (plus:DI (reg:DI 144 [ ivtmp.44 ])
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 193 192 194 32 (parallel [
+            (set (reg:DI 146 [ ivtmp.45 ])
+                (plus:DI (reg:DI 146 [ ivtmp.45 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 194 193 195 33 45 "" [1 uses])
+(note 195 194 196 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 196 195 198 33 (parallel [
+            (set (reg/v:SI 114 [ nent ])
+                (plus:SI (reg/v:SI 114 [ nent ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:211 -1
+     (nil))
+(insn 198 196 199 33 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 114 [ nent ])
+            (const_int -1 [0xffffffffffffffff]))) ../sysdeps/pthread/aio_suspend.c:211 -1
+     (nil))
+(jump_insn 199 198 200 33 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 197)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:211 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 197)
+(note 200 199 201 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 201 200 202 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 117 [ result ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:235 -1
+     (nil))
+(jump_insn 202 201 203 34 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 206)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:235 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 206)
+(note 203 202 204 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 204 203 205 35 (set (reg:DI 206)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b7dc2589870 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [17  S8 A8])) ../sysdeps/pthread/aio_suspend.c:245 -1
+     (nil))
+(insn 205 204 41 35 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 206)) [3 errno+0 S4 A32])
+        (reg/v:SI 117 [ result ])) ../sysdeps/pthread/aio_suspend.c:245 -1
+     (nil))
+(insn 41 205 206 35 (set (reg/v:SI 117 [ result ])
+        (const_int -1 [0xffffffffffffffff])) ../sysdeps/pthread/aio_suspend.c:247 -1
+     (nil))
+(code_label 206 41 207 36 52 "" [1 uses])
+(note 207 206 208 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 208 207 209 36 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2b7dc2728ab0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_suspend.c:251 -1
+     (nil))
+(call_insn 209 208 43 36 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2b7dc24f1bd0 pthread_mutex_unlock>) [0 pthread_mutex_unlock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:251 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2b7dc24f1bd0 pthread_mutex_unlock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 43 209 210 36 (set (reg:SI 119 [ D.9290 ])
+        (reg/v:SI 117 [ result ])) ../sysdeps/pthread/aio_suspend.c:253 -1
+     (nil))
+(code_label 210 43 211 37 40 "" [1 uses])
+(note 211 210 212 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 212 211 213 37 (set (reg:SI 171 [ <retval> ])
+        (reg:SI 119 [ D.9290 ])) -1
+     (nil))
+(jump_insn 213 212 214 37 (set (pc)
+        (label_ref 306)) -1
+     (nil)
+ -> 306)
+(barrier 214 213 329)
+(code_label/s 329 214 331 38 64 "" [1 uses])
+(note 331 329 330 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(insn 330 331 215 38 (set (reg:DI 213)
+        (reg:DI 0 ax)) -1
+     (nil))
+(code_label 215 330 216 39 53 "" [0 uses])
+(note 216 215 217 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+(insn 217 216 218 39 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2b7dc2728ab0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_suspend.c:59 -1
+     (nil))
+(call_insn 218 217 219 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2b7dc24f1a20 pthread_mutex_lock>) [0 pthread_mutex_lock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:59 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_lock") [flags 0x41]  <function_decl 0x2b7dc24f1a20 pthread_mutex_lock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 219 218 220 39 (parallel [
+            (set (reg:DI 208 [ D.9292 ])
+                (plus:DI (reg:DI 125 [ D.9292 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 220 219 221 39 (parallel [
+            (set (reg:DI 152 [ ivtmp.28 ])
+                (plus:DI (reg/f:DI 126 [ waitlist.1 ])
+                    (reg:DI 208 [ D.9292 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 221 220 222 39 (set (reg:DI 209 [ D.9292 ])
+        (zero_extend:DI (reg/v:SI 173 [ nent ]))) -1
+     (nil))
+(insn 222 221 223 39 (set (reg:DI 210)
+        (const_int 0 [0])) -1
+     (nil))
+(insn 223 222 224 39 (parallel [
+            (set (reg:DI 211)
+                (minus:DI (reg:DI 210)
+                    (reg:DI 209 [ D.9292 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 209 [ D.9292 ])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 224 223 225 39 (parallel [
+            (set (reg:DI 212)
+                (ashift:DI (reg:DI 211)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 225 224 226 39 (set (reg:DI 211)
+        (reg:DI 212)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 209 [ D.9292 ])
+            (const_int -8 [0xfffffffffffffff8]))
+        (nil)))
+(insn 226 225 227 39 (set (reg:DI 163 [ D.9292 ])
+        (reg:DI 211)) -1
+     (nil))
+(insn 227 226 228 39 (parallel [
+            (set (reg/f:DI 162 [ D.9298 ])
+                (plus:DI (reg/v/f:DI 172 [ list ])
+                    (reg:DI 127 [ D.9292 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 228 227 45 39 (parallel [
+            (set (reg/f:DI 155 [ D.9299 ])
+                (plus:DI (reg/f:DI 128 [ requestlist.3 ])
+                    (reg:DI 127 [ D.9292 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 45 228 229 39 (set (reg:DI 165 [ ivtmp.32 ])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:59 -1
+     (nil))
+(jump_insn 229 45 230 39 (set (pc)
+        (label_ref 276)) -1
+     (nil)
+ -> 276)
+(barrier 230 229 278)
+(code_label 278 230 231 40 59 "" [1 uses])
+(note 231 278 232 40 [bb 40] NOTE_INSN_BASIC_BLOCK)
+(insn 232 231 233 40 (set (reg/f:DI 147 [ D.9293 ])
+        (mem/f:DI (plus:DI (plus:DI (reg/f:DI 162 [ D.9298 ])
+                    (reg:DI 165 [ ivtmp.32 ]))
+                (const_int -8 [0xfffffffffffffff8])) [2 MEM[base: _124, index: ivtmp.32_133, offset: -8B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:68 -1
+     (nil))
+(insn 233 232 234 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 147 [ D.9293 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:68 -1
+     (nil))
+(jump_insn 234 233 235 40 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 272)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:68 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 272)
+(note 235 234 236 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+(insn 236 235 237 41 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 147 [ D.9293 ])
+                    (const_int 112 [0x70])) [3 _90->__error_code+0 S4 A64])
+            (const_int 115 [0x73]))) ../sysdeps/pthread/aio_suspend.c:69 -1
+     (nil))
+(jump_insn 237 236 238 41 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 272)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:69 -1
+     (int_list:REG_BR_PROB 7200 (nil))
+ -> 272)
+(note 238 237 239 42 [bb 42] NOTE_INSN_BASIC_BLOCK)
+(insn 239 238 240 42 (set (reg/f:DI 150 [ D.9294 ])
+        (mem/f:DI (plus:DI (plus:DI (reg/f:DI 155 [ D.9299 ])
+                    (reg:DI 165 [ ivtmp.32 ]))
+                (const_int -8 [0xfffffffffffffff8])) [2 MEM[base: _112, index: ivtmp.32_133, offset: -8B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (nil))
+(insn 240 239 241 42 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 150 [ D.9294 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (nil))
+(jump_insn 241 240 242 42 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 249)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 249)
+(note 242 241 243 43 [bb 43] NOTE_INSN_BASIC_BLOCK)
+(insn 243 242 244 43 (set (reg:DI 2 cx)
+        (symbol_ref:DI ("__PRETTY_FUNCTION__.9008") [flags 0x2]  <var_decl 0x2b7dc2747120 __PRETTY_FUNCTION__>)) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (nil))
+(insn 244 243 245 43 (set (reg:SI 1 dx)
+        (const_int 73 [0x49])) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (nil))
+(insn 245 244 246 43 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b7dc276d510 *.LC1>)) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (nil))
+(insn 246 245 247 43 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b7dc27d6360 *.LC5>)) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (nil))
+(call_insn 247 246 248 43 (call (mem:QI (symbol_ref:DI ("__assert_fail") [flags 0x41]  <function_decl 0x2b7dc22dbca8 __assert_fail>) [0 __assert_fail S1 A8])
+        (const_int 0 [0])) ../sysdeps/pthread/aio_suspend.c:73 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__assert_fail") [flags 0x41]  <function_decl 0x2b7dc22dbca8 __assert_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(barrier 248 247 249)
+(code_label 249 248 250 44 56 "" [1 uses])
+(note 250 249 251 44 [bb 44] NOTE_INSN_BASIC_BLOCK)
+(insn 251 250 252 44 (parallel [
+            (set (reg/v/f:DI 151 [ listp ])
+                (plus:DI (reg/f:DI 150 [ D.9294 ])
+                    (const_int 48 [0x30])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:77 -1
+     (nil))
+(insn 252 251 253 44 (set (reg/f:DI 124 [ D.9288 ])
+        (mem/f:DI (plus:DI (reg/f:DI 150 [ D.9294 ])
+                (const_int 48 [0x30])) [2 MEM[(struct waitlist * *)_94 + 48B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:77 -1
+     (nil))
+(insn 253 252 254 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 124 [ D.9288 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (nil))
+(jump_insn 254 253 255 44 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 272)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 272)
+(note 255 254 256 45 [bb 45] NOTE_INSN_BASIC_BLOCK)
+(insn 256 255 257 45 (set (reg/f:DI 158 [ D.9288 ])
+        (reg:DI 152 [ ivtmp.28 ])) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (nil))
+(insn 257 256 258 45 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 124 [ D.9288 ])
+            (reg/f:DI 158 [ D.9288 ]))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (nil))
+(jump_insn 258 257 259 45 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 300)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 300)
+(note 259 258 323 46 [bb 46] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 323 259 324 46 (set (pc)
+        (label_ref 265)) -1
+     (nil)
+ -> 265)
+(barrier 324 323 326)
+(code_label 326 324 325 47 63 "" [1 uses])
+(note 325 326 44 47 [bb 47] NOTE_INSN_BASIC_BLOCK)
+(insn 44 325 265 47 (set (reg/f:DI 124 [ D.9288 ])
+        (reg/f:DI 116 [ D.9288 ])) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (nil))
+(code_label 265 44 260 48 58 "" [1 uses])
+(note 260 265 261 48 [bb 48] NOTE_INSN_BASIC_BLOCK)
+(insn 261 260 262 48 (set (reg/f:DI 116 [ D.9288 ])
+        (mem/f:DI (reg/f:DI 124 [ D.9288 ]) [2 MEM[(struct waitlist * *)_20]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:79 -1
+     (nil))
+(insn 262 261 263 48 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 116 [ D.9288 ])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (nil))
+(jump_insn 263 262 264 48 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 272)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (int_list:REG_BR_PROB 450 (nil))
+ -> 272)
+(note 264 263 266 49 [bb 49] NOTE_INSN_BASIC_BLOCK)
+(insn 266 264 267 49 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 116 [ D.9288 ])
+            (reg/f:DI 158 [ D.9288 ]))) ../sysdeps/pthread/aio_suspend.c:78 -1
+     (nil))
+(jump_insn 267 266 268 49 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 326)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:78 612 {*jcc_1}
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 326)
+(note 268 267 269 50 [bb 50] NOTE_INSN_BASIC_BLOCK)
+(insn 269 268 270 50 (set (reg/v/f:DI 151 [ listp ])
+        (reg/f:DI 124 [ D.9288 ])) ../sysdeps/pthread/aio_suspend.c:79 -1
+     (nil))
+(jump_insn 270 269 271 50 (set (pc)
+        (label_ref 300)) ../sysdeps/pthread/aio_suspend.c:79 -1
+     (nil)
+ -> 300)
+(barrier 271 270 272)
+(code_label 272 271 273 51 55 "" [5 uses])
+(note 273 272 274 51 [bb 51] NOTE_INSN_BASIC_BLOCK)
+(insn 274 273 275 51 (parallel [
+            (set (reg:DI 152 [ ivtmp.28 ])
+                (plus:DI (reg:DI 152 [ ivtmp.28 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 275 274 276 51 (parallel [
+            (set (reg:DI 165 [ ivtmp.32 ])
+                (plus:DI (reg:DI 165 [ ivtmp.32 ])
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(code_label 276 275 277 52 54 "" [1 uses])
+(note 277 276 279 52 [bb 52] NOTE_INSN_BASIC_BLOCK)
+(insn 279 277 280 52 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 163 [ D.9292 ])
+            (reg:DI 165 [ ivtmp.32 ]))) ../sysdeps/pthread/aio_suspend.c:67 -1
+     (nil))
+(jump_insn 280 279 281 52 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 278)
+            (pc))) ../sysdeps/pthread/aio_suspend.c:67 -1
+     (int_list:REG_BR_PROB 9550 (nil))
+ -> 278)
+(note 281 280 282 53 [bb 53] NOTE_INSN_BASIC_BLOCK)
+(insn 282 281 283 53 (set (reg:DI 5 di)
+        (symbol_ref:DI ("__aio_requests_mutex") [flags 0x42]  <var_decl 0x2b7dc2728ab0 __aio_requests_mutex>)) ../sysdeps/pthread/aio_suspend.c:91 -1
+     (nil))
+(call_insn 283 282 284 53 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2b7dc24f1bd0 pthread_mutex_unlock>) [0 pthread_mutex_unlock S1 A8])
+            (const_int 0 [0]))) ../sysdeps/pthread/aio_suspend.c:91 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("pthread_mutex_unlock") [flags 0x41]  <function_decl 0x2b7dc24f1bd0 pthread_mutex_unlock>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 284 283 285 53 (set (reg/f:DI 142 [ D.9287 ])
+        (reg:DI 213)) -1
+     (nil))
+(insn 285 284 286 53 (set (reg:DI 5 di)
+        (reg/f:DI 142 [ D.9287 ])) -1
+     (nil))
+(call_insn 286 285 287 53 (call (mem:QI (symbol_ref:DI ("_Unwind_Resume") [flags 0x41]  <function_decl 0x2b7dc2264798 __builtin_unwind_resume>) [0 __builtin_unwind_resume S1 A8])
+        (const_int 0 [0])) -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_Unwind_Resume") [flags 0x41]  <function_decl 0x2b7dc2264798 __builtin_unwind_resume>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 287 286 288)
+(code_label 288 287 289 54 48 "" [1 uses])
+(note 289 288 290 54 [bb 54] NOTE_INSN_BASIC_BLOCK)
+(insn 290 289 291 54 (parallel [
+            (set (reg/v/f:DI 135 [ listp ])
+                (plus:DI (reg/f:DI 140 [ D.9294 ])
+                    (const_int 48 [0x30])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:220 -1
+     (nil))
+(code_label 291 290 292 55 50 "" [1 uses])
+(note 292 291 293 55 [bb 55] NOTE_INSN_BASIC_BLOCK)
+(insn 293 292 294 55 (set (reg:DI 214)
+        (sign_extend:DI (reg/v:SI 114 [ nent ]))) ../sysdeps/pthread/aio_suspend.c:225 -1
+     (nil))
+(insn 294 293 295 55 (parallel [
+            (set (reg:DI 215)
+                (ashift:DI (reg:DI 214)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:225 -1
+     (nil))
+(insn 295 294 296 55 (parallel [
+            (set (reg/f:DI 216)
+                (plus:DI (reg/f:DI 126 [ waitlist.1 ])
+                    (reg:DI 215)))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/pthread/aio_suspend.c:225 -1
+     (nil))
+(insn 296 295 297 55 (set (reg/f:DI 141 [ D.9288 ])
+        (mem/f:DI (reg/f:DI 216) [6 MEM[(struct waitlist *)waitlist.1_30][nent_63].next+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:225 -1
+     (nil))
+(insn 297 296 298 55 (set (mem/f:DI (reg/v/f:DI 135 [ listp ]) [2 *listp_57+0 S8 A64])
+        (reg/f:DI 141 [ D.9288 ])) ../sysdeps/pthread/aio_suspend.c:225 -1
+     (nil))
+(jump_insn 298 297 299 55 (set (pc)
+        (label_ref 190)) ../sysdeps/pthread/aio_suspend.c:225 -1
+     (nil)
+ -> 190)
+(barrier 299 298 300)
+(code_label 300 299 301 56 57 "" [2 uses])
+(note 301 300 302 56 [bb 56] NOTE_INSN_BASIC_BLOCK)
+(insn 302 301 303 56 (set (reg/f:DI 153 [ D.9288 ])
+        (mem/f:DI (reg/f:DI 158 [ D.9288 ]) [2 MEM[base: _117, offset: 0B]+0 S8 A64])) ../sysdeps/pthread/aio_suspend.c:82 -1
+     (nil))
+(insn 303 302 304 56 (set (mem/f:DI (reg/v/f:DI 151 [ listp ]) [2 *listp_118+0 S8 A64])
+        (reg/f:DI 153 [ D.9288 ])) ../sysdeps/pthread/aio_suspend.c:82 -1
+     (nil))
+(jump_insn 304 303 305 56 (set (pc)
+        (label_ref 272)) ../sysdeps/pthread/aio_suspend.c:82 -1
+     (nil)
+ -> 272)
+(barrier 305 304 306)
+(code_label 306 305 309 57 38 "" [1 uses])
+(note 309 306 307 57 [bb 57] NOTE_INSN_BASIC_BLOCK)
+(insn 307 309 308 57 (set (reg/i:SI 0 ax)
+        (reg:SI 171 [ <retval> ])) ../sysdeps/pthread/aio_suspend.c:254 -1
+     (nil))
+(insn 308 307 0 57 (use (reg/i:SI 0 ax)) ../sysdeps/pthread/aio_suspend.c:254 -1
+     (nil))

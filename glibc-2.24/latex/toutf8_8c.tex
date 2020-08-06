@@ -1,0 +1,64 @@
+\hypertarget{toutf8_8c}{}\doxysection{libidn/toutf8.c File Reference}
+\label{toutf8_8c}\index{libidn/toutf8.c@{libidn/toutf8.c}}
+{\ttfamily \#include \char`\"{}stringprep.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}iconvme.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{toutf8_8c_ade17694f587772422d0e3998064d2db6}{stringprep\+\_\+locale\+\_\+charset}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+char $\ast$ \mbox{\hyperlink{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}{stringprep\+\_\+convert}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$to\+\_\+codeset, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$from\+\_\+codeset)
+\item 
+char $\ast$ \mbox{\hyperlink{toutf8_8c_a4fdc6ed7a9b74a74c5fe94e844972e65}{stringprep\+\_\+locale\+\_\+to\+\_\+utf8}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}})
+\item 
+char $\ast$ \mbox{\hyperlink{toutf8_8c_aaf64b9aa7a9590ba03be6f2b73c0f728}{stringprep\+\_\+utf8\+\_\+to\+\_\+locale}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}\label{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}} 
+\index{toutf8.c@{toutf8.c}!stringprep\_convert@{stringprep\_convert}}
+\index{stringprep\_convert@{stringprep\_convert}!toutf8.c@{toutf8.c}}
+\doxysubsubsection{\texorpdfstring{stringprep\_convert()}{stringprep\_convert()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+convert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{to\+\_\+codeset,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{from\+\_\+codeset }\end{DoxyParamCaption})}
+
+stringprep\+\_\+convert -\/ encode string using new character set @str\+: input zero-\/terminated string. @to\+\_\+codeset\+: name of destination character set. @from\+\_\+codeset\+: name of origin character set, as used by @str.
+
+Convert the string from one character set to another using the system\textquotesingle{}s \mbox{\hyperlink{iconv_8c_a64916044e83895313cb26d54ae3b7836}{iconv()}} function.
+
+Return value\+: Returns newly allocated zero-\/terminated string which is @str transcoded into to\+\_\+codeset. \mbox{\Hypertarget{toutf8_8c_ade17694f587772422d0e3998064d2db6}\label{toutf8_8c_ade17694f587772422d0e3998064d2db6}} 
+\index{toutf8.c@{toutf8.c}!stringprep\_locale\_charset@{stringprep\_locale\_charset}}
+\index{stringprep\_locale\_charset@{stringprep\_locale\_charset}!toutf8.c@{toutf8.c}}
+\doxysubsubsection{\texorpdfstring{stringprep\_locale\_charset()}{stringprep\_locale\_charset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ stringprep\+\_\+locale\+\_\+charset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+stringprep\+\_\+locale\+\_\+charset -\/ return charset used in current locale
+
+Find out current locale charset. The function respect the C\+H\+A\+R\+S\+ET environment variable, but typically uses nl\+\_\+langinfo(\+C\+O\+D\+E\+S\+E\+T) when it is supported. It fall back on \char`\"{}\+A\+S\+C\+I\+I\char`\"{} if C\+H\+A\+R\+S\+ET isn\textquotesingle{}t set and nl\+\_\+langinfo isn\textquotesingle{}t supported or return anything.
+
+Note that this function return the application\textquotesingle{}s locale\textquotesingle{}s preferred charset (or thread\textquotesingle{}s locale\textquotesingle{}s preffered charset, if your system support thread-\/specific locales). It does not return what the system may be using. Thus, if you receive data from external sources you cannot in general use this function to guess what charset it is encoded in. Use stringprep\+\_\+convert from the external representation into the charset returned by this function, to have data in the locale encoding.
+
+Return value\+: Return the character set used by the current locale. It will never return N\+U\+LL, but use \char`\"{}\+A\+S\+C\+I\+I\char`\"{} as a fallback. \mbox{\Hypertarget{toutf8_8c_a4fdc6ed7a9b74a74c5fe94e844972e65}\label{toutf8_8c_a4fdc6ed7a9b74a74c5fe94e844972e65}} 
+\index{toutf8.c@{toutf8.c}!stringprep\_locale\_to\_utf8@{stringprep\_locale\_to\_utf8}}
+\index{stringprep\_locale\_to\_utf8@{stringprep\_locale\_to\_utf8}!toutf8.c@{toutf8.c}}
+\doxysubsubsection{\texorpdfstring{stringprep\_locale\_to\_utf8()}{stringprep\_locale\_to\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+locale\+\_\+to\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str }\end{DoxyParamCaption})}
+
+stringprep\+\_\+locale\+\_\+to\+\_\+utf8 -\/ convert locale encoded string to U\+T\+F-\/8 @str\+: input zero terminated string.
+
+Convert string encoded in the locale\textquotesingle{}s character set into U\+T\+F-\/8 by using \mbox{\hyperlink{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}{stringprep\+\_\+convert()}}.
+
+Return value\+: Returns newly allocated zero-\/terminated string which is @str transcoded into U\+T\+F-\/8. \mbox{\Hypertarget{toutf8_8c_aaf64b9aa7a9590ba03be6f2b73c0f728}\label{toutf8_8c_aaf64b9aa7a9590ba03be6f2b73c0f728}} 
+\index{toutf8.c@{toutf8.c}!stringprep\_utf8\_to\_locale@{stringprep\_utf8\_to\_locale}}
+\index{stringprep\_utf8\_to\_locale@{stringprep\_utf8\_to\_locale}!toutf8.c@{toutf8.c}}
+\doxysubsubsection{\texorpdfstring{stringprep\_utf8\_to\_locale()}{stringprep\_utf8\_to\_locale()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+utf8\+\_\+to\+\_\+locale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str }\end{DoxyParamCaption})}
+
+stringprep\+\_\+utf8\+\_\+to\+\_\+locale -\/ encode U\+T\+F-\/8 string to locale encoding @str\+: input zero terminated string.
+
+Convert string encoded in U\+T\+F-\/8 into the locale\textquotesingle{}s character set by using \mbox{\hyperlink{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}{stringprep\+\_\+convert()}}.
+
+Return value\+: Returns newly allocated zero-\/terminated string which is @str transcoded into the locale\textquotesingle{}s character set. 

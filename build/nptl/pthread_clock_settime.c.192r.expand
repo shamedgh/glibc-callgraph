@@ -1,0 +1,202 @@
+
+;; Function __pthread_clock_settime (__pthread_clock_settime, funcdef_no=42, decl_uid=7547, cgraph_uid=43, symbol_order=44)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 47.
+Merging block 11 into block 10...
+Merged blocks 10 and 11.
+Merged 10 and 11 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 94 [ clock_id ])
+        (reg:SI 5 di [ clock_id ])) pthread_clock_settime.c:28 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 95 [ offset ])
+        (reg:DI 4 si [ offset ])) pthread_clock_settime.c:28 -1
+     (nil))
+(note 4 3 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 4 11 2 (parallel [
+            (set (reg:SI 89 [ D.7597 ])
+                (lshiftrt:SI (reg/v:SI 94 [ clock_id ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) pthread_clock_settime.c:30 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 89 [ D.7597 ])
+            (const_int 0 [0]))) pthread_clock_settime.c:33 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) pthread_clock_settime.c:33 -1
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 19)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg/v:SI 90 [ tid ])
+        (reg:SI 89 [ D.7597 ])) pthread_clock_settime.c:30 -1
+     (nil))
+(insn 15 14 16 4 (parallel [
+            (set (reg:SI 96 [ __value ])
+                (asm_operands/v:SI ("movl %%fs:%P1,%0") ("=r") 0 [
+                        (const_int 720 [0x2d0])
+                    ]
+                     [
+                        (asm_input:DI ("i") pthread_clock_settime.c:33)
+                    ]
+                     [] pthread_clock_settime.c:33))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_clock_settime.c:33 -1
+     (nil))
+(insn 16 15 17 4 (set (reg/v:SI 91 [ __value ])
+        (reg:SI 96 [ __value ])) pthread_clock_settime.c:33 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 90 [ tid ])
+            (reg/v:SI 91 [ __value ]))) pthread_clock_settime.c:33 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) pthread_clock_settime.c:33 -1
+     (int_list:REG_BR_PROB 8009 (nil))
+ -> 24)
+(code_label 19 18 20 5 2 "" [1 uses])
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 7 5 (parallel [
+            (asm_operands/v ("movq %q0,%%fs:%P1") ("") 0 [
+                    (reg/v:DI 95 [ offset ])
+                    (const_int 1568 [0x620])
+                ]
+                 [
+                    (asm_input:DI ("ir") pthread_clock_settime.c:35)
+                    (asm_input:DI ("i") pthread_clock_settime.c:35)
+                ]
+                 [] pthread_clock_settime.c:35)
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) pthread_clock_settime.c:35 -1
+     (nil))
+(insn 7 21 22 5 (set (reg:SI 87 [ D.7596 ])
+        (const_int 0 [0])) pthread_clock_settime.c:53 -1
+     (nil))
+(jump_insn 22 7 23 5 (set (pc)
+        (label_ref 44)) pthread_clock_settime.c:35 -1
+     (nil)
+ -> 44)
+(barrier 23 22 24)
+(code_label 24 23 25 6 3 "" [1 uses])
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 6 (set (reg/f:DI 97)
+        (symbol_ref/i:DI ("__find_thread_by_id") [flags 0x41]  <function_decl 0x2b386826f870 __find_thread_by_id>)) pthread_clock_settime.c:41 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 97)
+            (const_int 0 [0]))) pthread_clock_settime.c:41 -1
+     (nil))
+(jump_insn 28 27 39 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 34)
+            (pc))) pthread_clock_settime.c:41 -1
+     (int_list:REG_BR_PROB 6983 (nil))
+ -> 34)
+(code_label 39 28 29 7 6 "" [1 uses])
+(note 29 39 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 7 (set (reg:DI 98)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("errno") [flags 0x60]  <var_decl 0x2b38681ea3f0 errno>)
+                    ] UNSPEC_GOTNTPOFF)) [25  S8 A8])) pthread_clock_settime.c:44 -1
+     (nil))
+(insn 31 30 5 7 (set (mem/c:SI (plus:DI (unspec:DI [
+                        (const_int 0 [0])
+                    ] UNSPEC_TP)
+                (reg:DI 98)) [5 errno+0 S4 A32])
+        (const_int 22 [0x16])) pthread_clock_settime.c:44 -1
+     (nil))
+(insn 5 31 32 7 (set (reg:SI 87 [ D.7596 ])
+        (const_int -1 [0xffffffffffffffff])) pthread_clock_settime.c:45 -1
+     (nil))
+(jump_insn 32 5 33 7 (set (pc)
+        (label_ref 44)) pthread_clock_settime.c:45 -1
+     (nil)
+ -> 44)
+(barrier 33 32 34)
+(code_label 34 33 35 8 5 "" [1 uses])
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 8 (set (reg:SI 5 di)
+        (reg/v:SI 90 [ tid ])) pthread_clock_settime.c:41 -1
+     (nil))
+(call_insn 37 36 38 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref/i:DI ("__find_thread_by_id") [flags 0x41]  <function_decl 0x2b386826f870 __find_thread_by_id>) [0 __find_thread_by_id S1 A8])
+            (const_int 0 [0]))) pthread_clock_settime.c:41 -1
+     (expr_list:REG_CALL_DECL (symbol_ref/i:DI ("__find_thread_by_id") [flags 0x41]  <function_decl 0x2b386826f870 __find_thread_by_id>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 38 37 40 8 (set (reg/v/f:DI 92 [ thread ])
+        (reg:DI 0 ax)) pthread_clock_settime.c:41 -1
+     (nil))
+(insn 40 38 41 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ thread ])
+            (const_int 0 [0]))) pthread_clock_settime.c:42 -1
+     (nil))
+(jump_insn 41 40 42 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) pthread_clock_settime.c:42 -1
+     (int_list:REG_BR_PROB 0 (nil))
+ -> 39)
+(note 42 41 43 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 6 9 (set (mem:DI (plus:DI (reg/v/f:DI 92 [ thread ])
+                (const_int 1568 [0x620])) [12 thread_12->cpuclock_offset+0 S8 A256])
+        (reg/v:DI 95 [ offset ])) pthread_clock_settime.c:50 -1
+     (nil))
+(insn 6 43 44 9 (set (reg:SI 87 [ D.7596 ])
+        (const_int 0 [0])) pthread_clock_settime.c:53 -1
+     (nil))
+(code_label 44 6 45 10 4 "" [2 uses])
+(note 45 44 46 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 50 10 (set (reg:SI 93 [ <retval> ])
+        (reg:SI 87 [ D.7596 ])) -1
+     (nil))
+(insn 50 46 51 10 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) pthread_clock_settime.c:54 -1
+     (nil))
+(insn 51 50 0 10 (use (reg/i:SI 0 ax)) pthread_clock_settime.c:54 -1
+     (nil))

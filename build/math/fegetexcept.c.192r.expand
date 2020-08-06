@@ -1,0 +1,62 @@
+
+;; Function fegetexcept (fegetexcept, funcdef_no=3, decl_uid=1908, cgraph_uid=3, symbol_order=3)
+
+Partition 0: size 2 align 2
+	exc
+
+;; Generating RTL for gimple basic block 2
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 10.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (parallel [
+            (set (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                        (const_int -2 [0xfffffffffffffffe])) [1 exc+0 S2 A16])
+                (asm_operands:HI ("fstcw %0") ("=m") 0 []
+                     []
+                     [] ../sysdeps/x86_64/fpu/fegetexcept.c:28))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fegetexcept.c:28 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:SI 92 [ D.1968 ])
+        (zero_extend:SI (mem/c:HI (plus:DI (reg/f:DI 82 virtual-stack-vars)
+                    (const_int -2 [0xfffffffffffffffe])) [1 exc+0 S2 A16]))) ../sysdeps/x86_64/fpu/fegetexcept.c:30 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 93 [ D.1968 ])
+        (not:SI (reg:SI 92 [ D.1968 ]))) ../sysdeps/x86_64/fpu/fegetexcept.c:30 -1
+     (nil))
+(insn 8 7 9 2 (parallel [
+            (set (reg:SI 90 [ D.1968 ])
+                (and:SI (reg:SI 93 [ D.1968 ])
+                    (const_int 61 [0x3d])))
+            (clobber (reg:CC 17 flags))
+        ]) ../sysdeps/x86_64/fpu/fegetexcept.c:30 -1
+     (nil))
+(insn 9 8 13 2 (set (reg:SI 91 [ <retval> ])
+        (reg:SI 90 [ D.1968 ])) ../sysdeps/x86_64/fpu/fegetexcept.c:30 -1
+     (nil))
+(insn 13 9 14 2 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) ../sysdeps/x86_64/fpu/fegetexcept.c:31 -1
+     (nil))
+(insn 14 13 0 2 (use (reg/i:SI 0 ax)) ../sysdeps/x86_64/fpu/fegetexcept.c:31 -1
+     (nil))

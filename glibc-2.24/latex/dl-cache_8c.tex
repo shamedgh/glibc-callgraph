@@ -1,0 +1,106 @@
+\hypertarget{dl-cache_8c}{}\doxysection{elf/dl-\/cache.c File Reference}
+\label{dl-cache_8c}\index{elf/dl-\/cache.c@{elf/dl-\/cache.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$ldsodefs.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/cache.\+h$>$}\newline
+{\ttfamily \#include $<$dl-\/procinfo.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$\+\_\+itoa.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dl-cache_8c_a09be88516a03933f8922e8180b918e4d}{\+\_\+\+D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+S\+\_\+\+C\+O\+U\+NT}}~0
+\item 
+\#define \mbox{\hyperlink{dl-cache_8c_a047a72e0efcb89a27abb673c81528c2b}{\+\_\+dl\+\_\+cache\+\_\+verify\+\_\+ptr}}(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}})~(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}} $<$ cache\+\_\+data\+\_\+size)
+\item 
+\#define \mbox{\hyperlink{dl-cache_8c_a86e39387f7e6f05b08997e64fdf440a6}{S\+E\+A\+R\+C\+H\+\_\+\+C\+A\+C\+HE}}(cache)
+\item 
+\#define \mbox{\hyperlink{dl-cache_8c_af21910967de048728f2752c506cef01f}{\+\_\+\+D\+L\+\_\+\+H\+W\+C\+A\+P\+\_\+\+T\+L\+S\+\_\+\+M\+A\+SK}}~(1\+L\+L $<$$<$ 63)
+\item 
+\#define \mbox{\hyperlink{dl-cache_8c_a182f8bf87a45b14f649dcaf0912d296b}{H\+W\+C\+A\+P\+\_\+\+C\+H\+E\+CK}}
+\item 
+\#define \mbox{\hyperlink{dl-cache_8c_a182f8bf87a45b14f649dcaf0912d296b}{H\+W\+C\+A\+P\+\_\+\+C\+H\+E\+CK}}~do \{\} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-cache_8c_a8b2f4d7d03de1a446eb88c61b428ac5c}{\+\_\+dl\+\_\+cache\+\_\+libcmp}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{test-fmodrem-ldbl-128ibm_8c_ad63e48314049cba98f91462d114bd44c}{p1}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{test-fmodrem-ldbl-128ibm_8c_a3f3cee99f16bcb820c56c54d9defcf4e}{p2}})
+\item 
+char $\ast$\mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \mbox{\hyperlink{dl-cache_8c_a843f68fbaf45927f723245d11ee897f2}{\+\_\+dl\+\_\+load\+\_\+cache\+\_\+lookup}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{structname}{name}})
+\item 
+\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \mbox{\hyperlink{dl-cache_8c_afc600c663d72f2cde011cbe690ddef7e}{\+\_\+dl\+\_\+unload\+\_\+cache}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dl-cache_8c_a047a72e0efcb89a27abb673c81528c2b}\label{dl-cache_8c_a047a72e0efcb89a27abb673c81528c2b}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!\_dl\_cache\_verify\_ptr@{\_dl\_cache\_verify\_ptr}}
+\index{\_dl\_cache\_verify\_ptr@{\_dl\_cache\_verify\_ptr}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_cache\_verify\_ptr}{\_dl\_cache\_verify\_ptr}}
+{\footnotesize\ttfamily \#define \+\_\+dl\+\_\+cache\+\_\+verify\+\_\+ptr(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}} }\end{DoxyParamCaption})~(\mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a7458c2a55995da9679576dc97f6383c4}{ptr}} $<$ cache\+\_\+data\+\_\+size)}
+
+\mbox{\Hypertarget{dl-cache_8c_af21910967de048728f2752c506cef01f}\label{dl-cache_8c_af21910967de048728f2752c506cef01f}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!\_DL\_HWCAP\_TLS\_MASK@{\_DL\_HWCAP\_TLS\_MASK}}
+\index{\_DL\_HWCAP\_TLS\_MASK@{\_DL\_HWCAP\_TLS\_MASK}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{\_DL\_HWCAP\_TLS\_MASK}{\_DL\_HWCAP\_TLS\_MASK}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+L\+\_\+\+H\+W\+C\+A\+P\+\_\+\+T\+L\+S\+\_\+\+M\+A\+SK~(1\+L\+L $<$$<$ 63)}
+
+\mbox{\Hypertarget{dl-cache_8c_a09be88516a03933f8922e8180b918e4d}\label{dl-cache_8c_a09be88516a03933f8922e8180b918e4d}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!\_DL\_PLATFORMS\_COUNT@{\_DL\_PLATFORMS\_COUNT}}
+\index{\_DL\_PLATFORMS\_COUNT@{\_DL\_PLATFORMS\_COUNT}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{\_DL\_PLATFORMS\_COUNT}{\_DL\_PLATFORMS\_COUNT}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+L\+\_\+\+P\+L\+A\+T\+F\+O\+R\+M\+S\+\_\+\+C\+O\+U\+NT~0}
+
+\mbox{\Hypertarget{dl-cache_8c_a182f8bf87a45b14f649dcaf0912d296b}\label{dl-cache_8c_a182f8bf87a45b14f649dcaf0912d296b}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!HWCAP\_CHECK@{HWCAP\_CHECK}}
+\index{HWCAP\_CHECK@{HWCAP\_CHECK}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{HWCAP\_CHECK}{HWCAP\_CHECK}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define H\+W\+C\+A\+P\+\_\+\+C\+H\+E\+CK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{ld-address_8c_aebdd33b87af90f53f3bb144d6bdeca4c}{lib}}-\/>hwcap \& hwcap\_exclude)                        \(\backslash\)}
+\DoxyCodeLine{    continue;                                 \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{generic_2ldsodefs_8h_abde74c56f2ec45d1c235614e29077a47}{GLRO}}(dl\_osversion) \&\& \mbox{\hyperlink{ld-address_8c_aebdd33b87af90f53f3bb144d6bdeca4c}{lib}}-\/>osversion > \mbox{\hyperlink{generic_2ldsodefs_8h_abde74c56f2ec45d1c235614e29077a47}{GLRO}}(dl\_osversion))       \(\backslash\)}
+\DoxyCodeLine{    continue;                                 \(\backslash\)}
+\DoxyCodeLine{      if (\mbox{\hyperlink{dl-cache_8c_a09be88516a03933f8922e8180b918e4d}{\_DL\_PLATFORMS\_COUNT}}                              \(\backslash\)}
+\DoxyCodeLine{      \&\& (\mbox{\hyperlink{ld-address_8c_aebdd33b87af90f53f3bb144d6bdeca4c}{lib}}-\/>hwcap \& \mbox{\hyperlink{alpha_2dl-procinfo_8h_aa3c786e3611c5072a29eda00acb79974}{\_DL\_HWCAP\_PLATFORM}}) != 0                  \(\backslash\)}
+\DoxyCodeLine{      \&\& (\mbox{\hyperlink{ld-address_8c_aebdd33b87af90f53f3bb144d6bdeca4c}{lib}}-\/>hwcap \& \mbox{\hyperlink{alpha_2dl-procinfo_8h_aa3c786e3611c5072a29eda00acb79974}{\_DL\_HWCAP\_PLATFORM}}) != platform)              \(\backslash\)}
+\DoxyCodeLine{    continue}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{dl-cache_8c_a182f8bf87a45b14f649dcaf0912d296b}\label{dl-cache_8c_a182f8bf87a45b14f649dcaf0912d296b}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!HWCAP\_CHECK@{HWCAP\_CHECK}}
+\index{HWCAP\_CHECK@{HWCAP\_CHECK}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{HWCAP\_CHECK}{HWCAP\_CHECK}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define H\+W\+C\+A\+P\+\_\+\+C\+H\+E\+CK~do \{\} \mbox{\hyperlink{unix_2sysv_2linux_2sigset-cvt-mask_8h_a46002d21e31dda72ba4730b97042eff3}{while}} (0)}
+
+\mbox{\Hypertarget{dl-cache_8c_a86e39387f7e6f05b08997e64fdf440a6}\label{dl-cache_8c_a86e39387f7e6f05b08997e64fdf440a6}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!SEARCH\_CACHE@{SEARCH\_CACHE}}
+\index{SEARCH\_CACHE@{SEARCH\_CACHE}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{SEARCH\_CACHE}{SEARCH\_CACHE}}
+{\footnotesize\ttfamily \#define S\+E\+A\+R\+C\+H\+\_\+\+C\+A\+C\+HE(\begin{DoxyParamCaption}\item[{}]{cache }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dl-cache_8c_a8b2f4d7d03de1a446eb88c61b428ac5c}\label{dl-cache_8c_a8b2f4d7d03de1a446eb88c61b428ac5c}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!\_dl\_cache\_libcmp@{\_dl\_cache\_libcmp}}
+\index{\_dl\_cache\_libcmp@{\_dl\_cache\_libcmp}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_cache\_libcmp()}{\_dl\_cache\_libcmp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+cache\+\_\+libcmp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{p1,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{p2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-cache_8c_a843f68fbaf45927f723245d11ee897f2}\label{dl-cache_8c_a843f68fbaf45927f723245d11ee897f2}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!\_dl\_load\_cache\_lookup@{\_dl\_load\_cache\_lookup}}
+\index{\_dl\_load\_cache\_lookup@{\_dl\_load\_cache\_lookup}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_load\_cache\_lookup()}{\_dl\_load\_cache\_lookup()}}
+{\footnotesize\ttfamily char$\ast$ \mbox{\hyperlink{nacl-interfaces_8h_acf1cc5dac5c78a6716a2d0e5ee7ea39e}{internal\+\_\+function}} \+\_\+dl\+\_\+load\+\_\+cache\+\_\+lookup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dl-cache_8c_afc600c663d72f2cde011cbe690ddef7e}\label{dl-cache_8c_afc600c663d72f2cde011cbe690ddef7e}} 
+\index{dl-\/cache.c@{dl-\/cache.c}!\_dl\_unload\_cache@{\_dl\_unload\_cache}}
+\index{\_dl\_unload\_cache@{\_dl\_unload\_cache}!dl-\/cache.c@{dl-\/cache.c}}
+\doxysubsubsection{\texorpdfstring{\_dl\_unload\_cache()}{\_dl\_unload\_cache()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}} \+\_\+dl\+\_\+unload\+\_\+cache (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+

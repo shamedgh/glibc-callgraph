@@ -1,0 +1,716 @@
+\hypertarget{stringprep_8h}{}\doxysection{libidn/stringprep.h File Reference}
+\label{stringprep_8h}\index{libidn/stringprep.h@{libidn/stringprep.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}}
+\item 
+struct \mbox{\hyperlink{structStringprep__table}{Stringprep\+\_\+table}}
+\item 
+struct \mbox{\hyperlink{structStringprep__profiles}{Stringprep\+\_\+profiles}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_acbfa549f50309df71705929a6b066899}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+V\+E\+R\+S\+I\+ON}}~\char`\"{}0.\+4.\+3\char`\"{}
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_af999bd06b8debad50e8e0f2b045e064e}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+M\+A\+X\+\_\+\+M\+A\+P\+\_\+\+C\+H\+A\+RS}}~4
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_a9cc2f6b41cdee4c55f3dc52a0124757b}{stringprep\+\_\+nameprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+nameprep)
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_aae159b2de92b13616fedc23241270dad}{stringprep\+\_\+nameprep\+\_\+no\+\_\+unassigned}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5a9bf93f8778bd808f9cb3c91e9318715a}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+ED}}, \mbox{\hyperlink{stringprep_8h_ac61e84f4fd4023a65277f740e6f8cc6a}{stringprep\+\_\+nameprep}})
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_a5ddfeae54563feb690d867ea4f501273}{stringprep\+\_\+plain}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+plain)
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_a43a95ccf01fec39b04022f95899f197b}{stringprep\+\_\+kerberos5}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+kerberos5)
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_a388650b29eb74ce5cff0d929c427b585}{stringprep\+\_\+xmpp\+\_\+nodeprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+xmpp\+\_\+nodeprep)
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_a10d32b7ef68743449cf16acc51004fe0}{stringprep\+\_\+xmpp\+\_\+resourceprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+xmpp\+\_\+resourceprep)
+\item 
+\#define \mbox{\hyperlink{stringprep_8h_ac399161f1958e42925970f88ff43f691}{stringprep\+\_\+iscsi}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  maxlen)~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+iscsi)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_afc9c5381d47e78b2436c419ee2c6fa1c}{Stringprep\+\_\+table\+\_\+element}}
+\item 
+typedef struct \mbox{\hyperlink{structStringprep__table}{Stringprep\+\_\+table}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}}
+\item 
+typedef struct \mbox{\hyperlink{structStringprep__profiles}{Stringprep\+\_\+profiles}} \mbox{\hyperlink{stringprep_8h_a459bf264a9f1997951f890625fedb7c5}{Stringprep\+\_\+profiles}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670}{Stringprep\+\_\+rc}} \{ \newline
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a8179496e73592a430cf8bd38a44c1da9}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+OK}} = 0, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a86bb4d84208c5f41b66c0af44a1a4df2}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+C\+O\+N\+T\+A\+I\+N\+S\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+ED}} = 1, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a91fc31dd370696f9bd53f8e8fea8043f}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+C\+O\+N\+T\+A\+I\+N\+S\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+ED}} = 2, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670abc77a3ee4cf9d6a5bc1018cc7208d1ad}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+B\+O\+T\+H\+\_\+\+L\+\_\+\+A\+N\+D\+\_\+\+R\+AL}} = 3, 
+\newline
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670ac765a12ca78778984fee36923e65e6e0}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+L\+E\+A\+D\+T\+R\+A\+I\+L\+\_\+\+N\+O\+T\+\_\+\+R\+AL}} = 4, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670aa2dcae43b50e6cecbf55401d8560e2f3}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+C\+O\+N\+T\+A\+I\+N\+S\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+ED}} = 5, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a42326dd0196553a3b83a0492956e3160}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+T\+O\+O\+\_\+\+S\+M\+A\+L\+L\+\_\+\+B\+U\+F\+F\+ER}} = 100, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670af1afbe822ef545dbabb87cb2015c4d6c}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR}} = 101, 
+\newline
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a7cf3b21e26f11bfa3ab106920d263e07}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+F\+L\+A\+G\+\_\+\+E\+R\+R\+OR}} = 102, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a1597c5e2cb4016d7426965f1b853628f}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+P\+R\+O\+F\+I\+LE}} = 103, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a359056366c077fc7ae78fb5f185f9f2d}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+F\+K\+C\+\_\+\+F\+A\+I\+L\+ED}} = 200, 
+\mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670a65b7d33226bf2feaae34dce9b7a2ef49}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+M\+A\+L\+L\+O\+C\+\_\+\+E\+R\+R\+OR}} = 201
+ \}
+\item 
+enum \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}} \{ \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5a7a5983d33e56d448ccbfe7b68089d1d0}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+N\+F\+KC}} = 1, 
+\mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5a6ecde907865963c53cddf54ea6498668}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+B\+I\+DI}} = 2, 
+\mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5a9bf93f8778bd808f9cb3c91e9318715a}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+ED}} = 4
+ \}
+\item 
+enum \mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0f}{Stringprep\+\_\+profile\+\_\+steps}} \{ \newline
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa3b9f2a9b26329fd57a93b3935bc81ddd}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+F\+KC}} = 1, 
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa9c4e38d061dbe88637f5c56c357c98b7}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+DI}} = 2, 
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0faba2962802639bab69b7479822c8f3b56}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+M\+A\+P\+\_\+\+T\+A\+B\+LE}} = 3, 
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa80726a1bb941026b653350372c065f83}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+E\+D\+\_\+\+T\+A\+B\+LE}} = 4, 
+\newline
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa7d49fe840fe85330e2a1c5e331b5da85}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+\_\+\+T\+A\+B\+LE}} = 5, 
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa1224c63a26d496f419f652d8445c0e51}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+\_\+\+T\+A\+B\+LE}} = 6, 
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa315c5527e585303d44aea846c1175cfd}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+R\+A\+L\+\_\+\+T\+A\+B\+LE}} = 7, 
+\mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0faf484c3ac62bd15e8d3f3cceaafacc211}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+L\+\_\+\+T\+A\+B\+LE}} = 8
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stringprep_8h_a35ec8ecbceadb10704d7aead643cca0a}{stringprep\+\_\+4i}} (\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$ucs4, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$\mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} maxucs4len, \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}} \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} $\ast$\mbox{\hyperlink{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stringprep_8h_a091bdd80e56348185944d9cff1007736}{stringprep\+\_\+4zi}} (\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$ucs4, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} maxucs4len, \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}} \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} $\ast$\mbox{\hyperlink{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}} (char $\ast$\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} maxlen, \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}} \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} $\ast$\mbox{\hyperlink{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}})
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stringprep_8h_a558f1bcdc182903787bc058ba85cfe81}{stringprep\+\_\+profile}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, char $\ast$$\ast$\mbox{\hyperlink{tst-strtod4_8c_a8905de849f303a8598c0f7c3d37d46ed}{out}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{x86__64_2dl-machine_8h_a0b7d3d42a1e9ce22201605a0cc1e4951}{profile}}, \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}} \mbox{\hyperlink{testfnm_8c_ac8bf36fe0577cba66bccda3a6f7e80a4}{flags}})
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{stringprep_8h_a2eb4f14b1f74ce8d460ba5935f1db2fd}{stringprep\+\_\+check\+\_\+version}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$req\+\_\+version)
+\item 
+\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{stringprep_8h_a309b309ad4fbe3aac6c5bc5d20d3491f}{stringprep\+\_\+unichar\+\_\+to\+\_\+utf8}} (\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a9f20bfc79c6b32611fc3e2a28427660b}{c}}, char $\ast$outbuf)
+\item 
+\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} \mbox{\hyperlink{stringprep_8h_abf648102d314a9c75cb28f2d0c57cc10}{stringprep\+\_\+utf8\+\_\+to\+\_\+unichar}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{testobj2_8c_a1205bbf03f2fc5576e8cbdc650018a47}{p}})
+\item 
+\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$ \mbox{\hyperlink{stringprep_8h_ae102c3ce1515eec826c509b63c239879}{stringprep\+\_\+utf8\+\_\+to\+\_\+ucs4}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$items\+\_\+written)
+\item 
+char $\ast$ \mbox{\hyperlink{stringprep_8h_aa40191e93c91037c6fc149c4a4a852c8}{stringprep\+\_\+ucs4\+\_\+to\+\_\+utf8}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}}, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$items\+\_\+read, \mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$items\+\_\+written)
+\item 
+char $\ast$ \mbox{\hyperlink{stringprep_8h_a7b4108e77eb1adf32620302f029fca90}{stringprep\+\_\+utf8\+\_\+nfkc\+\_\+normalize}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}})
+\item 
+\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$ \mbox{\hyperlink{stringprep_8h_a41d10a536955ba3c2343a68b10f12cc1}{stringprep\+\_\+ucs4\+\_\+nfkc\+\_\+normalize}} (\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}} \mbox{\hyperlink{fmtmsg_8c_a96bbf959016e4411c9e6b9812a8be60a}{len}})
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$ \mbox{\hyperlink{stringprep_8h_ade17694f587772422d0e3998064d2db6}{stringprep\+\_\+locale\+\_\+charset}} (\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}})
+\item 
+char $\ast$ \mbox{\hyperlink{stringprep_8h_a7d47f1ef538ea4b9bb5a1478065f71c3}{stringprep\+\_\+convert}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}}, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$to\+\_\+codeset, \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$from\+\_\+codeset)
+\item 
+char $\ast$ \mbox{\hyperlink{stringprep_8h_a4fdc6ed7a9b74a74c5fe94e844972e65}{stringprep\+\_\+locale\+\_\+to\+\_\+utf8}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}})
+\item 
+char $\ast$ \mbox{\hyperlink{stringprep_8h_aaf64b9aa7a9590ba03be6f2b73c0f728}{stringprep\+\_\+utf8\+\_\+to\+\_\+locale}} (\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$\mbox{\hyperlink{tst-getdate_8c_af25d6dc49269fa2003ac7c7fa6f13915}{str}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__profiles}{Stringprep\+\_\+profiles}} \mbox{\hyperlink{stringprep_8h_a6fd68d742e7d1165a49a47c720004262}{stringprep\+\_\+profiles}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_ab00a24ecc114069cd2d4cfed15b71e45}{stringprep\+\_\+rfc3454\+\_\+\+A\+\_\+1}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_ad8760e39e8f60bcd47718322803d2512}{stringprep\+\_\+rfc3454\+\_\+\+B\+\_\+1}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a0b83afe92bb6747ff4ebb481ce815770}{stringprep\+\_\+rfc3454\+\_\+\+B\+\_\+2}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a622454c30060613cd7c2ef09d175ba3c}{stringprep\+\_\+rfc3454\+\_\+\+B\+\_\+3}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_aae22e521eeab3f0136b590fa6b90de0f}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+1\+\_\+1}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_ac6d9463b0bfb536ed212318c3fa6209e}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+1\+\_\+2}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a355e93e9989ccb11ce13b54ff41ace23}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+2\+\_\+1}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a3c0fa9cebc2fdf9c3e51efc1f95f235b}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+2\+\_\+2}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a911ac65bce6afffba9c3b077ddb3dcf5}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+3}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a1c9447a30f855d59c5527cc187252976}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+4}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_ac8a5a34affa88956b5db5c3df3a9f4a0}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+5}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a16938a6d2fae03350c54a7799ee2671b}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+6}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a899392b063c61d271f00260d794d7848}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+7}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a37c7bf8bee69a22389906a80798872ce}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+8}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a4a9ef20f7588c8fe6391ecb88ba53747}{stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+9}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a17ac8b8908161bfd5fefaaed6bb6ed6e}{stringprep\+\_\+rfc3454\+\_\+\+D\+\_\+1}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_af91f5cf73d287e212c352822b7ac90d9}{stringprep\+\_\+rfc3454\+\_\+\+D\+\_\+2}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_ac61e84f4fd4023a65277f740e6f8cc6a}{stringprep\+\_\+nameprep}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_a4bc1e670f5133ebec1bdb1eaad1bff38}{stringprep\+\_\+saslprep}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_a12568127a093aba3962f28c2c605a96e}{stringprep\+\_\+plain}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_abdfabf5f4f27a80230042b42b2138061}{stringprep\+\_\+trace}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_a0d24f6921037c5fb1ca54975ce328c07}{stringprep\+\_\+kerberos5}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_a8b209414d236d761242892cbd93534c0}{stringprep\+\_\+xmpp\+\_\+nodeprep}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_ad51bb4894675b91d4c71509483423cdd}{stringprep\+\_\+xmpp\+\_\+resourceprep}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{stringprep_8h_a42b2de4ad79eb0294a4e7c64a776d919}{stringprep\+\_\+xmpp\+\_\+nodeprep\+\_\+prohibit}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} \mbox{\hyperlink{stringprep_8h_a53bc596d370dafcb68e1d5512e5cbacb}{stringprep\+\_\+iscsi}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{stringprep_8h_ac399161f1958e42925970f88ff43f691}\label{stringprep_8h_ac399161f1958e42925970f88ff43f691}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_iscsi@{stringprep\_iscsi}}
+\index{stringprep\_iscsi@{stringprep\_iscsi}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_iscsi}{stringprep\_iscsi}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+iscsi(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+iscsi)}
+
+\mbox{\Hypertarget{stringprep_8h_a43a95ccf01fec39b04022f95899f197b}\label{stringprep_8h_a43a95ccf01fec39b04022f95899f197b}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_kerberos5@{stringprep\_kerberos5}}
+\index{stringprep\_kerberos5@{stringprep\_kerberos5}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_kerberos5}{stringprep\_kerberos5}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+kerberos5(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+kerberos5)}
+
+\mbox{\Hypertarget{stringprep_8h_af999bd06b8debad50e8e0f2b045e064e}\label{stringprep_8h_af999bd06b8debad50e8e0f2b045e064e}} 
+\index{stringprep.h@{stringprep.h}!STRINGPREP\_MAX\_MAP\_CHARS@{STRINGPREP\_MAX\_MAP\_CHARS}}
+\index{STRINGPREP\_MAX\_MAP\_CHARS@{STRINGPREP\_MAX\_MAP\_CHARS}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{STRINGPREP\_MAX\_MAP\_CHARS}{STRINGPREP\_MAX\_MAP\_CHARS}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+M\+A\+X\+\_\+\+M\+A\+P\+\_\+\+C\+H\+A\+RS~4}
+
+\mbox{\Hypertarget{stringprep_8h_a9cc2f6b41cdee4c55f3dc52a0124757b}\label{stringprep_8h_a9cc2f6b41cdee4c55f3dc52a0124757b}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_nameprep@{stringprep\_nameprep}}
+\index{stringprep\_nameprep@{stringprep\_nameprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_nameprep}{stringprep\_nameprep}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+nameprep(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+nameprep)}
+
+\mbox{\Hypertarget{stringprep_8h_aae159b2de92b13616fedc23241270dad}\label{stringprep_8h_aae159b2de92b13616fedc23241270dad}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_nameprep\_no\_unassigned@{stringprep\_nameprep\_no\_unassigned}}
+\index{stringprep\_nameprep\_no\_unassigned@{stringprep\_nameprep\_no\_unassigned}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_nameprep\_no\_unassigned}{stringprep\_nameprep\_no\_unassigned}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+nameprep\+\_\+no\+\_\+unassigned(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5a9bf93f8778bd808f9cb3c91e9318715a}{S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+ED}}, \mbox{\hyperlink{stringprep_8h_ac61e84f4fd4023a65277f740e6f8cc6a}{stringprep\+\_\+nameprep}})}
+
+\mbox{\Hypertarget{stringprep_8h_a5ddfeae54563feb690d867ea4f501273}\label{stringprep_8h_a5ddfeae54563feb690d867ea4f501273}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_plain@{stringprep\_plain}}
+\index{stringprep\_plain@{stringprep\_plain}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_plain}{stringprep\_plain}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+plain(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+plain)}
+
+\mbox{\Hypertarget{stringprep_8h_acbfa549f50309df71705929a6b066899}\label{stringprep_8h_acbfa549f50309df71705929a6b066899}} 
+\index{stringprep.h@{stringprep.h}!STRINGPREP\_VERSION@{STRINGPREP\_VERSION}}
+\index{STRINGPREP\_VERSION@{STRINGPREP\_VERSION}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{STRINGPREP\_VERSION}{STRINGPREP\_VERSION}}
+{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+V\+E\+R\+S\+I\+ON~\char`\"{}0.\+4.\+3\char`\"{}}
+
+\mbox{\Hypertarget{stringprep_8h_a388650b29eb74ce5cff0d929c427b585}\label{stringprep_8h_a388650b29eb74ce5cff0d929c427b585}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_xmpp\_nodeprep@{stringprep\_xmpp\_nodeprep}}
+\index{stringprep\_xmpp\_nodeprep@{stringprep\_xmpp\_nodeprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_xmpp\_nodeprep}{stringprep\_xmpp\_nodeprep}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+xmpp\+\_\+nodeprep(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+xmpp\+\_\+nodeprep)}
+
+\mbox{\Hypertarget{stringprep_8h_a10d32b7ef68743449cf16acc51004fe0}\label{stringprep_8h_a10d32b7ef68743449cf16acc51004fe0}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_xmpp\_resourceprep@{stringprep\_xmpp\_resourceprep}}
+\index{stringprep\_xmpp\_resourceprep@{stringprep\_xmpp\_resourceprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_xmpp\_resourceprep}{stringprep\_xmpp\_resourceprep}}
+{\footnotesize\ttfamily \#define stringprep\+\_\+xmpp\+\_\+resourceprep(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}},  }\item[{}]{maxlen }\end{DoxyParamCaption})~\mbox{\hyperlink{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}{stringprep}}(\mbox{\hyperlink{tst-strtod5_8c_a52bb50fce643c4899922808db7d60d42}{in}}, maxlen, 0, stringprep\+\_\+xmpp\+\_\+resourceprep)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}\label{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}} 
+\index{stringprep.h@{stringprep.h}!Stringprep\_profile@{Stringprep\_profile}}
+\index{Stringprep\_profile@{Stringprep\_profile}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{Stringprep\_profile}{Stringprep\_profile}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structStringprep__table}{Stringprep\+\_\+table}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}}}
+
+\mbox{\Hypertarget{stringprep_8h_a459bf264a9f1997951f890625fedb7c5}\label{stringprep_8h_a459bf264a9f1997951f890625fedb7c5}} 
+\index{stringprep.h@{stringprep.h}!Stringprep\_profiles@{Stringprep\_profiles}}
+\index{Stringprep\_profiles@{Stringprep\_profiles}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{Stringprep\_profiles}{Stringprep\_profiles}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structStringprep__profiles}{Stringprep\+\_\+profiles}} \mbox{\hyperlink{structStringprep__profiles}{Stringprep\+\_\+profiles}}}
+
+\mbox{\Hypertarget{stringprep_8h_afc9c5381d47e78b2436c419ee2c6fa1c}\label{stringprep_8h_afc9c5381d47e78b2436c419ee2c6fa1c}} 
+\index{stringprep.h@{stringprep.h}!Stringprep\_table\_element@{Stringprep\_table\_element}}
+\index{Stringprep\_table\_element@{Stringprep\_table\_element}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{Stringprep\_table\_element}{Stringprep\_table\_element}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{stringprep_8h_a506f050dce2736119e66580bf11befc5}\label{stringprep_8h_a506f050dce2736119e66580bf11befc5}} 
+\index{stringprep.h@{stringprep.h}!Stringprep\_profile\_flags@{Stringprep\_profile\_flags}}
+\index{Stringprep\_profile\_flags@{Stringprep\_profile\_flags}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{Stringprep\_profile\_flags}{Stringprep\_profile\_flags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_NO\_NFKC@{STRINGPREP\_NO\_NFKC}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_NO\_NFKC@{STRINGPREP\_NO\_NFKC}}}\mbox{\Hypertarget{stringprep_8h_a506f050dce2736119e66580bf11befc5a7a5983d33e56d448ccbfe7b68089d1d0}\label{stringprep_8h_a506f050dce2736119e66580bf11befc5a7a5983d33e56d448ccbfe7b68089d1d0}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+N\+F\+KC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_NO\_BIDI@{STRINGPREP\_NO\_BIDI}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_NO\_BIDI@{STRINGPREP\_NO\_BIDI}}}\mbox{\Hypertarget{stringprep_8h_a506f050dce2736119e66580bf11befc5a6ecde907865963c53cddf54ea6498668}\label{stringprep_8h_a506f050dce2736119e66580bf11befc5a6ecde907865963c53cddf54ea6498668}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+B\+I\+DI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_NO\_UNASSIGNED@{STRINGPREP\_NO\_UNASSIGNED}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_NO\_UNASSIGNED@{STRINGPREP\_NO\_UNASSIGNED}}}\mbox{\Hypertarget{stringprep_8h_a506f050dce2736119e66580bf11befc5a9bf93f8778bd808f9cb3c91e9318715a}\label{stringprep_8h_a506f050dce2736119e66580bf11befc5a9bf93f8778bd808f9cb3c91e9318715a}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+O\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+ED&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0f}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0f}} 
+\index{stringprep.h@{stringprep.h}!Stringprep\_profile\_steps@{Stringprep\_profile\_steps}}
+\index{Stringprep\_profile\_steps@{Stringprep\_profile\_steps}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{Stringprep\_profile\_steps}{Stringprep\_profile\_steps}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0f}{Stringprep\+\_\+profile\+\_\+steps}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_NFKC@{STRINGPREP\_NFKC}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_NFKC@{STRINGPREP\_NFKC}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa3b9f2a9b26329fd57a93b3935bc81ddd}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa3b9f2a9b26329fd57a93b3935bc81ddd}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+F\+KC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI@{STRINGPREP\_BIDI}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI@{STRINGPREP\_BIDI}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa9c4e38d061dbe88637f5c56c357c98b7}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa9c4e38d061dbe88637f5c56c357c98b7}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+DI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_MAP\_TABLE@{STRINGPREP\_MAP\_TABLE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_MAP\_TABLE@{STRINGPREP\_MAP\_TABLE}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0faba2962802639bab69b7479822c8f3b56}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0faba2962802639bab69b7479822c8f3b56}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+M\+A\+P\+\_\+\+T\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_UNASSIGNED\_TABLE@{STRINGPREP\_UNASSIGNED\_TABLE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_UNASSIGNED\_TABLE@{STRINGPREP\_UNASSIGNED\_TABLE}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa80726a1bb941026b653350372c065f83}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa80726a1bb941026b653350372c065f83}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+E\+D\+\_\+\+T\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_PROHIBIT\_TABLE@{STRINGPREP\_PROHIBIT\_TABLE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_PROHIBIT\_TABLE@{STRINGPREP\_PROHIBIT\_TABLE}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa7d49fe840fe85330e2a1c5e331b5da85}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa7d49fe840fe85330e2a1c5e331b5da85}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+\_\+\+T\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI\_PROHIBIT\_TABLE@{STRINGPREP\_BIDI\_PROHIBIT\_TABLE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI\_PROHIBIT\_TABLE@{STRINGPREP\_BIDI\_PROHIBIT\_TABLE}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa1224c63a26d496f419f652d8445c0e51}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa1224c63a26d496f419f652d8445c0e51}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+\_\+\+T\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI\_RAL\_TABLE@{STRINGPREP\_BIDI\_RAL\_TABLE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI\_RAL\_TABLE@{STRINGPREP\_BIDI\_RAL\_TABLE}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa315c5527e585303d44aea846c1175cfd}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0fa315c5527e585303d44aea846c1175cfd}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+R\+A\+L\+\_\+\+T\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI\_L\_TABLE@{STRINGPREP\_BIDI\_L\_TABLE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI\_L\_TABLE@{STRINGPREP\_BIDI\_L\_TABLE}}}\mbox{\Hypertarget{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0faf484c3ac62bd15e8d3f3cceaafacc211}\label{stringprep_8h_a3af60c18a904c2c01ad6c71a57249a0faf484c3ac62bd15e8d3f3cceaafacc211}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+L\+\_\+\+T\+A\+B\+LE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670}} 
+\index{stringprep.h@{stringprep.h}!Stringprep\_rc@{Stringprep\_rc}}
+\index{Stringprep\_rc@{Stringprep\_rc}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{Stringprep\_rc}{Stringprep\_rc}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{stringprep_8h_a6977f854888a958a344f2fcb4db25670}{Stringprep\+\_\+rc}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_OK@{STRINGPREP\_OK}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_OK@{STRINGPREP\_OK}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a8179496e73592a430cf8bd38a44c1da9}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a8179496e73592a430cf8bd38a44c1da9}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_CONTAINS\_UNASSIGNED@{STRINGPREP\_CONTAINS\_UNASSIGNED}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_CONTAINS\_UNASSIGNED@{STRINGPREP\_CONTAINS\_UNASSIGNED}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a86bb4d84208c5f41b66c0af44a1a4df2}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a86bb4d84208c5f41b66c0af44a1a4df2}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+C\+O\+N\+T\+A\+I\+N\+S\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_CONTAINS\_PROHIBITED@{STRINGPREP\_CONTAINS\_PROHIBITED}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_CONTAINS\_PROHIBITED@{STRINGPREP\_CONTAINS\_PROHIBITED}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a91fc31dd370696f9bd53f8e8fea8043f}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a91fc31dd370696f9bd53f8e8fea8043f}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+C\+O\+N\+T\+A\+I\+N\+S\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI\_BOTH\_L\_AND\_RAL@{STRINGPREP\_BIDI\_BOTH\_L\_AND\_RAL}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI\_BOTH\_L\_AND\_RAL@{STRINGPREP\_BIDI\_BOTH\_L\_AND\_RAL}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670abc77a3ee4cf9d6a5bc1018cc7208d1ad}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670abc77a3ee4cf9d6a5bc1018cc7208d1ad}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+B\+O\+T\+H\+\_\+\+L\+\_\+\+A\+N\+D\+\_\+\+R\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI\_LEADTRAIL\_NOT\_RAL@{STRINGPREP\_BIDI\_LEADTRAIL\_NOT\_RAL}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI\_LEADTRAIL\_NOT\_RAL@{STRINGPREP\_BIDI\_LEADTRAIL\_NOT\_RAL}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670ac765a12ca78778984fee36923e65e6e0}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670ac765a12ca78778984fee36923e65e6e0}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+L\+E\+A\+D\+T\+R\+A\+I\+L\+\_\+\+N\+O\+T\+\_\+\+R\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_BIDI\_CONTAINS\_PROHIBITED@{STRINGPREP\_BIDI\_CONTAINS\_PROHIBITED}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_BIDI\_CONTAINS\_PROHIBITED@{STRINGPREP\_BIDI\_CONTAINS\_PROHIBITED}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670aa2dcae43b50e6cecbf55401d8560e2f3}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670aa2dcae43b50e6cecbf55401d8560e2f3}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+B\+I\+D\+I\+\_\+\+C\+O\+N\+T\+A\+I\+N\+S\+\_\+\+P\+R\+O\+H\+I\+B\+I\+T\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_TOO\_SMALL\_BUFFER@{STRINGPREP\_TOO\_SMALL\_BUFFER}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_TOO\_SMALL\_BUFFER@{STRINGPREP\_TOO\_SMALL\_BUFFER}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a42326dd0196553a3b83a0492956e3160}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a42326dd0196553a3b83a0492956e3160}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+T\+O\+O\+\_\+\+S\+M\+A\+L\+L\+\_\+\+B\+U\+F\+F\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_PROFILE\_ERROR@{STRINGPREP\_PROFILE\_ERROR}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_PROFILE\_ERROR@{STRINGPREP\_PROFILE\_ERROR}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670af1afbe822ef545dbabb87cb2015c4d6c}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670af1afbe822ef545dbabb87cb2015c4d6c}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_FLAG\_ERROR@{STRINGPREP\_FLAG\_ERROR}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_FLAG\_ERROR@{STRINGPREP\_FLAG\_ERROR}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a7cf3b21e26f11bfa3ab106920d263e07}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a7cf3b21e26f11bfa3ab106920d263e07}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+F\+L\+A\+G\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_UNKNOWN\_PROFILE@{STRINGPREP\_UNKNOWN\_PROFILE}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_UNKNOWN\_PROFILE@{STRINGPREP\_UNKNOWN\_PROFILE}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a1597c5e2cb4016d7426965f1b853628f}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a1597c5e2cb4016d7426965f1b853628f}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+P\+R\+O\+F\+I\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_NFKC\_FAILED@{STRINGPREP\_NFKC\_FAILED}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_NFKC\_FAILED@{STRINGPREP\_NFKC\_FAILED}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a359056366c077fc7ae78fb5f185f9f2d}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a359056366c077fc7ae78fb5f185f9f2d}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+N\+F\+K\+C\+\_\+\+F\+A\+I\+L\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRINGPREP\_MALLOC\_ERROR@{STRINGPREP\_MALLOC\_ERROR}!stringprep.h@{stringprep.h}}\index{stringprep.h@{stringprep.h}!STRINGPREP\_MALLOC\_ERROR@{STRINGPREP\_MALLOC\_ERROR}}}\mbox{\Hypertarget{stringprep_8h_a6977f854888a958a344f2fcb4db25670a65b7d33226bf2feaae34dce9b7a2ef49}\label{stringprep_8h_a6977f854888a958a344f2fcb4db25670a65b7d33226bf2feaae34dce9b7a2ef49}} 
+S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+M\+A\+L\+L\+O\+C\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}\label{stringprep_8h_ab33afced459e6653197b0f46bd56ac51}} 
+\index{stringprep.h@{stringprep.h}!stringprep@{stringprep}}
+\index{stringprep@{stringprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep()}{stringprep()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} stringprep (\begin{DoxyParamCaption}\item[{char $\ast$}]{in,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{maxlen,  }\item[{\mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}}}]{flags,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} $\ast$}]{profile }\end{DoxyParamCaption})}
+
+stringprep\+: @in\+: input/ouput array with string to prepare. @maxlen\+: maximum length of input/output array. @flags\+: stringprep profile flags, or 0. @profile\+: pointer to stringprep profile to use.
+
+Prepare the input zero terminated U\+T\+F-\/8 string according to the stringprep profile, and write back the result to the input string.
+
+Note that you must convert strings entered in the systems locale into U\+T\+F-\/8 before using this function, see \mbox{\hyperlink{stringprep_8h_a4fdc6ed7a9b74a74c5fe94e844972e65}{stringprep\+\_\+locale\+\_\+to\+\_\+utf8()}}.
+
+Since the stringprep operation can expand the string, @maxlen indicate how large the buffer holding the string is. This function will not read or write to characters outside that size.
+
+The @flags are one of Stringprep\+\_\+profile\+\_\+flags, or 0.
+
+The @profile contain the instructions to perform. Your application can define new profiles, possibly re-\/using the generic stringprep tables that always will be part of the library, or use one of the currently supported profiles.
+
+Return value\+: Returns S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+OK iff successful, or an error code. \mbox{\Hypertarget{stringprep_8h_a35ec8ecbceadb10704d7aead643cca0a}\label{stringprep_8h_a35ec8ecbceadb10704d7aead643cca0a}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_4i@{stringprep\_4i}}
+\index{stringprep\_4i@{stringprep\_4i}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_4i()}{stringprep\_4i()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} stringprep\+\_\+4i (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$}]{ucs4,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{len,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{maxucs4len,  }\item[{\mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}}}]{flags,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} $\ast$}]{profile }\end{DoxyParamCaption})}
+
+stringprep\+\_\+4i\+: @ucs4\+: input/output array with string to prepare. @len\+: on input, length of input array with Unicode code points, on exit, length of output array with Unicode code points. @maxucs4len\+: maximum length of input/output array. @flags\+: stringprep profile flags, or 0. @profile\+: pointer to stringprep profile to use.
+
+Prepare the input U\+C\+S-\/4 string according to the stringprep profile, and write back the result to the input string.
+
+The input is not required to be zero terminated (@ucs4\mbox{[}@len\mbox{]} = 0). The output will not be zero terminated unless @ucs4\mbox{[}@len\mbox{]} = 0. Instead, see \mbox{\hyperlink{stringprep_8c_a091bdd80e56348185944d9cff1007736}{stringprep\+\_\+4zi()}} if your input is zero terminated or if you want the output to be.
+
+Since the stringprep operation can expand the string, @maxucs4len indicate how large the buffer holding the string is. This function will not read or write to code points outside that size.
+
+The @flags are one of Stringprep\+\_\+profile\+\_\+flags, or 0.
+
+The @profile contain the instructions to perform. Your application can define new profiles, possibly re-\/using the generic stringprep tables that always will be part of the library, or use one of the currently supported profiles.
+
+Return value\+: Returns S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+OK iff successful, or an error code. \mbox{\Hypertarget{stringprep_8h_a091bdd80e56348185944d9cff1007736}\label{stringprep_8h_a091bdd80e56348185944d9cff1007736}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_4zi@{stringprep\_4zi}}
+\index{stringprep\_4zi@{stringprep\_4zi}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_4zi()}{stringprep\_4zi()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} stringprep\+\_\+4zi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$}]{ucs4,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}}}]{maxucs4len,  }\item[{\mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}}}]{flags,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} $\ast$}]{profile }\end{DoxyParamCaption})}
+
+stringprep\+\_\+4zi\+: @ucs4\+: input/output array with zero terminated string to prepare. @maxucs4len\+: maximum length of input/output array. @flags\+: stringprep profile flags, or 0. @profile\+: pointer to stringprep profile to use.
+
+Prepare the input zero terminated U\+C\+S-\/4 string according to the stringprep profile, and write back the result to the input string.
+
+Since the stringprep operation can expand the string, @maxucs4len indicate how large the buffer holding the string is. This function will not read or write to code points outside that size.
+
+The @flags are one of Stringprep\+\_\+profile\+\_\+flags, or 0.
+
+The @profile contain the instructions to perform. Your application can define new profiles, possibly re-\/using the generic stringprep tables that always will be part of the library, or use one of the currently supported profiles.
+
+Return value\+: Returns S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+OK iff successful, or an error code. \mbox{\Hypertarget{stringprep_8h_a2eb4f14b1f74ce8d460ba5935f1db2fd}\label{stringprep_8h_a2eb4f14b1f74ce8d460ba5935f1db2fd}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_check\_version@{stringprep\_check\_version}}
+\index{stringprep\_check\_version@{stringprep\_check\_version}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_check\_version()}{stringprep\_check\_version()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ stringprep\+\_\+check\+\_\+version (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{req\+\_\+version }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{stringprep_8h_a7d47f1ef538ea4b9bb5a1478065f71c3}\label{stringprep_8h_a7d47f1ef538ea4b9bb5a1478065f71c3}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_convert@{stringprep\_convert}}
+\index{stringprep\_convert@{stringprep\_convert}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_convert()}{stringprep\_convert()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+convert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{to\+\_\+codeset,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{from\+\_\+codeset }\end{DoxyParamCaption})}
+
+stringprep\+\_\+convert -\/ encode string using new character set @str\+: input zero-\/terminated string. @to\+\_\+codeset\+: name of destination character set. @from\+\_\+codeset\+: name of origin character set, as used by @str.
+
+Convert the string from one character set to another using the system\textquotesingle{}s \mbox{\hyperlink{iconv_8c_a64916044e83895313cb26d54ae3b7836}{iconv()}} function.
+
+Return value\+: Returns newly allocated zero-\/terminated string which is @str transcoded into to\+\_\+codeset. \mbox{\Hypertarget{stringprep_8h_ade17694f587772422d0e3998064d2db6}\label{stringprep_8h_ade17694f587772422d0e3998064d2db6}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_locale\_charset@{stringprep\_locale\_charset}}
+\index{stringprep\_locale\_charset@{stringprep\_locale\_charset}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_locale\_charset()}{stringprep\_locale\_charset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char$\ast$ stringprep\+\_\+locale\+\_\+charset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{malloc_8c_a06f4a6c60c1cacd41e9a961c91348e88}{void}}}]{ }\end{DoxyParamCaption})}
+
+stringprep\+\_\+locale\+\_\+charset -\/ return charset used in current locale
+
+Find out current locale charset. The function respect the C\+H\+A\+R\+S\+ET environment variable, but typically uses nl\+\_\+langinfo(\+C\+O\+D\+E\+S\+E\+T) when it is supported. It fall back on \char`\"{}\+A\+S\+C\+I\+I\char`\"{} if C\+H\+A\+R\+S\+ET isn\textquotesingle{}t set and nl\+\_\+langinfo isn\textquotesingle{}t supported or return anything.
+
+Note that this function return the application\textquotesingle{}s locale\textquotesingle{}s preferred charset (or thread\textquotesingle{}s locale\textquotesingle{}s preffered charset, if your system support thread-\/specific locales). It does not return what the system may be using. Thus, if you receive data from external sources you cannot in general use this function to guess what charset it is encoded in. Use stringprep\+\_\+convert from the external representation into the charset returned by this function, to have data in the locale encoding.
+
+Return value\+: Return the character set used by the current locale. It will never return N\+U\+LL, but use \char`\"{}\+A\+S\+C\+I\+I\char`\"{} as a fallback. \mbox{\Hypertarget{stringprep_8h_a4fdc6ed7a9b74a74c5fe94e844972e65}\label{stringprep_8h_a4fdc6ed7a9b74a74c5fe94e844972e65}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_locale\_to\_utf8@{stringprep\_locale\_to\_utf8}}
+\index{stringprep\_locale\_to\_utf8@{stringprep\_locale\_to\_utf8}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_locale\_to\_utf8()}{stringprep\_locale\_to\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+locale\+\_\+to\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str }\end{DoxyParamCaption})}
+
+stringprep\+\_\+locale\+\_\+to\+\_\+utf8 -\/ convert locale encoded string to U\+T\+F-\/8 @str\+: input zero terminated string.
+
+Convert string encoded in the locale\textquotesingle{}s character set into U\+T\+F-\/8 by using \mbox{\hyperlink{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}{stringprep\+\_\+convert()}}.
+
+Return value\+: Returns newly allocated zero-\/terminated string which is @str transcoded into U\+T\+F-\/8. \mbox{\Hypertarget{stringprep_8h_a558f1bcdc182903787bc058ba85cfe81}\label{stringprep_8h_a558f1bcdc182903787bc058ba85cfe81}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_profile@{stringprep\_profile}}
+\index{stringprep\_profile@{stringprep\_profile}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_profile()}{stringprep\_profile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} stringprep\+\_\+profile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{in,  }\item[{char $\ast$$\ast$}]{out,  }\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{profile,  }\item[{\mbox{\hyperlink{stringprep_8h_a506f050dce2736119e66580bf11befc5}{Stringprep\+\_\+profile\+\_\+flags}}}]{flags }\end{DoxyParamCaption})}
+
+stringprep\+\_\+profile\+: @in\+: input array with U\+T\+F-\/8 string to prepare. @out\+: output variable with pointer to newly allocate string. @profile\+: name of stringprep profile to use. @flags\+: stringprep profile flags, or 0.
+
+Prepare the input zero terminated U\+T\+F-\/8 string according to the stringprep profile, and return the result in a newly allocated variable.
+
+Note that you must convert strings entered in the systems locale into U\+T\+F-\/8 before using this function, see \mbox{\hyperlink{stringprep_8h_a4fdc6ed7a9b74a74c5fe94e844972e65}{stringprep\+\_\+locale\+\_\+to\+\_\+utf8()}}.
+
+The output @out variable must be deallocated by the caller.
+
+The @flags are one of Stringprep\+\_\+profile\+\_\+flags, or 0.
+
+The @profile specifies the name of the stringprep profile to use. It must be one of the internally supported stringprep profiles.
+
+Return value\+: Returns S\+T\+R\+I\+N\+G\+P\+R\+E\+P\+\_\+\+OK iff successful, or an error code. \mbox{\Hypertarget{stringprep_8h_a41d10a536955ba3c2343a68b10f12cc1}\label{stringprep_8h_a41d10a536955ba3c2343a68b10f12cc1}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_ucs4\_nfkc\_normalize@{stringprep\_ucs4\_nfkc\_normalize}}
+\index{stringprep\_ucs4\_nfkc\_normalize@{stringprep\_ucs4\_nfkc\_normalize}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_ucs4\_nfkc\_normalize()}{stringprep\_ucs4\_nfkc\_normalize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}$\ast$ stringprep\+\_\+ucs4\+\_\+nfkc\+\_\+normalize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$}]{str,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}}}]{len }\end{DoxyParamCaption})}
+
+stringprep\+\_\+ucs4\+\_\+nfkc\+\_\+normalize\+: @str\+: a Unicode string. @len\+: length of @str array, or -\/1 if @str is nul-\/terminated.
+
+Converts U\+C\+S4 string into U\+T\+F-\/8 and runs \mbox{\hyperlink{nfkc_8c_a7b4108e77eb1adf32620302f029fca90}{stringprep\+\_\+utf8\+\_\+nfkc\+\_\+normalize()}}.
+
+Return value\+: a newly allocated Unicode string, that is the N\+F\+KC normalized form of @str. \mbox{\Hypertarget{stringprep_8h_aa40191e93c91037c6fc149c4a4a852c8}\label{stringprep_8h_aa40191e93c91037c6fc149c4a4a852c8}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_ucs4\_to\_utf8@{stringprep\_ucs4\_to\_utf8}}
+\index{stringprep\_ucs4\_to\_utf8@{stringprep\_ucs4\_to\_utf8}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_ucs4\_to\_utf8()}{stringprep\_ucs4\_to\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+ucs4\+\_\+to\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} $\ast$}]{str,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}}}]{len,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{items\+\_\+read,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{items\+\_\+written }\end{DoxyParamCaption})}
+
+stringprep\+\_\+ucs4\+\_\+to\+\_\+utf8\+: @str\+: a U\+C\+S-\/4 encoded string @len\+: the maximum length of @str to use. If @len $<$ 0, then the string is terminated with a 0 character. @items\+\_\+read\+: location to store number of characters read read, or N\+U\+LL. @items\+\_\+written\+: location to store number of bytes written or N\+U\+LL. The value here stored does not include the trailing 0 byte.
+
+Convert a string from a 32-\/bit fixed width representation as U\+C\+S-\/4. to U\+T\+F-\/8. The result will be terminated with a 0 byte.
+
+Return value\+: a pointer to a newly allocated U\+T\+F-\/8 string. This value must be freed with \mbox{\hyperlink{hurdmalloc_8h_a2c6efa7679f8cd9f61af96e105017560}{free()}}. If an error occurs, N\+U\+LL will be returned and @error set. \mbox{\Hypertarget{stringprep_8h_a309b309ad4fbe3aac6c5bc5d20d3491f}\label{stringprep_8h_a309b309ad4fbe3aac6c5bc5d20d3491f}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_unichar\_to\_utf8@{stringprep\_unichar\_to\_utf8}}
+\index{stringprep\_unichar\_to\_utf8@{stringprep\_unichar\_to\_utf8}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_unichar\_to\_utf8()}{stringprep\_unichar\_to\_utf8()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} stringprep\+\_\+unichar\+\_\+to\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}}]{c,  }\item[{char $\ast$}]{outbuf }\end{DoxyParamCaption})}
+
+stringprep\+\_\+unichar\+\_\+to\+\_\+utf8\+: {\ttfamily }\+: a I\+S\+O10646 character code @outbuf\+: output buffer, must have at least 6 bytes of space. If N\+U\+LL, the length will be computed and returned and nothing will be written to @outbuf.
+
+Converts a single character to U\+T\+F-\/8.
+
+Return value\+: number of bytes written. \mbox{\Hypertarget{stringprep_8h_a7b4108e77eb1adf32620302f029fca90}\label{stringprep_8h_a7b4108e77eb1adf32620302f029fca90}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_utf8\_nfkc\_normalize@{stringprep\_utf8\_nfkc\_normalize}}
+\index{stringprep\_utf8\_nfkc\_normalize@{stringprep\_utf8\_nfkc\_normalize}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_utf8\_nfkc\_normalize()}{stringprep\_utf8\_nfkc\_normalize()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+utf8\+\_\+nfkc\+\_\+normalize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}}}]{len }\end{DoxyParamCaption})}
+
+stringprep\+\_\+utf8\+\_\+nfkc\+\_\+normalize\+: @str\+: a U\+T\+F-\/8 encoded string. @len\+: length of @str, in bytes, or -\/1 if @str is nul-\/terminated.
+
+Converts a string into canonical form, standardizing such issues as whether a character with an accent is represented as a base character and combining accent or as a single precomposed character.
+
+The normalization mode is N\+F\+KC (A\+LL C\+O\+M\+P\+O\+SE). It standardizes differences that do not affect the text content, such as the above-\/mentioned accent representation. It standardizes the \char`\"{}compatibility\char`\"{} characters in Unicode, such as S\+U\+P\+E\+R\+S\+C\+R\+I\+PT T\+H\+R\+EE to the standard forms (in this case D\+I\+G\+IT T\+H\+R\+EE). Formatting information may be lost but for most text operations such characters should be considered the same. It returns a result with composed forms rather than a maximally decomposed form.
+
+Return value\+: a newly allocated string, that is the N\+F\+KC normalized form of @str. \mbox{\Hypertarget{stringprep_8h_aaf64b9aa7a9590ba03be6f2b73c0f728}\label{stringprep_8h_aaf64b9aa7a9590ba03be6f2b73c0f728}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_utf8\_to\_locale@{stringprep\_utf8\_to\_locale}}
+\index{stringprep\_utf8\_to\_locale@{stringprep\_utf8\_to\_locale}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_utf8\_to\_locale()}{stringprep\_utf8\_to\_locale()}}
+{\footnotesize\ttfamily char$\ast$ stringprep\+\_\+utf8\+\_\+to\+\_\+locale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str }\end{DoxyParamCaption})}
+
+stringprep\+\_\+utf8\+\_\+to\+\_\+locale -\/ encode U\+T\+F-\/8 string to locale encoding @str\+: input zero terminated string.
+
+Convert string encoded in U\+T\+F-\/8 into the locale\textquotesingle{}s character set by using \mbox{\hyperlink{toutf8_8c_a7d47f1ef538ea4b9bb5a1478065f71c3}{stringprep\+\_\+convert()}}.
+
+Return value\+: Returns newly allocated zero-\/terminated string which is @str transcoded into the locale\textquotesingle{}s character set. \mbox{\Hypertarget{stringprep_8h_ae102c3ce1515eec826c509b63c239879}\label{stringprep_8h_ae102c3ce1515eec826c509b63c239879}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_utf8\_to\_ucs4@{stringprep\_utf8\_to\_ucs4}}
+\index{stringprep\_utf8\_to\_ucs4@{stringprep\_utf8\_to\_ucs4}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_utf8\_to\_ucs4()}{stringprep\_utf8\_to\_ucs4()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}$\ast$ stringprep\+\_\+utf8\+\_\+to\+\_\+ucs4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{str,  }\item[{\mbox{\hyperlink{posix_2sys_2types_8h_a87bd983bf349d8b86901f3200d559e8e}{ssize\+\_\+t}}}]{len,  }\item[{\mbox{\hyperlink{posix_2bits_2unistd_8h_a18cbf70d4399275bcd4f3ff1e4743ddd}{size\+\_\+t}} $\ast$}]{items\+\_\+written }\end{DoxyParamCaption})}
+
+stringprep\+\_\+utf8\+\_\+to\+\_\+ucs4\+: @str\+: a U\+T\+F-\/8 encoded string @len\+: the maximum length of @str to use. If @len $<$ 0, then the string is nul-\/terminated. @items\+\_\+written\+: location to store the number of characters in the result, or N\+U\+LL.
+
+Convert a string from U\+T\+F-\/8 to a 32-\/bit fixed width representation as U\+C\+S-\/4, assuming valid U\+T\+F-\/8 input. This function does no error checking on the input.
+
+Return value\+: a pointer to a newly allocated U\+C\+S-\/4 string. This value must be freed with \mbox{\hyperlink{hurdmalloc_8h_a2c6efa7679f8cd9f61af96e105017560}{free()}}. \mbox{\Hypertarget{stringprep_8h_abf648102d314a9c75cb28f2d0c57cc10}\label{stringprep_8h_abf648102d314a9c75cb28f2d0c57cc10}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_utf8\_to\_unichar@{stringprep\_utf8\_to\_unichar}}
+\index{stringprep\_utf8\_to\_unichar@{stringprep\_utf8\_to\_unichar}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_utf8\_to\_unichar()}{stringprep\_utf8\_to\_unichar()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdint_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}} stringprep\+\_\+utf8\+\_\+to\+\_\+unichar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} char $\ast$}]{p }\end{DoxyParamCaption})}
+
+stringprep\+\_\+utf8\+\_\+to\+\_\+unichar\+: {\ttfamily }\+: a pointer to Unicode character encoded as U\+T\+F-\/8
+
+Converts a sequence of bytes encoded as U\+T\+F-\/8 to a Unicode character. If {\ttfamily does} not point to a valid U\+T\+F-\/8 encoded character, results are undefined.
+
+Return value\+: the resulting character. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{stringprep_8h_a53bc596d370dafcb68e1d5512e5cbacb}\label{stringprep_8h_a53bc596d370dafcb68e1d5512e5cbacb}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_iscsi@{stringprep\_iscsi}}
+\index{stringprep\_iscsi@{stringprep\_iscsi}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_iscsi}{stringprep\_iscsi}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+iscsi\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a0d24f6921037c5fb1ca54975ce328c07}\label{stringprep_8h_a0d24f6921037c5fb1ca54975ce328c07}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_kerberos5@{stringprep\_kerberos5}}
+\index{stringprep\_kerberos5@{stringprep\_kerberos5}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_kerberos5}{stringprep\_kerberos5}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+kerberos5\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_ac61e84f4fd4023a65277f740e6f8cc6a}\label{stringprep_8h_ac61e84f4fd4023a65277f740e6f8cc6a}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_nameprep@{stringprep\_nameprep}}
+\index{stringprep\_nameprep@{stringprep\_nameprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_nameprep}{stringprep\_nameprep}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+nameprep\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a12568127a093aba3962f28c2c605a96e}\label{stringprep_8h_a12568127a093aba3962f28c2c605a96e}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_plain@{stringprep\_plain}}
+\index{stringprep\_plain@{stringprep\_plain}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_plain}{stringprep\_plain}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+plain\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a6fd68d742e7d1165a49a47c720004262}\label{stringprep_8h_a6fd68d742e7d1165a49a47c720004262}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_profiles@{stringprep\_profiles}}
+\index{stringprep\_profiles@{stringprep\_profiles}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_profiles}{stringprep\_profiles}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__profiles}{Stringprep\+\_\+profiles}} stringprep\+\_\+profiles\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_ab00a24ecc114069cd2d4cfed15b71e45}\label{stringprep_8h_ab00a24ecc114069cd2d4cfed15b71e45}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_A\_1@{stringprep\_rfc3454\_A\_1}}
+\index{stringprep\_rfc3454\_A\_1@{stringprep\_rfc3454\_A\_1}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_A\_1}{stringprep\_rfc3454\_A\_1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+A\+\_\+1\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_ad8760e39e8f60bcd47718322803d2512}\label{stringprep_8h_ad8760e39e8f60bcd47718322803d2512}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_B\_1@{stringprep\_rfc3454\_B\_1}}
+\index{stringprep\_rfc3454\_B\_1@{stringprep\_rfc3454\_B\_1}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_B\_1}{stringprep\_rfc3454\_B\_1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+B\+\_\+1\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a0b83afe92bb6747ff4ebb481ce815770}\label{stringprep_8h_a0b83afe92bb6747ff4ebb481ce815770}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_B\_2@{stringprep\_rfc3454\_B\_2}}
+\index{stringprep\_rfc3454\_B\_2@{stringprep\_rfc3454\_B\_2}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_B\_2}{stringprep\_rfc3454\_B\_2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+B\+\_\+2\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a622454c30060613cd7c2ef09d175ba3c}\label{stringprep_8h_a622454c30060613cd7c2ef09d175ba3c}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_B\_3@{stringprep\_rfc3454\_B\_3}}
+\index{stringprep\_rfc3454\_B\_3@{stringprep\_rfc3454\_B\_3}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_B\_3}{stringprep\_rfc3454\_B\_3}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+B\+\_\+3\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_aae22e521eeab3f0136b590fa6b90de0f}\label{stringprep_8h_aae22e521eeab3f0136b590fa6b90de0f}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_1\_1@{stringprep\_rfc3454\_C\_1\_1}}
+\index{stringprep\_rfc3454\_C\_1\_1@{stringprep\_rfc3454\_C\_1\_1}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_1\_1}{stringprep\_rfc3454\_C\_1\_1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+1\+\_\+1\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_ac6d9463b0bfb536ed212318c3fa6209e}\label{stringprep_8h_ac6d9463b0bfb536ed212318c3fa6209e}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_1\_2@{stringprep\_rfc3454\_C\_1\_2}}
+\index{stringprep\_rfc3454\_C\_1\_2@{stringprep\_rfc3454\_C\_1\_2}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_1\_2}{stringprep\_rfc3454\_C\_1\_2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+1\+\_\+2\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a355e93e9989ccb11ce13b54ff41ace23}\label{stringprep_8h_a355e93e9989ccb11ce13b54ff41ace23}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_2\_1@{stringprep\_rfc3454\_C\_2\_1}}
+\index{stringprep\_rfc3454\_C\_2\_1@{stringprep\_rfc3454\_C\_2\_1}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_2\_1}{stringprep\_rfc3454\_C\_2\_1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+2\+\_\+1\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a3c0fa9cebc2fdf9c3e51efc1f95f235b}\label{stringprep_8h_a3c0fa9cebc2fdf9c3e51efc1f95f235b}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_2\_2@{stringprep\_rfc3454\_C\_2\_2}}
+\index{stringprep\_rfc3454\_C\_2\_2@{stringprep\_rfc3454\_C\_2\_2}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_2\_2}{stringprep\_rfc3454\_C\_2\_2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+2\+\_\+2\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a911ac65bce6afffba9c3b077ddb3dcf5}\label{stringprep_8h_a911ac65bce6afffba9c3b077ddb3dcf5}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_3@{stringprep\_rfc3454\_C\_3}}
+\index{stringprep\_rfc3454\_C\_3@{stringprep\_rfc3454\_C\_3}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_3}{stringprep\_rfc3454\_C\_3}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+3\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a1c9447a30f855d59c5527cc187252976}\label{stringprep_8h_a1c9447a30f855d59c5527cc187252976}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_4@{stringprep\_rfc3454\_C\_4}}
+\index{stringprep\_rfc3454\_C\_4@{stringprep\_rfc3454\_C\_4}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_4}{stringprep\_rfc3454\_C\_4}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+4\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_ac8a5a34affa88956b5db5c3df3a9f4a0}\label{stringprep_8h_ac8a5a34affa88956b5db5c3df3a9f4a0}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_5@{stringprep\_rfc3454\_C\_5}}
+\index{stringprep\_rfc3454\_C\_5@{stringprep\_rfc3454\_C\_5}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_5}{stringprep\_rfc3454\_C\_5}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+5\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a16938a6d2fae03350c54a7799ee2671b}\label{stringprep_8h_a16938a6d2fae03350c54a7799ee2671b}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_6@{stringprep\_rfc3454\_C\_6}}
+\index{stringprep\_rfc3454\_C\_6@{stringprep\_rfc3454\_C\_6}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_6}{stringprep\_rfc3454\_C\_6}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+6\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a899392b063c61d271f00260d794d7848}\label{stringprep_8h_a899392b063c61d271f00260d794d7848}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_7@{stringprep\_rfc3454\_C\_7}}
+\index{stringprep\_rfc3454\_C\_7@{stringprep\_rfc3454\_C\_7}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_7}{stringprep\_rfc3454\_C\_7}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+7\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a37c7bf8bee69a22389906a80798872ce}\label{stringprep_8h_a37c7bf8bee69a22389906a80798872ce}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_8@{stringprep\_rfc3454\_C\_8}}
+\index{stringprep\_rfc3454\_C\_8@{stringprep\_rfc3454\_C\_8}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_8}{stringprep\_rfc3454\_C\_8}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+8\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a4a9ef20f7588c8fe6391ecb88ba53747}\label{stringprep_8h_a4a9ef20f7588c8fe6391ecb88ba53747}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_C\_9@{stringprep\_rfc3454\_C\_9}}
+\index{stringprep\_rfc3454\_C\_9@{stringprep\_rfc3454\_C\_9}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_C\_9}{stringprep\_rfc3454\_C\_9}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+C\+\_\+9\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a17ac8b8908161bfd5fefaaed6bb6ed6e}\label{stringprep_8h_a17ac8b8908161bfd5fefaaed6bb6ed6e}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_D\_1@{stringprep\_rfc3454\_D\_1}}
+\index{stringprep\_rfc3454\_D\_1@{stringprep\_rfc3454\_D\_1}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_D\_1}{stringprep\_rfc3454\_D\_1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+D\+\_\+1\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_af91f5cf73d287e212c352822b7ac90d9}\label{stringprep_8h_af91f5cf73d287e212c352822b7ac90d9}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_rfc3454\_D\_2@{stringprep\_rfc3454\_D\_2}}
+\index{stringprep\_rfc3454\_D\_2@{stringprep\_rfc3454\_D\_2}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_rfc3454\_D\_2}{stringprep\_rfc3454\_D\_2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+rfc3454\+\_\+\+D\+\_\+2\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a4bc1e670f5133ebec1bdb1eaad1bff38}\label{stringprep_8h_a4bc1e670f5133ebec1bdb1eaad1bff38}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_saslprep@{stringprep\_saslprep}}
+\index{stringprep\_saslprep@{stringprep\_saslprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_saslprep}{stringprep\_saslprep}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+saslprep\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_abdfabf5f4f27a80230042b42b2138061}\label{stringprep_8h_abdfabf5f4f27a80230042b42b2138061}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_trace@{stringprep\_trace}}
+\index{stringprep\_trace@{stringprep\_trace}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_trace}{stringprep\_trace}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+trace\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a8b209414d236d761242892cbd93534c0}\label{stringprep_8h_a8b209414d236d761242892cbd93534c0}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_xmpp\_nodeprep@{stringprep\_xmpp\_nodeprep}}
+\index{stringprep\_xmpp\_nodeprep@{stringprep\_xmpp\_nodeprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_xmpp\_nodeprep}{stringprep\_xmpp\_nodeprep}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+xmpp\+\_\+nodeprep\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_a42b2de4ad79eb0294a4e7c64a776d919}\label{stringprep_8h_a42b2de4ad79eb0294a4e7c64a776d919}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_xmpp\_nodeprep\_prohibit@{stringprep\_xmpp\_nodeprep\_prohibit}}
+\index{stringprep\_xmpp\_nodeprep\_prohibit@{stringprep\_xmpp\_nodeprep\_prohibit}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_xmpp\_nodeprep\_prohibit}{stringprep\_xmpp\_nodeprep\_prohibit}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{structStringprep__table__element}{Stringprep\+\_\+table\+\_\+element}} stringprep\+\_\+xmpp\+\_\+nodeprep\+\_\+prohibit\mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{stringprep_8h_ad51bb4894675b91d4c71509483423cdd}\label{stringprep_8h_ad51bb4894675b91d4c71509483423cdd}} 
+\index{stringprep.h@{stringprep.h}!stringprep\_xmpp\_resourceprep@{stringprep\_xmpp\_resourceprep}}
+\index{stringprep\_xmpp\_resourceprep@{stringprep\_xmpp\_resourceprep}!stringprep.h@{stringprep.h}}
+\doxysubsubsection{\texorpdfstring{stringprep\_xmpp\_resourceprep}{stringprep\_xmpp\_resourceprep}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{stringprep_8h_a1789bfee6f9e3b1a647b453334e082ed}{Stringprep\+\_\+profile}} stringprep\+\_\+xmpp\+\_\+resourceprep\mbox{[}$\,$\mbox{]}}
+

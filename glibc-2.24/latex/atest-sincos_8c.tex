@@ -1,0 +1,157 @@
+\hypertarget{atest-sincos_8c}{}\doxysection{math/atest-\/sincos.c File Reference}
+\label{atest-sincos_8c}\index{math/atest-\/sincos.c@{math/atest-\/sincos.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$gmp.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../test-\/skeleton.\+c\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_a7220011cf9782e0f44948ecb3e8391d4}{P\+R\+I\+N\+T\+\_\+\+E\+R\+R\+O\+RS}}~0
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_a0240ac851181b84ac374872dc5434ee4}{N}}~0
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_acd864640121c7df2c19f61f7baa507e4}{N2}}~20
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{F\+R\+AC}}~(32 $\ast$ 4)
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}}~(\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}} $\ast$ sizeof (\mbox{\hyperlink{stdlib_2gmp_8h_abd22b3df3fe18cf817bffe429e68e362}{mp\+\_\+limb\+\_\+t}}))
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}}~(\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{F\+R\+AC}} / \mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}} + 1)
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_ab795730035e8cf8c229fde935f95df6f}{add\+\_\+shift\+\_\+mulh}}(\mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}},  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a09dff3d9a89874939fa7cc9d056b114c}{s1}},  \mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}},  \mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}},  \mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_af394f3f9168831c35dbcdf432f98e1dd}{summ}}(\mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  ss,  \mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}},  \mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}})
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_a45ba202b05caf39795aeca91b0ae547e}{T\+I\+M\+E\+O\+UT}}~600
+\item 
+\#define \mbox{\hyperlink{atest-sincos_8c_a6002ab22c656c4024eb89b538930bc32}{T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{stdlib_2gmp_8h_abd22b3df3fe18cf817bffe429e68e362}{mp\+\_\+limb\+\_\+t}} \mbox{\hyperlink{atest-sincos_8c_afc0ed0caec509904805c8fcb24a1ba61}{mp1}}\mbox{[}\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}}\mbox{]}
+\item 
+typedef \mbox{\hyperlink{stdlib_2gmp_8h_abd22b3df3fe18cf817bffe429e68e362}{mp\+\_\+limb\+\_\+t}} \mbox{\hyperlink{atest-sincos_8c_a46c28225b4163c79cad2c634361e050d}{mp2}}\mbox{[}\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}} $\ast$2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{atest-sincos_8c_ab795730035e8cf8c229fde935f95df6f}\label{atest-sincos_8c_ab795730035e8cf8c229fde935f95df6f}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!add\_shift\_mulh@{add\_shift\_mulh}}
+\index{add\_shift\_mulh@{add\_shift\_mulh}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{add\_shift\_mulh}{add\_shift\_mulh}}
+{\footnotesize\ttfamily \#define add\+\_\+shift\+\_\+mulh(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  }\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_a730933e849731648c69ca0f5bfd3f996}{x}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a09dff3d9a89874939fa7cc9d056b114c}{s1}},  }\item[{}]{\mbox{\hyperlink{unix_2sysv_2linux_2alpha_2alpha_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}},  }\item[{}]{\mbox{\hyperlink{tst-raise_8c_ad5bd2406429d2309dcb9ff2644980d2b}{sh}},  }\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                      \(\backslash\)}
+\DoxyCodeLine{     if (\mbox{\hyperlink{mips_2sys_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}} != \mbox{\hyperlink{gconv__builtin_8h_aec2f8642be81d4f41052438d470c2e6d}{NULL}}) \{                              \(\backslash\)}
+\DoxyCodeLine{        if (sh > 0) \{                             \(\backslash\)}
+\DoxyCodeLine{           assert (sh < \mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}});                          \(\backslash\)}
+\DoxyCodeLine{           mpn\_lshift (tmp, \mbox{\hyperlink{mips_2sys_2regdef_8h_a09dff3d9a89874939fa7cc9d056b114c}{s1}}, \mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}}, sh);                      \(\backslash\)}
+\DoxyCodeLine{           if (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}})                                \(\backslash\)}
+\DoxyCodeLine{             mpn\_sub\_n (tmp,tmp,\mbox{\hyperlink{mips_2sys_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}}+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});               \mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{           else                               \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{             mpn\_add\_n}} (tmp,tmp,\mbox{\hyperlink{mips_2sys_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}}+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                \(\backslash\)}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{else} \{                                  \(\backslash\)}
+\DoxyCodeLine{           if (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}})                                \(\backslash\)}
+\DoxyCodeLine{             mpn\_sub\_n (tmp,\mbox{\hyperlink{mips_2sys_2regdef_8h_a09dff3d9a89874939fa7cc9d056b114c}{s1}},\mbox{\hyperlink{mips_2sys_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}}+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                  \mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{           else                               \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{             mpn\_add\_n}} (tmp,\mbox{\hyperlink{mips_2sys_2regdef_8h_a09dff3d9a89874939fa7cc9d056b114c}{s1}},\mbox{\hyperlink{mips_2sys_2regdef_8h_a3ec77fc652b1787d9ace19f0f8fb6072}{s2}}+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});               \(\backslash\)}
+\DoxyCodeLine{        \}                                     \(\backslash\)}
+\DoxyCodeLine{        mpn\_mul\_n(d,tmp,\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                         \(\backslash\)}
+\DoxyCodeLine{     \} \mbox{\hyperlink{mul__n_8c_a4c1fbbc89747d8ae9c5173c64c1e404f}{else                                   \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{mul__n_8c_a4c1fbbc89747d8ae9c5173c64c1e404f}{        mpn\_mul\_n}}(d,\mbox{\hyperlink{mips_2sys_2regdef_8h_a09dff3d9a89874939fa7cc9d056b114c}{s1}},\mbox{\hyperlink{test-tgmath_8c_a6c4b361d72eb3767ba424ac9a6ecf52b}{x}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                          \(\backslash\)}
+\DoxyCodeLine{     assert(\mbox{\hyperlink{atest-sincos_8c_a0240ac851181b84ac374872dc5434ee4}{N}}+sh < \mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}});                              \(\backslash\)}
+\DoxyCodeLine{     if (\mbox{\hyperlink{atest-sincos_8c_a0240ac851181b84ac374872dc5434ee4}{N}}+sh > 0) \mbox{\hyperlink{stdlib_2rshift_8c_a89c8f926c9e9bc1357757909bec7f004}{mpn\_rshift}}(d,d,2*\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}},\mbox{\hyperlink{atest-sincos_8c_a0240ac851181b84ac374872dc5434ee4}{N}}+sh);               \(\backslash\)}
+\DoxyCodeLine{      \} \mbox{\hyperlink{gconv__charset_8h_a049e12ce982de08855ecf2ac6043a5e3}{while}}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}\label{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!FRAC@{FRAC}}
+\index{FRAC@{FRAC}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{FRAC}{FRAC}}
+{\footnotesize\ttfamily \#define F\+R\+AC~(32 $\ast$ 4)}
+
+\mbox{\Hypertarget{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}\label{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!mpbpl@{mpbpl}}
+\index{mpbpl@{mpbpl}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{mpbpl}{mpbpl}}
+{\footnotesize\ttfamily \#define mpbpl~(\mbox{\hyperlink{strftime__l_8c_a308d9dd2c0028ddb184b455bbd7865de}{C\+H\+A\+R\+\_\+\+B\+IT}} $\ast$ sizeof (\mbox{\hyperlink{stdlib_2gmp_8h_abd22b3df3fe18cf817bffe429e68e362}{mp\+\_\+limb\+\_\+t}}))}
+
+\mbox{\Hypertarget{atest-sincos_8c_a0240ac851181b84ac374872dc5434ee4}\label{atest-sincos_8c_a0240ac851181b84ac374872dc5434ee4}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!N@{N}}
+\index{N@{N}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily \#define N~0}
+
+\mbox{\Hypertarget{atest-sincos_8c_acd864640121c7df2c19f61f7baa507e4}\label{atest-sincos_8c_acd864640121c7df2c19f61f7baa507e4}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!N2@{N2}}
+\index{N2@{N2}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{N2}{N2}}
+{\footnotesize\ttfamily \#define N2~20}
+
+\mbox{\Hypertarget{atest-sincos_8c_a7220011cf9782e0f44948ecb3e8391d4}\label{atest-sincos_8c_a7220011cf9782e0f44948ecb3e8391d4}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!PRINT\_ERRORS@{PRINT\_ERRORS}}
+\index{PRINT\_ERRORS@{PRINT\_ERRORS}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{PRINT\_ERRORS}{PRINT\_ERRORS}}
+{\footnotesize\ttfamily \#define P\+R\+I\+N\+T\+\_\+\+E\+R\+R\+O\+RS~0}
+
+\mbox{\Hypertarget{atest-sincos_8c_af394f3f9168831c35dbcdf432f98e1dd}\label{atest-sincos_8c_af394f3f9168831c35dbcdf432f98e1dd}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!summ@{summ}}
+\index{summ@{summ}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{summ}{summ}}
+{\footnotesize\ttfamily \#define summ(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{powerpc_2power7_2fpu_2s__logbl_8c_a873684cefeb665f3d5e6b495de57fc0d}{d}},  }\item[{}]{ss,  }\item[{}]{\mbox{\hyperlink{test-float-libmvec-sincosf-main_8c_ad77b6531c222575c78c8e31709e6a734}{s}},  }\item[{}]{\mbox{\hyperlink{tst-cond16_8c_a7b021422247f8459ad1785d08acd295b}{n}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                      \(\backslash\)}
+\DoxyCodeLine{     mpn\_add\_n(tmp,\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}[1]+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}[2]+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});             \(\backslash\)}
+\DoxyCodeLine{     mpn\_lshift(tmp,tmp,\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}},1);                          \(\backslash\)}
+\DoxyCodeLine{     mpn\_add\_n(tmp,tmp,\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}[0]+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                   \(\backslash\)}
+\DoxyCodeLine{     mpn\_add\_n(tmp,tmp,\mbox{\hyperlink{m68k_2m680x0_2fpu_2e__atan2_8c_a35ef21da3082879e2efd436e3327337e}{s}}[3]+\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{FRAC}}/\mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}},\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                   \(\backslash\)}
+\DoxyCodeLine{     mpn\_divmod\_1(tmp,tmp,\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}},6);                        \(\backslash\)}
+\DoxyCodeLine{     if (\mbox{\hyperlink{tst__swprintf_8c_a3d05cf6aa68b03e254d70afbe869e305}{n}})                                      \(\backslash\)}
+\DoxyCodeLine{           mpn\_sub\_n (d,ss,tmp,\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                         \mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{     else                                     \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{stdlib_2add__n_8c_aa0a58498f7096895e2a98d9e787b9db8}{           mpn\_add\_n}} (d,ss,tmp,\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}});                         \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}\label{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!SZ@{SZ}}
+\index{SZ@{SZ}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{SZ}{SZ}}
+{\footnotesize\ttfamily \#define SZ~(\mbox{\hyperlink{atest-sincos_8c_a653af6bd29f56a2699de26a928820da7}{F\+R\+AC}} / \mbox{\hyperlink{atest-sincos_8c_addc104eb87c6d4e9c121e878f3d9c006}{mpbpl}} + 1)}
+
+\mbox{\Hypertarget{atest-sincos_8c_a6002ab22c656c4024eb89b538930bc32}\label{atest-sincos_8c_a6002ab22c656c4024eb89b538930bc32}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!TEST\_FUNCTION@{TEST\_FUNCTION}}
+\index{TEST\_FUNCTION@{TEST\_FUNCTION}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_FUNCTION}{TEST\_FUNCTION}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON~\mbox{\hyperlink{tst-strptime-whitespace_8c_a78c8c86f9bfab4db21a9260e270dc329}{do\+\_\+test}} ()}
+
+\mbox{\Hypertarget{atest-sincos_8c_a45ba202b05caf39795aeca91b0ae547e}\label{atest-sincos_8c_a45ba202b05caf39795aeca91b0ae547e}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!TIMEOUT@{TIMEOUT}}
+\index{TIMEOUT@{TIMEOUT}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{TIMEOUT}{TIMEOUT}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+O\+UT~600}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{atest-sincos_8c_afc0ed0caec509904805c8fcb24a1ba61}\label{atest-sincos_8c_afc0ed0caec509904805c8fcb24a1ba61}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!mp1@{mp1}}
+\index{mp1@{mp1}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{mp1}{mp1}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{stdlib_2gmp_8h_abd22b3df3fe18cf817bffe429e68e362}{mp\+\_\+limb\+\_\+t}} mp1\mbox{[}\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}}\mbox{]}}
+
+\mbox{\Hypertarget{atest-sincos_8c_a46c28225b4163c79cad2c634361e050d}\label{atest-sincos_8c_a46c28225b4163c79cad2c634361e050d}} 
+\index{atest-\/sincos.c@{atest-\/sincos.c}!mp2@{mp2}}
+\index{mp2@{mp2}!atest-\/sincos.c@{atest-\/sincos.c}}
+\doxysubsubsection{\texorpdfstring{mp2}{mp2}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{stdlib_2gmp_8h_abd22b3df3fe18cf817bffe429e68e362}{mp\+\_\+limb\+\_\+t}} mp2\mbox{[}\mbox{\hyperlink{atest-sincos_8c_a11d818f14508b076eda0cfe98640b7ae}{SZ}} $\ast$2\mbox{]}}
+

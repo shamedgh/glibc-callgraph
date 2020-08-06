@@ -1,0 +1,903 @@
+
+;; Function _IO_fwrite (*__GI__IO_fwrite, funcdef_no=38, decl_uid=7796, cgraph_uid=38, symbol_order=43)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; Generating RTL for gimple basic block 7
+
+;; Generating RTL for gimple basic block 8
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; Generating RTL for gimple basic block 11
+
+;; Generating RTL for gimple basic block 12
+
+;; Generating RTL for gimple basic block 13
+
+;; Generating RTL for gimple basic block 14
+
+;; Generating RTL for gimple basic block 15
+
+;; Generating RTL for gimple basic block 16
+
+;; Generating RTL for gimple basic block 17
+
+;; Generating RTL for gimple basic block 18
+
+;; Generating RTL for gimple basic block 19
+
+;; Generating RTL for gimple basic block 20
+
+;; Generating RTL for gimple basic block 21
+
+;; Generating RTL for gimple basic block 22
+
+;; Generating RTL for gimple basic block 23
+
+;; Generating RTL for gimple basic block 24
+
+;; Generating RTL for gimple basic block 25
+Edge 2->17 redirected to 29
+Edge 15->17 redirected to 30
+Edge 24->16 redirected to 32
+Edge 25->14 redirected to 34
+Purged edges from bb 35
+Purged edges from bb 36
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 14->15 to 12 failed.
+Forwarding edge 16->17 to 19 failed.
+Forwarding edge 21->22 to 24 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 14->15 to 12 failed.
+Forwarding edge 16->17 to 19 failed.
+Forwarding edge 21->22 to 24 failed.
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 13 NOTE_INSN_DELETED)
+(note 13 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 13 3 2 (set (reg/v/f:DI 131 [ buf ])
+        (reg:DI 5 di [ buf ])) iofwrite.c:31 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 132 [ size ])
+        (reg:DI 4 si [ size ])) iofwrite.c:31 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:DI 133 [ count ])
+        (reg:DI 1 dx [ count ])) iofwrite.c:31 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 134 [ fp ])
+        (reg:DI 2 cx [ fp ])) iofwrite.c:31 -1
+     (nil))
+(note 6 5 15 2 NOTE_INSN_FUNCTION_BEG)
+(insn 15 6 16 2 (parallel [
+            (set (reg/v:DI 90 [ request ])
+                (mult:DI (reg/v:DI 132 [ size ])
+                    (reg/v:DI 133 [ count ])))
+            (clobber (reg:CC 17 flags))
+        ]) iofwrite.c:32 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 90 [ request ])
+            (const_int 0 [0]))) iofwrite.c:35 -1
+     (nil))
+(jump_insn 17 16 18 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 169)
+            (pc))) iofwrite.c:35 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3900 (nil))
+ -> 169)
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (set (reg:SI 136)
+        (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])) iofwrite.c:37 -1
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (reg:SI 135 [ D.10513 ])
+                (and:SI (reg:SI 136)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) iofwrite.c:37 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 21 20 22 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 135 [ D.10513 ])
+            (const_int 0 [0]))) iofwrite.c:37 -1
+     (nil))
+(jump_insn 22 21 23 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) iofwrite.c:37 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 41)
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (parallel [
+            (set (reg:DI 137 [ __self ])
+                (asm_operands:DI ("mov %%fs:%c1,%0") ("=r") 0 [
+                        (const_int 16 [0x10])
+                    ]
+                     [
+                        (asm_input:DI ("i") iofwrite.c:37)
+                    ]
+                     [] iofwrite.c:37))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+        ]) iofwrite.c:37 -1
+     (nil))
+(insn 25 24 26 5 (set (reg/v/f:DI 93 [ __self ])
+        (reg:DI 137 [ __self ])) iofwrite.c:37 -1
+     (nil))
+(insn 26 25 27 5 (set (reg/f:DI 98 [ D.10511 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 136 [0x88])) [1 fp_13(D)->_lock+0 S8 A64])) iofwrite.c:37 -1
+     (nil))
+(insn 27 26 28 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ __self ])
+            (mem/f:DI (plus:DI (reg/f:DI 98 [ D.10511 ])
+                    (const_int 8 [0x8])) [1 _17->owner+0 S8 A64]))) iofwrite.c:37 -1
+     (nil))
+(jump_insn 28 27 29 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 38)
+            (pc))) iofwrite.c:37 -1
+     (int_list:REG_BR_PROB 1500 (nil))
+ -> 38)
+(note 29 28 30 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 6 (set (reg:SI 141)
+        (const_int 1 [0x1])) iofwrite.c:37 -1
+     (nil))
+(insn 31 30 32 6 (set (reg:SI 142)
+        (const_int 0 [0])) iofwrite.c:37 -1
+     (nil))
+(insn 32 31 33 6 (parallel [
+            (set (reg:SI 138 [ ignore1 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=S") 0 [
+                        (reg:SI 141)
+                        (mem:SI (reg/f:DI 98 [ D.10511 ]) [3 _17->lock+0 S4 A64])
+                        (reg:SI 142)
+                    ]
+                     [
+                        (asm_input:SI ("0") iofwrite.c:37)
+                        (asm_input:SI ("m") iofwrite.c:37)
+                        (asm_input:SI ("3") iofwrite.c:37)
+                    ]
+                     [] iofwrite.c:37))
+            (set (reg:SI 139 [ ignore2 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (reg:SI 141)
+                        (mem:SI (reg/f:DI 98 [ D.10511 ]) [3 _17->lock+0 S4 A64])
+                        (reg:SI 142)
+                    ]
+                     [
+                        (asm_input:SI ("0") iofwrite.c:37)
+                        (asm_input:SI ("m") iofwrite.c:37)
+                        (asm_input:SI ("3") iofwrite.c:37)
+                    ]
+                     [] iofwrite.c:37))
+            (set (mem:SI (reg/f:DI 98 [ D.10511 ]) [3 _17->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 2 [
+                        (reg:SI 141)
+                        (mem:SI (reg/f:DI 98 [ D.10511 ]) [3 _17->lock+0 S4 A64])
+                        (reg:SI 142)
+                    ]
+                     [
+                        (asm_input:SI ("0") iofwrite.c:37)
+                        (asm_input:SI ("m") iofwrite.c:37)
+                        (asm_input:SI ("3") iofwrite.c:37)
+                    ]
+                     [] iofwrite.c:37))
+            (set (reg:SI 140 [ ignore3 ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; cmpxchgl %4, %2
+	jnz 1f
+	jmp 24f
+0:	cmpxchgl %4, %2
+	jz 24f
+	1:	lea %2, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_lock_wait_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=a") 3 [
+                        (reg:SI 141)
+                        (mem:SI (reg/f:DI 98 [ D.10511 ]) [3 _17->lock+0 S4 A64])
+                        (reg:SI 142)
+                    ]
+                     [
+                        (asm_input:SI ("0") iofwrite.c:37)
+                        (asm_input:SI ("m") iofwrite.c:37)
+                        (asm_input:SI ("3") iofwrite.c:37)
+                    ]
+                     [] iofwrite.c:37))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+        ]) iofwrite.c:37 -1
+     (nil))
+(insn 33 32 34 6 (set (reg/v:SI 95 [ ignore1 ])
+        (reg:SI 138 [ ignore1 ])) iofwrite.c:37 -1
+     (nil))
+(insn 34 33 35 6 (set (reg/v:SI 96 [ ignore2 ])
+        (reg:SI 139 [ ignore2 ])) iofwrite.c:37 -1
+     (nil))
+(insn 35 34 36 6 (set (reg/v:SI 97 [ ignore3 ])
+        (reg:SI 140 [ ignore3 ])) iofwrite.c:37 -1
+     (nil))
+(insn 36 35 37 6 (set (reg/f:DI 98 [ D.10511 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 136 [0x88])) [1 fp_13(D)->_lock+0 S8 A64])) iofwrite.c:37 -1
+     (nil))
+(insn 37 36 38 6 (set (mem/f:DI (plus:DI (reg/f:DI 98 [ D.10511 ])
+                (const_int 8 [0x8])) [1 _23->owner+0 S8 A64])
+        (reg/v/f:DI 93 [ __self ])) iofwrite.c:37 -1
+     (nil))
+(code_label 38 37 39 7 4 "" [1 uses])
+(note 39 38 40 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 7 (parallel [
+            (set (mem:SI (plus:DI (reg/f:DI 98 [ D.10511 ])
+                        (const_int 4 [0x4])) [3 _90->cnt+0 S4 A32])
+                (plus:SI (mem:SI (plus:DI (reg/f:DI 98 [ D.10511 ])
+                            (const_int 4 [0x4])) [3 _90->cnt+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) iofwrite.c:37 -1
+     (nil))
+(code_label 41 40 42 8 3 "" [1 uses])
+(note 42 41 43 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 8 (set (reg:SI 101 [ D.10513 ])
+        (mem:SI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 192 [0xc0])) [3 fp_13(D)->_mode+0 S4 A64])) iofwrite.c:38 -1
+     (nil))
+(insn 44 43 45 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 101 [ D.10513 ])
+            (const_int 0 [0]))) iofwrite.c:38 -1
+     (nil))
+(jump_insn 45 44 46 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 50)
+            (pc))) iofwrite.c:38 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 50)
+(note 46 45 47 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 9 (set (mem:SI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 192 [0xc0])) [3 fp_13(D)->_mode+0 S4 A64])
+        (const_int -1 [0xffffffffffffffff])) iofwrite.c:38 -1
+     (nil))
+(jump_insn 48 47 49 9 (set (pc)
+        (label_ref 54)) iofwrite.c:38 -1
+     (nil)
+ -> 54)
+(barrier 49 48 50)
+(code_label 50 49 51 10 5 "" [1 uses])
+(note 51 50 52 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 101 [ D.10513 ])
+            (const_int -1 [0xffffffffffffffff]))) iofwrite.c:38 -1
+     (nil))
+(jump_insn 53 52 54 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 144)
+            (pc))) iofwrite.c:38 -1
+     (int_list:REG_BR_PROB 10000 (nil))
+ -> 144)
+(code_label 54 53 55 11 6 "" [1 uses])
+(note 55 54 56 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 11 (set (reg/f:DI 102 [ D.10515 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 216 [0xd8])) [1 MEM[(const struct _IO_jump_t * *)fp_13(D) + 216B]+0 S8 A64])) iofwrite.c:39 -1
+     (nil))
+(insn 57 56 58 11 (set (reg:DI 119 [ D.10517 ])
+        (symbol_ref:DI ("__start___libc_IO_vtables") [flags 0x42]  <var_decl 0x2ae6a0e38870 __start___libc_IO_vtables>)) libioP.h:936 -1
+     (nil))
+(insn 58 57 59 11 (set (reg:DI 144)
+        (symbol_ref:DI ("__stop___libc_IO_vtables") [flags 0x42]  <var_decl 0x2ae6a0e38900 __stop___libc_IO_vtables>)) libioP.h:939 -1
+     (nil))
+(insn 59 58 60 11 (parallel [
+            (set (reg:DI 143 [ D.10517 ])
+                (minus:DI (reg:DI 144)
+                    (reg:DI 119 [ D.10517 ])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:939 -1
+     (nil))
+(insn 60 59 61 11 (parallel [
+            (set (reg:DI 145 [ D.10517 ])
+                (minus:DI (reg/f:DI 102 [ D.10515 ])
+                    (reg:DI 119 [ D.10517 ])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:939 -1
+     (nil))
+(insn 61 60 62 11 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 143 [ D.10517 ])
+            (reg:DI 145 [ D.10517 ]))) libioP.h:939 -1
+     (nil))
+(jump_insn 62 61 75 11 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) libioP.h:939 -1
+     (int_list:REG_BR_PROB 1000 (nil))
+ -> 72)
+(code_label 75 62 63 12 10 "" [1 uses])
+(note 63 75 64 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 12 (set (reg/f:DI 146)
+        (mem/f:DI (plus:DI (reg/f:DI 102 [ D.10515 ])
+                (const_int 56 [0x38])) [1 _32->__xsputn+0 S8 A64])) iofwrite.c:39 -1
+     (nil))
+(insn 65 64 66 12 (set (reg:DI 1 dx)
+        (reg/v:DI 90 [ request ])) iofwrite.c:39 -1
+     (nil))
+(insn 66 65 67 12 (set (reg:DI 4 si)
+        (reg/v/f:DI 131 [ buf ])) iofwrite.c:39 -1
+     (nil))
+(insn 67 66 68 12 (set (reg:DI 5 di)
+        (reg/v/f:DI 134 [ fp ])) iofwrite.c:39 -1
+     (nil))
+(call_insn 68 67 184 12 (set (reg:DI 0 ax)
+        (call (mem:QI (reg/f:DI 146) [0 *_34 S1 A8])
+            (const_int 0 [0]))) iofwrite.c:39 -1
+     (expr_list:REG_EH_REGION (const_int 1 [0x1])
+        (expr_list:REG_CALL_DECL (nil)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(note 184 68 69 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 69 184 70 13 (set (reg/v:DI 104 [ written ])
+        (reg:DI 0 ax)) iofwrite.c:39 -1
+     (nil))
+(jump_insn 70 69 71 13 (set (pc)
+        (label_ref 131)) iofwrite.c:39 -1
+     (nil)
+ -> 131)
+(barrier 71 70 72)
+(code_label 72 71 73 14 8 "" [1 uses])
+(note 73 72 74 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(call_insn 74 73 185 14 (call (mem:QI (symbol_ref:DI ("_IO_vtable_check") [flags 0x43]  <function_decl 0x2ae6a0e671b0 _IO_vtable_check>) [0 _IO_vtable_check S1 A8])
+        (const_int 0 [0])) libioP.h:942 -1
+     (expr_list:REG_EH_REGION (const_int 1 [0x1])
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_IO_vtable_check") [flags 0x43]  <function_decl 0x2ae6a0e671b0 _IO_vtable_check>)
+            (nil)))
+    (nil))
+(note 185 74 76 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 76 185 77 15 (set (pc)
+        (label_ref 75)) libioP.h:942 -1
+     (nil)
+ -> 75)
+(barrier 77 76 133)
+(code_label 133 77 78 16 14 "" [1 uses])
+(note 78 133 79 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 79 78 80 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 104 [ written ])
+            (const_int -1 [0xffffffffffffffff]))) -1
+     (nil))
+(insn 80 79 81 16 (set (reg:QI 147)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) -1
+     (nil))
+(insn 81 80 82 16 (set (reg:QI 107 [ D.10518 ])
+        (reg:QI 147)) -1
+     (nil))
+(insn 82 81 83 16 (set (reg/f:DI 87 [ D.10511 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 136 [0x88])) [1 fp_13(D)->_lock+0 S8 A64])) libioP.h:863 -1
+     (nil))
+(insn 83 82 84 16 (set (reg:SI 148)
+        (mem:SI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                (const_int 4 [0x4])) [3 _45->cnt+0 S4 A32])) libioP.h:863 -1
+     (nil))
+(insn 84 83 85 16 (parallel [
+            (set (reg:SI 111 [ D.10513 ])
+                (plus:SI (reg:SI 148)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:863 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                    (const_int 4 [0x4])) [3 _45->cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 85 84 86 16 (set (mem:SI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                (const_int 4 [0x4])) [3 _45->cnt+0 S4 A32])
+        (reg:SI 111 [ D.10513 ])) libioP.h:863 -1
+     (nil))
+(insn 86 85 87 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.10513 ])
+            (const_int 0 [0]))) libioP.h:863 -1
+     (nil))
+(jump_insn 87 86 179 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 92)
+            (pc))) libioP.h:863 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 92)
+(note 179 87 180 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 180 179 181 17 (set (pc)
+        (label_ref 156)) -1
+     (nil)
+ -> 156)
+(barrier 181 180 183)
+(code_label 183 181 182 18 20 "" [1 uses])
+(note 182 183 7 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 7 182 8 18 (set (reg:QI 107 [ D.10518 ])
+        (const_int 0 [0])) libioP.h:863 -1
+     (nil))
+(insn 8 7 156 18 (set (reg/v:DI 104 [ written ])
+        (const_int 0 [0])) iofwrite.c:33 -1
+     (nil))
+(code_label 156 8 88 19 16 "" [1 uses])
+(note 88 156 89 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 89 88 90 19 (set (mem/f:DI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                (const_int 8 [0x8])) [1 _1->owner+0 S8 A64])
+        (const_int 0 [0])) libioP.h:863 -1
+     (nil))
+(insn 90 89 91 19 (parallel [
+            (set (mem:SI (reg/f:DI 87 [ D.10511 ]) [3 _1->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem:SI (reg/f:DI 87 [ D.10511 ]) [3 _1->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (set (reg:SI 149 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem:SI (reg/f:DI 87 [ D.10511 ]) [3 _1->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) libioP.h:863 -1
+     (nil))
+(insn 91 90 92 19 (set (reg/v:SI 112 [ ignore ])
+        (reg:SI 149 [ ignore ])) libioP.h:863 -1
+     (nil))
+(code_label 92 91 93 20 11 "" [2 uses])
+(note 93 92 94 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 94 93 95 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 90 [ request ])
+            (reg/v:DI 104 [ written ]))) iofwrite.c:45 -1
+     (nil))
+(insn 95 94 96 20 (set (reg:QI 151 [ D.10518 ])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) iofwrite.c:45 -1
+     (nil))
+(insn 96 95 97 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 151 [ D.10518 ])
+            (const_int 0 [0]))) iofwrite.c:45 -1
+     (nil))
+(jump_insn 97 96 186 20 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 173)
+            (pc))) iofwrite.c:45 612 {*jcc_1}
+     (int_list:REG_BR_PROB 3466 (nil))
+ -> 173)
+(note 186 97 98 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 98 186 99 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 107 [ D.10518 ])
+            (const_int 0 [0]))) iofwrite.c:45 -1
+     (nil))
+(jump_insn 99 98 174 21 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 173)
+            (pc))) iofwrite.c:45 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5305 (nil))
+ -> 173)
+(note 174 99 175 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 175 174 176 22 (set (pc)
+        (label_ref 146)) -1
+     (nil)
+ -> 146)
+(barrier 176 175 178)
+(code_label 178 176 177 23 19 "" [1 uses])
+(note 177 178 9 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 9 177 146 23 (set (reg/v:DI 104 [ written ])
+        (const_int 0 [0])) iofwrite.c:33 -1
+     (nil))
+(code_label 146 9 100 24 15 "" [2 uses])
+(note 100 146 101 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 101 100 102 24 (parallel [
+            (set (reg:DI 152)
+                (udiv:DI (reg/v:DI 104 [ written ])
+                    (reg/v:DI 132 [ size ])))
+            (set (reg:DI 153)
+                (umod:DI (reg/v:DI 104 [ written ])
+                    (reg/v:DI 132 [ size ])))
+            (clobber (reg:CC 17 flags))
+        ]) iofwrite.c:48 -1
+     (nil))
+(insn 102 101 166 24 (set (reg:DI 88 [ D.10512 ])
+        (reg:DI 152)) iofwrite.c:48 -1
+     (nil))
+(jump_insn 166 102 167 24 (set (pc)
+        (label_ref 103)) iofwrite.c:48 -1
+     (nil)
+ -> 103)
+(barrier 167 166 169)
+(code_label 169 167 168 25 17 "" [1 uses])
+(note 168 169 11 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 11 168 170 25 (set (reg:DI 88 [ D.10512 ])
+        (const_int 0 [0])) iofwrite.c:36 -1
+     (nil))
+(jump_insn 170 11 171 25 (set (pc)
+        (label_ref 103)) -1
+     (nil)
+ -> 103)
+(barrier 171 170 173)
+(code_label 173 171 172 26 18 "" [2 uses])
+(note 172 173 12 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 12 172 103 26 (set (reg:DI 88 [ D.10512 ])
+        (reg/v:DI 133 [ count ])) iofwrite.c:46 -1
+     (nil))
+(code_label 103 12 104 27 2 "" [2 uses])
+(note 104 103 105 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 105 104 106 27 (set (reg:DI 130 [ <retval> ])
+        (reg:DI 88 [ D.10512 ])) -1
+     (nil))
+(jump_insn 106 105 107 27 (set (pc)
+        (label_ref 162)) -1
+     (nil)
+ -> 162)
+(barrier 107 106 187)
+(code_label/s 187 107 189 28 21 "" [1 uses])
+(note 189 187 188 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 188 189 108 28 (set (reg:DI 159)
+        (reg:DI 0 ax)) -1
+     (nil))
+(code_label 108 188 109 29 12 "" [0 uses])
+(note 109 108 110 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 110 109 111 29 (set (reg:SI 156)
+        (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])) libioP.h:862 -1
+     (nil))
+(insn 111 110 112 29 (parallel [
+            (set (reg:SI 155 [ D.10513 ])
+                (and:SI (reg:SI 156)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:862 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 112 111 113 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 155 [ D.10513 ])
+            (const_int 0 [0]))) libioP.h:862 -1
+     (nil))
+(jump_insn 113 112 114 29 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 125)
+            (pc))) libioP.h:862 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 125)
+(note 114 113 115 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 115 114 116 30 (set (reg/f:DI 115 [ D.10511 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 136 [0x88])) [1 fp_13(D)->_lock+0 S8 A64])) libioP.h:863 -1
+     (nil))
+(insn 116 115 117 30 (set (reg:SI 157)
+        (mem:SI (plus:DI (reg/f:DI 115 [ D.10511 ])
+                (const_int 4 [0x4])) [3 _51->cnt+0 S4 A32])) libioP.h:863 -1
+     (nil))
+(insn 117 116 118 30 (parallel [
+            (set (reg:SI 117 [ D.10513 ])
+                (plus:SI (reg:SI 157)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:863 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 115 [ D.10511 ])
+                    (const_int 4 [0x4])) [3 _51->cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 118 117 119 30 (set (mem:SI (plus:DI (reg/f:DI 115 [ D.10511 ])
+                (const_int 4 [0x4])) [3 _51->cnt+0 S4 A32])
+        (reg:SI 117 [ D.10513 ])) libioP.h:863 -1
+     (nil))
+(insn 119 118 120 30 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 117 [ D.10513 ])
+            (const_int 0 [0]))) libioP.h:863 -1
+     (nil))
+(jump_insn 120 119 121 30 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 125)
+            (pc))) libioP.h:863 -1
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 125)
+(note 121 120 122 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 123 31 (set (mem/f:DI (plus:DI (reg/f:DI 115 [ D.10511 ])
+                (const_int 8 [0x8])) [1 _51->owner+0 S8 A64])
+        (const_int 0 [0])) libioP.h:863 -1
+     (nil))
+(insn 123 122 124 31 (parallel [
+            (set (mem:SI (reg/f:DI 115 [ D.10511 ]) [3 _51->lock+0 S4 A64])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=m") 0 [
+                        (mem:SI (reg/f:DI 115 [ D.10511 ]) [3 _51->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (set (reg:SI 158 [ ignore ])
+                (asm_operands/v:SI ("cmpl $0, __libc_multiple_threads(%%rip)
+	je 0f
+	lock; decl %0
+	jne 1f
+	jmp 24f
+	0:	decl %0
+	je 24f
+	1:	lea %0, %%rdi
+2:	sub $128, %%rsp
+.cfi_adjust_cfa_offset 128
+3:	callq __lll_unlock_wake_private
+4:	add $128, %%rsp
+.cfi_adjust_cfa_offset -128
+24:") ("=&D") 1 [
+                        (mem:SI (reg/f:DI 115 [ D.10511 ]) [3 _51->lock+0 S4 A64])
+                    ]
+                     [
+                        (asm_input:SI ("m") libioP.h:863)
+                    ]
+                     [] libioP.h:863))
+            (clobber (reg:QI 18 fpsr))
+            (clobber (reg:QI 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+            (clobber (reg:QI 40 r11))
+            (clobber (reg:QI 2 cx))
+            (clobber (reg:QI 0 ax))
+        ]) libioP.h:863 -1
+     (nil))
+(insn 124 123 125 31 (set (reg/v:SI 118 [ ignore ])
+        (reg:SI 158 [ ignore ])) libioP.h:863 -1
+     (nil))
+(code_label 125 124 126 32 13 "" [2 uses])
+(note 126 125 127 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 127 126 128 32 (set (reg/f:DI 129 [ D.10510 ])
+        (reg:DI 159)) -1
+     (nil))
+(insn 128 127 129 32 (set (reg:DI 5 di)
+        (reg/f:DI 129 [ D.10510 ])) -1
+     (nil))
+(call_insn 129 128 130 32 (call (mem:QI (symbol_ref:DI ("_Unwind_Resume") [flags 0x41]  <function_decl 0x2ae6a08f2798 __builtin_unwind_resume>) [0 __builtin_unwind_resume S1 A8])
+        (const_int 0 [0])) -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_Unwind_Resume") [flags 0x41]  <function_decl 0x2ae6a08f2798 __builtin_unwind_resume>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(barrier 130 129 131)
+(code_label 131 130 132 33 9 "" [1 uses])
+(note 132 131 134 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 134 132 135 33 (set (reg:SI 161)
+        (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])) libioP.h:862 -1
+     (nil))
+(insn 135 134 136 33 (parallel [
+            (set (reg:SI 160 [ D.10513 ])
+                (and:SI (reg:SI 161)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:862 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 136 135 137 33 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 160 [ D.10513 ])
+            (const_int 0 [0]))) libioP.h:862 -1
+     (nil))
+(jump_insn 137 136 138 33 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 133)
+            (pc))) libioP.h:862 -1
+     (int_list:REG_BR_PROB 2500 (nil))
+ -> 133)
+(note 138 137 139 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 139 138 140 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 104 [ written ])
+            (const_int -1 [0xffffffffffffffff]))) -1
+     (nil))
+(insn 140 139 141 34 (set (reg:QI 162)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) -1
+     (nil))
+(insn 141 140 142 34 (set (reg:QI 107 [ D.10518 ])
+        (reg:QI 162)) -1
+     (nil))
+(jump_insn 142 141 143 34 (set (pc)
+        (label_ref 92)) -1
+     (nil)
+ -> 92)
+(barrier 143 142 144)
+(code_label 144 143 145 35 7 "" [1 uses])
+(note 145 144 147 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 147 145 148 35 (set (reg:SI 164)
+        (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])) libioP.h:862 -1
+     (nil))
+(insn 148 147 149 35 (parallel [
+            (set (reg:SI 163 [ D.10513 ])
+                (and:SI (reg:SI 164)
+                    (const_int 32768 [0x8000])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:862 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 134 [ fp ]) [3 fp_13(D)->_flags+0 S4 A64])
+            (const_int 32768 [0x8000]))
+        (nil)))
+(insn 149 148 150 35 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 163 [ D.10513 ])
+            (const_int 0 [0]))) libioP.h:862 -1
+     (nil))
+(jump_insn 150 149 151 35 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 178)
+            (pc))) libioP.h:862 612 {*jcc_1}
+     (int_list:REG_BR_PROB 7500 (nil))
+ -> 178)
+(note 151 150 152 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 152 151 153 36 (set (reg/f:DI 87 [ D.10511 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 134 [ fp ])
+                (const_int 136 [0x88])) [1 fp_13(D)->_lock+0 S8 A64])) libioP.h:863 -1
+     (nil))
+(insn 153 152 154 36 (set (reg:SI 165)
+        (mem:SI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                (const_int 4 [0x4])) [3 _44->cnt+0 S4 A32])) libioP.h:863 -1
+     (nil))
+(insn 154 153 155 36 (parallel [
+            (set (reg:SI 89 [ D.10513 ])
+                (plus:SI (reg:SI 165)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) libioP.h:863 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                    (const_int 4 [0x4])) [3 _44->cnt+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 155 154 157 36 (set (mem:SI (plus:DI (reg/f:DI 87 [ D.10511 ])
+                (const_int 4 [0x4])) [3 _44->cnt+0 S4 A32])
+        (reg:SI 89 [ D.10513 ])) libioP.h:863 -1
+     (nil))
+(insn 157 155 158 36 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 89 [ D.10513 ])
+            (const_int 0 [0]))) libioP.h:863 -1
+     (nil))
+(jump_insn 158 157 161 36 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 183)
+            (pc))) libioP.h:863 612 {*jcc_1}
+     (int_list:REG_BR_PROB 5000 (nil))
+ -> 183)
+(note 161 158 10 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 10 161 159 37 (set (reg/v:DI 104 [ written ])
+        (const_int 0 [0])) iofwrite.c:33 -1
+     (nil))
+(jump_insn 159 10 160 37 (set (pc)
+        (label_ref 146)) libioP.h:863 -1
+     (nil)
+ -> 146)
+(barrier 160 159 162)
+(code_label 162 160 165 38 1 "" [1 uses])
+(note 165 162 163 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(insn 163 165 164 38 (set (reg/i:DI 0 ax)
+        (reg:DI 130 [ <retval> ])) iofwrite.c:49 -1
+     (nil))
+(insn 164 163 0 38 (use (reg/i:DI 0 ax)) iofwrite.c:49 -1
+     (nil))

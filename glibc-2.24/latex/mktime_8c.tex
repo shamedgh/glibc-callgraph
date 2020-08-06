@@ -1,0 +1,232 @@
+\hypertarget{mktime_8c}{}\doxysection{time/mktime.c File Reference}
+\label{mktime_8c}\index{time/mktime.c@{time/mktime.c}}
+{\ttfamily \#include $<$config.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}mktime-\/internal.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a118c28bea27786c73f3d14830cdf06ae}{L\+E\+A\+P\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+O\+S\+S\+I\+B\+LE}}~1
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a78d841fee2f45030897396b862223b8a}{W\+R\+A\+PV}}~0
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a2b7c0b217d9ec9df7042018b3eeb5e40}{verify}}(\mbox{\hyperlink{structname}{name}},  assertion)~struct \mbox{\hyperlink{structname}{name}} \{ char \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}}\mbox{[}(assertion) ? 1 \+: -\/1\mbox{]}; \}
+\item 
+\#define \mbox{\hyperlink{mktime_8c_ab28a54214444a5a9933353ee77678214}{S\+HR}}(\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  \mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}})
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a2acf41536b668b05f5dfa923a2cf329f}{T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+I\+N\+T\+E\+G\+ER}}(\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}})~((\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) 1.\+5 == 1)
+\item 
+\#define \mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}})~((\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) $\sim$ (\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) 0 == (\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) -\/1)
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a2bca7ca43e515ecaf7531b7946d8c389}{T\+Y\+P\+E\+\_\+\+S\+I\+G\+N\+ED}}(\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}})~(! ((\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) 0 $<$ (\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) -\/1))
+\item 
+\#define \mbox{\hyperlink{mktime_8c_aa445215ecc481d73143fff079c8c7dcd}{T\+Y\+P\+E\+\_\+\+M\+I\+N\+I\+M\+UM}}(\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}})
+\item 
+\#define \mbox{\hyperlink{mktime_8c_ac1ddc411d5dc12a29330bfe364f79f71}{T\+Y\+P\+E\+\_\+\+M\+A\+X\+I\+M\+UM}}(\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}})
+\item 
+\#define \mbox{\hyperlink{mktime_8c_acde7b0b4db45970eec83ef26b90e9e22}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+IN}}~\mbox{\hyperlink{tst-mktime2_8c_aa445215ecc481d73143fff079c8c7dcd}{T\+Y\+P\+E\+\_\+\+M\+I\+N\+I\+M\+UM}} (\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}})
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a2952848347472d9fade4cde6ea2cb4a9}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+AX}}~\mbox{\hyperlink{tst-mktime2_8c_ac1ddc411d5dc12a29330bfe364f79f71}{T\+Y\+P\+E\+\_\+\+M\+A\+X\+I\+M\+UM}} (\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}})
+\item 
+\#define \mbox{\hyperlink{mktime_8c_ae663498b5dbc637a6e405192cf855290}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+I\+D\+P\+O\+I\+NT}}~(\mbox{\hyperlink{mktime_8c_ab28a54214444a5a9933353ee77678214}{S\+HR}} (\mbox{\hyperlink{tst-mktime2_8c_acde7b0b4db45970eec83ef26b90e9e22}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+IN}} + \mbox{\hyperlink{tst-mktime2_8c_a2952848347472d9fade4cde6ea2cb4a9}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+AX}}, 1) + 1)
+\item 
+\#define \mbox{\hyperlink{mktime_8c_aa0e47af385cda59b56c1ba71dee795d8}{E\+P\+O\+C\+H\+\_\+\+Y\+E\+AR}}~1970
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a0b24352233a7c91b5e627d2a26ffefb3}{T\+M\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+A\+SE}}~1900
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a6d33f66cbb4ed343d684985146748930}{\+\_\+\+\_\+localtime\+\_\+r}}~\mbox{\hyperlink{zdump_8c_a9e7c6104cccbed67c8f0fd510cd5c099}{localtime\+\_\+r}}
+\item 
+\#define \mbox{\hyperlink{mktime_8c_a71e3e828ca811062869944e486757702}{\+\_\+\+\_\+mktime\+\_\+internal}}~mktime\+\_\+internal
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\+\_\+int}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{mktime_8c_a5c9cd731dc7fb47d392aeac8845dd55d}{verify}} (long\+\_\+int\+\_\+is\+\_\+wide\+\_\+enough, \mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{I\+N\+T\+\_\+\+M\+AX}}==\mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{I\+N\+T\+\_\+\+M\+AX}} $\ast$(\mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\+\_\+int}}) 2/2)
+\item 
+\mbox{\hyperlink{mktime_8c_a557d3c451265d87cee26b6d28209de2d}{verify}} (time\+\_\+t\+\_\+is\+\_\+integer, \mbox{\hyperlink{mktime_8c_a2acf41536b668b05f5dfa923a2cf329f}{T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+I\+N\+T\+E\+G\+ER}}(\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}}))
+\item 
+\mbox{\hyperlink{mktime_8c_a20036b549be5a31f474b384d6812c83a}{verify}} (twos\+\_\+complement\+\_\+arithmetic,(\mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}) \&\&\mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\+\_\+int}}) \&\&\mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}})))
+\item 
+\mbox{\hyperlink{mktime_8c_a08bea0dcf683aa786dbd626bcc7d8bfd}{verify}} (base\+\_\+year\+\_\+is\+\_\+a\+\_\+multiple\+\_\+of\+\_\+100, \mbox{\hyperlink{zdump_8c_a0b24352233a7c91b5e627d2a26ffefb3}{T\+M\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+A\+SE}} \% 100==0)
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{mktime_8c_afd890ed112b091e3bcbf07869e5d7dcb}{\+\_\+\+\_\+mktime\+\_\+internal}} (struct \mbox{\hyperlink{structtm}{tm}} $\ast$tp, struct \mbox{\hyperlink{structtm}{tm}} $\ast$($\ast$convert)(\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} $\ast$, struct \mbox{\hyperlink{structtm}{tm}} $\ast$), \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} $\ast$\mbox{\hyperlink{powerpc_2powerpc64_2dl-machine_8h_a748a39d6b59a902584354e478358fe31}{offset}})
+\item 
+\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \mbox{\hyperlink{mktime_8c_a8c4f10ffa3472c809d777ee55f3dee7c}{mktime}} (struct \mbox{\hyperlink{structtm}{tm}} $\ast$tp)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mktime_8c_a6d33f66cbb4ed343d684985146748930}\label{mktime_8c_a6d33f66cbb4ed343d684985146748930}} 
+\index{mktime.c@{mktime.c}!\_\_localtime\_r@{\_\_localtime\_r}}
+\index{\_\_localtime\_r@{\_\_localtime\_r}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{\_\_localtime\_r}{\_\_localtime\_r}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+localtime\+\_\+r~\mbox{\hyperlink{zdump_8c_a9e7c6104cccbed67c8f0fd510cd5c099}{localtime\+\_\+r}}}
+
+\mbox{\Hypertarget{mktime_8c_a71e3e828ca811062869944e486757702}\label{mktime_8c_a71e3e828ca811062869944e486757702}} 
+\index{mktime.c@{mktime.c}!\_\_mktime\_internal@{\_\_mktime\_internal}}
+\index{\_\_mktime\_internal@{\_\_mktime\_internal}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{\_\_mktime\_internal}{\_\_mktime\_internal}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+mktime\+\_\+internal~mktime\+\_\+internal}
+
+\mbox{\Hypertarget{mktime_8c_aa0e47af385cda59b56c1ba71dee795d8}\label{mktime_8c_aa0e47af385cda59b56c1ba71dee795d8}} 
+\index{mktime.c@{mktime.c}!EPOCH\_YEAR@{EPOCH\_YEAR}}
+\index{EPOCH\_YEAR@{EPOCH\_YEAR}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{EPOCH\_YEAR}{EPOCH\_YEAR}}
+{\footnotesize\ttfamily \#define E\+P\+O\+C\+H\+\_\+\+Y\+E\+AR~1970}
+
+\mbox{\Hypertarget{mktime_8c_a118c28bea27786c73f3d14830cdf06ae}\label{mktime_8c_a118c28bea27786c73f3d14830cdf06ae}} 
+\index{mktime.c@{mktime.c}!LEAP\_SECONDS\_POSSIBLE@{LEAP\_SECONDS\_POSSIBLE}}
+\index{LEAP\_SECONDS\_POSSIBLE@{LEAP\_SECONDS\_POSSIBLE}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{LEAP\_SECONDS\_POSSIBLE}{LEAP\_SECONDS\_POSSIBLE}}
+{\footnotesize\ttfamily \#define L\+E\+A\+P\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+O\+S\+S\+I\+B\+LE~1}
+
+\mbox{\Hypertarget{mktime_8c_ab28a54214444a5a9933353ee77678214}\label{mktime_8c_ab28a54214444a5a9933353ee77678214}} 
+\index{mktime.c@{mktime.c}!SHR@{SHR}}
+\index{SHR@{SHR}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{SHR}{SHR}}
+{\footnotesize\ttfamily \#define S\+HR(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}},  }\item[{}]{\mbox{\hyperlink{tst-tininess_8c_ab69a3a03fd1f62bc23517ff0b5093e5a}{b}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((-\/1 >> 1 == -\/1                                               \(\backslash\)}
+\DoxyCodeLine{    \&\& (\mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\_int}}) -\/1 >> 1 == -\/1                                 \(\backslash\)}
+\DoxyCodeLine{    \&\& ((\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\_t}}) -\/1 >> 1 == -\/1 || ! \mbox{\hyperlink{mktime_8c_a2bca7ca43e515ecaf7531b7946d8c389}{TYPE\_SIGNED}} (\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\_t}})))      \(\backslash\)}
+\DoxyCodeLine{   ? (\mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}) >> (b)                                                 \(\backslash\)}
+\DoxyCodeLine{   : (\mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}) / (1 << (b)) -\/ ((\mbox{\hyperlink{nodlopenmod_8c_a6253f76e72a4e414f443747c0a4b8279}{a}}) \% (1 << (\mbox{\hyperlink{tst-gettext6_8c_aec69b301eafb52fab26201b36b665524}{b}})) < 0))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mktime_8c_a2952848347472d9fade4cde6ea2cb4a9}\label{mktime_8c_a2952848347472d9fade4cde6ea2cb4a9}} 
+\index{mktime.c@{mktime.c}!TIME\_T\_MAX@{TIME\_T\_MAX}}
+\index{TIME\_T\_MAX@{TIME\_T\_MAX}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TIME\_T\_MAX}{TIME\_T\_MAX}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+AX~\mbox{\hyperlink{tst-mktime2_8c_ac1ddc411d5dc12a29330bfe364f79f71}{T\+Y\+P\+E\+\_\+\+M\+A\+X\+I\+M\+UM}} (\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}})}
+
+\mbox{\Hypertarget{mktime_8c_ae663498b5dbc637a6e405192cf855290}\label{mktime_8c_ae663498b5dbc637a6e405192cf855290}} 
+\index{mktime.c@{mktime.c}!TIME\_T\_MIDPOINT@{TIME\_T\_MIDPOINT}}
+\index{TIME\_T\_MIDPOINT@{TIME\_T\_MIDPOINT}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TIME\_T\_MIDPOINT}{TIME\_T\_MIDPOINT}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+I\+D\+P\+O\+I\+NT~(\mbox{\hyperlink{mktime_8c_ab28a54214444a5a9933353ee77678214}{S\+HR}} (\mbox{\hyperlink{tst-mktime2_8c_acde7b0b4db45970eec83ef26b90e9e22}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+IN}} + \mbox{\hyperlink{tst-mktime2_8c_a2952848347472d9fade4cde6ea2cb4a9}{T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+AX}}, 1) + 1)}
+
+\mbox{\Hypertarget{mktime_8c_acde7b0b4db45970eec83ef26b90e9e22}\label{mktime_8c_acde7b0b4db45970eec83ef26b90e9e22}} 
+\index{mktime.c@{mktime.c}!TIME\_T\_MIN@{TIME\_T\_MIN}}
+\index{TIME\_T\_MIN@{TIME\_T\_MIN}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TIME\_T\_MIN}{TIME\_T\_MIN}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+\_\+\+T\+\_\+\+M\+IN~\mbox{\hyperlink{tst-mktime2_8c_aa445215ecc481d73143fff079c8c7dcd}{T\+Y\+P\+E\+\_\+\+M\+I\+N\+I\+M\+UM}} (\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}})}
+
+\mbox{\Hypertarget{mktime_8c_a0b24352233a7c91b5e627d2a26ffefb3}\label{mktime_8c_a0b24352233a7c91b5e627d2a26ffefb3}} 
+\index{mktime.c@{mktime.c}!TM\_YEAR\_BASE@{TM\_YEAR\_BASE}}
+\index{TM\_YEAR\_BASE@{TM\_YEAR\_BASE}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TM\_YEAR\_BASE}{TM\_YEAR\_BASE}}
+{\footnotesize\ttfamily \#define T\+M\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+A\+SE~1900}
+
+\mbox{\Hypertarget{mktime_8c_a2acf41536b668b05f5dfa923a2cf329f}\label{mktime_8c_a2acf41536b668b05f5dfa923a2cf329f}} 
+\index{mktime.c@{mktime.c}!TYPE\_IS\_INTEGER@{TYPE\_IS\_INTEGER}}
+\index{TYPE\_IS\_INTEGER@{TYPE\_IS\_INTEGER}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TYPE\_IS\_INTEGER}{TYPE\_IS\_INTEGER}}
+{\footnotesize\ttfamily \#define T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+I\+N\+T\+E\+G\+ER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) 1.\+5 == 1)}
+
+\mbox{\Hypertarget{mktime_8c_ac1ddc411d5dc12a29330bfe364f79f71}\label{mktime_8c_ac1ddc411d5dc12a29330bfe364f79f71}} 
+\index{mktime.c@{mktime.c}!TYPE\_MAXIMUM@{TYPE\_MAXIMUM}}
+\index{TYPE\_MAXIMUM@{TYPE\_MAXIMUM}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TYPE\_MAXIMUM}{TYPE\_MAXIMUM}}
+{\footnotesize\ttfamily \#define T\+Y\+P\+E\+\_\+\+M\+A\+X\+I\+M\+UM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) (! \mbox{\hyperlink{mktime_8c_a2bca7ca43e515ecaf7531b7946d8c389}{TYPE\_SIGNED}} (\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) \(\backslash\)}
+\DoxyCodeLine{    ? (\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) -\/1 \(\backslash\)}
+\DoxyCodeLine{    : ((((\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) 1 << (\textcolor{keyword}{sizeof} (\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) * \mbox{\hyperlink{limits_8h_a308d9dd2c0028ddb184b455bbd7865de}{CHAR\_BIT}} -\/ 2)) -\/ 1) * 2 + 1)))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mktime_8c_aa445215ecc481d73143fff079c8c7dcd}\label{mktime_8c_aa445215ecc481d73143fff079c8c7dcd}} 
+\index{mktime.c@{mktime.c}!TYPE\_MINIMUM@{TYPE\_MINIMUM}}
+\index{TYPE\_MINIMUM@{TYPE\_MINIMUM}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TYPE\_MINIMUM}{TYPE\_MINIMUM}}
+{\footnotesize\ttfamily \#define T\+Y\+P\+E\+\_\+\+M\+I\+N\+I\+M\+UM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) (! \mbox{\hyperlink{mktime_8c_a2bca7ca43e515ecaf7531b7946d8c389}{TYPE\_SIGNED}} (\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) \(\backslash\)}
+\DoxyCodeLine{    ? (\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}}) 0 \(\backslash\)}
+\DoxyCodeLine{    : ~ \mbox{\hyperlink{mktime_8c_ac1ddc411d5dc12a29330bfe364f79f71}{TYPE\_MAXIMUM}} (\mbox{\hyperlink{tst-unique3_8cc_a22091e086d3d4d9c2e61bd1944757a1b}{t}})))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mktime_8c_a2bca7ca43e515ecaf7531b7946d8c389}\label{mktime_8c_a2bca7ca43e515ecaf7531b7946d8c389}} 
+\index{mktime.c@{mktime.c}!TYPE\_SIGNED@{TYPE\_SIGNED}}
+\index{TYPE\_SIGNED@{TYPE\_SIGNED}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TYPE\_SIGNED}{TYPE\_SIGNED}}
+{\footnotesize\ttfamily \#define T\+Y\+P\+E\+\_\+\+S\+I\+G\+N\+ED(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}} }\end{DoxyParamCaption})~(! ((\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) 0 $<$ (\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) -\/1))}
+
+\mbox{\Hypertarget{mktime_8c_affd97788a002c81cce6d39018148d977}\label{mktime_8c_affd97788a002c81cce6d39018148d977}} 
+\index{mktime.c@{mktime.c}!TYPE\_TWOS\_COMPLEMENT@{TYPE\_TWOS\_COMPLEMENT}}
+\index{TYPE\_TWOS\_COMPLEMENT@{TYPE\_TWOS\_COMPLEMENT}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{TYPE\_TWOS\_COMPLEMENT}{TYPE\_TWOS\_COMPLEMENT}}
+{\footnotesize\ttfamily \#define T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}} }\end{DoxyParamCaption})~((\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) $\sim$ (\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) 0 == (\mbox{\hyperlink{x86__64_2dl-machine_8h_a0426e13ae9f83685fa1464f63f792f13}{t}}) -\/1)}
+
+\mbox{\Hypertarget{mktime_8c_a2b7c0b217d9ec9df7042018b3eeb5e40}\label{mktime_8c_a2b7c0b217d9ec9df7042018b3eeb5e40}} 
+\index{mktime.c@{mktime.c}!verify@{verify}}
+\index{verify@{verify}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{verify}{verify}}
+{\footnotesize\ttfamily \#define verify(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structname}{name}},  }\item[{}]{assertion }\end{DoxyParamCaption})~struct \mbox{\hyperlink{structname}{name}} \{ char \mbox{\hyperlink{tst-tininess_8c_ad4155f919405c364bb570689ce073488}{a}}\mbox{[}(assertion) ? 1 \+: -\/1\mbox{]}; \}}
+
+\mbox{\Hypertarget{mktime_8c_a78d841fee2f45030897396b862223b8a}\label{mktime_8c_a78d841fee2f45030897396b862223b8a}} 
+\index{mktime.c@{mktime.c}!WRAPV@{WRAPV}}
+\index{WRAPV@{WRAPV}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{WRAPV}{WRAPV}}
+{\footnotesize\ttfamily \#define W\+R\+A\+PV~0}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{mktime_8c_ae0ea968a1336bf2404941ae965aec532}\label{mktime_8c_ae0ea968a1336bf2404941ae965aec532}} 
+\index{mktime.c@{mktime.c}!long\_int@{long\_int}}
+\index{long\_int@{long\_int}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{long\_int}{long\_int}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{x86__64_2dl-trampoline_8h_a864fea7f31bc2c0f82c60cd4d7949745}{long}} \mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}} \mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\+\_\+int}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mktime_8c_afd890ed112b091e3bcbf07869e5d7dcb}\label{mktime_8c_afd890ed112b091e3bcbf07869e5d7dcb}} 
+\index{mktime.c@{mktime.c}!\_\_mktime\_internal@{\_\_mktime\_internal}}
+\index{\_\_mktime\_internal@{\_\_mktime\_internal}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{\_\_mktime\_internal()}{\_\_mktime\_internal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} \+\_\+\+\_\+mktime\+\_\+internal (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtm}{tm}} $\ast$}]{tp,  }\item[{struct \mbox{\hyperlink{structtm}{tm}} $\ast$($\ast$)(\mbox{\hyperlink{gmp-impl_8h_a2c212835823e3c54a8ab6d95c652660e}{const}} \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} $\ast$, struct \mbox{\hyperlink{structtm}{tm}} $\ast$)}]{convert,  }\item[{\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} $\ast$}]{offset }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mktime_8c_a8c4f10ffa3472c809d777ee55f3dee7c}\label{mktime_8c_a8c4f10ffa3472c809d777ee55f3dee7c}} 
+\index{mktime.c@{mktime.c}!mktime@{mktime}}
+\index{mktime@{mktime}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{mktime()}{mktime()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}} mktime (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtm}{tm}} $\ast$}]{tp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mktime_8c_a08bea0dcf683aa786dbd626bcc7d8bfd}\label{mktime_8c_a08bea0dcf683aa786dbd626bcc7d8bfd}} 
+\index{mktime.c@{mktime.c}!verify@{verify}}
+\index{verify@{verify}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily verify (\begin{DoxyParamCaption}\item[{base\+\_\+year\+\_\+is\+\_\+a\+\_\+multiple\+\_\+of\+\_\+100}]{,  }\item[{\mbox{\hyperlink{zdump_8c_a0b24352233a7c91b5e627d2a26ffefb3}{T\+M\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+A\+SE}} \%}]{100 = {\ttfamily =0} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mktime_8c_a5c9cd731dc7fb47d392aeac8845dd55d}\label{mktime_8c_a5c9cd731dc7fb47d392aeac8845dd55d}} 
+\index{mktime.c@{mktime.c}!verify@{verify}}
+\index{verify@{verify}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily verify (\begin{DoxyParamCaption}\item[{long\+\_\+int\+\_\+is\+\_\+wide\+\_\+enough}]{,  }\item[{\mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{I\+N\+T\+\_\+\+M\+AX}}}]{ = {\ttfamily =\mbox{\hyperlink{limits_8h_a9ec306f36d50c7375e74f0d1c55a3a67}{I\+N\+T\+\_\+\+M\+AX}}~$\ast$(\mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\+\_\+int}})~2/2} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mktime_8c_a557d3c451265d87cee26b6d28209de2d}\label{mktime_8c_a557d3c451265d87cee26b6d28209de2d}} 
+\index{mktime.c@{mktime.c}!verify@{verify}}
+\index{verify@{verify}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily verify (\begin{DoxyParamCaption}\item[{time\+\_\+t\+\_\+is\+\_\+integer}]{,  }\item[{\mbox{\hyperlink{mktime_8c_a2acf41536b668b05f5dfa923a2cf329f}{T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+I\+N\+T\+E\+G\+ER}}(\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}})}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mktime_8c_a20036b549be5a31f474b384d6812c83a}\label{mktime_8c_a20036b549be5a31f474b384d6812c83a}} 
+\index{mktime.c@{mktime.c}!verify@{verify}}
+\index{verify@{verify}!mktime.c@{mktime.c}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily verify (\begin{DoxyParamCaption}\item[{twos\+\_\+complement\+\_\+arithmetic}]{,  }\item[{(\mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{tst-efgcvt_8c_ac16130087a6e16522b07fb091dc1ad62}{int}}) \&\&\mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{mktime_8c_ae0ea968a1336bf2404941ae965aec532}{long\+\_\+int}}) \&\&\mbox{\hyperlink{mktime_8c_affd97788a002c81cce6d39018148d977}{T\+Y\+P\+E\+\_\+\+T\+W\+O\+S\+\_\+\+C\+O\+M\+P\+L\+E\+M\+E\+NT}}(\mbox{\hyperlink{time_2time_8h_a956faf9062d0fc1d3f81504733d767a1}{time\+\_\+t}}))}]{ }\end{DoxyParamCaption})}
+

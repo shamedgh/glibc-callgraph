@@ -1,0 +1,72 @@
+
+;; Function __fdelt_chk (__fdelt_chk, funcdef_no=0, decl_uid=1933, cgraph_uid=0, symbol_order=3)
+
+
+;; Generating RTL for gimple basic block 2
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 15.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+
+
+try_optimize_cfg iteration 2
+
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:DI 90 [ d ])
+        (reg:DI 5 di [ d ])) fdelt_chk.c:23 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:DI 90 [ d ])
+            (const_int 1023 [0x3ff]))) fdelt_chk.c:24 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 11)
+            (pc))) fdelt_chk.c:24 -1
+     (int_list:REG_BR_PROB 9996 (nil))
+ -> 11)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn 9 8 10 4 (call (mem:QI (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b510e3aaa20 __chk_fail>) [0 __chk_fail S1 A8])
+        (const_int 0 [0])) fdelt_chk.c:25 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*__GI___chk_fail") [flags 0x43]  <function_decl 0x2b510e3aaa20 __chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 10 9 11)
+(code_label 11 10 12 5 2 "" [1 uses])
+(note 12 11 13 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 5 (parallel [
+            (set (reg:DI 91 [ D.1947 ])
+                (ashiftrt:DI (reg/v:DI 90 [ d ])
+                    (const_int 6 [0x6])))
+            (clobber (reg:CC 17 flags))
+        ]) fdelt_chk.c:27 -1
+     (nil))
+(insn 14 13 18 5 (set (reg:DI 89 [ <retval> ])
+        (reg:DI 91 [ D.1947 ])) fdelt_chk.c:27 -1
+     (nil))
+(insn 18 14 19 5 (set (reg/i:DI 0 ax)
+        (reg:DI 89 [ <retval> ])) fdelt_chk.c:28 -1
+     (nil))
+(insn 19 18 0 5 (use (reg/i:DI 0 ax)) fdelt_chk.c:28 -1
+     (nil))
