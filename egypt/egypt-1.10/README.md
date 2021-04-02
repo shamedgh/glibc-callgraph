@@ -11,10 +11,16 @@ Then we gather the full path to all RTL files using a simple find command:
 ```
 find PATH_TO_BUILD/ -name "*.expand" > tmp
 ```
-We finally run egypt on all the files:
+We finally run egypt on all the files: (There is a comment that we added to the egypt script which increases the edges in line 261)
 ```
-./egypt `cat tmp` > initial.cfg
+./egypt -include-external `cat tmp` > initial.cfg
 ```
+
+Then we have to clean the initial graph using the following command:
+```
+python2.7 parse_callgraph_wrapper.py initial.cfg > initial.cleaned.cfg
+```
+
 ## Function to Syscall
 The initial CFG can't extract calls to the system calls themselves, because 
 many of the system call invocation code is created by macros and exist in 
@@ -32,10 +38,32 @@ python parse_make_log.py path_to_log >> funcToSyscall.cfg
 ```
 
 ## Weak Aliases
+We need to run a grep on the source code to extract weak aliase:
+```
+find . -name "*.c" -o -name "*.h" | xargs grep "weak_alias" | awk '{print $2 $3}' 
+```
 
 ## Strong Aliases
+We need to run a grep on the source code to extract strong aliase:
+```
+find . -name "*.c" -o -name "*.h" | xargs grep "strong_alias" | awk '{print $2 $3}'
+```
 
 ## Versioned Symbols
 
+```
+find . -name "*.c" -o -name "*.h" | xargs awk '/versioned_symbol \(/,/;/'
+```
+
 ## Combat Symbols
 
+```
+find . -name "*.c" -o -name "*.h" | xargs awk '/compat_symbol \(/,/;/'
+```
+
+Now we can run the main script which is wrapper.py:
+```
+python2.7 wrapper.py glibc.2.33/initial.all.cfg glibc.2.33/all.expand.files ~/library-debloating/libsrccodes/glibc/build/build.log glibc.2.33/weakalias glibc.2.33/versioned_symbols glibc.2.33/compat_symbols glibc.2.33/strongalias >> glibc.2.33/wrapper.out.new
+```
+
+This gives us anything missing from the initial graph, and by adding the initial graph to it, we generate the complete graph.
