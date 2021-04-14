@@ -21,7 +21,7 @@ Node0x55ebaa266db0 [shape=record,shape=circle,label="{log_loglevel}"];
 addrToFuncName = dict()
 cfgline = cfgfile.readline()
 while ( cfgline ):
-    #print (cfgline)
+#    print (cfgline)
     if ( cfgline.strip().startswith("Node") and cfgline.find("label") != -1 ):
         splittedLine = cfgline.split()
         addr = splittedLine[0]
@@ -31,8 +31,18 @@ while ( cfgline ):
             if ( param.startswith("label") ):
                 #print ("param: " + param)
                 name = param
-                name = name[name.index("{")+1:]
-                name = name[:name.index("}")]
+                if ( name.startswith("label=\"{CallGraphNode ID") ):
+                    #print ("startswith callgraphnode id")
+                    splittedName = name.split()
+                    if ( len(splittedName) > 4 ):
+                        name = splittedName[4]
+                        if ( "\\}" in name ):
+                            name = name[:name.index("\\}")]
+                        #print ("name till now: " + name)
+                if ( "{" in name ):
+                    name = name[name.index("{")+1:]
+                if ( "}" in name ):
+                    name = name[:name.index("}")]
                 if ( "|" in name ):
                     name = name[:name.index("|")]
                 addrToFuncName[addr] = name
