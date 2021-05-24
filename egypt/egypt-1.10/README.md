@@ -13,8 +13,20 @@ find PATH_TO_BUILD/ -name "*.expand" > tmp
 ```
 We finally run egypt on all the files: (There is a comment that we added to the egypt script which increases the edges in line 261)
 ```
-./egypt -include-external `cat tmp` > initial.cfg
+./egypt -include-external `cat tmp` > initial.part1.cfg
 ```
+Egypt limits and removes some of the edges by default which it identifies as references.
+We remove this limitation and re-run egypt to add any missing edges due to this issue.
+```
+./egypt.modified -include-external `cat tmp` > initial.part2.cfg
+```
+
+We concat the two files to generate our initial callgraph:
+```
+cat initial.part1.cfg > initial.cfg
+cat initial.part2.cfg >> initial.cfg
+```
+
 
 Then we have to clean the initial graph using the following command:
 ```
