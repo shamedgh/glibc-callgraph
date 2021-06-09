@@ -79,3 +79,13 @@ python2.7 wrapper.py glibc.2.33/initial.all.cfg glibc.2.33/all.expand.files ~/li
 ```
 
 This gives us anything missing from the initial graph, and by adding the initial graph to it, we generate the complete graph.
+
+Finally, we add the direct system calls that glibc makes, from assembly code combined with in C source code files.
+
+```
+python2.7 extractDirectGlibcSyscalls.py -callgraph ~/confine/libc-callgraphs/glibc.callgraph --binpath /lib/x86_64-linux-gnu/libc.so.6 --separator : --output tmp.cfg
+
+cat tmp.cfg  >> glibc.2.33/wrapper.out.new
+```
+
+
