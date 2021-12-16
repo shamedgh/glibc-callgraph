@@ -100,13 +100,14 @@ if __name__ == '__main__':
                     syscallNum = int(leaf.strip())
                     reachableSyscalls.add(syscallNum)
 
-        rootLogger.debug("callgraphSyscalls: %s", str(reachableSyscalls))
+        rootLogger.debug("len(callgraphSyscalls): %d callgraphSyscalls: %s", len(reachableSyscalls), str(reachableSyscalls))
 
         myBinary = binaryAnalysis.BinaryAnalysis(options.binpath, rootLogger)
         directSyscallSet, successCount, failedCount = myBinary.extractDirectSyscalls()
 
         missedSyscallSet = set(directSyscallSet-reachableSyscalls)
 
+        rootLogger.debug("directSyscalls-callgraphSyscalls = %s", str(missedSyscallSet))
         if ( not options.output ):
             rootLogger.info("directSyscalls-callgraphSyscalls = %s", str(missedSyscallSet))
         else:

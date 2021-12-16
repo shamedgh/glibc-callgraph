@@ -62,6 +62,8 @@ namespace {
                             if ( strcmp(OS.str().c_str(), SYSCALL_STR) == 0 || 
                                     strcmp(OS.str().c_str(), "@syscall_cp") == 0 ||
                                     strcmp(OS.str().c_str(), "@syscall") == 0 ||
+                                    strncmp(OS.str().c_str(), "@syscall", 8) == 0 ||
+                                    strncmp(OS.str().c_str(), "@__syscall", 10) == 0 ||
                                     strcmp(OS.str().c_str(), "@__syscall") == 0 ||
                                     strcmp(OS.str().c_str(), "@__syscall0") == 0 ||
                                     strcmp(OS.str().c_str(), "@__syscall1") == 0 ||
