@@ -31,6 +31,7 @@ def printForwardCallGraph():
 def parseEgyptOutput(outputFileName):
     f = open(outputFileName)
     for line in f:
+        line = line.strip()
         if "{" in line:
             continue
         if "}" in line:
@@ -52,3 +53,7 @@ def parseEgyptOutput(outputFileName):
         calleeCallerMap[callee].append(caller)
     f.close()
 
+if __name__ == "__main__":
+    parseEgyptOutput("/tmp/egypt.final.callgraph")
+    print("////OUTPUT/////")
+    printForwardCallGraph()
